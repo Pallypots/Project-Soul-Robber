@@ -1,0 +1,66 @@
+va,name,state,source,obj,waivers,notes
+0x00100020,b10_CtlApply,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00100110,b10_CtlWait,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00100370,b10_CtlCopyWord,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x001006f0,b10_CtlClear1C8,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x00101140,b10_CtlMark,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x001011f0,b10_ScrReset,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x00101200,b10_ScrFree,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x00101220,b10_ScrWait,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00101240,b10_ScrApply,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00101280,b10_ScrSend,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x001012d0,b10_ScrEntry,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x00101340,b10_ScrVec,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x00101360,b10_PlayerLow,Structurally compared,src/game/b10_1.c,build/obj_b10/b10_1.obj,,
+0x00102f10,b10_ScrApply1,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00102fb0,b10_ScrSet1C0,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00103840,b10_ScrCmd21,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00103a70,b10_ScrCmd23,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00103f90,b10_ScrCmd3,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00103fc0,b10_ScrCmd32,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x001045b0,b10_ScrCmd34,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00104610,b10_ScrCmd35,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00106010,b10_Obj34Reset,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00106090,b10_Obj34Free,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00106140,b10_Obj34Attach,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00106340,b10_Obj38Reset,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x001063a0,b10_Obj38Free,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x001065b0,b10_Const1_2,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00108b00,b10_Obj50Reset,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00108b60,b10_Obj50Free,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x001094e0,b10_ActMode3,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00109520,b10_ActMode18,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00109570,b10_ActMode1A,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,jcc:b/ae;jcc:be/a,float compare operands swapped (comiss 0;[m] jb vs comiss [m];0 jbe)
+0x001095b0,b10_ActMode2,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00109610,b10_ActModeC,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,jcc:b/ae;jcc:be/a,float compare operands swapped (comiss 0;[m] jb vs comiss [m];0 jbe)
+0x00109670,b10_Set4_20,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00109710,b10_Set4_20Half,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,data:fconst:0.5;imm:0x3f000000,float constant 0.5 pushed as immediate 0x3F000000 by the original vs x87 literal load by modern cl
+0x00109e20,b10_Set44_20,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x0010c830,b10_Obj60Reset,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x0010ca80,b10_Obj60Free,Structurally compared,src/game/b10_2.c,build/obj_b10/b10_2.obj,,
+0x00112a80,b10_TickTimer,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00112b00,b10_CmdTest,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,imm:0x11;imm:0x10;jcc:l/ge;jcc:be/a,signed 0<=i<17 bounds check emitted as unsigned i<=16 by modern cl
+0x00113040,b10_EnemySetState,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,spin-wait local declared volatile so modern cl keeps the original wait loop
+0x00113190,b10_EnemySetFlag,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x001131e0,b10_EnemyDamage,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x001133e0,b10_NodeFind,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113400,b10_NodeGet,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113480,b10_NodeRelease,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113c40,b10_AddClampI,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113c60,b10_AddClampF,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113c90,b10_SubClampI,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113cb0,b10_SubClampF,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00113e60,b10_EnemyInitCallbacks,Structurally compared,src/game/b10_3.c,build/obj_b10/b10_3.obj,,
+0x00114640,b10_Size8C,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x00119f20,b10_Size44,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011ae20,b10_ActorApplyList,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011e010,b10_Size678,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011e480,b10_ActorIfLive,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011e4a0,b10_ActorIfFlag400,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011e4c0,b10_ActorTestApply,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011efa0,b10_InfoInRange,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011f070,b10_InfoFlagTest,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011f0a0,b10_InfoDepleted,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0011f620,b10_Combine40,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,
+0x0012d2a0,b10_InRangeU,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,jcc:be/a,second unsigned bound selected 1/0 with cmp;sbb;inc by modern cl instead of ja branch
+0x0012d660,b10_Size1C8,Structurally compared,src/game/b10_4.c,build/obj_b10/b10_4.obj,,

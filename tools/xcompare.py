@@ -178,6 +178,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                     a = resolve(off, fo, o.mem.disp & 0xFFFFFFFF, "abs") if fo is not None else None
                     if a is not None:
                         data[a] += 1
+                    elif o.mem.base not in (0, x86.X86_REG_ESP, x86.X86_REG_EBP):
+                        imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1   # call [obj+off]: the slot offset
             prev = i; continue
         if m == "jmp" and ops[0].type == x86.X86_OP_MEM and ops[0].mem.index != 0:
             # switch jump table (own table, right after the code) vs indirect
