@@ -67,6 +67,9 @@ py -3 tools\xbe_inventory.py header    C:\ProjectOogie\game\default.xbe
 py -3 tools\xbe_inventory.py sections  C:\ProjectOogie\game\default.xbe config\inventory\sections.csv
 py -3 tools\xbe_inventory.py functions C:\ProjectOogie\game\default.xbe C:\ProjectOogie\build_out\disasm\functions.json config\inventory\functions.csv docs\inventory_summary.md
 py -3 -m unittest discover -s tests -v
+toolseck_all.bat      (compile src/game and structurally check every recorded function)
+py -3 tests
+egative_controls.py   (re-qualify the checker after changing it)
 py -3 toolsprogress.py   (regenerate docs/progress.svg after changing config/function_states.csv)
 build\cc.bat     (VS 2022 x86 cl + dumpbin, structural comparison only)
 ```

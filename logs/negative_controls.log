@@ -1,0 +1,13 @@
+ok   wrong-constant                     expected FAIL, got FAIL
+ok   reversed-condition                 expected FAIL, got FAIL
+ok   wrong-call-target                  expected FAIL, got FAIL
+ok   wrong-global                       expected FAIL, got FAIL
+ok   wrong-float-constant               expected FAIL, got FAIL
+ok   wrong-field                        expected FAIL, got FAIL
+ok   wrong-calling-convention           expected FAIL, got FAIL
+ok   missing-function                   expected FAIL, got FAIL
+ok   wrong-array-field                  expected FAIL, got FAIL
+ok   wrong-tail-call-target             expected FAIL, got FAIL
+ok   wrong-struct-offset                expected FAIL, got FAIL
+ok   LIMIT pure negation (< vs >=)      expected PASS, got PASS
+ok   LIMIT swapped fields both used     expected PASS, got PASS

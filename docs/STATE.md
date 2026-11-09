@@ -1,32 +1,35 @@
-# State (updated 2026-11-09, session 1)
+# State (updated 2026-11-09, session 2)
 
 ## Milestones
 | Milestone | Status |
 |---|---|
-| M0 Identity | **Passed** for the XBE: SHA-1/SHA-256 checked, header and 31 sections mapped (`logs/header.log`, `config/inventory/sections.csv`). Disc image hash comes from the recomp's records (Redump SHA-1 b39ba1e3...), not re-checked here. |
-| M1 Trustworthy tools | **Partial**: inventory tool with 9 synthetic tests incl. 6 negative controls (`logs/tests.log`, all pass). x86 structural checker not written yet. Byte matching blocked (no legitimate original compiler). |
-| M2+ | Not started |
+| M0 Identity | **Passed** for the XBE (SHA-1/SHA-256, header, 31 sections: `logs/header.log`, `config/inventory/sections.csv`). |
+| M1 Trustworthy tools | **Passed for structural checking**: `tools/xcompare.py` with 13 negative controls (`logs/negative_controls.log`, 13/13). Byte matching still **blocked** (no legitimate original compiler). |
+| M2 Reference reconstruction | Blocked with byte matching. |
+| M3 Verified subsystem | **Partial**: chapter grading, player stats/souls, chapter clock recovered and structurally compared; no behaviour tests yet. |
 
-## What exists
-- `tools/xbe_inventory.py`: read-only XBE header/section/function inventory, bounds-checked, retail/debug XOR detection, kernel thunk table length, raw vs zero-filled ranges.
-- `config/inventory/functions.csv`: 10,500 candidates; **7,735 game** (1.66 MB), **2,762 library** (0.48 MB), 3 unknown. Method: `docs/inventory.md`.
-- 3 recovered functions, state "Structurally compared" (not matched, not behaviour-tested): `docs/functions/first.md`.
-- Toolchain findings and matching blocker: `docs/toolchain.md`. Recomp swap plan: `docs/swap_plan.md`.
+## Recovered so far
+32 game functions, all **Structurally compared** (`logs/check_all.log`, 32/32; 3 with documented compiler-idiom waivers). None Semantic-tested yet. List: `docs/functions.md`.
 
-## Progress (game code only)
-| State | Functions | Unique bytes |
+| Area | Source | Functions |
 |---|---|---|
-| Structurally compared | 3 | 162 |
-| Semantic-tested or better | 0 | 0 |
-| Unanalyzed | 7,732 | ~1.66 MB |
+| Chapter grading | `src/game/grade.c` | 4 |
+| Player stats, souls, damage | `src/game/stats.c` | 14 |
+| Player object flags | `src/game/player_obj.c` | 9 |
+| Chapter clock, video rate | `src/game/clock.c`, `video.c` | 3 |
+| Loader job, frame present | `src/game/system.c` | 2 |
 
-## Open hypotheses
-- Game/library cut in `.text` at 0x001BC6D0 (within a few hundred bytes).
-- Original compiler is VC 7.1 (XDK 5849 era).
-- Whether recomp direct calls go through `recomp_lookup_manual`.
+## Findings this session (Verified by disassembly unless marked)
+- The game uses whole-program-optimised calling conventions in places: 0x00040C10 takes its argument in EAX (no stack argument). Expect more custom conventions; the recomp adapter must handle them per function.
+- 0x00040C10 hangs on purpose for an out-of-range chapter (`cmp/jl` back to itself): an assert-style trap (purpose Hypothesis).
+- The chapter clock is 300 ticks per second; with video rate mode 0 (0x003E2544) times are scaled by 1.001001 / 0.999, which fits 59.94 Hz NTSC timing (Hypothesis). Relevant to the high-frame-rate work.
+- 0x00420C20 (stats + 0xD60) is a flags word, not a stat slot; bit 1 runs a 720-unit timer at stats + 0xD94.
+- Jack's hit routine 0x000CF950 confirmed: damage tally, cheat bit 0 keeps 1 health, death call 0x000CEF00.
+- The 2005 compiler never emits `cmov`; modern cl does. Logged as a checker normalisation.
 
-## Next concrete task
-Write `tools/xcompare.py` (x86 structural checker, COFF obj vs XBE range, symbol-to-address table) with negative controls, and run it on the three functions.
+## Next concrete tasks
+1. Keep recovering by call graph outward from grading/stats (callers of 0x000CF950, 0x000D1F40, 0x00041480), and the `.stm` archive loader.
+2. First recomp swap test (0x000414A0, exclamation points), per `docs/swap_plan.md`, in a branch of `C:\ProjectOogie` with the owner's OK.
 
 ## Repo
-`C:\ProjectOogieDecomp`, public at https://github.com/Pallypots/Project-Soul-Robber (repo made by the owner 2026-11-09). Update the README chart with `py -3 tools/progress.py` after changing `config/function_states.csv`.
+https://github.com/Pallypots/Project-Soul-Robber. Update the README chart with `py -3 tools/progress.py` after changing `config/function_states.csv`.

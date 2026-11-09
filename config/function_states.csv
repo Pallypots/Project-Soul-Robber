@@ -1,4 +1,33 @@
-va,state,source
-0x00057e90,Structurally compared,src/game/recovered_first.c
-0x000414a0,Structurally compared,src/game/recovered_first.c
-0x001a7ba0,Structurally compared,src/game/recovered_first.c
+va,name,state,source,obj,waivers,notes
+0x00041480,Grade_AddBestCombo,Structurally compared,src/game/grade.c,build/obj/grade.obj,,
+0x000414a0,Grade_AddExclamations,Structurally compared,src/game/grade.c,build/obj/grade.obj,,
+0x000414f0,Grade_AddDamage,Structurally compared,src/game/grade.c,build/obj/grade.obj,,
+0x00040c10,Grade_CommitChapter,Structurally compared,src/game/grade.c,build/obj/grade.obj,imm:0x18;imm:0x17,bounds check emitted as unsigned (chapter-1)>23 by modern cl vs signed <1 / >24
+0x000cf790,Stats_Get,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf810,Stats_Set,Structurally compared,src/game/stats.c,build/obj/stats.obj,imm:0x1f;imm:0x5;imm:0x8000001f;imm:0xffffffe0;imm:0x20;imm:0xd5c;imm:0x357;imm:0xd74;imm:0x35d;jcc:s/ns,signed /32 and %32 idiom (original shift/mask/sign fix-up vs modern idiv) and slot offset folded into the scaled index (0xD5C/4=0x357 and 0xD74/4=0x35D)
+0x000cf910,Souls_AddLifetime,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000d1f40,Souls_Spend,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000529e0,Video_GetRateMode,Structurally compared,src/game/video.c,build/obj/video.obj,,
+0x0019c030,Clock_GetChapterTime,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x0019c0b0,Clock_SetChapterTime,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x00057e90,Job_IsRunning,Structurally compared,src/game/system.c,build/obj/system.obj,,
+0x001a7ba0,Frame_Present,Structurally compared,src/game/system.c,build/obj/system.obj,,
+0x000cf940,Souls_GetLifetime,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf8e0,Stats_GetMax,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf950,Player_TakeDamage,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf9c0,Stats_SetFlag2,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf9f0,Stats_UpdateFlag2,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cfa20,Stats_SetFlag1,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cfa50,Stats_TestFlags,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf6a0,Stats_GetD8,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf6b0,Stats_Get1B8,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf6c0,Stats_HasEFC,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x000cf180,PlayerObj_ModeSign,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,imm:0xfffffffe,1/-1 select: original neg/sbb/and -2/inc vs modern setcc/lea
+0x000cf1a0,PlayerObj_IsActive,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf1d0,PlayerObj_IsIdle,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf3c0,PlayerObj_SetFlags,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf3f0,PlayerObj_ClearFlags,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf420,PlayerObj_TestFlags,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf450,PlayerObj_ForwardFD8,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf470,PlayerObj_Call1ADAF0,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf4e0,PlayerObj_ClearFlags22,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,

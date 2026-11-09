@@ -1,0 +1,36 @@
+# Verification
+
+Byte matching is blocked (no legitimate original compiler, see `toolchain.md`). Until that changes, a function is promoted to **Structurally compared** only by `tools/xcompare.py`, and to **Semantic-tested** only by a behaviour test in the recomp test bench (`swap_plan.md`).
+
+## The structural checker (`tools/xcompare.py`)
+Our C is compiled by VS 2022 `cl` 19.44 for x86 (`/O2 /Oy /GS- /Gy /Zl /arch:SSE`, see `tools/cl.bat`). The checker disassembles the original function from the XBE and our function from the COFF object, resolves our relocations through `config/symbols.csv`, and requires these to be equal:
+
+| Category | What is compared |
+|---|---|
+| calls | Ordered call targets, including tail calls (`jmp` to another function). Imports resolve to their kernel thunk slot. |
+| data | Set of absolute addresses touched (globals, `.rdata`). Float constants in `.rdata` compare by value (ours are cl's `__real@` literals). Indexed access into a record array listed in `symbols.csv` (`elem`, `count`) compares as array + field offset. The function's own jump tables are skipped on both sides. |
+| imm | Set of constants: immediates and structure offsets in one class (compilers pick `lea r,[r+k]` or `add r,k` freely). 0, 1 and -1 are ignored. Stack-pointer arithmetic is ignored. |
+| jcc | Set of decision kinds. A condition and its negation are one kind (block layout can invert them). `cmov`, `setcc`, `neg;sbb` and `cmp;sbb` count as decisions. `js/jns` right after `test r,r` count as `l/ge`. |
+| ret | `ret N` values (calling convention: callee-pops vs caller-pops). |
+| jtables | Number of jump-table dispatches. |
+
+Register choice, instruction selection, ordering of independent instructions and counts of repeated accesses are deliberately not compared.
+
+## Negative controls (`tests/negative_controls.py`, log `logs/negative_controls.log`)
+Each control plants one bug in a copy of real recovered source and must FAIL: wrong constant, reversed condition, wrong call target, wrong tail-call target, wrong global, wrong float constant, wrong field, wrong struct offset, wrong array field, extra call (calling convention/stack), missing function. Result on 2026-11-09: 13/13 behaved as expected.
+
+## Known blind spots (also tested, expected to PASS)
+- A pure negation (`<` vs `>=`) is invisible, because layout may invert a branch.
+- Swapping two fields that are both used elsewhere in the same function is invisible (sets, not positions).
+- Byte vs dword access width is not distinguished.
+These are why Structurally compared is below Semantic-tested: behaviour tests catch them.
+
+## Waivers
+A function may list exact `category:item` differences in the `waivers` column of `config/function_states.csv`, with the reason in `notes`. Only those items may differ; the run prints `PASS*` and the waiver count. Waivers are for compiler idioms that the 2005 compiler and cl 19.44 express differently (division by a power of two, bounds checks, 1/-1 selection), never for logic.
+
+## Commands
+```
+tools\check_all.bat                  compile src/game/*.c and check every recorded function (log: logs/check_all.log)
+py -3 tools\xcompare.py <obj> <name> <va> -d     one function, side-by-side disassembly
+py -3 tests\negative_controls.py     re-qualify the checker after any change to it
+```
