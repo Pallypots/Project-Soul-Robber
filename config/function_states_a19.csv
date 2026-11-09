@@ -1,0 +1,58 @@
+va,name,state,source,obj,waivers,notes
+0x00190530,a19_ClearWork1C,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00191450,a19_ClearFlag20,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00191460,a19_WorkVec14,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00191510,a19_ClearWork24,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00192450,a19_GetRec400A88,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,imm:0x4;imm:0x3;jcc:l/ge;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00193df0,a19_Clear400CA8,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,
+0x00194770,a19_SetFlag40,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00195c50,a19_WorkVec44,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00195d10,a19_ClearWork20,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,actor +0x74 work-block layout Hypothesis
+0x00196a10,a19_Clear401828,Structurally compared,src/game/a19_1.c,build/obj_a19/a19_1.obj,,
+0x001940a0,a19_C7_Clear18,Structurally compared,src/game/a19_2.c,build/obj_a19/a19_2.obj,,actor +0x74 work-block layout Hypothesis
+0x00194ca0,a19_C7_Set0,Structurally compared,src/game/a19_2.c,build/obj_a19/a19_2.obj,,actor +0x74 work-block layout Hypothesis
+0x00194cd0,a19_C7_Set88,Structurally compared,src/game/a19_2.c,build/obj_a19/a19_2.obj,,actor +0x74 work-block layout Hypothesis
+0x00194d00,a19_C7_Set8A,Structurally compared,src/game/a19_2.c,build/obj_a19/a19_2.obj,,actor +0x74 work-block layout Hypothesis
+0x00194d30,a19_C7_Apply,Structurally compared,src/game/a19_2.c,build/obj_a19/a19_2.obj,,actor +0x74 work-block layout Hypothesis
+0x00194d60,a19_C7_Get18,Structurally compared,src/game/a19_2.c,build/obj_a19/a19_2.obj,,actor +0x74 work-block layout Hypothesis
+0x001984a0,a19_DetachWork,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,actor +0x74 work-block layout Hypothesis
+0x001987e0,a19_Apply2ClearWork8,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,actor +0x74 work-block layout Hypothesis
+0x001997d0,a19_Store402760,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x001997e0,a19_Forward1AB3D0,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x00199800,a19_Set402764,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x00199810,a19_Get402764,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x00199820,a19_Set402768,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x00199830,a19_Set402770,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x00199840,a19_Set402774,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x00199ae0,a19_GetRec401B4C,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,imm:0x10;imm:0xf;jcc:l/ge;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019a460,a19_GetRec401D98,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,imm:0x2d;imm:0x2c;imm:0x38;jcc:l/ge;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x0019a580,a19_GetTblB8,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019a590,a19_GetTblB9,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019a930,a19_GetRec4019D8,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019a9b0,a19_ClearRec4019D8,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019aaa0,a19_InitAll19AA00,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019b9a0,a19_Call19AEA0Default,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019b9d0,a19_Get402F9C,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019b9e0,a19_Inc402FA8,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019ba00,a19_Get402FA8,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019ba10,a19_Set402FC4,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019ba20,a19_Get41314A,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019ba30,a19_Get41314B,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019be50,a19_Exchange402F94,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019be60,a19_TestAny413174,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019be70,a19_TestAll413174,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019be90,a19_Set413174,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019beb0,a19_Clear413174,Structurally compared,src/game/a19_3.c,build/obj_a19/a19_3.obj,,
+0x0019c4b0,a19_SessionRestart,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019c5e0,a19_Set336DD0,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019d100,a19_Start1A1130,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019d450,a19_Set337498,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019d6b0,a19_CloseHandle402FF4,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019d8a0,a19_Set402FE8,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019d8c0,a19_Signal402FE4,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019e970,a19_Set403004_403120,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019fee0,a19_Get40396C,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019ffc0,a19_Get403974,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019ffd0,a19_Get403940,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x00198070,a19_Run196D30_197CE0,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,
+0x0019ae90,a19_Run199B50_19A6F0_19AE00,Structurally compared,src/game/a19_4.c,build/obj_a19/a19_4.obj,,

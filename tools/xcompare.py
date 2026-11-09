@@ -193,8 +193,9 @@ def events(code, base, resolve, md, fconst=None, local=None):
             ret.add(ops[0].imm if ops else 0); prev = i; continue
         if m == "jmp" and ops[0].type == x86.X86_OP_IMM and i.size == 5:
             t = resolve(off, 1, ops[0].imm, "rel")
-            local = (isinstance(t, tuple) and t[0] == "unrelocated") or                     (isinstance(t, int) and base <= t < base + len(code))
-            if not local:
+            is_local = (isinstance(t, tuple) and t[0] == "unrelocated") or \
+                       (isinstance(t, int) and base <= t < base + len(code))
+            if not is_local:
                 calls.append(("tail", t))   # tail call to another function
                 prev = i; continue
         if m.startswith("j") and m not in JCC_CLASS:

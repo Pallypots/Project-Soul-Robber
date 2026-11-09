@@ -1,0 +1,29 @@
+va,name,state,source,obj,waivers,notes
+0x00050fa0,a50_StreamPoll,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,,
+0x00051000,a50_StreamRestart,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,,
+0x00052a00,a50_SetVideoMode,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,,
+0x00052a10,a50_GetVideoModeName,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,,
+0x00052a20,a50_InitTiming,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00052aa0,a50_ClearCache,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,,
+0x00052ad0,a50_TableFind,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,jcc:be/a,original keeps a redundant count==0 loop-entry guard that modern cl folds into the loop test
+0x00052b00,a50_BlobRebase,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,imm:0x10;imm:0x20,loop strength reduction: original advances a pointer to the +0x10 field and modern cl folds the field offset into the base
+0x00052cb0,a50_BlobListEntries,Structurally compared,src/game/a50_1.c,build/obj_a50/a50_1.obj,,
+0x000532b0,a50_CacheGetData,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x00053710,a50_PushHeap,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x00053740,a50_PopHeap,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x000537f0,a50_FreeSlotHeaps,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,jcc:l/ge;jcc:b/ae,loop strength reduction: pointer loop end compared signed by the original and unsigned by modern cl
+0x00053970,a50_SlotEndTemp,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x000539c0,a50_SlotBeginTemp,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x00053a00,a50_SlotDiscardTemp,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x00053bc0,a50_AllocTop,Structurally compared,src/game/a50_2.c,build/obj_a50/a50_2.obj,,
+0x00053c40,a50_MemReset,Structurally compared,src/game/a50_3.c,build/obj_a50/a50_3.obj,,
+0x00053c70,a50_RecsClear,Structurally compared,src/game/a50_3.c,build/obj_a50/a50_3.obj,,
+0x00053c90,a50_RecsCount,Structurally compared,src/game/a50_3.c,build/obj_a50/a50_3.obj,,
+0x00053d50,a50_Sub53D50,Structurally compared,src/game/a50_3.c,build/obj_a50/a50_3.obj,,
+0x00057660,a50_RangeAddr,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
+0x00057ea0,Job_OnJobThread,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
+0x00057ec0,a50_OnLoaderThread,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
+0x00057ee0,a50_JobPoll,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
+0x00057ef0,a50_ObjIdIs,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
+0x00057f10,a50_ObjKindIs,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
+0x00058170,a50_KickLoader,Structurally compared,src/game/a50_4.c,build/obj_a50/a50_4.obj,,
