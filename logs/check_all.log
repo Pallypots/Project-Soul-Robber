@@ -363,6 +363,44 @@ PASS  a3c_Rec2CGet @ 0x00039810  orig 4 insns, ours 3 insns
 PASS  a3c_Rec1450Get @ 0x000398c0  orig 4 insns, ours 3 insns
 PASS  a3c_DeepKeyIs @ 0x0003abc0  orig 9 insns, ours 8 insns
 PASS  a3c_ClearWithTail @ 0x0003abe0  orig 8 insns, ours 8 insns
+PASS  a3c_NotifyThenStep @ 0x0003c9b0  orig 19 insns, ours 4 insns
+PASS  a3c_SelectEntry @ 0x0003cfc0  orig 5 insns, ours 5 insns
+PASS  a3c_SlotGet @ 0x0003d090  orig 3 insns, ours 3 insns
+PASS  a3c_SlotSelect @ 0x0003d100  orig 6 insns, ours 5 insns
+PASS  a3c_Clear16 @ 0x0003d860  orig 7 insns, ours 6 insns
+PASS  a3c_RangeForward @ 0x0003db40  orig 11 insns, ours 8 insns
+PASS  a3c_IdIs @ 0x0003dba0  orig 7 insns, ours 6 insns
+PASS  a3c_TakeSecond @ 0x0003dc50  orig 14 insns, ours 14 insns
+PASS  a3c_TakeFirst @ 0x0003dc70  orig 14 insns, ours 14 insns
+PASS  a3c_HeapDefaults @ 0x0003dc90  orig 4 insns, ours 4 insns
+PASS  a3c_HookPass @ 0x0003dce0  orig 5 insns, ours 5 insns
+PASS  a3c_FlagSet1 @ 0x0003dd00  orig 2 insns, ours 2 insns
+PASS  a3c_FlagsClearShutdown @ 0x0003dd10  orig 2 insns, ours 2 insns
+PASS  a3c_SessionWord @ 0x0003dde0  orig 6 insns, ours 4 insns
+PASS  a3c_ScreenW @ 0x0003de00  orig 2 insns, ours 2 insns
+PASS  a3c_ScreenH @ 0x0003de10  orig 2 insns, ours 2 insns
+PASS  a3c_CallED50 @ 0x0003f770  orig 6 insns, ours 5 insns
+PASS  a3c_CallF8B0 @ 0x0003f9c0  orig 8 insns, ours 6 insns
+PASS  a3c_OffTabGet @ 0x0003fa70  orig 12 insns, ours 12 insns
+PASS  a3c_SlotRecGet @ 0x0003d1a0  orig 15 insns, ours 12 insns
+PASS  a3c_SlotRecSet @ 0x0003d1e0  orig 15 insns, ours 12 insns
+PASS  a3c_SlotRecGet20 @ 0x0003d220  orig 15 insns, ours 14 insns
+PASS  a3c_SlotRecSet20 @ 0x0003d260  orig 15 insns, ours 14 insns
+PASS  a3c_TaskInit @ 0x0003d6c0  orig 14 insns, ours 14 insns
+PASS  a3c_NodeSetVecs @ 0x00033770  orig 19 insns, ours 17 insns
+PASS  a3c_ListIdleA @ 0x000338a0  orig 16 insns, ours 16 insns
+PASS  a3c_ListIdleB @ 0x00033a40  orig 16 insns, ours 16 insns
+PASS  a3c_ReleaseOwnedChain @ 0x00033b30  orig 17 insns, ours 16 insns
+PASS  a3c_VisitPair @ 0x00033bf0  orig 14 insns, ours 13 insns
+PASS  a3c_ReleasePools @ 0x00034b70  orig 15 insns, ours 14 insns
+PASS  a3c_ListApplyA @ 0x00034dd0  orig 24 insns, ours 24 insns
+PASS  a3c_ListApplyB @ 0x00034e00  orig 24 insns, ours 24 insns
+PASS  a3c_ListIdleForward @ 0x00034e60  orig 19 insns, ours 20 insns
+PASS  a3c_ListApplyC @ 0x00034f00  orig 20 insns, ours 20 insns
+PASS  a3c_ListApplyOwn @ 0x00034f30  orig 19 insns, ours 18 insns
+PASS  a3c_VisitChain @ 0x000362b0  orig 17 insns, ours 16 insns
+PASS  a3c_WalkAndFree @ 0x000367b0  orig 16 insns, ours 15 insns
+PASS  a3c_PoolInit @ 0x00036a90  orig 24 insns, ours 21 insns
 PASS  a50_StreamPoll @ 0x00050fa0  orig 31 insns, ours 29 insns
 PASS  a50_StreamRestart @ 0x00051000  orig 6 insns, ours 5 insns
 PASS  a50_SetVideoMode @ 0x00052a00  orig 4 insns, ours 4 insns
@@ -549,7 +587,7 @@ PASS  a6b_TrackSet_Load @ 0x0007e150  orig 26 insns, ours 25 insns
 PASS  a6b_Node_Release @ 0x0007ec20  orig 12 insns, ours 12 insns
 PASS  a6b_AllocAt @ 0x0007f4c0  orig 16 insns, ours 11 insns
 PASS  a6b_CamAnim_New @ 0x0007e210  orig 14 insns, ours 14 insns
-PASS* a6b_CamAnim_Release @ 0x0007e240  orig 18 insns, ours 18 insns  (1 documented waivers)
+PASS  a6b_CamAnim_Release @ 0x0007e240  orig 18 insns, ours 18 insns
 PASS  a6b_CamAnim_Load @ 0x0007e270  orig 23 insns, ours 23 insns
 PASS  a6b_Block_Init @ 0x0007f240  orig 43 insns, ours 39 insns
 PASS  a80_PoolReset @ 0x00080970  orig 7 insns, ours 6 insns
@@ -1565,4 +1603,4 @@ PASS  b7c_BossSwitch182770 @ 0x00182770  orig 14 insns, ours 16 insns
 PASS  b7c_BossPlace182850 @ 0x00182850  orig 19 insns, ours 18 insns
 PASS  b7c_ResetParts182950 @ 0x00182950  orig 13 insns, ours 13 insns
 PASS  b7c_ResetCount182E40 @ 0x00182e40  orig 2 insns, ours 2 insns
-1567/1567 pass
+1605/1605 pass

@@ -289,7 +289,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                     imm[("k", v)] += 1
         prev = i
     # 0/1 materialisation differs freely between compilers (xor r,r / mov r,1 / setcc)
-    for k in [k for k in imm if k[1] in (0, 1, 0xFFFFFFFF)]:
+    # 0xFF / 0xFFFF masks: `and r,0xFF` and a zero-extending byte/word load are the same operation
+    for k in [k for k in imm if k[1] in (0, 1, 0xFFFFFFFF, 0xFF, 0xFFFF)]:
         del imm[k]
     # Addresses and constants are compared as sets: instruction selection
     # (read-modify-write vs load/store, re-reads) changes how often each
