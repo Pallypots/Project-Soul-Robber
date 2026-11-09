@@ -88,6 +88,8 @@ def main():
     out.append("</svg>")
     open(P("docs", "progress.svg"), "w", encoding="utf-8").write("\n".join(out) + "\n")
 
+    write_map(rows, states)
+
     md = ["| State | Functions | Unique bytes |", "|---|---|---|"]
     for name, _ in STATES:
         md.append(f"| {name} | {fn[name]:,} | {by[name]:,} |")
@@ -96,6 +98,36 @@ def main():
     md.append(f"| Unknown owner | {unk_fn:,} | |")
     open(P("docs", "progress.md"), "w", encoding="utf-8").write("\n".join(md) + "\n")
     print("\n".join(md))
+
+
+def write_map(rows, states):
+    """docs/progress_map.svg: one square per game function, in address order
+    (left to right, top to bottom), coloured by state. Runs of equal colour in
+    a row are drawn as one rectangle to keep the file small."""
+    game = [r for r in rows if group(r["owner"]) == "game"]
+    cols, cell, gap, x0, y0 = 120, 6, 1, 20, 50
+    step = cell + gap
+    nrows = (len(game) + cols - 1) // cols
+    W = x0 * 2 + cols * step
+    H = y0 + nrows * step + 40
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Segoe UI,Helvetica,Arial,sans-serif">',
+           f'<rect width="{W}" height="{H}" rx="8" fill="#ffffff" stroke="#d0d7de"/>',
+           f'<text x="{x0}" y="30" font-size="17" font-weight="600" fill="#1f2328">Game code map: one square per function ({len(game):,})</text>']
+    cols_of = [COLOR[states.get(int(r["va"], 16), "Unanalyzed")] for r in game]
+    for row in range(nrows):
+        seg = cols_of[row * cols:(row + 1) * cols]
+        i = 0
+        while i < len(seg):
+            j = i
+            while j < len(seg) and seg[j] == seg[i]:
+                j += 1
+            w = (j - i) * step - gap
+            out.append(f'<rect x="{x0 + i * step}" y="{y0 + row * step}" width="{w}" height="{cell}" fill="{seg[i]}"/>')
+            i = j
+    first, last = game[0]["va"], game[-1]["va"]
+    out.append(f'<text x="{x0}" y="{H - 16}" font-size="10.5" fill="#57606a">Address order {first} (top left) to {last} (bottom right). Colours as in the progress bar. Library code not shown.</text>')
+    out.append("</svg>")
+    open(P("docs", "progress_map.svg"), "w", encoding="utf-8").write("\n".join(out) + "\n")
 
 
 if __name__ == "__main__":
