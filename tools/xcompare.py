@@ -46,6 +46,8 @@ JCC_CLASS = {
 
 def undecorate(n):
     n = re.sub(r"^__imp_", "", n)
+    if n.startswith("@"):      # __fastcall: @name@N
+        return re.sub(r"@\d+$", "", n[1:])
     n = re.sub(r"@\d+$", "", n)
     return n[1:] if n.startswith("_") else n
 
@@ -178,11 +180,27 @@ def events(code, base, resolve, md, fconst=None, local=None):
                         data[a] += 1
             prev = i; continue
         if m == "jmp" and ops[0].type == x86.X86_OP_MEM and ops[0].mem.index != 0:
-            jt += 1; prev = i; continue
+            # switch jump table (own table, right after the code) vs indirect
+            # tail call through a function-pointer table elsewhere
+            fo = i.disp_offset if i.disp_offset else None
+            a = resolve(off, fo, ops[0].mem.disp & 0xFFFFFFFF, "abs") if fo is not None else None
+            own = (isinstance(a, tuple) and a[0] == "local") or \
+                  (isinstance(a, int) and local is not None and local[0] <= a < local[1])
+            if own or a is None:
+                jt += 1
+            else:
+                calls.append(("tail", "indirect"))
+                data[a] += 1
+            prev = i; continue
         if m.startswith(("cmov", "set")) and ("j" + m[4:] if m.startswith("cmov") else "j" + m[3:]) in JCC_CLASS:
             # conditional move / set: same decision as a branch (modern cl
             # uses cmov, which 2005-era code for this game never does)
-            jcc[JCC_CLASS["j" + (m[4:] if m.startswith("cmov") else m[3:])]] += 1
+            c = JCC_CLASS["j" + (m[4:] if m.startswith("cmov") else m[3:])]
+            if c == "s/ns" and prev is not None and prev.mnemonic == "test" and \
+               len(prev.operands) == 2 and prev.operands[0].type == x86.X86_OP_REG and \
+               prev.operands[1].type == x86.X86_OP_REG and prev.operands[0].reg == prev.operands[1].reg:
+                c = "l/ge"   # same folding as js/jns after test r,r
+            jcc[c] += 1
         elif m == "sbb" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and \
                 ops[1].type == x86.X86_OP_REG and ops[0].reg == ops[1].reg and \
                 prev is not None and prev.mnemonic in ("neg", "cmp", "sub"):
