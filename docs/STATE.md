@@ -9,14 +9,14 @@
 | M3 Verified subsystem | **Partial**: chapter grading, player stats/souls, chapter clock recovered and structurally compared; no behaviour tests yet. |
 
 ## Recovered so far
-32 game functions, all **Structurally compared** (`logs/check_all.log`, 32/32; 3 with documented compiler-idiom waivers). None Semantic-tested yet. List: `docs/functions.md`.
+43 game functions, all **Structurally compared** (`logs/check_all.log`, 43/43; 6 with documented compiler-idiom waivers). None Semantic-tested yet. List: `docs/functions.md`.
 
 | Area | Source | Functions |
 |---|---|---|
-| Chapter grading | `src/game/grade.c` | 4 |
+| Chapter grading and unlocks | `src/game/grade.c` | 5 |
 | Player stats, souls, damage | `src/game/stats.c` | 14 |
-| Player object flags | `src/game/player_obj.c` | 9 |
-| Chapter clock, video rate | `src/game/clock.c`, `video.c` | 3 |
+| Player object | `src/game/player_obj.c` | 12 |
+| Chapter and play clocks, session, video rate | `src/game/clock.c`, `video.c` | 10 |
 | Loader job, frame present | `src/game/system.c` | 2 |
 
 ## Findings this session (Verified by disassembly unless marked)

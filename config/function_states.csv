@@ -31,3 +31,14 @@ va,name,state,source,obj,waivers,notes
 0x000cf450,PlayerObj_ForwardFD8,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
 0x000cf470,PlayerObj_Call1ADAF0,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
 0x000cf4e0,PlayerObj_ClearFlags22,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf070,PlayerObj_TimerDone,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,jcc:b/ae,float compare operands swapped (comiss a,b jb vs comiss b,a jbe)
+0x000cf120,PlayerObj_AngleDelta,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf0d0,Player_Refresh,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x00040a50,Grade_ApplyChapterUnlocks,Structurally compared,src/game/grade.c,build/obj/grade.obj,imm:0x18;imm:0x17;imm:0x1e;imm:0x47;imm:0x2b;imm:0x54;jcc:l/ge;jcc:le/g;jcc:be/a,loop counter strength-reduced by modern cl (30..70 + 13 becomes 43..83) and unsigned bounds check
+0x0019c100,Clock_ResetChapter,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x0019c110,Clock_GetPlayTime,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x0019c190,Clock_SetPlayTime,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x0019c1e0,Clock_ResetPlayTime,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x0019c1f0,Clock_Set402FC0,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x0019c200,Session_Reset,Structurally compared,src/game/clock.c,build/obj/clock.obj,data:0x3de6b1;data:0x3de6b2;data:0x3de6b3;data:0x3de7a1;data:0x3de7a2;data:0x3de7a3;data:fconst:1.0;imm:0x3f800000,modern cl merges the four byte stores into one dword store and stores 1.0f as an integer bit pattern
+0x0019c270,Session_Request,Structurally compared,src/game/clock.c,build/obj/clock.obj,,

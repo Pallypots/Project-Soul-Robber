@@ -72,3 +72,22 @@ void Grade_CommitChapter(int chapter)
     else
         rec->grade = sum >= 4;
 }
+
+/* 0x00040A50: clear event stats 43..83, then set the ones listed for this
+ * chapter in the unlock table (8 entries, 0 = none). */
+void Grade_ApplyChapterUnlocks(int chapter)
+{
+    int i;
+    uint8_t id;
+
+    if (chapter < 1 || chapter > 24)
+        for (;;)
+            ;
+    for (i = 30; i < 71; i++)
+        Stats_Set(&g_stats, i + 13, 0);
+    for (i = 0; i < 8; i++) {
+        id = g_chapterUnlockTable[chapter][i];
+        if (id)
+            Stats_Set(&g_stats, id + 13, 1);
+    }
+}

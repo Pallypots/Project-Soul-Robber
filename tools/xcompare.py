@@ -213,7 +213,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                 if is_fp(m) and fconst is not None:
                     c = fconst(a, o.size)
                     if c is not None:
-                        data[("fconst", c)] += 1
+                        if c != 0.0:   # 0.0 is often built with xorps instead of loaded
+                            data[("fconst", c)] += 1
                         continue
                 data[a] += 1
             elif o.mem.base not in (0, x86.X86_REG_ESP, x86.X86_REG_EBP) and o.mem.disp:

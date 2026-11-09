@@ -1,4 +1,4 @@
-﻿PASS  Grade_AddBestCombo @ 0x00041480  orig 5 insns, ours 5 insns
+PASS  Grade_AddBestCombo @ 0x00041480  orig 5 insns, ours 5 insns
 PASS  Grade_AddExclamations @ 0x000414a0  orig 17 insns, ours 15 insns
 PASS  Grade_AddDamage @ 0x000414f0  orig 10 insns, ours 10 insns
 PASS* Grade_CommitChapter @ 0x00040c10  orig 75 insns, ours 74 insns  (2 documented waivers)
@@ -30,4 +30,15 @@ PASS  PlayerObj_TestFlags @ 0x000cf420  orig 11 insns, ours 9 insns
 PASS  PlayerObj_ForwardFD8 @ 0x000cf450  orig 5 insns, ours 5 insns
 PASS  PlayerObj_Call1ADAF0 @ 0x000cf470  orig 8 insns, ours 7 insns
 PASS  PlayerObj_ClearFlags22 @ 0x000cf4e0  orig 3 insns, ours 3 insns
-32/32 pass
+PASS* PlayerObj_TimerDone @ 0x000cf070  orig 25 insns, ours 26 insns  (1 documented waivers)
+PASS  PlayerObj_AngleDelta @ 0x000cf120  orig 16 insns, ours 27 insns
+PASS  Player_Refresh @ 0x000cf0d0  orig 22 insns, ours 19 insns
+PASS* Grade_ApplyChapterUnlocks @ 0x00040a50  orig 34 insns, ours 35 insns  (9 documented waivers)
+PASS  Clock_ResetChapter @ 0x0019c100  orig 4 insns, ours 3 insns
+PASS  Clock_GetPlayTime @ 0x0019c110  orig 30 insns, ours 27 insns
+PASS  Clock_SetPlayTime @ 0x0019c190  orig 14 insns, ours 14 insns
+PASS  Clock_ResetPlayTime @ 0x0019c1e0  orig 4 insns, ours 3 insns
+PASS  Clock_Set402FC0 @ 0x0019c1f0  orig 3 insns, ours 3 insns
+PASS* Session_Reset @ 0x0019c200  orig 19 insns, ours 9 insns  (8 documented waivers)
+PASS  Session_Request @ 0x0019c270  orig 27 insns, ours 25 insns
+43/43 pass

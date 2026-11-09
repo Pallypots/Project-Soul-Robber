@@ -66,3 +66,48 @@ void PlayerObj_ClearFlags22(PlayerObj *p)
 {
     p->flags[0] &= ~0x22u;
 }
+
+/* 0x000CF070: 1 (and reset) once timer134 is positive and timer130 has
+ * reached it; while timer134 is not positive, asks 0x001AEE50 about the
+ * object three links down from +0xFD8 (types not analysed). */
+int PlayerObj_TimerDone(PlayerObj *p)
+{
+    uint8_t *a, *b;
+
+    if (p->timer134 > 0.0f) {
+        if (p->timer130 < p->timer134)
+            return 0;
+        p->timer134 = 0.0f;
+        return 1;
+    }
+    a = *(uint8_t **)(p->unkFD8 + 0x30);
+    b = *(uint8_t **)(a + 0x14);
+    if (*(int32_t *)(b + 0xC8) != 0)
+        return 0;
+    return sub_001AEE50(b, 0) & 2;
+}
+
+/* 0x000CF0D0 */
+void Player_Refresh(void)
+{
+    uint8_t *o = g_42C8EC;
+
+    sub_0001D610(g_playerObj);
+    if (g_stats.unk1B8 == 0 || g_stats.unk1B8 == 1) {
+        sub_000CE970();
+        sub_000CEF60();
+        if (g_stats.unk1B8 == 0)
+            sub_0001D610(*(void **)(o + 0x3B0));
+    }
+}
+
+/* 0x000CF120: angleFC - angle108 wrapped into -pi..pi. */
+float PlayerObj_AngleDelta(PlayerObj *p)
+{
+    float d = p->angleFC - p->angle108;
+    if (d > 3.14159274f)
+        d -= 6.28318548f;
+    if (-3.14159274f > d)
+        d += 6.28318548f;
+    return d;
+}

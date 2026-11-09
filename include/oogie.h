@@ -90,7 +90,14 @@ typedef struct PlayerObj {
     int32_t  unkD4;           /* +0x0D4 */
     uint8_t  unkD8[0xEC - 0xD8];
     int32_t  modeEC;          /* +0x0EC  low byte tested with 0x33 */
-    uint8_t  unkF0[0x150 - 0xF0];
+    uint8_t  unkF0[0xFC - 0xF0];
+    float    angleFC;         /* +0x0FC  an angle in radians (Hypothesis: facing) */
+    uint8_t  unk100[0x108 - 0x100];
+    float    angle108;        /* +0x108  reference angle */
+    uint8_t  unk10C[0x130 - 0x10C];
+    float    timer130;        /* +0x130  limit for timer134 */
+    float    timer134;        /* +0x134 */
+    uint8_t  unk138[0x150 - 0x138];
     uint32_t flags[2];        /* +0x150, +0x154: 64 flag bits */
     uint8_t  unk158[0xFD8 - 0x158];
     uint8_t *unkFD8;          /* +0xFD8  sub-object; +0x60 passed to 0x000F5D40 */
@@ -105,6 +112,33 @@ uint32_t PlayerObj_TestFlags(PlayerObj *p, uint32_t mask, int high);    /* 0x000
 int      PlayerObj_ForwardFD8(PlayerObj *p);                            /* 0x000CF450 */
 int      PlayerObj_Call1ADAF0(int a, int b);                            /* 0x000CF470 */
 void     PlayerObj_ClearFlags22(PlayerObj *p);                          /* 0x000CF4E0 */
+int      PlayerObj_TimerDone(PlayerObj *p);                             /* 0x000CF070 */
+float    PlayerObj_AngleDelta(PlayerObj *p);                            /* 0x000CF120 */
+void     Player_Refresh(void);                                          /* 0x000CF0D0 */
+extern PlayerObj *g_playerObj;              /* 0x00420E98 */
+extern uint8_t   *g_42C8EC;                 /* 0x0042C8EC, object with a pointer at +0x3B0 */
+
+/* ------------------------------------------------------------ chapter unlocks */
+extern const uint8_t g_chapterUnlockTable[25][8];   /* 0x002C5C30, stat ids - 13 */
+void Grade_ApplyChapterUnlocks(int chapter);        /* 0x00040A50 */
+
+/* ------------------------------------------------------------ session (same file as the clock) */
+typedef struct SessionSlot {
+    uint8_t b[4];             /* +0 cleared on reset */
+    float   scale;            /* +4 reset to 1.0 */
+    uint8_t unk08[0xF0 - 8];
+} SessionSlot;
+extern SessionSlot g_sessionSlots[2];       /* 0x003DE6B0, 0xF0 bytes each */
+extern uint64_t g_playTicks;                /* 0x00402FB8, second 300 Hz counter (Hypothesis: total play time) */
+extern int32_t  g_402FC0;                   /* 0x00402FC0 */
+extern int32_t  g_402F9C, g_402FA0, g_402FA4, g_402FA8, g_402FC4, g_402780;
+void  Clock_ResetChapter(void);             /* 0x0019C100 */
+float Clock_GetPlayTime(void);              /* 0x0019C110 */
+void  Clock_SetPlayTime(float seconds);     /* 0x0019C190 */
+void  Clock_ResetPlayTime(void);            /* 0x0019C1E0 */
+void  Clock_Set402FC0(int v);               /* 0x0019C1F0 */
+void  Session_Reset(void);                  /* 0x0019C200 */
+int   Session_Request(int value);           /* 0x0019C270 */
 
 /* ------------------------------------------------------------ clock / video */
 extern uint64_t g_chapterTicks;             /* 0x00402FB0, 300 ticks per second */
@@ -140,6 +174,15 @@ int  sub_00171CD0(PlayerStats *s);          /* stat 0x17 maximum = result * 10 *
 void sub_00023D80(int a, int b);            /* cdecl; called with (3, damage) */
 void sub_000CEF00(void);                    /* Jack's death sequence */
 void sub_000CA6C0(PlayerStats *s);
+int  sub_001AEE50(void *obj, int b);
+void sub_0001D610(void *obj);
+void sub_000CE970(void);
+void sub_000CEF60(void);
+void sub_0019BA70(void);
+void sub_00102FA0(void);
+int  sub_0019FEE0(void);
+int  sub_001A0CC0(void);
+int  sub_000479F0(void);
 
 /* ------------------------------------------------------------ XDK / kernel */
 int      OOG_STDCALL D3DDevice_Swap(uint32_t flags);                        /* 0x001D6D20 */
