@@ -1,0 +1,54 @@
+va,name,state,source,obj,waivers,notes
+0x000dc180,af0_Op_Wait,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc190,af0_Op_SetVarBC,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc270,af0_Op_SetVarC4,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc2d0,af0_Op_SetVarC8,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc450,af0_Op_E03E0,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc640,af0_Op_172A30,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc690,af0_Op_D7480,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc290,af0_Op_IfNotC4,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc2f0,af0_Op_IfNotC8,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc330,af0_Op_WaitAC,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0xfff;imm:0x3000,neg/sbb/and/add selection of 0x3000 or 0x2001 in the original vs cmov-style selection
+0x000dc350,af0_Op_D7100,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc3a0,af0_Op_WaitD71E0,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0xfffff000;imm:0x2000,setl/dec/and/add selection of 0x3000 or 0x2000 in the original vs cmov-style selection
+0x000dc470,af0_Op_DFC90,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc480,af0_Op_DE400,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc4b0,af0_Op_IfE8,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc600,af0_Op_IfEC,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc630,af0_Op_ClearEC,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,,
+0x000dc660,af0_Op_SetE8,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dc6b0,af0_Op_WaitD74D0,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x1000;imm:0x3000,neg/sbb/and/add selection of 0x3000 or 0x2000 in the original vs cmov-style selection
+0x000dc6d0,af0_Op_IfD8750,Structurally compared,src/game/af0_1.c,build/obj_af0/af0_1.obj,imm:0x8,partial-register byte insert (mov ch) in the original vs an explicit shl 8 for the signed 16-bit operand
+0x000dde60,af0_GetVar3EDCBC,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000dde70,af0_SetVar3EDCBC,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000dde80,af0_GetVar3EDCC0,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000dde90,af0_SetVar3EDCC0,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000ddea0,af0_GetVar3EDCC4,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000ddeb0,af0_SetVar3EDCC4,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000ddec0,af0_GetVar3EDCC8,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000dded0,af0_SetVar3EDCC8,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000ddee0,af0_SetVarSlot,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de490,af0_GetVar3EDCE8,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de4a0,af0_SetVar3EDCE8,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de4b0,af0_GetVar3EDCEC,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de4c0,af0_ClearVar3EDCEC,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de510,af0_SetVar3EDCF0,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de520,af0_GetVar3EDCF0,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de930,af0_SetVar3EDCF8,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de940,af0_GetVar3EDCF8,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de950,af0_SetVar3EDCFC,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000de960,af0_GetVar3EDCFC,Structurally compared,src/game/af0_2.c,build/obj_af0/af0_2.obj,,
+0x000df960,af0_GetVar3EDD18,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000df9b0,af0_SetVar3EDD1C,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfc80,af0_SetState4,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfd00,af0_GetVar3F0738,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfd10,af0_SetVar3F0738,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfd20,af0_GetVar3F073C,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfd30,af0_SetVar3F073C,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfdf0,af0_GetVar3EE6AC,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfe00,af0_GetVar3EE6C0,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfe10,af0_ClearVar3EE6C0,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfe20,af0_SetVar3EE6AC,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfe60,af0_Release3EE6A8,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfe70,af0_GetVar3EE6A8,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,
+0x000dfe80,af0_SetVar3EE6A8,Structurally compared,src/game/af0_3.c,build/obj_af0/af0_3.obj,,

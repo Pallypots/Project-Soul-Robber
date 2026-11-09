@@ -14,6 +14,8 @@ Our C is compiled by VS 2022 `cl` 19.44 for x86 (`/O2 /Oy /GS- /Gy /Zl /arch:SSE
 | ret | `ret N` values (calling convention: callee-pops vs caller-pops). |
 | jtables | Number of jump-table dispatches. |
 
+Also normalised (each found by recovery work and re-qualified with the negative controls): high-byte register tests (`test ah,8` = bit 0x800); `js/jns` after `test r,r` or `cmp x,0` = `l/ge`; `call [obj+off]` records the slot offset; calls through a function-pointer table compare the table address; jumps through a table outside the function are indirect tail calls, not switches; conditional tail calls (`jcc` to another function) count as calls; 0.0 float constants are ignored (built with xorps); `__fastcall` names undecorate.
+
 Register choice, instruction selection, ordering of independent instructions and counts of repeated accesses are deliberately not compared.
 
 ## Negative controls (`tests/negative_controls.py`, log `logs/negative_controls.log`)

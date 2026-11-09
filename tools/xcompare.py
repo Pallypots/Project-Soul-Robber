@@ -76,7 +76,7 @@ def load_arrays():
     """(base, end, elem) for symbols declared as arrays of records."""
     out = []
     for r in rows_of("symbols"):
-        if r.get("elem"):
+        if r.get("elem") and r.get("count"):
             b, e, n = int(r["va"], 16), int(r["elem"], 0), int(r["count"], 0)
             out.append((b, b + e * n, e))
     return out
@@ -149,6 +149,13 @@ class Coff:
 
 # ---------------------------------------------------------------- events
 FP_PREFIX = ("f",)
+def sign_test(p):
+    """`test r,r` or `cmp x,0`: js/jns after it means the same as jl/jge."""
+    if p.mnemonic == "test" and len(p.operands) == 2 and p.operands[0].type == x86.X86_OP_REG and        p.operands[1].type == x86.X86_OP_REG and p.operands[0].reg == p.operands[1].reg:
+        return True
+    return p.mnemonic == "cmp" and len(p.operands) == 2 and p.operands[1].type == x86.X86_OP_IMM         and p.operands[1].imm == 0
+
+
 def is_fp(m):
     return m.startswith("f") or m.endswith(("ss", "sd")) or m in ("comiss", "ucomiss", "comisd", "ucomisd")
 
@@ -198,9 +205,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
             # conditional move / set: same decision as a branch (modern cl
             # uses cmov, which 2005-era code for this game never does)
             c = JCC_CLASS["j" + (m[4:] if m.startswith("cmov") else m[3:])]
-            if c == "s/ns" and prev is not None and prev.mnemonic == "test" and \
-               len(prev.operands) == 2 and prev.operands[0].type == x86.X86_OP_REG and \
-               prev.operands[1].type == x86.X86_OP_REG and prev.operands[0].reg == prev.operands[1].reg:
+            if c == "s/ns" and prev is not None and sign_test(prev):
                 c = "l/ge"   # same folding as js/jns after test r,r
             jcc[c] += 1
         elif m == "sbb" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and \
@@ -210,9 +215,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
             jcc["e/ne" if prev.mnemonic == "neg" else "b/ae"] += 1
         elif m in JCC_CLASS:
             c = JCC_CLASS[m]
-            if c == "s/ns" and prev is not None and prev.mnemonic == "test" and \
-               len(prev.operands) == 2 and prev.operands[0].type == x86.X86_OP_REG and \
-               prev.operands[1].type == x86.X86_OP_REG and prev.operands[0].reg == prev.operands[1].reg:
+            if c == "s/ns" and prev is not None and sign_test(prev):
                 c = "l/ge"
             jcc[c] += 1
             # conditional tail call: jcc rel32 straight to another function
@@ -416,7 +419,12 @@ def main():
                 continue
             n += 1
             w = set(x for x in (r.get("waivers") or "").split(";") if x)
-            bad += not compare(os.path.join(ROOT, r["obj"]), r["name"], int(r["va"], 16), None, a.v, xbe, syms, waivers=w)
+            obj = os.path.join(ROOT, r["obj"])
+            if not os.path.exists(obj):
+                print(f"FAIL  {r['name']} @ {r['va']}  object missing: {r['obj']}")
+                bad += 1
+                continue
+            bad += not compare(obj, r["name"], int(r["va"], 16), None, a.v, xbe, syms, waivers=w)
         print(f"{n - bad}/{n} pass")
         sys.exit(1 if bad else 0)
     ok = compare(a.obj, a.symbol, int(a.va, 16), a.size, a.v, dump=a.dump)
