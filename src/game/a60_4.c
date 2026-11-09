@@ -1,20 +1,6 @@
 /* Area a60, group 4: 0x00077000..0x0007FFFF. Names inferred. */
 #include "a60.h"
 
-/* 0x00077190: reset both sound channels. */
-void a60_ChannelsReset(void)
-{
-    int i;
-    for (i = 0; i < 2; i++) {
-        uint32_t *r = a60_chReg660[i];
-        a60_chFlags[i] = 0;
-        a60_chVol[i] = 0;
-        *r &= ~0x80u;
-        *a60_chReg650[i] &= 0xFFFF0000u;
-        a60_chId[i] = -1;
-    }
-}
-
 /* 0x00077220: start channel ch (0 or 1) streaming source arg. */
 void a60_ChannelStart(int ch, int arg)
 {
@@ -168,15 +154,6 @@ int a60_MovieState(void)
 
 /* 0x00079B30: forward the second argument. */
 void a60_Forward79B30(int unused, int v) { sub_00052840(v); }
-
-/* 0x00079EF0: draw the model, with custom parameters when flag bit 0 is set. */
-void a60_ModelDraw(A60Model *m)
-{
-    if (m->flags & 1)
-        sub_00084910(m->handle, m->p1BC, m->p1C0, m->p1C4, m->p1C8, m->p1CC, 128.0f);
-    else
-        sub_00084910(m->handle, 1.0f, 0.0f, m->p1C4, m->p1C8, m->p1CC, 128.0f);
-}
 
 /* 0x00079FD0: copy the name of entry id, and its save block if present. */
 void a60_LoadEntry(int id)

@@ -212,7 +212,15 @@ def events(code, base, resolve, md, fconst=None, local=None):
                len(prev.operands) == 2 and prev.operands[0].type == x86.X86_OP_REG and \
                prev.operands[1].type == x86.X86_OP_REG and prev.operands[0].reg == prev.operands[1].reg:
                 c = "l/ge"
-            jcc[c] += 1; prev = i; continue
+            jcc[c] += 1
+            # conditional tail call: jcc rel32 straight to another function
+            if i.size == 6 and ops and ops[0].type == x86.X86_OP_IMM:
+                t = resolve(off, 2, ops[0].imm, "rel")
+                inside = (isinstance(t, tuple) and t[0] == "unrelocated") or \
+                         (isinstance(t, int) and base <= t < base + len(code))
+                if not inside:
+                    calls.append(("tail", t))
+            prev = i; continue
         if m == "ret":
             ret.add(ops[0].imm if ops else 0); prev = i; continue
         if m == "jmp" and ops[0].type == x86.X86_OP_IMM and i.size == 5:

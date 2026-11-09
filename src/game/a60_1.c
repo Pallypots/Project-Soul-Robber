@@ -26,15 +26,6 @@ void a60_SetSlices(A60Slices *s, int32_t *base, int n)
     s->s[5] = base + n;
 }
 
-/* 0x00060900: restart the menu animation with id a. */
-void a60_MenuStartAnim(int a)
-{
-    sub_00018620(a60_menu3E60CC->anim968, a60_anim2DDB00);
-    a60_TextClear(a60_menu3E60CC->text970);
-    sub_0003FCB0(a60_menu3E60CC->anim968, sub_0003FA70(a60_menu3E60CC->anim988, a, 0, 0, -1.0f));
-    a60_FlagsClear((uint32_t *)a60_menu3E60CC->text970, 0x80);
-}
-
 /* 0x00060B70: open the menu in state 1 with value v. */
 void a60_MenuOpen(int v)
 {

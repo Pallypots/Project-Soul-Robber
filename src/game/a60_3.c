@@ -173,15 +173,18 @@ void a60_DetachEff6984(A60Obj *obj)
 {
     A60Node *n, *next;
     if (obj == 0) for (;;) ;
-    if (obj->type != 1 && obj->type != 5)
-        return;
-    n = (A60Node *)sub_0003DBC0(a60_list3E6984, 0, obj);
-    while (n) {
-        next = (A60Node *)sub_0003DC10(n, 0, obj);
-        sub_0003D8C0(n);
-        sub_00053880(n->data);
-        sub_00053880(n);
-        n = next;
+    switch (obj->type) {
+    case 1:
+    case 5:
+        n = (A60Node *)sub_0003DBC0(a60_list3E6984, 0, obj);
+        while (n) {
+            next = (A60Node *)sub_0003DC10(n, 0, obj);
+            sub_0003D8C0(n);
+            sub_00053880(n->data);
+            sub_00053880(n);
+            n = next;
+        }
+        break;
     }
 }
 

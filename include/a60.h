@@ -126,7 +126,6 @@ typedef struct A60Save { int32_t w[0x38E]; } A60Save;
 extern A60Menu *a60_menu3E60CC;          /* 0x003E60CC */
 extern int32_t a60_v3E60F4, a60_v3E60D8, a60_v3E60DC, a60_v3E60E0;
 extern int16_t a60_w3E60F8, a60_w3E60FA;
-extern int32_t a60_anim2DDB00;
 extern uint8_t a60_b42A026;
 extern uint32_t a60_flags413428;
 extern int32_t a60_hA3E64C4[3], a60_hB3E64D0[3], a60_h3E64DC, a60_hC3E64E0[3], a60_hD3E64EC[3];
@@ -149,11 +148,7 @@ extern A60Save a60_save3E83F0, a60_save4326A0;
 extern const char a60_srcTexEx[];       /* 0x0026F090 "\Project\nightmareXbox\app\tex_ex.c" */
 
 void  sub_00018620(void *anim, int id);
-void  a60_TextClear(A60Text *t);
-void  a60_FlagsClear(uint32_t *f, uint32_t bits);
 void  a60_FlagBit2(uint32_t *f, int on);
-int   sub_0003FA70(int a, int b, int c, int d, float e);
-void  sub_0003FCB0(void *anim, int v);
 void  sub_0003FAB0(void *anim, void *owner);
 void  sub_00075F00(A60Menu *m);
 void  sub_000603C0(int v);
@@ -186,7 +181,6 @@ int   sub_00047950(void);
 void  sub_0019B9F0(void);
 void  sub_0019BEB0(int v);
 void  sub_00052840(int v);
-void  sub_00084910(int h, float a, float b, float c, float d, float e, float f);
 const char *sub_000133E0(int id);
 int   sub_00013480(int id);
 #endif
