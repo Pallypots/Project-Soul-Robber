@@ -167,6 +167,11 @@ def events(code, base, resolve, md, fconst=None, local=None):
     calls, data, imm, jcc, ret = [], Counter(), Counter(), Counter(), set()
     jt = 0
     insns = list(md.disasm(code, base))
+    # EBP is a frame pointer only when the function sets one up; with frame
+    # pointer omission it is an ordinary register and its offsets are fields
+    frame_reg = x86.X86_REG_EBP if (len(insns) > 1 and insns[0].mnemonic == "push" and
+                                    insns[0].op_str == "ebp" and insns[1].mnemonic == "mov" and
+                                    insns[1].op_str == "ebp, esp") else -1
     prev = None
     for i in insns:
         off = i.address - base
@@ -187,7 +192,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
                     a = resolve(off, fo, o.mem.disp & 0xFFFFFFFF, "abs") if fo is not None else None
                     if a is not None:
                         data[a] += 1
-                    elif o.mem.base not in (0, x86.X86_REG_ESP, x86.X86_REG_EBP):
+                    elif o.mem.base not in (0, x86.X86_REG_ESP, frame_reg):
                         imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1   # call [obj+off]: the slot offset
             prev = i; continue
         if m == "jmp" and ops[0].type == x86.X86_OP_MEM and ops[0].mem.index != 0:
@@ -271,7 +276,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
                             data[("fconst", c)] += 1
                         continue
                 data[a] += 1
-            elif (o.mem.base not in (0, x86.X86_REG_ESP, x86.X86_REG_EBP) or
+            elif (o.mem.base not in (0, x86.X86_REG_ESP, frame_reg) or
                   (o.mem.base == 0 and o.mem.index != 0)) and o.mem.disp:
                 imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1
         for o in ops:

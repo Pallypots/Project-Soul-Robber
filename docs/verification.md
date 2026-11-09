@@ -9,7 +9,7 @@ Our C is compiled by VS 2022 `cl` 19.44 for x86 (`/O2 /Oy /GS- /Gy /Zl /arch:SSE
 |---|---|
 | calls | Ordered call targets, including tail calls (`jmp` to another function). Imports resolve to their kernel thunk slot. |
 | data | Set of absolute addresses touched (globals, `.rdata`). Float constants in `.rdata` compare by value (ours are cl's `__real@` literals). Indexed access into a record array listed in `symbols.csv` (`elem`, `count`) compares as array + field offset. The function's own jump tables are skipped on both sides. |
-| imm | Set of constants: immediates and structure offsets in one class (compilers pick `lea r,[r+k]` or `add r,k` freely). 0, 1 and -1 are ignored. Stack-pointer arithmetic is ignored. |
+| imm | Set of constants: immediates and structure offsets in one class (compilers pick `lea r,[r+k]` or `add r,k` freely). 0, 1 and -1 are ignored. Stack-pointer arithmetic is ignored; EBP offsets are ignored only in functions that set up an EBP frame (otherwise EBP is an ordinary register under /Oy and its offsets are fields). |
 | jcc | Set of decision kinds. A condition and its negation are one kind (block layout can invert them). `cmov`, `setcc`, `neg;sbb` and `cmp;sbb` count as decisions. `js/jns` right after `test r,r` count as `l/ge`. |
 | ret | `ret N` values (calling convention: callee-pops vs caller-pops). |
 | jtables | Number of jump-table dispatches. |
