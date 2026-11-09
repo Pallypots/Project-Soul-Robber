@@ -1,0 +1,43 @@
+va,name,state,source,obj,waivers,notes
+0x00100070,b1b_CtlSendBoth,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,spin-wait locals declared volatile so modern cl keeps the original wait loops
+0x001002c0,b1b_CtlRunSelected,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,
+0x00100f70,b1b_CtlMarkIfOver,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,
+0x001010c0,b1b_CtlApply27,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,
+0x001012f0,b1b_CompReset,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,
+0x001045c0,b1b_ScrActivate,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,spin-wait local declared volatile
+0x00104b40,b1b_ScrEvent,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,
+0x00104c60,b1b_ScrCreate,Structurally compared,src/game/b1b_1.c,build/obj_b1b/b1b_1.obj,,
+0x0010ed60,b1b_ActApply16,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x0010ef50,b1b_ActReset5,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x0010efd0,b1b_ActApply10,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x0010f090,b1b_ActUpdate,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x00112630,b1b_CmdRunAll,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x00113430,b1b_NodeRenew,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x00114e20,b1b_AnyFlagged,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x00114e60,b1b_InRange,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x001153a0,b1b_CountList2,Structurally compared,src/game/b1b_2.c,build/obj_b1b/b1b_2.obj,,
+0x0011a500,b1b_FoeEnter3,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,data:fconst:-0.1745329;data:fconst:0.1745329;imm:0x3e32b8c3;imm:0xbe32b8c3,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0011a550,b1b_FoeEnter4,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,data:fconst:255.0;data:fconst:50.0;imm:0x42480000;imm:0x437f0000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0011a9d0,b1b_FoeRandDelay,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,,
+0x0011abb0,b1b_FoeEnter10,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,,
+0x0011abe0,b1b_FoeRandDelay2,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,,
+0x0011afe0,b1b_FoeRecover,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,,byte test of +0x22 bit 0 (flag 0x10000 of the +0x20 word)
+0x0011dbd0,b1b_SideRequest,Structurally compared,src/game/b1b_3.c,build/obj_b1b/b1b_3.obj,,
+0x00113090,b1b_EnemyPlayAnim,Structurally compared,src/game/b1b_4.c,build/obj_b1b/b1b_4.obj,,
+0x00113290,b1b_EnemyAim,Structurally compared,src/game/b1b_4.c,build/obj_b1b/b1b_4.obj,data:fconst:-1.0;imm:0xbf800000,returns the x87 float result of 0x001B27C0; float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x00113300,b1b_NodeAlloc,Structurally compared,src/game/b1b_4.c,build/obj_b1b/b1b_4.obj,,
+0x00113370,b1b_NodeFree,Structurally compared,src/game/b1b_4.c,build/obj_b1b/b1b_4.obj,,
+0x00113a40,b1b_EnemyMarkParts,Structurally compared,src/game/b1b_4.c,build/obj_b1b/b1b_4.obj,data:fconst:2.0;imm:0x40000000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x00113e00,b1b_EnemyStart,Structurally compared,src/game/b1b_4.c,build/obj_b1b/b1b_4.obj,,
+0x0011a370,b1b_FoeStun,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,,
+0x0011a4a0,b1b_FoeGuard,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,,
+0x0011a6f0,b1b_FoeHit23,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,data:fconst:20.0;imm:0x41a00000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0011a760,b1b_FoeHit24,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,data:fconst:20.0;imm:0x41a00000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0011a7d0,b1b_FoeHitSide,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,,
+0x0011a820,b1b_FoeHit27,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,data:fconst:20.0;imm:0x41a00000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0011a880,b1b_FoeHeavyHit,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,data:fconst:200.0;imm:0x43480000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0011a8f0,b1b_FoeRandDrain,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,,
+0x0011acc0,b1b_FoeDie,Structurally compared,src/game/b1b_5.c,build/obj_b1b/b1b_5.obj,data:fconst:2.0;imm:0x40000000,float constant passed or stored as an immediate by modern cl but loaded from .rdata by the original (same value)
+0x0012d970,b1b_TargetPlayer,Structurally compared,src/game/b1b_6.c,build/obj_b1b/b1b_6.obj,,
+0x0012dd70,b1b_InRange180,Structurally compared,src/game/b1b_6.c,build/obj_b1b/b1b_6.obj,,
+0x0012ddb0,b1b_MaskTest,Structurally compared,src/game/b1b_6.c,build/obj_b1b/b1b_6.obj,,
