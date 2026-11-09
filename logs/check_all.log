@@ -508,4 +508,97 @@ PASS  Op_47BF0 @ 0x000db000  orig 12 insns, ours 8 insns
 PASS  Op_DB030 @ 0x000db030  orig 8 insns, ours 8 insns
 PASS  Op_19D450 @ 0x000db050  orig 8 insns, ours 8 insns
 PASS  Op_WaitDEA40 @ 0x000db070  orig 6 insns, ours 6 insns
-510/510 pass
+PASS  ae0_Op_PlayerFlag2 @ 0x000db2b0  orig 15 insns, ours 15 insns
+PASS  ae0_Op_JumpOnFlag @ 0x000db2f0  orig 23 insns, ours 16 insns
+PASS  ae0_Op_DB330 @ 0x000db330  orig 16 insns, ours 5 insns
+PASS* ae0_Op_DB350 @ 0x000db350  orig 18 insns, ours 20 insns  (2 documented waivers)
+PASS  ae0_Op_BookSpawn @ 0x000db390  orig 10 insns, ours 10 insns
+PASS  ae0_Op_DB430 @ 0x000db430  orig 13 insns, ours 13 insns
+PASS  ae0_Op_DB4F0 @ 0x000db4f0  orig 27 insns, ours 13 insns
+PASS  ae0_Op_DB530 @ 0x000db530  orig 10 insns, ours 10 insns
+PASS  ae0_Op_PlayerFlag10 @ 0x000db560  orig 15 insns, ours 15 insns
+PASS  ae0_Op_WaitPlayerReady @ 0x000db5a0  orig 21 insns, ours 21 insns
+PASS  ae0_Op_DB5F0 @ 0x000db5f0  orig 10 insns, ours 10 insns
+PASS  ae0_Op_DB620 @ 0x000db620  orig 8 insns, ours 8 insns
+PASS  ae0_Op_DB640 @ 0x000db640  orig 13 insns, ours 13 insns
+PASS  ae0_Op_DB670 @ 0x000db670  orig 3 insns, ours 3 insns
+PASS  ae0_Op_DB680 @ 0x000db680  orig 7 insns, ours 7 insns
+PASS  ae0_Op_DB6A0 @ 0x000db6a0  orig 3 insns, ours 3 insns
+PASS  ae0_Op_DB6B0 @ 0x000db6b0  orig 7 insns, ours 7 insns
+PASS  ae0_Op_DB6D0 @ 0x000db6d0  orig 6 insns, ours 6 insns
+PASS  ae0_Op_DB6F0 @ 0x000db6f0  orig 7 insns, ours 7 insns
+PASS  ae0_Op_DB710 @ 0x000db710  orig 23 insns, ours 23 insns
+PASS  ae0_Op_DB760 @ 0x000db760  orig 6 insns, ours 6 insns
+PASS  ae0_Op_DB780 @ 0x000db780  orig 6 insns, ours 6 insns
+PASS  ae0_Op_DB7A0 @ 0x000db7a0  orig 8 insns, ours 8 insns
+PASS  ae0_Op_DB7C0 @ 0x000db7c0  orig 3 insns, ours 3 insns
+PASS  ae0_Op_DB7D0 @ 0x000db7d0  orig 3 insns, ours 3 insns
+PASS  ae0_Op_DB7E0 @ 0x000db7e0  orig 8 insns, ours 8 insns
+PASS  ae0_Op_DB800 @ 0x000db800  orig 6 insns, ours 6 insns
+PASS  ae0_Op_DB820 @ 0x000db820  orig 21 insns, ours 17 insns
+PASS  ae0_Op_DB8C0 @ 0x000db8c0  orig 14 insns, ours 12 insns
+PASS* ae0_Op_DB8F0 @ 0x000db8f0  orig 18 insns, ours 16 insns  (2 documented waivers)
+PASS  ae0_Op_DB930 @ 0x000db930  orig 21 insns, ours 17 insns
+PASS  ae0_Op_Nop @ 0x000db970  orig 2 insns, ours 2 insns
+PASS  ae0_Op_DB980 @ 0x000db980  orig 14 insns, ours 12 insns
+PASS  ae0_Op_DB9B0 @ 0x000db9b0  orig 21 insns, ours 17 insns
+PASS  ae0_Op_DBA50 @ 0x000dba50  orig 14 insns, ours 12 insns
+PASS  ae0_Op_DBA80 @ 0x000dba80  orig 17 insns, ours 15 insns
+PASS  ae0_Op_DBAC0 @ 0x000dbac0  orig 12 insns, ours 8 insns
+PASS  ae0_Op_DBAF0 @ 0x000dbaf0  orig 12 insns, ours 8 insns
+PASS  ae0_Op_DBB20 @ 0x000dbb20  orig 3 insns, ours 3 insns
+PASS* ae0_Op_DBB30 @ 0x000dbb30  orig 12 insns, ours 12 insns  (1 documented waivers)
+PASS  ae0_Op_DBB60 @ 0x000dbb60  orig 8 insns, ours 8 insns
+PASS* ae0_Op_DBB80 @ 0x000dbb80  orig 7 insns, ours 7 insns  (2 documented waivers)
+PASS  ae0_Op_DBBA0 @ 0x000dbba0  orig 21 insns, ours 21 insns
+PASS  ae0_Op_DBBE0 @ 0x000dbbe0  orig 9 insns, ours 9 insns
+PASS  ae0_Op_DBC00 @ 0x000dbc00  orig 20 insns, ours 21 insns
+PASS  ae0_Op_DBC40 @ 0x000dbc40  orig 6 insns, ours 6 insns
+PASS  ae0_Op_DBC60 @ 0x000dbc60  orig 3 insns, ours 3 insns
+PASS  ae0_Op_DBC70 @ 0x000dbc70  orig 15 insns, ours 15 insns
+PASS  ae0_Op_DBCA0 @ 0x000dbca0  orig 6 insns, ours 6 insns
+PASS  ae0_Op_DBCC0 @ 0x000dbcc0  orig 8 insns, ours 8 insns
+PASS  ae0_Op_DBCE0 @ 0x000dbce0  orig 3 insns, ours 3 insns
+PASS  ae0_Op_DBCF0 @ 0x000dbcf0  orig 20 insns, ours 20 insns
+PASS  ae0_Op_DBD30 @ 0x000dbd30  orig 26 insns, ours 25 insns
+PASS  ae0_Op_DBD80 @ 0x000dbd80  orig 17 insns, ours 14 insns
+PASS  ae0_Op_DBE20 @ 0x000dbe20  orig 18 insns, ours 19 insns
+PASS  ae0_Op_DBE60 @ 0x000dbe60  orig 12 insns, ours 12 insns
+PASS  ae0_Op_Skip3 @ 0x000dbe90  orig 2 insns, ours 2 insns
+PASS  b13_Size135480 @ 0x00135480  orig 2 insns, ours 2 insns
+PASS  b13_Release135490 @ 0x00135490  orig 19 insns, ours 19 insns
+PASS  b13_TargetPlayer @ 0x001354d0  orig 8 insns, ours 8 insns
+FAIL  b13_Fwd1356C0 @ 0x001356c0  orig 5 insns, ours 1 insns  differs: calls, ret
+   calls    orig ['0xed780']
+            ours ["('tail', 972672)"]
+   ret      orig [0]
+            ours []
+PASS  b13_Size137C20 @ 0x00137c20  orig 2 insns, ours 2 insns
+PASS  b13_Release137C30 @ 0x00137c30  orig 19 insns, ours 19 insns
+PASS  b13_State138040 @ 0x00138040  orig 31 insns, ours 14 insns
+PASS  b13_State138080 @ 0x00138080  orig 25 insns, ours 21 insns
+PASS  b13_State1380D0 @ 0x001380d0  orig 23 insns, ours 18 insns
+PASS  b13_State138110 @ 0x00138110  orig 16 insns, ours 12 insns
+PASS  b13_State1381E0 @ 0x001381e0  orig 8 insns, ours 6 insns
+PASS  b13_State138200 @ 0x00138200  orig 21 insns, ours 19 insns
+PASS  b13_State138240 @ 0x00138240  orig 16 insns, ours 13 insns
+PASS  b13_State138390 @ 0x00138390  orig 25 insns, ours 21 insns
+PASS  b13_State138700 @ 0x00138700  orig 23 insns, ours 20 insns
+PASS  b13_State1387A0 @ 0x001387a0  orig 10 insns, ours 8 insns
+FAIL  b13_State1387C0 @ 0x001387c0  orig 21 insns, ours 17 insns  differs: imm, jcc
+   imm      orig ['0x10', '0x1000000', '0x278', '0x4', '0x40', '0x41', '0xfeffffff', '0xffffffdf']
+            ours ['0x10', '0x278', '0x4', '0x40', '0x7', '0xfeffffff', '0xffffffdf']
+   jcc      orig ['e/ne']
+            ours []
+PASS  b13_State138800 @ 0x00138800  orig 22 insns, ours 19 insns
+PASS  b13_State138BE0 @ 0x00138be0  orig 17 insns, ours 15 insns
+PASS  b13_Flag1399B0 @ 0x001399b0  orig 4 insns, ours 4 insns
+PASS  b13_InSlots @ 0x0013aa50  orig 20 insns, ours 20 insns
+FAIL  b13_State13BA10 @ 0x0013ba10  orig 15 insns, ours 6 insns  differs: calls, ret
+   calls    orig ['0x113090', '0x13a840']
+            ours ['0x113090', "('tail', 1288256)"]
+   ret      orig [0]
+            ours []
+PASS  b13_State13BD50 @ 0x0013bd50  orig 21 insns, ours 16 insns
+PASS  b13_Size13D2E0 @ 0x0013d2e0  orig 2 insns, ours 2 insns
+588/591 pass
