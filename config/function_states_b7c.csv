@@ -1,0 +1,69 @@
+va,name,state,source,obj,waivers,notes
+0x001711c0,b7c_Reset1711C0,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00171e70,b7c_RandParam171E70,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,imm:0x4;imm:0x10;imm:0x5,index (row*2+sel)<<4 folded by modern cl into row<<5 plus sel<<4 (multiply-by-constant via shl)
+0x00171fc0,b7c_TaskStop171FC0,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00172070,b7c_Flush172070,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,imm:0xf;imm:0xffffff83,fixed-count loop: original counts down from 15 and modern cl compares the biased index (loop strength reduction)
+0x00172950,b7c_HitValue172950,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00172990,b7c_HitIdle172990,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00172a00,b7c_HitSetBC172A00,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a,0<=v<3 bounds check emitted as unsigned v<=2 by modern cl (unsigned bounds check)
+0x00173fa0,b7c_Enter1_173FA0,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00174be0,b7c_TaskStart174BE0,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00174c10,b7c_TaskStop174C10,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x00175190,b7c_Alloc175190,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x001753f0,b7c_Release1753F0,Structurally compared,src/game/b7c_1.c,build/obj_b7c/b7c_1.obj,,
+0x001763c0,b7c_Timer1763C0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x001764a0,b7c_Alloc1764A0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x00176b80,b7c_State1_176B80,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00176d90,b7c_State3_176D90,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00176dc0,b7c_Timer176DC0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00177760,b7c_Alloc177760,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x00177800,b7c_Release177800,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00177f30,b7c_State3_177F30,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00177f60,b7c_Timer177F60,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x001784d0,b7c_True1784D0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00178990,b7c_MoveReset178990,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,data:fconst:1.0;imm:0x3f800000,1.0 stored as an immediate by modern cl vs .rdata load (float constant as immediate)
+0x00178c20,b7c_MoveFrom178C20,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00178ea0,b7c_Fwd178EA0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00179140,b7c_ResetCounters179140,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00179160,b7c_ReleaseAll179160,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x00179440,b7c_Clear179440,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00179560,b7c_Anim6_179560,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x00179800,b7c_Clear179800,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x001798d0,b7c_Anim2_1798D0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017a140,b7c_State13_17A140,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017a160,b7c_State8_17A160,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017b260,b7c_Speed17B260,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017c4d0,b7c_AllFree17C4D0,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x0017ca20,b7c_Mode2_17CA20,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017ca40,b7c_Mode2_17CA40,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017cb60,b7c_Mode1_17CB60,Structurally compared,src/game/b7c_2.c,build/obj_b7c/b7c_2.obj,,
+0x0017d590,b7c_Wake17D590,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017d8e0,b7c_Detach17D8E0,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017db70,b7c_Clear17DB70,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017e4b0,b7c_Spawn17E4B0,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017e6e0,b7c_Cond17E6E0,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,imm:0x23;jcc:l/ge;jcc:le/g;jcc:be/a,0x22<=c<=0x23 range check emitted as unsigned c-0x22<=1 by modern cl (unsigned bounds check)
+0x0017ea70,b7c_Mode2_17EA70,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ea90,b7c_Timeout17EA90,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ed10,b7c_Kind1_17ED10,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ed30,b7c_Kind2_17ED30,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ed50,b7c_Kind3_17ED50,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ee00,b7c_AnimEnd17EE00,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ee30,b7c_Switch3_17EE30,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ee50,b7c_AnimEnd17EE50,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017ee80,b7c_Switch1_17EE80,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x0017f000,b7c_SlotFree17F000,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,imm:0x6;imm:0x5;jcc:l/ge;jcc:be/a,0<=i<6 bounds check emitted as unsigned i<=5 by modern cl (unsigned bounds check)
+0x0017f030,b7c_StageValid17F030,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,imm:0x5;imm:0x4;jcc:l/ge;jcc:le/g;jcc:b/ae,1<=s<=5 range check emitted as unsigned s-1<4 by modern cl (unsigned bounds check)
+0x0017faf0,b7c_Clear17FAF0,Structurally compared,src/game/b7c_3.c,build/obj_b7c/b7c_3.obj,,
+0x001812c0,b7c_Anim2_1812C0,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,,
+0x00181be0,b7c_IdX4_181BE0,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,,
+0x00181c20,b7c_IdOwner181C20,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,,
+0x00181c60,b7c_IdSwitch181C60,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,jcc:b/ae,record pointer loop end compared unsigned by modern cl and the original uses only the signed index check (signed vs unsigned loop end)
+0x00181d20,b7c_Boss3_181D20,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,,
+0x00182180,b7c_Refill182180,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,,
+0x001822d0,b7c_Link1822D0,Structurally compared,src/game/b7c_4.c,build/obj_b7c/b7c_4.obj,,
+0x00182750,b7c_BossOwner182750,Structurally compared,src/game/b7c_5.c,build/obj_b7c/b7c_5.obj,,
+0x00182760,b7c_BossObj182760,Structurally compared,src/game/b7c_5.c,build/obj_b7c/b7c_5.obj,,
+0x00182770,b7c_BossSwitch182770,Structurally compared,src/game/b7c_5.c,build/obj_b7c/b7c_5.obj,,
+0x00182850,b7c_BossPlace182850,Structurally compared,src/game/b7c_5.c,build/obj_b7c/b7c_5.obj,,
+0x00182950,b7c_ResetParts182950,Structurally compared,src/game/b7c_5.c,build/obj_b7c/b7c_5.obj,,
+0x00182e40,b7c_ResetCount182E40,Structurally compared,src/game/b7c_5.c,build/obj_b7c/b7c_5.obj,,

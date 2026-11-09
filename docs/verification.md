@@ -25,6 +25,7 @@ Each control plants one bug in a copy of real recovered source and must FAIL: wr
 - A pure negation (`<` vs `>=`) is invisible, because layout may invert a branch.
 - Swapping two fields that are both used elsewhere in the same function is invisible (sets, not positions).
 - Byte vs dword access width is not distinguished.
+- A fixed slot of a known record array read directly on one side and through an index register on the other side compares as different data (array mapping applies only to indexed accesses). Such functions are left out, not waived.
 These are why Structurally compared is below Semantic-tested: behaviour tests catch them.
 
 ## Waivers
