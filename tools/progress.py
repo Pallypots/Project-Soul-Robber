@@ -21,9 +21,11 @@ STATES = [
     ("Structurally compared",   "#bf8700"),
     ("Draft source",            "#d4a72c"),
     ("Analyzed",                "#8250df"),
-    ("Unanalyzed",              "#d0d7de"),
+    ("Unanalyzed",              "#30363d"),
 ]
 COLOR = dict(STATES)
+# Dark theme (GitHub dark palette)
+BG, BORDER, TEXT, MUTED, LIBSQ = "#0d1117", "#30363d", "#e6edf3", "#8b949e", "#161b22"
 
 
 def load():
@@ -61,11 +63,11 @@ def main():
 
     W, H, X0, BAR = 760, 250, 20, 720
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Segoe UI,Helvetica,Arial,sans-serif">',
-           f'<rect width="{W}" height="{H}" rx="8" fill="#ffffff" stroke="#d0d7de"/>',
-           f'<text x="{X0}" y="30" font-size="17" font-weight="600" fill="#1f2328">Project Soul Robber: game code decompiled</text>']
+           f'<rect width="{W}" height="{H}" rx="8" fill="{BG}" stroke="{BORDER}"/>',
+           f'<text x="{X0}" y="30" font-size="17" font-weight="600" fill="{TEXT}">Project Soul Robber: game code decompiled</text>']
 
     def bar(y, counts, total, label):
-        out.append(f'<text x="{X0}" y="{y - 6}" font-size="12" fill="#57606a">{label}</text>')
+        out.append(f'<text x="{X0}" y="{y - 6}" font-size="12" fill="{MUTED}">{label}</text>')
         out.append(f'<rect x="{X0}" y="{y}" width="{BAR}" height="22" rx="4" fill="{COLOR["Unanalyzed"]}"/>')
         x = X0
         for name, col in STATES[:-1]:
@@ -83,8 +85,8 @@ def main():
         cx = lx + (i % 4) * 182
         cy = ly + (i // 4) * 22
         out.append(f'<rect x="{cx}" y="{cy}" width="12" height="12" rx="2" fill="{col}"/>')
-        out.append(f'<text x="{cx + 17}" y="{cy + 10.5}" font-size="11.5" fill="#1f2328">{name} ({fn[name]})</text>')
-    out.append(f'<text x="{X0}" y="{H - 14}" font-size="10.5" fill="#57606a">Library code ({lib_fn:,} functions, {lib_by:,} bytes: XDK, Bink) is not counted. Byte matching is blocked; see docs/toolchain.md.</text>')
+        out.append(f'<text x="{cx + 17}" y="{cy + 10.5}" font-size="11.5" fill="{TEXT}">{name} ({fn[name]})</text>')
+    out.append(f'<text x="{X0}" y="{H - 14}" font-size="10.5" fill="{MUTED}">Library code ({lib_fn:,} functions, {lib_by:,} bytes: XDK, Bink) is not counted. Byte matching is blocked; see docs/toolchain.md.</text>')
     out.append("</svg>")
     open(P("docs", "progress.svg"), "w", encoding="utf-8").write("\n".join(out) + "\n")
 
@@ -101,31 +103,67 @@ def main():
 
 
 def write_map(rows, states):
-    """docs/progress_map.svg: one square per game function, in address order
-    (left to right, top to bottom), coloured by state. Runs of equal colour in
-    a row are drawn as one rectangle to keep the file small."""
-    game = [r for r in rows if group(r["owner"]) == "game"]
-    cols, cell, gap, x0, y0 = 120, 6, 1, 20, 50
+    """docs/progress_map.svg: each square is 2,048 bytes of .text and library
+    sections, in address order. Game squares are grey until source is recovered
+    in them: the colour is the best state present, and the brightness grows
+    with the share of the square's bytes recovered (a faint square = a little).
+    Library squares are drawn darker and are not counted."""
+    SQ = 2048
+    spans = []   # (va, size, kind, state)
+    for r in rows:
+        g = group(r["owner"])
+        if g == "unknown":
+            continue
+        va = int(r["va"], 16)
+        spans.append((va, int(r["unique_bytes"]), g, states.get(va, "Unanalyzed")))
+    spans.sort()
+    lo = spans[0][0] // SQ * SQ
+    hi = max(v + n for v, n, _, _ in spans)
+    nsq = (hi - lo + SQ - 1) // SQ
+    game_b = [0] * nsq; lib_b = [0] * nsq; done_b = [0] * nsq; best = [None] * nsq
+    rank = {name: i for i, (name, _) in enumerate(STATES)}
+    for va, n, g, st in spans:
+        a = va
+        while a < va + n:
+            k = (a - lo) // SQ
+            take = min(va + n, lo + (k + 1) * SQ) - a
+            if g == "library":
+                lib_b[k] += take
+            else:
+                game_b[k] += take
+                if st not in ("Unanalyzed", "Analyzed"):
+                    done_b[k] += take
+                    if best[k] is None or rank[st] < rank[best[k]]:
+                        best[k] = st
+            a += take
+    cols, cell, gap, x0, y0 = 48, 14, 4, 24, 96
     step = cell + gap
-    nrows = (len(game) + cols - 1) // cols
-    W = x0 * 2 + cols * step
-    H = y0 + nrows * step + 40
+    used = [k for k in range(nsq) if game_b[k] or lib_b[k]]   # skip data gaps between sections
+    nrows = (len(used) + cols - 1) // cols
+    W = x0 * 2 + cols * step - gap
+    H = y0 + nrows * step + 70
+    tot_game = sum(game_b); tot_done = sum(done_b)
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Segoe UI,Helvetica,Arial,sans-serif">',
-           f'<rect width="{W}" height="{H}" rx="8" fill="#ffffff" stroke="#d0d7de"/>',
-           f'<text x="{x0}" y="30" font-size="17" font-weight="600" fill="#1f2328">Game code map: one square per function ({len(game):,})</text>']
-    cols_of = [COLOR[states.get(int(r["va"], 16), "Unanalyzed")] for r in game]
-    for row in range(nrows):
-        seg = cols_of[row * cols:(row + 1) * cols]
-        i = 0
-        while i < len(seg):
-            j = i
-            while j < len(seg) and seg[j] == seg[i]:
-                j += 1
-            w = (j - i) * step - gap
-            out.append(f'<rect x="{x0 + i * step}" y="{y0 + row * step}" width="{w}" height="{cell}" fill="{seg[i]}"/>')
-            i = j
-    first, last = game[0]["va"], game[-1]["va"]
-    out.append(f'<text x="{x0}" y="{H - 16}" font-size="10.5" fill="#57606a">Address order {first} (top left) to {last} (bottom right). Colours as in the progress bar. Library code not shown.</text>')
+           f'<rect width="{W}" height="{H}" rx="8" fill="{BG}" stroke="{BORDER}"/>',
+           f'<text x="{x0}" y="42" font-size="24" font-weight="700" fill="{TEXT}">Decompiled: {100 * tot_done / tot_game:.2f}% of the game&#8217;s code</text>',
+           f'<text x="{x0}" y="66" font-size="13" fill="{MUTED}">{tot_done:,} of {tot_game:,} game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>']
+    for pos, k in enumerate(used):
+        x = x0 + (pos % cols) * step; y = y0 + (pos // cols) * step
+        if game_b[k] >= lib_b[k]:
+            if best[k]:
+                op = 0.35 + 0.65 * done_b[k] / game_b[k]
+                out.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{COLOR["Unanalyzed"]}"/>')
+                out.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{COLOR[best[k]]}" fill-opacity="{op:.2f}"><title>{lo + k * SQ:#010x}: {done_b[k]} of {game_b[k]} bytes {best[k]}</title></rect>')
+            else:
+                out.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{COLOR["Unanalyzed"]}"/>')
+        else:
+            out.append(f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{LIBSQ}" stroke="{BORDER}" stroke-width="0.5"/>')
+    ly = y0 + nrows * step + 18
+    legend = [(n, COLOR[n]) for n, _ in STATES if n not in ("Analyzed", "Unanalyzed")] + [("Not decompiled yet", COLOR["Unanalyzed"]), ("XDK, C runtime, Bink (not counted)", LIBSQ)]
+    for i, (name, col) in enumerate(legend):
+        cx = x0 + (i % 4) * ((W - 2 * x0) // 4); cy = ly + (i // 4) * 22
+        out.append(f'<rect x="{cx}" y="{cy}" width="13" height="13" rx="3" fill="{col}" stroke="{BORDER}" stroke-width="0.5"/>')
+        out.append(f'<text x="{cx + 19}" y="{cy + 11}" font-size="12" fill="{TEXT}">{name}</text>')
     out.append("</svg>")
     open(P("docs", "progress_map.svg"), "w", encoding="utf-8").write("\n".join(out) + "\n")
 

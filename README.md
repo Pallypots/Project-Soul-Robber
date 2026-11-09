@@ -8,7 +8,7 @@ A source-reconstruction and decompilation project for The Nightmare Before Chris
 
 ![Game code map](docs/progress_map.svg)
 
-Each square in the map is one of the game's functions, in the order they sit in the game's code. Squares light up in the colour of their stage as they are decompiled.
+Each square in the map is 2,048 bytes of the game's code, in the order it sits in the executable. Squares light up in the colour of their stage as code in them is decompiled (brighter = more of the square done). The darkest squares at the end are Microsoft and Bink library code, which is not counted.
 
 Only the game's own code is counted (7,735 functions). The statically linked Microsoft XDK libraries and Bink video code are tracked separately and will be replaced by PC code, not decompiled. Full table: [docs/progress.md](docs/progress.md). The chart is regenerated with `py -3 tools/progress.py`.
 
