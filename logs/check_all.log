@@ -1125,6 +1125,8 @@ PASS  abc_EvB6410 @ 0x000b6410  orig 53 insns, ours 49 insns
 PASS  abc_EvB6560 @ 0x000b6560  orig 77 insns, ours 64 insns
 PASS  abc_EvSlot8Flag2EF @ 0x000b6630  orig 94 insns, ours 73 insns
 PASS  abc_EvRefillHealth @ 0x000b7040  orig 73 insns, ours 67 insns
+PASS  abc_EvSlot5FlagF2 @ 0x000b7f90  orig 80 insns, ours 67 insns
+PASS  abc_EvSlot8FlagF1 @ 0x000b8070  orig 74 insns, ours 61 insns
 PASS  abc_EvSlots01Flag118 @ 0x000b9180  orig 71 insns, ours 59 insns
 PASS  abc_GetTable2E5DE0 @ 0x000ba4b0  orig 12 insns, ours 2 insns
 PASS  abc_EvSlot7FlagC5 @ 0x000baaf0  orig 58 insns, ours 47 insns
@@ -1146,6 +1148,7 @@ PASS  abc_ClearEC @ 0x000bc5d0  orig 4 insns, ours 3 insns
 PASS  abc_QueueLast @ 0x000bc650  orig 13 insns, ours 13 insns
 PASS  abc_QueuePop @ 0x000bc670  orig 28 insns, ours 34 insns
 PASS  abc_QueuePush @ 0x000bc6b0  orig 24 insns, ours 25 insns
+PASS  abc_CopyPartPose @ 0x000bc6f0  orig 36 insns, ours 33 insns
 PASS  abc_UpdateControl @ 0x000bc770  orig 56 insns, ours 55 insns
 PASS  abc_Set138 @ 0x000bca50  orig 3 insns, ours 3 insns
 PASS  abc_StatsStartRefresh @ 0x000bcb90  orig 12 insns, ours 10 insns
@@ -1883,4 +1886,4 @@ PASS  b7c_BossSwitch182770 @ 0x00182770  orig 14 insns, ours 16 insns
 PASS  b7c_BossPlace182850 @ 0x00182850  orig 19 insns, ours 18 insns
 PASS  b7c_ResetParts182950 @ 0x00182950  orig 13 insns, ours 13 insns
 PASS  b7c_ResetCount182E40 @ 0x00182e40  orig 2 insns, ours 2 insns
-1885/1885 pass
+1888/1888 pass

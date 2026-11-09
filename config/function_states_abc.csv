@@ -1,0 +1,62 @@
+va,name,state,source,obj,waivers,notes
+0x000b2420,abc_EvFlag2C0,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b2600,abc_EvSlotsCDFlag2C1,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b3360,abc_EvSlotEFlag2CF,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b3440,abc_EvEvenSlotsFx22,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b3660,abc_EvSlotFFlag2D2,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b3a10,abc_EvFreeSlots4to12,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b3e20,abc_EvB3E20,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b4700,abc_EvB4700,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b47d0,abc_EvSlots1819Flag2B1,Structurally compared,src/game/abc_1.c,build/obj_abc/abc_1.obj,,
+0x000b5c10,abc_EvSlot1Flag43,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b5cb0,abc_EvSlot0Flag44,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b5d50,abc_EvSlot2Flag45,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b5df0,abc_EvSlot3Flag46,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b5ea0,abc_EvB5EA0,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b5f20,abc_EvB5F20,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b5fc0,abc_EvSlot0FlagBE,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b6380,abc_EvB6380,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b6410,abc_EvB6410,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b6560,abc_EvB6560,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b6630,abc_EvSlot8Flag2EF,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b7040,abc_EvRefillHealth,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b7f90,abc_EvSlot5FlagF2,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b8070,abc_EvSlot8FlagF1,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000b9180,abc_EvSlots01Flag118,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000ba4b0,abc_GetTable2E5DE0,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
+0x000baaf0,abc_EvSlot7FlagC5,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000bb0e0,abc_GetTable2E5EEC,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
+0x000bb0f0,abc_EvClearOddSlots,Structurally compared,src/game/abc_2.c,build/obj_abc/abc_2.obj,,
+0x000bb330,abc_EvSlot8Flag2EE,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
+0x000bb7e0,abc_EvSlot3Flag3D,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,imm:0xfffffffe,modern cl selects 0 or 2 with neg/sbb/and/add instead of the original branch
+0x000bb8b0,abc_EvSlot1Flag3E,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,imm:0xfffffffe,modern cl selects 0 or 2 with neg/sbb/and/add instead of the original branch
+0x000bb980,abc_EvSlot0Flag3F,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,imm:0xfffffffe,modern cl selects 0 or 2 with neg/sbb/and/add instead of the original branch
+0x000bba50,abc_EvSlot2Flag40,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,imm:0xfffffffe,modern cl selects 0 or 2 with neg/sbb/and/add instead of the original branch
+0x000bbb30,abc_EvSlot7FlagE4,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
+0x000bbc00,abc_EvSlot9FlagE5,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
+0x000bbf40,abc_LoadJackCostume,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bbfc0,abc_SetHeading,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,imm:0x3f800000,constant 1.0f stored as an immediate in the original and built with fld1 by modern cl (same value)
+0x000bc010,abc_UpdateNonzeroFlag,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bc110,abc_SetPoint90,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:1.0;imm:0x3f800000,float constant 1.0 stored as an immediate by modern cl vs loaded from .rdata
+0x000bc170,abc_SetPoint54,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:1.0;imm:0x3f800000,float constant 1.0 stored as an immediate by modern cl vs loaded from .rdata
+0x000bc5d0,abc_ClearEC,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bc650,abc_QueueLast,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bc670,abc_QueuePop,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bc6b0,abc_QueuePush,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bc6f0,abc_CopyPartPose,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bc770,abc_UpdateControl,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bca50,abc_Set138,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bcb90,abc_StatsStartRefresh,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bcbc0,abc_SwitchRefresh,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bcc90,abc_PlayerUpdate,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bcf30,abc_PlayerFrame,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bd4a0,abc_SeqStart,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bd4d0,abc_SetState,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:1.0;imm:0x3f800000,float constant 1.0 stored as an immediate by modern cl vs loaded from .rdata
+0x000bd870,abc_StateLeave,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bdae0,abc_StateActive,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:0.2;data:fconst:10.0;imm:0x3e4ccccd;imm:0x41200000,float constants 0.2 and 10.0 stored as immediates by modern cl vs loaded from .rdata
+0x000bdbb0,abc_StateEnter5,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:0.5;data:fconst:10.0;imm:0x3f000000;imm:0x41200000,float constants 0.5 and 10.0 stored as immediates by modern cl vs loaded from .rdata
+0x000bdc20,abc_StateWait50,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bdc90,abc_StateBounce,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bdd20,abc_StateStill10,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bdda0,abc_StateStill9,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
+0x000bde20,abc_StateStill10To2,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,

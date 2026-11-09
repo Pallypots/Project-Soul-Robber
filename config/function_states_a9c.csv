@@ -1,0 +1,28 @@
+va,name,state,source,obj,waivers,notes
+0x001909C0,a9c_ApplyAndCull,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,,record layouts Hypothesis
+0x00191C70,a9c_ResetRecs400120,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,jcc:l/ge;jcc:b/ae,pointer loop end compared unsigned by modern cl vs signed; record layouts Hypothesis
+0x00194A40,a9c_TickAndMode2,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,,record layouts Hypothesis
+0x00195C10,a9c_TimerMode2,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,,record layouts Hypothesis
+0x00195E80,a9c_CopyFromOwner,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,data:fconst:-500.0;imm:0xc3fa0000,modern cl stores the float constant as an integer immediate instead of an .rdata load; record layouts Hypothesis
+0x00195EB0,a9c_ScaleFromOwner,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,imm:0x3fd9999a,modern cl stores the float constant as an integer immediate instead of an .rdata load (1.7 also loaded from .rdata); record layouts Hypothesis
+0x00195F30,a9c_CopyFromPlayer,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,,record layouts Hypothesis
+0x001945D0,a9c_RandomDelay,Structurally compared,src/game/a9c_1.c,build/obj_a9c/a9c_1.obj,,record layouts Hypothesis
+0x00198020,a9c_CullPastLimit,Structurally compared,src/game/a9c_2.c,build/obj_a9c/a9c_2.obj,data:fconst:0.7;data:fconst:0.75;imm:0x3f333333;imm:0x3f400000,modern cl stores the float constant as an integer immediate instead of an .rdata load; record layouts Hypothesis
+0x00199D90,a9c_Ent330F30IsLinked,Structurally compared,src/game/a9c_2.c,build/obj_a9c/a9c_2.obj,imm:0x38;imm:0x77;imm:0x76;jcc:l/ge;jcc:le/g;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem); record layouts Hypothesis
+0x00199E20,sub_00199E20,Structurally compared,src/game/a9c_2.c,build/obj_a9c/a9c_2.obj,imm:0x2d;imm:0x2c;imm:0x38;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem); record layouts Hypothesis
+0x00199E70,a9c_Slot401D70Has4,Structurally compared,src/game/a9c_2.c,build/obj_a9c/a9c_2.obj,imm:0x2d;imm:0x2c;imm:0x38;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem); record layouts Hypothesis
+0x0019A180,a9c_LinkAnyActive,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,,record layouts Hypothesis
+0x0019A540,a9c_Slot401D70Get14,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,imm:0x2d;imm:0x2c;imm:0x38;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem); record layouts Hypothesis
+0x0019E810,a9c_CtrlSelectMode,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,,record layouts Hypothesis
+0x0019E870,a9c_CtrlSetFlag,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,,record layouts Hypothesis
+0x0019FFE0,a9c_FrameEnd,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,,record layouts Hypothesis
+0x0019A1D0,a9c_LinkAnyBusy,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,imm:0xb;imm:0xa;jcc:l/ge;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; record layouts Hypothesis
+0x0019A640,a9c_LinkApplyAll,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,imm:0xb;imm:0xa;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; record layouts Hypothesis
+0x0019A6A0,a9c_LinkRunAll,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,imm:0xb;imm:0xa;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; record layouts Hypothesis
+0x0019A950,a9c_Rec4019D8Claim,Structurally compared,src/game/a9c_3.c,build/obj_a9c/a9c_3.obj,imm:0x264;imm:0x263;jcc:le/g;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; record layouts Hypothesis
+0x0019D620,a9c_GroupAddStdTasks,Structurally compared,src/game/a9c_4.c,build/obj_a9c/a9c_4.obj,,record layouts Hypothesis
+0x0019D7A0,a9c_EnterMode3,Structurally compared,src/game/a9c_4.c,build/obj_a9c/a9c_4.obj,,record layouts Hypothesis
+0x0019E630,a9c_SessionStart,Structurally compared,src/game/a9c_4.c,build/obj_a9c/a9c_4.obj,data:0x3de6b1;data:0x3de6b2;data:0x3de6b3;data:0x3de7a1;data:0x3de7a2;data:0x3de7a3;data:fconst:1.0;imm:0x3f800000,modern cl merges the four byte stores into one dword store and stores 1.0f as an integer bit pattern; record layouts Hypothesis
+0x0019E690,a9c_SessionSetup,Structurally compared,src/game/a9c_4.c,build/obj_a9c/a9c_4.obj,data:fconst:1.0;imm:0x3f800000,modern cl stores the float constant as an integer immediate instead of an .rdata load; record layouts Hypothesis
+0x0019E8B0,a9c_CtrlApplyFlag,Structurally compared,src/game/a9c_4.c,build/obj_a9c/a9c_4.obj,,record layouts Hypothesis
+0x00196AE0,a9c_FreeBlocks401828,Structurally compared,src/game/a9c_5.c,build/obj_a9c/a9c_5.obj,,record layouts Hypothesis
