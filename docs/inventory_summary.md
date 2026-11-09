@@ -1,0 +1,26 @@
+# Function inventory summary
+
+XBE sha256 `9a8319c7b1cb5ee29781bf641a0cf549c221fdc57effb8f72085608019f41548`; candidates from `C:/ProjectOogie/build_out/disasm/functions.json`.
+Aligned-start boundary heuristic found: 0x001bc9d6; reviewed boundary used: 0x001bc6d0.
+
+| Group | Owner | Confidence | Functions | Unique code bytes |
+|---|---|---|---|---|
+| game | game | low | 38 | 7919 |
+| game | game | medium | 7697 | 1653595 |
+| library | RAD Bink | high | 201 | 62988 |
+| library | XDK D3D8 | high | 272 | 55669 |
+| library | XDK D3DX8 | high | 440 | 107176 |
+| library | XDK DSOUND | high | 483 | 46532 |
+| library | XDK WMA decoder | high | 139 | 44945 |
+| library | XDK XACT | high | 327 | 42694 |
+| library | XDK XAPI/LIBCMT (.text tail) | medium | 635 | 85750 |
+| library | XDK XGRAPHICS | high | 34 | 8364 |
+| library | XDK XPP (USB/input) | high | 231 | 30604 |
+| unknown/unclassified | CRT? (signature) | low | 3 | 75 |
+
+| Group | Functions | Unique code bytes |
+|---|---|---|
+| game | 7735 | 1661514 |
+| library | 2762 | 484722 |
+| unknown/unclassified | 3 | 75 |
+| total | 10500 | 2146311 |

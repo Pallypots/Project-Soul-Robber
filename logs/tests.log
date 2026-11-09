@@ -1,0 +1,14 @@
+test_bad_magic (test_xbe_inventory.T.test_bad_magic) ... ok
+test_debug_decode (test_xbe_inventory.T.test_debug_decode) ... ok
+test_entry_outside_image (test_xbe_inventory.T.test_entry_outside_image) ... ok
+test_kernel_ref_counted (test_xbe_inventory.T.test_kernel_ref_counted) ... ok
+test_retail_decode (test_xbe_inventory.T.test_retail_decode) ... ok
+test_section_past_eof (test_xbe_inventory.T.test_section_past_eof) ... ok
+test_thunk_no_terminator (test_xbe_inventory.T.test_thunk_no_terminator) ... ok
+test_truncated (test_xbe_inventory.T.test_truncated) ... ok
+test_zero_fill_not_readable (test_xbe_inventory.T.test_zero_fill_not_readable) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.075s
+
+OK

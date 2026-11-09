@@ -1,0 +1,32 @@
+﻿recovered_first.c
+
+Dump of file build\recovered_first.obj
+
+File Type: COFF OBJECT
+
+_Frame_Present:
+  00000000: E8 00 00 00 00     call        _Frame_PrePresent
+  00000005: FF 35 00 00 00 00  push        dword ptr [_g_renderLock]
+  0000000B: FF 15 00 00 00 00  call        dword ptr [__imp__RtlEnterCriticalSection@4]
+  00000011: 6A 00              push        0
+  00000013: E8 00 00 00 00     call        _D3DDevice_Swap@4
+  00000018: FF 35 00 00 00 00  push        dword ptr [_g_renderLock]
+  0000001E: FF 15 00 00 00 00  call        dword ptr [__imp__RtlLeaveCriticalSection@4]
+  00000024: E8 00 00 00 00     call        _SwitchToThread@0
+  00000029: 85 C0              test        eax,eax
+  0000002B: 74 29              je          00000056
+  0000002D: 0F 1F 00           nop         dword ptr [eax]
+  00000030: 6A 01              push        1
+  00000032: 6A 00              push        0
+  00000034: FF 35 00 00 00 00  push        dword ptr [_g_presentEvent]
+  0000003A: E8 00 00 00 00     call        _WaitForSingleObjectEx@12
+  0000003F: 3D 02 01 00 00     cmp         eax,102h
+  00000044: 74 07              je          0000004D
+  00000046: 3D C0 00 00 00     cmp         eax,0C0h
+  0000004B: 75 09              jne         00000056
+  0000004D: E8 00 00 00 00     call        _SwitchToThread@0
+  00000052: 85 C0              test        eax,eax
+  00000054: 75 DA              jne         00000030
+  00000056: C3                 ret
+
+_Grade_AddExclamations:

@@ -1,0 +1,27 @@
+# Owner game files and executable copies (never commit)
+/game/
+/orig/
+/private/
+*.xbe
+*.iso
+*.xiso
+*.exe
+*.dll
+*.bin
+*.lz
+*.stm
+# Generated analysis: disassembly, databases, Ghidra projects, traces
+analysis-local/
+build/
+build_out/
+*.asm
+*.gpr
+*.rep/
+*.lock
+*.lock~
+# Generated inventories that embed XBE-derived bytes or full disassembly
+config/inventory/*.json
+# Python
+__pycache__/
+*.pyc
+.venv/

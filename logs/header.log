@@ -1,0 +1,14 @@
+file        C:/ProjectOogie/game/default.xbe
+size        3751936
+sha256      9a8319c7b1cb5ee29781bf641a0cf549c221fdc57effb8f72085608019f41548
+sha1        667c5bd8abc4a551ef6b7cbab3bf3a45e7244605
+kind        retail
+base        0x00010000  image size 0x4403c0
+entry       0x001bef07  (raw 0xa8e7b8ac)
+kthunk      0x0025f8e0  (raw 0x5b48b856)
+kthunks     125
+tls         0x0027bec8
+timedate    1122258004
+debug path  c:\Project\nightmareXbox\xbox\project\xnightmare\xnightmare\Release_US\xnightmare.exe
+sections    31
+libraries   XAPILIB 1.0.5849, D3D8 1.0.5849, D3DX8 1.0.5849, XGRAPHC 1.0.5849, DSOUND 1.0.5849, XACTENG 1.0.5849, XBOXKRNL 1.0.5849, LIBCMT 1.0.5849, LIBCPMT 1.0.5849
