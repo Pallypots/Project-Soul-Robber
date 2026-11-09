@@ -34,3 +34,6 @@
 
 ## Repo
 https://github.com/Pallypots/Project-Soul-Robber. Update the README chart with `py -3 tools/progress.py` after changing `config/function_states.csv`.
+
+## Original source layout (Verified, `docs/source_files.md`, 2026-11-09)
+The XBE still contains 19 of the developers' own source paths (debug allocator and assert arguments), e.g. `\Project\nightmareXbox\app\char_unit.c`, `effman.c`, `figure.c`, `pkdatload.c`, `resman.c`, `scene.c`, `seseq.c`, `tex_ex.c`, `world.c`, `y_camera.c`, `y_character.c`, `demo\demo*.c`, `jack\jkmngsub.c`. Functions that pass a path are known to come from that file; neighbours by address probably do too (Hypothesis). Use these names for `src/` organisation once areas are merged: e.g. 0x000D00B0 is in `jack\jkmngsub.c`, so the player stats/object code near 0x000CF000-0x000D2000 is probably that file; 0x00053760/0x000539C0 are `resman.c` (the slot heaps).
