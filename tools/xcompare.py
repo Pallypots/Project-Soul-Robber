@@ -25,7 +25,7 @@ are ignored; byte-sized vs dword-sized accesses are not distinguished.
 Symbol -> VA mapping comes from config/symbols.csv (name,va). Names are the
 undecorated C names; `_x`, `_x@8` and `__imp__x@8` all map to `x`.
 """
-import argparse, csv, os, re, struct, sys
+import argparse, csv, glob, os, re, struct, sys
 from collections import Counter
 sys.path.insert(0, os.path.dirname(__file__))
 from xbe_inventory import Xbe
@@ -50,22 +50,33 @@ def undecorate(n):
     return n[1:] if n.startswith("_") else n
 
 
+def rows_of(prefix):
+    """All rows of config/<prefix>.csv plus per-area config/<prefix>_*.csv."""
+    out = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "config", prefix + ".csv")) +
+                       glob.glob(os.path.join(ROOT, "config", prefix + "_*.csv"))):
+        with open(path) as f:
+            out += list(csv.DictReader(f))
+    return out
+
+
 def load_symbols():
     out = {}
-    with open(os.path.join(ROOT, "config", "symbols.csv")) as f:
-        for r in csv.DictReader(f):
-            out[r["name"]] = int(r["va"], 16)
+    for r in rows_of("symbols"):
+        va = int(r["va"], 16)
+        if r["name"] in out and out[r["name"]] != va:
+            raise SystemExit(f"symbol {r['name']} has two addresses")
+        out[r["name"]] = va
     return out
 
 
 def load_arrays():
     """(base, end, elem) for symbols declared as arrays of records."""
     out = []
-    with open(os.path.join(ROOT, "config", "symbols.csv")) as f:
-        for r in csv.DictReader(f):
-            if r.get("elem"):
-                b, e, n = int(r["va"], 16), int(r["elem"], 0), int(r["count"], 0)
-                out.append((b, b + e * n, e))
+    for r in rows_of("symbols"):
+        if r.get("elem"):
+            b, e, n = int(r["va"], 16), int(r["elem"], 0), int(r["count"], 0)
+            out.append((b, b + e * n, e))
     return out
 
 
@@ -365,7 +376,7 @@ def main():
     if a.all:
         xbe, syms = Xbe(XBE), load_symbols()
         bad = 0; n = 0
-        for r in csv.DictReader(open(os.path.join(ROOT, "config", "function_states.csv"))):
+        for r in rows_of("function_states"):
             if not r.get("obj"):
                 continue
             n += 1
