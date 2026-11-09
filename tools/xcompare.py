@@ -170,6 +170,12 @@ def events(code, base, resolve, md, fconst=None, local=None):
                 calls.append(resolve(off, i.size - 4, o.mem.disp & 0xFFFFFFFF, "abs"))
             else:
                 calls.append("indirect")
+                # call through a function-pointer table: compare the table address
+                if o.type == x86.X86_OP_MEM and o.mem.disp:
+                    fo = i.disp_offset if i.disp_offset else None
+                    a = resolve(off, fo, o.mem.disp & 0xFFFFFFFF, "abs") if fo is not None else None
+                    if a is not None:
+                        data[a] += 1
             prev = i; continue
         if m == "jmp" and ops[0].type == x86.X86_OP_MEM and ops[0].mem.index != 0:
             jt += 1; prev = i; continue

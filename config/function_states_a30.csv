@@ -1,0 +1,39 @@
+va,name,state,source,obj,waivers,notes
+0x000408b0,a30_Set3DF9BC,Structurally compared,src/game/a30_3.c,build/obj_a30/a30_3.obj,,
+0x000408c0,a30_Set3DF9B8,Structurally compared,src/game/a30_3.c,build/obj_a30/a30_3.obj,,
+0x000408d0,a30_Set3DFA60,Structurally compared,src/game/a30_3.c,build/obj_a30/a30_3.obj,,
+0x000408e0,a30_Set3DF1D8,Structurally compared,src/game/a30_3.c,build/obj_a30/a30_3.obj,,
+0x000408f0,a30_Get3DF1D4,Structurally compared,src/game/a30_3.c,build/obj_a30/a30_3.obj,,
+0x00047040,a30_Release30,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00047140,a30_Release0C,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00047740,a30_BlockHeaderValue,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00047b10,a30_Fwd199CA0,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,range check 3..23 emitted as unsigned (i-3)>20 by modern cl vs signed pair
+0x00047b30,a30_Fwd199EB0,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,range check 3..23 emitted as unsigned (i-3)>20 by modern cl vs signed pair
+0x00047b50,a30_Fwd199F70,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,range check 3..23 emitted as unsigned (i-3)>20 by modern cl vs signed pair
+0x00047b70,a30_Fwd19B5F0,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,range check 3..23 emitted as unsigned (i-3)>20 by modern cl vs signed pair
+0x00047b90,a30_Fwd19B620,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,range check 3..23 emitted as unsigned (i-3)>20 by modern cl vs signed pair
+0x00047f20,a30_Get3DFEC0,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00047f30,a30_Get3DFECC,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00047f40,a30_Differs,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00048450,a30_ClearRec54,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x000484f0,a30_Pair8Count,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00048500,a30_Pair8A,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00048510,a30_Pair8B,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x00049860,a30_Set3E05BC,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x0004bd80,a30_Call576F0,Structurally compared,src/game/a30_4.c,build/obj_a30/a30_4.obj,,
+0x0004ec40,a30_FlipBuffer,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ecc0,a30_RecF00,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,table record start and count inferred from lowest field read
+0x0004ecd0,a30_RecFlags,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ece0,a30_RecF0C,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ecf0,a30_RecF10,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ed00,a30_RecF1C,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ed20,a30_RecF20,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ed40,a30_RecF24,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004ed60,a30_SetBytePair,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004f4d0,a30_StateActive,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004f6d0,a30_SlotF1C,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,imm:0x21e;imm:0x21d;jcc:l/ge;jcc:be/a,range check 0..0x21D emitted as unsigned by modern cl vs signed pair
+0x0004f6f0,a30_Get3E0DC8,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004f700,a30_SelectSlot,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,imm:0x21e;imm:0x21d;jcc:l/ge;jcc:be/a,range check 0..0x21D emitted as unsigned by modern cl vs signed pair
+0x0004f720,a30_ClearCurSlot,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004f730,a30_SetFlag3E0DD0,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
+0x0004f740,a30_ClearStreamState,Structurally compared,src/game/a30_5.c,build/obj_a30/a30_5.obj,,
