@@ -13,7 +13,7 @@ typedef struct Aa0Slot {
     int32_t  val124;         /* +0x124 */
     uint8_t  unk128[0x260 - 0x128];
 } Aa0Slot;
-extern Aa0Slot aa0_slots[16];               /* 0x004242C0 */
+extern Aa0Slot aa0_slots[32];               /* 0x004242C0, 32 records (loop bound 0x428EC0) */
 
 /* Object with a state word and a reset-on-change timer. */
 typedef struct Aa0StateA {

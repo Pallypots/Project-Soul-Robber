@@ -1,5 +1,5 @@
 name,va,kind,elem,count
-aa0_slots,0x004242C0,data,608,16
+aa0_slots,0x004242C0,data,608,32
 aa0_rec16Table,0x003ED748,data,,
 aa0_flags420010,0x00420010,data,,
 aa0_flags420EF8,0x00420EF8,data,,
