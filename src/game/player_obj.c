@@ -3,6 +3,7 @@
  * Same original source file as stats.c (address order). Records:
  * docs/functions/stats.md */
 #include "oogie.h"
+#include <stddef.h>
 
 /* 0x000CF180: 1 when none of mode bits 0x33 are set, else -1. */
 int PlayerObj_ModeSign(PlayerObj *p)
@@ -110,4 +111,77 @@ float PlayerObj_AngleDelta(PlayerObj *p)
     if (-3.14159274f > d)
         d += 6.28318548f;
     return d;
+}
+
+/* 0x000CF490: start animation `anim` (ignored if negative). Restarting the
+ * current one first clears it (-1) in the animation object at +0xFD8 -> +0x30. */
+void PlayerObj_SetAnim(PlayerObj *p, int anim)
+{
+    if (anim < 0)
+        return;
+    if (p->anim128 == anim) {
+        *(int32_t *)(*(uint8_t **)(p->unkFD8 + 0x30) + 8) = -1;
+        p->anim128 = -1;
+    }
+    p->anim12C = anim;
+    sub_000832D0(*(void **)(p->unkFD8 + 0x30), anim);
+    p->anim128 = anim;
+}
+
+/* 0x000CF4F0: classify the object's state from its flag bits (0..9, first match wins). */
+int PlayerObj_GetState(PlayerObj *p)
+{
+    uint32_t f = p->flags[0];
+
+    if (f & 0x80000)
+        return 6;
+    if (f & 0x800)
+        return 0;
+    if (f & 0x300)
+        return 1;
+    if ((int32_t)f < 0)
+        return 2;
+    if (f & 0x40000000)
+        return 3;
+    if (f & 0x2000) {
+        if (f & 0x4000)
+            return 4;
+        if (f & 0x8000)
+            return 5;
+        return (f & 0x20000) ? 7 : 8;
+    }
+    return 9;
+}
+
+/* 0x000D0030 */
+int PlayerObj_D0030(PlayerObj *p)
+{
+    uint8_t *o = p->unkFD8;
+    if (o != NULL && *(int32_t *)(o + 0x20) != 0)
+        return sub_00036750(o);
+    return 0;
+}
+
+/* 0x000D0060 */
+void *PlayerObj_D0060(PlayerObj *p, int a, int b)
+{
+    void *r = sub_00035D80(p->unkFD8, a, 3);
+    sub_00034E00(r, b, g_378198, g_378188);
+    return r;
+}
+
+/* 0x000D00A0 */
+int Player_D00A0(int a, int b)
+{
+    (void)a;
+    sub_00033A40(b);
+    return 0;
+}
+
+/* 0x000D0450 */
+void Player_D0450(void)
+{
+    sub_00053880(g_3EDB3C);
+    g_3EDB3C = NULL;
+    sub_0004F5D0(g_3EDB38);
 }

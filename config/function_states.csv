@@ -42,3 +42,10 @@ va,name,state,source,obj,waivers,notes
 0x0019c1f0,Clock_Set402FC0,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
 0x0019c200,Session_Reset,Structurally compared,src/game/clock.c,build/obj/clock.obj,data:0x3de6b1;data:0x3de6b2;data:0x3de6b3;data:0x3de7a1;data:0x3de7a2;data:0x3de7a3;data:fconst:1.0;imm:0x3f800000,modern cl merges the four byte stores into one dword store and stores 1.0f as an integer bit pattern
 0x0019c270,Session_Request,Structurally compared,src/game/clock.c,build/obj/clock.obj,,
+0x000cf490,PlayerObj_SetAnim,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf4f0,PlayerObj_GetState,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,imm:0x8000,`test ah ah` sign test of bit 15 in the original vs an explicit 0x8000 mask
+0x000d0030,PlayerObj_D0030,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000d0060,PlayerObj_D0060,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000d00a0,Player_D00A0,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000d0450,Player_D0450,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
+0x000cf6e0,Stats_Init,Structurally compared,src/game/stats.c,build/obj/stats.obj,,

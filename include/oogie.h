@@ -49,15 +49,16 @@ typedef struct PlayerStats {
     uint32_t flags;           /* +0xD60  (0x00420C20) */
     int32_t maxHealth;        /* +0xD64  stat 0  (0x00420C24) */
     int32_t health;           /* +0xD68  stat 1  (0x00420C28) */
-    uint8_t unkD6C[0xD8C - 0xD6C];
+    int32_t slotsD6C[8];      /* +0xD6C  4 zeroed + 4 set to -1 by Stats_Init */
     int32_t stat3;            /* +0xD8C  stat 3 (read only through Stats_Get) */
     float   timerD90;         /* +0xD90  zeroed when flag bit 0 is set */
     float   timerD94;         /* +0xD94  zeroed when flag bit 1 is set (0x00420C54) */
     float   stat2;            /* +0xD98  stat 2, float, read truncated */
-    uint8_t unkD9C[0xDA0 - 0xD9C];
+    float   fD9C;             /* +0xD9C  set from 0x00171CF0 at init */
     int32_t soulsLifetime;    /* +0xDA0  (0x00420C60) */
     int32_t soulsWallet;      /* +0xDA4  stat 12 (0x00420C64) */
-    uint8_t unkDA8[0xEFC - 0xDA8];
+    int32_t levels[0x50];     /* +0xDA8  per-item values; 0x50 entries like g_statMaxTable (Hypothesis: levels/counts) */
+    uint8_t unkEE8[0xEFC - 0xEE8];
     int32_t unkEFC;           /* +0xEFC  (0x00420DBC) */
 } PlayerStats;
 
@@ -94,7 +95,10 @@ typedef struct PlayerObj {
     float    angleFC;         /* +0x0FC  an angle in radians (Hypothesis: facing) */
     uint8_t  unk100[0x108 - 0x100];
     float    angle108;        /* +0x108  reference angle */
-    uint8_t  unk10C[0x130 - 0x10C];
+    float    f10C;            /* +0x10C */
+    uint8_t  unk110[0x128 - 0x110];
+    int32_t  anim128;         /* +0x128  current animation id, -1 none */
+    int32_t  anim12C;         /* +0x12C  requested animation id */
     float    timer130;        /* +0x130  limit for timer134 */
     float    timer134;        /* +0x134 */
     uint8_t  unk138[0x150 - 0x138];
@@ -115,6 +119,15 @@ void     PlayerObj_ClearFlags22(PlayerObj *p);                          /* 0x000
 int      PlayerObj_TimerDone(PlayerObj *p);                             /* 0x000CF070 */
 float    PlayerObj_AngleDelta(PlayerObj *p);                            /* 0x000CF120 */
 void     Player_Refresh(void);                                          /* 0x000CF0D0 */
+void     PlayerObj_SetAnim(PlayerObj *p, int anim);                     /* 0x000CF490 */
+int      PlayerObj_GetState(PlayerObj *p);                              /* 0x000CF4F0 */
+int      PlayerObj_D0030(PlayerObj *p);                                 /* 0x000D0030 */
+void    *PlayerObj_D0060(PlayerObj *p, int a, int b);                   /* 0x000D0060 */
+int      Player_D00A0(int a, int b);                                    /* 0x000D00A0 */
+void     Player_D0450(void);                                            /* 0x000D0450 */
+void     Stats_Init(PlayerStats *s);                                    /* 0x000CF6E0 */
+extern char  g_378188[], g_378198[];        /* data passed to 0x00034E00 */
+extern void *g_3EDB38, *g_3EDB3C;
 extern PlayerObj *g_playerObj;              /* 0x00420E98 */
 extern uint8_t   *g_42C8EC;                 /* 0x0042C8EC, object with a pointer at +0x3B0 */
 
@@ -183,6 +196,14 @@ void sub_00102FA0(void);
 int  sub_0019FEE0(void);
 int  sub_001A0CC0(void);
 int  sub_000479F0(void);
+void  sub_000832D0(void *o, int anim);
+float sub_00171CF0(void);
+int   sub_00036750(void *o);
+void *sub_00035D80(void *o, int a, int b);
+void  sub_00034E00(void *o, int a, char *s1, char *s2);
+void  sub_00033A40(int a);
+void  sub_00053880(void *p);
+void  sub_0004F5D0(void *p);
 
 /* ------------------------------------------------------------ XDK / kernel */
 int      OOG_STDCALL D3DDevice_Swap(uint32_t flags);                        /* 0x001D6D20 */

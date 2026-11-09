@@ -172,3 +172,33 @@ int Stats_HasEFC(void)
 {
     return g_stats.unkEFC != 0 ? 1 : -1;
 }
+
+/* 0x000CF6E0: new-game defaults: 10/10 health, no souls, levels cleared,
+ * levels[1] = 1, levels[3] = 5, levels[0x17] = 50. */
+void Stats_Init(PlayerStats *s)
+{
+    int i;
+
+    s->flags = 0;
+    s->maxHealth = 10;
+    s->health = 10;
+    s->stat3 = 0;
+    s->stat2 = 0.0f;
+    s->fD9C = sub_00171CF0();
+    s->slotsD6C[0] = 0;
+    s->slotsD6C[1] = 0;
+    s->slotsD6C[2] = 0;
+    s->slotsD6C[3] = 0;
+    s->slotsD6C[4] = -1;
+    s->slotsD6C[5] = -1;
+    s->slotsD6C[6] = -1;
+    s->slotsD6C[7] = -1;
+    s->slotsD6C[4] = 0;
+    s->soulsLifetime = 0;
+    s->soulsWallet = 0;
+    for (i = 0; i < 0x50; i++)
+        s->levels[i] = 0;
+    s->levels[1] = 1;
+    s->levels[3] = 5;
+    s->levels[0x17] = 50;
+}

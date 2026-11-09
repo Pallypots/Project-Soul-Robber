@@ -227,6 +227,10 @@ def events(code, base, resolve, md, fconst=None, local=None):
                 if a is not None:
                     data[a] += 1
                 elif not esp_op:
+                    # `test ah, 8` tests bit 0x800 of the dword: scale high-byte operands
+                    if m in ("test", "and", "or", "xor", "cmp") and ops[0].type == x86.X86_OP_REG and \
+                            ops[0].reg in (x86.X86_REG_AH, x86.X86_REG_BH, x86.X86_REG_CH, x86.X86_REG_DH):
+                        v <<= 8
                     imm[("k", v)] += 1
         prev = i
     # 0/1 materialisation differs freely between compilers (xor r,r / mov r,1 / setcc)

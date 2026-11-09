@@ -41,4 +41,11 @@ PASS  Clock_ResetPlayTime @ 0x0019c1e0  orig 4 insns, ours 3 insns
 PASS  Clock_Set402FC0 @ 0x0019c1f0  orig 3 insns, ours 3 insns
 PASS* Session_Reset @ 0x0019c200  orig 19 insns, ours 9 insns  (8 documented waivers)
 PASS  Session_Request @ 0x0019c270  orig 27 insns, ours 25 insns
-43/43 pass
+PASS  PlayerObj_SetAnim @ 0x000cf490  orig 24 insns, ours 22 insns
+PASS* PlayerObj_GetState @ 0x000cf4f0  orig 39 insns, ours 39 insns  (1 documented waivers)
+PASS  PlayerObj_D0030 @ 0x000d0030  orig 11 insns, ours 10 insns
+PASS  PlayerObj_D0060 @ 0x000d0060  orig 19 insns, ours 16 insns
+PASS  Player_D00A0 @ 0x000d00a0  orig 6 insns, ours 5 insns
+PASS  Player_D0450 @ 0x000d0450  orig 9 insns, ours 7 insns
+PASS  Stats_Init @ 0x000cf6e0  orig 35 insns, ours 30 insns
+50/50 pass
