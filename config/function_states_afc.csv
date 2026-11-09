@@ -21,7 +21,7 @@ va,name,state,source,obj,waivers,notes
 0x000f6400,afc_SetVisible,Structurally compared,src/game/afc_2.c,build/obj_afc/afc_2.obj,,
 0x000f6b40,afc_StateIsActiveA,Structurally compared,src/game/afc_2.c,build/obj_afc/afc_2.obj,,
 0x000f6b80,afc_StateIsActiveB,Structurally compared,src/game/afc_2.c,build/obj_afc/afc_2.obj,,
-0x000f6c50,afc_RandomTaunt,PASS*,src/game/afc_3.c,build/obj_afc/afc_3.obj,imm:0xa;imm:0x3;jcc:l/ge;jcc:le/g;jcc:be/a,unsigned bounds check idiom for state 7..10
+0x000f6c50,afc_RandomTaunt,Structurally compared,src/game/afc_3.c,build/obj_afc/afc_3.obj,imm:0xa;imm:0x3;jcc:l/ge;jcc:le/g;jcc:be/a,unsigned bounds check idiom for state 7..10
 0x000f3bf0,afc_AddPendingDamage,Structurally compared,src/game/afc_1.c,build/obj_afc/afc_1.obj,,
 0x000f3d10,afc_ChangeState,Structurally compared,src/game/afc_1.c,build/obj_afc/afc_1.obj,,
 0x000f3fd0,afc_BuildMatrix,Structurally compared,src/game/afc_1.c,build/obj_afc/afc_1.obj,,
