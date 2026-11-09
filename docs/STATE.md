@@ -26,6 +26,7 @@
 - 0x00420C20 (stats + 0xD60) is a flags word, not a stat slot; bit 1 runs a 720-unit timer at stats + 0xD94.
 - Jack's hit routine 0x000CF950 confirmed: damage tally, cheat bit 0 keeps 1 health, death call 0x000CEF00.
 - The 2005 compiler never emits `cmov`; modern cl does. Logged as a checker normalisation.
+- **Risk (Verified in several callers, e.g. 0x00040E90 uses EDX, 0x000CF000 passes ESI/EDI/EAX):** register-argument conventions from whole-program optimisation are common. Plain C cannot express them, and the checker does not see argument registers, so these functions stay "Structurally compared" until behaviour tests. The recomp swap adapters must read those registers (g_eax, g_edx...) per function.
 
 ## Next concrete tasks
 1. Keep recovering by call graph outward from grading/stats (callers of 0x000CF950, 0x000D1F40, 0x00041480), and the `.stm` archive loader.
