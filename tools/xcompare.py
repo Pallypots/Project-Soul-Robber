@@ -356,11 +356,12 @@ def fmt(e):
     def h(x):
         return f"{x:#x}" if isinstance(x, int) else str(x)
     return {
-        "calls": [h(c) for c in e["calls"]],
+        # a tail call (jmp target) and call+ret do the same thing; compare targets only
+        "calls": [h(c[1] if isinstance(c, tuple) and c[0] == "tail" else c) for c in e["calls"]],
         "data": sorted(h(k) if not isinstance(k, tuple) else f"{k[0]}:{k[1]}" for k in e["data"]),
         "imm": sorted(h(k[1]) for k in e["imm"]),
         "jcc": sorted(e["jcc"]),
-        "ret": sorted(e["ret"]),
+        "ret": sorted(e["ret"] or ({0} if any(isinstance(c, tuple) and c[0] == "tail" for c in e["calls"]) else set())),
         "jtables": e["jtables"],
     }
 
