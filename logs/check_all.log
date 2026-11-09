@@ -430,6 +430,53 @@ PASS  a60_MovieStop @ 0x00079340  orig 9 insns, ours 8 insns
 PASS  a60_MovieState @ 0x00079460  orig 6 insns, ours 4 insns
 PASS  a60_Forward79B30 @ 0x00079b30  orig 5 insns, ours 4 insns
 PASS  a60_LoadEntry @ 0x00079fd0  orig 30 insns, ours 30 insns
+PASS  a6b_Printf3 @ 0x0007e070  orig 14 insns, ours 11 insns
+PASS  a6b_Printf2 @ 0x0007e0a0  orig 13 insns, ours 11 insns
+PASS  a6b_CamAnim_AddRef @ 0x0007e190  orig 3 insns, ours 3 insns
+PASS  a6b_SetPair @ 0x0007e2b0  orig 6 insns, ours 6 insns
+PASS  a6b_Char_EnsureRes @ 0x0007e2d0  orig 18 insns, ours 16 insns
+PASS  a6b_Char_EndTemp @ 0x0007e310  orig 12 insns, ours 10 insns
+PASS  a6b_AddRef1A @ 0x0007e340  orig 3 insns, ours 3 insns
+PASS  a6b_Model_ScaleParts @ 0x0007e490  orig 38 insns, ours 37 insns
+PASS  a6b_Model_RateParts @ 0x0007e4f0  orig 35 insns, ours 34 insns
+PASS  a6b_Model_SetPartsDC @ 0x0007e560  orig 30 insns, ours 30 insns
+PASS  a6b_StoreVia1C @ 0x0007e670  orig 6 insns, ours 6 insns
+PASS  a6b_Rec_FreeList @ 0x0007e880  orig 17 insns, ours 15 insns
+PASS  a6b_Track_Clear @ 0x0007eeb0  orig 7 insns, ours 6 insns
+PASS  a6b_Track_Free @ 0x0007eed0  orig 17 insns, ours 19 insns
+PASS  a6b_Track_EvalZero @ 0x0007efb0  orig 2 insns, ours 2 insns
+PASS  a6b_Track_EvalStep @ 0x0007efc0  orig 20 insns, ours 15 insns
+PASS  a6b_Track_LengthNone @ 0x0007f120  orig 2 insns, ours 2 insns
+PASS* a6b_Track_Length @ 0x0007f130  orig 26 insns, ours 27 insns  (2 documented waivers)
+PASS* a6b_Track_Load @ 0x0007f180  orig 32 insns, ours 36 insns  (2 documented waivers)
+PASS  a6b_Node_Unlink @ 0x0007f2b0  orig 25 insns, ours 25 insns
+PASS  a6b_Node_Next @ 0x0007f300  orig 6 insns, ours 6 insns
+PASS  a6b_Node_Prev @ 0x0007f310  orig 6 insns, ours 6 insns
+PASS  a6b_Node_Child @ 0x0007f320  orig 6 insns, ours 6 insns
+PASS  a6b_Node_First @ 0x0007f330  orig 14 insns, ours 12 insns
+PASS  a6b_Node_Last @ 0x0007f350  orig 14 insns, ours 12 insns
+PASS  a6b_Node_Root @ 0x0007f370  orig 14 insns, ours 12 insns
+PASS  a6b_Node_Nth @ 0x0007f390  orig 13 insns, ours 13 insns
+PASS  a6b_HeapAlloc @ 0x0007f480  orig 9 insns, ours 7 insns
+PASS  a6b_SetHeap @ 0x0007f4a0  orig 4 insns, ours 4 insns
+PASS  a6b_GetHeap @ 0x0007f4b0  orig 3 insns, ours 3 insns
+PASS  a6b_Check374C0 @ 0x0007f4f0  orig 10 insns, ours 9 insns
+PASS  a6b_Take10 @ 0x0007f540  orig 8 insns, ours 7 insns
+PASS  a6b_StrCopy @ 0x0007f5e0  orig 24 insns, ours 25 insns
+PASS  a6b_Lerp_Init @ 0x0007f610  orig 16 insns, ours 14 insns
+PASS  a6b_Lerp_Const @ 0x0007f670  orig 3 insns, ours 3 insns
+PASS  a6b_Lerp_Linear @ 0x0007f680  orig 6 insns, ours 9 insns
+PASS  a6b_Lerp_SinOut @ 0x0007f6a0  orig 14 insns, ours 18 insns
+PASS  a6b_Lerp_CosIn @ 0x0007f6d0  orig 14 insns, ours 18 insns
+PASS  a6b_Lerp_Zero @ 0x0007f700  orig 3 insns, ours 2 insns
+PASS  a6b_TrackSet_Free @ 0x0007e120  orig 17 insns, ours 17 insns
+PASS  a6b_TrackSet_Load @ 0x0007e150  orig 26 insns, ours 25 insns
+PASS  a6b_Node_Release @ 0x0007ec20  orig 12 insns, ours 12 insns
+PASS  a6b_AllocAt @ 0x0007f4c0  orig 16 insns, ours 11 insns
+PASS  a6b_CamAnim_New @ 0x0007e210  orig 14 insns, ours 14 insns
+PASS* a6b_CamAnim_Release @ 0x0007e240  orig 18 insns, ours 18 insns  (1 documented waivers)
+PASS  a6b_CamAnim_Load @ 0x0007e270  orig 23 insns, ours 23 insns
+PASS  a6b_Block_Init @ 0x0007f240  orig 43 insns, ours 39 insns
 PASS  a80_PoolReset @ 0x00080970  orig 7 insns, ours 6 insns
 PASS  a80_OrFlags08 @ 0x000809a0  orig 6 insns, ours 4 insns
 PASS  a80_PairInvalidate @ 0x00080d20  orig 4 insns, ours 4 insns
@@ -545,6 +592,46 @@ PASS* a8b_KindValue @ 0x0008bcd0  orig 8 insns, ours 5 insns  (2 documented waiv
 PASS  a8b_CallOps0C @ 0x0008c420  orig 19 insns, ours 19 insns
 PASS  a8b_CallOps10 @ 0x0008c450  orig 17 insns, ours 17 insns
 PASS  a8b_Destroy8CC30 @ 0x0008cc30  orig 14 insns, ours 14 insns
+PASS  a9b_HasFewFreeSlots @ 0x00190870  orig 14 insns, ours 14 insns
+PASS  a9b_WorkRelease @ 0x001940d0  orig 15 insns, ours 13 insns
+PASS  a9b_SinkAndUpdate @ 0x00194860  orig 16 insns, ours 15 insns
+PASS  a9b_ReleaseSlots @ 0x00195110  orig 18 insns, ours 18 insns
+PASS  a9b_WorkTick @ 0x001951e0  orig 14 insns, ours 12 insns
+PASS* a9b_WorkReflect44 @ 0x00195db0  orig 15 insns, ours 16 insns  (2 documented waivers)
+PASS  a9b_WorkCountdown34 @ 0x00195f00  orig 10 insns, ours 13 insns
+PASS  a9b_CountdownRelease @ 0x001960a0  orig 14 insns, ours 16 insns
+PASS  a9b_CountdownRefresh @ 0x001960e0  orig 14 insns, ours 16 insns
+PASS* a9b_Get3316B4 @ 0x00199b00  orig 7 insns, ours 5 insns  (4 documented waivers)
+PASS* a9b_GetRec401AF8 @ 0x0019a810  orig 11 insns, ours 9 insns  (2 documented waivers)
+PASS* a9b_GetRec3317B8 @ 0x0019a8e0  orig 8 insns, ours 7 insns  (3 documented waivers)
+PASS* a9b_GetEntryByte2 @ 0x0019adc0  orig 8 insns, ours 9 insns  (5 documented waivers)
+PASS* a9b_GetEntryTop4 @ 0x0019ade0  orig 9 insns, ours 10 insns  (5 documented waivers)
+PASS  a9b_Dec402FA8 @ 0x0019b9f0  orig 6 insns, ours 8 insns
+PASS  a9b_AllocDwords @ 0x001a2350  orig 4 insns, ours 4 insns
+PASS  a9b_Fabs @ 0x001a3f30  orig 8 insns, ours 6 insns
+PASS  a9b_WorkDetach @ 0x00198460  orig 18 insns, ours 17 insns
+PASS  a9b_OnMsg5 @ 0x00198780  orig 16 insns, ours 15 insns
+PASS  a9b_OnMsg2D @ 0x001987b0  orig 16 insns, ours 15 insns
+PASS* a9b_Slot401B30Get10 @ 0x00199850  orig 15 insns, ours 13 insns  (2 documented waivers)
+PASS* a9b_Slot401B30Has4 @ 0x00199880  orig 21 insns, ours 14 insns  (2 documented waivers)
+PASS* a9b_Link3316A0Get8 @ 0x00199de0  orig 16 insns, ours 14 insns  (6 documented waivers)
+PASS* a9b_Get32C930W2 @ 0x0019a480  orig 12 insns, ours 12 insns  (2 documented waivers)
+PASS* a9b_Slot401AF8Clear8 @ 0x0019a8b0  orig 15 insns, ours 9 insns  (1 documented waivers)
+PASS* a9b_Slot4019D8Get8 @ 0x0019a900  orig 15 insns, ours 14 insns  (3 documented waivers)
+PASS  a9b_Slot4019D8Free @ 0x0019a9d0  orig 13 insns, ours 11 insns
+PASS* a9b_Slot4019D8Sub @ 0x0019ace0  orig 17 insns, ours 14 insns  (3 documented waivers)
+PASS* a9b_EntryWord @ 0x0019ad10  orig 14 insns, ours 12 insns  (7 documented waivers)
+PASS* a9b_CallWithEntry @ 0x0019b5c0  orig 13 insns, ours 12 insns  (5 documented waivers)
+PASS  a9b_Reset413160 @ 0x0019ba40  orig 9 insns, ours 7 insns
+PASS  a9b_SetVec402FC8 @ 0x0019c5f0  orig 7 insns, ours 7 insns
+PASS  a9b_ReleaseHandles @ 0x0019d680  orig 11 insns, ours 8 insns
+PASS  a9b_PollHandles @ 0x0019d6d0  orig 16 insns, ours 13 insns
+PASS  a9b_EnterMode2 @ 0x0019d870  orig 9 insns, ours 8 insns
+PASS  a9b_BufferWorker @ 0x0019dfa0  orig 11 insns, ours 10 insns
+PASS  a9b_StartWorkers @ 0x0019e5f0  orig 21 insns, ours 21 insns
+PASS  a9b_StateMode8 @ 0x0019e850  orig 6 insns, ours 8 insns
+PASS  a9b_StateSelect10 @ 0x0019e900  orig 19 insns, ours 19 insns
+PASS  a9b_CheckFlags @ 0x0019e940  orig 16 insns, ours 16 insns
 PASS  aa0_SetPair54 @ 0x000a3280  orig 6 insns, ours 5 insns
 PASS  aa0_SetStateB @ 0x000a41d0  orig 7 insns, ours 7 insns
 PASS  aa0_GetSlot @ 0x000a4290  orig 4 insns, ours 3 insns
@@ -612,6 +699,65 @@ PASS  aa0_Desc_BB1B0 @ 0x000bb1b0  orig 2 insns, ours 2 insns
 PASS  aa0_Desc_BB7D0 @ 0x000bb7d0  orig 2 insns, ours 2 insns
 PASS  aa0_Desc_BBB20 @ 0x000bbb20  orig 2 insns, ours 2 insns
 PASS  aa0_Req_AE850 @ 0x000ae850  orig 18 insns, ours 17 insns
+PASS  aab_SlotSetFlags @ 0x000a2ca0  orig 9 insns, ours 6 insns
+PASS  aab_SlotClearFlags @ 0x000a2cc0  orig 10 insns, ours 7 insns
+PASS  aab_SlotTestFlags @ 0x000a2ce0  orig 12 insns, ours 10 insns
+PASS  aab_ActorSetFlagsC @ 0x000a2d10  orig 12 insns, ours 7 insns
+PASS  aab_ActorClearFlagsC @ 0x000a2d40  orig 13 insns, ours 8 insns
+PASS  aab_ActorSetFlags10 @ 0x000a2d70  orig 12 insns, ours 7 insns
+PASS  aab_ActorClearFlags10 @ 0x000a2da0  orig 13 insns, ours 8 insns
+PASS  aab_SlotAttach @ 0x000a2dd0  orig 19 insns, ours 14 insns
+PASS  aab_SlotFreeA @ 0x000a2e10  orig 16 insns, ours 14 insns
+PASS  aab_SlotFreeB @ 0x000a2e50  orig 16 insns, ours 14 insns
+PASS* aab_SlotPosOp @ 0x000a2e90  orig 21 insns, ours 18 insns  (2 documented waivers)
+PASS* aab_ActorPosOp @ 0x000a2ef0  orig 22 insns, ours 20 insns  (2 documented waivers)
+PASS  aab_SlotSetF @ 0x000a3480  orig 10 insns, ours 9 insns
+PASS  aab_SlotSetI @ 0x000a34b0  orig 10 insns, ours 9 insns
+PASS  aab_SlotGetF @ 0x000a34e0  orig 11 insns, ours 10 insns
+PASS  aab_SlotGetI @ 0x000a3510  orig 11 insns, ours 10 insns
+PASS  aab_SlotSetRecPair @ 0x000a3540  orig 10 insns, ours 6 insns
+PASS  aab_SlotRecOp @ 0x000a3570  orig 17 insns, ours 12 insns
+PASS  aab_SlotActor1F070 @ 0x000a3620  orig 10 insns, ours 9 insns
+PASS  aab_SlotShow @ 0x000a3650  orig 16 insns, ours 13 insns
+PASS  aab_SlotRelease @ 0x000a3740  orig 16 insns, ours 14 insns
+PASS  aab_SlotPlayAnim @ 0x000a4010  orig 25 insns, ours 23 insns
+PASS  aab_SlotAnimDone @ 0x000a4180  orig 24 insns, ours 24 insns
+PASS  aab_SlotSetPos @ 0x000a41f0  orig 12 insns, ours 11 insns
+PASS  aab_SlotSetVec50 @ 0x000a4220  orig 12 insns, ours 11 insns
+PASS  aab_SlotGetVec70 @ 0x000a4250  orig 9 insns, ours 7 insns
+PASS  aab_SlotGetVec80 @ 0x000a4270  orig 9 insns, ours 7 insns
+PASS* aab_FindSlotByActor @ 0x000a42c0  orig 10 insns, ours 10 insns  (2 documented waivers)
+PASS  aab_SlotPlayAnimI @ 0x000a42f0  orig 27 insns, ours 23 insns
+PASS  aab_SlotA4050I @ 0x000a4340  orig 11 insns, ours 9 insns
+PASS  aab_SlotAnimDoneI @ 0x000a4370  orig 25 insns, ours 23 insns
+PASS  aab_SlotSetState @ 0x000a43c0  orig 9 insns, ours 7 insns
+PASS  aab_SlotStateNone @ 0x000a43f0  orig 8 insns, ours 5 insns
+PASS  aab_SlotIndex @ 0x000a44c0  orig 18 insns, ours 19 insns
+PASS  aab_SlotA4870I @ 0x000a4950  orig 5 insns, ours 4 insns
+PASS  aab_SlotA4DE0IfActive @ 0x000a5440  orig 5 insns, ours 6 insns
+PASS  aab_SlotA4DE0IfActiveI @ 0x000a5450  orig 7 insns, ours 7 insns
+PASS  aab_DispatchObj1C @ 0x000a58b0  orig 4 insns, ours 5 insns
+PASS  aab_RecDCState @ 0x000a79b0  orig 14 insns, ours 12 insns
+PASS  aab_SfxAttach @ 0x000a7af0  orig 19 insns, ours 16 insns
+PASS  aab_SfxFree @ 0x000a7b30  orig 19 insns, ours 19 insns
+PASS  aab_KindDispatch @ 0x000a9930  orig 8 insns, ours 9 insns
+PASS  aab_KindCollect @ 0x000a9970  orig 21 insns, ours 21 insns
+PASS  aab_CbBroadcast2 @ 0x000a9cc0  orig 23 insns, ours 24 insns
+PASS  aab_CbBroadcast3 @ 0x000a9d00  orig 23 insns, ours 24 insns
+PASS  aab_CbSend1 @ 0x000a9d40  orig 17 insns, ours 16 insns
+PASS  aab_Rec34Trigger @ 0x000a9fa0  orig 20 insns, ours 23 insns
+PASS  aab_SlotSetVisible @ 0x000a4410  orig 31 insns, ours 23 insns
+PASS* aab_SlotSetVisibleById @ 0x000a44f0  orig 35 insns, ours 38 insns  (4 documented waivers)
+PASS* aab_SlotFreeAllById @ 0x000a4610  orig 34 insns, ours 31 insns  (3 documented waivers)
+PASS* aab_RecDCClaim @ 0x000a9020  orig 29 insns, ours 25 insns  (2 documented waivers)
+PASS  aab_TickTimer @ 0x000a96d0  orig 11 insns, ours 17 insns
+PASS  aab_KindCollectCapped @ 0x000a99b0  orig 43 insns, ours 40 insns
+PASS  aab_KindSouls @ 0x000a9c60  orig 33 insns, ours 31 insns
+PASS  aab_CbSend3 @ 0x000aa490  orig 15 insns, ours 15 insns
+PASS  aab_ResetBlock3ED970 @ 0x000aa4c0  orig 11 insns, ours 9 insns
+PASS  aab_GetTable2E4A48 @ 0x000ab9c0  orig 12 insns, ours 2 insns
+PASS  aab_GetTable2E5700 @ 0x000b5c00  orig 12 insns, ours 2 insns
+PASS  aab_MsgHandlerB7E90 @ 0x000b7e90  orig 36 insns, ours 22 insns
 PASS  ac0_React_C17B0 @ 0x000c17b0  orig 30 insns, ours 29 insns
 PASS  ac0_React_C1830 @ 0x000c1830  orig 30 insns, ours 29 insns
 PASS  ac0_React_C18B0 @ 0x000c18b0  orig 30 insns, ours 29 insns
@@ -662,6 +808,57 @@ PASS  ac0_Stick_Read @ 0x000cc9e0  orig 18 insns, ours 29 insns
 PASS  ac0_Band420EB0 @ 0x000ccb00  orig 12 insns, ours 14 insns
 PASS  ac0_Call_CCA40 @ 0x000cd050  orig 7 insns, ours 6 insns
 PASS  ac0_SetD2C @ 0x000cff90  orig 6 insns, ours 6 insns
+PASS  acb_SetFlags @ 0x000f3b00  orig 9 insns, ours 8 insns
+PASS  acb_TestFlags @ 0x000f3b20  orig 6 insns, ours 7 insns
+PASS  acb_ClearFlags @ 0x000f3b30  orig 10 insns, ours 9 insns
+PASS  acb_GetBoss50 @ 0x000f3b50  orig 9 insns, ours 10 insns
+PASS  acb_SetBoss50 @ 0x000f3b70  orig 10 insns, ours 11 insns
+PASS  acb_GetBoss80 @ 0x000f3b90  orig 9 insns, ours 10 insns
+PASS  acb_SetBoss80 @ 0x000f3bb0  orig 13 insns, ours 14 insns
+PASS  acb_ResetBoss5C @ 0x000f3c40  orig 11 insns, ours 11 insns
+PASS  acb_GetBoss5C @ 0x000f3c70  orig 18 insns, ours 18 insns
+PASS  acb_GetBoss60 @ 0x000f3cb0  orig 9 insns, ours 10 insns
+PASS  acb_RunState @ 0x000f3cd0  orig 18 insns, ours 17 insns
+PASS  acb_ClearGroupTargets @ 0x000f3d70  orig 20 insns, ours 19 insns
+PASS  acb_BossMgrClear @ 0x000f3f40  orig 2 insns, ours 2 insns
+PASS  acb_BossMgrFree @ 0x000f3f50  orig 7 insns, ours 6 insns
+PASS  acb_BossMgrGet @ 0x000f3f80  orig 4 insns, ours 6 insns
+PASS  acb_BossSubState @ 0x000f3f90  orig 17 insns, ours 18 insns
+PASS  acb_BossMgrGet104 @ 0x000f40b0  orig 5 insns, ours 7 insns
+PASS  acb_BossHudStep @ 0x000f4120  orig 13 insns, ours 14 insns
+PASS  acb_BossHud_F4160 @ 0x000f4160  orig 9 insns, ours 10 insns
+PASS  acb_BossHud_F4190 @ 0x000f4190  orig 9 insns, ours 10 insns
+PASS  acb_BossMgrSet100 @ 0x000f4a00  orig 3 insns, ours 3 insns
+PASS  acb_BossDamage @ 0x000f69a0  orig 9 insns, ours 7 insns
+PASS  acb_BossGetAA @ 0x000f69c0  orig 3 insns, ours 3 insns
+PASS  acb_BossGet54 @ 0x000f69d0  orig 3 insns, ours 3 insns
+PASS  acb_PlayerState45 @ 0x000f6a80  orig 11 insns, ours 12 insns
+PASS  acb_OpenMenu5 @ 0x000ec010  orig 8 insns, ours 8 insns
+PASS  acb_OpenMenu4 @ 0x000ec1e0  orig 8 insns, ours 8 insns
+PASS  acb_17C460Off @ 0x000ec070  orig 4 insns, ours 4 insns
+PASS  acb_17C460On @ 0x000ec1d0  orig 4 insns, ours 4 insns
+PASS  acb_183320Off @ 0x000ec1a0  orig 4 insns, ours 4 insns
+PASS  acb_183320On @ 0x000ec1b0  orig 4 insns, ours 4 insns
+PASS  acb_Fwd_FE630 @ 0x000ebd60  orig 5 insns, ours 4 insns
+PASS  acb_Fwd_100370 @ 0x000ebd80  orig 5 insns, ours 4 insns
+PASS  acb_Fwd_FBD20 @ 0x000ebda0  orig 5 insns, ours 4 insns
+PASS  acb_CallHook @ 0x000ed350  orig 5 insns, ours 5 insns
+PASS  acb_HookArg @ 0x000ed360  orig 6 insns, ours 4 insns
+PASS  acb_Run_EDA10 @ 0x000eda10  orig 2 insns, ours 2 insns
+PASS  acb_Set3F4B38 @ 0x000e8bb0  orig 3 insns, ours 3 insns
+PASS  acb_Clear3F57BC @ 0x000e7630  orig 2 insns, ours 2 insns
+PASS  acb_Clear3F60F0 @ 0x000eed80  orig 2 insns, ours 2 insns
+PASS  acb_Zero10C @ 0x000efb80  orig 4 insns, ours 3 insns
+PASS  acb_TableGet4 @ 0x000e0230  orig 5 insns, ours 5 insns
+PASS  acb_TableGet58 @ 0x000e0250  orig 3 insns, ours 3 insns
+PASS  acb_Get3EDD24 @ 0x000e03c0  orig 2 insns, ours 2 insns
+PASS  acb_Get3EDD38 @ 0x000e03d0  orig 2 insns, ours 2 insns
+PASS  acb_Clear3F0748 @ 0x000e0630  orig 4 insns, ours 3 insns
+PASS  acb_Addr3F0758 @ 0x000e0770  orig 2 insns, ours 2 insns
+PASS  acb_Clear3F0A78 @ 0x000e0780  orig 2 insns, ours 2 insns
+PASS  acb_ClearTarget30 @ 0x000e1040  orig 6 insns, ours 6 insns
+PASS  acb_Get3F0A78 @ 0x000e3370  orig 2 insns, ours 2 insns
+PASS  acb_Get3F0A7C @ 0x000e3380  orig 2 insns, ours 2 insns
 PASS  Script_LoadVars @ 0x000d9bb0  orig 9 insns, ours 9 insns
 PASS  Script_SaveVars @ 0x000d9bd0  orig 9 insns, ours 9 insns
 PASS  Op_Yield @ 0x000d9cc0  orig 2 insns, ours 2 insns
@@ -996,4 +1193,95 @@ PASS  b16_E3Flags @ 0x00175cb0  orig 14 insns, ours 11 insns
 PASS  b16_EWorkFree @ 0x001764e0  orig 11 insns, ours 11 insns
 PASS  b16_ETick @ 0x00177fa0  orig 6 insns, ours 6 insns
 PASS  b16_EScale @ 0x001789c0  orig 5 insns, ours 5 insns
-998/998 pass
+PASS  b1b_CtlSendBoth @ 0x00100070  orig 22 insns, ours 22 insns
+PASS  b1b_CtlRunSelected @ 0x001002c0  orig 5 insns, ours 4 insns
+PASS  b1b_CtlMarkIfOver @ 0x00100f70  orig 7 insns, ours 8 insns
+PASS  b1b_CtlApply27 @ 0x001010c0  orig 14 insns, ours 12 insns
+PASS  b1b_CompReset @ 0x001012f0  orig 26 insns, ours 24 insns
+PASS  b1b_ScrActivate @ 0x001045c0  orig 19 insns, ours 22 insns
+PASS  b1b_ScrEvent @ 0x00104b40  orig 14 insns, ours 14 insns
+PASS  b1b_ScrCreate @ 0x00104c60  orig 11 insns, ours 11 insns
+PASS  b1b_ActApply16 @ 0x0010ed60  orig 18 insns, ours 20 insns
+PASS  b1b_ActReset5 @ 0x0010ef50  orig 12 insns, ours 9 insns
+PASS  b1b_ActApply10 @ 0x0010efd0  orig 25 insns, ours 19 insns
+PASS  b1b_ActUpdate @ 0x0010f090  orig 17 insns, ours 16 insns
+PASS  b1b_CmdRunAll @ 0x00112630  orig 23 insns, ours 23 insns
+PASS  b1b_NodeRenew @ 0x00113430  orig 32 insns, ours 32 insns
+PASS  b1b_AnyFlagged @ 0x00114e20  orig 25 insns, ours 24 insns
+PASS  b1b_InRange @ 0x00114e60  orig 16 insns, ours 18 insns
+PASS  b1b_CountList2 @ 0x001153a0  orig 18 insns, ours 18 insns
+PASS* b1b_FoeEnter3 @ 0x0011a500  orig 20 insns, ours 15 insns  (4 documented waivers)
+PASS* b1b_FoeEnter4 @ 0x0011a550  orig 19 insns, ours 19 insns  (4 documented waivers)
+PASS  b1b_FoeRandDelay @ 0x0011a9d0  orig 12 insns, ours 17 insns
+PASS  b1b_FoeEnter10 @ 0x0011abb0  orig 14 insns, ours 11 insns
+PASS  b1b_FoeRandDelay2 @ 0x0011abe0  orig 16 insns, ours 22 insns
+PASS  b1b_FoeRecover @ 0x0011afe0  orig 21 insns, ours 19 insns
+PASS  b1b_SideRequest @ 0x0011dbd0  orig 28 insns, ours 26 insns
+PASS  b1b_EnemyPlayAnim @ 0x00113090  orig 39 insns, ours 33 insns
+PASS* b1b_EnemyAim @ 0x00113290  orig 33 insns, ours 30 insns  (2 documented waivers)
+PASS  b1b_NodeAlloc @ 0x00113300  orig 37 insns, ours 35 insns
+PASS  b1b_NodeFree @ 0x00113370  orig 45 insns, ours 40 insns
+PASS* b1b_EnemyMarkParts @ 0x00113a40  orig 29 insns, ours 26 insns  (2 documented waivers)
+PASS  b1b_EnemyStart @ 0x00113e00  orig 39 insns, ours 38 insns
+PASS  b1b_FoeStun @ 0x0011a370  orig 23 insns, ours 22 insns
+PASS  b1b_FoeGuard @ 0x0011a4a0  orig 35 insns, ours 23 insns
+PASS* b1b_FoeHit23 @ 0x0011a6f0  orig 29 insns, ours 29 insns  (2 documented waivers)
+PASS* b1b_FoeHit24 @ 0x0011a760  orig 29 insns, ours 29 insns  (2 documented waivers)
+PASS  b1b_FoeHitSide @ 0x0011a7d0  orig 26 insns, ours 22 insns
+PASS* b1b_FoeHit27 @ 0x0011a820  orig 25 insns, ours 25 insns  (2 documented waivers)
+PASS* b1b_FoeHeavyHit @ 0x0011a880  orig 33 insns, ours 32 insns  (2 documented waivers)
+PASS  b1b_FoeRandDrain @ 0x0011a8f0  orig 27 insns, ours 30 insns
+PASS* b1b_FoeDie @ 0x0011acc0  orig 24 insns, ours 25 insns  (2 documented waivers)
+PASS  b1b_TargetPlayer @ 0x0012d970  orig 8 insns, ours 8 insns
+PASS  b1b_InRange180 @ 0x0012dd70  orig 13 insns, ours 18 insns
+PASS  b1b_MaskTest @ 0x0012ddb0  orig 18 insns, ours 14 insns
+PASS  b3b_Size146090 @ 0x00146090  orig 2 insns, ours 2 insns
+PASS  b3b_Update146750 @ 0x00146750  orig 14 insns, ours 11 insns
+PASS  b3b_SetFlags146780 @ 0x00146780  orig 3 insns, ours 3 insns
+PASS  b3b_Cond146790 @ 0x00146790  orig 9 insns, ours 8 insns
+PASS  b3b_PredSide1473E0 @ 0x001473e0  orig 14 insns, ours 12 insns
+PASS  b3b_PredRange147410 @ 0x00147410  orig 13 insns, ours 18 insns
+PASS* b3b_PredChance147440 @ 0x00147440  orig 8 insns, ours 13 insns  (1 documented waivers)
+PASS* b3b_PredCount147460 @ 0x00147460  orig 10 insns, ours 10 insns  (1 documented waivers)
+PASS  b3b_PredRange147480 @ 0x00147480  orig 13 insns, ours 18 insns
+PASS  b3b_PredGlobal1474B0 @ 0x001474b0  orig 7 insns, ours 9 insns
+PASS  b3b_PredFlag147540 @ 0x00147540  orig 6 insns, ours 6 insns
+PASS  b3b_PredMask147560 @ 0x00147560  orig 10 insns, ours 9 insns
+PASS  b3b_Size1550D0 @ 0x001550d0  orig 2 insns, ours 2 insns
+PASS  b3b_Cond155550 @ 0x00155550  orig 13 insns, ours 10 insns
+PASS  b3b_PredHandle155AE0 @ 0x00155ae0  orig 9 insns, ours 8 insns
+PASS  b3b_PredFlag155BE0 @ 0x00155be0  orig 6 insns, ours 6 insns
+PASS  b3b_PredNoFlag155C00 @ 0x00155c00  orig 7 insns, ours 7 insns
+PASS  b3b_PredFlag155C70 @ 0x00155c70  orig 11 insns, ours 11 insns
+PASS  b3b_PredMask155CA0 @ 0x00155ca0  orig 10 insns, ours 9 insns
+PASS  b3b_PredF58155CF0 @ 0x00155cf0  orig 9 insns, ours 11 insns
+PASS  b3b_SetPair1561D0 @ 0x001561d0  orig 6 insns, ours 6 insns
+PASS  b3b_Start155580 @ 0x00155580  orig 27 insns, ours 26 insns
+PASS  b3b_Apply1555C0 @ 0x001555c0  orig 33 insns, ours 23 insns
+PASS  b3b_Timer1558B0 @ 0x001558b0  orig 16 insns, ours 26 insns
+PASS  b3b_PredRange155AB0 @ 0x00155ab0  orig 13 insns, ours 18 insns
+PASS  b3b_PredCount155B00 @ 0x00155b00  orig 19 insns, ours 17 insns
+PASS  b3b_PredRange155B40 @ 0x00155b40  orig 13 insns, ours 18 insns
+PASS  b3b_PredPlayerState155CC0 @ 0x00155cc0  orig 17 insns, ours 14 insns
+PASS  b3b_Update15A650 @ 0x0015a650  orig 14 insns, ours 11 insns
+PASS  b3b_PredMask1358D0 @ 0x001358d0  orig 18 insns, ours 14 insns
+PASS  b3b_Step13BD80 @ 0x0013bd80  orig 16 insns, ours 13 insns
+PASS  b3b_Lookup13D910 @ 0x0013d910  orig 18 insns, ours 15 insns
+PASS  b3b_Each13D950 @ 0x0013d950  orig 23 insns, ours 23 insns
+PASS  b3b_State13EB00 @ 0x0013eb00  orig 21 insns, ours 19 insns
+PASS  b3b_Timer13EB40 @ 0x0013eb40  orig 13 insns, ours 16 insns
+PASS  b3b_State13ED60 @ 0x0013ed60  orig 17 insns, ours 14 insns
+PASS  b3b_State13F210 @ 0x0013f210  orig 24 insns, ours 21 insns
+PASS  b3b_State13F250 @ 0x0013f250  orig 20 insns, ours 17 insns
+PASS  b3b_State141FA0 @ 0x00141fa0  orig 19 insns, ours 13 insns
+PASS  b3b_Lookup142440 @ 0x00142440  orig 18 insns, ours 15 insns
+PASS  b3b_State142670 @ 0x00142670  orig 14 insns, ours 13 insns
+PASS  b3b_State142740 @ 0x00142740  orig 17 insns, ours 14 insns
+PASS* b3b_State142890 @ 0x00142890  orig 21 insns, ours 21 insns  (4 documented waivers)
+PASS  b3b_State142D20 @ 0x00142d20  orig 23 insns, ours 17 insns
+PASS  b3b_IsFlagged142630 @ 0x00142630  orig 23 insns, ours 23 insns
+PASS  b3b_Step142ED0 @ 0x00142ed0  orig 20 insns, ours 20 insns
+PASS  b3b_AnimInRange1457C0 @ 0x001457c0  orig 17 insns, ours 24 insns
+PASS  b3b_IsFlagged1460A0 @ 0x001460a0  orig 22 insns, ours 22 insns
+PASS  b3b_Start146820 @ 0x00146820  orig 25 insns, ours 24 insns
+1286/1286 pass

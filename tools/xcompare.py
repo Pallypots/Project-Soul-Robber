@@ -87,10 +87,12 @@ ARRAYS = load_arrays()
 
 def array_key(a):
     """Indexed access into a known record array -> (array base, field offset)."""
+    # overlapping declarations: the array starting closest below wins
+    best = None
     for b, end, e in ARRAYS:
-        if isinstance(a, int) and b <= a < end:
-            return b, (a - b) % e
-    return None
+        if isinstance(a, int) and b <= a < end and (best is None or b > best[0]):
+            best = (b, e)
+    return None if best is None else (best[0], (a - best[0]) % best[1])
 
 
 # ---------------------------------------------------------------- COFF
@@ -269,7 +271,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                             data[("fconst", c)] += 1
                         continue
                 data[a] += 1
-            elif o.mem.base not in (0, x86.X86_REG_ESP, x86.X86_REG_EBP) and o.mem.disp:
+            elif (o.mem.base not in (0, x86.X86_REG_ESP, x86.X86_REG_EBP) or
+                  (o.mem.base == 0 and o.mem.index != 0)) and o.mem.disp:
                 imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1
         for o in ops:
             if o.type == x86.X86_OP_IMM:

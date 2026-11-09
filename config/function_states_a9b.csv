@@ -1,0 +1,41 @@
+va,name,state,source,obj,waivers,notes
+0x00190870,a9b_HasFewFreeSlots,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x001940d0,a9b_WorkRelease,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x00194860,a9b_SinkAndUpdate,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x00195110,a9b_ReleaseSlots,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x001951e0,a9b_WorkTick,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x00195db0,a9b_WorkReflect44,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,data:fconst:-2.0;imm:0xc0000000,constant -2.0f passed as an immediate by modern cl instead of a load from .rdata (same value)
+0x00195f00,a9b_WorkCountdown34,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x001960a0,a9b_CountdownRelease,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x001960e0,a9b_CountdownRefresh,Structurally compared,src/game/a9b_1.c,build/obj_a9b/a9b_1.obj,,work/slot record layout Hypothesis
+0x00199b00,a9b_Get3316B4,Structurally compared,src/game/a9b_2.c,build/obj_a9b/a9b_2.obj,imm:0x2;jcc:be/a;jcc:l/ge;jcc:le/g,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019a810,a9b_GetRec401AF8,Structurally compared,src/game/a9b_2.c,build/obj_a9b/a9b_2.obj,jcc:e/ne;jcc:l/ge,signed 0<=i<1 bounds check folded to i==0 by modern cl
+0x0019a8e0,a9b_GetRec3317B8,Structurally compared,src/game/a9b_2.c,build/obj_a9b/a9b_2.obj,jcc:e/ne;jcc:l/ge;jcc:le/g,signed 0<=i<1 bounds check folded to i==0 by modern cl
+0x0019adc0,a9b_GetEntryByte2,Structurally compared,src/game/a9b_2.c,build/obj_a9b/a9b_2.obj,imm:0x263;imm:0x264;jcc:be/a;jcc:l/ge;jcc:le/g,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ade0,a9b_GetEntryTop4,Structurally compared,src/game/a9b_2.c,build/obj_a9b/a9b_2.obj,imm:0x263;imm:0x264;jcc:be/a;jcc:l/ge;jcc:le/g,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019b9f0,a9b_Dec402FA8,Structurally compared,src/game/a9b_2.c,build/obj_a9b/a9b_2.obj,,work/slot record layout Hypothesis
+0x001a2350,a9b_AllocDwords,Structurally compared,src/game/a9b_3.c,build/obj_a9b/a9b_3.obj,,work/slot record layout Hypothesis
+0x001a3f30,a9b_Fabs,Structurally compared,src/game/a9b_3.c,build/obj_a9b/a9b_3.obj,,work/slot record layout Hypothesis
+0x00198460,a9b_WorkDetach,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,,work/slot record layout Hypothesis
+0x00198780,a9b_OnMsg5,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,,work/slot record layout Hypothesis
+0x001987b0,a9b_OnMsg2D,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,,work/slot record layout Hypothesis
+0x00199850,a9b_Slot401B30Get10,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,imm:0xf;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00199880,a9b_Slot401B30Has4,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,imm:0xf;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00199de0,a9b_Link3316A0Get8,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,imm:0x38;imm:0xa;imm:0xb;jcc:be/a;jcc:l/ge;jcc:le/g,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x0019a480,a9b_Get32C930W2,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,jcc:be/a;jcc:l/ge,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019a8b0,a9b_Slot401AF8Clear8,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,jcc:l/ge,signed 0<=i<1 bounds check folded to i==0 by modern cl
+0x0019a900,a9b_Slot4019D8Get8,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,imm:0x2;imm:0x3;jcc:be/a,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019a9d0,a9b_Slot4019D8Free,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,,work/slot record layout Hypothesis
+0x0019ace0,a9b_Slot4019D8Sub,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,imm:0x2;jcc:be/a;jcc:l/ge,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ad10,a9b_EntryWord,Structurally compared,src/game/a9b_4.c,build/obj_a9b/a9b_4.obj,imm:0x263;imm:0x264;imm:0x3;imm:0x4;jcc:be/a;jcc:l/ge;jcc:le/g,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019b5c0,a9b_CallWithEntry,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,imm:0x76;imm:0x77;jcc:be/a;jcc:l/ge;jcc:le/g,signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ba40,a9b_Reset413160,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019c5f0,a9b_SetVec402FC8,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019d680,a9b_ReleaseHandles,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019d6d0,a9b_PollHandles,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019d870,a9b_EnterMode2,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019dfa0,a9b_BufferWorker,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019e5f0,a9b_StartWorkers,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019e850,a9b_StateMode8,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019e900,a9b_StateSelect10,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
+0x0019e940,a9b_CheckFlags,Structurally compared,src/game/a9b_5.c,build/obj_a9b/a9b_5.obj,,work/slot record layout Hypothesis
