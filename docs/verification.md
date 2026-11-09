@@ -37,3 +37,9 @@ tools\check_all.bat                  compile src/game/*.c and check every record
 py -3 tools\xcompare.py <obj> <name> <va> -d     one function, side-by-side disassembly
 py -3 tests\negative_controls.py     re-qualify the checker after any change to it
 ```
+
+## Register-argument functions (policy from 2026-11-09)
+Much of the game was compiled with whole-program optimisation, which passes some arguments in registers (EAX, EDX, ESI, EDI, EBX...) instead of on the stack. Plain C cannot express that, and it does not need to: the recovered source is portable C in which callers and callees agree on normal C parameters. Such functions may be recovered when:
+- every register input is mapped to a named C parameter, and the record's `notes` column states the mapping exactly, e.g. `regargs: p1=EAX p2=ESI` (inputs read before being written) and, for callers of such functions, which C argument goes in which register;
+- the checker passes as usual (it compares calls, data, constants and decisions; it does not compare which register or stack slot an argument arrives in, which is why the mapping must be written down);
+- the state stays "Structurally compared". The register mapping is only proven by a behaviour test in the recomp test bench (the swap adapter reads g_eax/g_edx/... per the note).
