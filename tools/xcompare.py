@@ -235,6 +235,9 @@ def events(code, base, resolve, md, fconst=None, local=None):
             if not is_local:
                 calls.append(("tail", t))   # tail call to another function
                 prev = i; continue
+        if m == "jmp" and ops and ops[0].type == x86.X86_OP_REG:
+            calls.append(("tail", "indirect"))   # jmp reg: indirect tail call
+            prev = i; continue
         if m.startswith("j") and m not in JCC_CLASS:
             prev = i; continue
         if m in JCC_CLASS:

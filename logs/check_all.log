@@ -542,9 +542,6 @@ PASS  a8b_Run8B860 @ 0x0008bb90  orig 10 insns, ours 7 insns
 PASS  a8b_TargetAction2 @ 0x0008bbc0  orig 15 insns, ours 14 insns
 PASS  a8b_Check3D090 @ 0x0008bc80  orig 21 insns, ours 19 insns
 PASS* a8b_KindValue @ 0x0008bcd0  orig 8 insns, ours 5 insns  (2 documented waivers)
-FAIL  a8b_KindForward @ 0x0008bd80  orig 13 insns, ours 12 insns  differs: calls  (2 documented waivers)
-   calls    orig ["('tail', 521344)"]
-            ours ['0x7f480']
 PASS  a8b_CallOps0C @ 0x0008c420  orig 19 insns, ours 19 insns
 PASS  a8b_CallOps10 @ 0x0008c450  orig 17 insns, ours 17 insns
 PASS  a8b_Destroy8CC30 @ 0x0008cc30  orig 14 insns, ours 14 insns
@@ -999,4 +996,4 @@ PASS  b16_E3Flags @ 0x00175cb0  orig 14 insns, ours 11 insns
 PASS  b16_EWorkFree @ 0x001764e0  orig 11 insns, ours 11 insns
 PASS  b16_ETick @ 0x00177fa0  orig 6 insns, ours 6 insns
 PASS  b16_EScale @ 0x001789c0  orig 5 insns, ours 5 insns
-998/999 pass
+998/998 pass
