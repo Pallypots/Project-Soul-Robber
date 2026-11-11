@@ -1,0 +1,65 @@
+va,name,state,source,obj,waivers,notes
+0x00199980,r4d_VoiceTick,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0xf;jcc:l/ge;jcc:be/a,stack arg (i); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00199a40,r4d_VoiceStop,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0xf;jcc:l/ge;jcc:be/a,stack arg (i); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00199a90,r4d_VoiceSetVolume,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0x10;imm:0xf;jcc:l/ge;jcc:be/a,stack args (i vol); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00199b20,r4d_VoiceStoreVolume,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0x10;imm:0xf;jcc:l/ge;jcc:be/a,stack args (i vol); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x00199b50,r4d_VoiceUpdateAll,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0x3,no inputs; bank record stride 0x18 multiply emitted as lea*3 plus shl 3 by the original (array+field still compared via elem)
+0x00199c10,r4d_CueStart,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0x38;imm:0x77;imm:0x76;jcc:l/ge;jcc:le/g;jcc:be/a,stack args (cue bank); assert-style hang on a bad cue; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x00199ca0,r4d_CuePoll,Structurally compared,src/game/r4d_1.c,build/obj_r4d/r4d_1.obj,imm:0x38;imm:0x77;imm:0x76;jcc:l/ge;jcc:le/g;jcc:be/a,stack arg (cue); assert-style hang on a bad cue; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x00199eb0,r4d_CueStartAll,Structurally compared,src/game/r4d_2.c,build/obj_r4d/r4d_2.obj,imm:0x38;imm:0x77;imm:0x76;jcc:l/ge;jcc:be/a,stack arg (cue); calls 0x00199CA0; assert-style hang on a bad cue; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x0019a230,r4d_StreamResume,Structurally compared,src/game/r4d_2.c,build/obj_r4d/r4d_2.obj,imm:0x2d;imm:0x38;jcc:l/ge;jcc:be/a,stack arg (j); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x0019a2f0,r4d_StreamSetVolume,Structurally compared,src/game/r4d_2.c,build/obj_r4d/r4d_2.obj,imm:0x38,stack args (j vol); stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x0019a390,r4d_StreamSetParams,Structurally compared,src/game/r4d_2.c,build/obj_r4d/r4d_2.obj,imm:0x38,stack args (j vol a b c d) with c a float passed on the stack; stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x0019a5a0,r4d_BankPause,Structurally compared,src/game/r4d_2.c,build/obj_r4d/r4d_2.obj,imm:0x2d;imm:0x2c;imm:0x38;imm:0xb;imm:0xa;jcc:s/ns;jcc:be/a,stack args (bank x); assert-style hang on a bad bank; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl (original tests j<0 with js after the add); stride 0x38 multiply expressed by lea chain (array+field still compared via elem)
+0x001aa1a0,r4d_AllocPersist,Structurally compared,src/game/r4d_3.c,build/obj_r4d/r4d_3.obj,,no inputs
+0x001aa240,r4d_SemCreate,Structurally compared,src/game/r4d_3.c,build/obj_r4d/r4d_3.obj,imm:0x40,stack arg (d); redundant slot<64 check after the free-slot search dropped by modern cl
+0x001aa3e0,r4d_SemSignal,Structurally compared,src/game/r4d_3.c,build/obj_r4d/r4d_3.obj,imm:0x40;imm:0x3f;jcc:l/ge;jcc:be/a,stack args (i n); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x001aa460,r4d_SemWait,Structurally compared,src/game/r4d_3.c,build/obj_r4d/r4d_3.obj,imm:0x40;imm:0x3f;jcc:l/ge;jcc:be/a;jcc:s/ns,stack arg (i); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; count<0 after the decrement tested with the sign flag of the add by modern cl
+0x001aa4d0,r4d_SemGetInfo,Structurally compared,src/game/r4d_3.c,build/obj_r4d/r4d_3.obj,imm:0x40;imm:0x3f;jcc:l/ge;jcc:be/a;imm:0x18,stack args (i out); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; original copies the 0x18-byte block through a pointer to slot+4 (offsets 0..0x14) while modern cl addresses slot+4..slot+0x18
+0x0019aa00,r4d_TrackRestart,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,jcc:be/a,stack args (i x); signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019aac0,r4d_TrackPlay,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a,stack args (i x); jump table switch on track state; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ab40,r4d_TrackPause,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a,stack arg (i); jump table switch on track state; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ac20,r4d_TrackSetPartVolume,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a,stack args (i k vol); calls 0x0019ABB0 with EAX=t ESI=k EDX=vol; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ac70,r4d_TrackSetPart,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a;imm:0x4,stack args (i k vol a b); calls 0x0019ABB0 with EAX=t ESI=k EDX=vol; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; part index k*16 scaled with shl 4 by the original and as (k+k)*8 by modern cl
+0x0019ad50,r4d_TrackSetPartVolumeIfPlaying,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,imm:0x3;imm:0x2;jcc:l/ge;jcc:be/a,stack args (i k vol); calls 0x0019ABB0 with EAX=t ESI=k EDX=vol; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl
+0x0019ae00,r4d_TrackUpdateAll,Structurally compared,src/game/r4d_5.c,build/obj_r4d/r4d_5.obj,,no inputs
+0x0019abb0,r4d_TrackApplyPart,Structurally compared,src/game/r4d_6.c,build/obj_r4d/r4d_6.obj,imm:0x30;imm:0x215;imm:0x1e4;imm:0xffffffd0;jcc:l/ge;jcc:be/a;imm:0x4,regargs: p1=EAX (t) p2=ESI (k) p3=EDX (vol) p4 on the stack (i); range check 0x30<=snd<0x215 folded to unsigned (snd-0x30)<=0x1E4 with cmov by modern cl; part index k*16 scaled with shl 4 by the original and as (k+k)*8 by modern cl
+0x001aa970,r4d_DrvSetFade,Structurally compared,src/game/r4d_7.c,build/obj_r4d/r4d_7.obj,,stack arg (x); library callee 0x002226F3 is stdcall
+0x001ab050,r4d_DrvVoiceStop,Structurally compared,src/game/r4d_7.c,build/obj_r4d/r4d_7.obj,,stack args (x j y)
+0x001ab370,r4d_DrvReleaseGroup,Structurally compared,src/game/r4d_7.c,build/obj_r4d/r4d_7.obj,,stack args (unused g); library callees are stdcall
+0x001a7280,r4d_RenderUpload,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack arg (p); XDK callees 0x001D24F0 and 0x001D2680 are fastcall (ECX EDX)
+0x001a7890,r4d_Call1A5F50,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack arg (o); calls 0x001A5F50 with ECX=o and 1 on the stack (caller pops)
+0x001a8720,r4d_TimerStart,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,no inputs
+0x001a8770,r4d_TimerStartMs,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack arg (ms); 64-bit multiply and divide through the CRT _allmul and _alldiv helpers
+0x001a8860,r4d_LoadFile,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack arg (buf)
+0x001a8920,r4d_GetDateTime,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack args (year month day hour minute second)
+0x001a9630,r4d_PadCheck,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack args (a unused c)
+0x001a9680,r4d_PadPresent,Structurally compared,src/game/r4d_8.c,build/obj_r4d/r4d_8.obj,,stack arg (a)
+0x001a8680,r4d_TimerElapsedMs,Structurally compared,src/game/r4d_9.c,build/obj_r4d/r4d_9.obj,,no inputs; 64-bit result in EDX:EAX; CRT _allmul and _alldiv helpers
+0x001a90b0,r4d_PadRumble,Structurally compared,src/game/r4d_9.c,build/obj_r4d/r4d_9.obj,,stack args (a right left); XDK callee 0x002593D8 is stdcall
+0x001a9d80,r4d_SaveCheck,Structurally compared,src/game/r4d_9.c,build/obj_r4d/r4d_9.obj,,stack arg (slot); the size out-parameter lives in the original's own argument slot (no tail call)
+0x0019bf80,r4d_SwitchMode,Structurally compared,src/game/r4d_10.c,build/obj_r4d/r4d_10.obj,,stack args (from to)
+0x0019d2a0,r4d_ReturnToGame,Structurally compared,src/game/r4d_10.c,build/obj_r4d/r4d_10.obj,,stack arg (job)
+0x0019e750,r4d_StageEnd,Structurally compared,src/game/r4d_11.c,build/obj_r4d/r4d_11.obj,,stack arg (a); passes the address of its own argument to 0x000DFD40 (no tail call)
+0x0019fd60,r4d_StageUnload,Structurally compared,src/game/r4d_11.c,build/obj_r4d/r4d_11.obj,,stack arg (g)
+0x001a0020,r4d_StageShocks,Structurally compared,src/game/r4d_11.c,build/obj_r4d/r4d_11.obj,data:fconst:-1.0;data:fconst:20.0;imm:0x41a00000;imm:0xbf800000,stack args (hi lo); float stack arguments 20.0 and -1.0 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x001a11f0,r4d_JobsInit,Structurally compared,src/game/r4d_11.c,build/obj_r4d/r4d_11.obj,jcc:l/ge;jcc:b/ae,no inputs; assert-style hang when the free list is empty; pointer loop end compared unsigned by modern cl (original signed)
+0x001a1680,r4d_StageLoadCommon,Structurally compared,src/game/r4d_11.c,build/obj_r4d/r4d_11.obj,,no inputs
+0x001a1ac0,r4d_TempSave,Structurally compared,src/game/r4d_12.c,build/obj_r4d/r4d_12.obj,,no inputs
+0x001a1b90,r4d_TempRestore,Structurally compared,src/game/r4d_12.c,build/obj_r4d/r4d_12.obj,,no inputs
+0x001a1f50,r4d_List8Add,Structurally compared,src/game/r4d_12.c,build/obj_r4d/r4d_12.obj,imm:0x10;imm:0x14,stack args (l v); original copies the 16 bytes through a pointer to the entry (offsets 0..0xC) while modern cl addresses list+8..list+0x14
+0x001a2480,r4d_UploadBones,Structurally compared,src/game/r4d_12.c,build/obj_r4d/r4d_12.obj,imm:0x8;imm:0xffffffc8,stack args (obj l); XDK callee 0x001D24F0 is fastcall (ECX=constant register EDX=matrix); modern cl reads idx[k] at l+8+4k through the shared 0x40+4k induction register (offset -0x38) instead of a separate pointer
+0x001a5310,r4d_ClearToBackColour,Structurally compared,src/game/r4d_13.c,build/obj_r4d/r4d_13.obj,imm:0x3f800000,no inputs; float argument 1.0 pushed as an immediate by the original and built with fld1 by modern cl
+0x001a5400,r4d_ClearAllBuffers,Structurally compared,src/game/r4d_13.c,build/obj_r4d/r4d_13.obj,imm:0x3f800000,no inputs; float argument 1.0 pushed as an immediate by the original and built with fld1 by modern cl
+0x001a5500,r4d_CopyBackBuffers,Structurally compared,src/game/r4d_13.c,build/obj_r4d/r4d_13.obj,,no inputs; XDK callees are stdcall
+0x001a7430,r4d_CopyToBackBuffer,Structurally compared,src/game/r4d_13.c,build/obj_r4d/r4d_13.obj,,no inputs; XDK callees are stdcall
+0x001aee90,r4d_PartsMask,Structurally compared,src/game/r4d_14.c,build/obj_r4d/r4d_14.obj,,stack arg (m)
+0x001aeed0,r4d_PartsSetMask,Structurally compared,src/game/r4d_14.c,build/obj_r4d/r4d_14.obj,,stack args (m bits)
+0x001aef10,r4d_PartsClearMask,Structurally compared,src/game/r4d_14.c,build/obj_r4d/r4d_14.obj,,stack args (m bits)
+0x001b30c0,r4d_PartsBoneOffset,Structurally compared,src/game/r4d_14.c,build/obj_r4d/r4d_14.obj,imm:0x30;imm:0x8;imm:0x38,stack args (m base); original adds 0x30 to reach the bone's sub-record and reads its +8 field while modern cl folds both into +0x38
+0x001b3110,r4d_PartsBoneLookup,Structurally compared,src/game/r4d_14.c,build/obj_r4d/r4d_14.obj,imm:0x30;imm:0x8;imm:0x38,stack args (m tbl); original adds 0x30 to reach the bone's sub-record and reads its +8 field while modern cl folds both into +0x38
+0x001bb8e0,r4d_Parts100BoneLookup,Structurally compared,src/game/r4d_14.c,build/obj_r4d/r4d_14.obj,imm:0x30;imm:0x8;imm:0x38,stack args (m tbl); original adds 0x30 to reach the bone's sub-record and reads its +8 field while modern cl folds both into +0x38
+0x001ad2c0,r4d_ThreadClose,Structurally compared,src/game/r4d_15.c,build/obj_r4d/r4d_15.obj,,stack arg (id)
+0x001ad3d0,r4d_ThreadStart,Structurally compared,src/game/r4d_15.c,build/obj_r4d/r4d_15.obj,,stack arg (id)
+0x001ad440,r4d_ThreadStop,Structurally compared,src/game/r4d_15.c,build/obj_r4d/r4d_15.obj,,stack arg (id)
+0x001adbf0,r4d_MatRotateZYX,Structurally compared,src/game/r4d_16.c,build/obj_r4d/r4d_16.obj,,stack args (out in rot); D3DX-style callees are stdcall

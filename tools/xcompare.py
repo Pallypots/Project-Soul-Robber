@@ -364,7 +364,7 @@ def obj_resolver(relmap, syms, code, cursec):
         if cn not in syms:
             return ("unknown-symbol", name)
         addend = struct.unpack_from("<I", code, key)[0] if typ == 6 else 0
-        return syms[cn] + addend
+        return (syms[cn] + addend) & 0xFFFFFFFF
     return r
 
 
