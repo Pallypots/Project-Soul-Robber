@@ -13,8 +13,13 @@ XBE = os.environ.get("OOGIE_XBE", "C:/ProjectOogie/game/default.xbe")
 
 
 def sizes():
-    return {int(r["va"], 16): int(r["size"]) for r in
-            csv.DictReader(open(os.path.join(ROOT, "config", "inventory", "functions.csv")))}
+    out = {int(r["va"], 16): int(r["size"]) for r in
+           csv.DictReader(open(os.path.join(ROOT, "config", "inventory", "functions.csv")))}
+    ov = os.path.join(ROOT, "config", "size_overrides.csv")
+    if os.path.exists(ov):
+        for r in csv.DictReader(open(ov)):
+            out[int(r["va"], 16)] = int(r["size"], 0)
+    return out
 
 
 def main():

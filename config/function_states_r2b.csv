@@ -1,0 +1,87 @@
+va,name,state,source,obj,waivers,notes
+0x000d0000,r2b_PlayerShowModel,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d04e0,r2b_ModelSetColor,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d0530,r2b_ShowChild,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d0560,r2b_SetChildAnim,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d0850,r2b_UpdateEffect604,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d08f0,r2b_CheckE04,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d0dc0,r2b_PoolGetA,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d0e30,r2b_PoolGetB,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d1670,r2b_LoadTexA,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d1700,r2b_LoadTexB,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d2180,r2b_ClearEffects,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d2a00,r2b_SetMode,Structurally compared,src/game/r2b_1.c,build/obj_r2b/r2b_1.obj,,
+0x000d34e0,r2b_PlayerReset,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d4560,r2b_HookStop,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d51c0,r2b_SetFlagByKind,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d5620,r2b_Set42C8ECTop,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d5650,r2b_Set42C8ECBit2,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d5660,r2b_LoadShadow,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d7090,r2b_TakeButtons,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,imm:0x8000;jcc:l/ge,regargs: b=EAX (low 16 bits); result in EAX. Waiver: test ah ah sign test of bit 15 in the original vs an explicit 0x8000 mask
+0x000d71e0,r2b_GetMode0,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d71f0,r2b_StageEntryId,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d7240,r2b_StageRunLength,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d74d0,r2b_GetModeA8,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d74e0,r2b_CheckStep,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d7510,r2b_PlayCue,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d7570,r2b_StopCue,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d7590,r2b_ResetModesD,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d7bf0,r2b_StageFlag200,Structurally compared,src/game/r2b_2.c,build/obj_r2b/r2b_2.obj,,
+0x000d8ff0,r2b_PairA,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,,
+0x000d9000,r2b_PairB,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,,
+0x000d9010,r2b_GetBlkI10,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,,
+0x000d9020,r2b_BlkFromPlayer,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,,
+0x000d9a30,r2b_BlkSetup,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,,calls 0x000D9180 with ECX=pass (a b on stack) and 0x000D97B0 with ECX=a
+0x000d9a70,r2b_TestBit,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,imm:0x1f;imm:0x5;imm:0x8000001f;imm:0xffffffe0;imm:0x20;jcc:s/ns;imm:0x400;imm:0x3ff;jcc:l/ge;jcc:be/a,signed /32 and %32 idiom (original shift/mask/sign fix-up vs modern idiv/shift) and signed 0<=i<0x400 bounds check emitted as unsigned i<=0x3FF by modern cl
+0x000d9ab0,r2b_SetBit,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,imm:0x1f;imm:0x5;imm:0x8000001f;imm:0xffffffe0;imm:0x20;jcc:s/ns;imm:0x400;imm:0x3ff;jcc:l/ge;jcc:be/a,signed /32 and %32 idiom (original shift/mask/sign fix-up vs modern idiv/shift) and signed 0<=i<0x400 bounds check emitted as unsigned i<=0x3FF by modern cl
+0x000d9b30,r2b_ClearBit,Structurally compared,src/game/r2b_3.c,build/obj_r2b/r2b_3.obj,imm:0x1f;imm:0x5;imm:0x8000001f;imm:0xffffffe0;imm:0x20;jcc:s/ns;imm:0x400;imm:0x3ff;jcc:l/ge;jcc:be/a,signed /32 and %32 idiom (original shift/mask/sign fix-up vs modern idiv/shift) and signed 0<=i<0x400 bounds check emitted as unsigned i<=0x3FF by modern cl
+0x000d9bf0,r2b_ResetBits,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000d9f40,r2b_OpJumpIfBit,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000d9fa0,r2b_OpSetBit,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000da3b0,r2b_OpWaitVar5,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x1000;imm:0x3000,0x2000/0x3000 select: original neg/sbb/and 0x1000/add vs modern cmov
+0x000da420,r2b_OpMusic,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000da580,r2b_OpStatMove,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3,two operand bytes at +2 and +3 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000da5d0,r2b_OpJumpIfStat,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000da640,r2b_OpSetLevels,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000da6d0,r2b_OpChapter,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000da950,r2b_OpVoice,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,variant left unset for p[0] > 2 as in the original (reads an uninitialised local)
+0x000dab20,r2b_OpJumpIfNotEDA20,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3,two operand bytes at +2 and +3 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000dadc0,r2b_OpJumpIf60BD0,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000daf40,r2b_OpWait869C0,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000db3b0,r2b_OpJumpIfPlayer,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000db460,r2b_OpStatCC230,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000db860,r2b_OpWaitKey,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x1000,0x2000/0x3000 select: original neg/sbb/and 0x1000/add vs modern cmov
+0x000db9f0,r2b_OpWaitAD090,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dbdc0,r2b_OpJumpIfDEA20,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3,two operand bytes at +2 and +3 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000dc0d0,r2b_OpWaitLevel,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0xfffff002,0x2002/0x3000 select: original setne/dec/and 0xFFFFF002/add vs modern cmov
+0x000dc3c0,r2b_OpJumpIfChapter,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3,two operand bytes at +2 and +3 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000dc500,r2b_OpJumpIfNot19BE60,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3,two operand bytes at +2 and +3 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000dc550,r2b_OpJumpIfNot19BE70,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3,two operand bytes at +2 and +3 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000dc5a0,r2b_OpSet19BE90,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dcd20,r2b_OpStopCues,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dcd50,r2b_OpJumpIfCueDone,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dcdb0,r2b_OpPostCmd,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dcde0,r2b_OpJumpIfDE4D0,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dd120,r2b_OpJumpUnlessVar5,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dd250,r2b_OpJumpIfStatCmp,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3;imm:0x6,operand byte pairs at +2/+3 and +5/+6 read as 16-bit loads by modern cl (load merging) vs byte loads in the original
+0x000dd310,r2b_OpJumpIfStatK,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x3;imm:0x6,operand byte pairs at +2/+3 and +5/+6 read as 16-bit loads by modern cl (load merging) vs byte loads in the original
+0x000dd3f0,r2b_OpJumpUnlessArea,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x2,two operand bytes at +1 and +2 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000dd4b0,r2b_OpUi,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000dda00,r2b_OpSetBitRange,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000ddac0,r2b_OpJumpIf88150,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,imm:0x2,two operand bytes at +1 and +2 read as one 16-bit load by modern cl (load merging) vs byte loads in the original
+0x000ddd00,r2b_OpSetTarget,Structurally compared,src/game/r2b_4.c,build/obj_r2b/r2b_4.obj,,
+0x000df830,r2b_ApplyUnlocks,Structurally compared,src/game/r2b_5.c,build/obj_r2b/r2b_5.obj,,
+0x000dfcc0,r2b_SuspendThreads,Structurally compared,src/game/r2b_5.c,build/obj_r2b/r2b_5.obj,,
+0x000e01d0,r2b_TableSet,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,data:fconst:-1.0;data:fconst:30.0;imm:0x41f00000;imm:0xbf800000,float arguments 30.0 and -1.0 loaded from .rdata by modern cl instead of pushed as immediates
+0x000e0510,r2b_RunThreads,Structurally compared,src/game/r2b_5.c,build/obj_r2b/r2b_5.obj,,calls 0x000DFF40 with ESI=thread
+0x000e0570,r2b_ScriptTick,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,,
+0x000e0790,r2b_MapKind,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,,
+0x000e0870,r2b_FormatName,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,,
+0x000e08d0,r2b_LoadD9,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,,
+0x000e0b70,r2b_TrackMarkBefore,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,imm:0x8;imm:0xc;imm:0x10;imm:0x14;imm:0x18,track record base (o + 0xC + 20*idx) folded into the field displacements by modern cl (+0x10/+0x14/+0x18) vs computed once and used with +4/+8/+0xC in the original
+0x000e0bd0,r2b_TrackFire,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,imm:0x8;imm:0xc;imm:0x10;imm:0x14;imm:0x18;jcc:be/a,track record base (o + 0xC + 20*idx) folded into the field displacements by modern cl (+0x10/+0x14/+0x18) vs computed once and used with +4/+8/+0xC in the original; unsigned count zero guard emitted as jbe by the original and folded into the loop test by modern cl
+0x000e0c30,r2b_TrackFind,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,imm:0x4;imm:0x8;imm:0xc;imm:0x10;imm:0x14;imm:0x18;jcc:be/a,track record base (o + 0xC + 20*idx) folded into the field displacements by modern cl (+0x10/+0x14/+0x18) vs computed once and used with +4/+8/+0xC in the original; unsigned count zero guard emitted as jbe by the original and folded into the loop test by modern cl
+0x000e0cd0,r2b_Wrap10,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,,
+0x000e0d30,r2b_Wrap25,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,,
+0x000e0e40,r2b_PlayHint,Structurally compared,src/game/r2b_6.c,build/obj_r2b/r2b_6.obj,data:fconst:-1.0;data:fconst:20.0;imm:0x41a00000;imm:0xbf800000,float arguments 20.0 and -1.0 loaded from .rdata by modern cl instead of pushed as immediates
+0x0011ee30,r2b_PickTargetB,Structurally compared,src/game/r2b_9.c,build/obj_r2b/r2b_9.obj,,regargs: c=EAX ctx=ECX; self on stack; size 0x46 per size_overrides
