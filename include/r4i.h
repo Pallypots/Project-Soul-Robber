@@ -1,6 +1,7 @@
 #ifndef R4I_H
 #define R4I_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r4c.h"
 #include "r4f.h"
 /* Area r4i: larger game functions in 0x00190000..0x001BC6D0 (ninth pass).
@@ -81,7 +82,7 @@ extern float r4i_frameUnits;     /* 0x0042C858 */
 extern float r4i_fps;            /* 0x0042C964 */
 void  sub_000F5ED0(float *angle);                              /* wrap an angle */
 void  r4i_SetScale(R4iNode *o, float k);                       /* 0x000EE760 */
-void  r4i_ObjDestroy(R4iNode *o);                              /* 0x000ED780 */
+int r4i_ObjDestroy(R4iNode *o);                              /* 0x000ED780 */
 typedef struct R4iMgr {          /* returned by 0x00100110 */
     uint8_t  unk00[0x6C];
     int32_t  state6C;         /* +0x6C */
@@ -106,9 +107,6 @@ void  r4i_FxDetach(R4iNode *o);                                /* 0x0018F8D0 reg
 void  sub_00048250(int h);
 float sub_001A3EC0(float y, float x);                          /* atan2 */
 void  sub_001AD7E0(float *d, const float *s);                  /* normalise */
-void  sub_001AD940(float *m);                                  /* identity */
-void  sub_001AD8E0(float *d, const float *m, float yaw);       /* rotate about Y */
-void  sub_001AD9B0(float *d, const float *m, const float *v);  /* transform vector */
 /* 0x108-byte link of a chain (frames of a kind-1 set) */
 typedef struct R4iChainLink {
     float    m00[16];         /* +0x00 rotation step; row 3 (+0x30) is the velocity */
@@ -127,9 +125,6 @@ typedef struct R4iChainSet {
 } R4iChainSet;
 typedef struct R4iChainWork { int32_t i00; int32_t calm04; } R4iChainWork;
 float r4i_VecLenXZ(const float *v);                             /* 0x000F5F50 */
-void  sub_001ADA40(float *dst, const float *src);               /* matrix copy */
-void  sub_001AD7C0(float *d, const float *a, const float *b);   /* matrix product */
-void  sub_001ADB60(float *d, const float *s, float k);          /* d = s * k */
 void  r4i_VecSub(float *d, const float *a, const float *b);     /* 0x001AD9F0 */
 /* 0x88-byte slot record at 0x00400A88 (x4), also the slot effects' work */
 typedef struct R4iSlot {
@@ -151,7 +146,7 @@ typedef struct R4iSlot {
     uint8_t  unk64[0x88 - 0x64];
 } R4iSlot;
 typedef struct R4iSys { uint8_t unk00[0x8C]; struct R4iSysNode *node8C; uint8_t unk90[0x114 - 0x90]; float yaw114; } R4iSys;
-typedef struct R4iSysNode { uint8_t unk00[0x130]; int32_t motion130; } R4iSysNode;
+typedef struct R4iSysNode { uint8_t unk00[0x130]; void *motion130; } R4iSysNode;
 extern R4iSlot r4i_slots400A88[4];   /* 0x00400A88 */
 extern float   r4i_frameSeconds;     /* 0x0042C85C */
 extern float   r4i_spin32C708[3];    /* 0x0032C708 */
@@ -167,14 +162,13 @@ typedef struct R4iJoint {
     float    pos70[4];        /* +0x70 */
 } R4iJoint;
 R4iJoint *r4i_Joint(void *n, int part);                      /* joint record of a node */
-void  *sub_00035DD0(R4iNode *o, int motion, int a, int b);
 void   sub_00033880(void *fx, float *m);
 void   sub_00034DD0(void *fx, const float *pos, const float *dir, const float *col);
 void   sub_000F3F90(int a);
 typedef struct R4iMsg { int32_t id; uint8_t unk04[0x1C]; float v20[4]; } R4iMsg;
 void   sub_001ADBA0(float *d, const float *s, float k);         /* 4-float scale */
 int    sub_00087500(void);
-void   sub_001AD8B0(float *d, const float *m, float pitch);     /* rotate about X */
+void   sub_001AD8B0(void *d, const void *m, float pitch);       /* rotate about X */
 void r4i_FxSlotLand(R4iNode *o, R4iActor *a);                   /* 0x00193040 */
 int  r4i_FxSlotThrow(R4iNode *o, R4iActor *a);                  /* 0x00193260 */
 typedef struct R4iDrop { float drop; int32_t i4; } R4iDrop;
@@ -205,7 +199,6 @@ extern float r4i_aimBase;         /* 0x0032C8E4 -40 */
 extern float r4i_aimSpread;       /* 0x0032C8E8 10 */
 extern float r4i_aimYawSpread;    /* 0x0032C8EC 5 degrees */
 void  r4i_CamPoint(float *out, R4iNode *o);                     /* 0x00198DA0 regargs: p1=ESI p2=EDI */
-void *sub_00036750(void *o, int b);
 void  sub_00034CF0(void *h, float a, float b, float c, float d);
 void r4i_FxAimInit(R4iNode *o, R4iActor *a);                    /* 0x00199090 */
 void r4i_FxFollow(R4iNode *o, R4iActor *a);                     /* 0x00195F60 */
@@ -234,12 +227,11 @@ int   r4i_PartFind(R4iSysNode *n, int a, int b);                 /* 0x000F5CD0 *
 int   sub_000F6A80(void);
 int   r4i_BoltProbe(R4iBolt *w, int k);                          /* 0x001954C0 regargs: p1=EAX */
 float sub_001B2770(const float *a, const float *b);              /* XZ distance */
-void  r4i_Effect494D0(int id, float *pos, int c);                /* 0x000494D0 */
-void  r4i_ObjDestroyV(R4iNodeV *o);                              /* 0x000ED780 */
-void *r4i_ListPlayMotion(R4iNodeV *o, int motion, int a, int b); /* 0x00035DD0 */
+int r4i_Effect494D0(int id, float *pos, int c);                /* 0x000494D0 */
+int r4i_ObjDestroyV(R4iNodeV *o);                              /* 0x000ED780 */
+void *r4i_ListPlayMotion(R4iNodeV *o, void *motion, int a, int b); /* 0x00035DD0 */
 void r4i_FxBoltUpdate(R4iNodeV *o, R4iActor *a);                 /* 0x001961D0 */
 typedef struct R4iCyl { float pos[4]; float r10; float h14; } R4iCyl;   /* upright cylinder below pos */
-float sub_001A3F50(float x);                                     /* square root */
 int  r4i_SegHitCyl(const R4iCyl *c, const float *seg, float *out); /* 0x00194F00 */
 void r4i_FxChainUpdate(R4iNode *o, R4iActor *a);               /* 0x00191860 */
 void r4i_FxFallMove(R4iNode *o, R4iActor *a);                  /* 0x001902D0 */
@@ -274,8 +266,8 @@ void  OOG_STDCALL sub_00203D52(void);
 void  OOG_STDCALL sub_00223FCE(R4iDevDesc *d, void **dev);
 void  sub_001AB9B0(void);
 void  sub_001AB880(int id, const char *name);
-int   OOG_STDCALL r4i_DrvQuery(void *dev, int a, R4iDrvStat *out);          /* 0x00222573 */
-void  OOG_STDCALL r4i_DrvStatus(void *dev, R4fDrvQuery *q);                 /* 0x002225B2 */
+int   OOG_STDCALL r4i_DrvQuery(void *dev, void *a, R4iDrvStat *out);          /* 0x00222573 */
+int OOG_STDCALL r4i_DrvStatus(void *dev, R4fDrvQuery *q);                 /* 0x002225B2 */
 void  OOG_STDCALL r4i_DrvStatus2(void *dev, R4fDrvQuery *q);                /* 0x002224FD */
 void  OOG_STDCALL r4i_DrvVoice(void *dev, int kind, void **slot);           /* 0x0022239E */
 void  OOG_STDCALL sub_002227BE(void *voice, R4iPairList *l);

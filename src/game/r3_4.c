@@ -57,7 +57,7 @@ void r3_MakeEffect176930(R3Actor *act, R3Ent50 *e)
 
     if (w->h2C)
         return;
-    h = sub_000ED630(5, 0x10, 0, 0, e->pos50);
+    h = sub_000ED630(5, 0x10, 0, e->pos50, e);
     w->h2C = h;
     if (h)
         sub_0018C450(h, e, 0x1E, w->i30);
@@ -86,5 +86,5 @@ void r3_Spawn18E5A0(R3Obj *o)
     v[1] = 0.0f;
     v[2] = 0.0f;
     v[3] = 0.0f;
-    sub_000C4D30(o, 10, 10.0f, sub_000C46A0(12.5f, 1.0f / 60.0f, 2.5f, o->pos60, v, v));
+    sub_000C4D30(o, 10, 10.0f, sub_000C46A0(), 12.5f, 1.0f / 60.0f, 2.5f, o->pos60, v, v);
 }

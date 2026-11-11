@@ -10,7 +10,7 @@ void a4c_ItemRelease(A4cMenuItem *it, int v)
     if (it->ref->count >= 0) sub_0003F880(0, it->target, 5);
 }
 /* 0x0003E460: print "[%s]" with the item's name (or the default "MENU"). */
-void a4c_ItemPrintName(int a, int b, int c, int d, int e, A4cMenuItem *it)
+void a4c_ItemPrintName(void *a, int b, int c, void *d, void *e, A4cMenuItem *it)
 {
     const char *name = it->def ? it->def->name : a4c_strMenu;
     sub_0002E8C0(a, b, c, *a4c_pg2C4B08, d, e, a4c_strFmtBracket, name);
@@ -23,7 +23,7 @@ int a4c_ItemProcessEntry(A4cMenuItem *it)
     return sub_0003EF00(&o->entries[it->index], it->f28);
 }
 /* 0x0003F9E0: look up an element, flag it and move it by (16,32). */
-void a4c_ElemNudge(int a, int b)
+void a4c_ElemNudge(void *a, void *b)
 {
     A4cElem *e = sub_0003F8B0(a, b, 0);
     if (e) {
@@ -33,7 +33,7 @@ void a4c_ElemNudge(int a, int b)
     }
 }
 /* 0x0003FAB0: attach text t to box b and reset it. */
-void a4c_TextBoxAttach(A4cTextBox *b, int t)
+void a4c_TextBoxAttach(A4cTextBox *b, void *t)
 {
     if (b == 0) for (;;) ;
     b->state = 5;

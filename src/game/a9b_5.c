@@ -2,10 +2,10 @@
 #include "a9b.h"
 
 /* 0x0019B5C0: call 0x199C10 with entry i (0..0x76) and its table value at 0x00330F30. */
-int a9b_CallWithEntry(int i)
+void a9b_CallWithEntry(int i)
 {
     if (i <= -1 || i >= 0x77) for (;;) ;
-    return sub_00199C10(i, a9b_g330F30[i].f0);
+    sub_00199C10(i, a9b_g330F30[i].f0);
 }
 
 /* 0x0019BA40: reset the six state words at 0x00413160. */
@@ -70,7 +70,7 @@ void a9b_BufferWorker(void)
 /* 0x0019E5F0: register the two workers in group g and start them. */
 void a9b_StartWorkers(void *g)
 {
-    a1a_GroupAdd(g, 0, 1, sub_0019E530, 8, 0x10000);
+    a1a_GroupAdd(g, 0, 1, (void (*)(void))sub_0019E530, 8, 0x10000);
     a1a_GroupAdd(g, -1, 4, a9b_BufferWorker, 8, 0x10000);
     a1a_GroupReleaseAll(g);
 }

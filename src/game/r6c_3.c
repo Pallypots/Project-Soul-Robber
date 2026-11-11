@@ -2,7 +2,7 @@
 #include "r6c.h"
 
 /* 0x00078170: movie task: wait for loading to finish, start playback, then finish the task. */
-void r6c_MovieTask(int task)
+void r6c_MovieTask(void *task)
 {
     if (!sub_00031C50())
         while (sub_00031560(0, 0))
@@ -39,7 +39,7 @@ void r6c_MovieLoop(void)
 }
 
 /* 0x00079270: register the three movie tasks and reset the movie state. */
-void r6c_MovieStart(int task)
+void r6c_MovieStart(void *task)
 {
     sub_00038960();
     sub_001A1030(task, 0, 0, r6c_MovieTask, 3, 0x2000);
@@ -52,9 +52,9 @@ void r6c_MovieStart(int task)
 }
 
 /* 0x000796D0: set the fog colour from the table at 0x002DFF70. */
-void r6c_SetFogColour(int a)
+void *r6c_SetFogColour(void *a)
 {
-    sub_001B7FF0(a, (uint8_t)r6c_colour2DFF70.r, (uint8_t)r6c_colour2DFF70.g,
+    return sub_001B7FF0(a, (uint8_t)r6c_colour2DFF70.r, (uint8_t)r6c_colour2DFF70.g,
                  (uint8_t)r6c_colour2DFF70.b, (uint8_t)r6c_colour2DFF70.a);
 }
 
@@ -97,13 +97,14 @@ void r6c_SpriteInitB(void)
 }
 
 /* 0x00079830: point the GPU at the current back buffer and draw object a. */
-void r6c_DrawToBackBuffer(int a)
+void *r6c_DrawToBackBuffer(void *a)
 {
     uint8_t *surf = sub_001B9650(-1);
     uint64_t v = (*(uint32_t *)(surf + 0x28) & 0x3FE0) | 0x1000000;
-    sub_000389C0(0x4C, v >> 5);
+    v >>= 5;
+    sub_000389C0(0x4C, (int)v, (int)(v >> 32));
     sub_001A7620(0);
-    sub_00039920(sub_000398D0(sub_00038F10(a), 1), 1);
+    return sub_00039920(sub_000398D0(sub_00038F10(a), 1), 1);
 }
 
 /* 0x00079C40: build a matrix from rotation angles (z, x, y), a per-row scale and a position.

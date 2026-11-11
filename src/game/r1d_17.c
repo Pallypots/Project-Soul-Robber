@@ -59,7 +59,7 @@ void r1d_TitleLoop(void)
    command buffer. */
 void r1d_FrameLoop(void)
 {
-    int cmd;
+    void *cmd;
     for (;;) {
         cmd = r4c_bufs42CAC8[r4c_bufIndex42CAC0].cmd;
         sub_001A5310();

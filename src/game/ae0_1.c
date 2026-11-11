@@ -368,7 +368,7 @@ int ae0_Op_DBBE0(Ae0Script *c)
 int ae0_Op_DBC00(Ae0Script *c)
 {
     uint8_t *p = c->pc;
-    sub_00036C00(p[0], p[1], AE0_U32(p + 2));
+    sub_00036C00(p[0], p[1], ae0_ReadF32(p + 2));
     return AE0_NEXT(6);
 }
 

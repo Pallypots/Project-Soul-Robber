@@ -7,7 +7,8 @@ void rbg_LoadDance0D00B0(RbgJack *m, int idx)
 {
     int ids[7];
     const char *names[7];
-    int movie, node;
+    int movie;
+    void *node;
     RbgAnim *h;
     int *e;
 
@@ -92,7 +93,7 @@ void rbg_SetDance0D0200(RbgJack *m, int on, int anim)
     sub_000832D0(m->modelFD8->anim30, anim);
     sub_001B1190(m->modelFD8->anim30->node14, 1.0f);
     a = m->modelFD8->anim30;
-    sub_001AEDD0(m->modelFD8->anim30->node14, sub_00083120(a, a->i08)->f10);
+    sub_001AEDD0(m->modelFD8->anim30->node14, ((RbgAnimEnt *)sub_00083120(a, a->i08))->f10);
     sub_001AEF10(m->modelFD8->anim30->node14, 3);
     o = m->modelFD8;
     if (o->h13C)

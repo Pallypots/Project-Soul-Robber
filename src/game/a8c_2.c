@@ -20,7 +20,7 @@ void a8c_SlotUpdate(A8cSlotOwner *o, int i)
 }
 
 /* 0x00084C00: open a handle, optionally releasing via 0x102FA0. */
-int a8c_OpenHandle(int a, int release)
+int a8c_OpenHandle(const void *a, int release)
 {
     int h = sub_001BA7F0(a);
     if (release) a8c_Release102FA0(h);
@@ -28,7 +28,7 @@ int a8c_OpenHandle(int a, int release)
 }
 
 /* 0x00084C50: query 0x1BA7C0, 0 for null input or negative result. */
-int a8c_QueryHandle(int a)
+int a8c_QueryHandle(void *a)
 {
     int r;
     if (a == 0) return 0;
@@ -40,7 +40,7 @@ int a8c_QueryHandle(int a)
 /* 0x00084C70: set voice +0x34 to (v & 0x1FF) * 8. */
 void a8c_VoiceSet34(int a, int v)
 {
-    sub_001B9650(a)->i34 = (v & 0x1FF) << 3;
+    ((A8cVoice *)sub_001B9650(a))->i34 = (v & 0x1FF) << 3;
 }
 
 /* 0x00084D30: clear the list at 0x3ED1B4 and its globals. */
@@ -99,19 +99,19 @@ void a8c_SetFlag100000(int on)
 }
 
 /* 0x00084790: run 0x1B7100 on every slot sub-block. */
-void a8c_SlotsApply7100(A8cSlotOwner *o, int a)
+void a8c_SlotsApply7100(A8cSlotOwner *o, void *a)
 {
     uint32_t i;
     for (i = 0; i < o->count00; i++) sub_001B7100(o->slots04[i].sub24, a);
 }
 /* 0x00084890: run 0x1B72E0 on every slot sub-block. */
-void a8c_SlotsApply72E0(A8cSlotOwner *o, int a)
+void a8c_SlotsApply72E0(A8cSlotOwner *o, void *a)
 {
     uint32_t i;
     for (i = 0; i < o->count00; i++) sub_001B72E0(o->slots04[i].sub24, a);
 }
 /* 0x000848D0: run 0x1B7300 on every slot sub-block. */
-void a8c_SlotsApply7300(A8cSlotOwner *o, int a)
+void a8c_SlotsApply7300(A8cSlotOwner *o, void *a)
 {
     uint32_t i;
     for (i = 0; i < o->count00; i++) sub_001B7300(o->slots04[i].sub24, a);

@@ -12,7 +12,11 @@ void r4c_FxBurst(R4cNode *o, R4cActor *a)
     sub_00035DD0(o, o->i130, 4, 1);
     sub_00049700(0x20E, 0x80, 0x80, 0x80, o->pos, 1, 100.0f, 0);
     if (((R4cFxE *)a->work)->flags & 2) {
-        sub_000C4D30(o, 10, 10.0f, sub_000C46A0(12.5f, 0.016666668f, 2.5f, o->pos, v, v));
+        /* The original pushes only four arguments here; 0x000C4D30 reads its
+           arguments 5..10 from the six still on the stack from 0x000C46A0
+           (one merged add esp, 0x28). Called through a 4-argument type. */
+        ((int (*)(void *, int, float, int))sub_000C4D30)(o, 10, 10.0f,
+            sub_000C46A0(12.5f, 0.016666668f, 2.5f, o->pos, v, v));
         sub_000ED780(o);
     } else {
         sub_000C4DF0(o, 0, 10.0f, 0, 12.5f, 1.0f, 2.5f, o->pos, v, v);

@@ -62,10 +62,11 @@ void rtc_MatrixOp40(float *m, const float *a, const float *b, const float *c, co
     sub_001ADE10(m + 0x10, a, b, c, d);
 }
 
-/* 0x001B72C0: emit fog for the sub-object at +0x290. */
-void rtc_FogEmit290(uint8_t *o, void *a)
+/* 0x001B72C0: emit fog for the sub-object at +0x290 (tail jump); returns the
+   advanced command pointer from 0x001B1E10. */
+void *rtc_FogEmit290(uint8_t *o, void *a)
 {
-    r4_FogEmit(o + 0x290, a);
+    return r4_FogEmit(o + 0x290, a);
 }
 
 /* 0x001B72E0: call 0x001ADA40 on the sub-object at +0xB0. */

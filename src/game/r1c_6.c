@@ -3,11 +3,11 @@
 
 /* 0x0001ED90: queue register 0x4C from the current texture's address bits
    and build the packet at p; returns the packet end. */
-int r1c_PktTexBase(int p)
+void *r1c_PktTexBase(void *p)
 {
     R1cTexCtx *t = sub_001B9650(-1);
     uint64_t v = ((t->q28 >> 5) & 0x1FF) | 0x7FFFFFFF00080000ull;
-    int r;
+    void *r;
     r1c_ReqPush(0x4C, (int)(uint32_t)v, (int)(uint32_t)(v >> 32));
     r = sub_00038F10(p);
     sub_001A27D0(1);

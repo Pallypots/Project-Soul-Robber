@@ -4,12 +4,12 @@
 #ifndef A50_H
 #define A50_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* ---- streaming sound handle at 0x003E0D68 */
 extern int32_t a50_streamHandle;          /* 0x003E0D68 file handle number (indexes 0x0040B210) */
 extern int32_t a50_streamState;           /* 0x003E0DB8: 0 idle, 10 started, 20 failed */
 int  sub_001A8330(int h);
-int  sub_001A8500(int h, int which, int *out);   /* h indexes the handle table at 0x0040B210 */
 
 /* ---- video timing */
 extern int32_t     a50_videoMode;          /* 0x003E2540 */
@@ -43,25 +43,30 @@ typedef struct A50Blob {
 } A50Blob;
 
 /* ---- slot memory heaps 0x003E26A8 */
-extern int32_t  a50_slotHeap[9];          /* 0x003E26A8 */
-extern int32_t  a50_slotSaved[9];         /* 0x003E26D0 */
+extern void    *a50_slotHeap[9];          /* 0x003E26A8 */
+extern void    *a50_slotSaved[9];         /* 0x003E26D0 */
 extern int32_t  a50_heapStack[];          /* 0x003E26F8 */
 extern int32_t  a50_heapDepth;            /* 0x003E2800 */
 extern int32_t  a50_cacheEntries[];       /* 0x003E2554, 0x14 bytes each */
-void *sub_00047040(int heap);
-void *sub_00047390(int heap, int size, int a, int b);
-void *sub_00047450(int heap, int size, int a, int b);
-int   sub_000470C0(int heap);
-void  sub_00047140(int heap);
-void  sub_00047760(int heap, int size);
-void  sub_000471B0(int heap, int size, const char *name, const char *file, int line);
+void *sub_00047040(void *heap);
+void *sub_00047390(void *heap, int size, const void *a, int b);
+void *sub_00047450(void *heap, int size, const void *a, int b);
+int   sub_000470C0(void *heap);
+void  sub_00047140(void *heap);
+void *sub_00047760(void *p, int size);
+void  sub_000471B0(void *heap, int size, const char *name, const char *file, int line);
 void *sub_000538A0(int heap, const char *file, int line);
 void *sub_000531C0(int a, int b);
+typedef struct A50CacheEntry {  /* 0x14 bytes */
+    int32_t unk00[3];
+    void   *data;                /* +0x0C */
+    int32_t unk10;
+} A50CacheEntry;
 void  sub_00053760(void);
 extern const char a50_strHeapName[];      /* 0x0026BF14 */
 extern const char a50_strHeapFile[];      /* 0x0026BED8 */
 
-void *a50_Alloc(int slot, int size, int a, int b);   /* 0x00053820 */
+void *a50_Alloc(int slot, int size, const void *file, int line);   /* 0x00053820 */
 void  a50_ClearCache(void);
 void  a50_FreeSlotHeaps(void);
 
@@ -74,7 +79,6 @@ typedef struct A50Rec44 {
 extern A50Rec44 a50_recs[16];             /* 0x003E2808 */
 extern int32_t  a50_recCount;             /* 0x003E3908 */
 void sub_0004F580(int a, int b);
-void sub_0004F4E0(void);
 void sub_0004F6F0(void);
 
 /* ---- jobs */
@@ -82,9 +86,7 @@ typedef struct A50SubRange { int32_t base; uint32_t size; } A50SubRange;
 extern A50SubRange a50_ranges[13];        /* 0x0026C2D0 */
 extern void   *a50_loaderThread;          /* 0x003E4698 */
 extern int (*a50_jobPoll)(void);          /* 0x003E3F8C */
-void *sub_001AD560(void);
 int  *sub_00057F30(void);
-void  sub_00102FA0(int a);
 void  sub_001AD540(void);
 
 #endif

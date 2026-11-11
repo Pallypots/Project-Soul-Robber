@@ -37,8 +37,9 @@ int r4_ThreadSetState(int id, int state)
     return -1;
 }
 
-/* 0x001AEE50: AND of the masks of all bones that have a +0xBC entry (-1 when none). Stack arg. */
-uint32_t r4_SkinBoneMask(R4Skin *s)
+/* 0x001AEE50: AND of the masks of all bones that have a +0xBC entry (-1 when none). Stack arg
+   (callers push a 2nd one that is never read). */
+uint32_t r4_SkinBoneMask(R4Skin *s, int unused)
 {
     uint32_t mask = 0xFFFFFFFF;
     int i;

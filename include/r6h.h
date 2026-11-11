@@ -1,6 +1,7 @@
 #ifndef R6H_H
 #define R6H_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r6h: larger functions (300-2500 bytes) in 0x00060000..0x000D0000.
    All names inferred. Register mappings are in the comments and in
    config/function_states_r6h.csv. Callees are declared under their sub_ name
@@ -19,7 +20,6 @@ extern R6hPageFn r6h_pageLeave2DF124[];   /* 0x002DF124 leave function per page 
 uint16_t sub_00072FA0(void *obj);
 void  sub_00072EE0(void *o, int a, float t, int b);
 int   sub_00053C90(void);
-void  sub_0003FCE0(void *p);
 void  sub_0006C3F0(void);
 void  sub_0006A2E0(void);
 void  sub_0006BF80(void);
@@ -77,8 +77,6 @@ extern const R6hVec2 r6h_titleOff2DF140[5]; /* 0x002DF140 letter offsets */
 extern R6hSprite r6h_fxSpr428FB4;         /* 0x00428FB4 particle sprite */
 extern int32_t   a60_h42C6F0;             /* 0x0042C6F0 title background texture */
 extern int32_t   a60_v3E68A8;             /* 0x003E68A8 */
-void *sub_00017AE0(void *cmd, R6hSprite *s);
-void *sub_00017C00(void *cmd, R6hSprite *s);
 void *sub_00072420(void *cmd, R6hQuad *q);
 void *sub_000720D0(void *cmd, float x, float y, float w, float h, int tex,
                    uint32_t c0, uint32_t c1, uint32_t c2, uint32_t c3);
@@ -114,21 +112,16 @@ extern const uint8_t   r6h_demoTag26FB40[5];   /* 0x0026FB40 */
 extern uint8_t  r4c_opt413140;                 /* 0x00413140 */
 extern void    *a80_ctx42C8E4;                 /* 0x0042C8E4 */
 int   sub_0008BD00(int i);
-void *sub_0008BD80(int heap, int a, int size, int tag, const char *file);
-void  sub_0007F1E0(void *dst, int v, int n);
 void *sub_0008FB60(void);
 R6hView *sub_0007AB00(void *ctx);
-int   sub_0007AAB0(void *ctx);
+void *sub_0007AAB0(void *ctx);
 void  sub_00090020(void *p);
 void  sub_0008FEE0(void *p);
-int   sub_00037780(void);
-int   sub_000390A0(void);
-void  sub_0008FF30(void *p, int v);
-void  sub_0008FF60(void *p, int v);
-void  sub_00037BB0(int n, void *tag);
+void  sub_0008FF30(void *p, void *v);
+void  sub_0008FF60(void *p, void *v);
 void  sub_00089880(R6hDemo *d);
 void  sub_00033390(void);
-void  sub_00035B20(int v);
+void  sub_00035B20(void *v);
 
 /* ------------------------------------------------------------ demo key lists (0x8A0C0) */
 typedef struct R6hKeyRef {
@@ -151,8 +144,6 @@ typedef struct R6hNode {
 } R6hNode;
 R6hNode *sub_0008B290(R6hNode *list, int track, int chan);
 R6hNode *sub_0007F300(R6hNode *n);
-void     sub_0007F2B0(R6hNode *n);
-R6hNode *sub_0007F3F0(R6hNode *list, R6hNode *n);
 void     sub_0008B760(R6hNode *n);
 R6hNode *sub_0008B780(R6hNode *a, R6hNode *b);
 R6hNode *sub_0007F330(R6hNode *n);
@@ -177,7 +168,6 @@ typedef struct R6hBodyNode {
     R6hKeyBody *body;         /* +0x1C */
 } R6hBodyNode;
 R6hBodyNode *sub_0008B980(int group, int kind);
-void  sub_0007F210(void *dst, const void *src, int n);
 void *sub_0007F390(void *parent, int index);
 void  sub_0008B3B0(R6hKeyBody *k, void *link);
 void  sub_0008B400(void *list);
@@ -230,8 +220,6 @@ char *sub_000134C0(void *a, void *b);
 char *sub_00012FA0(char **pp);
 char *sub_00013140(char **pp);
 int   sub_001C7C70(const char *s, const char *fmt, ...);
-void *sub_00053AB0(int size, int a, int line);
-R6hTexEnt *sub_001B9650(int handle);
 void  sub_00012F90(void);
 void  sub_000130C0(void);
 
@@ -264,12 +252,8 @@ typedef struct R6hChar {
 typedef struct R6hFxParm { int32_t unk0; int32_t a; int32_t unk8; int32_t b; int32_t unk10; int32_t c; } R6hFxParm;
 int   sub_0007F4B0(int i);
 void  sub_00053710(int heap);
-void  sub_000AD090(int a, int b);
-void  sub_00022380(R6hChar *c, int a, void *ctx);
 void  sub_00053740(void);
-void  sub_001AE970(void *node);
 void  sub_001AEA00(void *bones, void *node, int n);
-void  sub_00083160(R6hMdlSkel *s, R6hMdlRes *r);
 void  sub_0001E9B0(void *ctx, R6hChar *c, int a, int b, int d);
 R6hFxParm *sub_00039810(int i);
 
@@ -280,7 +264,6 @@ extern int32_t a60_h3E64DC;       /* 0x003E64DC sub-page 1 fourth texture */
 extern int32_t a60_hC3E64E0[3];   /* 0x003E64E0 sub-page 3 textures */
 extern int32_t a60_hD3E64EC[3];   /* 0x003E64EC sub-page 2 textures */
 void  sub_001B9720(void);
-void  sub_001B9FC0(int h);
 
 /* ------------------------------------------------------------ demo player, demo_player.c area (0x8CE10) */
 typedef struct R6hDemoData {
@@ -301,13 +284,10 @@ void  sub_0008BCF0(int a, int b);
 int   sub_000898C0(R6hDemoData *d, int track, int pass);
 int   sub_0008B480(void **dst, void *list);
 int   sub_0008C9B0(void **dst, void *list);
-void  sub_0008B680(void *keys, void *events, void *list);
 void  sub_000894E0(R6hDemoData *d);
-int   sub_0008BFD0(void *events, R6hDemoData *d);
 uint8_t sub_000896E0(R6hDemoData *d);
 void  sub_000899C0(R6hDemoData *d);
 void  sub_000896C0(R6hDemoData *d, int flags);
-void  sub_0008BF70(void *list);
 
 /* ------------------------------------------------------------ event triggers (0x94C10) */
 typedef struct R6hEvtObj {
@@ -329,13 +309,10 @@ typedef struct R6hActor {
     uint8_t  unk124[0x12C - 0x124];
     R6hActRef *ref;           /* +0x12C */
 } R6hActor;
-void  sub_0001EB80(R6hChar *m);
 void  sub_000A4010(R6hActor *a, int anim);
-int   sub_000833E0(R6hMdlSkel *s);
 int   sub_0017C4D0(void);
 void  sub_000A22C0(R6hActor *a, R6hActRef *r);
 void  sub_000A5440(R6hActor *a);
-void  sub_000ED780(R6hActRef *r);
 
 /* ------------------------------------------------------------ event script step (0xB3C80) */
 typedef struct R6hScr {
@@ -381,11 +358,7 @@ extern uint32_t r6d_g42A818;       /* 0x0042A818 */
 extern uint32_t r6d_g42A824;       /* 0x0042A824 */
 int   sub_000529F0(void);
 int   sub_0004F6D0(int id);
-int   sub_0004F680(int id);
 int   sub_0004F6B0(int id);
-void *sub_00053820(int pool, int size, int a, int b);
-void  sub_0004FA70(int id, void *p);
-void  sub_0004FAE0(int id, void *p);
 int   sub_0004F4D0(void);
 void  sub_00065AE0(int v);
 void  sub_00065A50(int v);
@@ -396,7 +369,6 @@ void  sub_00074510(int v);
 void  sub_0006E6B0(int v);
 void  sub_0006EA20(int v);
 void  sub_0004F700(int id);
-int   sub_00053CA0(int v);
 void  sub_0004F720(void);
 int   sub_0006CAB0(void);
 
@@ -414,12 +386,9 @@ typedef struct R6hXform {
     float    scale[3];        /* +0x70 */
 } R6hXform;
 typedef struct R6hXNode { uint8_t unk00[0x5C]; R6hXform *xf; } R6hXNode;
-void  sub_001AD940(float m[4][4]);
 void  sub_001AD910(float m[4][4], float s[4][4], float a);
 void  sub_001AD8B0(float m[4][4], float s[4][4], float a);
-void  sub_001AD8E0(float m[4][4], float s[4][4], float a);
 void  sub_001ADBA0(float *d, float *s, float k);
-void  sub_001AD7C0(void *dst, float m[4][4], int arg);
 
 /* ------------------------------------------------------------ actor model sync (0xA3B80) */
 typedef struct R6hVec4 { float x, y, z, w; } R6hVec4;
@@ -444,8 +413,6 @@ typedef struct R6hActor2 {
     uint8_t  unk090[0x120 - 0x90];
     R6hBody *body;            /* +0x120 */
 } R6hActor2;
-void  sub_000F5D40(void *dst, const void *src);
-void  sub_001ADA40(void *node, float m[4][4]);
 
 /* ------------------------------------------------------------ curve keys (0xA32A0) */
 /* Six slices of n floats carved from one block by 0x00062050 (layout of A60Slices). */

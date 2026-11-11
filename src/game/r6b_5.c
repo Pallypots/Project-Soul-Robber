@@ -69,8 +69,9 @@ int r6b_ClassifyId(int id)
     }
 }
 
-/* 0x000AD090: returns 0. */
-int r6b_ReturnZero(void)
+/* 0x000AD090: returns 0. Callers push any number of arguments (declared
+   unprototyped, like sub_000AD090 in shared_decls.h). */
+int r6b_ReturnZero()
 {
     return 0;
 }

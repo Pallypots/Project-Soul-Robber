@@ -1,6 +1,7 @@
 #ifndef R6B_H
 #define R6B_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r6b: small functions (stack and register arguments) in 0x00060000..0x000D0000.
    All names inferred. Register mappings are in the comments and in
    config/function_states_r6b.csv. */
@@ -68,7 +69,7 @@ extern R6bDesc r6b_desc2703E4, r6b_desc270420, r6b_desc270474, r6b_desc270498, r
 extern R6bDesc r6b_desc2704E0, r6b_desc270504;
 
 /* Object whose camera animation sits in u28 (0x0008E1B0). */
-typedef struct R6bAnimRef { uint8_t unk00[0x5C]; int32_t i5C; } R6bAnimRef;
+typedef struct R6bAnimRef { uint8_t unk00[0x5C]; void *p5C; } R6bAnimRef;
 
 /* ------------------------------------------------------------ owner of a list block (0x8FF..) */
 typedef struct R6bSlot48 { uint8_t unk00[0x20]; void *p20; uint8_t unk24[0x48 - 0x24]; } R6bSlot48;
@@ -83,7 +84,7 @@ typedef struct R6bHolder { R6bHolderData *data; } R6bHolder;
 typedef struct R6bRes {
     uint8_t  unk00[4];
     uint32_t size;            /* +0x04 */
-    int32_t  key;             /* +0x08 */
+    void    *key;             /* +0x08 */
     void    *loaded;          /* +0x0C */
     int32_t  refs;            /* +0x10 */
 } R6bRes;
@@ -98,8 +99,8 @@ typedef struct R6bObj7A {
     R6bRec20 recs[3];         /* +0x0E4 */
     uint8_t  blk144[0x1B8 - 0x144]; /* +0x144 */
     uint8_t  blk1B8[0x1E8 - 0x1B8]; /* +0x1B8 */
-    int32_t  i1E8;            /* +0x1E8 */
-    int32_t  i1EC;            /* +0x1EC */
+    void    *p1E8;            /* +0x1E8 */
+    void    *p1EC;            /* +0x1EC */
 } R6bObj7A;
 
 /* ------------------------------------------------------------ actor slots (0x004242C0, 0x260 each) */
@@ -130,53 +131,44 @@ extern R6bModeRec a80_modeTable[];      /* 0x002E0680 */
 extern int32_t a80_curMode;             /* 0x003ED51C */
 
 /* ------------------------------------------------------------ callees */
-int   sub_000AD090(void);
 void  sub_0008D220(R6bProc *p);
 int   sub_00089DD0(void *ref);
-void  sub_00089420(void *ref);
 void  a80_ForwardSub4C(void *a);
 void  a80_ForwardStr(void *a);
 void *a80_CurRefX0C(void);
 void *a80_Sub4CX1C(void *ref);
-void  sub_00089740(void *ref, int b);
-void *a80_GetX04(void *p);
+int a80_GetX04(void *p);
 void  sub_0008B3E0(void *p);
-void  a6b_CamAnim_Release(void *a);
-void  a6b_StrCopy(char *dst, const char *src);
+int a6b_CamAnim_Release(void *a);
+void *a6b_StrCopy(char *dst, const char *src);
 void *a6b_Node_Unlink(void *n);
 void  sub_0008B400(void *n);
-void  sub_0008BF70(void *n);
-void *a5b_AllocCur(int size, int a, int tag);
+void *a5b_AllocCur(int size, const void *file, int tag);
 void  sub_0008FB80(void *p);
-void  a8c_Release102FA0(void *p);
-void *a12_Table_Get(int key, int b);
-void *sub_0001F930(uint32_t size, int key);
-void  sub_0007F210(void *dst, const void *src, int n);
+void  a8c_Release102FA0();
+void *a12_Table_Get(void *key, int b);
+void *sub_0001F930(uint32_t size, void *key);
 int   sub_000881B0(R6bModeRec *r);      /* r=ESI */
 
 void  sub_001A1170(void *job);
 void  sub_000BCBC0(void *p);
 void  sub_00015070(void *p);
-int   sub_000398D0(int a, int b);
+void *sub_000398D0(void *a, int b);
 void  sub_00084B10(int a, int b);
 void  sub_00017D30(void);
-void  sub_001A1130(void *job);
 void  a60_Shutdown77410(void);
 void  sub_001A7620(int c);
 void  sub_001A7230(void);
-void  sub_00034A90(int a);
+void *sub_00034A90(void *pb);
 void  sub_000390B0(void);
 void  sub_00039B50(int a);
 R6bEnt *sub_000A4290(int i);
 void  sub_000A4480(int i, int v);
 void  sub_000A43C0(int i, int v);
 void  sub_000A41D0(R6bEnt40 *e, int v);
-void  sub_001B9FC0(int h);
-int   sub_000374C0(void *a);
-void  sub_00037550(void *a, int b);
 void  sub_00061BC0(void);
-void  r4_HookPushA8(void *rec, int b);
-int   sub_00080BD0(R6bFlag8 *a, int b);
-int   sub_00080B40(R6bFlag8 *a, int b);  /* a=EBX */
+void  r4_HookPushA8(void *rec, void *b);
+void *sub_00080BD0(R6bFlag8 *a, void *b);
+void *sub_00080B40(R6bFlag8 *a, void *b);  /* a=EBX */
 
 #endif

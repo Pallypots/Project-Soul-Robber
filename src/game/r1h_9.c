@@ -7,7 +7,7 @@
    values back, resets the pitch to 0x1800 on button 0x200 and plays the
    sound on row 3 with button 0x20; other messages go to the default
    handler. */
-int r1h_SndTestProc(int ctx, R1hMenu *m, int msg)
+void *r1h_SndTestProc(void *ctx, R1hMenu *m, int msg)
 {
     R1hSndTest *t = r1h_world42C8E4->p1F0;
     switch (msg) {

@@ -58,13 +58,13 @@ int r2c_RunHandler(void *obj, int a)
 void r2c_DescTrigger(void *a, R2cActor *b, const R2cCmd *c)
 {
     R2cDesc *d = b->p278;
-    if (sub_00145940(a, d->vC, d->v14, c->v10, c->v14))
-        sub_001459D0(a, d->vC, d->v14, c->v18);
+    if (sub_00145940(a, d->vC, d->v14, c->f10, c->f14))
+        sub_001459D0(a, d->vC, d->v14, c->f18);
 }
 
 /* 0x001154A0: pass every key of kind 2, sub-id 1 to 0x13DF90 together with p.
    regargs: p=ESI (passed on to 0x13DF90 as its second argument). */
-void r2c_NotifyKind2(void *p)
+void r2c_NotifyKind2(int p)
 {
     void *k;
     for (k = r2c_FindKey(2, 1); k; k = r2c_FindKey(-1, -1))
@@ -125,7 +125,7 @@ int r2c_TargetCheckPlayer(void *self, void *ctx, const R2cCmd *c)
     R2cActor *t = (R2cActor *)r2b_PickTargetB(c, ctx, self);
     if (!t)
         return 0;
-    return sub_00145940(g_playerObj, t->v60, t->v68, c->v10, c->v14);
+    return sub_00145940(g_playerObj, t->v60, t->v68, c->f10, c->f14);
 }
 
 /* 0x0011EFD0: pick a target for condition c and test it against self with
@@ -136,7 +136,7 @@ int r2c_TargetCheck(void *self, void *ctx, const R2cCmd *c)
     R2cActor *t = (R2cActor *)r2b_PickTargetB(c, ctx, self);
     if (!t)
         return 0;
-    return sub_00145940(self, t->v60, t->v68, c->v10, c->v14);
+    return sub_00145940(self, t->v60, t->v68, c->f10, c->f14);
 }
 
 /* 0x0011F010: 1 when w's active key matches mode 1 (w->vF8 1, key kind 1,

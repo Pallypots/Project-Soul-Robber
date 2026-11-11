@@ -4,6 +4,7 @@
 #ifndef A9C_H
 #define A9C_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Per-object work block reached through object +0x74. */
 typedef struct a9c_Work {
@@ -14,6 +15,7 @@ typedef struct a9c_Work {
     int32_t  f4;             /* +0x04 */
     union {
         int32_t  f8;               /* +0x08 value */
+        float    f8f;              /* +0x08 value (float view) */
         struct a9c_Obj *obj8;      /* +0x08 target object (some kinds) */
     };
     float    fC;             /* +0x0C */
@@ -65,15 +67,12 @@ extern int32_t    a50_frameCounter0;
 extern float      a50_frameSeconds;
 
 void sub_00189DA0(void *a, void *b, int c);
-void sub_000ED780(void *a);
-void sub_0001EEC0(void *a, int b);
 void sub_0001D720(void *a);
 void sub_00197BA0(a9c_Work *w);
 int  sub_00199E20(int i);
 int  sub_001AB0A0(int i);
 void sub_0004EB50(void);
 void sub_0004EC40(void);
-int  sub_001A7E30(void);
 int  Video_GetRateMode(void);
 void sub_001BA640(int a);
 void sub_001B96D0(void);
@@ -84,16 +83,13 @@ void sub_000D1930(PlayerStats *s);
 void sub_001A8A70(int a);
 void sub_00079340(void);
 void sub_00079F50(void *ctx, void *p, int k);
-void sub_001A11B0(void);
-void sub_001A1130(int a);
 void sub_00049860(int a);
 void sub_0019A230(int i, int b);
 void sub_0019A4B0(int i);
-void sub_00053880(void *p);                     /* free */
 int  sub_001C7EE1(void);
 int  a1a_GroupAdd(void *g, int slot, int prio, void (*fn)(void), int a, int stack);
 int  a1a_GroupReleaseAll(void *g);
-void sub_0019D460(void);
+void sub_0019D460(void *);
 void sub_0019D120(void);
 void sub_0019D390(void);
 #endif

@@ -41,12 +41,12 @@ void r6e_TaskDropRes(R6eTask *t)
 {
     sub_000904C0(t->p120);
     t->p120 = 0;
-    sub_000EE6D0(((R6eAnimRef *)t->p28)->i5C, 1.0f);
+    sub_000EE6D0(((R6eAnimRef *)t->p28)->p5C, 1.0f);
 }
 
 /* 0x0008E340: run 0x0008E240 for n items between two resource locks of channel ch.
    regargs: ch=EDI n=EBX; calls 0x0008E240 with ECX=i EDX=b */
-int r6e_TaskRunItems(int a, int b, void *ch, int n)
+int r6e_TaskRunItems(int a, void *b, void *ch, int n)
 {
     int i;
     sub_0007E2D0(ch, 4);
@@ -78,7 +78,7 @@ int r6e_TaskStopTree2(R6eTask *t)
 void r6e_TaskSyncRef(R6eTask *t)
 {
     int v;
-    if (((R6eAnimRef *)t->p28)->i5C) {
+    if (((R6eAnimRef *)t->p28)->p5C) {
         v = sub_00089660(sub_00089390());
         if (t->i124 != v) {
             t->i124 = v;
@@ -297,7 +297,7 @@ int r6e_TaskCopy20(R6eTask *dst, R6eTask *src)
 }
 
 /* 0x0008F5E0: task handler: for an idle or waiting task pass a to 0x0008F350. */
-int r6e_TaskPass(R6eTask *t, int a)
+int r6e_TaskPass(R6eTask *t, void *a)
 {
     if (t) {
         switch (t->state) {
@@ -307,7 +307,7 @@ int r6e_TaskPass(R6eTask *t, int a)
         default:
             return -1;
         }
-        sub_0008F350(a);
+        sub_0008F350(a, t);
     }
     return 0;
 }

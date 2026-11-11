@@ -90,7 +90,7 @@ void b13_State13EB80(B13Owner *o, B13Enemy *e)
 void b13_State13EBE0(B13Owner *o, B13Enemy *e)
 {
     sub_00113090(o, e, 0x40);
-    sub_00113430(e, 6)->a = 0x21;
+    ((B13Timer *)sub_00113430(e, 6))->a = 0x21;
 }
 
 /* 0x0013ED00: 0x00113A40 then signal behaviour resource +0x34. */

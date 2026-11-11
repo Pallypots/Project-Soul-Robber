@@ -4,6 +4,7 @@
 #ifndef A5B_H
 #define A5B_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "a50.h"
 
 /* ---- video timing (see a50.h) */
@@ -13,12 +14,10 @@ int  a5b_GetVideoMode(void);
 void a5b_CacheRelease(int32_t *entry);
 
 /* ---- slot heaps */
-extern int32_t a5b_heapBase;               /* 0x003E27FC */
+extern void   *a5b_heapBase;               /* 0x003E27FC */
 extern int32_t a5b_heapSize;               /* 0x003E27F8 */
-int32_t sub_001A8630(int size);
-void   *sub_00047560(int heap, int a, int b);
-void    sub_00047640(int heap);
-void    sub_001B9FC0(int handle);
+void   *sub_00047560(void *heap, const void *a, int b);
+void    sub_00047640(void *p);
 
 /* ---- effect paths */
 void *sub_0008CD60(void);
@@ -70,29 +69,21 @@ typedef struct A5bSlotList {
 void a5b_PairSet(A5bPair *p, void *value);
 int  a12_List_Count(void *list);
 void *a12_List_At(void *list, int i);
-int  sub_0003F9C0(int a, void *b);
 extern uint8_t a5b_tbl2DD450[];            /* 0x002DD450 */
-extern int32_t a5b_g3E4B54, a5b_g3E4B58;
+extern void   *a5b_g3E4B54, *a5b_g3E4B58;
 extern int32_t a5b_g2DD4D8;                /* 0x002DD4D8 */
 extern int32_t a5b_g3E6040;                /* 0x003E6040 */
 void sub_0005A510(void *a, void *fn);
 int  sub_0005BC90(void);
-int  sub_0005CAF0(void *p);
 void sub_001997E0(int a, int b);
-int  sub_0005C430(void *p);
 int  sub_0005CD00(void *p, int a, int b);
 
 /* ---- background jobs (0x00057E60..) */
 extern uint8_t a5b_jobLists[6][16];        /* 0x003E46E0 */
-void *sub_001AD560(void);
-void  sub_001AA460(int h);
-void  sub_001AD440(void *thread);
-void *sub_0003DBC0(void *list, int (*match)(uint8_t *obj, int key), void *key);   /* a4c_ListFind */
 int   a50_ObjIdIs(uint8_t *obj, int id);
 int   a50_ObjKindIs(uint8_t *obj, int kind);
 void  sub_0003D910(void *desc);
-void  sub_001A1130(int a);
-int   sub_00058B40(int a);
+int   sub_00058B40(void *a);   /* arg unused: reached by a tail jmp that leaves the caller's argument in place */
 
 /* ---- 0x0005A400.. / 0x0005EB10.. */
 typedef struct A5bRange {      /* 0x14 bytes */

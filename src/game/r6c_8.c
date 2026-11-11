@@ -17,7 +17,7 @@ int r6c_TreeUnref(R6cTNode *n)
 
 /* 0x0007EB80: create a 0x60-byte tree node for (a, b, c); NULL when the resource is missing.
    calls 0x0007E6C0 with EAX=n->parts */
-R6cTNode *r6c_TreeCreate(int a, int b, int c)
+R6cTNode *r6c_TreeCreate(void *a, int b, int c)
 {
     R6cTNode *n;
     void *r;

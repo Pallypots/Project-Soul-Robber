@@ -7,7 +7,7 @@ int r6d_LinkDetachSound(R6dLinkObj *o)
     R6dLink *l = o->link;
     R6dLinkTarget *t;
     if (l->slot >= 0) {
-        t = (R6dLinkTarget *)sub_0008E5E0(a80_CurRefX0C(l->a, l->b, l->c)->id);
+        t = (R6dLinkTarget *)sub_0008E5E0(a80_CurRefX0C()->id, l->a, l->b, l->c);
         if (t && t->owner && t->owner->chr) {
             if (t->owner->chr->effects)
                 sub_00033DA0((uint8_t *)sub_00033DC0(t->owner->chr->effects, l->key) + 0x14, l->slot);
@@ -25,7 +25,7 @@ int r6d_LinkDetachSound(R6dLinkObj *o)
 int r6d_LinkStopSound(R6dLinkObj *o)
 {
     R6dLink *l = o->link;
-    R6dLinkTarget *t = (R6dLinkTarget *)sub_0008E5E0(a80_CurRefX0C(l->a, l->b, l->c)->id);
+    R6dLinkTarget *t = (R6dLinkTarget *)sub_0008E5E0(a80_CurRefX0C()->id, l->a, l->b, l->c);
     void *s;
     if (t) {
         s = sub_0008E1B0(t);

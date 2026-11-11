@@ -61,7 +61,7 @@ void r3c_Effects1790F0(void)
 {
     int i;
 
-    if (sub_000E0770()->i324 != 0 && sub_000E0770()->i324 != 1)
+    if (((R3cGame *)sub_000E0770())->i324 != 0 && ((R3cGame *)sub_000E0770())->i324 != 1)
         return;
     for (i = 0; i < 9; i++) {
         if (r3c_s3FDAE0[i] != 0)
@@ -313,7 +313,7 @@ void r3c_Restart17B100(R3cObj *obj, void *act)
     obj->flags10 |= 0x20;
     sub_001133E0(act, 0)->f10 = r3c_frameSeconds * -15.0f;
     a = obj->pa30;
-    sub_001AEDD0(obj->pa30->inst14, sub_00083120(a, a->i08)->i10);
+    sub_001AEDD0(obj->pa30->inst14, ((R3cKey *)sub_00083120(a, a->i08))->i10);
 }
 
 /* 0x0017C0E0: two-phase step: phase 0 sets obj flag 4, phase 1 waits for act->f5C to reach st->lo. */

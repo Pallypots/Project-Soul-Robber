@@ -4,6 +4,7 @@
 #ifndef A9B_H
 #define A9B_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Per-object work block reached through actor +0x74 (fields used here only). */
 typedef struct a9b_Work {
@@ -56,7 +57,7 @@ extern a9b_Rec88  a9b_g400A88[4];
 extern a9b_Rec8C  a9b_g400E50[18];
 extern a9b_Slot24 a9b_g401B30[16];
 typedef struct a9b_Ent16 { int32_t f0; uint8_t p4[0x0C]; } a9b_Ent16;   /* 0x00330F30 x0x77 */
-typedef struct a9b_Buf12 { int32_t f0, f4, f8; } a9b_Buf12;            /* 0x0042CAC4 */
+typedef struct a9b_Buf12 { int32_t f0; void *f4; int32_t f8; } a9b_Buf12;            /* 0x0042CAC4 */
 extern a9b_Ent16  a9b_g330F30[0x77];
 extern a9b_Buf12  a30_buf12[2];
 extern int32_t    a30_bufIndex;
@@ -81,29 +82,20 @@ extern float      a50_frameSeconds;
 
 void sub_001777A0(int a, void *b, int c);
 void sub_00189DA0(void *a, void *b, int c);
-void sub_000ED780(void *a);
-void sub_00033A70(void *p);
 int  sub_00199E20(int i);
-int  sub_00199C10(int i, int v);
-void sub_001AD440(int h);
-void sub_001AA310(int h);
-void sub_001AA460(int h);
 int  sub_001AD3A0(void);
 void sub_001AD520(void);
 void sub_000408B0(int a);
 void sub_000408C0(int a);
 void sub_001A0D70(void);
-int  sub_000324B0(int a);
 void sub_000580D0(void);
-void sub_0019E530(void);
+void sub_0019E530(void *);
 void a9b_BufferWorker(void);
 int  a1a_GroupAdd(void *g, int slot, int prio, void (*fn)(void), int a, int stack);
 int  a1a_GroupReleaseAll(void *g);
 int  sub_0019BE60(int k);
-void sub_0001EEC0(void *a, int b);
-void sub_001ADB60(float *dst, float *src, float s);
 void sub_0001D720(a9b_Actor *a);
 void sub_0001D7A0(a9b_Actor *a);
 int  sub_001AA520(int a);
-void *__fastcall sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m */
+void  __fastcall sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m; eax is a leftover push pointer */
 #endif

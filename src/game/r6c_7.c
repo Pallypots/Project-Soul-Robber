@@ -56,7 +56,7 @@ int r6c_PartsRemoveItems(R6cTNode *a, R6cTNode *b)
 }
 
 /* 0x0007EE50: allocate a key block for v and fill its +0x1C from the decoded key info of src. */
-int r6c_KeyNewFrom(R6cKeyObj **out, int v, int src)
+int r6c_KeyNewFrom(R6cKeyObj **out, int v, const void *src)
 {
     R6cKeyInfo info;
     sub_00053710(a6b_GetHeap(6));

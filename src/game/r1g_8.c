@@ -6,7 +6,7 @@
    message 2 draws the title, the page arrows, a header and the visible
    item names (the selected one highlighted); other messages go to the
    default handler. */
-int r1g_ListMenuProc(int ctx, R1gMenu *m, int msg)
+void *r1g_ListMenuProc(void *ctx, R1gMenu *m, int msg)
 {
     R1gMenuItem *items = m->data ? m->data->items : 0;
     int x, y, i;

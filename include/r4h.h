@@ -1,6 +1,7 @@
 #ifndef R4H_H
 #define R4H_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r4h: larger game functions in 0x00190000..0x001BC6D0 (eighth pass).
    All names inferred. Register mappings are in the comments and in
    config/function_states_r4h.csv. */
@@ -57,11 +58,8 @@ typedef struct R4hXNode {
     int16_t  frameFC;            /* +0xFC */
 } R4hXNode;
 /* g_378188 (0x00378188, up vector here) is declared in oogie.h as char[] */
-void sub_001AD7C0(float *d, const float *a, const float *b);   /* matrix product */
 void sub_001AD7E0(float *d, const float *s);                   /* normalize */
-void sub_001AD9B0(float *d, const float *m, const float *v);   /* transform */
 void sub_001ADA60(float *d, const float *a, const float *b);   /* cross product */
-void sub_001ADA40(float *dst, const float *src);               /* matrix copy */
 void sub_001B6B70(R4hXNode *n);
 void r4h_NodeUpdateWorld(R4hXNode *n);   /* 0x001B6DC0 */
 
@@ -109,9 +107,7 @@ typedef struct R4hOrbObj {
 } R4hOrbObj;
 typedef struct R4hOrbWork { uint8_t unk00[0x08]; float f08, f0C, f10, f14, f18; } R4hOrbWork;
 typedef struct R4hOrbAct { uint8_t unk00[0x74]; R4hOrbWork *work; } R4hOrbAct;
-void sub_001AD940(float *m);                                   /* identity */
-void sub_001AD8B0(float *d, const float *s, float a);          /* rotate about X */
-void sub_001AD8E0(float *d, const float *s, float a);          /* rotate about Y */
+void sub_001AD8B0(void *d, const void *s, float a);            /* rotate about X */
 void sub_001ADAF0(float *d, const float *a, const float *b);   /* vector add (oogie.h) */
 void r4h_FxOrbitStepB(R4hOrbObj *o, R4hOrbAct *a);   /* 0x001984C0 */
 void r4h_FxOrbitStepA(R4hOrbObj *o, R4hOrbAct *a);   /* 0x00198640 */
@@ -188,9 +184,7 @@ void  sub_001940D0(void);
 
 void  sub_00194100(void);
 
-void  sub_00035DD0(void *o, void *list, int motion, int once);
 void  sub_000EEA60(R4hFxNodeC *o, const float *v);
-void  sub_000EE6D0(R4hFxNodeC *o, float v);
 void  sub_00189DA0(void *a, void *b, int c);
 void  r4h_FxBlinkStep(R4hFxNodeC *o, R4hFxActC *a);          /* 0x00194620 */
 int   r4h_FxSpawnC(R4hFxNodeC *o, R4hFxActC *a, R4hFxNodeC *src);   /* 0x00194B50 */
@@ -273,8 +267,8 @@ typedef struct R4hFxActD {
 } R4hFxActD;
 extern R4hSlot88 r4c_recs400A88[4];
 extern const uint8_t r4h_d32C728[], r4h_d32C734[], r4h_d32C740[], r4h_d32C760[];
-void r4c_SlotStop(void);                         /* 0x00192470 */
-void r4c_SlotMsg(void);                          /* 0x00192530 */
+int r4c_SlotStop(void *, void *);                         /* 0x00192470 */
+int r4c_SlotMsg(void *, void *, void *);                          /* 0x00192530 */
 void r4c_SlotScale(int idx, float s);            /* 0x00192630 regargs: idx=EAX */
 void sub_0001EF00(void *o, const float *v);
 int  r4h_FxSlotSpawn(R4hFxNodeD *o, R4hFxActD *a, int idx);   /* 0x00193C10 */
@@ -282,12 +276,9 @@ int  r4h_FxSlotSpawn(R4hFxNodeD *o, R4hFxActD *a, int idx);   /* 0x00193C10 */
 typedef struct R4hPlayCtx { uint8_t unk000[0x324]; int32_t i324; } R4hPlayCtx;
 extern const float r4h_v318DC8[4];
 extern const float r4c_v27AFE8[4], r4c_v27AFF8[4];
-void  sub_0001EEC0(void *o, float rate);
-R4hPlayCtx *sub_000E0770(void);
 float sub_000F5F50(const float *v);                      /* length in XZ */
 void  sub_001AD9F0(float *d, const float *a, const float *b);   /* d = a - b */
 void  sub_000EE760(void *o, float v);
-void  sub_001ADB60(float *d, const float *s, float k);          /* d = s * k */
 void  r4h_FxSlotStep(R4hFxNodeD *o, R4hFxActD *a);       /* 0x00193A30 */
 
 extern float a50_framesPerSecond;                /* 0x0042C964 */
@@ -295,7 +286,6 @@ extern const uint8_t r4h_d32C718[];
 void  sub_000F6450(void *o, const void *p);
 void  r4h_FxSlotFly(R4hFxNodeD *o, R4hFxActD *a);        /* 0x00193490 */
 
-int   sub_000F5D00(void *o);                         /* node active */
 void  r4h_FxSlotHold(R4hFxNodeD *o, R4hFxActD *a);   /* 0x00193700 */
 
 int   sub_001C7EE1(void);                           /* rand */
@@ -303,7 +293,6 @@ void  sub_000F5ED0(float *angle);
 void  r4h_SlotThrow(R4hSlot88 *rec);                 /* 0x00192730 regargs: rec=ESI */
 
 extern const uint8_t r4h_d32C6F8[];
-void  sub_000ED780(void *o);                         /* destroy node */
 void  r4h_FxSlotFlyB(R4hFxNodeD *o, R4hFxActD *a);   /* 0x00192A70 */
 
 typedef struct R4hPosNode { uint8_t unk00[0x60]; float pos60[4]; } R4hPosNode;
@@ -339,7 +328,6 @@ typedef struct R4hJntAct { uint8_t unk00[0x6C]; float t6C; uint8_t unk70[4]; R4h
 extern float r4h_lerp32C910;     /* 0x0032C910 */
 extern float r4c_g32C8CC;        /* 0x0032C8CC */
 extern float r4h_end32C914;      /* 0x0032C914 */
-R4hJoint *sub_0001D0F0(void *o, int k);
 void  sub_001ADCD0(float *d, const float *a, const float *b, float t);   /* lerp */
 void  sub_001ADBA0(float *d, const float *s, float k);          /* d = s * k (4 components) */
 void  r4h_FxJointHold(R4hJntObj *o, R4hJntAct *a);  /* 0x00198B40 */
@@ -370,7 +358,6 @@ typedef struct R4hPopRec {
 } R4hPopRec;
 typedef struct R4hPopAct { uint8_t unk00[0x6C]; float t6C; uint8_t unk70[4]; R4hPopRec *work; } R4hPopAct;
 extern const uint8_t r4h_d32C848[];
-int   sub_000494D0(int id, float *pos, int c);
 void  sub_000F60C0(void *o, int a, int b);
 void  sub_00196DB0(int kind, R4hPopObj *o);           /* regargs: kind=EAX o=ECX */
 void  r4h_FxPopDrop(R4hPopObj *o, R4hPopAct *a);      /* 0x00197E40 */
@@ -401,7 +388,6 @@ typedef struct R4hWaveObj {
 } R4hWaveObj;
 typedef struct R4hWaveRec { uint32_t flags; uint8_t unk04[4]; float speed08; float rise0C; uint32_t bit10; } R4hWaveRec;
 typedef struct R4hWaveAct { uint8_t unk00[0x74]; R4hWaveRec *work; } R4hWaveAct;
-R4hWaveAct *sub_0001D960(void *o, int t);
 void  r4h_FxWaveSpawn(R4hWaveObj *o, R4hWaveObj *src, uint32_t used);   /* 0x00193E50 */
 
 #endif

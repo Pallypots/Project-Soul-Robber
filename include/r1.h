@@ -1,6 +1,7 @@
 #ifndef R1_H
 #define R1_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area r1: functions that took register arguments in the original (see notes
    in config/function_states_r1.csv for the exact register mapping). */
@@ -57,7 +58,6 @@ typedef struct R1PartPair {
 } R1PartPair;
 void r1_PartsShow(R1PartPair *o);
 void r1_PartsHide(R1PartPair *o);
-void *sub_00053AB0(int size, int a, int tag);
 
 typedef struct R1KindFlags {
     int32_t  kind;              /* +0x00 */
@@ -103,7 +103,7 @@ typedef struct R1Timer {
 typedef struct R1Hud {
     uint8_t  unk000[0x968];
     uint8_t  slot968[8];        /* +0x968 */
-    int32_t  h970;              /* +0x970 */
+    void    *h970;              /* +0x970 */
     uint8_t  unk974[0x988 - 0x974];
     void    *tbl988;            /* +0x988 */
 } R1Hud;
@@ -124,9 +124,6 @@ typedef struct R1Bank {
 extern int32_t  r1_curHudId;
 extern R1Hud   *r1_hud;
 void sub_000720A0(float *t, int mode);
-void sub_00076060(int h);
-void *sub_0003FA70(void *tbl, int id);
-void sub_0003FCB0(void *slot, void *item, int a, int b, float c);
 void sub_00036A90(void *p, int a, int b);
 void sub_0003D860(void *p);
 void sub_001B25B0(void *p);
@@ -211,7 +208,6 @@ extern R1KeyRec r1_keyTbl[];    /* 0x002C6B20 */
 
 int  sub_001AA520(int h);
 void sub_0003D880(void *list, void *node);
-int  sub_001A8500(int h, int a, int *out);       /* h indexes the handle table at 0x0040B210 */
 typedef struct R1File { int32_t h; int32_t pos; } R1File;
 
 typedef struct R1Ent20 {
@@ -236,16 +232,10 @@ typedef struct R1Model { uint8_t unk00[0x60]; float pos[4]; /* +0x60 */ } R1Mode
 extern R1Ctx   *r1_ctx42C8E4;
 extern R1Model *r1_model420E98;
 
-void sub_001A8490(int h, int pos, int whence);
-void sub_00102FA0(int a);
-void sub_001A8410(int h, void *buf, int n);
 void sub_00052EC0(int *outA, int a, int *outB, int b);
-void sub_00053880(void *h);
 void sub_0003D8C0(void *node);
-void sub_000F5D40(float *d, const float *s);
 void sub_001AD9F0(float *d, const float *a, const float *b);
 void sub_001AD7E0(float *d, const float *s);
-float sub_001AD9D0(const float *a, const float *b);
 /* 0x4C-byte hold-detector record (table at 0x0042CA2C). */
 typedef struct R1Hold {
     uint8_t unk00[0x0C];
@@ -280,11 +270,9 @@ float r1_DirDot(int mode, const float *p, float scale);
 
 int  r1_KeyWord(int a, int b, int k);
 int  r1_KeyDword(int a, int b);
-int  sub_00047A80(int v);
 void sub_00199EB0(int v);
 void sub_0019B5F0(int v);
 void sub_0019B5C0(int v);
-int  sub_00199F70(int v);
 int  sub_0019B620(int v);
 int  sub_00199CA0(int v);
 typedef struct R1FxSlot { R1Timer t; uint8_t unk34[0x2A4 - 0x34]; } R1FxSlot;
@@ -295,8 +283,7 @@ void r1_TimerStep(R1Timer *t);
 void r1_BankInit(R1Bank *b);
 extern R1Bank  *r1_bank;        /* 0x00283698 */
 extern R1Bank   r1_bank381AC0;
-extern int32_t  r1_g3DA080, r1_g3DA084;
-void sub_001B2020(int a, void *chan);
+extern void    *r1_g3DA080, *r1_g3DA084;
 void r1_MatSelect(R1MatSel *s, R1MatUser *u);
 void r1_MatDefault(R1MatUser *u);
 /* Queue with a countdown: 8 queued values, state, running time, reload time. */
@@ -310,9 +297,6 @@ extern R1QTimer r1_qt37DAA4, r1_qt37DCFC, r1_qt37F484;
 void r1_QueuePop8(int32_t *q);
 void r1_ResRelease(R1Res *r);
 R1Res *sub_00057F80(int id);
-int  sub_001AD560(void);
-int  sub_001AD440(int h);
-int  sub_001AA310(int h);
 extern int32_t r1_g3E3F90;
 
 uint32_t *sub_00038AD0(uint32_t *p, void *src);

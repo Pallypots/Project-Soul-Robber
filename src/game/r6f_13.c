@@ -58,12 +58,12 @@ int r6f_SceneUpdate(R6fScene *s)
    task's start (x0.5, not negative); without an entry drop the part. */
 void r6f_TaskAnimAttach(R6eTask *t, uint8_t setBlend)
 {
-    R6fAnimHost *a = (R6fAnimHost *)(intptr_t)((R6eAnimRef *)t->p28)->i5C;
+    R6fAnimHost *a = (R6fAnimHost *)((R6eAnimRef *)t->p28)->p5C;
     uint8_t *e;
     R6fRefObjF *r;
     float d;
     sub_00053710(4);
-    e = (uint8_t *)sub_00033DC0(a->i12C, t->i124);
+    e = (uint8_t *)sub_00033DC0(a->p12C, t->i124);
     sub_00053740();
     if (e) {
         sub_00033D10(a, e + 0x14);

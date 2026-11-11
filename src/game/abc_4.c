@@ -91,7 +91,7 @@ int abc_QueuePush(AbcQueue *q, int v)
 }
 
 /* 0x000BC6F0: copy the pose of part record idx onto the model's part id. */
-void abc_CopyPartPose(int id, int idx)
+void abc_CopyPartPose(const char *id, int idx)
 {
     AbcPartRec *r;
     if (!abc_partSet) return;

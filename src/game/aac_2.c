@@ -2,7 +2,7 @@
 #include "aac.h"
 
 /* 0x001AA590: pack (d, b, c, 0) into a block and pass it with a and e to 0x2226F3. */
-int OOG_STDCALL aac_SendBlock(int a, int b, int c, int d, int e)
+int OOG_STDCALL aac_SendBlock(void *a, int b, int c, int d, void *e)
 {
     AacBlock4 blk;
     blk.a = d;

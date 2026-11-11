@@ -5,7 +5,7 @@
    opening (state 1) each bar shrinks by the speed, while closing (state 2)
    it grows; the lower bar's top edge moves with it. A bar that passes 0
    (opening) or the limit (closing) is clamped and the wipe is done. */
-void r1i_WipeDraw(uint32_t *p)
+uint32_t *r1i_WipeDraw(uint32_t *p)
 {
     R1iWipeBar *b;
     int i;
@@ -36,4 +36,5 @@ void r1i_WipeDraw(uint32_t *p)
             break;
         }
     }
+    return p;
 }

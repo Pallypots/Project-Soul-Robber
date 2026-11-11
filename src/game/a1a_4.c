@@ -75,7 +75,7 @@ int a1a_MsgSetCb(int msg)
 }
 
 /* 0x001A8630: library call (v, -1, 0, 4). */
-int a1a_Wait_1A8630(int v) { return sub_001BD517(v, -1, 0, 4); }
+void *a1a_Wait_1A8630(int v) { return sub_001BD517(v, -1, 0, 4); }
 
 /* 0x001A8650: init block 0x40B858 and clear state words. */
 void a1a_Init_1A8650(void)

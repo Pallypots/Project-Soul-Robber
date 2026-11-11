@@ -2,6 +2,7 @@
 #ifndef AC0_H
 #define AC0_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Sub-object reached through Ac0Actor::linkEFC. */
 typedef struct Ac0Link {
@@ -122,17 +123,12 @@ extern int32_t g_ac0_4201D8, g_ac0_4201DC;
 extern int32_t g_ac0_4203E8[], g_ac0_420268[], g_ac0_4202E8[];
 extern float   g_ac0_41FEE4[4];         /* 0x0041FEE4 */
 
-int   sub_000BD4D0(void *obj, int anim);
-int   sub_000494D0(int id, void *pos, int c);
 void  sub_000AA2E0(int id);
 int   sub_00033AD0(void *h);
 void  sub_00033AC0(void *h);
-void  sub_00033A70(void *h);
 void  sub_000C4B70(void *rec);
 void  sub_000C7CC0(int a);
-void  sub_000D45B0(void *obj, int a, float b, float c);
 float sub_00171B40(Ac0Actor *a);
-void  sub_000CF330(void *a, void *b, int c);
 void  ac0_VecCopy(void *dst, const void *src);  /* 0x000F5D40 */
 void *sub_000EDB10(int a);
 void *sub_000EDB90(void);
@@ -164,10 +160,8 @@ extern const Ac0SndEntry g_ac0_sndEntries[];  /* 0x002E6F30 */
 void  sub_000D0560(Ac0Actor *a, int anim, int c);
 void  sub_00033AB0(void *h);
 int   sub_000D0DC0(const float *pos, float r, void *dst40, void *dst30);   /* r2b_PoolGetA */
-uint8_t *sub_0001D290(void *o, int k);
 int   sub_000CCD60(int a, int b, int c);
 int   sub_0019BE60(int k);
-void  sub_00048AF0(int k);
 void  sub_000C72C0(void);
 void  sub_000C7B00(void);
 void  sub_000C93D0(void);
@@ -175,7 +169,7 @@ void  sub_000C93D0(void);
 int   ac0_Slots_CountActive(Ac0Actor *unused);
 void  ac0_Slots_Promote(Ac0Actor *a);
 void  ac0_SetTarget(Ac0Actor *a, int v, const float *p, const float *q);
-void  ac0_Handle_Start(int a, int b);
+void  ac0_Handle_Start(int a, void *b);
 void  ac0_Xforms_Reset(void);
 
 #endif

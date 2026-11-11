@@ -1,6 +1,7 @@
 #ifndef AA0_H
 #define AA0_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area aa0 (0x000A0000..0x000C0000). All names inferred. */
 
 /* 0x004242C0: array of 0x260-byte records (count Hypothesis). */
@@ -56,7 +57,6 @@ extern uint8_t  aa0_enabled413142;          /* 0x00413142 */
 
 void aa0_Vec4Copy(void *dst, const void *src);   /* 16-byte copy */
 int  sub_000E5B70(int n);
-int  sub_0005EB10(int a, int b);
 int  sub_000AC8A0(void *a, void *b, int kind);
 int  sub_000AC9D0(void *a, void *b, int kind);
 int  sub_000ADB60(void *a, void *b, int kind);

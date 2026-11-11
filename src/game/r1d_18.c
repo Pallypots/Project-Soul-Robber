@@ -39,7 +39,7 @@ void r1d_CamGroupInit(int i, R1dCamGrp *g)
 
 /* 0x0003E550: draw the "previous page" arrow (or a blank) when the page
    list is not finished; otherwise return a. */
-int r1d_PageArrowUp(int a, int b, int c, int d, int e, R1dPage *p)
+void *r1d_PageArrowUp(void *a, int b, int c, void *d, void *e, R1dPage *p)
 {
     if (p->cur >= p->count) return a;
     return sub_0002E8C0(a, b, c, a4c_pg2C4B08[1], d, e, r1d_fmt266FC0,
@@ -48,7 +48,7 @@ int r1d_PageArrowUp(int a, int b, int c, int d, int e, R1dPage *p)
 
 /* 0x0003E5B0: draw the "next page" arrow (or a blank) when the page list
    is not finished; otherwise return a. */
-int r1d_PageArrowDown(int a, int b, int c, int d, int e, R1dPage *p)
+void *r1d_PageArrowDown(void *a, int b, int c, void *d, void *e, R1dPage *p)
 {
     if (p->cur >= p->count) return a;
     return sub_0002E8C0(a, b, c, a4c_pg2C4B08[1], d, e, r1d_fmt266FC0,

@@ -3,9 +3,9 @@
 
 /* 0x0003F800: run 0x0003F780, then for op 0 clear the last entry's link
    and for op 1 notify the object if its kind matches the mask. */
-int r1e_SObjOpEx(int a, R1eSObj *o, int op)
+void *r1e_SObjOpEx(void *a, R1eSObj *o, int op)
 {
-    int r = r1e_SObjOp(a, o, op);
+    void *r = r1e_SObjOp(a, o, op);
     switch (op) {
     case 0:
         if (o->y->n > 0)

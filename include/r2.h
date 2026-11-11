@@ -1,6 +1,7 @@
 #ifndef R2_H
 #define R2_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r2: register-argument functions in 0x000D0000..0x00130000. All names inferred.
    Register mappings of callees are in the comments and in config/function_states_r2.csv. */
 
@@ -41,7 +42,7 @@ typedef struct R2State {
     uint8_t  unk010[4];
     float    f14;              /* +0x014 */
     uint8_t  unk018[0x20 - 0x18];
-    int32_t  h20;              /* +0x020 */
+    void    *h20;              /* +0x020 */
     uint8_t  unk024[0x34 - 0x24];
     void    *h34;              /* +0x034 handle (0x00036750) */
     uint8_t  unk038[0x50 - 0x38];
@@ -115,17 +116,10 @@ extern R2Node  *r2_head3F60E0;        /* 0x003F60E0 */
 extern R2Node  *r2_tail3F60E4;        /* 0x003F60E4 */
 
 /* External callees (stack arguments unless noted) */
-void   *sub_0001D960(void *obj, int kind);
 void    sub_000F3D10(void *a, void *b, int c);
-void    sub_00033A70(void *h);
 void    sub_00048250(int id);
-int     sub_000494D0(int id, void *pos, int c);
-void   *sub_0001D0F0(void *a, int b);
 void    sub_00019000(void *a, int b);
-void    sub_000BCA50(void);
 int     sub_000E3380(void);
-int     sub_000EDBE0(int a, int b);
-void   *sub_0003DBC0(void *list, int a, int key);
 void    sub_0003D8C0(void *node);
 void    sub_0003D860(void *node);
 int     sub_000ED0C0(int a, int b);
@@ -140,12 +134,10 @@ void r2_LookupApplyN(int a, int b, int n, int arg);           /* 0x000E3000 a=EC
 void r2_Comp5FreeD4(R2Actor *obj);                            /* 0x000EF8A0 obj=EAX */
 void r2_Comp5ReleaseD8(R2Actor *obj);                         /* 0x000EF8D0 obj=EAX */
 void r2_CheckStateE3380(R2Actor *obj);                        /* 0x000EF900 obj=EAX */
-void r2_ListDrop(int key);                                    /* 0x000ED380 key=EAX */
-int  r2_SelectKind(int kind);                                 /* 0x0011B140 kind=EAX */
+void r2_ListDrop(void *key);                                   /* 0x000ED380 key=EAX */
+void *r2_SelectKind(int kind);                                /* 0x0011B140 kind=EAX */
 void   *sub_000C7130(void *a);
 float   sub_001B2770(const float *a, const float *b);         /* distance between two points */
-float   sub_000F7C40(void *a, void *b, float c);
-int     sub_000F5D00(void *a);
 extern float a50_frameUnits;          /* 0x0042C858 */
 
 /* r2_2 */
@@ -159,17 +151,12 @@ void r2_SetComp5ModeB(R2Actor *obj, int mode);                /* 0x0010CB30 obj=
 void r2_Comp5StartE4(R2Actor *obj, int id);                   /* 0x0010D2B0 obj=EAX */
 void r2_Comp5ReleaseE4(R2Actor *obj);                         /* 0x0010D2F0 obj=EAX */
 void    sub_001ADC60(float *dst, const float *a, const float *b, float t);
-void    sub_001ADA40(float *dst, const float *src);
 void    sub_0011F640(int idx, float *dst);                     /* idx=EAX dst=ESI */
 void   *sub_000EDC20(int a, int b);   /* object iterator */
 void    sub_00025C10(int a, int b);
-void    sub_001130F0(void *a, int b, int c);
-void    sub_00119FF0(void *a, int b, int c);
-void    sub_00113040(void *a, void *b, int c);
+void    sub_00119FF0(void *a, void *b, int c);
 void    sub_00113AA0(void *a, void *b);
-void    sub_000EE660(int h, float f);
 void    sub_00033560(void *h);
-void *sub_00036750(void *o, int b);
 typedef int (*R2TblFn)(int a, int b, void *c);
 extern R2TblFn   r2_fn31B0C4[];       /* 0x0031B0C4 */
 extern float     r2_vec279598[][4];   /* 0x00279598 */
@@ -189,7 +176,7 @@ void *r2_PickTarget(const R2Cond *c, R2Ctx *ctx, void *self); /* 0x00114D60 c=EA
 void r2_UpdateFreeSlots(R2Body *obj);                         /* 0x00115440 obj=EAX */
 int  r2_CallTbl31B0C4(int a, int b, int arg);                 /* 0x0011B020 a=EAX b=EDX */
 int  r2_GetHitKind(R2Body *obj, int *out);                    /* 0x0011B0D0 obj=ECX out=EDX */
-void r2_RecNotify(R2Rec *p, int b, int c);                    /* 0x0011B110 p=ESI b=EBX c=EDI */
+void r2_RecNotify(R2Rec *p, void *b, int c);                  /* 0x0011B110 p=ESI b=EBX c=EDI */
 int  r2_RecHit(R2Rec *p, int arg);                            /* 0x0011B170 p=ESI */
 void r2_BodyReattach(R2Body *obj, void *b);                   /* 0x0011B1C0 obj=EAX b=EDI */
 int  r2_RunSteps31C110(int idx, void *a, void *b);            /* 0x0011EDE0 idx=EAX a=EBX b=EDI */
@@ -263,17 +250,13 @@ void r2_ResetModesA(void);                                    /* 0x000D7040 */
 void r2_ResetModesB(void);                                    /* 0x000D7440 */
 void r2_ResetModesC(int v);                                   /* 0x000D7480 */
 int     aab_Rand(void);                                        /* 0x001C7EE1 (CRT rand) */
-int     PlayerObj_GetState(void *p);
 void    b10_AddClampF(float *v, float d, float max);
 void    b10_SubClampF(float *v, float d, float min);
 void    a5b_SndRelease(void);
 void    af0_SetVar3EDD1C(int v);
 int     a80_Get3ED238(void);
 void    sub_001AD9F0(float *dst, const float *a, const float *b);
-float   sub_001AD9D0(const float *a, const float *b);
-void    sub_001AD940(float *m);
 void    sub_001B2150(void *p);
-void    sub_001B2160(void *list, void *p);
 void    sub_00101280(int a);
 int     sub_00053F60(void);
 int     sub_0017F000(int i);
@@ -328,18 +311,13 @@ void r2_BodyAdjust14(R2Body *obj);                            /* 0x0011A300 obj=
 void r2_BodySetMotion(R2Body *obj, float a, float b, float c, float d); /* 0x0011F480 obj=EAX */
 int  r2_PlayerOutOfReach(R2Body *obj, R2Body *self);          /* 0x00120820 obj=EAX self=ESI */
 void r2_HookInit(R2HookHost *a, R2HookBody *b);               /* 0x0012D350 a=EBX b=EDI */
-int     PlayerObj_TimerDone(void *p);
-void    PlayerObj_SetAnim(void *p, int anim);
 float   afc_VecLengthXZ(const float *v);
 float   r4_Distance(const float *a, const float *b);
-void    sub_00014E30(void *p, int a, int b, int c, int d);
 void    sub_00014E80(void *p);
 void    sub_000150B0(void *p, int n);
-int     sub_00017C00(int v, void *p);
 float   sub_00113200(void *o, const float *target);
 float   sub_00113290(void *o, const float *pt);
 void    sub_001AD7E0(float *dst, const float *src);
-void    sub_001ADB60(float *dst, const float *src, float s);
 void    sub_0001D610(void *obj);
 extern int   g_acb_3F0A7C;            /* 0x003F0A7C */
 extern int   aec_3F49D0;              /* 0x003F49D0 */
@@ -376,11 +354,11 @@ typedef struct R2Scr2 { uint8_t unk000[0x1A8]; uint16_t w1A8; uint8_t unk1AA[2];
 
 /* r2_6 */
 void r2_BossPickDir(void);                                    /* 0x000F43E0 */
-int  r2_SlotAlloc(int a, int b);                              /* 0x000E8D00 */
+int  r2_SlotAlloc(float a, float b);                              /* 0x000E8D00 */
 void r2_SeqStep(R2Seq *q);                                    /* 0x000E48C0 q=ESI */
 void r2_MinionTurn(R2Actor *obj, R2Arg68 *arg);               /* 0x000FE9E0 */
 void r2_ClampToCenter(R2Actor *obj);                          /* 0x00102E80 obj=EAX */
-int  r2_ApplyFades(int v);                                    /* 0x000E8080 v=EAX */
+void *r2_ApplyFades(void *v);                                  /* 0x000E8080 v=EAX */
 int  r2_InAttackCone(R2Actor *self, R2Body *other, const float *rec); /* 0x0011B040 */
 int  r2_PointInView(R2Body *self, const float *pt, float *dist, float *ang); /* 0x00113F10 self=EDI pt=ESI */
 void r2_ScrPickDirB(void *a);                                 /* 0x00103640 */
@@ -421,11 +399,7 @@ void r2_SetScaleB(R2Mover2 *obj, float s);                    /* 0x0010D320 obj=
 int     sub_000CF560(void *p, int a);
 float   sub_001A3EE0(float x);                                 /* cosine of degrees (Hypothesis) */
 void    sub_001ADBA0(float *d, const float *s, float k);
-void   *sub_000FE3D0(void);
-void   *sub_00100110(void);
-void   *sub_000FBAF0(void);
 int     sub_00199E70(int id);
-int     sub_000F3B50(void *p);
 void   *sub_000FC4D0(void);
 /* Actor with three effect ids at +0x134 (0x000F7100). */
 typedef struct R2EffHolder { uint8_t unk000[0x134]; int32_t eff134[3]; } R2EffHolder;

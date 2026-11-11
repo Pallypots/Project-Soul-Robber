@@ -5,8 +5,8 @@
    (kind 0, 1 or 2 by range), open the stream, set every part's volume and
    play. Returns the track index or -1 when all three are busy; hangs on a
    bad sequence number. Stack arg (snd); calls 0x0019ABB0 with EAX=track
-   ESI=part EDX=volume. */
-int r4g_TrackStart(int snd)
+   ESI=part EDX=volume. Callers push two more arguments that are never read. */
+int r4g_TrackStart(int snd, int unused1, int unused2)
 {
     R4gSeq *s;
     R4gTrack *t;
@@ -51,8 +51,8 @@ int r4g_TrackStart(int snd)
    (or the pending bank 0x00402748 once) and restart the stream, when
    paused (state 7) undo one pause level and unpause; then reapply every
    part's volume. Stack arg (i); calls 0x0019ABB0 with EAX=track ESI=part
-   EDX=volume. */
-void r4g_TrackResume(int i)
+   EDX=volume. Callers push a 2nd argument that is never read. */
+void r4g_TrackResume(int i, int unused)
 {
     R4gTrack *t;
     R4gSeq *s;

@@ -3,7 +3,7 @@
 
 /* 0x00035D20: build a node for every object of the source list; the first
    becomes the head, the others are linked behind it flagged as children. */
-R1dNode *r1d_ChainBuild(R1dChainSrc *src, int a, int b, int c, int d)
+R1dNode *r1d_ChainBuild(R1dChainSrc *src, void *a, int b, int c, int d)
 {
     R1dNode *first = 0;
     R1dNode *n;

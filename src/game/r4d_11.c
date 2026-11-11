@@ -110,7 +110,8 @@ void r4d_JobsInit(void)
 /* 0x001A1680: load the common stage file 0xBC, then create the three shared objects. No inputs. */
 void r4d_StageLoadCommon(void)
 {
-    int k, h;
+    int k;
+    void *h;
     sub_0004FA70(0xBC, sub_00053AB0(sub_0004F680(0xBC), 0, 0xA8));
     while (sub_0004F4D0())
         sub_000580D0();

@@ -1,6 +1,7 @@
 #ifndef R2B_H
 #define R2B_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r2.h"
 #include "ad0.h"
 /* Area r2b: functions in 0x000D0000..0x00130000 left over by earlier areas
@@ -56,19 +57,14 @@ void *adc_StatD0030(void *p, int v);                          /* 0x000D0030 */
 void  b16_Free33A40(void *h);                                   /* 0x00033A40 */
 void *r1b_Pool80970(void);                                    /* 0x00080970 */
 int   sub_000D9A70(int id);
-void *sub_0001D290(void *o, int k);
-void  sub_000CED50(void *p);
 void  sub_000822D0(void *ctx, void *pool, const float *pos, float r, void *list, void *out);
 void  sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
-uint8_t *sub_00080CF0(void *pool, const float *pos);
-uint8_t *sub_00080CB0(void *pool, const float *from, const float *to);
 
 void  sub_0003C2D0(void *dst, void *rend, int id);
 void  sub_000D2440(PlayerStats *s);
 void  sub_000D1930(PlayerStats *s);
 void  r1_NodeHide(void *n);                                   /* 0x0001D700 */
 void  r4_HookRemoveA8(void *o, void *hook);                   /* 0x001B2190 */
-void  sub_000BD4D0(void *s, int a);
 extern uint32_t r2b_flags420010;       /* 0x00420010 (g_stats + 0x150) */
 extern int32_t  r2b_g42007C;           /* 0x0042007C */
 extern int32_t  r2b_g420080;           /* 0x00420080 */
@@ -83,7 +79,6 @@ typedef struct R2bHook3EDB40 { int32_t unk00; int32_t i04; int32_t unk08[2]; int
 extern R2bHook3EDB40 r2b_hook3EDB40;   /* 0x003EDB40 */
 typedef struct R2bA8 { uint8_t unk00[0xA8]; void *hookA8; } R2bA8;
 
-void  sub_00022630(void *o, const char *path);
 void *r1_StateNew(int a);                                     /* 0x0001D160 */
 int   sub_000E0250(void);
 void  sub_00048330(int h, int a);
@@ -99,7 +94,7 @@ typedef struct R2bStage { uint32_t flags00; uint8_t unk04[0x10]; R2bStageEnt ent
 extern const R2bStage r2b_stages2E7D58[]; /* 0x002E7D58 */
 
 void  sub_000D9AB0(int id);
-void  sub_000D9180(int k, void *a, int b);                    /* k=ECX */
+void  sub_000D9180(int k, void *a, float b);                  /* k=ECX; b goes on as the float 3rd arg of 0x001AD8E0 */
 void  sub_000D97B0(void *a);                                  /* a=ECX */
 typedef struct R2bPair { int32_t a, b; } R2bPair;
 extern R2bPair r2b_pairs3EDC14[];      /* 0x003EDC14 */
@@ -119,7 +114,6 @@ void  sub_0019D830(int a);
 void  sub_0019D7F0(int a);
 void  af0_SetVar3EDCC0(int v);                                /* 0x000DDE90 */
 int   sub_00047BB0(void);
-void  sub_00048A00(int a, int b);
 int   sub_000EDA20(int a, int b);
 int   sub_00060BD0(void);
 void  sub_0019B9E0(void);
@@ -136,7 +130,7 @@ int   sub_000E0640(int a, float *b, float *c);
 void  sub_000CC230(PlayerStats *s, int i, float *b, float *c);
 void  sub_000DFD40(int *a, int *b);
 int   r1_KeyStateW(int a, int b, int c);                      /* 0x00048820 */
-int   r2b_AD090(int a, int b, int c);                         /* 0x000AD090 */
+int   r2b_AD090();                         /* 0x000AD090 */
 int   sub_000DEA20(int a);
 int   a12_Level_37C544(void);                                 /* 0x00026660 */
 int   a12_Level_37D434(void);                                 /* 0x00026680 */
@@ -159,7 +153,7 @@ void  sub_0019E870(int a);
 int   sub_000DE4D0(int a, int b);
 int   sub_0002C810(void);
 int   af0_GetVar3EDCF8(void);                                 /* 0x000DE940 */
-void  a5b_Swap2DD4D8(int a);                                  /* 0x0005BBB0 */
+int a5b_Swap2DD4D8(int a);                                  /* 0x0005BBB0 */
 int   sub_00088150(void);
 /* Script context with the cue handle word at +0x58. */
 typedef struct R2bScriptCtx { ScriptCtx c; int32_t snd58; } R2bScriptCtx;
@@ -177,8 +171,6 @@ extern R2bThread adc_threads[64];      /* 0x003EF034 */
 
 extern void   *g_acb_table;           /* 0x003F0740 */
 void  sub_0003FC10(void *rec);
-int   sub_0003FA70(void *tbl, int b, int c, float d, float e);
-void  sub_0003FCB0(void *rec, int item);
 extern int32_t af0_var3F0734;          /* 0x003F0734 */
 extern int32_t af0_var3F0738;          /* 0x003F0738 */
 extern int32_t af0_var3F073C;          /* 0x003F073C */
@@ -193,10 +185,6 @@ extern const char r2b_str317CBC[];     /* 0x00317CBC */
 extern const char r2b_fmt27772C[];     /* 0x0027772C */
 int   sub_0004F4D0(void);
 int   sub_0004F6D0(int id);
-int   sub_0004F680(int id);
-void *sub_00053820(int pool, int size, int a, int b);
-void  sub_0004FA70(int id, void *p);
-void  sub_0004F4E0(void);
 typedef struct R2bLoader { uint8_t unk00[8]; int32_t loaded08; } R2bLoader;
 /* Timed item list: items of a variable stride, each starting with a position. */
 typedef struct R2bTimed { uint32_t pos00; int16_t len04; uint16_t on06; } R2bTimed;
@@ -244,7 +232,7 @@ int  r2b_PairA(int i);                                        /* 0x000D8FF0 */
 int  r2b_PairB(int i);                                        /* 0x000D9000 */
 int  r2b_GetBlkI10(void);                                     /* 0x000D9010 */
 void r2b_BlkFromPlayer(void);                                 /* 0x000D9020 */
-void r2b_BlkSetup(void *a, int b);                            /* 0x000D9A30 */
+void r2b_BlkSetup(void *a, float b);                          /* 0x000D9A30 */
 int  r2b_TestBit(int i);                                      /* 0x000D9A70 */
 void r2b_SetBit(int i);                                       /* 0x000D9AB0 */
 void r2b_ClearBit(int i);                                     /* 0x000D9B30 */

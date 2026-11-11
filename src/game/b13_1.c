@@ -72,7 +72,7 @@ void b13_State138110(B13Owner *o, B13Enemy *e)
 }
 
 /* 0x001381E0: forward to 0x00113190 with 1. */
-int b13_State1381E0(B13Owner *o, B13Enemy *e) { return sub_00113190(o, e, 1); }
+void b13_State1381E0(B13Owner *o, B13Enemy *e) { sub_00113190(o, e, 1); }
 
 /* 0x00138200: animation 0x11 and behaviour flag 0x800000. */
 void b13_State138200(B13Owner *o, B13Enemy *e)

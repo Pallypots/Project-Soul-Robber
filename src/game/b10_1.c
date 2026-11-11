@@ -32,7 +32,7 @@ void b10_CtlCopyWord(uint8_t *rec)
 void b10_CtlClear1C8(void) { b10_ctl->w1C8 = 0; }
 
 /* 0x00101140: mark the controller when the test succeeds. */
-void b10_CtlMark(int a)
+void b10_CtlMark(void *a)
 {
     if (sub_000F5D00(a) != 0)
         b10_ctl->wBC = 1;
@@ -82,7 +82,7 @@ void b10_ScrSend(int id)
 int b10_ScrEntry(int i) { return b10_scr->entries[i].value; }
 
 /* 0x00101340: apply 0x000F5D40 to the screen's sub-record. */
-int b10_ScrVec(int a) { return b10_VecOp2(a, b10_scr->sub224); }
+void b10_ScrVec(void *a) { b10_VecOp2(a, b10_scr->sub224); }
 
 /* 0x00101360: 1 if the player's +0x64 value is at most -30. */
 int b10_PlayerLow(void)

@@ -1,6 +1,7 @@
 #ifndef R2C_H
 #define R2C_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Zero a block (the original inlines this as rep stos). The intrinsic is
@@ -97,18 +98,11 @@ typedef struct R2cBoss {
     uint8_t  unk1C8[0x206 - 0x1C8];
     int16_t  w206;             /* +0x206 */
 } R2cBoss;
-void      sub_000832D0(R2cPart *part, int anim);
 R2cModel *sub_0001D2B0(R2cModel *m, int idx);
 void      sub_00192380(int side, int anim);
-R2cGame  *sub_000E0770(void);
 void      sub_000E0A80(R2cGame *g, int a, int b, int c, int d);
 void      sub_000E51F0(R2cGame *g);
 int       sub_000F30E0(int kind);
-void     *sub_00053AB0(int size, int a, int b);
-void      sub_001ADB60(void *dst, const void *src, float s);
-R2cBossMgr *sub_00100110(void);
-R2cBossMgr *sub_000FBAF0(void);
-R2cBossMgr *sub_000FE3D0(void);
 void      sub_000C75E0(R2cModel *m);
 int       sub_0001BC40(R2cModel *m);
 
@@ -168,10 +162,7 @@ extern void *aec_ctx42C8E4;            /* 0x0042C8E4 */
 R2cBossObj *sub_000F5F80(const R2cKind *k);
 void  sub_000F62F0(R2cBossObj *e, int step);
 void  sub_000F62C0(R2cBossObj *e, int step);
-int   sub_000F5D00(const R2cKind *k);
-void  sub_001AEED0(R2cAnimTarget *t, int a);
 void  sub_000FB580(const R2cKind *k, int a);
-int   sub_000F3B50(R2cModel *m);
 R2cBossObj *sub_000FC4D0(void);
 void  sub_000FBA00(int a);
 void  sub_000F3AA0(R2cBossObj *b);
@@ -183,7 +174,6 @@ void  sub_000EE270(void *comp);
 void  sub_000FBD50(void);
 void  sub_000E3BA0(R2cGame *g);
 void  sub_00033B30(R2cModel *m);
-void  sub_0001EB80(R2cModel *m);
 void  sub_0001D910(R2cModel *m, void *comp);
 void  sub_000FE2E0(int a);
 void  sub_00100020(int a);
@@ -191,11 +181,10 @@ R2cKind *sub_000FC4B0(void);
 void  sub_000FE330(int a);
 void  sub_00100070(int a);
 void  sub_000FBA50(int a);
-float sub_000F7B80(void *a, uint32_t *pos, int c);
 
 void  r2c_BossAnimIfActive(int anim);                 /* 0x000F4E10 */
 float r2c_BossStepSpeed(const R2cKind *k);            /* 0x000F7AE0 */
-float r2c_DistTo(void *a, R2cKind *b, int c);         /* 0x000F7C40 */
+float r2c_DistTo(void *a, R2cKind *b, float c);       /* 0x000F7C40 */
 void  r2c_SnapToHelper(R2cKind *k);                   /* 0x000F9430 */
 void  r2c_FormCue20(const R2cKind *k);                /* 0x000F9A10 */
 void  r2c_StepA(const R2cKind *k);                    /* 0x000FA740 */
@@ -261,7 +250,6 @@ typedef struct R2cKeyObj { uint8_t unk00[4]; int32_t kind04; int32_t v08; } R2cK
 extern R2cScr   *b10_scr;              /* 0x003F6130 */
 extern R2cObj90 *b10_obj3F6134;        /* 0x003F6134 */
 extern void     *r2c_fx3F613C[5];      /* 0x003F613C effect handles */
-void  sub_00033A40(void *h);
 void  sub_00101280(int a);
 void  sub_00105D80(void);
 void  sub_001061B0(void);
@@ -274,11 +262,11 @@ int   r2c_ScrDetach(R2cModel *m);                     /* 0x00106020 */
 void  r2c_Obj90Create(void);                          /* 0x00106170 */
 R2cModel *r2c_Obj90Attach(R2cModel *m);               /* 0x001062C0 */
 void  r2c_ReleaseKids(R2cKeyObj *o);                  /* 0x00106550 */
-void  r2c_PushEffect(void *obj, int kind);            /* 0x00109050 */
+void *r2c_PushEffect(void *obj, int kind);            /* 0x00109050 */
 
 /* ---------------------------------------------------------------- r2c_7 / r2c_8 */
 /* Actor description record at +0x278: flag word at +4. */
-typedef struct R2cDesc { uint8_t unk00[4]; uint32_t flags4; uint8_t unk08[4]; int32_t vC; uint8_t unk10[4]; int32_t v14; } R2cDesc;
+typedef struct R2cDesc { uint8_t unk00[4]; uint32_t flags4; uint8_t unk08[4]; float vC; uint8_t unk10[4]; float v14; } R2cDesc;
 /* Enemy actor fields used by the hit/target helpers. */
 typedef struct R2cActor {
     uint8_t  unk000[0x20];
@@ -288,9 +276,9 @@ typedef struct R2cActor {
     uint8_t  unk034[0x58 - 0x34];
     int32_t  v58;              /* +0x058 */
     uint8_t  unk05C[4];
-    int32_t  v60;              /* +0x060 */
+    float    v60;              /* +0x060 */
     uint8_t  unk064[4];
-    int32_t  v68;              /* +0x068 */
+    float    v68;              /* +0x068 */
     uint8_t  unk06C[0xC8 - 0x6C];
     struct R2cActor *pC8;      /* +0x0C8 */
     uint8_t  unk0CC[0xF8 - 0xCC];
@@ -309,30 +297,23 @@ typedef struct R2cHandler {
 void  sub_0001D700(void *obj);
 void  sub_000F3D10(void *obj, void *c, int a);
 void  sub_000F3B70(void *obj, int a);
-int   sub_001AEE90(R2cAnimTarget *t, int a);
 void  sub_000F3B30(void *obj, int a);
 void  sub_0010FD50(R2cActor *o);                      /* o=EAX */
 int   sub_000EE5F0(void *obj);
 void  sub_00025D50(int a, int b);
-int   sub_00145940(void *a, int b, int c, int d, int e);
-void  sub_001459D0(void *a, int b, int c, int d);
-void  sub_0013DF90(void *key, void *p);
-int   sub_000833E0(R2cPart *p);
 void  sub_00117580(R2cActor *o, int a, void *b);      /* b=EDI */
-void *sub_000EDBE0(int kind, int sub);
 void *r2b_PickTargetB(const R2cCmd *c, void *ctx, void *self); /* 0x0011EE30 c=EAX ctx=ECX */
 void  sub_0011F2B0(void *obj, int k, void *a);        /* obj=EDI k=EBX */
 int   r2_PlayerOutOfReach(void *obj, void *self);     /* 0x00120820 obj=EAX self=ESI */
 int   r2_AnyFlag2000(int kind, void *self);           /* 0x0011FAC0 kind=EAX self=EDI */
 int   r3b_Any135780(int kind);                        /* 0x00135780 kind=EAX */
-void  sub_00137F50(void *key, void *p);
-void  sub_000ED780(void *obj);
+void  sub_00137F50(void *key, int mode);   /* mode compared with 3, jump-table index */
 
 int   r2c_DropTarget(void *obj, int flag);            /* 0x0010A750 */
 void  r2c_HitFlash(R2cActor *o, R2cActor *src);       /* 0x00110050 */
 int   r2c_RunHandler(void *obj, int a);               /* 0x00112AA0 */
 void  r2c_DescTrigger(void *a, R2cActor *b, const R2cCmd *c); /* 0x00114A90 */
-void  r2c_NotifyKind2(void *p);                       /* 0x001154A0 p=ESI */
+void  r2c_NotifyKind2(int p);                        /* 0x001154A0 p=ESI */
 void  r2c_AnimDoneStep(R2cActor *o, void *b);         /* 0x001183E0 */
 void  r2c_AnimDoneStep23(R2cActor *o, R2cActor *b);   /* 0x00119970 */
 int   r2c_PartnerFree(const R2cKind *k, R2cActor *z); /* 0x0011DCF0 */
@@ -345,7 +326,7 @@ void  r2c_AnimDoneStep1(R2cActor *o, void *a);        /* 0x0012C7C0 */
 void  r2c_Step1(void *obj, void *a);                  /* 0x0012CEE0 */
 int   r2c_NoFlag2000(void *self);                     /* 0x0012D2C0 */
 int   r2c_Any0or14(void);                             /* 0x0012DD40 */
-void  r2c_NotifyKind2B(void *p);                      /* 0x0012E5E0 p=ESI */
+void  r2c_NotifyKind2B(int mode);                     /* 0x0012E5E0 mode=ESI */
 
 #endif
 /* Area r2c: more functions in 0x000D0000..0x00130000 (stack and register
@@ -382,8 +363,8 @@ typedef struct R2cFx {
     uint8_t  unk10[0x24 - 0x10];
     int32_t  v24;              /* +0x24 */
     uint8_t  unk28[4];
-    int32_t  a2C;              /* +0x2C */
-    int32_t  a30;              /* +0x30 */
+    float    a2C;              /* +0x2C */
+    float    a30;              /* +0x30 */
     uint8_t  unk34[0xC4 - 0x34];
     int32_t  vC4;              /* +0x0C4 */
     uint8_t  unkC8[0x144 - 0xC8];
@@ -418,9 +399,9 @@ typedef struct R2cHolder { uint8_t unk000[0x3B0]; int32_t parts3B0[32]; } R2cHol
 typedef struct R2cCmd {
     uint8_t  unk00[0x0C];
     int32_t  vC;               /* +0x0C */
-    int32_t  v10;              /* +0x10 */
-    int32_t  v14;              /* +0x14 */
-    int32_t  v18;              /* +0x18 */
+    union { int32_t v10; float f10; };  /* +0x10 (int or float by command) */
+    union { int32_t v14; float f14; };  /* +0x14 */
+    union { int32_t v18; float f18; };  /* +0x18 */
     int32_t  v1C;              /* +0x1C */
 } R2cCmd;
 
@@ -436,8 +417,7 @@ extern R2cNode *r2_tail3F60E4;         /* 0x003F60E4 */
 int  sub_000E3380(void);
 void sub_000E63A0(int a);
 void sub_000E8920(int a, int b);
-void sub_00048AF0(int id);
-int  r2_SlotAlloc(int a, int b);                      /* 0x000E8D00 */
+int  r2_SlotAlloc(float a, float b);                      /* 0x000E8D00 */
 int  sub_000E3F20(int a, int b, int c);
 
 void r2c_GaugeFullCheck(R2cGauge *g);                 /* 0x000E9C60 */
@@ -471,11 +451,6 @@ typedef struct R2cState {
     int32_t  v100;             /* +0x100 */
     int32_t  v104;             /* +0x104 */
 } R2cState;
-void *sub_0001D960(void *obj, int kind);              /* component lookup */
-void *sub_0001D0F0(void *obj, int kind);
-int   sub_000494D0(int id, void *pos, int c);
-void *sub_00036750(void *obj, int b);
-void  sub_00033A70(void *h);
 void  sub_00048250(int h);
 
 int  r2c_CompHit(void *obj, void *target);            /* 0x000EE010 */
@@ -569,18 +544,11 @@ typedef struct R2cBoss {
     uint8_t  unk1C8[0x206 - 0x1C8];
     int16_t  w206;             /* +0x206 */
 } R2cBoss;
-void      sub_000832D0(R2cPart *part, int anim);
 R2cModel *sub_0001D2B0(R2cModel *m, int idx);
 void      sub_00192380(int side, int anim);
-R2cGame  *sub_000E0770(void);
 void      sub_000E0A80(R2cGame *g, int a, int b, int c, int d);
 void      sub_000E51F0(R2cGame *g);
 int       sub_000F30E0(int kind);
-void     *sub_00053AB0(int size, int a, int b);
-void      sub_001ADB60(void *dst, const void *src, float s);
-R2cBossMgr *sub_00100110(void);
-R2cBossMgr *sub_000FBAF0(void);
-R2cBossMgr *sub_000FE3D0(void);
 void      sub_000C75E0(R2cModel *m);
 int       sub_0001BC40(R2cModel *m);
 
@@ -640,10 +608,7 @@ extern void *aec_ctx42C8E4;            /* 0x0042C8E4 */
 R2cBossObj *sub_000F5F80(const R2cKind *k);
 void  sub_000F62F0(R2cBossObj *e, int step);
 void  sub_000F62C0(R2cBossObj *e, int step);
-int   sub_000F5D00(const R2cKind *k);
-void  sub_001AEED0(R2cAnimTarget *t, int a);
 void  sub_000FB580(const R2cKind *k, int a);
-int   sub_000F3B50(R2cModel *m);
 R2cBossObj *sub_000FC4D0(void);
 void  sub_000FBA00(int a);
 void  sub_000F3AA0(R2cBossObj *b);
@@ -655,7 +620,6 @@ void  sub_000EE270(void *comp);
 void  sub_000FBD50(void);
 void  sub_000E3BA0(R2cGame *g);
 void  sub_00033B30(R2cModel *m);
-void  sub_0001EB80(R2cModel *m);
 void  sub_0001D910(R2cModel *m, void *comp);
 void  sub_000FE2E0(int a);
 void  sub_00100020(int a);
@@ -663,11 +627,10 @@ R2cKind *sub_000FC4B0(void);
 void  sub_000FE330(int a);
 void  sub_00100070(int a);
 void  sub_000FBA50(int a);
-float sub_000F7B80(void *a, uint32_t *pos, int c);
 
 void  r2c_BossAnimIfActive(int anim);                 /* 0x000F4E10 */
 float r2c_BossStepSpeed(const R2cKind *k);            /* 0x000F7AE0 */
-float r2c_DistTo(void *a, R2cKind *b, int c);         /* 0x000F7C40 */
+float r2c_DistTo(void *a, R2cKind *b, float c);       /* 0x000F7C40 */
 void  r2c_SnapToHelper(R2cKind *k);                   /* 0x000F9430 */
 void  r2c_FormCue20(const R2cKind *k);                /* 0x000F9A10 */
 void  r2c_StepA(const R2cKind *k);                    /* 0x000FA740 */
@@ -733,7 +696,6 @@ typedef struct R2cKeyObj { uint8_t unk00[4]; int32_t kind04; int32_t v08; } R2cK
 extern R2cScr   *b10_scr;              /* 0x003F6130 */
 extern R2cObj90 *b10_obj3F6134;        /* 0x003F6134 */
 extern void     *r2c_fx3F613C[5];      /* 0x003F613C effect handles */
-void  sub_00033A40(void *h);
 void  sub_00101280(int a);
 void  sub_00105D80(void);
 void  sub_001061B0(void);
@@ -746,11 +708,11 @@ int   r2c_ScrDetach(R2cModel *m);                     /* 0x00106020 */
 void  r2c_Obj90Create(void);                          /* 0x00106170 */
 R2cModel *r2c_Obj90Attach(R2cModel *m);               /* 0x001062C0 */
 void  r2c_ReleaseKids(R2cKeyObj *o);                  /* 0x00106550 */
-void  r2c_PushEffect(void *obj, int kind);            /* 0x00109050 */
+void *r2c_PushEffect(void *obj, int kind);            /* 0x00109050 */
 
 /* ---------------------------------------------------------------- r2c_7 / r2c_8 */
 /* Actor description record at +0x278: flag word at +4. */
-typedef struct R2cDesc { uint8_t unk00[4]; uint32_t flags4; uint8_t unk08[4]; int32_t vC; uint8_t unk10[4]; int32_t v14; } R2cDesc;
+typedef struct R2cDesc { uint8_t unk00[4]; uint32_t flags4; uint8_t unk08[4]; float vC; uint8_t unk10[4]; float v14; } R2cDesc;
 /* Enemy actor fields used by the hit/target helpers. */
 typedef struct R2cActor {
     uint8_t  unk000[0x20];
@@ -760,9 +722,9 @@ typedef struct R2cActor {
     uint8_t  unk034[0x58 - 0x34];
     int32_t  v58;              /* +0x058 */
     uint8_t  unk05C[4];
-    int32_t  v60;              /* +0x060 */
+    float    v60;              /* +0x060 */
     uint8_t  unk064[4];
-    int32_t  v68;              /* +0x068 */
+    float    v68;              /* +0x068 */
     uint8_t  unk06C[0xC8 - 0x6C];
     struct R2cActor *pC8;      /* +0x0C8 */
     uint8_t  unk0CC[0xF8 - 0xCC];
@@ -781,30 +743,23 @@ typedef struct R2cHandler {
 void  sub_0001D700(void *obj);
 void  sub_000F3D10(void *obj, void *c, int a);
 void  sub_000F3B70(void *obj, int a);
-int   sub_001AEE90(R2cAnimTarget *t, int a);
 void  sub_000F3B30(void *obj, int a);
 void  sub_0010FD50(R2cActor *o);                      /* o=EAX */
 int   sub_000EE5F0(void *obj);
 void  sub_00025D50(int a, int b);
-int   sub_00145940(void *a, int b, int c, int d, int e);
-void  sub_001459D0(void *a, int b, int c, int d);
-void  sub_0013DF90(void *key, void *p);
-int   sub_000833E0(R2cPart *p);
 void  sub_00117580(R2cActor *o, int a, void *b);      /* b=EDI */
-void *sub_000EDBE0(int kind, int sub);
 void *r2b_PickTargetB(const R2cCmd *c, void *ctx, void *self); /* 0x0011EE30 c=EAX ctx=ECX */
 void  sub_0011F2B0(void *obj, int k, void *a);        /* obj=EDI k=EBX */
 int   r2_PlayerOutOfReach(void *obj, void *self);     /* 0x00120820 obj=EAX self=ESI */
 int   r2_AnyFlag2000(int kind, void *self);           /* 0x0011FAC0 kind=EAX self=EDI */
 int   r3b_Any135780(int kind);                        /* 0x00135780 kind=EAX */
-void  sub_00137F50(void *key, void *p);
-void  sub_000ED780(void *obj);
+void  sub_00137F50(void *key, int mode);   /* mode compared with 3, jump-table index */
 
 int   r2c_DropTarget(void *obj, int flag);            /* 0x0010A750 */
 void  r2c_HitFlash(R2cActor *o, R2cActor *src);       /* 0x00110050 */
 int   r2c_RunHandler(void *obj, int a);               /* 0x00112AA0 */
 void  r2c_DescTrigger(void *a, R2cActor *b, const R2cCmd *c); /* 0x00114A90 */
-void  r2c_NotifyKind2(void *p);                       /* 0x001154A0 p=ESI */
+void  r2c_NotifyKind2(int p);                        /* 0x001154A0 p=ESI */
 void  r2c_AnimDoneStep(R2cActor *o, void *b);         /* 0x001183E0 */
 void  r2c_AnimDoneStep23(R2cActor *o, R2cActor *b);   /* 0x00119970 */
 int   r2c_PartnerFree(const R2cKind *k, R2cActor *z); /* 0x0011DCF0 */
@@ -817,6 +772,6 @@ void  r2c_AnimDoneStep1(R2cActor *o, void *a);        /* 0x0012C7C0 */
 void  r2c_Step1(void *obj, void *a);                  /* 0x0012CEE0 */
 int   r2c_NoFlag2000(void *self);                     /* 0x0012D2C0 */
 int   r2c_Any0or14(void);                             /* 0x0012DD40 */
-void  r2c_NotifyKind2B(void *p);                      /* 0x0012E5E0 p=ESI */
+void  r2c_NotifyKind2B(int mode);                     /* 0x0012E5E0 mode=ESI */
 
 #endif

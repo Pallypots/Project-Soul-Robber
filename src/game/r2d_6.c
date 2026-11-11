@@ -13,7 +13,7 @@ int r2d_StageFxAt(int a, int b, int kind, int id, int c)
         o = sub_0001D080(r2d_ctx->list1E8, kind, id);
     if (!o)
         return -1;
-    return sub_000494D0(fx, sub_0001D0F0(o, c) + 0x70, 0);
+    return sub_000494D0(fx, (uint8_t *)sub_0001D0F0(o, c) + 0x70, 0);
 }
 
 /* 0x000E3FA0: mark every track (1, 2, 5, 6, 7) as played up to the current
@@ -50,7 +50,7 @@ void r2d_StageClearModel(int kind, int id)
 /* 0x000E40F0: apply 0x1AEDD0(v) to the model of each of the n parts of the
    object found by (kind, id) (kind 1 = the player; kind 3 has
    0xF3140(id) parts). */
-void r2d_StageModelSet(int kind, int id, int v)
+void r2d_StageModelSet(int kind, int id, float v)
 {
     int n = 1;
     R2dRec150 *o;

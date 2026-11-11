@@ -7,7 +7,7 @@
    acts on the selected node and button 0x10 descends into its children;
    message 2 draws one row per sibling (type name and child count); other
    messages go to the default handler. */
-int r1h_TreeMenuProc(int ctx, R1hTreeMenu *m, int msg)
+void *r1h_TreeMenuProc(void *ctx, R1hTreeMenu *m, int msg)
 {
     R1hNode *cur, *first, *p;
     int x, y, i, n;

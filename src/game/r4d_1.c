@@ -1,8 +1,8 @@
 /* Area r4d: sound voice and cue helpers around 0x00199980-0x00199D88 (r4d_1). Names inferred. */
 #include "r4d.h"
 
-/* 0x00199980: per-tick voice step: state 5 pauses the channel (state 7), state 7 counts. Stack arg. */
-void r4d_VoiceTick(int i)
+/* 0x00199980: per-tick voice step: state 5 pauses the channel (state 7), state 7 counts. Stack arg (callers push a 2nd one that is never read). */
+void r4d_VoiceTick(int i, int unused)
 {
     R4cVoice *v;
     if (i < 0 || i >= 16)
@@ -22,8 +22,9 @@ void r4d_VoiceTick(int i)
     }
 }
 
-/* 0x00199A40: stop a busy voice and release it. Stack arg. */
-void r4d_VoiceStop(int i)
+/* 0x00199A40: stop a busy voice and release it. Stack arg (callers push a
+   2nd one that is never read). */
+void r4d_VoiceStop(int i, int unused)
 {
     R4cVoice *v;
     if (i < 0 || i >= 16)
@@ -50,8 +51,9 @@ void r4d_VoiceSetVolume(int i, int vol)
     }
 }
 
-/* 0x00199B20: store a voice volume without applying it. Stack args (i vol). */
-void r4d_VoiceStoreVolume(int i, int vol)
+/* 0x00199B20: store a voice volume without applying it. Stack args (i vol;
+   callers push a 3rd one, the pan, that is never read). */
+void r4d_VoiceStoreVolume(int i, int vol, int unused)
 {
     R4cVoice *v;
     if (i < 0 || i >= 16)

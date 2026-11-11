@@ -38,7 +38,7 @@ void a60_Release72FD0(void)
 }
 
 /* 0x00074700: phase dispatch (0..2); otherwise return the argument. */
-int a60_Dispatch74700(int a)
+void *a60_Dispatch74700(void *a)
 {
     switch (a60_phase428F81) {
     case 0: return sub_00073030(a);

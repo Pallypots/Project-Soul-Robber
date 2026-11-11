@@ -1,6 +1,7 @@
 #ifndef R3_H
 #define R3_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r3: register-argument functions in 0x00130000..0x00190000. All names inferred.
    Register mappings of callees are in the comments and in config/function_states_r3.csv. */
 
@@ -67,7 +68,7 @@ typedef struct R3Obj {
     uint32_t flags0C;        /* +0x00C */
     uint32_t flags10;        /* +0x010 */
     uint8_t  unk014[0x30 - 0x14];
-    int32_t  anim30;         /* +0x030 animation handle */
+    void    *anim30;         /* +0x030 animation handle */
     uint8_t *p34;            /* +0x034 */
     uint8_t  unk038[0x58 - 0x38];
     float    f58;            /* +0x058 */
@@ -78,25 +79,20 @@ typedef struct R3Obj {
     uint8_t  unk0A0[0x128 - 0xA0];
     uint32_t flags128;       /* +0x128 */
     uint8_t  unk12C[0x13C - 0x12C];
-    int32_t  i13C;           /* +0x13C */
+    void    *i13C;           /* +0x13C */
 } R3Obj;
 
 /* Callees (stack arguments unless stated). */
-int  sub_000833E0(int anim);                         /* animation finished */
 void sub_001134B0(R3Actor *act);
 void sub_00113AA0(R3Obj *obj, R3Actor *act);
 void sub_00194D30(void *snd, int a);
 void sub_0001D720(R3Obj *obj);
 void sub_00048250(int h);
-void sub_0005BE30(int a);
-void sub_00033A70(void *p);
-void sub_00113040(R3Obj *obj, R3Actor *act, int state);
 void sub_0012E5E0(int mode);                         /* mode=ESI */
 int  sub_0012E630(R3Actor *act, R3Obj *obj);         /* act=EAX obj=stack */
 int  sub_0012DC90(int table, R3Obj *obj, R3Actor *act);   /* table=EAX obj=EBX act=EDI */
 
 void *sub_000EDC20(int a, int b);                    /* object iterator */
-void *sub_0001D960(void *o, int kind);               /* component lookup */
 int  sub_00145780(R3Obj *obj, float t);              /* animation passed time t */
 void sub_00113480(R3Actor *act, int ev);
 float sub_001B2770(const float *a, const float *b);  /* distance */
@@ -109,9 +105,7 @@ typedef struct R3Emit { uint8_t unk00[0x10]; float f10, f14, f18, f1C; } R3Emit;
 R3Emit *sub_00113400(R3Actor *act, int a);
 extern float r3_frameUnits;                          /* 0x0042C858 */
 void sub_000C56B0(R3Obj *obj);
-int  sub_001456E0(R3Obj *obj, R3Actor *act, int a, int b);
 void sub_0001D4E0(R3Obj *obj);
-int  sub_000494D0(int id, const float *pos, int c);   /* returns the effect handle (0x0019B690 result) */
 void sub_000C62A0(R3Obj *obj);
 void sub_00025D50(int a, int b);
 
@@ -130,8 +124,6 @@ typedef struct R3SndSlot { int16_t mode00; uint16_t unk02; void *p04; void *h08;
 typedef struct R3SndOwner { uint8_t unk00[0x20]; uint32_t flags20; uint8_t unk24[0x74 - 0x24]; R3SndSlot *slot74; } R3SndOwner;
 typedef struct R3Rec4 { int32_t a; float f4; int32_t c; int32_t d; } R3Rec4;
 void  sub_0018E7C0(void *p);
-float sub_00082D70(void *p);
-void *sub_00036750(void *o, int b);
 void  sub_001AD9F0(float *dst, const float *a, const float *b);
 float sub_001B27C0(const float *a, const float *b);
 
@@ -154,13 +146,9 @@ typedef struct R3Cond2 { int32_t active; int32_t kind; uint8_t unk08[0x10]; } R3
 typedef int (*R3Cond2Fn)(void *a, void *b, R3Cond2 *c);
 extern R3Cond2  *r3_condLists155[];                  /* 0x0031EF60 */
 extern R3Cond2Fn r3_condFns155[];                    /* 0x0031EFD8 */
-int   sub_001671D0(R3Model54 *m, R3Act74 *a, int state);
-void *sub_000ED630(int a, int b, int c, int d, const float *pos);
 void  sub_0018C450(void *h, R3Ent50 *e, int a, int b);
 void  sub_000C4DF0(void *o, int a, float b, int c, float d, float e, float f, const float *pos, float *v0, float *v1);
-int   sub_000C46A0(float a, float b, float c, const float *pos, float *v0, float *v1);
-void  sub_000C4D30(void *o, int a, float b, int c);
-void  sub_000ED780(void *p);
+int   sub_000C46A0(void);   /* returns 0x50; reads no arguments */
 void  sub_0001D030(void *a, void *b);
 void  sub_00020170(void *p);
 
@@ -184,12 +172,7 @@ extern R3Cond3Fn r3_condFns186[10];                  /* 0x0032C2C0 */
 extern float r3_timer3F8410;                         /* 0x003F8410 */
 extern float r3_frameDelta;                          /* 0x0042C85C */
 void sub_00025C10(int a, int b);
-void sub_00049700(int id, int r, int g, int b, const float *pos, int a, float size, int c);
-void sub_00113190(R3Obj *obj, R3Actor *act, int a);
 void sub_0018E700(void *h, int a);
-void sub_001AD940(float *m);
-void sub_001AD8E0(float *d, const float *s, float a);
-void sub_001AD9B0(float *dst, const float *a, const float *b);
 int  r3_Count135E10(void);                           /* 0x00135E10 */
 
 /* r3_6 */
@@ -197,7 +180,6 @@ void sub_00186470(R3Obj *obj, R3Actor *act, int state);   /* obj=EBX act=EDI sta
 void sub_001ADBA0(float *d, const float *s, float k);
 void sub_0018D680(R3Spin *b, void *p, float k);
 void sub_00189DE0(void *h, int a);
-void sub_000F5D40(float *d, const float *s);
 void r3_Reset18D9E0(R3Act74 *a, R3Spin *b);                /* 0x0018D9E0 a=EAX b=EDI */
 void r3_Sound18E700(void *h, int on);                      /* 0x0018E700 */
 
@@ -258,13 +240,10 @@ extern R3Rec17E r3_recs3FDED8[2];                    /* 0x003FDED8 */
 extern R3Obj2  *r3_obj3FD7C4;                        /* 0x003FD7C4 */
 extern float    r3_fps42C964;                        /* 0x0042C964 */
 extern const float r3_vec32B6A8[4];                  /* 0x0032B6A8 */
-int   sub_00083120(R3AnimH *h, int anim);
-void  sub_000832D0(R3AnimH *h, int anim);
 void  sub_0001D7F0(void *p, int anim, int c);
 void  sub_00172B80(R3Obj2 *a, R3Ctl *b, int on);     /* a=EAX b=EBX on=stack */
 int   sub_000CF6B0(void);
 void  sub_000EE760(void *o, float v);
-void  sub_0001EB80(R3Obj2 *a);
 void  sub_0001E9B0(R3Ctx42C8E4 *c, R3Obj2 *a, int x, int y, int z);
 void  r3_PlayAnim172C90(R3Ctl *b, R3Obj2 *a, int anim);   /* 0x00172C90 b=EAX a=ESI anim=EDI */
 void  r3_Pulse17C5D0(R3Pulse *s);                         /* 0x0017C5D0 s=EAX */

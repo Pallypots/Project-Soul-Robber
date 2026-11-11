@@ -23,7 +23,7 @@ R1Ent20 *r1_EntFind(R1Ent20 *prev, int a, int b)
     int i;
     p = prev ? prev + 1 : r1_ents3E2550;
     sub_00052EC0(&a, a, &b, b);
-    for (i = p - r1_ents3E2550; i < 17; i++)
+    for (i = (int)(p - r1_ents3E2550); i < 17; i++)
         if (p->used && p->a == a && (b == -1 || p->b == b)) return p;
     return 0;
 }

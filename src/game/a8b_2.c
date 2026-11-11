@@ -49,7 +49,7 @@ void a8b_ClearLink(A8bObj *o)
     if (o->link08) { a8b_RefDec(o->link08); o->link08 = 0; }
 }
 /* 0x0008BB90: run 0x8B860 with callback 0x8B2F0. */
-int a8b_Run8B860(int a, int b, int c) { return sub_0008B860(a, b, c, sub_0008B2F0); }
+int a8b_Run8B860(void *a, void *b, void *c) { return sub_0008B860(a, b, c, sub_0008B2F0); }
 /* 0x0008BBC0: if work flag 0x10 is set, run 0x8ECA0 on the active target. */
 int a8b_TargetAction2(A8bObj *o)
 {

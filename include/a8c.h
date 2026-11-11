@@ -1,6 +1,7 @@
 #ifndef A8C_H
 #define A8C_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area a8c: demo (cutscene) system helpers, third pass over 0x80000-0x8FFFF.
    Structures are named by offset; all names inferred. */
@@ -242,34 +243,22 @@ extern int32_t  a30_g41316C, a30_g413170;
 extern A8cDescGetter a8b_descGetters[];
 
 /* external callees */
-void  sub_00081B10(int32_t *ctx, A8cChainNode *n);
+int sub_00081B10(int32_t *ctx, A8cChainNode *n);
 void  sub_00082200(void *root, const float *from, const float *to, void *list);
-float sub_001AD9D0(float x);
-void  sub_001A3F50(float x);
 void  sub_001B1FC0(void);
 void  sub_001B2490(void *p);
 void  sub_001B1FE0(void);
-int   sub_001BA7F0(int a);
-void  a8c_Release102FA0(int h);
-int   sub_001BA7C0(int a);
-A8cVoice *sub_001B9650(int a);
+void  a8c_Release102FA0();
 void  sub_0003D860(void *list);
-void  sub_00053880(void *p);
-void *sub_00057E90(void);
-int   sub_000862A0(void);
-int   sub_00086460(void);
 void  sub_0008C450(A8cNode *n, A8cNode *o);
 A8cNode *sub_0007F300(A8cNode *n);
-A8cNode *sub_0008C900(A8cNode *n, int a);
 
-void *a5b_AllocCur(int size, int a, int tag);
+void *a5b_AllocCur(int size, const void *a, int tag);
 int   sub_00086230(int a, int b, int c);
-void  sub_001B7100(void *p, int a);
-void  sub_001B72E0(void *p, int a);
-void  sub_001B7300(void *p, int a);
+void  sub_001B72E0(void *p, void *a);
+void  sub_001B7300(void *p, void *a);
 void  sub_001A6820(A8cVoice *v);
 void  sub_001A6620(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7);
-void *sub_00053820(int pool, int size, int a, int b);
 int   sub_000480F0(int h);
 void  sub_00047B70(int h);
 int   sub_00085590(A8cDemo *d);
@@ -288,8 +277,7 @@ A8cObj *sub_0008B980(int a, int b);
 void *sub_0008B780(void *list, A8cObj *o);
 A8cObj *sub_0008AFA0(A8cObj *o);
 void  sub_0008E1C0(A8cObj *t, float a, float b, float c, float d);
-void  sub_0008B700(A8cObj *a, A8cObj *b);
-uint8_t *sub_00033DC0(void *p, int id);
+int sub_0008B700(A8cObj *a, A8cObj *b);
 void  sub_00033DA0(void *p, int v);
 void  sub_0008B3E0(A8cWork *w);
 

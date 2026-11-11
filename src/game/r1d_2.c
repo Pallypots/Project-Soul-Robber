@@ -34,7 +34,7 @@ int r1d_RectSend(R1dRect *r)
 /* 0x00017AE0: apply the current key's element list of a track, last
    element first, with 0x00015150. Returns a.
    calls 0x00015150 with EAX=elem stack=(a, t) */
-int r1d_TrackApplyA(int a, R1dTrack *t)
+void *r1d_TrackApplyA(void *a, R1dTrack *t)
 {
     R1dAnimBank *b;
     int32_t *list;
@@ -61,7 +61,7 @@ int r1d_TrackApplyA(int a, R1dTrack *t)
 
 /* 0x00017B70: as 0x00017AE0 with 0x00015E10.
    calls 0x00015E10 with EAX=elem stack=(a, t) */
-int r1d_TrackApplyB(int a, R1dTrack *t)
+void *r1d_TrackApplyB(void *a, R1dTrack *t)
 {
     R1dAnimBank *b;
     int32_t *list;
@@ -88,7 +88,7 @@ int r1d_TrackApplyB(int a, R1dTrack *t)
 
 /* 0x00017C00: as 0x00017AE0 with 0x00016B80.
    calls 0x00016B80 with EAX=elem stack=(a, t) */
-int r1d_TrackApplyC(int a, R1dTrack *t)
+void *r1d_TrackApplyC(void *a, R1dTrack *t)
 {
     R1dAnimBank *b;
     int32_t *list;
@@ -115,7 +115,7 @@ int r1d_TrackApplyC(int a, R1dTrack *t)
 
 /* 0x00017C90: as 0x00017AE0 with 0x00017650.
    calls 0x00017650 with ESI=t EDI=elem stack=(a) */
-int r1d_TrackApplyD(int a, R1dTrack *t)
+void *r1d_TrackApplyD(void *a, R1dTrack *t)
 {
     R1dAnimBank *b;
     int32_t *list;
@@ -142,7 +142,7 @@ int r1d_TrackApplyD(int a, R1dTrack *t)
 
 /* 0x00018580: set or clear the menu flags for line i, then print message
    `id` of the line's table into the text block. */
-void r1d_MenuLine(int i, int id, int a, int b, float c)
+void r1d_MenuLine(int i, int id, int a, float b, float c)
 {
     switch (i) {
     case 0: case 1: case 2: case 3:

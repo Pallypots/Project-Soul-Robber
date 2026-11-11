@@ -32,8 +32,8 @@ void r4d_CueStartAll(int cue)
     }
 }
 
-/* 0x0019A230: count down a paused stream's pause depth and restart it at zero. Stack arg (j). */
-void r4d_StreamResume(int j)
+/* 0x0019A230: count down a paused stream's pause depth and restart it at zero. Stack arg (j; callers push a 2nd one that is never read). */
+void r4d_StreamResume(int j, int unused)
 {
     R4dStream *s;
     if (j < 0 || j >= 45)

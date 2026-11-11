@@ -2,6 +2,7 @@
 #ifndef AFC_H
 #define AFC_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 typedef struct AfcVec4 { float x, y, z, w; } AfcVec4;
 
@@ -133,8 +134,6 @@ extern void     *ae0_ptr3F6100;     /* 0x003F6100 */
 extern int32_t   afc_g3F6104;       /* 0x003F6104 */
 extern int32_t   afc_g3F6108;       /* 0x003F6108 */
 
-int      sub_001AEE50(void *obj, int b);
-void     sub_001AEDD0(void *a, int b);
 int      sub_000F3140(int kind);
 void     sub_00048250(int h);
 void     sub_00180A60(void);
@@ -142,15 +141,9 @@ void     sub_00181DA0(void);
 void     sub_001827A0(void);
 void     sub_0017D6A0(void);
 int      sub_0001BC40(void *o);
-void     sub_001ADB60(AfcVec4 *d, AfcVec4 *s, float k);
 void     sub_001AD9F0(AfcVec4 *d, void *a, void *b);
 void     sub_001AD7E0(AfcVec4 *d, AfcVec4 *s);
-float    sub_001A3F50(float x);
-AfcActor *sub_00100110(AfcActor *o);
-AfcActor *sub_000FBAF0(AfcActor *o);
-AfcActor *sub_000FE3D0(AfcActor *o);
 void     sub_000F3D10(AfcPart *p, AfcActor *o, int a);
-void     sub_000832D0(void *o, int anim);
 int      sub_001C7EE1(void);
 void     sub_000F62C0(AfcActor *o, int a);
 void     sub_000ED560(int a);
@@ -182,15 +175,11 @@ typedef struct AfcBossComp5 {
     uint32_t v60;              /* +0x60 */
 } AfcBossComp5;
 
-void    *sub_0001D960(void *o, int kind);
 int      sub_0019BE60(int mask);
-void     sub_001AD940(AfcVec4 *m);
 void     sub_001ADBA0(AfcVec4 *d, AfcVec4 *s, float k);
 void     sub_001AD8B0(AfcVec4 *d, AfcVec4 *s, float a);
-void     sub_001AD8E0(AfcVec4 *d, AfcVec4 *s, float a);
 void     sub_001AD910(AfcVec4 *d, AfcVec4 *s, float a);
 void     afc_VecCopy(AfcVec4 *d, AfcVec4 *s);   /* 0x000F5D40 */
-void     sub_000ED630(int a, int b, int c, int d, int e);
 AfcActor *afc_DispatchByType(AfcActor *o);
 void     afc_SetBothAnims(AfcActor *o, int anim);
 int      afc_NodeActive(AfcActor *o);
@@ -227,8 +216,6 @@ extern AfcSingleton *afc_helper;    /* 0x003F611C */
 extern AfcVec4       afc_vec318E18; /* 0x00318E18 */
 
 int      sub_000F30E0(int kind);
-void    *sub_00053AB0(int size, int a, int b);
-void     sub_00053880(void *p);
 void     sub_000F69E0(void *p);
 void     sub_000FB580(AfcActor *o, int a);
 float    afc_VecLengthXZ(AfcVec4 *v);

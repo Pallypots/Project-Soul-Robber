@@ -14,7 +14,7 @@
 
 /* 0x0003FF60: release the stage's textures for x (by stage mode 0/1/2),
    run commands 0xBA and 0xA0 + video mode, then release the stage heap. */
-void rtc_StageTexturesRelease(int x)
+void rtc_StageTexturesRelease(void *x)
 {
     int i;
     r1c_ClearWork42CE80();

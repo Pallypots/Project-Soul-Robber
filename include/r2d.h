@@ -2,6 +2,7 @@
 #ifndef R2D_H
 #define R2D_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* ---------------------------------------------------------------- shared */
 /* Player character record at 0x0041FEC0 (the same object oogie.h calls
@@ -123,7 +124,7 @@ typedef struct R2dLightSet {
 extern R2dLightSet r2d_lightSet;       /* 0x00418A80 */
 extern const char  r2d_str27724C[];    /* 0x0027724C texture path */
 /* Context at *0x0042C8E4. */
-typedef struct R2dCtx { uint8_t unk00[0x44]; int32_t v44; uint8_t unk48[0x1E8 - 0x48]; void *list1E8; } R2dCtx;
+typedef struct R2dCtx { uint8_t unk00[0x44]; void *v44; uint8_t unk48[0x1E8 - 0x48]; void *list1E8; } R2dCtx;
 extern R2dCtx *r2d_ctx;                /* 0x0042C8E4 */
 
 /* Stage director object (the e0000-e5000 helpers). */
@@ -271,20 +272,14 @@ typedef struct R2dSNode { uint8_t unk00[0x20]; R2dSPart *part20; uint8_t unk24[0
 void  sub_001AD9F0(void *dst, const void *a, const void *b);
 int   sub_000D9A70(int id);
 void  sub_000D1930(R2dPlayer *p);
-void  sub_000BD4D0(void *p, int state);
 void  sub_000CED00(void *p);
-void *sub_0001D290(void *o, int k);
 void  sub_000D51E0(R2dRig *r);
 void  sub_001BA8F0(void *o);
-int   sub_000494D0(int id, const void *pos, int flag);
 void  sub_00048250(int h);
-int   sub_000847F0(int a, int b);
-void  sub_001BA820(void *o);
+void *sub_001BA820(void *o);
 void  sub_001BA910(void *o, void *part, const int *ids, void *dst);
 void  sub_001BA8B0(void *o, int n);
-void  sub_001B2020(int h, void *o);
 int   sub_00084CE0(const char *path);
-void  sub_0001EB80(void *o);
 R2dCue *r2b_TrackFire(R2dStage *o, int idx, uint32_t pos, uint32_t base);
 void  r2b_TrackMarkBefore(R2dStage *o, int idx, uint32_t lim, uint32_t base);
 R2dCueFn sub_000E9BC0(int key, int id);
@@ -295,10 +290,7 @@ int   sub_0019A950(int id, int b);
 void  sub_00053F20(int a);
 void  sub_00053F70(int a);
 void  sub_0019AA00(int h, int ms);
-void  sub_00054040(void);
 uint32_t sub_00053F60(void);
-uint32_t sub_00048530(int id);
-uint32_t sub_00048560(int id);
 void  sub_000E3C00(R2dStage *o);
 void  sub_0019AB40(int h);
 void  sub_000D0200(R2dPlayer *p, int a, int id);
@@ -310,18 +302,11 @@ void  sub_000E8D90(R2dFx *f);
 void  sub_000E8E80(R2dFx *f);
 int   sub_000F3140(int id);
 void *sub_0001D080(void *list, int kind, int id);
-void  sub_001AEDD0(void *o, int v);
 int   sub_00048510(int a);
-uint8_t *sub_0001D0F0(void *o, int k);
 void *sub_0001F210(int a, int b);
 void  sub_0001DA40(void *o);
 int   sub_0004F6D0(int slot);
-int   sub_0004F680(int slot);
-void *sub_00053AB0(int size, int a, int line);
-void  sub_000512D0(int slot, void *mem);
 void  sub_000EC770(void);
-uint8_t *sub_00037550(const char *name, int a);
-R2dComp *sub_0001D960(void *o, int k);
 void  r2_ListDrop(void *o);
 void  sub_000362B0(void *o);
 void  sub_0001D190(void *o);
@@ -329,28 +314,23 @@ void  sub_0001B3F0(void *o);
 void  a4c_ListAppend(void *list, void *item);
 int   sub_000A2050(void *o, uint8_t **out);
 void  r4c_VecAdd(float *d, const float *a, const float *b);
-void  sub_001ADB60(R2dVec4 *d, const R2dVec4 *a, const void *m);
 int   sub_000F30E0(int k);
 void  sub_001B2150(R2dHook *h);
-void  sub_001B2160(void *row, R2dHook *h);
 void  sub_00113FB0(void);
 void *r2c_FindKey(int a, int b);
 void  sub_001208A0(void *e, int v);
 float sub_001B2770(const void *a, const void *b);
 void  sub_00112D30(void);
 void  sub_001B21D0(void *list, R2dHook2 *h);
-void  sub_00113090(R2dGfxNode *m, R2dGfxCtl *o, int v);
 void  sub_000EE760(R2dGfxNode *m, float f);
 int   sub_0001BC40(R2dGfxNode *m);
 void  sub_000C75E0(R2dGfxNode *m);
 int   sub_000EE5F0(void *o);
 float sub_00171D50(int kind, int id, int v);
-R2dGame *sub_000E0770(void);
 void  sub_000F3B30(void *o, int v);
 void  sub_000F3B00(void *o, int v);
 void  sub_000E0A80(R2dGame *g, int a, int b, int c, int d);
 void  sub_000E51F0(R2dGame *g);
-void  sub_000E0FB0(int v);
 void  sub_0003D860(R2dQNode *n);
 void  sub_00112490(void);
 void  sub_000F31A0(void);
@@ -360,11 +340,9 @@ void  sub_00171F30(void);
 void  sub_0016F6F0(void);
 void  sub_001668D0(void);
 void  sub_001B3160(R2dSPart *p);
-void  sub_000CF330(R2dPlayer *p, const void *pos, float f);
 void  r2d_PlayerPlace(R2dPlayer *p, const void *pos);
 float sub_000F3C70(void *o);
 int   sub_000F3CB0(void *o);
-void  sub_000F3BF0(int h, float v, int k);
 void  sub_000F3C40(void *o);
 void  sub_000D5650(void);
 

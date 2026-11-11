@@ -1,6 +1,7 @@
 #ifndef B7C_H
 #define B7C_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 /* Area b7c: game functions 0x00170000-0x00190000 (third pass). Names inferred. */
 
@@ -65,15 +66,8 @@ B7CTask *sub_0001F210(int a, int b);
 void  sub_0001DA40(B7CTask *t);
 int   sub_0004F6D0(int i);
 void  sub_0004F5D0(int i);
-B7CHandle *sub_000EDBE0(int a, int b);
-void *sub_0001D960(void *h, int kind);
-int   sub_000833E0(void *p);
-void  sub_000832D0(void *anim, int id);
-void  sub_000ED780(void *p);
 void  sub_0018D650(void *p);
 void  sub_001940A0(void *p);
-void  sub_00113040(void *o, void *e, int st);
-void  sub_00113090(void *o, void *e, int st);
 B7CF10 *sub_001133E0(void *e, int i);
 int   sub_00176070(void *o, void *e, void *w);
 void  b7c_VecCopy(void *a, void *b);   /* 0x000F5D40 */

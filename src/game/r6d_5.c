@@ -57,7 +57,7 @@ void r6d_StatusShowText(int i, int id)
 {
     sub_00018620(R6D_WORK->anim, r6d_statusAnims2DE3CC[i]);
     a60_TextClear(R6D_WORK->text);
-    sub_0003FCB0(R6D_WORK->anim, sub_0003FA70(R6D_WORK->msgTables[i], id, 0, 0, -1.0f));
+    sub_0003FCB0(R6D_WORK->anim, sub_0003FA70(R6D_WORK->msgTables[i], id), 0, 0, -1.0f);
     if (i == 1)
         a60_FlagsClear(R6D_WORK->text, 0x80);
 }

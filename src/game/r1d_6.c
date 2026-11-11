@@ -108,7 +108,7 @@ void r1d_BankRealloc(void)
     r4_NodeDetach(r1c_bank283698 + 0x5845C);
     r4_NodeDetach(r1c_bank283698 + 0x5850C);
     r1c_bank283698 = a50_Alloc(3, 0x585C0, 0, 0);
-    r1_BankInit();
+    r1_BankInit(r1c_bank283698);
     sub_001B2020(r1_g3DA080, r1c_bank283698 + 0x5845C);
     sub_001B2020(r1_g3DA084, r1c_bank283698 + 0x5850C);
 }

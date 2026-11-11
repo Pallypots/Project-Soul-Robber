@@ -2,7 +2,7 @@
 #include "r1e.h"
 
 /* 0x00014D00: initialise a sprite record (grey colours, unit scale). */
-void r1e_SpriteInit(R1eSprite *s, int a, int b)
+void r1e_SpriteInit(R1eSprite *s, void *a, int b)
 {
     s->d08 = 0;
     s->d0C = 0;

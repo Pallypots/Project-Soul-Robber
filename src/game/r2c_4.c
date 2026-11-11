@@ -34,7 +34,7 @@ float r2c_BossStepSpeed(const R2cKind *k)
 }
 
 /* 0x000F7C40: 0x0F7B80(a, b's position, c), or 0 when a or b is missing. */
-float r2c_DistTo(void *a, R2cKind *b, int c)
+float r2c_DistTo(void *a, R2cKind *b, float c)
 {
     if (!a || !b)
         return 0.0f;

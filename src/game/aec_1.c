@@ -10,7 +10,7 @@ void aec_FreeTables(void)
     aec_3F0744 = 0;
 }
 /* 0x000E0380: register entry b (unless -1) in list 0x003EDD20 with time 30 and -1. */
-void aec_Register3EDD20(int a, int b, int c)
+void aec_Register3EDD20(void *a, int b, int c)
 {
     if (b == -1) return;
     sub_0003FCB0(&aec_3EDD20, sub_0003FA70(a, b), c, 30.0f, -1.0f);
@@ -24,7 +24,7 @@ void aec_ReleaseHandle2FC(AecObj *o)
     }
 }
 /* 0x000E0840: 0x000494D0(0x00048510(a) + b, c, 1). */
-void aec_E0840(int a, int b, int c)
+void aec_E0840(int a, int b, void *c)
 {
     sub_000494D0(sub_00048510(a) + b, c, 1);
 }
@@ -98,7 +98,7 @@ int aec_SlotDispatch(int a, int i, int arg)
     return aec_slotFns[i](r, arg);
 }
 /* 0x000E3350: append to list 0x003F118C when enabled. */
-void aec_E3350(int a)
+void aec_E3350(void *a)
 {
     if (g_acb_3F0A78) sub_0003FBD0(a, &aec_3F118C);
 }
@@ -190,7 +190,7 @@ int aec_KindIsB(int kind, int sub)
     return 0;
 }
 /* 0x000ED9E0: find entry a in list 0x003F5DB0 and remove/free it. */
-void aec_RemoveEntry(int a)
+void aec_RemoveEntry(void *a)
 {
     void *p = sub_0003DBC0(&aec_3F5DB0, 0, a);
     if (p) { sub_0003D8C0(p); sub_0003D860(p); }
@@ -286,9 +286,9 @@ void aec_InitCbObj(AecCbObj *o)
     o->f1C = 0.0f;
     o->v10 = 0;
     o->v20 = 0;
-    o->cb24 = sub_000AD090;
+    o->cb24 = (AecCb)sub_000AD090;
     o->cb28 = sub_00102FA0;
-    o->cb2C = sub_000AD090;
+    o->cb2C = (AecCb)sub_000AD090;
     o->v30 = 0;
     o->v34 = 0;
     o->v38 = 0;

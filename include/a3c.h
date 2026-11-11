@@ -1,6 +1,7 @@
 #ifndef A3C_H
 #define A3C_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* 10-byte element of the paged table at 0x003DA314 (0x00037FF0). */
 typedef struct A3cElem10 { uint8_t b[10]; } A3cElem10;
@@ -49,17 +50,13 @@ extern uint32_t  a3c_flags3DE4F8;   /* 0x003DE4F8 */
 extern int32_t   a3c_g3DE4F0, a3c_g3DE4F4;
 
 void sub_00037AE0(void);
-void sub_00014D00(void *p, void *obj, int a);
 void sub_000580D0(void);
 void sub_001A4FB0(void *p);
-void sub_001A1130(int a);
-int  sub_0003C3C0(void);
+void sub_0003C3C0(void);
 void sub_0003D8C0(void *node);
 void sub_0003D990(void *p, int a, int b, int c);
 void sub_001A7490(void);
 void sub_001B9720(void);
-int  sub_0003ED50(int a, int b);
-int  sub_0003F8B0(int a, int b, int c);
 void a3c_Clear16(A3cQuad *q);
 
 /* Pool node: busy word at +0, next at +0x10 (0x000338A0 and neighbours). */
@@ -81,7 +78,7 @@ typedef struct A3cTask {
     uint8_t unk00[4];
     void   *fn;             /* +0x04 */
     uint8_t unk08[8];
-    int32_t arg;            /* +0x10 */
+    void   *arg;            /* +0x10 */
     int32_t f14;            /* +0x14 */
     uint8_t sub18[4];       /* +0x18 */
 } A3cTask;
@@ -93,20 +90,16 @@ extern A3cRec30 *a3c_ptr3DDCE0[];    /* 0x003DDCE0 */
 void a3c_VecCopy(void *dst, const void *src);   /* 0x000F5D40 */
 void sub_001B60C0(void *p);
 void sub_001B6130(void *p);
-void sub_00036B30(void *base, int count, void *cb, void *ctx);
 void sub_00033B10(void);
-void sub_00033B70(void);
-void sub_000335D0(void);
-void sub_00034B50(void);
+int sub_00033B70(void *, void *);
 void sub_00036290(void);
-void sub_000362F0(void);
-void sub_000337A0(A3cPNode *n, int a, int b, int c);
-void sub_00033800(A3cPNode *n, int a, int b, int c);
+void *sub_000362F0(void *, void *);
+void sub_000337A0(A3cPNode *n, void *a, void *b, void *c);
+void sub_00033800(A3cPNode *n, void *a, void *b, void *c);
 void sub_000338D0(A3cPNode *n, int a, int b);
-void sub_001B6A60(void *p, int a);
+void sub_001B6A60(void *p, float a);
 void sub_0005A510(void *a, void *fn);
-void sub_00033C20(void *p);
 void sub_001B2150(void *p);
-void sub_001B26C0(void *p);
+void *sub_001B26C0(void *p);
 void sub_0003D540(void);
 #endif

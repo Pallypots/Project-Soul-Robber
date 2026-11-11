@@ -1,6 +1,7 @@
 #ifndef B1B_H
 #define B1B_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Object at *0x003F6128 (Hypothesis: menu/HUD controller, same as b10_ctl). */
@@ -46,16 +47,10 @@ extern void   *b10_obj3F6134;/* 0x003F6134 */
 
 void  sub_000F3D10(void *a, void *b, int c);
 int   sub_000F30E0(int kind);
-void *sub_00053AB0(int size, int a, int b);
 void  sub_000F3F00(void *o, float v);
-int   sub_00184610(void);
-int   sub_000F5D00(int a);
-void  sub_000832D0(void *handle, int id);
-void  sub_0001EB80(void *o);
-void *sub_0001D960(void *o, int t);
 void  sub_0001D910(void *o, void *c);
 void  sub_00101240(int v);
-void  sub_00102F10(int a, B1bEvt *e);
+void  sub_00102F10(void *a, B1bEvt *e);
 void  sub_00101380(void);
 #endif
 #ifndef B1B_H2
@@ -109,8 +104,7 @@ extern B1bCmd b10_cmdTable[17];        /* 0x00279330 */
 
 void  sub_000F3B00(void *o, int v);
 void  sub_000F3BB0(void *o, int a, int b);
-void  sub_001AD940(void *p);
-int   b1b_VecOp2(void *a, void *b);   /* 0x000F5D40 with two args */
+void b1b_VecOp2(void *a, void *b);   /* 0x000F5D40 with two args */
 void  sub_000ED600(int v);
 int   sub_0004F6D0(int id);
 void  b1b_CmdRun(int id);           /* 0x0004F5D0 called with a command id */
@@ -154,10 +148,7 @@ typedef struct B1bReq { uint8_t unk00[8]; int32_t side; } B1bReq;
 extern float a50_frameUnits;     /* 0x0042C858 */
 extern float a50_frameSeconds;   /* 0x0042C85C */
 int   sub_001C7EE1(void);
-void  sub_00113090(void *o, B1bFoe *e, int state);
-int   sub_00113040(void *o, B1bFoe *e, int state);
 void  b10_AddClampF(float *v, float d, float max);
-int   sub_000EDBE0(int list, int side);
 int   sub_00143760(B1bReq *r, void *b, void *c);
 #endif
 #ifndef B1B_H4
@@ -189,7 +180,6 @@ typedef struct B1bECtl {
 } B1bECtl;
 void  sub_0001D7F0(void *model, int anim, int b);
 void  sub_001AD9F0(float *dst, const float *a, const float *b);
-void  sub_001AD9B0(float *dst, const float *a, const float *b);
 float sub_001B27C0(const float *a, const float *b);
 void  sub_000EE760(B1bOwner *o, float v);
 int   sub_000EE5F0(B1bOwner *o);
@@ -203,7 +193,6 @@ void  sub_00139FA0(void *o, B1bFoe *e, int state);
 void  sub_00033560(void *h);
 void  b10_SubClampF(float *v, float d, float min);
 void  b1b_EnemyMarkParts(B1bOwner *o, B1bEnemy *e);
-void  sub_000EE660(void *o, float v);
 #endif
 #ifndef B1B_H6
 #define B1B_H6

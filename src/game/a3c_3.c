@@ -2,10 +2,10 @@
 #include "a3c.h"
 
 /* 0x0003C9B0: notify, then run the follow-up step. */
-int a3c_NotifyThenStep(int a)
+void a3c_NotifyThenStep(void *a)
 {
     sub_001A1130(a);
-    return sub_0003C3C0();
+    sub_0003C3C0();
 }
 
 /* 0x0003CFC0: select entry i and cache its table value. */
@@ -98,10 +98,10 @@ int a3c_ScreenW(void) { return 0x200; }
 int a3c_ScreenH(void) { return 0xE0; }
 
 /* 0x0003F770: call 0x0003ED50 with a zero second argument. */
-int a3c_CallED50(int a) { return sub_0003ED50(a, 0); }
+int a3c_CallED50(void *a) { return sub_0003ED50(a, 0); }
 
 /* 0x0003F9C0: call 0x0003F8B0 with a zero third argument. */
-int a3c_CallF8B0(int a, int b) { return sub_0003F8B0(a, b, 0); }
+void *a3c_CallF8B0(void *a, void *b) { return sub_0003F8B0(a, b, 0); }
 
 /* 0x0003FA70: pointer to entry i of an offset table (hang when out of range). */
 void *a3c_OffTabGet(A3cOffTab *t, uint32_t i)
@@ -136,7 +136,7 @@ void a3c_SlotRecSet20(int i, int j, const void *src)
 }
 
 /* 0x0003D6C0: initialise a task with its callback and argument. */
-void a3c_TaskInit(A3cTask *t, int arg)
+void a3c_TaskInit(A3cTask *t, void *arg)
 {
     sub_001B2150(t);
     t->fn = (void *)sub_0003D540;

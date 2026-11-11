@@ -153,10 +153,10 @@ int a60_MovieState(void)
 }
 
 /* 0x00079B30: forward the second argument. */
-void a60_Forward79B30(int unused, int v) { sub_00052840(v); }
+void a60_Forward79B30(int unused, void *v) { sub_00052840(v); }
 
 /* 0x00079FD0: copy the name of entry id, and its save block if present. */
-void a60_LoadEntry(int id)
+void a60_LoadEntry(void *id)
 {
     const char *s;
     char *d;

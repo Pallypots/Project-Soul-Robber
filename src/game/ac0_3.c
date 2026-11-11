@@ -2,7 +2,7 @@
 #include "ac0.h"
 
 /* 0x000CB990: forward (obj, obj + 0x24, b) to 0x000CF330. */
-void ac0_Call_CF330(uint8_t *obj, int b)
+void ac0_Call_CF330(uint8_t *obj, float b)
 {
     sub_000CF330(obj, obj + 0x24, b);
 }

@@ -113,8 +113,8 @@ void r2c_ReleaseKids(R2cKeyObj *o)
 /* 0x00109050: queue a new attached effect of the given kind in the 5-entry
    list at 0x3F613C: finished entries are dropped (later ones move up); when
    the queue is full or empty-headed, a still running head is freed and
-   replaced. */
-void r2c_PushEffect(void *obj, int kind)
+   replaced. Returns the new handle (eax after the store). */
+void *r2c_PushEffect(void *obj, int kind)
 {
     int i, n;
     for (i = 0; i < 5; i++) {
@@ -131,5 +131,5 @@ void r2c_PushEffect(void *obj, int kind)
     n = i;
     if (n == 0 && r2c_fx3F613C[0] && sub_000336A0(r2c_fx3F613C[0]))
         sub_00033A70(r2c_fx3F613C[0]);
-    r2c_fx3F613C[n] = sub_00036750(obj, kind);
+    return r2c_fx3F613C[n] = sub_00036750(obj, kind);
 }

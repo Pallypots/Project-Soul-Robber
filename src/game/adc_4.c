@@ -124,18 +124,18 @@ void adc_GetMode(int *a, int *b)
 }
 
 /* 0x000DFD60: reset the queue and push one item when b is valid. */
-void adc_QueueReset(int a, int b, int c)
+void adc_QueueReset(void *a, int b, int c)
 {
     sub_0003FC10(&af0_var3EE6A8);
     if (b != -1)
-        sub_0003FCB0(&af0_var3EE6A8, sub_0003FA70(a, b, c, 30.0f, -1.0f));
+        sub_0003FCB0(&af0_var3EE6A8, sub_0003FA70(a, b), c, 30.0f, -1.0f);
 }
 
 /* 0x000DFDB0: push one item when b is valid. */
-void adc_QueuePush(int a, int b, int c)
+void adc_QueuePush(void *a, int b, int c)
 {
     if (b != -1)
-        sub_0003FCB0(&af0_var3EE6A8, sub_0003FA70(a, b, c, 30.0f, -1.0f));
+        sub_0003FCB0(&af0_var3EE6A8, sub_0003FA70(a, b), c, 30.0f, -1.0f);
 }
 
 /* 0x000DFE30: pop n items from the queue. */

@@ -17,11 +17,11 @@ int a5b_WalkWith5BC90(uint8_t *obj)
 }
 
 /* 0x0005CC50: self-link a node, clear its id and init the part at +0x20. */
-int a5b_NodeInit(uint8_t *node)
+void a5b_NodeInit(uint8_t *node)
 {
     *(uint8_t **)(node + 0xC) = node;
     *(int32_t *)(node + 0x10) = -1;
-    return sub_0005CAF0(node + 0x20);
+    sub_0005CAF0(node + 0x20);
 }
 
 /* 0x0005CCD0: finish a sequence item (running 0x001997E0 first unless `quiet`). */

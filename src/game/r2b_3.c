@@ -30,7 +30,7 @@ void r2b_BlkFromPlayer(void)
 /* 0x000D9A30: run both passes of 0x0D9180 and 0x0D97B0 on a, then store a in the
    block at 0x3EDC00.  calls 0x000D9180 with ECX=pass (a, b on the stack) and
    0x000D97B0 with ECX=a */
-void r2b_BlkSetup(void *a, int b)
+void r2b_BlkSetup(void *a, float b)
 {
     sub_000D9180(0, a, b);
     sub_000D9180(1, a, b);

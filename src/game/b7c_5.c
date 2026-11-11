@@ -1,13 +1,12 @@
 /* Area b7c, group 5: boss globals 0x00182750-0x00182E50. Names inferred. */
 #include "b7c.h"
+#include "shared_decls.h"
 
 extern void *b7c_bossOwner3FE368;       /* 0x003FE368 */
 extern void *b7c_bossEnemy3FE36C;       /* 0x003FE36C */
 extern int32_t b7c_count3FE374;         /* 0x003FE374 */
 extern uint8_t *b7c_bossObj3FE37C;      /* 0x003FE37C */
-extern void *b7c_mat3FE380;             /* 0x003FE380 */
-void sub_001AD940(void *m);
-void sub_001AD8E0(void *d, void *a, void *b);
+extern float b7c_mat3FE380;             /* 0x003FE380 rotation angle */
 void sub_00181C60(int id, int st);
 
 /* 0x00182750: the boss owner (hangs if not set). */

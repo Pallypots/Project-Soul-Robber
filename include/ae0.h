@@ -4,6 +4,7 @@
 #ifndef AE0_H
 #define AE0_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Event-script interpreter context (same layout as area ad0's ScriptCtx):
@@ -28,19 +29,25 @@ static __inline int16_t ae0_ReadS16(const uint8_t *p)
 }
 #define AE0_U32(p) ((((uint32_t)(p)[3] << 8 | (p)[2]) << 8 | (p)[1]) << 8 | (p)[0])
 
+/* Little-endian unaligned 32-bit float operand (same bytes as AE0_U32). */
+static __inline float ae0_ReadF32(const uint8_t *p)
+{
+    uint32_t u = AE0_U32(p);
+    float f;
+    memcpy(&f, &u, sizeof f);
+    return f;
+}
+
 extern uint8_t ae0_flags420010;   /* 0x00420010 */
 extern uint8_t ae0_obj3E1270[];   /* 0x003E1270 */
 extern void   *ae0_ptr3F6100;     /* 0x003F6100 */
 
 void *sub_000DE170(int a, int b);
 void  sub_000325A0(int on);
-void  sub_000CF330(void *s, void *v, float f);
 void  sub_000D1D00(void *s);
 void  sub_0001D700(void *o);
-void  sub_000BD4D0(void *s, int a);
 void  sub_00019000(void *o, int a);
 void  sub_0001AB00(void *o, int a, int b, int c, int d);
-void  sub_00036C00(int a, int b, uint32_t c);
 int   sub_00036D40(void);
 void  sub_00036BC0(void);
 void  sub_000F3B70(void *o, int a);
@@ -71,7 +78,6 @@ void  sub_00048590(void);
 int   sub_00047950(void);
 void  sub_000DFD40(int *a, int *b);
 void  sub_000487F0(int a, int b, int c);
-void  sub_000488F0(int a, int b);
 int   sub_00048910(int a, int b);
 void  sub_00048860(int a, int b, int c);
 void  sub_00048940(int a, int b);

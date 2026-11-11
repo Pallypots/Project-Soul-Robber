@@ -25,7 +25,7 @@ void rbg_FinishSeq0F1EF0(RbgRec150 *o, RbgSeq *s)
             sub_000F3BF0(o, rbg_dmg278410[i], 9);
             rbg_GroupAnim0F3DA0(o, 0x16, 0, 0);
             s->step110 = 2;
-            r2d_SwitchOn();
+            r2d_SwitchOn(o);
         }
         break;
     case 2:
@@ -46,7 +46,7 @@ void rbg_FinishSeq0F1EF0(RbgRec150 *o, RbgSeq *s)
         break;
     case 4:
         if (sub_001AEE90(o->anim30->node14, 0) & 2) {
-            r2d_SwitchOff();
+            r2d_SwitchOff(o);
             if (s->p64->score2F0 < 75000) {
                 rbg_GroupAnim0F3DA0(o, 7, 0, 0);
                 sub_000F0C80(o, s);

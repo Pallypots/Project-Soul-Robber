@@ -1,6 +1,7 @@
 #ifndef R3D_H
 #define R3D_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r3c.h"
 #include <string.h>
 
@@ -155,42 +156,26 @@ extern int32_t  r3d_i31F024;                          /* 0x0031F024 */
 extern int32_t  r3d_i3F9300;                          /* 0x003F9300 sound request state */
 
 /* ---- callees (stack arguments unless stated) */
-void    b16_Buf3F8C98Init(void);                      /* 0x0016C3B0 (area b16) */
-void    b16_Pool20Init(void);                         /* 0x00169710 (area b16) */
-void    b16_Pool60Init(void);                         /* 0x001675D0 (area b16) */
-void    b16_Pool18Init(void);                         /* 0x0016B880 (area b16) */
-int     sub_0004F680(int id);
-int     sub_00053AB0(int h, int a, int b);
-void    sub_000512D0(int id, int h);
+int b16_Buf3F8C98Init(void);                      /* 0x0016C3B0 (area b16) */
+int b16_Pool20Init(void);                         /* 0x00169710 (area b16) */
+int b16_Pool60Init(void);                         /* 0x001675D0 (area b16) */
+int b16_Pool18Init(void);                         /* 0x0016B880 (area b16) */
 void    sub_00033B30(void *o);
 void    r2b_ClearBit(int i);                          /* 0x000D9B30 (area r2b) */
 void    r2b_SetBit(int i);                            /* 0x000D9AB0 (area r2b) */
 void    sub_0001D4E0(void *o);
 R3dNode *sub_00113400(void *act, int key);
 void    sub_0017F390(void);
-R3dNode *sub_00113430(void *act, int slot);
 void    sub_00182770(int k);
 int     r2b_TestBit(int i);                           /* 0x000D9A70 (area r2b) */
 void    b4c_MotionSet156180(void *w, float a, float b, float c, float t); /* 0x00156180 (area b4c) */
 void    sub_000EE850(void *o, float v);
-void    sub_000EE6D0(void *o, float v);
-void   *sub_000EDBE0(int list, int side);   /* object lookup */
-int     sub_00113190(void *obj, void *act, int k);
 int     sub_00048100(int h);
-void    sub_001AD9B0(float *d, const float *m, const float *v);   /* transform */
-void    sub_001AD940(float *m);                                   /* identity */
 float   sub_001B27C0(const float *a, const float *b);
-void    sub_00113CB0(void *blk, float v, int c);
-int     sub_00049700(int id, int r, int g, int b, const float *pos, int a, float size, int c);
-void   *sub_0001D0F0(void *o, int k);
-void    sub_000C4D30(void *o, int kind, float a, int b, float c, float d, float e,
-                     const float *pos, float *v1, float *v2);
 void    sub_001561D0(void *w, float a, float b);
 void    sub_001AD9F0(float *d, const float *a, const float *b);   /* d = a - b */
 void    sub_001ADBA0(float *d, const float *s, float k);
 void    sub_000A7950(int h);
-void    sub_00033A70(void *h);
-void    sub_00189510(int h);
 void    sub_000C56B0(void *o);
 void    r4c_Spin(void *o, const float *rate);         /* 0x000F6450 (area r4c) */
 float   r4c_VecLenXZ(const float *v);                 /* 0x000F5F50 (area r4c) */

@@ -31,7 +31,7 @@ void rfl_EnemyTurnToPlayer(RflActor *o, RflFoe *e)
         if (!sub_000833E0(((RflNode *)o)->anim30))
             return;
         sub_00113090(o, e, (e->flags20 & 1) + 0xC);
-        sub_00113430(e, 6)->v10 = 0xD;
+        ((RflTimer *)sub_00113430(e, 6))->v10 = 0xD;
         e->step58++;
         break;
     case 1:

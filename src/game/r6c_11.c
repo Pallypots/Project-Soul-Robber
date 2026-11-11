@@ -1,8 +1,9 @@
 /* Area r6c: streamed sound waits and event camera around 0x00086890-0x00087C70 (r6c_11). Names inferred. */
 #include "r6c.h"
 
-/* 0x00086890: start the current stream and wait until it has played out. */
-void r6c_StreamPlayWait(void)
+/* 0x00086890: start the current stream and wait until it has played out.
+   Callers push one argument that is never read. */
+void r6c_StreamPlayWait(int unused)
 {
     int h = r6c_strH3ED200;
     r6c_busy3ED204 = 1;
@@ -16,8 +17,9 @@ void r6c_StreamPlayWait(void)
     r6c_busy3ED204 = 0;
 }
 
-/* 0x00086920: stop the current stream, then load and settle the next one. */
-void r6c_StreamSwitchWait(void)
+/* 0x00086920: stop the current stream, then load and settle the next one.
+   Callers push one argument that is never read. */
+void r6c_StreamSwitchWait(int unused)
 {
     int a = r6c_strA3ED1F8;
     int b = r6c_strB3ED1FC;

@@ -1,6 +1,7 @@
 #ifndef RBI_H
 #define RBI_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "rbh.h"
 
 /* Area rbi: larger game functions in 0x000D0000..0x0018FFFF (Jack's moves, enemy AI, script
@@ -71,7 +72,7 @@ void  rbi_VecScale(RbiVec4 *d, const RbiVec4 *s, float k);/* 0x001ADBA0 d = s * 
 void  rbi_VecCopy(RbiVec4 *d, const RbiVec4 *s);          /* 0x000F5D40 */
 
 /* ------------------------------------------------------------ enemy actors (0x00130000 family) */
-typedef void (*RbiFn)(void);
+typedef void (*RbiFn)();   /* callback slot; callees take varying arguments */
 /* Scene object of an enemy (passed in ESI), only the touched fields. */
 typedef struct RbiObj {
     uint8_t  unk00[4];
@@ -211,7 +212,6 @@ extern RbiBossCtl *afc_body;                      /* 0x003F6114 */
 RbiFxComp *rbi_Comp1D960(void *o, int kind);      /* 0x0001D960 find component */
 void  sub_000F5D60(void *o, float a, float b, float c, const float *v);
 void  sub_000F5DD0(void *o, float a, float b, const float *v);
-void  sub_000F5E30(void *o, float a, const float *v1, const float *v2);
 void  sub_000F90D0(RbiBossCtl *c);
 extern const float rbi_v278D20[], rbi_v278D34[], rbi_v278D44[], rbi_v278D54[];
 extern const float rbi_v278A88[], rbi_v278A9C[], rbi_v278AAC[], rbi_v278ABC[];
@@ -270,7 +270,6 @@ typedef struct RbiFxWork {
 void  sub_000F3D70(RbiFxNode *o);
 void  sub_000F3BB0(RbiFxNode *o, int a, int b);
 void  sub_00019000(void *list, int v);
-void  sub_000BCA50(int v);                       /* sets 0x0041FFF8 */
 void  sub_0001D700(RbiFxNode *o);
 
 /* ------------------------------------------------------------ enemy set-up at 0x00108790 */
@@ -324,7 +323,6 @@ typedef struct RbiStateComp {
     RbiVec4  vC0;             /* +0xC0 */
     float    fD0, fD4, fD8;   /* +0xD0 */
 } RbiStateComp;
-void *sub_000E0770(void);                        /* game context */
 void  sub_000EE270(RbiHitComp2 *c);
 void  sub_000F3AA0(RbiStateComp *c);
 void  sub_000F3B70(void *o, int v);
@@ -556,7 +554,7 @@ typedef struct RbiFxObjB {
     uint8_t  unkF8[0x11C - 0xF8];
     int32_t  i11C, i120, i124;/* +0x11C */
 } RbiFxObjB;
-void  r2c_HelperDetach(void);                     /* 0x000FC4E0 */
+int r2c_HelperDetach(void *);                     /* 0x000FC4E0 */
 void  sub_000FDD70(void);
 void  sub_000FD420(void);
 extern const float rbi_v278B28[], rbi_v278B3C[], rbi_v278B4C[], rbi_v278B5C[];
@@ -602,16 +600,13 @@ typedef struct RbiWork135 {
 typedef struct RbiObj135 {
     RbiObj   o;               /* +0x000 (see RbiObj) */
     uint8_t  unk128[0x13C - 0x128];
-    int32_t  snd13C;          /* +0x13C */
+    void    *snd13C;          /* +0x13C (passed to 0x0005BE30) */
 } RbiObj135;
-void  sub_001130F0(void *obj, void *act, int flag);
 void  sub_001134B0(void *act);
-void  sub_0005BE30(int h);
 void  sub_00025C10(int a, int b);
 void  sub_00135490(void);
-void  sub_000AD090(void);
 void  sub_00137800(void);
-void  r3b_Step135500(void);
+void  r3b_Step135500(void *, void *);
 void  sub_00145E10(void);
 void  sub_001354D0(void);
 void  rbi_Shapes135900(RbiShapeObj *o);

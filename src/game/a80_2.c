@@ -2,7 +2,7 @@
 #include "a80.h"
 
 /* 0x00084C30: query a handle, -1 for null. */
-int a80_HandleQuery(int h) { if (h == 0) return -1; return sub_001BA7C0(h); }
+int a80_HandleQuery(void *h) { if (h == 0) return -1; return sub_001BA7C0(h); }
 /* 0x00084EC0: get word 0x3ED1B0. */
 void *a80_Get3ED1B0(void) { return a80_g3ED1B0; }
 /* 0x000852E0: clear three state words. */

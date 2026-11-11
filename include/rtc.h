@@ -3,6 +3,7 @@
 #ifndef RTC_H
 #define RTC_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* ---------------------------------------------------------------- types */
@@ -12,9 +13,9 @@ struct RtcObj {
     uint8_t  unk00[0x04];
     int32_t  kind4;            /* +0x04 */
     void    *p8;               /* +0x08 */
-    int32_t  iC;               /* +0x0C (int16 in some callers) */
+    union { int32_t iC; void *pC; }; /* +0x0C (int16 in some callers; a process reference for 0x00089420) */
     union { float f10; int32_t i10; }; /* +0x10 */
-    int32_t  i14;              /* +0x14 */
+    void    *i14;              /* +0x14 */
     uint8_t  unk18[0x20 - 0x18];
     void    *p20;              /* +0x20 */
     uint8_t  unk24[0x30 - 0x24];
@@ -210,7 +211,7 @@ typedef struct RtcSwitch {
 } RtcSwitch;
 
 /* Scene context at *0x0042C8E4 (sound handle at +0x1F0). */
-typedef struct RtcScene { uint8_t unk000[0x1F0]; int32_t snd1F0; } RtcScene;
+typedef struct RtcScene { uint8_t unk000[0x1F0]; void *snd1F0; } RtcScene;
 
 /* Menu block at 0x003F0758 (0x28D words). */
 typedef struct RtcMenuItem { int32_t v0; uint8_t unk04[0x10]; } RtcMenuItem;
@@ -340,7 +341,7 @@ typedef struct RtcCue { int32_t id; uint8_t unk04[0x0C]; } RtcCue;
 
 /* ---------------------------------------------------------------- data */
 extern uint32_t rtc_colours2C4468[];   /* 0x002C4468 text colour table */
-extern int32_t  a50_slotHeap[];        /* 0x003E26A8 heap handle per slot */
+extern void    *a50_slotHeap[];        /* 0x003E26A8 heap handle per slot */
 extern int32_t  rtc_level3DFED8;       /* 0x003DFED8 */
 extern float    rtc_scale3DFEDC;       /* 0x003DFEDC */
 extern int32_t  adc_30D6BC;            /* 0x0030D6BC */
@@ -382,11 +383,11 @@ extern int32_t  rtc_count3E0540;       /* 0x003E0540 */
 extern int32_t  rtc_count3E059C;       /* 0x003E059C */
 extern int32_t  rtc_hidden3F0A68;      /* 0x003F0A68 */
 extern int32_t  rtc_rec3F0A74;         /* 0x003F0A74 */
-extern int32_t  r2b_g3F1B1C;           /* 0x003F1B1C */
+extern void    *r2b_g3F1B1C;           /* 0x003F1B1C */
 extern uint8_t  aec_3F118C[];          /* 0x003F118C message window */
 extern uint32_t rtc_cheatFlags413130;  /* 0x00413130 (g_cheatFlags as a word) */
 extern RtcMenu  g_acb_3F0758;          /* 0x003F0758 */
-extern int32_t  r4c_g402778;           /* 0x00402778 stream lock */
+extern void    *r4c_g402778;           /* 0x00402778 stream lock */
 extern int32_t  a30_g41316C;           /* 0x0041316C */
 extern int32_t  a30_g413170;           /* 0x00413170 */
 extern int32_t  r1c_camFlag42CB0C;     /* 0x0042CB0C */
@@ -408,7 +409,7 @@ extern int32_t  rtc_tex3DF1E0[2];      /* 0x003DF1E0 */
 extern int32_t  rtc_tex3DFA38[9];      /* 0x003DFA38 */
 extern int32_t  rtc_tex3DF9A8;         /* 0x003DF9A8 */
 extern int32_t  rtc_tex3DF9AC;         /* 0x003DF9AC */
-extern int32_t  a4c_g3DFA5C;           /* 0x003DFA5C stage heap */
+extern void    *a4c_g3DFA5C;           /* 0x003DFA5C stage block (freed through 0x00053880; r1c_stage3DFA5C) */
 extern RtcStageEnt r2b_stages2E7D58[]; /* 0x002E7D58 */
 extern RtcModes r2_modes3EDB60;        /* 0x003EDB60 */
 
@@ -420,10 +421,9 @@ void *sub_000380A0(void *ctx, int x, int y, int z, void *size, int colour,
 void *r6d_TextDraw(void *ctx, void *t);                    /* 0x000770B0 */
 void *r6d_TextDrawAlpha(void *ctx, void *t, int alpha);    /* 0x00077110 */
 void  sub_000486F0(int v);
-void *sub_00047390(int heap, int size, int a, int b);
-void *sub_00047450(int heap, int size, int a, int b);
-void *a6b_HeapAlloc(int slot, void *unused, int size);     /* 0x0007F480 */
-void  sub_00089420(int ref);
+void *sub_00047390(void *heap, int size, const void *file, int line);
+void *sub_00047450(void *heap, int size, const void *file, int line);
+void *a6b_HeapAlloc(int slot, int align, int size, int line, const void *file);    /* 0x0007F480 */
 void *a12_Table_Get(void *t, int i);                       /* 0x0001D220 */
 int   r4b_Get8(void *p);                                   /* 0x001BBDD0 */
 void  r1b_RecDetachNodes(RtcObj *n);                       /* 0x0001EB80 */
@@ -436,36 +436,30 @@ void  r2d_StageLinkFree(void *a, int b);                   /* 0x000E14C0 */
 void  sub_000E1F30(void *a, int b);
 void *afc_DispatchByType(void *o);                         /* 0x000F5F80 */
 void  afc_SetBothAnims(void *o, int anim);                 /* 0x000F62F0 */
-void  sub_000832D0(void *anim, int id);
 void  sub_000F3F00(void *o, float v);
-void  sub_000F5D40(float *d, const float *s);
 void  sub_0019A0E0(int id);
 int   sub_001AA520(int h);
 void  sub_001ADE10(float *m, const float *a, const float *b, const float *c, const float *d);
-void  r4_FogEmit(void *o, void *a);                        /* 0x001B1E10 */
-void  sub_001ADA40(void *d, const void *s);
+void *r4_FogEmit(void *o, void *a);                        /* 0x001B1E10 */
 
-void  r1c_PktTexBase(void);                                /* 0x0001ED90 */
+void *r1c_PktTexBase(void *p);                             /* 0x0001ED90 */
 void  sub_00048D70(int on);
-void  sub_00058540(void (*fn)(int), void *arg);   /* start job fn(arg) */
-void  r4_ModelSetPartValue(void *m, int v);                /* 0x001B14E0 */
-void  r4b_MeshSetC8(void *m, int v);                       /* 0x001B3070 */
+void  r4_ModelSetPartValue(void *m, void *v);               /* 0x001B14E0 */
+void  r4b_MeshSetC8(void *m, void *v);                      /* 0x001B3070 */
 const char *sub_000133B0(const char *name);
 int   r4_TexFindNamed(const char *name);                   /* 0x001BA7C0 */
-void *sub_00037570(const char *name, int flags);
 int   r4b_TexWithGroup(void *t);                           /* 0x001BA7F0 */
-void *sub_000904F0(int a, int b, int c, int d);
-void  r6e_RampSet(void *r, int a, int b, int c, int d);    /* 0x00090420 */
-void  a5b_SndPause(void);                                  /* 0x00054040 */
+void *sub_000904F0(float a, float b, float c, float d);
+void  r6e_RampSet(void *r, float a, float b, float c, float d);    /* 0x00090420 */
+int a5b_SndPause(void);                                  /* 0x00054040 */
 void  r4d_TrackPause(int h);                               /* 0x0019AB40 */
-void  a5b_ShockPlay(int a, int b);                         /* 0x0005EB10 */
+int a5b_ShockPlay(int a, int b);                         /* 0x0005EB10 */
 void  sub_00019350(int a, int b);
 void  rtc_RecSetAnim(int i, int anim);                     /* 0x00192380 */
 void  b1b_EnemyMarkParts(void *a, void *b);                /* 0x00113A40 */
 void  r2d_NodesScale(void *n, float k);                    /* 0x000EE660 */
 void  sub_00178860(void *a, void *b);
 RtcObj *sub_001133E0(void *o, int i);
-void  sub_001AEDD0(void *p, int v);
 void  r6_Mat1ADB40(void *m, void *b);                      /* 0x001ADB40 */
 void  sub_000408B0(int v);
 void  sub_000408C0(int v);
@@ -477,16 +471,13 @@ void  r1c_NodeFreeChain(void *c);                          /* 0x00033A70 */
 void  r1d_NodeFree(void *n);                               /* 0x00033560 */
 void  sub_00036B10(void *o);
 void  r4b_SetFactor(float f);                              /* 0x001BBD70 */
-void *sub_0003F780(void *a, void *b, int mode);
-int   sub_0003F770(void *b);
-uint32_t sub_0004ECE0(int v);
 void  sub_0003E410(void *b, int v);
 void  sub_00018610(void);
 void  a5b_ChansReset(void);                                /* 0x0005EB50 */
-void  r6e_TaskSendAll(void *list, void *o);                /* 0x0008C1F0 */
+int r6e_TaskSendAll(void *list, int o);                /* 0x0008C1F0 */
 void  sub_0008B400(void *p);
-void  r6e_TaskFreeList(void *list);                        /* 0x0008BF70 */
-int   r6b_ReturnZero(int a, int b);                        /* 0x000AD090 */
+int r6e_TaskFreeList(void *list);                        /* 0x0008BF70 */
+int   r6b_ReturnZero();                                    /* 0x000AD090 xor eax; ret: any args */
 void  sub_0008FB80(void *p);
 void  sub_000D1930(RtcStats *s);
 void  sub_00023BC0(int v);
@@ -506,7 +497,6 @@ int   sub_00199DE0(int v);
 int   sub_0019A1D0(int v);
 
 void *sub_0002CF80(void *x);
-void *sub_00079480(void *x);
 void *sub_000720D0(void *x, float l, float t, float w, float h, int z,
                    uint32_t c0, uint32_t c1, uint32_t c2, uint32_t c3);
 void  r6c_CamMarkersPlace(void);                           /* 0x00086EF0 */
@@ -515,14 +505,12 @@ void  sub_000D1D00(PlayerStats *s);
 void  sub_0019BEB0(int ev);
 int   sub_000DFC00(void);
 void  a5b_Clear3E6040(void);                               /* 0x0005BBC0 */
-void  sub_0005C430(int h);
 int   af0_GetVar3F0738(void);                              /* 0x000DFD00 */
 void  r2b_ScriptTick(void);                                /* 0x000E0570 */
-void  sub_000586E0(int v);
 void  sub_000DE9E0(int v);
 void  sub_00038960(void);
-void  a1a_GroupAdd(void *x, int g, int n, void (*fn)(void), int a, int size); /* 0x001A1030 */
-void  a1a_GroupReleaseOne(void *x, int g);                 /* 0x001A1060 */
+int a1a_GroupAdd(void *x, int g, int n, void (*fn)(void), int a, int size); /* 0x001A1030 */
+int a1a_GroupReleaseOne(void *x, int g);                 /* 0x001A1060 */
 void  sub_0004D3E0(void);
 void  sub_0004E9E0(void);
 void  sub_0004E890(void);
@@ -532,9 +520,7 @@ void  sub_000D5200(RtcSwitch *o);
 int   sub_000E70C0(int page);
 int   r1c_GetRecThunk(int h);                              /* 0x000482B0 */
 void  sub_0003FC10(void *w);
-int   r6d_MsgGet(int table, int id);                       /* 0x0003FA70 */
-void  sub_0003FCB0(void *w, int msg, int a, float size, float b);
-void  sub_0003FCE0(void *w, int b, int c);
+void *r6d_MsgGet(void *table, int id);                       /* 0x0003FA70 */
 
 void  sub_000EC320(void);
 void  sub_000E66F0(RtcMenu *m);
@@ -548,12 +534,9 @@ void  r2d_StageStreamStop(void *s);                        /* 0x000E3BA0 */
 void  sub_000E0780(void);
 
 int   sub_001C7EE1(void);                                  /* CRT rand */
-void  sub_00113090(void *a, void *b, int kind);
 void  sub_001AEDF0(RtcAnimPart *p, int frame);
 int   sub_00199E70(int i);
-void  sub_001AA1E0(int lock);
 void  sub_001AAD40(int id, int a, int b, int i);
-void  sub_001AA1F0(int lock);
 void  sub_000EE0C0(void);
 int   sub_000EE240(void);
 void  r1_KeyReleaseD(int a, int b);                        /* 0x000489A0 */
@@ -567,11 +550,8 @@ void  r6c_EvJump(int ev);                                  /* 0x00087030 */
 
 int   sub_00048B20(int id, int b);
 int   sub_000F6B80(void *part);
-void *sub_00100110(void);
 void  sub_00100020(int phase);
-void *sub_000FBAF0(void);
 void  sub_000FBA00(int phase);
-void *sub_000FE3D0(void);
 void  sub_000FE2E0(int phase);
 float sub_000CBB70(RtcCamUser *o);
 float r1c_CamValue(void);                                  /* 0x0003B150 */
@@ -582,8 +562,6 @@ int   r2b_TakeButtons(uint16_t b);                         /* 0x000D7090 b=EAX *
 int   r2b_PairB(int i);                                    /* 0x000D9000 */
 void  af0_ClearVar3EE6C0(void);                            /* 0x000DFE10 */
 void  sub_001A5380(int busy);
-void  sub_00038070(int v);
-int   sub_000512D0(int slot, void *p);
 void  sub_0004F700(int slot);
 void  sub_0004F730(int on);
 void  r6e_ProcFinish(void *proc, int slot);                /* 0x0008D250 */
@@ -592,7 +570,7 @@ void  r6b_ProcStep(void *proc);                            /* 0x0008D1C0 */
 void  sub_0008CD80(void *proc);
 
 int   sub_0001CFD0(void);
-void *a5b_AllocCur(int slot, int a, int size);             /* 0x00053AB0 */
+void *a5b_AllocCur(int size, const void *file, int line);  /* 0x00053AB0 */
 void  a3c_Clear16(void *p);                                /* 0x0003D860 */
 void  sub_000AA2E0(int ev);
 float r4_DistanceXZ(const float *a, const float *b);       /* 0x001B2770 */
@@ -605,26 +583,22 @@ void  sub_00025D50(int a, int b);
 void  sub_0013A120(void *a, int n, const void *list);
 void  r1b_RecFreeRes(void *a);                             /* 0x0001D190 */
 void  r2d_PListPrune(void *b);                             /* 0x001134B0 */
-void  r1c_ObjPlayMotion(void *a, int motion, int b);       /* 0x00035D80 */
-void  aab_Effect494D0(int id, const void *at, int b);      /* 0x000494D0 */
-void *sub_000EDBE0(int a, int kind);
-uint8_t *sub_0001D960(void *o, int kind);
-void  b1b_NodeRenew(void *c, int id);                      /* 0x00113430 */
+void *r1c_ObjPlayMotion(void *a, int motion, int b);       /* 0x00035D80 */
+int aab_Effect494D0(int id, const void *at, int b);      /* 0x000494D0 */
+void *b1b_NodeRenew(void *c, int id);                      /* 0x00113430 */
 
 void  sub_001AC680(void);
-void  r1b_PktOp(void);                                     /* 0x00102FA0 */
+void  r1b_PktOp();                                     /* 0x00102FA0 */
 void  r4e_SoundInit(void);                                 /* 0x0019B500 */
 void  sub_0019B5C0(int cue);
 int   r4d_CuePoll(int cue);                                /* 0x00199CA0 */
 void  sub_0019AE90(void);
 void  r4d_CueStartAll(int cue);                            /* 0x00199EB0 */
-void  sub_00199F70(int cue);
 void  r1c_ClearWork42CE80(void);                           /* 0x00017D30 */
-void  sub_001A1130(int x);
-void  r4b_TexFree(int h);                                  /* 0x001B9FC0 */
+int r4b_TexFree(int h);                                  /* 0x001B9FC0 */
 void  b1b_CmdRun(int cmd);                                 /* 0x0004F5D0 */
 int   a5b_GetVideoMode(void);                              /* 0x000529F0 */
-void  a5b_HeapOp47640(int h);                              /* 0x00053880 */
+void  a5b_HeapOp47640(void *p);                            /* 0x00053880 */
 
 /* Float to int truncation (cvttss2si in the original; portable fallback). */
 #if defined(_MSC_VER) && defined(_M_IX86)

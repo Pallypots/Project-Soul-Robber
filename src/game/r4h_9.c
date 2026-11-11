@@ -214,7 +214,7 @@ void r4h_FxSlotHold(R4hFxNodeD *o, R4hFxActD *a)
         sub_000832D0(o->anim30, 1);
         goto landed;
     case 1:
-        if (sub_000E0770()->i324 == 1) {
+        if (((R4hPlayCtx *)sub_000E0770())->i324 == 1) {
             if (rec->t0C > 3.0f) {
                 if (sub_000F5D00(o)) {
                     sub_000832D0(o->anim30, 2);

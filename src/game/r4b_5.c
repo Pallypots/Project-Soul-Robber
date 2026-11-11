@@ -82,8 +82,9 @@ R4bNodeC *r4b_NodeInitType12(R4bNodeC *n)
     return n;
 }
 
-/* 0x001B82E0: set +0xB8 and copy it into every item. Stack args (n v). */
-void r4b_NodeCSetB8(R4bNodeC *n, int v)
+/* 0x001B82E0: set +0xB8 and copy it into every item. Stack args (n v);
+   v is a light (float[4]) pointer (r1i_14 passes s->light). */
+void r4b_NodeCSetB8(R4bNodeC *n, const float *v)
 {
     int i;
     R4bNodeCItem *it;

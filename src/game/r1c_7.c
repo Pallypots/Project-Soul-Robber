@@ -20,7 +20,7 @@ void r1c_PadModeTick(void)
 
 /* 0x00035D80: play the object's motion with this id (no blend range);
    0 when the object has no motion list or no such motion. */
-int r1c_ObjPlayMotion(R1cMotObj *o, int id, int flags)
+void *r1c_ObjPlayMotion(R1cMotObj *o, int id, int flags)
 {
     R1cMotList *l = o->motions;
     R1cMotNode *n;
@@ -33,7 +33,7 @@ int r1c_ObjPlayMotion(R1cMotObj *o, int id, int flags)
 
 /* 0x00035DD0: play the motion with this id from a motion list using the
    list's blend range, adding flag 4; 0 when absent. */
-int r1c_ListPlayMotion(void *o, R1cMotList *l, int id, int flags)
+void *r1c_ListPlayMotion(void *o, R1cMotList *l, int id, int flags)
 {
     R1cMotNode *n;
     if (l == 0) return 0;
@@ -86,7 +86,7 @@ int r1c_ObjLoadData(R1cDataObj *o)
 
 /* 0x0003FA20: create a named flag variable: look it up or create it, set
    its value, and copy the name into the 31-char name buffer. */
-R1cFlagVar *r1c_FlagVarSet(int ctx, int value, const char *name)
+R1cFlagVar *r1c_FlagVarSet(void *ctx, int value, const char *name)
 {
     R1cFlagVar *v = sub_0003F8B0(ctx, r1c_flagType2C4B94, 0);
     if (v != 0) {

@@ -65,7 +65,7 @@ void afc_BossStateReset(AfcBossState *s)
 }
 
 /* 0x000F3F00: apply a setting to every part's model. */
-void afc_MultiApply(AfcMulti *m, int v)
+void afc_MultiApply(AfcMulti *m, float v)
 {
     int n, i;
     if (m == 0)

@@ -27,9 +27,9 @@ int r1c_GroupResumeThunk(void *group)
 }
 
 /* 0x00037590: forwards to the resource loader 0x000373A0. */
-void r1c_LoadThunk(int a, int b, int c, int d)
+void *r1c_LoadThunk(const char *name, int offset, int size, void *buf)
 {
-    sub_000373A0(a, b, c, d);
+    return sub_000373A0(name, offset, size, buf);
 }
 
 /* 0x00037AE0: forwards to the record table reset 0x000375A0. */
@@ -44,8 +44,9 @@ void r1c_TablePassThunk(int arg)
     sub_00037B20(arg);
 }
 
-/* 0x000479E0: forwards to 0x001997D0 (store a block at 0x00402760). */
-void r1c_Store402760Thunk(void)
+/* 0x000479E0: forwards to 0x001997D0 (store a block at 0x00402760).
+   The argument is never read; the original caller pushes one. */
+void r1c_Store402760Thunk(int unused)
 {
     sub_001997D0();
 }

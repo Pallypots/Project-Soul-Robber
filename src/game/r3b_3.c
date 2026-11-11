@@ -25,12 +25,12 @@ void r3b_Step135500(R3bObj *obj, R3bAct *act)
     sub_00145CD0(v, v, obj->fE8 * 0.9f);
 }
 
-/* 0x001356D0: condition callback: when the animation window (c->a10.i, c->a14.i) is reached, apply c->i18. */
+/* 0x001356D0: condition callback: when the animation window (c->a10.f, c->a14.f) is reached, apply c->i18. */
 void r3b_AnimCond1356D0(R3bObj *obj, R3bAct *act, R3bCond *c)
 {
     R3bWork *w = act->work278;
 
-    if (sub_00145940(obj, w->i140, w->i148, c->a10.i, c->a14.i))
+    if (sub_00145940(obj, w->i140, w->i148, c->a10.f, c->a14.f))
         sub_001459D0(obj, w->i140, w->i148, c->i18);
 }
 

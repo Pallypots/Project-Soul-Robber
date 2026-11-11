@@ -91,7 +91,7 @@ void rfl_TrapWobble(RflTrap *e, RflActor *o)
     float *p;
     float a;
     if (e->f58 >= 0.05f) {
-        p = (float *)(sub_0001D0F0(o, 1) + 0x30);
+        p = (float *)((uint8_t *)sub_0001D0F0(o, 1) + 0x30);
         p[0] = 0.0f;
         p[1] = 0.0f;
         p[2] = 0.0f;
@@ -103,7 +103,7 @@ void rfl_TrapWobble(RflTrap *e, RflActor *o)
     v[1] = 0.0f;
     v[2] = sub_001A3EE0(a) * 0.4f;
     v[3] = 1.0f;
-    sub_000F5D40((float *)(sub_0001D0F0(o, 1) + 0x30), v);
+    sub_000F5D40((float *)((uint8_t *)sub_0001D0F0(o, 1) + 0x30), v);
 }
 
 /* 0x001711F0: hold step: follow the player and set body flags 0x18 while

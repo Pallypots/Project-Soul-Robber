@@ -181,7 +181,7 @@ int r6e_RootAppend(void **root, void *n)
 }
 
 /* 0x0008CCF0: create the 0x1C-byte root block in heap 3 and store v in it; -2 on failure. */
-int r6e_RootCreate(void **root, int v)
+int r6e_RootCreate(void **root, void *v)
 {
     void *b;
     if (!root)
@@ -193,7 +193,7 @@ int r6e_RootCreate(void **root, int v)
         *root = b;
         return -2;
     }
-    ((int32_t *)b)[6] = v;
+    ((void **)b)[6] = v;
     return 0;
 }
 
@@ -367,16 +367,16 @@ int r6e_TaskReleaseHeld(R6eTask *t)
 }
 
 /* 0x0008D7F0: look up a key and pass the result to 0x0008D780; -2 when not found. */
-int r6e_TaskLookup(void *a, int key)
+int r6e_TaskLookup(void *a, R6eKeyArg key)
 {
     void *x;
     int r;
-    if (!key)
+    if (!key.name)
         return -1;
-    x = sub_0007F510(key, &key);
+    x = sub_0007F510(key.name, &key.size);
     if (!x)
         return -2;
-    r = sub_0008D780(a, x, key);
+    r = sub_0008D780(a, x, key.size);
     if (r < 0)
         return r;
     return 0;

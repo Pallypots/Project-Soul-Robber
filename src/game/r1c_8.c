@@ -200,9 +200,9 @@ R1cIdEnt *r1c_IdListGet(R1cIdList *l, int id)
 
 /* 0x0005D1F0: default event handling, then on event 1 for an idle object
    whose kind has flag 0x20, queue its child for the 0x0005D030 callback. */
-int r1c_ObjEventEx(int ev, R1cEvObj *o, int mode)
+void *r1c_ObjEventEx(void *ev, R1cEvObj *o, int mode)
 {
-    int r = sub_0003F780(ev, o, mode);
+    void *r = sub_0003F780(ev, o, mode);
     if (mode == 1 && o->busy == 0 && (sub_0004ECE0(o->kind) & 0x20))
         sub_0005A990(o->child, sub_0005D030, r1c_ctx2DD624);
     return r;

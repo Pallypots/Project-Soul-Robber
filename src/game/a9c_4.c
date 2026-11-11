@@ -4,7 +4,7 @@
 /* 0x0019D620: add the three standard tasks to group g and release the group's pending list. */
 void a9c_GroupAddStdTasks(void *g)
 {
-    a1a_GroupAdd(g, 0, 1, sub_0019D460, 8, 0xC800);
+    a1a_GroupAdd(g, 0, 1, (void (*)(void))sub_0019D460, 8, 0xC800);
     a1a_GroupAdd(g, 1, 2, sub_0019D120, 8, 0x2800);
     a1a_GroupAdd(g, -1, 4, sub_0019D390, 8, 0x2800);
     a1a_GroupReleaseAll(g);
@@ -23,7 +23,7 @@ void a9c_EnterMode3(int a, int b)
 }
 
 /* 0x0019E630: start with a, reset both session slots and clear the controller block pointer. */
-void a9c_SessionStart(int a)
+void a9c_SessionStart(void *a)
 {
     int i;
     sub_001A1130(a);
@@ -38,14 +38,14 @@ void a9c_SessionStart(int a)
 }
 
 /* 0x0019E690: stop the movie, apply both 0x003DE5B0 settings, reset the 0x00403124 scale and continue. */
-void a9c_SessionSetup(void)
+int a9c_SessionSetup(void *g)
 {
     sub_001A8A70(0);
     sub_00079340();
     sub_00079F50(a80_ctx42C8E4, a9c_g3DE5B0, 0);
     sub_00079F50(a80_ctx42C8E4, a9c_g3DE5B0, 1);
     a9c_g403124 = 1.0f;
-    sub_001A11B0();
+    return sub_001A11B0(g);
 }
 
 /* 0x0019E8B0: apply a, clear 0x0040312C and store flag b; in state 1 the controller block moves to 0xD (set) or 0xE. */

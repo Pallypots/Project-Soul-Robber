@@ -7,7 +7,7 @@
    draws the visible rows; other messages go to the default handler.
    Calls 0x0002EF30 with ECX=px EAX=py EDX=mode (null pointers for modes
    0 and 1) and 0x0002EBC0 with EBX=&x EDI=&y ESI=hilite ECX=item. */
-int r1h_NodeMenuProc(int ctx, R1hMenu *m, int msg)
+void *r1h_NodeMenuProc(void *ctx, R1hMenu *m, int msg)
 {
     R1hMenuItem *items = m->items ? m->items->items : 0;
     int x, y, i;

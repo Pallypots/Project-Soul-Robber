@@ -1,6 +1,7 @@
 #ifndef A30_H
 #define A30_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* 0x4C-byte record table at 0x0042CA2C (record start inferred from the lowest field read). */
 typedef struct A30Rec4C {
@@ -60,10 +61,8 @@ extern int32_t     a30_g41316C, a30_g413170;
 
 int  sub_00199CA0(int i);
 void sub_00199EB0(int i);
-int  sub_00199F70(int i);
 void sub_0019B5F0(int i);
 int  sub_0019B620(int i);
-void sub_001AA310(int h);
 void sub_001B3300(A30Buf12 *b);
 void sub_000576F0(int a, int b);
 #endif

@@ -1,6 +1,7 @@
 #ifndef RBG_H
 #define RBG_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* oogie.h declares g_3EDB38 / g_3EDB3C. */
 
 /* Area rbg: larger game functions in 0x000D0000..0x0018FFFF (enemy/boss states, script
@@ -42,14 +43,14 @@ typedef struct RbgAnim {
 /* Jack's model object (g_stats.unkFD8), only the touched fields. */
 typedef struct RbgModel {
     uint8_t  unk000[0x20];
-    int32_t  i20;                /* +0x020 */
+    void    *i20;                /* +0x020 node (passed to 0x00083160/0x0007FD60) */
     uint8_t  unk024[0x30 - 0x24];
     RbgAnim *anim30;             /* +0x030 */
-    int32_t  i34;                /* +0x034 */
+    void    *i34;                /* +0x034 list (passed to 0x0007FD30) */
     uint8_t  unk038[0x134 - 0x38];
-    int32_t  h134;               /* +0x134 */
+    void    *h134;               /* +0x134 */
     uint8_t  unk138[0x13C - 0x138];
-    int32_t  h13C;               /* +0x13C */
+    void    *h13C;               /* +0x13C */
     uint8_t  unk140[0x14C - 0x140];
     int32_t  i14C;               /* +0x14C */
 } RbgModel;
@@ -91,14 +92,14 @@ typedef struct RbgRec150 {
     uint8_t    unk124[4];
     uint32_t   flags128;         /* +0x128 */
     uint8_t    unk12C[0x134 - 0x12C];
-    int32_t    h134;             /* +0x134 */
+    void      *h134;             /* +0x134 */
     uint8_t    unk138[4];
-    int32_t    h13C;             /* +0x13C */
+    void      *h13C;             /* +0x13C */
     uint8_t    unk140[0x14C - 0x140];
     int32_t    i14C;             /* +0x14C */
 } RbgRec150;
 typedef struct RbgTbl { int32_t unk00, unk04; RbgRec150 *recs08; } RbgTbl;
-typedef void (*RbgFn)(void);
+typedef void (*RbgFn)();   /* callback slot; callees take varying arguments */
 typedef struct RbgComp {
     uint8_t  unk00[0x20];
     uint32_t flags20;            /* +0x20 */
@@ -168,48 +169,27 @@ extern const char rbg_sDance00[], rbg_sDance01[], rbg_sDance02[], rbg_sDance03[]
                   rbg_sDance04[], rbg_sDance05[];                   /* 0x002771FC.. dance script paths */
 extern const char rbg_sJkMngSub[];                                  /* 0x00277130 source file name */
 extern RbgCtx *abc_p42C8E0;                                         /* 0x0042C8E0 */
-int   sub_0004F680(int movie);
-int   sub_00053AB0(int size, int a, int line);
-void  sub_0004FA70(int movie, int buf);
-void  sub_0004F4E0(void);
 void  sub_0004F700(int movie);
 void *sub_00053BC0(const char *file, int line);
-void  sub_001AE970(int node);
-RbgAnim *sub_00083030(int node, int a, RbgCtx *ctx);
-void  sub_0001DA90(RbgAnim *h, const char *path);
 int  *sub_00083140(RbgAnim *h, int a);
 void  sub_000831A0(RbgAnim *h, int a, int v);
 void  sub_0004F720(void);
 void  sub_00053BE0(void);
 
 /* ---- 0x000D0200 */
-void  sub_0001EB80(void *o);
-RbgComp *sub_0001D960(RbgRec150 *rec, int kind);
-void  sub_00083160(RbgAnim *a, int v);
-void  sub_0007FD30(RbgAnimNode *n, int a, int b);
-void  sub_0007FD60(int a, int b);
 void  sub_0001E9B0(void *scene, void *o, int a, int b, int c);
 void  sub_001B1190(RbgAnimNode *n, float t);
-typedef struct RbgAnimEnt { uint8_t unk00[8]; uint8_t b08; uint8_t unk09[3]; int32_t i0C; float f10; int32_t unk14, i18; } RbgAnimEnt;
-RbgAnimEnt *sub_00083120(RbgAnim *a, int entry);
-void  sub_001AEDD0(RbgAnimNode *n, float speed);
-void  sub_001AEF10(RbgAnimNode *n, int v);
-void  sub_0005BC50(int h);
-void  sub_00033C20(int h);
+typedef struct RbgAnimEnt { uint8_t unk00[8]; uint8_t b08; uint8_t unk09[3]; void *i0C; float f10; int32_t unk14, i18; } RbgAnimEnt;   /* i0C: motion data pointer (0x001AEBF0 derefs +8) */
 
 
 /* ---- 0x000D2A50 */
 void  PlayerObj_ClearFlags(PlayerObj *p, uint32_t lo, uint32_t hi); /* 0x000CF3F0 */
 void  PlayerObj_SetAnim(PlayerObj *p, int anim);                    /* 0x000CF490 */
-void  sub_000BD4D0(PlayerStats *p, int state);                      /* set state */
 void  sub_000243B0(int a, int b);
 void  sub_000D1930(PlayerStats *p);
 void  sub_000C5B10(void);
 void  sub_000D4C10(uint8_t *rig);
-void  sub_000D45B0(uint8_t *rig, int a, int b, float t);
 void  sub_000BC6F0(const char *name, int on);
-int   sub_0001D290(uint8_t *model, int a);
-void  sub_000CED50(int h);
 extern const char rbg_s276DBC[];                                    /* 0x00276DBC */
 
 /* ---- 0x000D72B0 */
@@ -233,7 +213,6 @@ typedef struct RbgPairOwner {
 } RbgPairOwner;
 extern void *r3_ctx42C8E4;                                          /* 0x0042C8E4 scene context */
 extern const float rbg_v3F1B44[4];                                  /* 0x003F1B44 */
-void  sub_00022380(RbgRec150 *o, const void *res, void *scene);
 void  sub_0001EBF0(RbgRec150 *o, int a);
 
 /* ---- 0x000DE6D0 */
@@ -281,23 +260,17 @@ extern int32_t rbg_g3F1B1C;                                         /* 0x003F1B1
 extern const uint32_t rbg_len317B64[];                              /* 0x00317B64 length per page id */
 void *r2b_TrackFire(RbgPage *o, int idx, uint32_t pos, uint32_t base);       /* 0x000E0BD0 */
 void  r2b_TrackMarkBefore(RbgPage *o, int idx, uint32_t lim, uint32_t base); /* 0x000E0B70 */
-void  sub_00048530(int h);
-void  sub_00048560(int h);
-void  sub_000E0FB0(int a);
-void  sub_00054040(void);
 void  sub_0019AB40(int snd);
 void  sub_0019AAC0(int snd, int loop);
 void  sub_00053F70(uint32_t t);
 void  sub_00054010(void);
 int   sub_0019A900(int strm);
 void  sub_000580D0(void);
-void  sub_0019B800(int strm, int v);
 int   sub_0019ADE0(int kind);
 int   sub_0019AD10(int kind, int i);
 void  sub_0019AC20(int strm, int i, int v);
 
 /* ---- 0x000F0430 */
-RbgRec150 *sub_000E23F0(int a, int b);                              /* find actor */
 void  sub_000E1040(RbgRec150 *o);
 void  sub_000E1060(RbgRec150 *o, int anim, int a, int b);
 void  sub_000F3D10(RbgRec150 *o, RbgComp *c, int k);
@@ -305,12 +278,10 @@ void  sub_000F3D10(RbgRec150 *o, RbgComp *c, int k);
 /* ---- 0x000F3DA0 */
 int   sub_000F3140(int key);
 int   sub_00082FC0(RbgAnimEnt *e, int entry);
-void  sub_001AEFD0(RbgAnimNode *n, int a, int mask, int t);
-void  sub_001AEED0(RbgAnimNode *n, int v);
+void  sub_001AEFD0(RbgAnimNode *n, void *anim, int mask, int t);
 void  sub_00082F90(RbgAnim *a, RbgAnimEnt *e);
 
 /* ---- 0x000FB580 */
-int   sub_000494D0(int id, const float *pos, int arg);              /* play sound at pos, returns handle */
 
 /* ---- 0x000F1EF0: boss finish sequence */
 typedef struct RbgScore { uint8_t unk000[0x2F0]; int32_t score2F0; } RbgScore;
@@ -325,10 +296,8 @@ typedef struct RbgSeq {
 } RbgSeq;
 extern const float rbg_dmg278410[6];                                /* 0x00278410 100, 250 .. 1350 */
 void  rbg_GroupAnim0F3DA0(RbgRec150 *g, int anim, int ms, int mode);
-uint32_t sub_001AEE90(RbgAnimNode *n, int a);                       /* parts mask */
-void  sub_000F3BF0(RbgRec150 *o, float amt, int flags);             /* add pending damage */
-void  r2d_SwitchOn(void);                                           /* 0x000EF930 */
-void  r2d_SwitchOff(void);                                          /* 0x000EF9B0 */
+void  r2d_SwitchOn(void *o);                                        /* 0x000EF930 regargs: o=EBX */
+void  r2d_SwitchOff(void *o);                                       /* 0x000EF9B0 regargs: o=EBX */
 void  r2c_SetEffectD4(RbgRec150 *o, int kind);                      /* 0x000F0B10 regargs: o=EDI */
 void  r2c_SetSoundD8(RbgRec150 *o, int id, int c);                  /* 0x000F0B70 regargs: o=ESI */
 void  r2_Comp5FreeD4(RbgRec150 *o);                                 /* 0x000EF8A0 regargs: o=EAX */
@@ -353,9 +322,8 @@ void *sub_0001D080(void *recs, int kind, int key);
 void  sub_00019000(void *o, int a);
 void  sub_0001AB00(void *o, int a, int b, int c, int d);
 void  sub_000E5C30(RbgPage *p);
-void  sub_000E98E0(int fx, int a);
+int sub_000E98E0(int fx, int a);
 void  sub_0019BE90(int m);
-void  sub_0005EB10(int a, int b);
 void  sub_000E3BA0(RbgPage *p);
 void  sub_00048330(int h, int a);
 void  sub_0019AA00(int strm, int a);
@@ -411,11 +379,8 @@ int   sub_000F30E0(int k);                                          /* count */
 void  sub_0001D8B0(void *slot, int kind);
 void  sub_0001D8D0(RbgRec150 *o, void *slot);
 void  sub_000362B0(RbgRec150 *o);
-void  sub_0001F070(RbgRec150 *o, int a);
 void  sub_00108790(RbgRec150 *o);
-void  sub_0001EFE0(void *bones, RbgRec150 *a, RbgRec150 *b);
 void  sub_000192B0(void *list, RbgRec150 *o);
-int   sub_000ED590(int a, int b);
 void  sub_000ED4C0(int a);
 void  sub_000ED5D0(int a);
 int   sub_000ED520(int a, int b);
@@ -431,7 +396,6 @@ RbgRec150 *sub_00181BE0(int i);
 void  sub_00181CE0(int i, int a);
 int   sub_00181D40(int a);
 void  rtc_PairAnimA(int i, int anim);                               /* 0x00181CA0 */
-void  sub_00113040(void *obj, void *act, int state);                /* set state */
 
 /* ---- 0x001673E0: effect object spawn */
 typedef int (*RbgInitFn)(RbgRec150 *o, RbgComp *c, int arg);
@@ -447,13 +411,9 @@ void  sub_00166C90(void);
 void  sub_00166CE0(void);
 void  sub_00166D70(void);
 void  sub_00166E20(void);
-void  sub_000AD090(void);
-void  sub_00102FA0(void);
 
 /* ---- 0x0013D4E0 */
 int   sub_001C7EE1(void);                                           /* rand */
-RbgNode *sub_00113430(void *act, int key);                          /* renew node */
-int   sub_00113190(void *obj, void *act, int k);
 
 /* ---- 0x0016FE00 */
 void  rbg_Rebuild16FE00(RbgRec150 *o, const void *tmpl);            /* regargs: o=EBX */
@@ -467,8 +427,6 @@ extern float     r3e_frameSeconds;                                  /* 0x0042C85
 int   r3b_Dispatch139B10(int k, void *act, void *obj);              /* 0x00139B10 regargs: k=EAX act=EDX obj=stack */
 
 /* ---- 0x0013A670 */
-int   sub_000833E0(RbgAnim *a);                                     /* animation finished */
-void  sub_00113090(void *obj, void *act, int anim);                 /* play animation */
 
 /* ---- 0x0014E6B0 */
 int   sub_00156040(void);
@@ -476,8 +434,6 @@ void  sub_001134B0(void *act);
 void  sub_001561D0(RbgWork *w, float a, float b);
 void  sub_00113AA0(void *obj, void *act);
 void  sub_00048250(int h);
-void  sub_0005BE30(int h);
-void  sub_00033A70(void *p);
 void  sub_00147580(RbgRec150 *obj, int anim, RbgComp *act);        /* regargs: anim=EBX act=ESI obj=stack */
 
 /* ---- 0x0015A270: work block view of the second enemy family */

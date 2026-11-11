@@ -1,6 +1,7 @@
 #ifndef B13_H
 #define B13_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area b13 (0x00130000-0x0015FFFF): enemy state handlers. Names inferred. */
 
@@ -22,7 +23,7 @@ typedef struct B13Owner {
     uint32_t flagsC;         /* +0x0C */
     uint32_t flags10;        /* +0x10 */
     uint8_t  unk14[0x30 - 0x14];
-    struct B13Model { uint8_t unk00[0x14]; int32_t handle14; } *model; /* +0x30 */
+    struct B13Model { uint8_t unk00[0x14]; void *handle14; } *model; /* +0x30 */
     uint8_t  unk34[0x54 - 0x34];
     float    f54;            /* +0x54 (Hypothesis: heading) */
 } B13Owner;
@@ -52,17 +53,10 @@ typedef struct B13Enemy {
 
 typedef struct B13Timer { uint8_t unk00[0x10]; int32_t a; int32_t b; } B13Timer;
 
-void      sub_00113090(B13Owner *o, B13Enemy *e, int anim);
-void      sub_00113040(B13Owner *o, B13Enemy *e, int anim);
-int       sub_00113190(B13Owner *o, B13Enemy *e, int arg);
-B13Timer *sub_00113430(B13Enemy *e, int slot);
 void      sub_00113480(B13Enemy *e, int slot);
-int       sub_000833E0(void *anim);   /* animation finished */
-void      sub_001AEDD0(int handle, int arg);
 void      sub_0018E7C0(void *p);
 int       sub_0013A0A0(B13Owner *o, B13Enemy *e);
 void      sub_00048250(int h);
-void      sub_00033A70(void *h);
 void      sub_0001D700(void *o);
 void      Grade_AddExclamations(int amount);
 typedef struct B13FTimer { uint8_t unk00[0x10]; float t; } B13FTimer;
@@ -80,7 +74,5 @@ int       sub_0018E680(void *p);
 void      sub_00189DE0(void *p, int arg);
 void      b13_VecCopy(void *dst, const void *src);   /* 0x000F5D40 with two args */
 int       sub_001C7EE1(void);
-int       sub_0001D0F0(void *a, int b);
-void      sub_001ADA40(int a, int b);
 typedef struct B13Pair { uint8_t unk00[0x20]; uint8_t *p20; /* +0x20 */ uint8_t unk24[0x3C]; uint8_t v60[1]; /* +0x60 */ } B13Pair;
 #endif

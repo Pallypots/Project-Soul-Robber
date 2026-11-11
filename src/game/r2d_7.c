@@ -26,17 +26,17 @@ int r2d_FxNearEnd(unsigned idx)
     return 0;
 }
 
-/* 0x000F5E30: set the mover's two vectors from a and b, both transformed by
-   matrix m, and clear +0x118. */
-void r2d_MoverSet(R2dMover *o, const void *m, const R2dVec4 *a, const R2dVec4 *b)
+/* 0x000F5E30: set the mover's two vectors from a and b, both scaled by
+   s (0x1ADB60), and clear +0x118. */
+void r2d_MoverSet(R2dMover *o, float s, const R2dVec4 *a, const R2dVec4 *b)
 {
     if (!o)
         return;
     o->v118 = 0;
     o->vF8 = *a;
     o->v108 = *b;
-    sub_001ADB60(&o->vF8, &o->vF8, m);
-    sub_001ADB60(&o->v108, &o->v108, m);
+    sub_001ADB60(&o->vF8, &o->vF8, s);
+    sub_001ADB60(&o->v108, &o->v108, s);
 }
 
 /* 0x000EED90: allocate and zero the pool of kind 7 (0x118-byte entries).

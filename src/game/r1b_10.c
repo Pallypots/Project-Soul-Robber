@@ -45,7 +45,7 @@ void r1b_ScreenMode4(void)
 }
 
 /* 0x0002E4E0: register the screen's three handlers in group s and start it. */
-void r1b_ScreenStart(int s)
+void r1b_ScreenStart(void *s)
 {
     sub_00038960();
     a1a_GroupAdd(s, 0, 1, sub_0002CF50, 4, 0x2000);
@@ -58,7 +58,7 @@ void r1b_ScreenStart(int s)
 }
 
 /* 0x0002EB80: bind a value to an object and look up its resource; 0 on success, -1 on failure. */
-int r1b_BindValue(R1bBindObj *o, int v)
+int r1b_BindValue(R1bBindObj *o, void *v)
 {
     int r = 0;
     if (o == 0 || v == 0) return -1;

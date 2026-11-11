@@ -162,14 +162,14 @@ void r6c_TreeFreeAll(R6cTNode *n)
     }
 }
 
-/* 0x0007F3F0: insert the sibling chain b after a (b takes a's parent). */
-void r6c_TreeInsertAfter(R6cTNode *a, R6cTNode *b)
+/* 0x0007F3F0: insert the sibling chain b after a (b takes a's parent); returns b. */
+R6cTNode *r6c_TreeInsertAfter(R6cTNode *a, R6cTNode *b)
 {
     R6cTNode *parent, *oldNext, *n, *last;
     if (!b)
-        return;
+        return b;
     if (!a)
-        return;
+        return b;
     parent = a->parent;
     oldNext = a->next;
     a->next = b;
@@ -182,5 +182,6 @@ void r6c_TreeInsertAfter(R6cTNode *a, R6cTNode *b)
     } while (n);
     last->next = oldNext;
     if (oldNext)
-        oldNext->prev = last;
+        oldNext->prev = last;
+    return b;
 }

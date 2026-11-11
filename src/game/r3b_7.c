@@ -37,7 +37,7 @@ int r3b_CondAnim1473A0(R3bObj *a, void *b, R3bCond *c)
 
     if (!t)
         return 0;
-    return sub_00145940(a, t->u60.h.i60, t->u60.h.i68, c->a10.i, c->a14.i);
+    return sub_00145940(a, t->u60.pos60[0], t->u60.pos60[2], c->a10.f, c->a14.f);
 }
 
 /* 0x001559A0: 1 when the distance from a to the condition's target lies in [c->a10, c->a14]. */
@@ -75,7 +75,7 @@ int r3b_CondAnim155A70(R3bObj *a, void *b, R3bCond *c)
 
     if (!t)
         return 0;
-    return sub_00145940(a, t->u60.h.i60, t->u60.h.i68, c->a10.i, c->a14.i);
+    return sub_00145940(a, t->u60.pos60[0], t->u60.pos60[2], c->a10.f, c->a14.f);
 }
 
 /* 0x00155C20: test the condition's target with 0x001460A0: c->i08 == 0 wants 0, otherwise wants 1. */

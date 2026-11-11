@@ -35,9 +35,9 @@ void r1_KeyReleaseW(int a, int b, int k)
     if (v != -1) sub_0019B5F0(v);
 }
 /* 0x000488F0: pass the dword of key (a,b) to 0x00047A80. calls 0x000484B0 with EBX=a EDI=b */
-int r1_KeyApplyD(int a, int b)
+void r1_KeyApplyD(int a, int b)
 {
-    return sub_00047A80(r1_KeyDword(a, b));
+    sub_00047A80(r1_KeyDword(a, b));
 }
 /* 0x00048910: state of channel key (a,b) when in 3..23, else 2. calls 0x000484B0 with EBX=a EDI=b */
 int r1_KeyStateD(int a, int b)

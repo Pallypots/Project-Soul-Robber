@@ -1,6 +1,7 @@
 #ifndef B16_H
 #define B16_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 /* Zero a block (the original inlines this as rep stosd). The intrinsic is
  * used only for the 32-bit x86 comparison build; every other target (native
@@ -106,19 +107,14 @@ struct B16Act {
 int  b16_SetState(B16Model *m, B16Act *a, int state);   /* 0x001671D0 */
 void b16_PlayAnim(B16Model *m, B16Act *a, int id);      /* 0x00167200 */
 void b16_AnimSet(B16Anim *anim, int id);
-int  sub_000833E0(B16Anim *anim);
 void sub_0001D7F0(void *o, int id, int b);
 void b16_VecCopy(void *dst, const void *src);
 void sub_001B2150(B16Link *l);
-void sub_001B2160(void *bank, B16Link *l);
 int  sub_00166FF0();
 void sub_000D9B30(int a);
 void b16_Free33A40(void *o);
-void sub_00033A70(void *o);
-void b16_Notify36750(B16Model *m, int b);
+void *b16_Notify36750(B16Model *m, int b);
 void sub_000414A0(int n);
-void sub_001AD940(B16Ctx *c);
-void sub_0001EB80(void *o);
 int  sub_001C7EE1(void);
 extern float  b16_points[][4];          /* 0x0031F0E0 */
 extern uint8_t *b16_player;             /* 0x00420E98 */
@@ -140,9 +136,7 @@ typedef struct B16Enemy {
     uint8_t  unk078[0x278 - 0x78];
     B16EWork *work;            /* +0x278 */
 } B16Enemy;
-int  sub_00113090(void *o, B16Enemy *e, int state);
 void sub_0018C6A0(void *o);
 typedef struct B16Hit { uint8_t unk00[0x50]; int32_t mode; } B16Hit;
-B16Hit *sub_0001D960(void *o, int t);
 extern void *b16_obj3FD7C4;             /* 0x003FD7C4 */
 #endif

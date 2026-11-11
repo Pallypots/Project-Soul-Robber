@@ -1,6 +1,7 @@
 #ifndef R1H_H
 #define R1H_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Area r1h: larger game functions 0x00012000..0x00060000 (eighth pass).
@@ -15,17 +16,13 @@
 #define R1H_FTOI(x) ((int)(x))
 #endif
 
-uint32_t sub_0004ECE0(int pad);                 /* newly pressed buttons */
 
 /* ------------------------------------------------------------ debug menus */
 /* debug text output (as area r1g): every call returns the new context */
-int sub_0003E460(int ctx, int x, int y, int *px, int *py, void *m);  /* title */
-int sub_0003E550(int ctx, int x, int y, int *px, int *py, void *m);  /* page arrow up */
-int sub_0003E5B0(int ctx, int x, int y, int *px, int *py, void *m);  /* page arrow down */
-int sub_0003E610(int ctx, int x, int y, int *px, int *py, int hilite, int on, const char *fmt, ...);
-int sub_0003F780(int ctx, void *m, int msg);    /* default menu handler */
-int sub_0003ED50(void *m, int mode);            /* nonzero while the cursor moves */
-int  sub_0003F570(void *m);                     /* cursor update, nonzero when the value changed */
+void *sub_0003E460(void *ctx, int x, int y, int *px, int *py, void *m);  /* title */
+void *sub_0003E550(void *ctx, int x, int y, int *px, int *py, void *m);  /* page arrow up */
+void *sub_0003E5B0(void *ctx, int x, int y, int *px, int *py, void *m);  /* page arrow down */
+void *sub_0003E610(void *ctx, int x, int y, int *px, int *py, int hilite, int on, const char *fmt, ...);
 
 /* tree node shown by the tree menu (only the link fields used) */
 typedef struct R1hNode {
@@ -66,17 +63,16 @@ typedef struct R1hMenuData {
     R1hMenuItem *items;         /* +0x08 */
 } R1hMenuData;
 /* regargs: px=ECX py=EAX mode=EDX */
-int  sub_0002EF30(int ctx, R1hMenu *m, int *px, int *py, int mode);
+void *sub_0002EF30(void *ctx, R1hMenu *m, int *px, int *py, int mode);
 /* regargs: px=EBX py=EDI hilite=ESI it=ECX */
-int  sub_0002EBC0(int ctx, int x, int y, int *px, int *py, int hilite, R1hMenuItem *it);
-void sub_0003EF00(R1hMenuItem *it, int pad);
-int  r1h_NodeMenuProc(int ctx, R1hMenu *m, int msg);       /* 0x0002F2A0 */
+void *sub_0002EBC0(void *ctx, int x, int y, int *px, int *py, int hilite, R1hMenuItem *it);
+void *r1h_NodeMenuProc(void *ctx, R1hMenu *m, int msg);       /* 0x0002F2A0 */
 extern const char *r1h_nodeTypeNames[];         /* 0x00282830 */
 extern const char r1h_str2609BC[];              /* 0x002609BC header */
 extern const char r1h_fmt2609AC[];              /* 0x002609AC "%d %s %d" style */
 extern const char r1h_fmt260990[];              /* 0x00260990 empty slot */
-void sub_0002EAD0(R1hTreeMenu *m, R1hNode *n);
-void sub_0002EB80(R1hTreeMenu *m, R1hNode *n);
+int sub_0002EAD0(R1hTreeMenu *m, R1hNode *n);
+int sub_0002EB80(R1hTreeMenu *m, R1hNode *n);
 typedef struct R1hNodeEx {
     R1hNode  n;
     uint32_t flags;             /* +0x90 */
@@ -86,8 +82,8 @@ extern const char r1h_fmt260954[];              /* 0x00260954 "name value" row *
 extern const char r1h_fmt26094C[];              /* 0x0026094C "name" row */
 int  sub_0003E9E0(R1hMenuData *d);              /* item count */
 void sub_0003EAF0(R1hMenuItem *it, int on);
-int  r1h_NodeRows(int ctx, R1hMenu *m, int *px, int *py, int mode);   /* 0x0002EF30 */
-int  r1h_TreeMenuProc(int ctx, R1hTreeMenu *m, int msg);   /* 0x0002ECB0 */
+void *r1h_NodeRows(void *ctx, R1hMenu *m, int *px, int *py, int mode);   /* 0x0002EF30 */
+void *r1h_TreeMenuProc(void *ctx, R1hTreeMenu *m, int msg);   /* 0x0002ECB0 */
 
 /* ------------------------------------------------------------ GS packets */
 typedef struct R1hGsEnt {
@@ -158,7 +154,6 @@ typedef struct R1hTex {
     uint8_t  u00[0x28];
     uint64_t q28;               /* +0x28 */
 } R1hTex;
-R1hTex   *sub_001B9650(int handle);
 typedef struct R1hFrame {
     uint8_t  u00[0x18];
     uint32_t a, b, c;           /* +0x18 */
@@ -166,12 +161,9 @@ typedef struct R1hFrame {
 R1hFrame *sub_001BB230(void);
 uint32_t  sub_001BB240(uint32_t c, uint32_t a, uint32_t b);
 void      sub_001A4D70(int ch);
-uint32_t *sub_00012300(uint32_t *p, uint64_t reg, uint64_t val);
 uint32_t *sub_00012360(uint32_t *p, R1hSpr *s);
 uint32_t *sub_000125A0(uint32_t *p, R1hStPkt *s);
-uint32_t *sub_000396E0(uint32_t *p);
-void      sub_00102FA0(int a, ...);       /* debug stub (returns at once) */
-void      r1h_Nop102FA0(void);           /* 0x00102FA0 same stub called without arguments */
+void      r1h_Nop102FA0();           /* 0x00102FA0 same stub called without arguments */
 uint32_t *r1h_FiltDrawBlend(uint32_t *p, int ch);       /* 0x00039920 */
 
 /* ------------------------------------------------------------ system setup */
@@ -183,7 +175,6 @@ extern void   *r1h_res3E1214;                   /* 0x003E1214 */
 extern void   *r1h_res3E1218;                   /* 0x003E1218 */
 extern int32_t r1h_h2DCD48;                     /* 0x002DCD48 */
 extern const char r1h_name2CCCC8[];             /* 0x002CCCC8 */
-void *sub_00053820(int kind, int size, int a, int b);   /* allocate */
 void  sub_001BBD90(void);
 void  sub_00012000(void);
 void  sub_001BB2A0(void *p, int size);
@@ -195,7 +186,6 @@ void  sub_001BB210(int a, int b, int c);
 void  sub_001BA650(void *p, int size);
 void  sub_001B9720(void);
 void  sub_001B9730(void);
-int   sub_00084C00(const char *name, int a);
 void  r1h_GfxInit(void);                        /* 0x00052360 */
 
 extern int32_t r1h_busy3E0540;                  /* 0x003E0540 */
@@ -205,11 +195,8 @@ extern int32_t r1h_g3E00CC;                     /* 0x003E00CC */
 extern int32_t r1h_g41316C;                     /* 0x0041316C */
 extern int32_t r1h_g413170;                     /* 0x00413170 */
 void sub_000325A0(int on);
-void sub_00038070(int a);
 void sub_00049870(void);
-void sub_0004BDA0(void);
-void sub_00058540(void (*fn)(void), int a);
-int  sub_00057E90(void);
+void sub_0004BDA0(int);
 void sub_000580D0(void);
 void sub_000488C0(int a, int b, int c);
 int  sub_00047A50(int a, int b, int c);
@@ -223,7 +210,6 @@ void r1h_WaitIdle(void);                        /* 0x0004E6D0 */
 /* ------------------------------------------------------------ boot / scene */
 extern uint64_t r1h_frames42C918;               /* 0x0042C918 frame counter */
 extern int32_t  r1h_g42CADC;                    /* 0x0042CADC */
-int  sub_000AD090(int a, ...);                  /* stub returning 0 */
 void sub_00053A40(void);
 void sub_0003DE20(int a);
 void sub_0004EFE0(void);
@@ -258,7 +244,6 @@ typedef struct R1hWorld {
 } R1hWorld;
 extern R1hWorld *r1h_world42C8E4;               /* 0x0042C8E4 */
 extern uint8_t   r1h_list3E1270[];              /* 0x003E1270 */
-void sub_00047BF0(int a);
 void sub_0005FE00(void);
 void sub_000A8B80(void);
 void sub_000C85C0(void);
@@ -268,11 +253,10 @@ void sub_00019000(void *l, int n);
 void sub_00034BB0(void);
 void sub_00034B70(void);
 void sub_00053350(int a, int b);
-void sub_00053880(void *p);                     /* free */
 void sub_0005CA80(void);
 void sub_0003AAB0(void);
 void sub_0003ACC0(void *p);
-void sub_000DFC80(void);
+int sub_000DFC80(void);
 void sub_000A9D00(void);
 void sub_00087440(void);
 void sub_00087560(int i);
@@ -291,7 +275,6 @@ extern int32_t r1h_texA3E60A0[4];               /* 0x003E60A0 texture handles, -
 extern int32_t r1h_texB3E60B0[6];               /* 0x003E60B0 texture handles, -1 none */
 extern void   *r1h_buf3E60C8;                   /* 0x003E60C8 */
 extern void   *r1h_buf3E60CC;                   /* 0x003E60CC */
-void sub_001B9FC0(int tex);                     /* release texture */
 int  sub_000529F0(void);
 int  sub_0004F6D0(int id);
 void r1h_StageTexRelease(void);                 /* 0x0005FE00 */
@@ -310,22 +293,20 @@ R1hSeEnt **sub_0005EBA0(int seq);
 uint32_t sub_0004ECD0(int pad);                 /* held buttons */
 uint32_t sub_0004ECF0(int pad);                 /* repeating buttons */
 void sub_0005EB40(int a);
-void sub_0005EB10(int a, int seq);
 int  sub_0005ED30(int seq, int at, int a);      /* insert entry */
 int  sub_0005EDA0(int seq, int at, int a);      /* delete entry */
 void sub_0003E410(R1hMenu *m, int a);           /* close menu */
-int  r1h_SeqEditProc(int ctx, R1hMenu *m, int msg);     /* 0x0005F290 */
+void *r1h_SeqEditProc(void *ctx, R1hMenu *m, int msg);     /* 0x0005F290 */
 
-int  r1h_SeqEdit2Proc(int ctx, R1hMenu *m, int msg);    /* 0x0005F580 */
+void *r1h_SeqEdit2Proc(void *ctx, R1hMenu *m, int msg);    /* 0x0005F580 */
 
 extern int32_t r1h_g3E6098;                     /* 0x003E6098 */
 
-int  sub_0003F770(void *m);                     /* nonzero while the cursor moves */
 int  sub_0003EB10(R1hMenuItem *it);             /* item value */
 void sub_0003EA10(R1hMenuItem *it, int v);      /* set item value */
 void sub_0003EC30(R1hMenuItem *it, int v, int lo, int hi, int step, int big);   /* set up a number item */
 void sub_001997E0(int id, int pitch);
-int  r1h_SndTestProc(int ctx, R1hMenu *m, int msg);     /* 0x0005D250 */
+void *r1h_SndTestProc(void *ctx, R1hMenu *m, int msg);     /* 0x0005D250 */
 
 /* ------------------------------------------------------------ sound sequencer (seseq.c) */
 typedef struct R1hSeqSlot {
@@ -365,7 +346,6 @@ typedef struct R1hSeqObj {
     int32_t  index;             /* +0x08 */
     int32_t  v0C;               /* +0x0C */
 } R1hSeqObj;
-void *sub_00053AB0(int size, int a, int line);  /* allocate (line of seseq.c) */
 void  sub_0003D860(void *p);
 void  sub_0005CEB0(R1hSeqOwner *o);
 void  sub_0005C1E0(R1hSeqOwner *o);
@@ -394,7 +374,6 @@ extern uint32_t *r1h_keys2C4AE8;                /* 0x002C4AE8 [0] accept mask, [
 uint32_t sub_0004ED20(int pad);
 uint32_t sub_0004ED40(int pad);
 int  sub_000544F0(void);
-void sub_00048AF0(int se);                      /* menu sound */
 int  r1h_SlotSelect(void);                      /* 0x00054E90 */
 
 /* ------------------------------------------------------------ 2D animation sets */
@@ -427,9 +406,6 @@ extern int32_t  r1h_g3E4764;                    /* 0x003E4764 */
 extern R1hLangEnt r1h_langTbl2DD1C8[];          /* 0x002DD1C8 */
 extern int8_t   r1h_lang413145;                 /* 0x00413145 */
 void sub_00014DA0(void *src);
-void sub_00014D00(R1hAnim *a, void *src, int tex);
-void sub_00014E30(R1hAnim *a, int b, int c, int d, int e);
-void sub_00052A00(int lang);
 void r1h_AnimSetLoad(int kind);                 /* 0x00059020, regargs kind=EAX */
 
 
@@ -463,8 +439,7 @@ extern R1hSeEnt   r1h_shockDef2DD7BC;           /* 0x002DD7BC default key, list 
 extern R1hSeEnt   r1h_shockDef2DD7BE;           /* 0x002DD7BE default end, list 1 */
 extern R1hSeEnt   r1h_shockDef2DD7C0;           /* 0x002DD7C0 default key, list 0 */
 extern R1hSeEnt   r1h_shockDef2DD7C2;           /* 0x002DD7C2 default end, list 0 */
-R1hShockFile *sub_00037570(int id, int kind);   /* loaded file or 0 */
-void r1h_ShockLoad(int slot, int id);           /* 0x0005EBB0 */
+void r1h_ShockLoad(int slot, const char *id);           /* 0x0005EBB0 */
 
 
 /* debug menu key configuration */
@@ -473,7 +448,6 @@ extern uint32_t r1h_keyUp2C4B10;                /* 0x002C4B10 */
 extern uint32_t r1h_keyOk2C4B1C;                /* 0x002C4B1C */
 extern uint32_t r1h_keyBack2C4B20;              /* 0x002C4B20 */
 extern uint32_t r1h_keyPage2C4B24;              /* 0x002C4B24 */
-void sub_0003F8B0(void *owner, void *menu, int a);  /* open submenu */
 int  r1h_MenuCursor(R1hMenu *m, int flags);     /* 0x0003ED50 */
 
 
@@ -498,9 +472,6 @@ typedef struct R1hWorld44 {
 } R1hWorld44;
 extern uint32_t  r1h_flags37C4F8;               /* 0x0037C4F8 bit 0: markers on */
 extern R1hMarks  r1h_marks37F0F0;               /* 0x0037F0F0 */
-R1hCamModel *sub_000847F0(void *list, int id);
-void sub_000F5D40(float *dst, const float *src);    /* copy 4 floats */
-void sub_001AD9B0(float *dst, const float *mtx, const float *src);
 void sub_001AE140(int *xy, void *vp, int *z, int a);
 void r1h_MarkAdd(const float *pos, float yofs, void *obj, int tag);   /* 0x000264F0 */
 

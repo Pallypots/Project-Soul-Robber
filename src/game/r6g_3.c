@@ -79,7 +79,7 @@ void r6g_PlayerActionInput(PlayerObj *p, int dir)
     }
     if (!(r6g_keyMask41CD00[8] & pressed) && !(r6g_keyMask41CD00[9] & pressed)) {
         if (r6g_keyMask41CD00[6] & pressed) {
-            st = sub_000CD300(p);
+            st = sub_000CD300((R6ePlayer *)p);
             ((R6gPlayer *)p)->aim1D8 = st;
             st += 0x2E;
             if (st != cur)

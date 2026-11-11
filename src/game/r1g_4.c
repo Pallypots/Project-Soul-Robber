@@ -57,7 +57,7 @@ void r1g_CharUnitFree(R1gCharUnit *u)
    template's model parts (+0x20 model, +0x28 node, +0x30 animation)
    decide which buffers each unit gets (all of them without a template).
    Root units use nodesRoot nodes, chained children nodesChild. */
-void r1g_CharUnitAlloc(int kind, int count, int nodesRoot, int nodesChild, R1gCharUnit *tmpl)
+R1gUnitTbl *r1g_CharUnitAlloc(int kind, int count, int nodesRoot, int nodesChild, R1gCharUnit *tmpl)
 {
     R1gUnitTbl *tbl;
     int k, off, n;
@@ -124,6 +124,7 @@ void r1g_CharUnitAlloc(int kind, int count, int nodesRoot, int nodesChild, R1gCh
             a5b_CurSlotEndTemp();
         }
     }
+    return tbl;
 }
 
 /* 0x0001F930: allocate the per-unit buffers for character `kind` from the
@@ -132,14 +133,14 @@ void r1g_CharUnitAlloc(int kind, int count, int nodesRoot, int nodesChild, R1gCh
    chain length is the longest flagged child chain of src. Animation
    buffers are made when any flagged root of src has one.
    calls 0x0001E850 with EAX=unit EDI=counts */
-void r1g_CharUnitAllocFrom(int kind, R1gUnitTbl *src)
+R1gUnitTbl *r1g_CharUnitAllocFrom(int kind, R1gUnitTbl *src)
 {
     int rootCnt[3], childCnt[3];
     int maxChain, hasAnim;
     R1gUnitTbl *tbl;
     int k, off;
     if (kind < 0 || src == 0)
-        return;
+        return 0;
     rootCnt[0] = 0; rootCnt[1] = 0; rootCnt[2] = 0;
     childCnt[0] = 0; childCnt[1] = 0; childCnt[2] = 0;
     maxChain = 0;
@@ -213,6 +214,7 @@ void r1g_CharUnitAllocFrom(int kind, R1gUnitTbl *src)
             a5b_CurSlotEndTemp();
         }
     }
+    return tbl;
 }
 
 /* 0x0001FBD0: attach unit `u` to the unit named by its first kind-1 link,

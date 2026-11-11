@@ -15,7 +15,7 @@ void a19_SessionRestart(void)
 void a19_Set336DD0(int v) { a19_g336DD0 = v; }
 
 /* 0x0019D100: 0x001A1130(a), then Clock_Set402FC0(30). */
-void a19_Start1A1130(int a)
+void a19_Start1A1130(void *a)
 {
     sub_001A1130(a);
     Clock_Set402FC0(30);

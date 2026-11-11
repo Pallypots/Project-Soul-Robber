@@ -7,8 +7,9 @@ void r1c_ClearWork42CE80(void)
     R1C_ZERO(r1c_work42CE80, sizeof(r1c_work42CE80));
 }
 
-/* 0x00025F50: set (1), clear (0) or toggle (2) bit 0 of the flag word. */
-void r1c_SetFlagBit0(int mode)
+/* 0x00025F50: set (1), clear (0) or toggle (2) bit 0 of the flag word.
+   The callers push a second argument that is never read. */
+void r1c_SetFlagBit0(int mode, int unused)
 {
     switch (mode) {
     case 0:
@@ -26,8 +27,9 @@ void r1c_SetFlagBit0(int mode)
     }
 }
 
-/* 0x00025F90: set (1), clear (0) or toggle (2) bit 1 of the flag word. */
-void r1c_SetFlagBit1(int mode)
+/* 0x00025F90: set (1), clear (0) or toggle (2) bit 1 of the flag word.
+   The callers push a second argument that is never read. */
+void r1c_SetFlagBit1(int mode, int unused)
 {
     switch (mode) {
     case 0:

@@ -3,6 +3,7 @@
 #ifndef A19_H
 #define A19_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Per-object work block reached through actor +0x74. */
 typedef struct a19_Work {
@@ -71,17 +72,13 @@ extern float      a19_g403004, a19_g403120;
 extern int32_t    a19_g403940, a19_g40396C, a19_g403974;
 
 void a19_VecOp(float *a, float *b);                 /* 0x000F5D40 (2-arg use) */
-a19_Actor *sub_0001D960(void *obj, int kind);      /* find component of `kind` (Hypothesis) */
 void sub_00189DA0(void *a, void *b, int c);
 void sub_0001D720(a19_Actor *a);
 int  sub_001AB610(void);
-int  sub_001AB3D0(int a, int b);
 void sub_0019AA00(int a, int b);
 int  sub_0019AEA0(int a, int b, int c, int d, int e, int f);
 void sub_00052A20(void);
 void sub_0019C350(void);
-void sub_001A1130(int a);
-void sub_001AA310(int a);
 void sub_001AD520(void);
 int  sub_001AA520(int a);
 void sub_0019E810(int a);

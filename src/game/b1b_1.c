@@ -48,7 +48,7 @@ int b1b_CompReset(B1bComp *o)
 }
 
 /* 0x001045C0: when the test passes, apply setting 1 to the screen. */
-void b1b_ScrActivate(int a)
+void b1b_ScrActivate(void *a)
 {
     void * volatile r;
     if (sub_000F5D00(a) == 0)
@@ -60,7 +60,7 @@ void b1b_ScrActivate(int a)
 }
 
 /* 0x00104B40: event dispatch: kind 0x13 selects 3, otherwise forwards. */
-void b1b_ScrEvent(int a, B1bEvt *e)
+void b1b_ScrEvent(void *a, B1bEvt *e)
 {
     if (sub_000F5D00(a) == 0)
         return;

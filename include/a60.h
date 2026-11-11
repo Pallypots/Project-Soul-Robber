@@ -1,6 +1,7 @@
 #ifndef A60_H
 #define A60_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area a60 (0x00060000..0x0007FFFF). All names inferred. */
 
@@ -49,9 +50,9 @@ extern float   a50_frameUnits;          /* 0x0042C858 */
 extern int32_t a60_mode3E64C0;          /* 0x003E64C0 */
 extern int32_t a60_state3E60D4;         /* 0x003E60D4 */
 extern uint8_t *a60_base3E60C8;         /* 0x003E60C8 */
-extern void   *a60_res3E64BC;           /* 0x003E64BC */
+extern int32_t a60_res3E64BC;           /* 0x003E64BC texture index or -1 */
 extern uint8_t *a60_work42C5E8;         /* 0x0042C5E8 */
-extern void   *a60_res3E6540;           /* 0x003E6540 */
+extern int32_t a60_res3E6540;           /* 0x003E6540 texture index or -1 */
 extern int32_t a60_h3E660C, a60_h3E6608, a60_h42C6F0;
 extern int32_t a60_val3E65FC, a60_val3E6938;
 extern int32_t a60_cmd3E6610, a60_arg3E661C;
@@ -64,20 +65,17 @@ extern int32_t a60_h3E64FC[5], a60_h3E6510[4], a60_h3E6520[2], a60_h3E653C;
 extern int32_t a60_flag428F78;
 extern int32_t a60_v3E6620, a60_v42C5EC, a60_v428F74, a60_v3E6614, a60_v3E68A8;
 
-void  sub_001B9FC0(int handle);
-void *sub_00084C00(void *p, int a);
 void  sub_0006A970(void);
 void  sub_0006AB70(void);
 void  sub_0006AD80(void);
 void  sub_001B9720(void);
 void  sub_0003D860(void *list);
-void *sub_0003DBC0(void *list, int a, void *key);
 void  sub_0003D8C0(void *node);
 void  sub_00048250(int h);
 void  sub_0006EA20(int v);
-int   sub_00073A50(int a);
-int   sub_00073660(int a);
-int   sub_00073030(int a);
+void *sub_00073A50(void *ctx);    /* draw ctx in, advanced ctx out */
+void *sub_00073660(void *ctx);
+void *sub_00073030(void *ctx);    /* passes ctx to 0x00017C00 */
 void  sub_00073FC0(void);
 void  sub_00073C80(void);
 void  sub_00074730(void);
@@ -88,7 +86,7 @@ typedef struct A60Menu {
     uint8_t  anim968[8];    /* +0x968 animation player */
     A60Text *text970;       /* +0x970 */
     uint8_t  unk974[0x988 - 0x974];
-    int32_t  anim988;       /* +0x988 */
+    void    *anim988;       /* +0x988 message table (0x3FA70 p1) */
 } A60Menu;
 
 /* Effect list nodes allocated in tex_ex.c (0x00075420: 0x24 bytes). */
@@ -150,23 +148,16 @@ extern const char a60_srcTexEx[];       /* 0x0026F090 "\Project\nightmareXbox\ap
 void  sub_00018620(void *anim, int id);
 void  a60_FlagBit2(uint32_t *f, int on);
 void  sub_0003FAB0(void *anim, void *owner);
-void  sub_00075F00(A60Menu *m);
 void  sub_000603C0(int v);
 int   sub_000D9A70(int id);
-void  sub_00058540(void (*fn)(void), void *arg);   /* start job fn(arg) */
 void  sub_00065F00(void);
-int   sub_00057E90(void);
 void  sub_000580D0(void);
 int   sub_00079460(void);
 void  sub_0006D910(void);
-void  sub_00053CA0(int a);
 void  sub_00079340(void);
 int   sub_000E3370(void);
-int   sub_000E0770(int lang);
-void  sub_000E3A20(int a);
-void *sub_00053AB0(int size, const void *file, int line);
+void  sub_000E3A20(void *a);
 void  sub_0003D880(void *list, void *node);
-void *sub_0003DC10(void *node, int a, void *key);
 void  sub_001A85D0(int v);
 int   sub_001A8580(int v, int (*cb)(int), int b);   /* cb: voice callback */
 void  sub_001A85A0(int v, int id);
@@ -180,7 +171,6 @@ void  sub_00048590(void);
 int   sub_00047950(void);
 void  sub_0019B9F0(void);
 void  sub_0019BEB0(int v);
-void  sub_00052840(int v);
-const char *sub_000133E0(int id);
-int   sub_00013480(int id);
+const char *sub_000133E0(void *id);
+void *sub_00013480(void *id);
 #endif

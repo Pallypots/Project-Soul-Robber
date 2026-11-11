@@ -6,7 +6,7 @@
 void r2d_LightSetInit(void)
 {
     int ids[17];
-    int h;
+    void *h;
     h = sub_000847F0(r2d_ctx->v44, 0xE);
     ids[0] = 15;
     ids[1] = 14;

@@ -2,6 +2,7 @@
 #ifndef R2E_H
 #define R2E_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* ---------------------------------------------------------------- shared */
 typedef struct R2eCtx {
@@ -189,7 +190,7 @@ typedef struct R2eActor {
 } R2eActor;
 typedef struct R2eMove {
     uint8_t  unk00[0x20];
-    int32_t  v20;              /* +0x20 */
+    void    *v20;              /* +0x20 matrix (0x145C90 arg 2) */
     uint8_t  unk24[0xE8 - 0x24];
     float    fE8;              /* +0xE8 */
 } R2eMove;
@@ -211,7 +212,7 @@ typedef struct R2eMgr {
     uint8_t  unk000[0x40C];
     int32_t  v40C;             /* +0x40C */
     uint8_t  unk410[0x420 - 0x410];
-    int32_t  v420;             /* +0x420 */
+    float    v420;             /* +0x420 */
 } R2eMgr;
 extern uint8_t r2e_player41FEC0[];     /* 0x0041FEC0 player record */
 extern const float r2e_vec318E18[4];   /* 0x00318E18 */
@@ -354,38 +355,27 @@ extern int32_t r2e_ids318CA8[16];      /* 0x00318CA8, -1 = empty */
 void  r2d_StageFadeColor(void *o, float f, int r, int g, int b, int a); /* 0x000E1C20 */
 void  sub_000E0A80(void *o, int a, int b, int c, int d);
 void  sub_000E1FD0(R2eStage *o, int idx, const void *cue);
-void  sub_00189510(void *p);
-int   sub_001456E0(void *a, void *b, int c, int d);
 void  sub_0001D4E0(void *a);
-void  sub_00145C90(float *dst, int a, const float *b);
 void  sub_00145CD0(float *dst, const float *a, float f);
 void *sub_000EDC20(int a, int b);
 void  r2e_Part5Event(void *o, int k);                  /* 0x00108B80, regargs: o=ESI k=EDI */
 int   r2e_FindOther(int id, void *self, uint32_t mask); /* 0x0011FB40, regargs: id=EAX self=EDI mask=ESI */
-void  sub_00113040(void *o, void *a, int ev);
-int   sub_00145940(void *a, int b, int c, int d, int e);
-void  sub_001459D0(void *a, int b, int c, int d);
 void  sub_00033250(void);
 void  sub_000580D0(void);
-void  sub_00058540(void (*fn)(void), void *arg);   /* start job fn(arg) */
 void  sub_000E5300(void);
 void  r2d_PlayerPlace(void *p, const void *pos);       /* 0x000D1CA0 */
-void  sub_000CF330(void *p, const void *pos, float f);
 float sub_001B2770(const void *a, const void *b);
 void  sub_000E8690(int a, int b);
-R2eHit *sub_000E2540(R2eMgr *o, int id);
-void  sub_000F3BF0(void *h, int a, int b);
 void  sub_000E2670(R2eMgr *o, int id, int c);
 void  sub_00115000(void *a, R2eActor *o);      /* regargs: o=EAX */
 void  sub_000F3B00(void *o, int a);
 void  sub_000F3B30(void *o, int a);
 void  sub_00113480(void *a, int b);
-int   sub_0011EDE0(int id, void *o);           /* regargs: id=EAX o=EBX */
+int   sub_0011EDE0(int id, void *o, void *b);  /* regargs: id=EAX o=EBX b=EDI */
 int   sub_000D9A70(int id);
 int   sub_00145780(void *a, float f);
 void  sub_0012E190(void *a, R2eActor *o);      /* regargs: o=EAX */
 int   sub_001C7EE1(void);                      /* CRT rand (Hypothesis) */
-void  sub_0013DF90(void *e, int a);
 void  sub_000ED560(int type);
 void  sub_00020170(void *p);
 void  sub_000ED9E0(void (*fn)(void));
@@ -397,11 +387,8 @@ void  sub_000E8920(int a, int b);
 void  sub_001B2150(void *p);
 void  sub_00112D30(void);
 void  sub_001B21D0(void *list, void *hook);
-void  sub_00113090(void *a, void *o, int k);
 void  sub_00113C60(float *v, float a, float b);
-void  sub_00113CB0(float *v, float a, float b);
 int   sub_000F3140(int key);
-void  sub_0001EB80(void *p);
 void  sub_000EE270(void *m);
 void  sub_0001D910(void *o, void *m);
 void  sub_000720A0(float *t, int a);
@@ -409,20 +396,14 @@ float sub_000F3C70(void *n);
 void  sub_000F3C40(void *n);
 void  sub_000253D0(int a, int b);
 void  sub_000F3B70(void *n, int a);
-void *sub_0004F680(int id);
-void *sub_00053AB0(void *p, int a, int b);
-void  sub_000512D0(int id, void *p);
 R2eStep *sub_00113400(void *a, int k);
 void *sub_00109050(void *o, int k);
 void  sub_0001D700(void *o);
-void  sub_00033A70(void *p);
 void  sub_00101240(int a);
 void  sub_00101280(int a);
 void  sub_000F3F00(void *o, float f);
-void *sub_0001D960(void *o, int a);
-int   sub_000833E0(void *p);
 int   sub_00120820(void *p, void *o);  /* regargs: p1=EAX p2=ESI */
-void  sub_0011F2B0(void *o, void *p, int k); /* regargs: o=EDI k=EBX */
+void  sub_0011F2B0(void *o, int k, void *p); /* regargs: o=EDI k=EBX; p on the stack */
 void  sub_000ED600(int type);
 int   sub_0004F6D0(int id);
 void *sub_000E0BD0(R2eTrack *t, int kind, int key, int c);
@@ -432,17 +413,14 @@ R2eEvtFn sub_000E9C40(int owner, int kind);
 int   sub_000E2420(R2eStage *o);
 void *sub_0001D080(void *bank, int type, int id);
 void  sub_0001D7F0(void *model, int a, int b);
-void  sub_000E23F0(int a, int b);
 void  sub_0012D600(int a);
 void  sub_000F09E0(int a);             /* regargs: p1=EAX */
 void  sub_00117580(void *o, int ev, void *c); /* regargs: p3=EDI */
 void  sub_000F8940(void *a, int b, int c);
-void  sub_000F8B40(void *a, int b, int c);
-void  sub_0005BBB0(int a);
+void  sub_000F8B40(void);
+int sub_0005BBB0(int a);
 void  sub_0003D880(void *list, void *node);
-int   sub_000F5D00(void *o);
 void  sub_000F3D10(void *o, void *m, int state);   /* m: state block (+0x6C state) */
 void *sub_000F5F80(void *o);
-int   sub_000494D0(int id, void *pos, int c);
 
 #endif

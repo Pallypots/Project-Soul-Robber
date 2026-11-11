@@ -73,7 +73,7 @@ void a1a_Post1(void)
 }
 
 /* 0x001A1030: add an entry to a resource group. */
-int a1a_GroupAdd(A1aGroup *g, int slot, int prio, void (*fn)(void), int a, int stack)
+int a1a_GroupAdd(A1aGroup *g, int slot, int prio, void (*fn)(void *), int a, int stack)
 {
     return sub_00058B00(prio, fn, a, stack, g, g->id, slot);
 }

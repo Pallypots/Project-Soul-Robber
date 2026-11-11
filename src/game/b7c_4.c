@@ -1,8 +1,8 @@
 /* Area b7c, group 4: boss part tables 0x00180930-0x00182300. Names inferred. */
 #include "b7c.h"
+#include "shared_decls.h"
 
 typedef struct B7CMode324b { uint8_t unk00[0x324]; int32_t mode; } B7CMode324b;
-B7CMode324b *sub_000E0770(void);
 void  sub_00182770(int st);
 
 
@@ -61,7 +61,7 @@ void b7c_IdSwitch181C60(int id, int st)
 /* 0x00181D20: in controller mode 1, switch the boss to state 3. */
 void b7c_Boss3_181D20(void)
 {
-    if (sub_000E0770()->mode == 1)
+    if (((B7CMode324b *)sub_000E0770())->mode == 1)
         sub_00182770(3);
 }
 

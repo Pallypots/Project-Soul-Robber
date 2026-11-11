@@ -79,15 +79,15 @@ int r2c_CountA6(const R2cKind *k)
     if (!k)
         return 0;
     if (k->kind08 == 3) {
-        if (sub_00100110()->wA6)
+        if (((R2cBossMgr *)sub_00100110())->wA6)
             n = 1;
         b = sub_000FBAF0();
     } else if (k->kind08 == 4) {
-        if (sub_000FE3D0()->wA6)
+        if (((R2cBossMgr *)sub_000FE3D0())->wA6)
             n = 1;
         b = sub_000FBAF0();
     } else if (k->kind08 == 5) {
-        if (sub_000FE3D0()->wA6)
+        if (((R2cBossMgr *)sub_000FE3D0())->wA6)
             n = 1;
         b = sub_00100110();
     } else {

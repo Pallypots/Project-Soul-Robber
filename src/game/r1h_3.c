@@ -7,7 +7,7 @@
    edit itself and moves to the next sibling, first child or parent (rows
    9, 10, 11) on button 0x20; mode 2 draws the visible fixed rows; other
    modes go to the default handler. regargs: px=ECX py=EAX mode=EDX. */
-int r1h_NodeRows(int ctx, R1hMenu *m, int *px, int *py, int mode)
+void *r1h_NodeRows(void *ctx, R1hMenu *m, int *px, int *py, int mode)
 {
     R1hMenuItem *rows = m->items ? r1h_nodeMenuData.items : 0;
     R1hNodeEx *cur = (R1hNodeEx *)m->data->cur;

@@ -52,7 +52,7 @@ void r6d_PauseRelease(void)
 
 /* 0x0006C160: pass a menu value to the handler of the current pause page.
    regargs: v=EAX */
-int r6d_PausePageValue(int v)
+void *r6d_PausePageValue(void *v)
 {
     switch (a60_b428F80) {
     case 0:

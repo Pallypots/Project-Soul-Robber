@@ -58,7 +58,7 @@ void ac0_ResetLimits(int a)
     g_ac0_41CE64 = 0x20;
 }
 /* 0x000C9B20: forward to 0x000D45B0 on the global object with -1, -1. */
-void ac0_Call_D45B0(int a)
+void ac0_Call_D45B0(void *a)
 {
     sub_000D45B0(g_42C8EC, a, -1.0f, -1.0f);
 }

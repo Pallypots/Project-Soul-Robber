@@ -1,6 +1,7 @@
 #ifndef R1B_H
 #define R1B_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Area r1b: game functions 0x00012000..0x00060000 (second pass). Names
@@ -35,9 +36,7 @@ int   r1b_ParseHex(char *s);
 char *r1b_FindKey(char *s, const char *key);
 
 /* ------------------------------------------------------------ file buffer */
-extern int32_t a1b_buf4326A0, a1b_end4326A4;
-int32_t sub_00037570(const char *name, int align);
-int   sub_000374C0(const char *name);
+extern uint8_t *a1b_buf4326A0, *a1b_end4326A4;
 
 /* file record stack at 0x004326A0 (record 0 is the current file) */
 typedef struct R1bFileRec {
@@ -86,9 +85,8 @@ extern R1bPkt   r1b_pkt37B540;
 extern uint32_t r1b_fixed37B544;        /* tag of r1b_pkt37B540 */
 extern int32_t  r1b_g432680, r1b_g432684, r1b_g432688;
 void r1b_DmaKick(uint32_t addr, uint32_t qwc);   /* 0x00013A30, regargs addr=stack qwc=EDX */
-uint32_t sub_000AD090(void *p, ...);    /* returns 0 on this build */
 void sub_001A1FF0(int dev, uint32_t tag);
-void    r1b_PktOp(void *pkt, ...);      /* 0x00102FA0 */
+void    r1b_PktOp();      /* 0x00102FA0 */
 int32_t sub_001A1FD0(int n);
 
 /* ------------------------------------------------------------ steppers */
@@ -155,7 +153,6 @@ typedef struct R1bSlots {
     R1bSlot slot[4];            /* +0x244 */
     void   *extra;              /* +0x274 */
 } R1bSlots;
-void sub_00053880(void *p);
 
 typedef struct R1bPose {
     uint8_t unk00[0x10];
@@ -192,7 +189,6 @@ typedef struct R1bXObj {
     uint8_t  unk28C[0x2A0 - 0x28C];
     float    m2A0[16];          /* +0x2A0 */
 } R1bXObj;
-void sub_001ADA40(float *dst, const float *src);
 void sub_000191F0(float *dst, float *m, int a);
 void sub_0001A710(R1bXObj *o, void *target);
 extern int32_t r1b_g42C8F8;
@@ -200,7 +196,6 @@ extern int32_t r1b_g42C8F8;
 extern int32_t a30_g41316C, a30_g413170;
 extern int32_t r1b_ev413408[6];
 void sub_000D9AB0(int id);
-void sub_00048AF0(int a);
 
 /* menu layout table at 0x002804E0, 32 bytes per entry */
 typedef struct R1bLayout {
@@ -227,10 +222,9 @@ typedef struct R1bMenu {
 extern const R1bLayout r1b_layouts2804E0[];
 extern R1bMenu a1b_obj37B560;
 extern uint8_t r1b_menu37B580[];
-extern int32_t a1b_slots37BEE8[];
+extern void   *a1b_slots37BEE8[];
 void a60_RectSet0(R1bRect *r, int x, int y);
 void a60_RectSet1(R1bRect *r, int x, int y);
-void sub_00075F00(void *m);
 void sub_0003FAB0(void *anim, void *owner);
 void r1b_ApplyLayout(R1bMenu *m, int idx);
 
@@ -249,7 +243,6 @@ extern R1bNode r1b_nodes37C068[64];
 void  sub_0003D860(void *n);
 void  sub_0003D880(void *list, void *n);
 void  sub_0003D8C0(void *n);
-void *sub_0003DBC0(void *list, int a, void *key);
 
 typedef struct R1bCtx {
     uint8_t unk00[0x54];
@@ -264,8 +257,6 @@ void  sub_00082200(void *root, const float *from, const float *to, void *list);
 void *r1b_Pool80970(void);              /* 0x00080970 */
 void  sub_000822D0(void *ctx, void *pool, const float *pos, float r, void *list, void *out);
 void  sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
-uint8_t *sub_00080CF0(void *pool, const float *pos);
-uint8_t *sub_00080CB0(void *pool, const float *from, const float *to);
 void  r6_Mat1ADB40(float *dst, const void *src);
 typedef struct R1bLocObj {
     uint8_t unk000[0x60];
@@ -345,8 +336,6 @@ typedef struct R1bPartOwner {
 } R1bPartOwner;
 
 extern union R1bKey { char c[8]; uint32_t w[2]; } r1b_key42CE40;   /* 0x0042CE40 */
-void sub_00033C20(void *p);
-void sub_0005BC50(void *p);
 void sub_0001D980(R1bRec *r);
 void r1b_PartsUnhideTree(R1bPart *p);
 void r1b_PartsHideTree(R1bPart *p);
@@ -374,7 +363,7 @@ typedef struct R1bCmdCtx {
     uint8_t  unk24[0x10];
     void    *p34;               /* +0x34 */
     uint8_t  unk38[0xC];
-    void    *p44;               /* +0x44 */
+    int32_t  p44;               /* +0x44 */
 } R1bCmdCtx;
 typedef struct R1bColorObj {
     uint8_t  unk00[0x50];
@@ -384,13 +373,9 @@ typedef struct R1bColorObj {
     uint8_t  unk80[0x10];
     int32_t  c90[4];            /* +0x90 */
 } R1bColorObj;
-void  sub_0007FD30(void *a, void *b, int v);
-void  sub_0007FD60(void *a, int v);
-void  sub_00074DF0(void *a, void *b, float *pos);
+void  sub_00074DF0(void *a, int b, float *pos);
 void  r4_NodeDetach(struct R1bPart *n);
 extern float r1b_f37C4A0;
-void *sub_00053AB0(int size, int a, int tag);
-void  sub_0001EFE0(void *p, void *owner, int a);
 void  sub_0001F300(R1bRec *r);
 void  r1b_PartsSetF94(R1bPart *p);
 /* ------------------------------------------------------------ menus and screens */
@@ -425,25 +410,22 @@ extern int32_t  r1b_mode381400;
 extern uint32_t r1b_step381404;
 extern int32_t  r1b_v381408, r1b_v38140C, r1b_flag381420;
 extern int32_t  r1b_v3816CC;
-void sub_001B9FC0(int h);
 int  sub_000529F0(void);
 void r1b_Cmd4F5D0(int cmd);             /* 0x0004F5D0 */
 void sub_000243B0(int a, int b);
-void sub_00038070(int a);
 void r1b_ScreenMode4(void);
 void sub_0002D230(void); void sub_0002D790(void); void sub_0002DBC0(void);
 void sub_00038960(void);
-void a1a_GroupAdd(int s, int a, int b, void (*fn)(void), int c, int d);
-void a1a_GroupReleaseOne(int s, int a);
+int a1a_GroupAdd(void *s, int a, int b, void (*fn)(), int c, int d);
+int a1a_GroupReleaseOne(void *s, int a);
 void a50_RecsClear(void);
-void sub_0002CF50(void); void sub_0002E470(void); void sub_0002E2F0(void);
+void sub_0002CF50(void *); void sub_0002E470(void); void sub_0002E2F0(void);
 typedef struct R1bBindObj {
     uint8_t  unk00[0x2C];
-    int32_t  v2C;               /* +0x2C */
+    void    *v2C;               /* +0x2C */
     void    *p30;               /* +0x30 */
 } R1bBindObj;
 extern uint8_t r1b_name282884[];
-int  sub_0003F9C0(void *a, void *b);
 
 extern int32_t  r1b_queue381834[4];     /* 0x00381834 state queue */
 extern uint16_t r1b_qbusy381844;

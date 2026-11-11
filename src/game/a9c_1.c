@@ -5,7 +5,7 @@
 void a9c_ApplyAndCull(a9c_Obj *o, a9c_Obj *a)
 {
     if (o->f08 == 0x19 || o->f08 == 0x18)
-        sub_0001EEC0(o, a->work->f8);
+        sub_0001EEC0(o, a->work->f8f);
     if (o->f64 > 100.0f)
         sub_000ED780(o);
 }

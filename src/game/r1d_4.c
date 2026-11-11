@@ -3,11 +3,11 @@
 
 /* 0x0001EDE0: queue register 0x4C from the current texture's base bits,
    build the packet at p and switch to mode 2; returns the packet end. */
-int r1d_TexBasePkt2(int p)
+void *r1d_TexBasePkt2(void *p)
 {
     R1dTex *t = sub_001B9650(-1);
     uint64_t v = ((uint64_t)(t->reg[0] & 0x3FE0) | 0x1FFFFFE001000000ull) >> 5;
-    int r;
+    void *r;
     r1c_ReqPush(0x4C, (int)(uint32_t)v, (int)(uint32_t)(v >> 32));
     r = sub_00038F10(p);
     sub_001A27D0(2);
@@ -15,11 +15,11 @@ int r1d_TexBasePkt2(int p)
 }
 
 /* 0x0001EE30: as 0x0001EDE0 but switches to mode 3. */
-int r1d_TexBasePkt3(int p)
+void *r1d_TexBasePkt3(void *p)
 {
     R1dTex *t = sub_001B9650(-1);
     uint64_t v = ((uint64_t)(t->reg[0] & 0x3FE0) | 0x1FFFFFE001000000ull) >> 5;
-    int r;
+    void *r;
     r1c_ReqPush(0x4C, (int)(uint32_t)v, (int)(uint32_t)(v >> 32));
     r = sub_00038F10(p);
     sub_001A27D0(3);

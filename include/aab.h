@@ -51,7 +51,7 @@ typedef struct AabSlot {
     int32_t   i110[4];       /* +0x110 [0] indexes aab_rec134 */
     AabActor *obj120;        /* +0x120 */
     uint8_t   unk124[0x14C - 0x124];
-    int32_t   h14C[2];       /* +0x14C handles from 0x00036750 */
+    void     *h14C[2];       /* +0x14C handles from 0x00036750 */
     int32_t   h154[2];       /* +0x154 handles released by 0x00048250, -1 = none */
     uint8_t   unk15C[0x260 - 0x15C];
 } AabSlot;
@@ -100,10 +100,10 @@ extern void (*aab_kindHandlers[])(AabKindObj *o);   /* 0x002E4258 */
 extern void (*aab_obj1CHandlers[])(AabObj1C *o);    /* 0x002E40D8 */
 
 typedef struct AabSfxSrc { uint8_t unk00[0x20]; int32_t ready20; } AabSfxSrc;
-typedef struct AabSfxHolder { uint8_t unk00[0x134]; int32_t h134; } AabSfxHolder;
+typedef struct AabSfxHolder { uint8_t unk00[0x134]; void *h134; } AabSfxHolder;
 typedef struct AabSfxObj {
     uint8_t       unk00[0xD4];
-    int32_t       hD4;       /* +0xD4 */
+    void         *hD4;       /* +0xD4 */
     AabSfxSrc    *srcD8;     /* +0xD8 */
 } AabSfxObj;
 
@@ -115,15 +115,15 @@ extern int32_t  aab_val413170;                /* 0x00413170 */
 extern int32_t  aab_res3ED760;                /* 0x003ED760 */
 
 void  aab_Vec4Copy(void *dst, const void *src);   /* 0x000F5D40 */
-int   aab_Attach36750(void *o, int a);            /* 0x00036750 */
-void  aab_Free33A40(int h);                       /* 0x00033A40 */
-void  aab_Free33A70(int h);                       /* 0x00033A70 */
-void  aab_Free33C20(int h);                       /* 0x00033C20 */
+void *aab_Attach36750(void *o, int a);            /* 0x00036750 */
+void  aab_Free33A40(void *h);                       /* 0x00033A40 */
+void  aab_Free33A70(void *h);                       /* 0x00033A70 */
+void  aab_Free33C20(void *h);                       /* 0x00033C20 */
 void  aab_Release48250(int h);                    /* 0x00048250 */
 void  aab_Vec1AD9F0(float *out, const float *a, const void *b); /* 0x001AD9F0 */
-void  aab_Use82D70(float *v);                     /* 0x00082D70 */
+float aab_Use82D70(float *v);                     /* 0x00082D70 */
 void  aab_Rec32A0(AabRec134 *r, float *pos, int a, int b); /* 0x000A32A0 */
-void  aab_Actor1F070(AabActor *o);                /* 0x0001F070 */
+int aab_Actor1F070(AabActor *o, int);                /* 0x0001F070 */
 void  aab_Show1B3A0(AabActor *o);                 /* 0x0001B3A0 */
 void  aab_Hide1B3F0(AabActor *o);                 /* 0x0001B3F0 */
 void  aab_SetAnim832D0(AabAnimState *a, int anim);       /* 0x000832D0 */
@@ -132,8 +132,8 @@ int   aab_Ctl1AEE50(AabAnimCtl *c, int b);               /* 0x001AEE50 */
 void  aab_SlotA4050(AabSlot *s, int a, int b, int c);    /* 0x000A4050 */
 void  aab_SlotA4870(AabSlot *s);                         /* 0x000A4870 */
 void  aab_SlotA4DE0(AabSlot *s);                         /* 0x000A4DE0 */
-void  aab_StatD1E10(void *stats, int id, int n);         /* 0x000D1E10 */
-void  aab_Effect494D0(int id, void *pos, int c);         /* 0x000494D0 */
+int aab_StatD1E10(void *stats, int id, int n);         /* 0x000D1E10 */
+int aab_Effect494D0(int id, void *pos, int c);         /* 0x000494D0 */
 int   aab_Get324A0(int a);                               /* 0x000324A0 */
 int   aab_Rand(void);                                    /* 0x001C7EE1 (CRT rand, Hypothesis) */
 void  aab_Hide1D700(AabActor *o);                       /* 0x0001D700 */
@@ -143,7 +143,7 @@ int   aab_FindA88B0(void *a, int b, const float *v);    /* 0x000A88B0 */
 void  aab_TimerA94B0(void);                             /* 0x000A94B0 */
 int   aab_StatGet(void *stats, int id);                 /* 0x000CF790 */
 int   aab_StatMax(int kind);                            /* 0x000CF8E0 */
-void  aab_StatFlag2(void *stats);                       /* 0x000CF9C0 */
+int aab_StatFlag2(void *stats);                       /* 0x000CF9C0 */
 void  aab_Sound260C0(int a, int b, int c);              /* 0x000260C0 */
 void  aab_Add261A0(int a, int n);                       /* 0x000261A0 */
 void  aab_Add24D30(int a, int n);                       /* 0x00024D30 */

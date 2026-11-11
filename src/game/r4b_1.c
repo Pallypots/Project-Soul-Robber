@@ -107,8 +107,8 @@ void r4b_NodeBucketsUnlink(void)
             r4_g412F80[i]->linkA4 = 0;
 }
 
-/* 0x001B24E0: run the hooks and per-type functions of every node in 0x00413060; returns arg. Stack args. */
-int r4b_NodeRunAll(int arg)
+/* 0x001B24E0: run the hooks and per-type functions of every node in 0x00413060; returns arg (the display-list pointer, passed through to every hook). Stack args. */
+void *r4b_NodeRunAll(void *arg)
 {
     unsigned i;
     R4bNode *n;

@@ -12,7 +12,7 @@ void fix_SpawnLinks17C460(int v)
     for (i = 0; i < 6; i++)
         if (r3c_recs3FDC70[i].obj != 0)
             return;
-    if (sub_000E0770()->i324 != 1)
+    if (((FixGame *)sub_000E0770())->i324 != 1)
         return;
     for (i = 0; i < 6; i++) {
         FixObj *o = sub_000ED630(4, 0x16, 0, 0, i);

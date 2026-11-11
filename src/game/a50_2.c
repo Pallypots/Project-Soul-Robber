@@ -4,12 +4,12 @@
 
 
 /* 0x000532B0: look up a cache entry and return its data pointer. */
-int a50_CacheGetData(int a, int b)
+void *a50_CacheGetData(int a, int b)
 {
-    int32_t *e = sub_000531C0(a, b);
+    A50CacheEntry *e = sub_000531C0(a, b);
     if (e == 0)
         return 0;
-    return e[3];
+    return e->data;
 }
 
 /* 0x00053710: push a heap index on the heap stack (hangs on overflow). */
@@ -31,7 +31,7 @@ void a50_PopHeap(void)
 /* 0x000537F0: release every slot heap. */
 void a50_FreeSlotHeaps(void)
 {
-    int32_t *p;
+    void **p;
     for (p = a50_slotHeap; p < &a50_slotHeap[9]; p++) {
         if (*p != 0) {
             sub_00047040(*p);
@@ -55,7 +55,7 @@ void a50_SlotEndTemp(int slot)
 }
 
 /* 0x000539C0: begin a temporary sub-heap in slot `slot`. */
-void a50_SlotBeginTemp(int slot, int heap, int size)
+void a50_SlotBeginTemp(int slot, void *heap, int size)
 {
     a50_slotSaved[slot] = a50_slotHeap[slot];
     a50_slotHeap[slot] = heap;

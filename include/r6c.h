@@ -1,6 +1,7 @@
 #ifndef R6C_H
 #define R6C_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "a60.h"
 #include "a6b.h"
 #include <string.h>
@@ -62,7 +63,7 @@ extern uint8_t  r6c_obj3E73A0[];           /* 0x003E73A0 */
 extern uint8_t  r6c_obj2DF680[];           /* 0x002DF680 */
 extern int32_t  r6c_v3E7550;               /* 0x003E7550 */
 
-void  r6c_MovieTask(int task);             /* 0x00078170 */
+void  r6c_MovieTask(void *task);             /* 0x00078170 */
 void  r6c_MovieLoop(void);                 /* 0x000781F0 */
 int   sub_00031C50(void);
 int   sub_00031560(int a, int b);
@@ -70,17 +71,12 @@ void  sub_0001AE70(void *a, void *b);
 int   sub_00077500(void);
 void  sub_0002BAB0(void);
 void  sub_00078050(void);
-void  sub_001A1060(int task, int a);
 void  sub_00058190(void);
 void  sub_001A5310(void);
 void  sub_001A7EE0(void);
 void *sub_00077AA0(void *p);                /* p in EAX */
-void *sub_000727E0(void *p, void *q);
-void *sub_000324B0(void *p);
-void  sub_00079480(void *p);
 void  sub_001A7B90(void);
 void  sub_00038960(void);
-void  sub_001A1030(int task, int slot, int prio, void (*fn)(), int a, int stack);
 void  sub_000791A0(void);
 
 /* ------------------------------------------------------------ 3D sprite object (0x79xxx-0x7Dxxx) */
@@ -153,38 +149,25 @@ void  r6c_ObjCopyColour(R6cObj7 *o, R6cDraw *d, int flags); /* 0x00079F50 */
 void  r6c_SpriteInitA(void);                                /* 0x00079700 */
 void  r6c_SpriteInitB(void);                                /* 0x000797A0 */
 void  r6c_ObjUpdateAttach(R6cObj7 *o);                      /* 0x0007AB40 */
-void  sub_001B7FF0(int a, int r, int g, int b, int al);
+void *sub_001B7FF0(void *pb, int r, int g, int b, int al);
 void  sub_00012110(void *p);
-void *sub_001B9650(int a);
-void  sub_000389C0(int reg, uint64_t v);
+void  sub_000389C0(int reg, int lo, int hi);
 void  sub_001A7620(int a);
-int   sub_00038F10(int a);
-int   sub_000398D0(int a, int b);
-int   sub_00039920(int a, int b);
-void  sub_001B32E0(void *o, void *mem, int size);
+void *sub_000398D0(void *a, int b);
+void *sub_00039920(void *a, int b);
 void  sub_001B20F0(float f);
-void  sub_001B2120(int a);
-void  sub_001B7100(void *blk, R6cLight *light);
-void  sub_001AD940(R6cMtx *m);
+void  sub_001B2120(float a);
 void  sub_001AD910(R6cMtx *out, const R6cMtx *in, float a);
 void  sub_001AD8B0(R6cMtx *out, const R6cMtx *in, float a);
-void  sub_001AD8E0(R6cMtx *out, const R6cMtx *in, float a);
 void  sub_001ADBA0(float *out, const float *in, float s);
 void  sub_00079CB0(R6cObj7 *o);                             /* o in ESI */
-void  sub_001ADA40(R6cMtx *m, const void *b);
-void  sub_00084910(R6cMdlList *h, float x, float y, float c4, float c8, float cc, float k);
 void  sub_00079B40(R6cObj7 *o);
-void  sub_000385D0(R6cMtx *m, int a);
 void  sub_001B74E0(R6cLight *l, float k, int b);
 void  sub_00084790(R6cMdlList *h, R6cLight *l);
-uint8_t *sub_000847F0(R6cMdlList *h, int id);
 int   sub_00082E50(R6cAttach *t, void *p);
-void  sub_001B2020(void *m, void *a);
 void  sub_001B2080(void *a);
-void  sub_000AD090(uint32_t colour);
 void  sub_00081E60(int a, int b);
-int   sub_000849D0(R6cMdlList *h, int a);
-void  sub_00012300(int a, int b, int c, int d, int e);
+void *sub_000849D0(R6cMdlList *h, void *a);
 
 /* ------------------------------------------------------------ y_character.c scene tree (0x7Exxx-0x7Fxxx) */
 typedef struct R6cPItem {                  /* member of a part list */
@@ -232,26 +215,22 @@ typedef struct R6cKeyObj { uint8_t unk00[0x1C]; int32_t i1C; } R6cKeyObj;
 extern void   *a80_ctx42C8E4;              /* 0x0042C8E4 object pointer */
 R6cTNode *sub_0007F300(R6cTNode *n);       /* next sibling (NULL safe) */
 R6cTNode *sub_0007F320(R6cTNode *n);       /* first child (NULL safe) */
-R6cTNode *sub_0007F2B0(R6cTNode *n);       /* unlink */
 void  a6b_SetHeap(int kind, int heap);
 uint32_t *a6b_Block_Init(uint32_t *buf, uint32_t size, int line, const char *file);
 int   r6c_NodeRelease(R6cPart *p);                       /* 0x0007E6C0, p in EAX */
 int   r6c_TreeRelease(R6cTNode *n);                      /* 0x0007E8B0 */
 void  r6c_TreeFreeAll(R6cTNode *n);                      /* 0x0007F3B0 */
-void  r6c_TreeInsertAfter(R6cTNode *a, R6cTNode *b);     /* 0x0007F3F0 */
+R6cTNode *r6c_TreeInsertAfter(R6cTNode *a, R6cTNode *b);     /* 0x0007F3F0 */
 int   r6c_ListAddUnique(R6cPList *l, R6cPItem *it);      /* 0x0007EC40, l in ESI, it in EDX */
 int   r6c_ListRemove(R6cPList *l, R6cPItem *it);         /* 0x0007EC90, l in EDI, it in ESI */
 int   r6c_KeyNew(R6cKeyObj **out, int v);                /* 0x0007EDE0 */
 void *sub_0001DAF0(R6cPart *p, int c);
-void *sub_0001D220(void *list, int i);
-void  sub_0001EB80(R6cPart *p);
 void  sub_00033B30(R6cPart *p);
-void *sub_0008FE10(int a, int b, int c);
+void *sub_0008FE10(void *a, int b, int c);
 void  sub_0008F9B0(void *r);
 void  sub_000830E0(R6cPList *l, R6cPItem *it);
 void  sub_00053710(int heap);
 void  sub_00053740(void);
-int   sub_0001DA90(R6cKeyInfo *k, int src);
 char *a6b_StrCopy(void *dst, const char *s);
 int   a6b_Track_Clear(A6bTrack *t);
 
@@ -267,7 +246,8 @@ typedef struct R6cEnt8C {
 typedef struct R6cEnt2  { uint8_t unk00[0xD4]; R6cE2Rec recs[1]; } R6cEnt2;     /* type 2 */
 typedef struct R6cEnt10 { uint8_t unk00[0x17C]; R6cE10Rec recs[1]; } R6cEnt10;  /* type 10 */
 typedef struct R6cBox {                    /* 0x40 bytes */
-    int32_t  i00, i04, i08, i0C;
+    int32_t  i00, i04;
+    void    *p08, *p0C;       /* +0x08 */
     float    max[4];          /* +0x10 */
     float    min[4];          /* +0x20 */
     int32_t  i30;             /* +0x30 */
@@ -326,17 +306,15 @@ extern int32_t   r6c_n3ECA20;              /* 0x003ECA20 */
 extern void    **r6c_out3ECA78;            /* 0x003ECA78 collected entry pointers */
 extern R6cVec4   r6c_vec3EC9E8, r6c_vec3EC864;
 extern int32_t   a30_g41316C, a30_g413170;
-void *sub_00080A60(R6cColl *a, int b, int c);               /* c in ECX */
-void *sub_000809C0(R6cColl *a, int b, int c);               /* a in EBX, c in ECX */
+void *sub_00080A60(R6cColl *a, const R6cVec4 *b, const R6cVec4 *c);               /* c in ECX */
+void *sub_000809C0(R6cColl *a, const R6cVec4 *b, const R6cVec4 *c);               /* a in EBX, c in ECX */
 void  sub_00080E20(int a);
-void  sub_00082140(int a);
+void  sub_00082140(void *a);
 int   a8c_EntryFreeChain(void *p);
-void *sub_00037570(int a, int b);
-void  sub_001B7520(void *b, int a);
-int   sub_001B72C0(void *b, int x);
+void *sub_001B7520(void *b, void *a);
+void *sub_001B72C0(void *b, void *x);
 void  sub_001AD9F0(R6cVec4 *out, const R6cVec4 *a, const R6cVec4 *b);
 void  sub_001ADE90(R6cVec4 *out, const R6cVec4 *a, const R6cVec4 *b);
-void  sub_001AD9B0(R6cVec4 *out, const R6cMtx *m, const R6cVec4 *v);
 
 /* ------------------------------------------------------------ event tables (0x84xxx-0x85xxx) */
 typedef struct R6cTimedObj { uint8_t unk00[4]; int32_t kind; uint8_t unk08[4]; uint32_t flags; } R6cTimedObj;
@@ -379,7 +357,7 @@ extern R6cSlot16  *r6c_slots3ED1D0;        /* 0x003ED1D0 */
 extern R6cItemSet *r6c_items3ED1D4;        /* 0x003ED1D4 */
 int   a80_CurEntryId(void);
 void  sub_00087A90(R6cEvGroup *g, int a);
-void  sub_00085590(R6cEvGroup *g);
+int   sub_00085590(R6cEvGroup *g);   /* returns a count (ebp) */
 
 /* ------------------------------------------------------------ event camera and streams (0x86xxx-0x87xxx) */
 typedef struct R6cCamEnt {                 /* 0x20 bytes */
@@ -421,7 +399,6 @@ extern R6cFn     r6c_stateFns[];           /* 0x002E03C4 indexed by r6c_state3ED
 extern R6cFn     r6c_initFns[6];           /* 0x002E03D8 */
 extern R6cFn     r6c_tickFns[6];           /* 0x002E03F0 */
 void  sub_000488C0(int a, int b, int c);
-void  sub_00047A80(int h);
 int   sub_00047B10(int h);
 void  sub_00047B30(int h);
 int   sub_00047B50(int h);
@@ -437,7 +414,6 @@ int   sub_00085390(int a);
 int   sub_00086230(int a, int b, int c);
 void  sub_000D2A50(PlayerStats *s, int a);
 void  sub_000EE0C0(void);
-void  sub_00048A00(int a, int b);
 void  sub_000DE330(int a);
 void  sub_000EDA10(void);
 void  r6c_EvJump(int i);                   /* 0x00087030 */
@@ -457,9 +433,9 @@ typedef struct R6cRec18 { int32_t a, b; uint8_t unk08[0x10]; } R6cRec18;
 extern int32_t  r6c_v3ED510, r6c_v3ED514, a80_curMode;
 extern R6cRec18 r6c_recs2E0690[9];         /* 0x002E0690 */
 extern uint8_t  ae0_obj3E1270[];           /* 0x003E1270 */
-void  sub_000856F0(int a);
-void  sub_00085820(int a);
-void  sub_00085930(int a);
+void  sub_000856F0(void *a);
+void  sub_00085820(void *a);
+void  sub_00085930(void *a);
 int   a80_Get3ED238(void);
 void  a80_StatePause(void);
 void  a80_StateResume(void);
@@ -467,11 +443,8 @@ int   sub_000EDAD0(int a, int b);
 int   sub_00085110(int n);
 int   sub_000EDA50(void);
 void  sub_00019000(void *o, int a);
-void  sub_000BCA50(int a);
-void  sub_000ED630(int a, int b, R6cScnData *d, R6cVec4 *pos, int c);
 void  sub_000ED4C0(int a);
 int   sub_000ED520(int a, int b);
-void  sub_000ED590(int a, int b);
 void  sub_000ED5D0(int a);
 
 #endif

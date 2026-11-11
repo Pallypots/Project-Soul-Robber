@@ -1,6 +1,7 @@
 #ifndef R6E_H
 #define R6E_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 #if defined(_M_IX86)
 #include <intrin.h>
@@ -49,7 +50,10 @@ typedef struct R6eOps {
 typedef R6eOps *(*R6eOpsGetter)(void);
 extern R6eOpsGetter a8b_opsGetters[];  /* 0x002E10E8, 8 entries */
 
-typedef struct R6eAnimRef { uint8_t unk00[0x5C]; int32_t i5C; } R6eAnimRef;
+typedef struct R6eAnimRef { uint8_t unk00[0x5C]; void *p5C; } R6eAnimRef;
+
+/* Lookup key argument of 0x0008D7F0: a name on entry, reused for the size result. */
+typedef union R6eKeyArg { void *name; int size; } R6eKeyArg;
 
 /* Work block of a task (pointer at +0x1C). */
 typedef struct R6eWork {
@@ -154,11 +158,6 @@ extern const char r6e_srcFile270054[], r6e_srcFile26FF8C[], r6e_srcFile270114[];
 extern float a50_frameUnits;           /* 0x0042C858 */
 
 /* ------------------------------------------------------------ callees */
-void  sub_00089420(R6eProcRef *ref);
-void  sub_00053880(void *p);
-void *sub_00053AB0(uint32_t size, int a, int tag);
-void  sub_0007F210(void *dst, const void *src, int n);
-void  sub_0007F1E0(void *dst, int v, int n);
 R6eOps *sub_0008BF50(int type);
 int   sub_000A33E0(struct R6eActor *e);
 void  sub_000A41D0(struct R6eActor *e, int v);
@@ -167,52 +166,41 @@ void  sub_000A4740(struct R6eActor *e, int v);
 int   sub_000341C0(void *p);
 int   sub_000341E0(void *p);
 void  sub_000342A0(void);
-void  sub_000EE6D0(int h, float v);
-void  sub_0008F350(int a);
+void  sub_0008F350(void *x, void *t);   /* regargs: t=EDI; x on the stack (deref +0x20) */
 void  sub_0008D220(R6eProc *p);
-int   sub_000AD090(void);
 void  sub_0008BCC0(void *p);
-void  sub_0007E240(void *p);
+int sub_0007E240(void *p);
 void *sub_00089390(void);
-void  sub_00089740(void *ref, void *b);
-void *sub_0007F3F0(void *list, void *n);   /* returns the list head */
 void *sub_0008B560(void *a);
 void *sub_0008C5F0(void *a);
 void  sub_0008B400(void *n);
-int   sub_0008BF70(void *n);
 uint8_t sub_000896D0(void *ref, int mask);
-int   sub_00048AF0(int a);
 R6eLink *sub_0008F970(R6eLink **it, R6eLink **end, R6ePred *p);
 void  sub_0007E2D0(void *ch, int a);
 void  sub_0007E310(void *ch, int a);
-void  sub_0008E240(void *ch, int a, int i, int b);   /* i=ECX b=EDX */
-void  sub_0008FFB0(void *p);
+void  sub_0008E240(void *ch, int a, int i, void *b); /* i=ECX b=EDX */
+void *sub_0008FFB0(void *p);
 void *sub_0008F430(int a);
 void *sub_0007F370(void *p);
-void  sub_0007EC20(void *p);
+int sub_0007EC20(void *p);
 int   sub_00047EE0(void);
 void  sub_000896A0(R6eProcRef *ref, int mask);
 int   sub_00089DD0(R6eProcRef *ref);
-void  sub_00047BF0(int a);
 void *sub_0008C3C0(int a, int b);
 void  sub_0008B3B0(R6eWork *w, void *a);
 int   sub_000897B0(R6eProcRef *ref);
-void  sub_001BA0B0(int g);
 void  sub_0007E190(void *p);
 void *sub_0007F300(void *n);
 void *sub_0007F320(void *n);
-void  sub_0007F2B0(void *n);
 void  sub_0007F3B0(void *n);
 void *sub_0007F350(void *n);
-void  sub_0005EB10(int a, int b);
-void *sub_0007F510(int key, int *out);
+void *sub_0007F510(void *key, int *out);
 int   sub_0008D780(void *a, void *x, int key);
 int   sub_00089660(void *ref);
 void  sub_0008E3D0(R6eTask *t, int v);
 void  sub_0008DD80(R6eArr *a, uint32_t n);
 void  sub_000904C0(void *r);
-void  sub_0007EB40(void *p);
-void *sub_0003D090(int a);
+int sub_0007EB40(void *p);
 void  sub_0003D0A0(int a);
 void  sub_0003D020(int a, void *b);
 void  sub_0003D100(int a);
@@ -228,8 +216,6 @@ int   sub_0008BD00(int i);
 void  sub_0007F4A0(int slot, int heap);
 void *sub_0007F240(void *p, int size, int tag, const char *file);
 int   sub_0008B0E0(void *n, int a, int b);
-void *sub_0008BD80(int heap, int a, int size, int tag, const char *file);
-void *sub_0001D220(void *a, int b);
 int   sub_000894D0(void *p);
 int   sub_001BBDD0(void *p);
 R6eLink *sub_0008F8F0(void *l);
@@ -283,12 +269,9 @@ int   sub_000A0FD0(R6eKindObj *o);
 void  r4c_VecAdd(float *d, const float *a, const float *b);   /* 0x001ADAF0 */
 void  r4c_VecSub(float *d, const float *a, const float *b);   /* 0x001AD9F0 */
 void  sub_0001D700(R6eModel *m);
-void  sub_0001D610(R6eModel *m);
 float sub_00171D50(int a, int b, int c);
 void  sub_00048250(int h);
-void  sub_00082D70(float *v);
 void  sub_000A21C0(R6eActor *a, uint8_t **out);
-void  sub_0001EB80(R6eModel *m);
 void  sub_000A7700(R6eRecDC *r);
 int   sub_000324A0(int a);
 
@@ -327,7 +310,6 @@ typedef struct R6eObj7A { uint8_t unk000[0x1B8]; int32_t blk1B8[6]; } R6eObj7A;
 
 int   sub_000CD180(R6ePlayer *p, int i);
 int   sub_000CD300(R6ePlayer *p);       /* p=EAX */
-void  sub_000BD4D0(R6ePlayer *p, int v);
 int   sub_0019BE60(int mask);
 void  sub_000BC6B0(void *q, int v);
 void  sub_000CB390(R6ePlayer *p, void *m);

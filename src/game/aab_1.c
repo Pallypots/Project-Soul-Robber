@@ -112,10 +112,10 @@ void aab_SlotRecOp(int i, int a, int b)
 }
 
 /* 0x000A3620: forward the attached actor to 0x0001F070. */
-void aab_SlotActor1F070(int i)
+void aab_SlotActor1F070(int i, int k)
 {
     AabSlot *s = &aab_slots[i];
-    if (s && s->obj120) aab_Actor1F070(s->obj120);
+    if (s && s->obj120) aab_Actor1F070(s->obj120, k);
 }
 
 /* 0x000A3650: show or hide the attached actor. */

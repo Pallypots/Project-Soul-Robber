@@ -60,7 +60,7 @@ void r4g_MeshLinkNode(R4gModel *m, R4gDrawNode *base, int idx)
         n->modelC0 = m;
         n->itemsC4 = m->infoBC->subs[idx].f00;
         n->texC8 = 0;
-        n->selCC = m->iB4;
+        n->selCC = m->texB4;
         n->iD4 = 0;
         n->texD0 = m->iB8;
         sub_001ADA40(n->m00, b->m10);
@@ -102,7 +102,7 @@ void r4g_SkinLinkNode(R4gModel *m, R4gSkinNode *base, int idx)
         n->modelC0 = m;
         n->itemsC4 = m->infoBC->subs[idx].f00;
         n->texC8 = 0;
-        n->selCC = m->iB4;
+        n->selCC = m->texB4;
         n->iD4 = 0;
         n->texD0 = m->iB8;
         n->v100[3] = 1.0f;

@@ -1,8 +1,8 @@
 /* Area r4b: texture group, type-17 nodes and heap setup around 0x001BA7F0-0x001BB2DF (r4b_8). Names inferred. */
 #include "r4b.h"
 
-/* 0x001BA7F0: call 0x001BA6E0 with the current texture group (0xFFFF without a table). Stack args. */
-int r4b_TexWithGroup(int x)
+/* 0x001BA7F0: call 0x001BA6E0 with the current texture group (0xFFFF without a table). Stack args; x is a pointer (0x001BA6E0 derefs it). */
+int r4b_TexWithGroup(void *x)
 {
     R4bTexTable *t = r4_g40F390;
     if (!t)
@@ -50,12 +50,13 @@ void r4b_NodePRewind(R4bNodeP *n)
     n->iC4 = 0;
 }
 
-/* 0x001BA910: bind records recs to the parts listed in ids (terminated by a negative id). Stack args (n unused ids recs). */
-void r4b_NodePBindParts(R4bNodeParts *n, int unused, const int *ids, R4bPartRec *recs)
+/* 0x001BA910: bind records recs to the parts listed in ids (terminated by a negative id).
+   Stack args (np n ids recs): the count/records go to np (+0xD0..+0xD8, [esp+4]); the part
+   table is read from n's +0xC4 ([esp+8]), as the r2d caller passes a separate part holder. */
+void r4b_NodePBindParts(R4bNodeP *np, R4bNodeParts *n, const int *ids, R4bPartRec *recs)
 {
     int count = 0;
     const int *p;
-    R4bNodeP *np = (R4bNodeP *)n;
     for (p = ids; *p >= 0; p++)
         count++;
     np->countD0 = count;

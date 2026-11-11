@@ -3,11 +3,12 @@
 
 /* 0x0006D310: in the item page, translate a value and show it.
    calls 0x0006C160 with EAX=v */
-void r6d_PauseShowValue(int v)
+void *r6d_PauseShowValue(void *v)
 {
     if (a60_v3E6620 == 10000)
-        sub_000727E0((void *)sub_0003FBD0(r6d_PausePageValue(sub_0006C750(v)), R6D_WORK->anim),
-                     a4c_obj428F40);
+        v = sub_000727E0(sub_0003FBD0(r6d_PausePageValue(sub_0006C750(v)), R6D_WORK->anim),
+                         a4c_obj428F40);
+    return v;
 }
 
 /* 0x00071F90: run the current pause page. */

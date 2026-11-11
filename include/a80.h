@@ -1,6 +1,7 @@
 #ifndef A80_H
 #define A80_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Small pool descriptor at 0x003E9410. */
 typedef struct A80Pool {
@@ -25,7 +26,7 @@ typedef struct A80Obj {
     uint8_t  unk28[8];
     uint32_t flags30;       /* +0x30 */
     uint8_t  unk34[0x14];
-    int32_t  x48;           /* +0x48 */
+    void    *x48;           /* +0x48 */
     struct A80Sub *sub4C;   /* +0x4C */
     struct A80Sub *sub50;   /* +0x50 */
 } A80Obj;
@@ -33,13 +34,13 @@ typedef struct A80Obj {
 typedef struct A80Sub {
     int32_t  x00;
     uint8_t  unk04[0x18];
-    int32_t  x1C;           /* +0x1C */
+    void    *x1C;           /* +0x1C */
     uint8_t  unk20[0x10];
     uint32_t mask30;        /* +0x30 */
 } A80Sub;
 
 typedef struct A80Pair { int32_t a; int32_t b; } A80Pair;
-typedef struct A80Ref  { int32_t x00; int32_t x04; int32_t x08; int32_t x0C; } A80Ref;
+typedef struct A80Ref  { int32_t x00; int32_t x04; int32_t x08; void *x0C; } A80Ref;
 
 /* 24-byte mode record table at 0x002E0680, indexed by a80_curMode. */
 typedef struct A80ModeRec {
@@ -54,13 +55,9 @@ typedef struct A80IdVal { int32_t id; int32_t value; } A80IdVal;
 
 typedef int (*A80Fn2)(int a, int b);
 
-void sub_00053AB0(int size, int fill, int tag);
 void sub_00082C80(int a, int b, void *tbl);
-int  sub_001BA7C0(int h);
 void sub_000252A0(int a, int b);
 A80Ref *sub_0008CD60(void);
-void sub_0008CC50(int32_t *slot, A80Obj *o);
-void sub_0007E0A0(int a, const char *fmt, const char *s, int v);
 void sub_0007AB10(void *ctx, void *p);
 
 extern A80Pool a80_pool;

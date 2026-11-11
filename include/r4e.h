@@ -1,6 +1,7 @@
 #ifndef R4E_H
 #define R4E_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r4d.h"
 #include <string.h>
 /* Area r4e: remaining game functions in 0x00190000..0x001BC6D0 (fifth pass).
@@ -32,8 +33,7 @@ typedef struct R4eMusicSlot { /* 0x00401AF8 x1 */
 extern R4eMusicSlot r4e_music401AF8[1];
 extern int32_t r4e_g402758, r4e_g40275C, r4e_g402760, r4e_g40276C;
 void   sub_001AA1D0(void *lock);
-void   sub_001AB3D0(int a, int b);
-void   r4e_Trace102FA0(int v);     /* 0x00102FA0 empty debug stub, one-argument call sites */
+void   r4e_Trace102FA0();     /* 0x00102FA0 empty debug stub, one-argument call sites */
 void   sub_001995A0(void);
 void   r4e_SoundInit(void);             /* 0x0019B500 */
 
@@ -55,7 +55,6 @@ void   sub_00012F90(void);
 void   sub_001BBD90(void);
 void   sub_00012000(void);
 void   sub_00052970(float k);
-void  *sub_00053820(int a, int size, int c, int d);
 void   sub_001BB2A0(void *p, int size);
 void   sub_001BB2E0(int a, int b, int c);
 void   sub_001BB780(void *p, int a, int b, int c, int d);
@@ -69,8 +68,7 @@ void   sub_001B16E0(void);
 void   sub_00037AE0(void);
 void   sub_00038FA0(void);
 void   sub_000390B0(void);
-void   sub_00052840(void *p);
-void   sub_00037F10(void);
+int sub_00037F10(void);
 void   sub_00075EF0(void);
 void   sub_000186C0(void);
 void   sub_000792F0(void);
@@ -93,20 +91,17 @@ void   sub_000E7630(void);
 void   sub_00031A10(void);
 void   sub_0005FFA0(void);
 void   sub_0006C1C0(int a, int b);
-void   sub_0004F4E0(void);
 void   sub_0004F660(void);
 void   sub_00079370(void);
 void   sub_001A0DB0(void);
 void   sub_000583C0(void);
 void   sub_0019C3B0(void);
-void   sub_0019C2D0(void);
-void   sub_001A0660(float a, int b, int c, int d, int e, int f);
-int    sub_00057E90(void);
+int sub_0019C2D0(void);
+int sub_001A0660(float a, int b, int c, int d, int e, int f);
 void   sub_001AD6A0(void);
 void   sub_0019BCF0(void);
 void   sub_0019C200(void);
 void   sub_0004EB50(void);
-void   sub_0004ECE0(int a);
 void   sub_0004EC40(void);
 void   sub_0004EC60(void);
 void   sub_001BA640(int frame);
@@ -141,10 +136,9 @@ void   sub_00086EF0(void);
 void   sub_00085DE0(void);
 void   sub_000AA4C0(void);
 void   sub_000DE330(int a);
-void   sub_00047BF0(void);
 void   sub_00036FD0(float k);
 void   sub_001A0D70(void);
-int    sub_001AD720(R4eThreadDesc *d, int arg);
+int    sub_001AD720(R4eThreadDesc *d, void *arg);
 void   sub_001A0CF0(int a, int b);
 void   sub_001A0D30(int a, int b);
 void   sub_000408B0(int a);
@@ -175,9 +169,7 @@ void   sub_001A5310(void);
 int    sub_001A7FD0(void);
 void   sub_001A8020(int a, int b, int c, int d);
 void   sub_001A7FE0(void);
-void   sub_001A7E30(void);
 uint32_t *sub_00022900(uint32_t *cmd);
-uint32_t *sub_0003FBD0(uint32_t *cmd, void *shake);
 void   r4e_SceneSetup(int stage, int b, int mode, int c, int d, int e);   /* 0x0019FCF0 */
 void   r4e_SceneRunLoop(int *state);    /* 0x001A0540 */
 
@@ -187,19 +179,18 @@ extern int32_t r4e_g404334;           /* fade steps active */
 extern uint8_t r4e_g3DE5B0[];
 extern uint8_t r4c_opt413148;
 void  *r4e_JobCurrent57E90(void);                     /* 0x00057E90 current job function */
-void   r4e_SetFrameHook19BE50(void (*fn)(void));      /* 0x0019BE50 */
-void   r4e_AD090(void *p, int b);                     /* 0x000AD090 */
+void *r4e_SetFrameHook19BE50(void (*fn)(void));      /* 0x0019BE50 */
+int r4e_AD090();                     /* 0x000AD090 */
 void   r4e_Release4F5D0(int id);                      /* 0x0004F5D0 */
-void   r4e_Nop102FA0(void *arg);                      /* 0x00102FA0 used as an empty job */
+void   r4e_Nop102FA0();                      /* 0x00102FA0 used as an empty job */
 void   sub_001A0640(void *arg);
 void   sub_001A0200(void);
 void   sub_0019FEF0(float a, int b, int c, int d, int e, int f);
 void   sub_001A53F0(void);
 void   sub_0019FFE0(void);
-void   sub_001A0970(void);
+void   sub_001A0970(void *);
 int    sub_001A7C10(int stage);
 void   sub_001A80D0(int vol);
-void   sub_001A1060(void *g, int id);
 int    r4e_SceneEnd(float a, int b, int c, int d, int e, int f);   /* 0x001A0660 */
 void   r4e_SceneJob(int *state);        /* 0x001A0830 */
 
@@ -209,7 +200,6 @@ typedef struct R4eStreamDesc { int32_t f00; uint32_t addr04; int32_t f08; } R4eS
 typedef struct R4eVtxHdr { int32_t count00; uint32_t flags04; uint8_t unk08[8]; } R4eVtxHdr;  /* data follows at +0x10 */
 extern R4eStreamDesc r4e_streams40AFF8[16];
 extern uint32_t r4e_rtSizeA341638[14], r4e_rtSizeB341670[14];
-uint32_t *sub_000324B0(uint32_t *cmd);
 uint32_t *sub_0006D310(uint32_t *cmd);
 int    sub_0006C260(void);
 float  sub_00036FF0(void);
@@ -234,13 +224,13 @@ void   r4e_DrawVertexBlockOpt(R4eVtxHdr **pp, int flags);  /* 0x001A2250 */
 R4eMeshTex *sub_001AE8C0(void *texset, int id);
 R4eMesh *sub_001AE920(R4eModel *m, R4eMesh *mesh);
 void   sub_001A2480(void *ctx, R4eMeshTex *t);
-void   sub_001A1EE0(int mode);
+int sub_001A1EE0(int mode);
 void   sub_001A2370(R4eModel *m, R4eMesh *mesh);
 
 /* ------------------------------------------------------------ immediate-mode draws (0x001A2D80, 0x001A36A0) */
 extern uint32_t r4e_g40AD48, r4e_g40AD4C;     /* init guards of two function-local statics (empty initialisers) */
 extern uint32_t r4e_rs1E245C;                 /* cached render state 0x40358 (D3D device block) */
-void   r4c_TargetSelect(int mode);            /* 0x001A1EE0 */
+int r4c_TargetSelect(int mode);            /* 0x001A1EE0 */
 int    sub_001A1D50(int target);
 void   OOG_STDCALL sub_001D4720(int a);
 void   OOG_STDCALL sub_001D2E10(int state, R4dMat *out);                        /* GetTransform */
@@ -261,8 +251,7 @@ void  OOG_STDCALL r4e_SetScissor1D3D80(int n, int flags, R4eRect *r);         /*
 R4eSurf *OOG_STDCALL r4e_GetBackBuffer1D3490(int index);                     /* 0x001D3490 */
 R4eSurf *OOG_STDCALL sub_001D3810(void);                                      /* GetDepthStencilSurface */
 void  OOG_STDCALL r4e_GetDesc1D7D50(R4eSurf *s, R4dSurfDesc *d);             /* 0x001D7D50 */
-void  OOG_STDCALL sub_002039CA(uint32_t w, uint32_t h, int levels, int usage, uint32_t fmt, int pool, R4eTexHdr *tex, uint32_t data, uint32_t pitch);  /* XGSetTextureHeader */
-void  OOG_STDCALL r4e_Release1D5F50(void *res);                               /* 0x001D5F50 */
+int OOG_STDCALL r4e_Release1D5F50(void *res);                               /* 0x001D5F50 */
 void   r4e_SetSafeViewport(void);                     /* 0x001A5480 */
 void   r4e_SetRenderState4035C(int on);               /* 0x001A6E80 */
 void   r4e_WrapFrameBuffers(void);                    /* 0x001A6F90 */
@@ -293,9 +282,8 @@ void   OOG_STDCALL sub_001D2EB0(void (*fn)(void));
 void   OOG_STDCALL sub_001D7310(void (*fn)(void));
 void   sub_001A53A0(void);
 void   sub_001A53B0(void);
-void   sub_001A1CE0(void);
+int sub_001A1CE0(void);
 void  *OOG_STDCALL sub_001D60F0(int w, int h, int levels, int usage, int fmt, int pool, int c);  /* CreateTexture */
-void   OOG_STDCALL sub_001D6210(void *tex, int level, R4eLockedRect *lr, void *rect, int flags);   /* LockRect */
 void   OOG_STDCALL sub_002039F4(int a, int b, int c, int d, R4eStreamDesc *s, int e);
 void   sub_001A72C0(void);
 uint32_t OOG_STDCALL sub_00259432(void *type);                          /* XGetDevices */
@@ -314,13 +302,12 @@ void *OOG_STDCALL sub_001BD128(void *sa, int manual, const char *name);         
 int   OOG_STDCALL sub_001BD186(void *h, const int64_t *due, int period, void *fn, void *arg, int resume);  /* SetWaitableTimer */
 int   R4D_FASTCALL sub_001ACF30(R4eDrvSlot *d);
 int   R4D_FASTCALL sub_001ACF00(R4eDrvSlot *d);
-void   r4e_DrvSlotSettle(int unused, int i);     /* 0x001AB210 */
+int    r4e_DrvSlotSettle(int unused, int i);     /* 0x001AB210 */
 
 /* ------------------------------------------------------------ frame timer and small math helpers (0x001AE430..0x001AF294) */
 extern int64_t r4e_now40F0E0, r4e_total40F0F0, r4e_delta40F108, r4e_delta40F110, r4e_last40F118;
 extern float   r4e_tick40F0E8;        /* seconds per counter tick */
 extern float   r4e_dt40F0EC, r4e_nowSec40F0F8, r4e_dt40F0FC, r4e_totalSec40F100;
-int   OOG_STDCALL sub_001BD59E(int64_t *freq);    /* QueryPerformanceFrequency */
 int   OOG_STDCALL sub_001BD58D(int64_t *count);   /* QueryPerformanceCounter */
 typedef struct R4eImgHdr { uint8_t unk00[0x0C]; int32_t h0C; int32_t w10; uint8_t unk14[4]; int32_t f18; } R4eImgHdr;
 void   r4e_TimerInit(void);             /* 0x001AE430 */
@@ -334,17 +321,15 @@ typedef struct R4eMotion {    /* object driven by 0x001AEFD0 */
     uint8_t  unk00[0xBC];
     uint32_t flagsBC;         /* +0xBC low byte: state flags */
     uint8_t  unkC0[8];
-    int32_t  animC8;          /* +0xC8 */
+    void    *animC8;          /* +0xC8 */
     int32_t  framesCC;        /* +0xCC */
     int32_t  frameD0;         /* +0xD0 */
 } R4eMotion;
-void   sub_001AD8B0(R4dMat *out, const R4dMat *in, float a);   /* rotate about X */
-void   sub_001AD8E0(R4dMat *out, const R4dMat *in, float a);   /* rotate about Y */
+void   sub_001AD8B0(void *out, const void *in, float a);       /* rotate about X */
 void   sub_001AD910(R4dMat *out, const R4dMat *in, float a);   /* rotate about Z */
 float  sub_001BBD80(void);
-void   sub_001AEBF0(R4eMotion *o, int anim, int mode);
 void   sub_001AEF60(R4eMotion *o);                             /* regargs: o=EAX */
-void   r4e_MotionStart(R4eMotion *o, int anim, int flags, int frames);   /* 0x001AEFD0 */
+void   r4e_MotionStart(R4eMotion *o, void *anim, int flags, int frames);   /* 0x001AEFD0 */
 
 /* ------------------------------------------------------------ vector and matrix helpers (0x001AD7E0..0x001AE055) */
 typedef struct R4eVec4 { float x, y, z, w; } R4eVec4;
@@ -372,8 +357,6 @@ typedef struct R4eNode {      /* node set up by 0x001AE970 */
     int32_t  iC8, iCC, iD0, iD4;        /* +0xC8 */
     float    fD8, fDC;        /* +0xD8 */
 } R4eNode;
-void  OOG_STDCALL sub_001E4BC6(R4dMat *out, const R4dMat *in);                     /* D3DX matrix transpose */
-void  OOG_STDCALL sub_001E4B2D(R4eVec4 *out, const R4eVec4 *v, const R4dMat *m);   /* D3DX vec4 transform */
 void   sub_001A73F0(R4dMat *m);
 void   sub_001B25B0(R4eNode *n);
 R4eNode *r4e_NodeInit(R4eNode *n);                                 /* 0x001AE970 */
@@ -410,9 +393,8 @@ extern float    a19_g403004, a19_g403120, a9c_g403124;
 extern void    *a19_g403128;
 extern int32_t  r4c_g403130;
 extern uint8_t  r4e_g403008[], r4e_g3374A8[];
-void   sub_00052A00(int mode);
 void   sub_0003CFC0(int a);
-void   sub_000479E0(int a);
+void   sub_000479E0(int unused);   /* 0x000479E0 ignores its argument (tail jmp to 0x1997D0); the original caller pushes one */
 void   sub_00048620(int v);
 void   sub_000486F0(int v);
 void   sub_001A76A0(int a);
@@ -424,12 +406,11 @@ void   r4e_GameStateStart(int *state);  /* 0x0019FC60 */
 
 /* ------------------------------------------------------------ fade jobs (0x0019C6F0, 0x001A1280) */
 extern int32_t a19_g336DD0;
-extern int32_t a9b_g402FC8, a9b_g402FCC, a9b_g402FD0;
+extern float   a9b_g402FC8, a9b_g402FCC, a9b_g402FD0;
 extern int32_t r4e_g402FD4;
 int    sub_00036D40(void);
 void   sub_00036C90(void);
-void   sub_00036F90(int a, int b, int c);
-void   sub_00036F40(int a, int b, int c, float t);
+void   sub_00036F90(float a, float b, float c);
 void   sub_0003DD10(void);
 void   sub_000325A0(int a);
 void   r4e_FadeInJob(int *job);          /* 0x0019C6F0 */

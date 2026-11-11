@@ -1,6 +1,7 @@
 #ifndef A8B_H
 #define A8B_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Cutscene (demo) object; fields named by offset. Names inferred. */
 struct A8bWork;
@@ -13,7 +14,7 @@ typedef struct A8bObj {
     uint8_t  unk20[3];
     uint8_t  ref23;             /* +0x23 reference count */
     uint32_t flags24;           /* +0x24 bit 0: shown */
-    int32_t  x28;               /* +0x28 handle */
+    void    *x28;               /* +0x28 handle */
 } A8bObj;
 
 /* Byte view of the same object for the narrow fields at +0x18..+0x1B. */
@@ -57,20 +58,14 @@ void     a8b_RefInc(A8bObj *o);
 void     a8b_RefDec(A8bObj *o);
 
 /* external callees */
-int  sub_0007E620(int h);
+int  sub_0007E620(void *h);
 void sub_0008E200(A8bObj *t);
-int  sub_0008E1B0(A8bObj *t);
-void sub_0001EB80(int h);
-void sub_0007F2B0(A8bObj *o);
 void sub_0008B400(A8bObj *o);
-void sub_0008BF70(A8bObj *o);
-int  sub_0008CB90(A8bObj *o);
-int  sub_0008B860(int a, int b, int c, void *cb);
-void sub_0008B2F0(void);
+int  sub_0008B860(void *a, void *b, void *c, unsigned char (*pred)(void *a, void *b)); /* pred called indirectly */
+unsigned char sub_0008B2F0(void *a, void *b);   /* key match predicate (a8c_Key3Equal) */
 void sub_0008ECA0(A8bObj *t);
-int  sub_0003D090(int a);
 void sub_0003D0A0(int a);
-void sub_0007F480(int a, int b);
+void *sub_0007F480(int a, int b, int, int, void *);
 
 extern uint8_t a8b_desc2E0A48[], a8b_desc2E0B48[], a8b_desc2E0BC0[], a8b_desc2E0C38[];
 extern uint8_t a8b_desc2E0CD8[], a8b_desc2E0DB8[], a8b_desc2E0E30[], a8b_desc2E0EA0[];
@@ -78,5 +73,5 @@ extern uint8_t a8b_desc2E1000[], a8b_desc2E1078[], a8b_desc27001C[];
 extern A8bDescGetter a8b_descGetters[];
 extern A8bOpsGetter a8b_opsGetters[];
 extern int32_t a8b_slots428EE0[];
-extern int32_t a8b_g3ED528;
+extern void *a8b_g3ED528;
 #endif

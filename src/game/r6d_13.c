@@ -14,7 +14,7 @@ char *r6d_CopyN(char *dst, unsigned max, const char *src)
 
 /* 0x0007E910: load a character resource into an object and make sure its effect list exists.
    calls 0x0007E680 with EDI=table; 0x0007E720 with EBX=o->chr */
-void r6d_CharLoad(int a, int b, int c, R6dCharObj *o)
+void r6d_CharLoad(R6dCharObj *o, void *a, int b, int c)
 {
     void *h = sub_0008FDC0(a, b, c);
     void *res = r6b_FwdHolderData(&h);

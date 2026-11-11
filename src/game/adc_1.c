@@ -216,7 +216,7 @@ int adc_Op5CA80(ScriptCtx *c)
 /* 0x000DD860: pass ctx->+0x1F0 to 0x5C430. */
 int adc_Op5C430(ScriptCtx *c)
 {
-    sub_0005C430(*(int32_t *)(adc_ctx42C8E4 + 0x1F0));
+    sub_0005C430(*(void **)(adc_ctx42C8E4 + 0x1F0));
     return SCR_NEXT(0);
 }
 

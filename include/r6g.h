@@ -1,6 +1,7 @@
 #ifndef R6G_H
 #define R6G_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r6f.h"
 /* Area r6g: larger functions (300-2000 bytes) in 0x00060000..0x000D0000.
    All names inferred. Register mappings are in the comments and in
@@ -35,10 +36,7 @@ extern int32_t   r6d_texSet3E6538;      /* 0x003E6538 */
 extern int32_t   r6g_tex3E6528[4];      /* 0x003E6528 */
 extern R6gSprite r6g_sprites429530[3];  /* 0x00429530 */
 extern uint8_t  *a60_work42C5E8;        /* 0x0042C5E8 */
-int   sub_00084C00(void *p, int a);
 void  sub_00014DA0(void *p);
-void  sub_00014D00(void *p, void *obj, int a);
-void  sub_00014E30(void *p, int idx, float a, float b, int arg);
 
 /* ------------------------------------------------------------ text boxes (0x76E30) */
 /* Text box (layout of R6cText) with the position and its two sprites named. */
@@ -94,7 +92,7 @@ void  sub_0004F5D0(int a);
 void  sub_000BBF40(int bank);
 int   sub_000BC650(void *sm);
 void  sub_000BC6B0(void *sm, int st);
-int   sub_000CD300(PlayerObj *p);       /* p=EAX */
+/* sub_000CD300 (p=EAX) is declared in r6e.h */
 int   sub_0019BE60(int k);
 void  sub_000D2440(PlayerObj *p);
 
@@ -113,12 +111,8 @@ int   sub_00060BD0(void);
 void  sub_0005FE00(void);
 int   sub_000774E0(void);
 void  sub_00077410(void);
-int   sub_00052A00(int lang);
 void  sub_0019BF80(int from, int to);
-void *sub_00053820(int pool, int size, int a, int b);
 int   sub_0004F6D0(int id);
-int   sub_0004F680(int id);
-void  sub_0004FA70(int id, void *p);
 int   sub_0004F4D0(void);
 void  sub_000580D0(void);
 void  sub_0002BAB0(void);
@@ -137,18 +131,20 @@ typedef struct R6gObj7 {
     void    *mdl;             /* +0x044 model list */
 } R6gObj7;
 void *sub_000846D0(int n);
-int   sub_00084730(void *l, int v);
+void *sub_00084730(void *l, void *v);   /* threads command pointer v through 0x001B72C0 */
 void  sub_00079980(void *l, void *light);
 void  sub_000847D0(void *l, int i, int v);
-void  sub_00084810(void *l, int i, void (*fn)(void));
-void  sub_00084830(void *l, int i, void (*fn)(void));
-void  sub_001B7E90(void);
-void  sub_000796D0(void);
-void  sub_00079810(void);
-void  sub_00079830(void);
-void  sub_00079780(void);
-void  sub_00079790(void);
-void  sub_000799F0(void);
+/* Render pass callbacks: take the push buffer, return it advanced. */
+typedef void *(*R6gPassFn)(void *pb);
+void  sub_00084810(void *l, int i, R6gPassFn fn);
+void  sub_00084830(void *l, int i, R6gPassFn fn);
+void *sub_001B7E90(void *pb);
+void *sub_000796D0(void *);
+void *sub_00079810(void *);
+void *sub_00079830(void *);
+void *sub_00079780(void *);
+void *sub_00079790(void *);
+void *sub_000799F0(void *);
 
 /* ------------------------------------------------------------ present models (0xC9460) */
 typedef struct R6gPresent {
@@ -163,7 +159,6 @@ extern const char r6g_prsnt0100_276F70[], r6g_prsnt0101_276F44[], r6g_prsnt0102_
 extern const char r6g_prsnt0200_276EEC[], r6g_prsnt0201_276EC0[], r6g_prsnt0202_276E94[];
 extern const char r6g_prsnt03_277020[];
 void  sub_000C6920(void);
-void  sub_00022630(void *o, const char *path);
 void  sub_00036790(void *o);
 void  sub_000C87B0(void);
 
@@ -235,10 +230,9 @@ typedef struct R6gEff {
 void  sub_001B2080(void *n);
 void  sub_000751C0(void *n);
 void  sub_00074F10(void *n);
-int   sub_001B9FC0(int idx);
 void  sub_00082270(void *r);
 void  sub_000820C0(void *r);
-void  sub_00083070(void *r);
+int sub_00083070(void *r);
 
 
 /* ------------------------------------------------------------ scripted event handlers (0xB3EB0, 0xB4BC0) */
@@ -305,17 +299,14 @@ typedef struct R6gObjMdl {
     void    *box[6];          /* +0x048 bounding/collision boxes */
 } R6gObjMdl;
 extern const char r6g_srcWorld26F5A4[]; /* 0x0026F5A4 "...\app\world.c" */
-uint32_t *sub_00037570(void *pack, int kind);
-void *sub_000847F0(void *l, int i);
 void *sub_00080DA0(void *m, void *light);
 void  sub_00082120(void *box, int v);
 uint16_t sub_001BA0D0(void);
-void  sub_001BA0B0(int g);
 void  sub_0007C2B0(R6gObjMdl *o, uint32_t *f);
 void  sub_0007B070(R6gObjMdl *o, uint32_t *f);
 uint8_t *sub_00053B70(const char *file, int line);
 uint8_t *sub_00081A20(void *box, uint8_t *buf);
-void  sub_00053890(void *p, int size);
+void *sub_00053890(void *p, int size);
 
 void  sub_000A2D40(int a, uint32_t m);
 void  sub_000A2D10(int a, uint32_t m);
@@ -472,7 +463,6 @@ extern uint8_t r6c_obj3E73A0[];         /* 0x003E73A0 */
 void  sub_00078270(void);
 void  sub_00078F50(void);
 void  sub_00078E70(void);
-void  sub_00053CA0(int a);
 int   sub_0001B150(void *o, int a);
 void  sub_0001AE90(void *o);
 void  sub_001A0D70(void);

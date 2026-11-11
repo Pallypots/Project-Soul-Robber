@@ -131,9 +131,9 @@ int r6b_TaskStartRun(R6bTask *t)
 }
 
 /* 0x0008E1B0: value +0x5C of the task's animation object. */
-int r6b_TaskAnimValue(R6bTask *t)
+void *r6b_TaskAnimValue(R6bTask *t)
 {
-    return ((R6bAnimRef *)t->u28.p28)->i5C;
+    return ((R6bAnimRef *)t->u28.p28)->p5C;
 }
 
 /* 0x0008E780: task descriptor getter. */

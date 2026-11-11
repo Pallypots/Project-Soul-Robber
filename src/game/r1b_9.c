@@ -121,7 +121,7 @@ void r1b_PartsSetF94(R1bPart *p)
 
 /* 0x0001F460: command: create a controller for the target, or flag the
    existing one; returns 0. */
-int r1b_CmdMakeCtl(int a, int unused, R1bCmdTarget *t)
+int r1b_CmdMakeCtl(void *a, int unused, R1bCmdTarget *t)
 {
     void *p;
     (void)unused;

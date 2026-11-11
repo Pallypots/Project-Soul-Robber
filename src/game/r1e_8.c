@@ -137,7 +137,7 @@ R1eJob *r1e_JobMove(int b)
 }
 
 /* 0x00058B00: play sound (c, d) through 0x00058A40. */
-int r1e_SndPlay(int a, int b, int c, int d, int e, int f, int g)
+int r1e_SndPlay(int a, void *b, int c, int d, void *e, int f, int g)
 {
     return sub_00058A40(a, b, sub_00053850(c, d, 0, 0), d, e, f, g);
 }

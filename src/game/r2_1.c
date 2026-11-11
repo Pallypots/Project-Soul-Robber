@@ -25,7 +25,7 @@ void r2_LookupApply(int a, int b, int arg)
 
 /* 0x000ED380: find the node keyed `key` in list 0x3F5DC0, unhook it from the
    head/tail globals and remove it.  regargs: key=EAX */
-void r2_ListDrop(int key)
+void r2_ListDrop(void *key)
 {
     R2Node *n = (R2Node *)sub_0003DBC0(r2_list3F5DC0, 0, key);
     if (n) {
@@ -76,6 +76,9 @@ void r2_CheckStateE3380(R2Actor *obj)
     s = sub_000E3380();
     if (s != 4 && s != 5) {
         sub_00019000(ae0_obj3E1270, 1);
-        sub_000BCA50();
+        /* The original tail-jumps (jmp 0x000BCA50) without pushing, so 0x000BCA50
+           reads whatever the caller left in the first stack slot; no C argument
+           expresses that, hence the no-argument call through a cast. */
+        ((void (*)(void))sub_000BCA50)();
     }
 }

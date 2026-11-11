@@ -10,7 +10,7 @@ int r4_StoreRet(int *p, int b, int c)
 }
 
 /* 0x001B14E0: set the model's +0xC8 value and copy it into every part. */
-void r4_ModelSetPartValue(R4Model *m, int v)
+void r4_ModelSetPartValue(R4Model *m, void *v)
 {
     uint32_t i;
     R4Part *p = m->parts;
@@ -46,7 +46,7 @@ void r4_ModelApplyBones(R4Model *m)
 /* 0x001B16E0: create the built-in texture from the embedded DDS image. */
 void r4_CreateBuiltinTexture(void)
 {
-    void *tex = sub_001BA7F0(r4_g367EA8);
+    int32_t tex = sub_001BA7F0(r4_g367EA8);
     uint8_t *d = sub_001B9650(tex);
     *(int32_t *)(d + 0x48) = 5;
     r4_g40F1B0 = tex;
@@ -261,14 +261,14 @@ void r4_RunPasses(void *p)
 }
 
 /* 0x001B2660: build a matrix with 0x001ADEE0 and set its w to 1. */
-void r4_MatBuildW1(float *m, int a, int b, int c)
+void r4_MatBuildW1(float *m, void *a, void *b, void *c)
 {
     sub_001ADEE0(m, a, b, c);
     m[15] = 1.0f;
 }
 
 /* 0x001B26A0: select b (0x001A7280) and remember it; returns a. */
-uint32_t *r4_Select40F208(uint32_t *a, int b)
+uint32_t *r4_Select40F208(uint32_t *a, void *b)
 {
     sub_001A7280(b);
     r4_g40F208 = b;
@@ -299,7 +299,7 @@ void r4_Clear2(int32_t *p)
 }
 
 /* 0x001B2A10: remember b; returns a. */
-uint32_t *r4_Set40F324(uint32_t *a, int b)
+uint32_t *r4_Set40F324(uint32_t *a, void *b)
 {
     r4_g40F324 = b;
     return a;

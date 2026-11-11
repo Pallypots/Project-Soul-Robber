@@ -2,7 +2,7 @@
 #include "ac0.h"
 
 /* 0x000C5CC0: play the level-adjusted sound of entry i (alternate column when powered). */
-void ac0_PlayLevelSound(Ac0Actor *a, int i, int b)
+void ac0_PlayLevelSound(Ac0Actor *a, int i, void *b)
 {
     const Ac0SndEntry *e = &g_ac0_sndEntries[i];
     int id;

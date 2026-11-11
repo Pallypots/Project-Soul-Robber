@@ -1,6 +1,7 @@
 #ifndef R4F_H
 #define R4F_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r4e.h"
 /* Area r4f: remaining game functions in 0x00190000..0x001BC6D0 (sixth pass).
    All names inferred. Register mappings are in the comments and in
@@ -40,13 +41,11 @@ typedef struct R4fSlot {      /* driver slot, 0xB4 bytes (0x0040E604 table) */
 } R4fSlot;
 void   OOG_STDCALL r4f_StrErase1A38C0(void *str, int pos, int n);   /* 0x001A38C0 thiscall, ECX=str */
 void   OOG_STDCALL sub_00222662(void *o);
-void   OOG_STDCALL sub_002224A2(void *dev, void *o);
 void   R4D_FASTCALL r4f_FileClose(R4fStrFile *f);   /* 0x001A3A80 regargs: f=ECX */
 void   R4D_FASTCALL r4f_SlotReset(R4fSlot *s);      /* 0x001AD150 regargs: s=ECX */
 
 /* ------------------------------------------------------------ thread table (0x001AD260, 0x001AD720) */
 typedef struct R4fThreadDesc { uint8_t unk00[4]; void *fn04; uint8_t unk08[0x14 - 0x08]; int32_t prio14; } R4fThreadDesc;
-int    OOG_STDCALL sub_001BC71B(void *sp, void *sh, void *tp, void **out, uint32_t acc, int inh, uint32_t opt);  /* DuplicateHandle */
 void   OOG_STDCALL sub_001BD3B2(int a);
 void  *OOG_STDCALL sub_001BD49C(void *sa, uint32_t stack, void *fn, void *arg, uint32_t flags, int32_t *id);   /* CreateThread */
 int    sub_001AD570(int id, int prio);
@@ -96,9 +95,7 @@ extern R4fCueRec r4f_cues338858[], r4f_cues33AE40[];
 extern int32_t r4f_g365164, aac_g365158;
 int    OOG_STDCALL sub_0022268D(void *eng, R4fCueRec *c, void *out);
 void   OOG_STDCALL sub_00222538(void *dev, void *status);
-void   OOG_STDCALL sub_002225B2(void *dev, void *status);
 void   OOG_STDCALL sub_002224FD(void *dev, void *status);
-void   OOG_STDCALL sub_00223F9C(void);
 int    r4f_MusStop(int a, int id);       /* 0x001ABC10 */
 void   r4f_MusPlay(int unused, int id);  /* 0x001ABF20 */
 void   r4f_MusPause(int id, int pause);  /* 0x001ABFE0 */
@@ -125,7 +122,6 @@ typedef struct R4fEmitter {
     uint8_t  unkDC[4];
     int32_t  fE0, fE4;        /* +0xE0 */
 } R4fEmitter;
-void   sub_000F5D40(float *d, const float *s);
 void   r4f_EmitASetPos(R4fEmitter *e);                    /* 0x001B3160 */
 void   r4f_EmitASetPair(R4fEmitter *e, int a, int b);     /* 0x001B3210 */
 void   r4f_EmitBSetPos(R4fEmitter *e);                    /* 0x001B8320 */
@@ -302,8 +298,6 @@ extern R4fCueMap r4f_cueMap27B720[16];
 extern void   *r4f_engines40C868[];        /* 0x0040C868, indexed by r4d_drvMode40E348 */
 extern void   *r4f_playA40E5CC, *r4f_playB40E34C;
 extern int32_t r4f_g40E314, r4f_curB40C864, r4f_curA40E5D0;
-void   OOG_STDCALL sub_00222726(void *eng, int a, int b, void *play);
-void   OOG_STDCALL sub_0022275D(void *eng, void *play, int on);
 int    OOG_STDCALL sub_002226C0(void *eng, R4dDrvMsg *m, void *out);
 void   r4f_MusicCueCmd(int cmd, int id);     /* 0x001AAAE0 */
 
@@ -372,13 +366,11 @@ typedef struct R4fSlot {      /* driver slot, 0xB4 bytes (0x0040E604 table) */
 } R4fSlot;
 void   OOG_STDCALL r4f_StrErase1A38C0(void *str, int pos, int n);   /* 0x001A38C0 thiscall, ECX=str */
 void   OOG_STDCALL sub_00222662(void *o);
-void   OOG_STDCALL sub_002224A2(void *dev, void *o);
 void   R4D_FASTCALL r4f_FileClose(R4fStrFile *f);   /* 0x001A3A80 regargs: f=ECX */
 void   R4D_FASTCALL r4f_SlotReset(R4fSlot *s);      /* 0x001AD150 regargs: s=ECX */
 
 /* ------------------------------------------------------------ thread table (0x001AD260, 0x001AD720) */
 typedef struct R4fThreadDesc { uint8_t unk00[4]; void *fn04; uint8_t unk08[0x14 - 0x08]; int32_t prio14; } R4fThreadDesc;
-int    OOG_STDCALL sub_001BC71B(void *sp, void *sh, void *tp, void **out, uint32_t acc, int inh, uint32_t opt);  /* DuplicateHandle */
 void   OOG_STDCALL sub_001BD3B2(int a);
 void  *OOG_STDCALL sub_001BD49C(void *sa, uint32_t stack, void *fn, void *arg, uint32_t flags, int32_t *id);   /* CreateThread */
 int    sub_001AD570(int id, int prio);
@@ -429,9 +421,7 @@ extern R4fCueRec r4f_cues338858[], r4f_cues33AE40[];
 extern int32_t r4f_g365164, aac_g365158;
 int    OOG_STDCALL sub_0022268D(void *eng, R4fCueRec *c, void *out);
 void   OOG_STDCALL sub_00222538(void *dev, void *status);
-void   OOG_STDCALL sub_002225B2(void *dev, void *status);
 void   OOG_STDCALL sub_002224FD(void *dev, void *status);
-void   OOG_STDCALL sub_00223F9C(void);
 int    r4f_MusStop(int a, int id);       /* 0x001ABC10 */
 void   r4f_MusPlay(int unused, int id);  /* 0x001ABF20 */
 void   r4f_MusPause(int id, int pause);  /* 0x001ABFE0 */
@@ -458,7 +448,6 @@ typedef struct R4fEmitter {
     uint8_t  unkDC[4];
     int32_t  fE0, fE4;        /* +0xE0 */
 } R4fEmitter;
-void   sub_000F5D40(float *d, const float *s);
 void   r4f_EmitASetPos(R4fEmitter *e);                    /* 0x001B3160 */
 void   r4f_EmitASetPair(R4fEmitter *e, int a, int b);     /* 0x001B3210 */
 void   r4f_EmitBSetPos(R4fEmitter *e);                    /* 0x001B8320 */

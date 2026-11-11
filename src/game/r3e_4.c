@@ -72,7 +72,7 @@ void r3e_Follow183DF0(R3eObj *obj, R3eObj *act)
         st = 3;
         break;
     }
-    if (sub_000E0770()->i32C)
+    if (((R3eGame *)sub_000E0770())->i32C)
         st = 2;
     if (sub_000E3380() == 4) {
         sub_00113040(obj, act, 4);

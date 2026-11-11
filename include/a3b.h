@@ -1,6 +1,7 @@
 #ifndef A3B_H
 #define A3B_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* 0x1C-byte record reset by 0x00031070. */
 typedef struct A3bRec1C { int32_t id; int32_t f04, f08, f0C, f10, f14, f18; } A3bRec1C;
@@ -43,11 +44,8 @@ void sub_00033130(void);
 void sub_000331D0(void);
 void sub_00079340(void);
 void sub_00033560(void *p);
-void sub_001ADA40(int a, void *p);
 void sub_00053350(int a, int b);
 void sub_0003D860(void *p);
-void sub_00036B30(void *base, int count, void *cb, int z);
-int  sub_00034270();
 int  sub_000342C0();
 
 /* Pool node: busy word at +0, next at +0x10 (0x00034D70 and neighbours). */
@@ -78,17 +76,15 @@ extern uint8_t a3b_obj3DA0A4[];     /* 0x003DA0A4 */
 extern float   a3b_f3DA0B0;         /* 0x003DA0B0 */
 extern uint8_t a3b_obj42CB20[];     /* 0x0042CB20 */
 
-void sub_00033C20(void *p);
 void sub_00034500(int a, void *item);
-void sub_001B6670(void *p, int a);
-void sub_001B67F0(void *p, int a);
+void sub_001B6670(void *p, float a);
+void sub_001B67F0(void *p, float a);
 void sub_001B6A90(void *p);
 void sub_001B6B10(void *p);
-void sub_000339C0(A3bPNode *n, int a);
+void sub_000339C0(A3bPNode *n, void *a);
 void sub_00034F90(A3bPNode *n);
 void sub_00036260(void *p);
-void sub_00035DD0(void *p, int a, int b, int c);
 void sub_00035FD0(void *p, int a, int b);
 void sub_000368F0(void *p, int a, int b);
-void sub_000373A0(int a, int b, int c, int d);
+void *sub_000373A0(const void *name, int offset, int size, void *buf); /* returns buf, or a new block when buf is 0 */
 #endif

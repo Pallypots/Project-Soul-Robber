@@ -124,14 +124,14 @@ int rbg_Land13A670(RbgRec150 *obj, RbgComp *act)
         if (sub_000833E0(obj->anim30)) {
             sub_00113090(obj, act, (w->flags04 & 0x80000000u) ? 0x3D : 0x62);
             sub_001AEDD0(obj->anim30->node14,
-                         sub_00083120(obj->anim30, obj->anim30->i08)->f10 * 0.08f);
+                         ((RbgAnimEnt *)sub_00083120(obj->anim30, obj->anim30->i08))->f10 * 0.08f);
             act->i58++;
         }
         break;
     case 1:
         if (obj->flags128 & 0x18) {
             sub_001B1190(obj->anim30->node14, 3.0f);
-            sub_001AEDD0(obj->anim30->node14, sub_00083120(obj->anim30, obj->anim30->i08)->f10);
+            sub_001AEDD0(obj->anim30->node14, ((RbgAnimEnt *)sub_00083120(obj->anim30, obj->anim30->i08))->f10);
             sub_000494D0(0x88, obj->r20->v30, 0);
             sub_00036750(obj, 7);
             obj->flags10 &= ~0x10u;

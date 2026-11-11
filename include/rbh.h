@@ -1,6 +1,7 @@
 #ifndef RBH_H
 #define RBH_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area rbh: larger game functions in 0x000D0000..0x0018FFFF (enemy/boss AI, Jack's actions,
    script handlers, stage timeline, effects). All names inferred. Register mappings are in the
@@ -30,12 +31,10 @@
 #endif
 
 /* ------------------------------------------------------------ shared callees */
-void *sub_00053AB0(uint32_t size, int a, int tag);   /* allocator (size, 0, tag) */
 void  sub_000580D0(void);                            /* yield one frame while waiting */
 int   sub_000F30E0(int kind);                        /* record count of a kind */
 void  sub_000ED4C0(int a);
 int   sub_000ED520(int a, int b);                    /* nonzero while busy */
-int   sub_000ED590(int a, int b);                    /* load/request resource b of group a */
 void  sub_000ED5D0(int a);
 
 /* ------------------------------------------------------------ globals */
@@ -50,18 +49,11 @@ typedef struct RbhSprite {
 int   sub_0004F4D0(void);                            /* nonzero while busy */
 int   sub_0004F6B0(int id);                          /* movie/resource size */
 int   sub_0004F6D0(int id);                          /* nonzero when already loaded */
-void  sub_0004FAE0(int id, void *buf);
-void *sub_00053820(int kind, int size, int a, int b);/* allocator */
-int   sub_00053CA0(int a);                           /* nonzero while loading */
 void  sub_00053E20(const char *name, void *dst);     /* load file into dst */
 void  sub_00053ED0(const char *name, void *dst);     /* load file into dst */
-int   sub_00084C00(void *data, int a);               /* create texture */
-void  sub_00014D00(RbhSprite *s, void *data, int tex);
 void  sub_00014DA0(void *data);
-void  sub_00014E30(RbhSprite *s, int a, int b, int c, int d);
 void  sub_000150B0(RbhSprite *s, int frame);
 void  sub_000150E0(RbhSprite *s, int k);
-void  sub_001B9FC0(int tex);                         /* free texture */
 
 /* Checkpoint screen blocks (0x003F1B58..0x003F57AC is cleared as one block). */
 typedef struct RbhFx { uint8_t unk00[0xA8]; RbhSprite sprA8; } RbhFx;           /* 0x144 bytes */
@@ -186,8 +178,6 @@ typedef struct RbhWorkG {
 } RbhWorkG;
 void  sub_00140200(void *obj, RbhComp *act);          /* regargs: obj=ESI act=EDI */
 int   r3_SpawnCharge13D380(void *act, void *obj);     /* regargs: act=EDI obj=EBX */
-void  sub_001130F0(void *obj, void *act, int flag);
-void  sub_00113040(void *obj, void *act, int state);
 int   sub_001C7EE1(void);                             /* rand */
 int  rbh_EnemyStart140370(void *obj, RbhComp *act, int kind);
 
@@ -221,9 +211,6 @@ extern RbhScr *b10_scr;                                /* 0x003F6130 */
 typedef struct RbhSphere { float c[4]; float r; } RbhSphere;
 int   sub_000F6A80(void);
 int   r2d_ScnInWindow(void);                           /* 0x00102F40 */
-void  sub_001AD940(float *m);                          /* identity matrix */
-void  sub_001AD8E0(float *dst, const float *m, float yaw); /* rotate about Y */
-void  sub_001AD9B0(float *dst, const float *m, const float *v); /* transform vector */
 void  r4e_VecAdd4(float *dst, const float *a, const float *b); /* vector add */
 int   sub_000F61D0(RbhBody *b, RbhSphere *s, int mask, float *hit); /* -1 when no hit */
 extern const float rbh_ofs278EB0[2][4];                /* 0x00278EB0 hand offsets */
@@ -320,7 +307,7 @@ typedef struct RbhEnemy {
     uint32_t flags10;            /* +0x10 */
     uint8_t  unk14[0x30 - 0x14];
     union {
-        int32_t anim30;                       /* +0x30 animation handle */
+        void   *anim30;                       /* +0x30 animation handle */
         struct RbhAnimPlayer *player30;       /* +0x30 the same, as a pointer */
     };
     uint8_t  unk34[0x60 - 0x34];
@@ -333,14 +320,11 @@ extern RbhRec16  r3b_recs279728[];                   /* 0x00279728 */
 extern float     r3_frameUnits;                      /* 0x0042C858 */
 extern float     a50_frameSeconds;                   /* 0x0042C85C */
 int   r3b_Dispatch139B10(int k, RbhComp *act, RbhEnemy *obj); /* regargs: k=EAX act=EDX obj=stack */
-int   sub_000833E0(int anim);                        /* animation finished */
 void  sub_00113480(RbhComp *act, int ev);
 void  rbh_Wait13CA10(RbhEnemy *obj, RbhComp *act);
 typedef struct RbhEmit { uint8_t unk00[0x10]; float f10, f14, f18, f1C; } RbhEmit;
-RbhEmit *sub_00113430(RbhComp *act, int slot);
 void  rbh_Slam13C630(RbhEnemy *obj, RbhComp *act);
 void  rbh_Rise13C7E0(RbhEnemy *obj, RbhComp *act);
-void  sub_00113090(RbhEnemy *obj, RbhComp *act, int anim);
 void  rbh_Move11AEC0(RbhEnemy *obj, RbhComp *act);
 RbhTarget *sub_000C7130(RbhEnemy *obj);
 float r4_Distance(const float *a, const float *b);   /* 0x001B2730 */

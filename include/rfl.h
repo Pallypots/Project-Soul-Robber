@@ -2,6 +2,7 @@
 #ifndef RFL_H
 #define RFL_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* ---------------------------------------------------------------- types */
@@ -65,18 +66,12 @@ float sub_001A3ED0(float x);                            /* sin */
 float sub_001A3EE0(float x);                            /* cos */
 float sub_001A3F20(float x);                            /* acos (Hypothesis) */
 void  sub_001AD7E0(float *d, const float *s);           /* normalise */
-void  sub_001AD8E0(float *d, const float *s, float a);  /* rotate about Y */
-void  sub_001AD940(float *m);                           /* identity */
-void  sub_001AD9B0(float *d, const float *m, const float *v); /* transform */
-float sub_001AD9D0(const float *a, const float *b);     /* dot */
 void  sub_001AD9F0(float *d, const float *a, const float *b); /* d = a - b */
 void  sub_001ADA60(float *d, const float *a, const float *b); /* cross */
 void  sub_001ADBA0(float *d, const float *s, float k);
-void  sub_000F5D40(float *d, const float *s);           /* copy vector */
 int   sub_001C7EE1(void);                               /* CRT rand */
 void *r1b_Pool80970(void);                              /* 0x00080970 */
 void  sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
-uint8_t *sub_00080CB0(void *pool, const float *from, const float *to);
 
 /* Event-script context (same layout as af0's Af0Script). Handlers return
    0x1000 = branch taken, 0x2000 | n = done and skip n operand bytes,
@@ -119,9 +114,6 @@ int   sub_000DFE00(void);                /* script variable 0x3EE6C0 */
 void  sub_00019350(int a, uint32_t b);
 void  af0_SetVar3EDCF0(int v);           /* 0x000DE510 */
 RflNode *sub_000DE170(int a, int b);     /* find node */
-void *sub_0001D960(void *o, int kind);   /* component lookup */
-void *sub_00083120(void *anim, int id);
-void  sub_000832D0(void *anim, int id);
 void  sub_0001D4E0(void *obj);
 
 /* Screen element animated by the fade steps at 0x000E8220/0x000E82E0. */
@@ -198,19 +190,15 @@ typedef struct RflHelper {
 
 extern float a50_frameUnits;             /* 0x0042C858 */
 extern float a50_frameSeconds;           /* 0x0042C85C */
-float sub_001A3F50(float x);             /* square root */
 RflAiState *sub_000F5F80(RflActor *o);   /* behaviour state of o */
 RflHelper  *sub_000FC4D0(void);
-int   sub_000F5D00(RflActor *o);         /* node active */
 void  sub_000F62F0(RflAiState *st, int anim);
-float sub_000F7C40(RflActor *a, RflActor *target, float maxStep); /* turn toward target */
 float r2c_BossStepSpeed(RflActor *o);    /* 0x000F7AE0 */
 float afc_VecLengthXZ(const float *v);   /* 0x000F5F50 */
 void  r4c_VecAdd(float *d, const float *a, const float *b);   /* 0x001ADAF0 d = a + b */
 void  sub_000C56B0(RflActor *o);
 void  sub_000C62A0(RflActor *o);
 void  sub_000F62C0(RflAiState *st, int step);
-void  sub_001ADB60(float *d, const float *s, float k);
 void  sub_000F3D10(void *owner, RflActor *o, int a);
 
 /* Boss health component (kind 5 of 0x0001D960). */
@@ -222,7 +210,6 @@ typedef struct RflHealth {
 } RflHealth;
 float sub_000F3C70(RflActor *o);         /* pending damage (acb_GetBoss5C) */
 int   sub_000F3CB0(RflActor *o);         /* pending flags (acb_GetBoss60) */
-void  sub_000F3BF0(RflActor *o, float amt, int flags); /* add pending damage */
 void  sub_000F3C40(RflActor *o);         /* clear pending damage */
 
 /* Enemy body used by the step choosers at 0x001238A0/0x00126090. */
@@ -233,7 +220,6 @@ typedef struct RflBody {
     uint8_t  unk24[0x278 - 0x24];
     RflBodyState *state278;    /* +0x278 */
 } RflBody;
-int   sub_000833E0(void *anim);          /* animation idle */
 int   r2_PlayerOutOfReach(RflBody *obj, RflActor *self);  /* 0x00120820 obj=EAX self=ESI */
 int   r2_RunSteps31C110(int idx, RflActor *a, RflBody *b); /* 0x0011EDE0 idx=EAX a=EBX b=EDI */
 void  sub_0011F2B0(RflActor *obj, int k, RflBody *a);     /* obj=EDI k=EBX */
@@ -271,9 +257,6 @@ typedef struct RflFoe {
 int   r3_CheckConds135730(int table, RflActor *obj, void *act); /* 0x00135730 table=EAX obj=EBX act=EDI */
 void  r3_SetStateB(RflActor *obj, void *act, int state);       /* 0x00135A70 obj=ESI act=EDI state=stack */
 void  sub_00113480(RflFoe *e, int slot);
-void  sub_00113040(void *owner, RflFoe *e, int state);
-void  sub_00113090(void *owner, RflFoe *e, int anim);
-RflTimer *sub_00113430(RflFoe *e, int slot);
 int   a80_Get3ED238(void);               /* 0x00087500 */
 void *sub_00113400(RflFoe *e, int slot);
 extern float rfl_f3F7504;                /* 0x003F7504 */
@@ -282,10 +265,8 @@ extern RflCheckFn rfl_checks31CE18[];    /* 0x0031CE18 */
 extern RflCheckFn rfl_checks31D0B8[];    /* 0x0031D0B8 */
 extern const float rfl_lim279798[];      /* 0x00279798 */
 extern const float rfl_lim2797C8[];      /* 0x002797C8 */
-void  sub_0001D610(RflActor *o);
-void  sub_001AEDD0(void *inst, int v);
 typedef struct RflAnimInst { uint8_t unk00[0x14]; void *inst14; } RflAnimInst;
-typedef struct RflAnimKey { uint8_t unk00[0x10]; int32_t v10; } RflAnimKey;
+typedef struct RflAnimKey { uint8_t unk00[0x10]; float v10; } RflAnimKey;
 
 /* Pickup actor record (0x00167xxx): +0x50 state, +0x74 link. */
 typedef struct RflLink { uint32_t flags0; uint8_t unk04[0x1C - 4]; float pos1C[4]; } RflLink;
@@ -296,7 +277,6 @@ typedef struct RflPick {
     RflLink *link74;           /* +0x74 */
 } RflPick;
 float sub_00113290(RflActor *o, const float *pt);   /* vertical angle to pt */
-void  sub_001671D0(RflActor *o, RflPick *e, int state);
 void  sub_00167200(RflActor *o, RflPick *e, int anim);
 
 /* Trap/turret record (0x0016Dxxx..0x00170xxx): step at +0x54, link at +0x74. */
@@ -322,9 +302,7 @@ typedef struct RflTrap {
     RflTrapLink *link74;       /* +0x74 */
     float    v78[4];           /* +0x78 */
 } RflTrap;
-float sub_00082D70(const float *v);      /* vector length */
 void  r3_SetState16C820(RflTrap *a, RflActor *m, int state);  /* 0x0016C820 a=EAX m=EDI state=stack */
-uint8_t *sub_0001D0F0(RflActor *o, int k);
 
 /* ---------------------------------------------------------------- rfl */
 float rfl_ActorHeading(const RflActor *a);
@@ -346,6 +324,5 @@ int   rfl_TurnFacingXZ(RflActor *a, float x, float z, float maxStep);
 int   rfl_TurnFacingXZAxis(RflActor *a, float x, float z, float maxStep);
 float sub_001A3F30(float v);                            /* absolute value */
 int   sub_001A8830(float *m, const float *q);           /* quaternion to matrix */
-void  sub_001AD7C0(float *d, const float *a, const float *b); /* matrix product */
 
 #endif

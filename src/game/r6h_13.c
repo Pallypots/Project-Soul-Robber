@@ -5,7 +5,7 @@
    (identity, rotations by the third, first and second angle in degrees, rows scaled by the
    scale vector, translation from the position) and hand it with arg to the
    transform target. Returns -1 without a node or transform, else 0. */
-int r6h_NodeApplyXform(R6hXNode *n, int arg)
+int r6h_NodeApplyXform(R6hXNode *n, const void *arg)
 {
     float m[4][4];
     R6hXform *x;

@@ -71,32 +71,32 @@ void aac_CheckThread(void)
 }
 
 /* 0x001AD7C0: library call forwarder with the last two arguments swapped. */
-int aac_Call_1AD7C0(int a, void *b, int c) { return sub_001E522D(a, c, b); }
+void aac_Call_1AD7C0(void *a, const void *b, const void *c) { sub_001E522D(a, c, b); }
 
 /* 0x001AD8B0: build a 64-byte block with 0x1E4C33 from c, then pass it to 0x1E522D. */
-int aac_Build1_1AD8B0(int a, int b, int c)
+void aac_Build1_1AD8B0(void *a, const void *b, float c)
 {
     uint8_t m[0x40];
     sub_001E4C33(m, c);
-    return sub_001E522D(a, b, m);
+    sub_001E522D(a, b, m);
 }
 /* 0x001AD8E0: build a 64-byte block with 0x1E4CAD from c, then pass it to 0x1E522D. */
-int aac_Build2_1AD8E0(int a, int b, int c)
+void aac_Build2_1AD8E0(void *a, const void *b, float c)
 {
     uint8_t m[0x40];
     sub_001E4CAD(m, c);
-    return sub_001E522D(a, b, m);
+    sub_001E522D(a, b, m);
 }
 /* 0x001AD910: build a 64-byte block with 0x1E4D28 from c, then pass it to 0x1E522D. */
-int aac_Build3_1AD910(int a, int b, int c)
+void aac_Build3_1AD910(void *a, const void *b, float c)
 {
     uint8_t m[0x40];
     sub_001E4D28(m, c);
-    return sub_001E522D(a, b, m);
+    sub_001E522D(a, b, m);
 }
 
 /* 0x001AD9A0: library call forwarder. */
-int aac_Call_1AD9A0(int a, int b) { return sub_001E4BC6(a, b); }
+void aac_Call_1AD9A0(void *a, const void *b) { sub_001E4BC6(a, b); }
 /* 0x001AD9B0: library call forwarder with the last two arguments swapped. */
 void *aac_Call_1AD9B0(void *out, const void *m, const void *v) { return sub_001E4B2D(out, v, m); }
 
@@ -147,4 +147,4 @@ void aac_Apply40F130(float *a) { a19_VecOp(a, aac_g40F130); }
 void aac_Apply40F140(float *a) { a19_VecOp(a, aac_g40F140); }
 
 /* 0x001AF640: run 0x1AEBF0(a, b, 0). */
-void aac_Run_1AF640(int a, int b) { sub_001AEBF0(a, b, 0); }
+void aac_Run_1AF640(void *a, void *b) { sub_001AEBF0(a, b, 0); }

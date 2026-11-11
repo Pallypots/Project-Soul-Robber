@@ -32,10 +32,10 @@ void r6b_Free8BCC0(void *p)
 }
 
 /* 0x0008C4B0: unlink a node, then release it with 0x0008BF70. */
-void r6b_NodeUnlinkRelease2(void *n)
+int r6b_NodeUnlinkRelease2(void *n)
 {
     a6b_Node_Unlink(n);
-    sub_0008BF70(n);
+    return sub_0008BF70(n);
 }
 
 /* 0x0008FA70: forwards to 0x0008FF80 (holder data). */
@@ -57,7 +57,7 @@ uint8_t r6b_FwdIterEqual(R6bLink **a, R6bLink **b)
 }
 
 /* 0x0008FAA0: forwards to 0x000894D0. */
-void *r6b_FwdGetX04(void *p)
+int r6b_FwdGetX04(void *p)
 {
     return a80_GetX04(p);
 }

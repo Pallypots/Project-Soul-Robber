@@ -47,9 +47,9 @@ char *r1b_NextSegment(char **pp)
 }
 
 /* 0x00013480: load a file into a 64-byte aligned buffer and record its end. */
-int32_t r1b_LoadFile(const char *name)
+void *r1b_LoadFile(const char *name)
 {
-    int32_t p;
+    uint8_t *p;
     a1b_buf4326A0 = 0;
     p = sub_00037570(name, 0x40);
     a1b_buf4326A0 = p;

@@ -7,7 +7,7 @@
 void r2_SeqStep(R2Seq *q)
 {
     int n, id;
-    if (q->on510 && PlayerObj_TimerDone(&g_stats)) {
+    if (q->on510 && PlayerObj_TimerDone((PlayerObj *)&g_stats)) {
         n = ++q->step514;
         if (g_acb_3F0A7C == 4)
             id = r2_anim317758[q->row][n][0];
@@ -17,14 +17,14 @@ void r2_SeqStep(R2Seq *q)
             q->on510 = 0;
             q->step514 = 0;
         } else if (r2_player->part30->i08 != id) {
-            PlayerObj_SetAnim(&g_stats, id);
+            PlayerObj_SetAnim((PlayerObj *)&g_stats, id);
         }
     }
 }
 
 /* 0x000E8080: run value v through the two optional fades (0x3F49E0 with 3 steps,
    0x3F4A7C with 0x3F49DC steps).  regargs: v=EAX; returns EAX */
-int r2_ApplyFades(int v)
+void *r2_ApplyFades(void *v)
 {
     if (aec_3F49D0) {
         r2_fade3F49E0[0] = 0.0f;
@@ -45,7 +45,7 @@ int r2_ApplyFades(int v)
 
 /* 0x000E8D00: take a free slot of 0x3F4D10, initialise it with (a, b) and a random
    angle; returns its index or -1.  Stack args a b. */
-int r2_SlotAlloc(int a, int b)
+int r2_SlotAlloc(float a, float b)
 {
     R2Slot *s;
     int i = 0;

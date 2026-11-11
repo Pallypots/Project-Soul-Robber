@@ -46,7 +46,9 @@ void r4e_StageEnter(R4eTask *t)
         sub_00032140(1, 1, 0x12C);
         sub_000DE330(0);
     } else {
-        sub_00047BF0();
+        /* The original pushes no argument here although 0x00047BF0 reads one
+           (call 0x47BF0 with nothing pushed); called through a no-argument type. */
+        ((void (*)(void))sub_00047BF0)();
         sub_00036FD0(128.0f);
         sub_00032140(0, 8, 0);
         sub_00032140(1, 1, 0x1E);

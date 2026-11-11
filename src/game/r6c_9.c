@@ -25,7 +25,7 @@ void r6c_ChildClearRec(R6cEnt8C *e, int i)
 
 /* 0x00080CB0: pick the nearest hit with one of the two search methods (flag bit 0 of +0x08).
    calls 0x00080A60 with ECX=c; 0x000809C0 with EBX=a ECX=c */
-void *r6c_PickNearest(R6cColl *a, int b, int c)
+void *r6c_PickNearest(R6cColl *a, const R6cVec4 *b, const R6cVec4 *c)
 {
     if (a->flags & 1)
         return sub_00080A60(a, b, c);
@@ -33,15 +33,15 @@ void *r6c_PickNearest(R6cColl *a, int b, int c)
 }
 
 /* 0x00080DA0: allocate an empty bounding box record. */
-R6cBox *r6c_BoxNew(int a, int b)
+R6cBox *r6c_BoxNew(void *a, void *b)
 {
     R6cBox *x = sub_00053AB0(0x40, 0, 0x96);
     x->max[2] = -8388000.0f;
     x->max[1] = -8388000.0f;
     x->max[0] = -8388000.0f;
     x->i30 = 0;
-    x->i08 = a;
-    x->i0C = b;
+    x->p08 = a;
+    x->p0C = b;
     x->i00 = 0;
     x->i04 = 0;
     x->max[3] = 1.0f;
@@ -131,7 +131,7 @@ void r6c_LinkAppend(R6cLinkHead *owner, R6cLink *l, uint8_t *obj, int v)
 }
 
 /* 0x00082200: gather the entries under root between two points into out (0-terminated). */
-void r6c_CollectBetween(int *root, const R6cVec4 *a, const R6cVec4 *b, void **out)
+void r6c_CollectBetween(void **root, const R6cVec4 *a, const R6cVec4 *b, void **out)
 {
     if (!out)
         return;
@@ -204,7 +204,7 @@ int r6c_Res3Free(R6cRes3 *r)
 }
 
 /* 0x00083480: create a list member for resource a and append it to the list; 1 on success. */
-int r6c_E28Add(int a, R6cE28List *l)
+int r6c_E28Add(const void *a, R6cE28List *l)
 {
     void *h = sub_00037570(a, 0x40);
     R6cE28 *e, *p;
@@ -253,7 +253,7 @@ R6cMdlList *r6c_MdlListNew(uint32_t n)
 }
 
 /* 0x00084730: run every model part through 0x001B7520/0x001B72C0, threading x through. */
-int r6c_MdlListChain(R6cMdlList *l, int x)
+void *r6c_MdlListChain(R6cMdlList *l, void *x)
 {
     uint32_t i;
     for (i = 0; i < l->count; i++) {

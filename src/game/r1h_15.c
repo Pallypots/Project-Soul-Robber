@@ -4,7 +4,7 @@
 /* 0x0005EBB0: (re)create vibration pattern slot from file id: copies the
    two key lists of the loaded file, or when the file is not loaded makes
    a default pattern of one key per list. */
-void r1h_ShockLoad(int slot, int id)
+void r1h_ShockLoad(int slot, const char *id)
 {
     int32_t *used = &r1h_shockUsed3E604C[slot];
     R1hShock **pp = &r1h_shock3E6050[slot];

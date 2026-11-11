@@ -307,7 +307,7 @@ int a6b_GetHeap(int kind)
 }
 
 /* 0x0007F4F0: 0 when 0x000374C0 succeeds, -1 when it returns -1. */
-int a6b_Check374C0(int a)
+int a6b_Check374C0(const void *a)
 {
     return sub_000374C0(a) != -1 ? 0 : -1;
 }

@@ -1,6 +1,7 @@
 #ifndef R1E_H
 #define R1E_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 #if defined(_M_IX86)
 #include <intrin.h>
@@ -18,10 +19,7 @@ void r1e_MatOrtho(R1eMat dst, const R1eMat src);              /* 0x000385D0 */
 void sub_001AD7E0(float *dst, const float *src);
 void sub_001ADBA0(float *dst, const float *src, float s);
 void r4c_VecAdd(float *dst, const float *a, const float *b);    /* 0x001ADAF0 */
-void sub_001AD940(R1eMat m);
-void sub_001AD7C0(R1eMat dst, const R1eMat a, const R1eMat b);
 void sub_001ADA60(float *dst, const float *a, const float *b);  /* cross product */
-void sub_001ADA40(R1eMat dst, const R1eMat src);
 
 /* ------------------------------------------------------------ group 1 */
 /* camera pull state (0x00018E70) */
@@ -122,10 +120,7 @@ typedef struct R1eAnimEnt { int32_t kind; uint8_t unk04[0x54]; float t; } R1eAni
 typedef struct R1eAnimLink { struct R1eAnimLink *next; uint8_t unk04[8]; R1eAnimEnt *ent; } R1eAnimLink;
 
 /* ------------------------------------------------------------ group 3 */
-int  sub_001A8490(int fd, int off, int whence);
 int  sub_001A8330(int fd);
-int  sub_001A8210(const char *name, int mode, int perm);
-int  sub_000586E0(int a);
 int  sub_00051850(const char *name);
 int  sub_001C8036(const char *fmt, ...);
 extern const char r1e_strOpenErr2615AC[];        /* 0x002615AC */
@@ -192,7 +187,6 @@ typedef struct R1eVoice {
 extern R1eVoice r1e_voice3DA500[];               /* 0x003DA500 */
 int  sub_000390E0(int i, int v);                 /* regargs: i=EAX */
 int  sub_00039440(int i, int v);                 /* regargs: i=EAX */
-int  sub_000396E0(int v);
 
 /* ------------------------------------------------------------ group 4 */
 /* resource list at 0x003DDC60 and the free pool at 0x003DCFF0 */
@@ -211,7 +205,7 @@ typedef struct R1eResList { int32_t count; R1eRes *first; } R1eResList;
 extern R1eResList r1e_camList3DDC60;             /* 0x003DDC60 */
 extern uint8_t    r1e_camPool3DCFF0[];           /* 0x003DCFF0 */
 R1eRes *sub_0003DC70(void *pool);
-void sub_0003D880(R1eResList *list, R1eRes *r);
+void sub_0003D880(void *list, void *r);
 int  sub_0003AAF0(R1eCamCtl *c, void *out);
 void sub_000263B0(void *buf, int a, int b);
 extern int32_t r1e_g42CB08;                      /* 0x0042CB08 */
@@ -230,7 +224,6 @@ typedef struct R1eTrail {
     int32_t *index;             /* +0x38 */
 } R1eTrail;
 void sub_001B2150(R1eTrail *t);
-void sub_001B2160(void *slot, R1eTrail *t);
 int  sub_0003B550(void *a);
 
 /* script variable */
@@ -261,11 +254,8 @@ typedef struct R1eSObj {
     uint8_t unk34[4];
     R1eSObjX *x;                /* +0x38 */
 } R1eSObj;
-int  sub_0003ED50(R1eSObj *o, int a);
-void sub_0003F570(R1eSObj *o);
-int  sub_0003F650(int a, R1eSObj *o);
-int  r1e_SObjOp(int a, R1eSObj *o, int op);     /* 0x0003F780 */
-uint32_t sub_0004ECE0(int a);
+void *sub_0003F650(void *a, R1eSObj *o);
+void *r1e_SObjOp(void *a, R1eSObj *o, int op);  /* 0x0003F780 */
 extern uint32_t r1e_mask2C4B1C;                  /* 0x002C4B1C */
 void sub_0003E410(R1eSObj *o, int a);
 
@@ -274,12 +264,10 @@ typedef struct R1eSndH { uint8_t unk00[0x1C]; float vol; } R1eSndH;
 typedef struct R1eSnd { uint8_t flags; uint8_t unk01[3]; int32_t state; R1eSndH *h; } R1eSnd;
 int  sub_00076210(R1eSndH *h);
 void sub_00076620(R1eSndH *h);
-void sub_00076060(R1eSndH *h);
 extern int32_t r1e_g2C4BA4;                      /* 0x002C4BA4 */
 
 /* ------------------------------------------------------------ group 5 */
 int  sub_00199DE0(int slot);
-void sub_00199C10(int st, int slot);
 void sub_0019B5C0(int st);
 typedef struct R1ePair { int32_t a; int32_t h; } R1ePair;
 extern R1ePair r1e_pairs3DFEA0[4];               /* 0x003DFEA0 */
@@ -301,13 +289,10 @@ extern uint8_t    r1e_flags413430;               /* 0x00413430 */
 extern void      *r1e_buf3E05DC, *r1e_buf3E05E0; /* 0x003E05DC / 0x003E05E0 */
 extern int32_t    r1e_g42CAC0;                   /* 0x0042CAC0 */
 extern uint8_t    r1e_q42CAC4[], r1e_q42CAD0[];  /* 0x0042CAC4 / 0x0042CAD0 */
-void *sub_001A8630(int size);
-void sub_001B32E0(void *q, void *buf, int size);
 extern int32_t    r1e_g42CAF0;                   /* 0x0042CAF0 */
 extern uint64_t   r1e_frame42C918;               /* 0x0042C918 */
 extern uint8_t    r1e_scr3DE700[], r1e_scr3DE610[], r1e_pkt3DE5B0[];
-void r1b_PktOp(void *p, ...);                    /* 0x00102FA0 */
-void sub_000AD090(void *p, ...);
+void r1b_PktOp();                    /* 0x00102FA0 */
 typedef void (*R1eStateFn)(void);
 extern int32_t    r1e_mstate3E0DB4;              /* 0x003E0DB4 */
 extern R1eStateFn r1e_mfuncs2C8890[];            /* 0x002C8890 */
@@ -322,12 +307,12 @@ typedef struct R1eMovie {
     int32_t d1C;                /* +0x1C */
 } R1eMovie;
 extern R1eMovie r1e_movies2C8900[0x21E];         /* 0x002C8900 */
-extern int32_t r1e_mId3E0DBC, r1e_m3E0DC0, r1e_mArg3E0DC4, r1e_m3E0DC8, r1e_m3E0DB8, r1e_m3E0DCC;
+extern int32_t r1e_mId3E0DBC, r1e_m3E0DC0, r1e_m3E0DC8, r1e_m3E0DB8, r1e_m3E0DCC;
+extern void   *r1e_mArg3E0DC4;  /* 0x003E0DC4 caller buffer */
 extern uint8_t r1e_mb3E0DD0;                     /* 0x003E0DD0 */
 
 /* ------------------------------------------------------------ group 7 */
 void sub_00014940(int a, int b, int c, int d);
-void sub_001B9FC0(int h);
 extern int32_t r1e_h2DCD48;                      /* 0x002DCD48 */
 extern void *r1e_res3E1204, *r1e_res3E1208;      /* 0x003E1204 / 0x003E1208 */
 extern void *r1e_res3E1210, *r1e_res3E1214, *r1e_res3E1218;
@@ -339,8 +324,7 @@ typedef struct R1eMotFrame { int32_t d00, d04, d08, d0C, d10, d14; } R1eMotFrame
 typedef struct R1eMotSet { uint8_t unk00[4]; R1eMotFrame *frames; R1eMotHdr *hdr; } R1eMotSet;
 typedef struct R1eMotEnt { uint8_t unk00[0x0C]; R1eMotSet *set; uint8_t unk10[4]; } R1eMotEnt;
 R1eMotEnt *sub_000531C0(int a, int b);
-void *sub_00053AB0(int size, int a, int b);
-void *a5b_AllocCurHigh(int size, int a, int b);  /* 0x00053B10 */
+void *a5b_AllocCurHigh(int size, const void *file, int line);  /* 0x00053B10 */
 void *r1c_LoadThunk(const char *name, int a, int size, void *buf);   /* 0x00037590 */
 int  r1e_FileSize(const char *name);             /* 0x000374C0 */
 int  sub_001A8680(void);
@@ -363,15 +347,12 @@ typedef struct R1eMsgSlot { uint8_t unk00[8]; void *snd; uint8_t unk0C[0x14]; } 
 typedef struct R1eWorld {
     uint8_t    unk000000[0x122A20];
     R1eMsgSlot msg[4];          /* +0x122A20 */
-    int32_t    font[4];         /* +0x122AA0 */
+    void      *font[4];         /* +0x122AA0 */
 } R1eWorld;
 extern R1eWorld *r1e_world3E3934;                /* 0x003E3934 */
-int  sub_0003FA70(int font, int id);
-void sub_0003FCB0(void *t, int s, int a, int b, float c);
 extern int32_t   r1e_g3E3988;                    /* 0x003E3988 */
 extern uint32_t *r1e_padMasks2C4AE8;             /* 0x002C4AE8 */
 uint32_t sub_0004ED20(int a);
-void sub_00048AF0(int a);
 
 /* ------------------------------------------------------------ group 8 */
 typedef struct R1eChapter { uint32_t start; int32_t pages; } R1eChapter;
@@ -392,11 +373,8 @@ typedef struct R1eJob {
 } R1eJob;
 typedef struct R1eBucket { uint8_t unk00[0x10]; } R1eBucket;
 extern R1eBucket r1e_buckets3E46E0[6];           /* 0x003E46E0 */
-R1eRes *sub_0003DBC0(void *list, int (*match)(void *, int), int key);
-R1eRes *sub_0003DC10(void *after, int (*match)(void *, int), int key);
 int  sub_00057F10(void *e, int key);
 void sub_0003D8C0(R1eRes *r);
-void sub_001AA310(int h);
 void sub_001AD520(void);
 extern int32_t r1e_running3E3F7C;                /* 0x003E3F7C */
 extern R1eJob  r1e_mainJob3E3F64;                /* 0x003E3F64 */
@@ -406,11 +384,9 @@ extern int32_t r1e_nIdle3E46DC;                  /* 0x003E46DC */
 void sub_001AD6E0(void);
 R1eJob *sub_00057F30(void);
 void sub_001AD6A0(void);
-void sub_001AA460(int h);
-int  sub_001AD560(void);
 void sub_001AD4B0(int t);
-int  sub_00058A40(int a, int b, int c, int d, int e, int f, int g);
-int  sub_00053850(int a, int b, int c, int d);
+int  sub_00058A40(int a, void *b, void *c, int d, void *e, int f, int g);
+void *sub_00053850(int a, int b, void *c, int d);
 void sub_00058ED0(int i);                        /* regargs: i=EAX */
 typedef struct R1eSpread { float share; uint8_t unk04[0x10]; } R1eSpread;
 typedef struct R1eSpreadBank { uint8_t unk00[0xC94AC]; R1eSpread spread[32]; } R1eSpreadBank;
@@ -419,8 +395,8 @@ extern float   r1e_total2DD1C0;                  /* 0x002DD1C0 */
 extern uint8_t r1e_parts2DD1BE;                  /* 0x002DD1BE */
 
 /* ------------------------------------------------------------ group 9 */
-void a1a_GroupAdd(void *dev, int a, int b, int (*fn)(void *), int c, int size);  /* 0x001A1030 */
-void a1a_GroupReleaseOne(void *dev, int a);      /* 0x001A1060 */
+int a1a_GroupAdd(void *dev, int a, int b, int (*fn)(void *), int c, int size);  /* 0x001A1030 */
+int a1a_GroupReleaseOne(void *dev, int a);      /* 0x001A1060 */
 int  sub_0005A1C0(void *a);
 int  sub_0005A200(void *a);
 int  sub_0005A2F0(void *a);
@@ -438,7 +414,7 @@ typedef struct R1eHost { uint8_t unk00[0x10]; R1eKObj *obj; } R1eHost;
 typedef struct R1eScnCtx { uint8_t unk00[0x3B0]; void *d3B0; } R1eScnCtx;
 extern R1eScnCtx *r1e_ctx42C8EC;                    /* 0x0042C8EC */
 int   a5b_CountLeadingFlagged(R1eKObj *o);       /* 0x0005A720 */
-void *r2c_CompQuery(R1eKObj *o, int n, int a);   /* 0x000EE040 */
+int r2c_CompQuery(R1eKObj *o, int n, void *a);   /* 0x000EE040 */
 void *a12_List_At(R1eKObj *o, int n);            /* 0x0001D2B0 */
 void *r1e_ObjChild(R1eKObj *o, int n);           /* 0x0005A760 */
 typedef struct R1eUEnt { int32_t used; uint8_t unk04[0x10]; } R1eUEnt;
@@ -539,7 +515,8 @@ typedef struct R1eSprite {
     float    f1C, f20;          /* +0x1C */
     int32_t  d24, d28, d2C, d30;/* +0x24 */
     float    f34, f38;          /* +0x34 */
-    int32_t  d3C, d40;          /* +0x3C */
+    void    *d3C;               /* +0x3C */
+    int32_t  d40;               /* +0x40 */
     uint8_t  unk44[0x3C];
     int32_t  d80, d84;          /* +0x80 */
     float    f88;               /* +0x88 */

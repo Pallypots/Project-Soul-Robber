@@ -163,7 +163,7 @@ void *PlayerObj_D0030(PlayerObj *p, int b)
 }
 
 /* 0x000D0060 */
-void *PlayerObj_D0060(PlayerObj *p, int a, int b)
+void *PlayerObj_D0060(PlayerObj *p, int a, void *b)
 {
     void *r = sub_00035D80(p->unkFD8, a, 3);
     sub_00034E00(r, b, g_378198, g_378188);

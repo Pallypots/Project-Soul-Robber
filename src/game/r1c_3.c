@@ -3,7 +3,7 @@
 
 /* 0x0001EE80: set the parameter word of an object's effect controller.
    Hangs (assert) when the controller's handler is not 0x0001ED90. */
-void r1c_FxCtlSetParam(R1cFxObj *o, int v)
+void r1c_FxCtlSetParam(R1cFxObj *o, void *v)
 {
     R1cFxCtl *c;
     if (o == 0 || !(o->flags & 0x10) || o->owner == 0) return;
@@ -96,7 +96,7 @@ void r1c_GroupHdrReset(void)
 
 /* 0x0003F880: dispatch an event to an object's handler table entry +4, or to
    the default handler 0x0003F780 when it has none. */
-void r1c_ObjDispatch(int ev, R1cHObj *o, int mode)
+void r1c_ObjDispatch(void *ev, R1cHObj *o, int mode)
 {
     R1cHFunc fn;
     if (o->vt != 0 && (fn = o->vt->handle) != 0) {

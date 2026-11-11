@@ -41,7 +41,7 @@ int r1e_MotionFrame(int a, int b, int key)
 
 /* 0x00053630: load a whole file into a fresh low block (0x00053AB0);
    returns the block or 0. */
-void *r1e_FileLoadLow(const char *name, int a, int b)
+void *r1e_FileLoadLow(const char *name, void *a, int b)
 {
     int size = r1e_FileSize(name);
     char *buf, *got;
@@ -65,7 +65,7 @@ void *r1e_FileLoadLow(const char *name, int a, int b)
 }
 
 /* 0x000536A0: as 0x00053630 with a high block (0x00053B10). */
-void *r1e_FileLoadHigh(const char *name, int a, int b)
+void *r1e_FileLoadHigh(const char *name, const void *a, int b)
 {
     int size = r1e_FileSize(name);
     char *buf, *got;

@@ -28,15 +28,15 @@ void acb_BossHud_F4190(void)
 void acb_BossMgrSet100(void) { g_acb_bossMgr->v100 = 2; }
 
 /* 0x000F69A0: queue damage on the current boss. */
-void acb_BossDamage(int dmg)
+void acb_BossDamage(float dmg)
 {
     AcbBossMgr *m = sub_000FE3D0();
     sub_000F3BF0(m->sub8C, dmg, 1);
 }
 /* 0x000F69C0: boss manager short +0xAA. */
-int16_t acb_BossGetAA(void) { return sub_000FE3D0()->wAA; }
+int16_t acb_BossGetAA(void) { return ((AcbBossMgr *)sub_000FE3D0())->wAA; }
 /* 0x000F69D0: boss manager float +0x54. */
-float acb_BossGet54(void) { return sub_000FE3D0()->f54; }
+float acb_BossGet54(void) { return ((AcbBossMgr *)sub_000FE3D0())->f54; }
 /* 0x000F6A80: player state is 4 or 5. */
 int acb_PlayerState45(void)
 {

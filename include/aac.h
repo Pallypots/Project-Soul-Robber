@@ -1,6 +1,7 @@
 #ifndef AAC_H
 #define AAC_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* ---------------------------------------------------------------- types */
 typedef struct AacBlock4 { int32_t a, b, c, d; } AacBlock4;
@@ -39,7 +40,7 @@ typedef struct AacThreadRec {
 extern AacSlot70 aac_g40CF50[];
 extern AacPeer   aac_g40E604[];
 extern void     *aac_g40E518[];
-extern int32_t   aac_g40E698;
+extern void     *aac_g40E698;
 extern void     *aac_g40E690;
 extern int32_t   aac_g365158, aac_g36515C, aac_g365160;
 extern float     aac_g365170[];
@@ -67,13 +68,12 @@ extern void    *aac_g40C858;           /* mutex-like handle */
 extern void    *aac_g40C868;
 extern int32_t  aac_g40E348;
 extern int32_t  aac_g40E350;
-extern int32_t  aac_g40E300;
+extern void    *aac_g40E300;
 extern uint8_t  aac_g40E6A8;
 
 /* ---------------------------------------------------------------- callees */
 void __fastcall sub_001D4350(int reg, int v);
 void __fastcall sub_001D2490(int state, int v);
-void OOG_STDCALL sub_001D6ED0(int, int, int, int, float, int);
 int  OOG_STDCALL sub_001E543D(int, int);
 int  OOG_STDCALL sub_001E4DA4(int, int);
 int  OOG_STDCALL sub_001E5571(int, int, int, int);
@@ -88,32 +88,18 @@ int  OOG_STDCALL sub_001BD587(int);
 uint32_t OOG_STDCALL sub_001BD1CC(void *h, uint32_t ms);
 int  OOG_STDCALL sub_001BCFF2(void *h);
 int  sub_001AA3E0(int, int);
-int  sub_001AA4D0(int, int);
-int  OOG_STDCALL sub_00222726(void *, int, int, int);
-int  OOG_STDCALL sub_0022275D(void *, int, int);
+int  sub_001AA4D0(int, void *);
 
-int  OOG_STDCALL sub_002226F3(int, void *, int);
-void OOG_STDCALL sub_002224A2(void *, int);
-void sub_00223F9C(void);
 void OOG_STDCALL sub_002225ED(void *, void *);
 int  __fastcall sub_001ACF10(AacPeer *);
 int  __fastcall sub_001ACF20(AacPeer *);
 void OOG_STDCALL sub_002227C3(void *, int);
 int  sub_001BEE51(void);
-int  OOG_STDCALL sub_002225B2(void *, int);
 void sub_001AB4E0(int, int);
 void sub_001C885F(void *);
 int  sub_001BD50A(void);
-void OOG_STDCALL sub_001BD2B6(void *);
 void OOG_STDCALL sub_001BD290(void *);
 void sub_001AD520(void);
-int  OOG_STDCALL sub_001E522D(int, int, void *);
-void OOG_STDCALL sub_001E4C33(void *, int);
-void OOG_STDCALL sub_001E4CAD(void *, int);
-void OOG_STDCALL sub_001E4D28(void *, int);
-int  OOG_STDCALL sub_001E4BC6(int, int);
-void *OOG_STDCALL sub_001E4B2D(void *out, const void *v, const void *m);   /* D3DX vec4 transform */
 void a19_VecOp(float *a, float *b);                 /* 0x000F5D40 */
-void sub_001AEBF0(int, int, int);
 
 #endif

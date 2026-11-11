@@ -13,7 +13,7 @@ void rbg_GroupSteps182E50(void *obj, void *act)
     switch (b7c_count3FE374) {
     case 0:
         for (i = 0; i < 4; i++)
-            if (sub_0001D960(sub_00181C20(i), 6)->i50 == 1)
+            if (((RbgComp *)sub_0001D960(sub_00181C20(i), 6))->i50 == 1)
                 sub_00181CE0(i, 6);
         b7c_count3FE374++;
         break;
@@ -21,7 +21,7 @@ void rbg_GroupSteps182E50(void *obj, void *act)
         if (!sub_00181D40(1))
             return;
         for (i = 0; i < 4; i++) {
-            if (sub_0001D960(sub_00181C20(i), 6)->i50 == 1) {
+            if (((RbgComp *)sub_0001D960(sub_00181C20(i), 6))->i50 == 1) {
                 rtc_PairAnimA(i, (i & 1) ? 6 : 7);
                 sub_00181CE0(i, 2);
                 o = sub_00181BE0(i);
@@ -37,7 +37,7 @@ void rbg_GroupSteps182E50(void *obj, void *act)
         if (!sub_00181D40(2))
             return;
         for (i = 0; i < 4; i++)
-            if (sub_0001D960(sub_00181C20(i), 6)->i50 == 1)
+            if (((RbgComp *)sub_0001D960(sub_00181C20(i), 6))->i50 == 1)
                 rtc_PairAnimA(i, 2);
         b7c_count3FE374++;
         break;
@@ -45,7 +45,7 @@ void rbg_GroupSteps182E50(void *obj, void *act)
         if (!sub_00181D40(2))
             return;
         for (i = 0; i < 4; i++) {
-            if (sub_0001D960(sub_00181C20(i), 6)->i50 == 1) {
+            if (((RbgComp *)sub_0001D960(sub_00181C20(i), 6))->i50 == 1) {
                 rtc_PairAnimA(i, 3);
                 sub_00181CE0(i, 3);
             }

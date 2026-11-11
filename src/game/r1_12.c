@@ -20,7 +20,7 @@ void r1_FxUpdate(void)
 
 /* 0x00034A30: set up the global sound bank and bind both channels.
    calls 0x00033330 with EAX=bank */
-int r1_BankSetup(int a, int b)
+int r1_BankSetup(void *a, void *b)
 {
     r1_bank = &r1_bank381AC0;
     r1_BankInit(r1_bank);

@@ -54,7 +54,7 @@ void rtc_SetScale(float scale)
 
 /* 0x00053820: allocate from the heap of a memory slot (slot 10 uses the
    high allocator on heap 8; slots 9 and above otherwise hang). */
-void *a50_Alloc(int slot, int size, int a, int b)
+void *a50_Alloc(int slot, int size, const void *a, int b)
 {
     if (slot != 10) {
         if (slot >= 9)
@@ -65,7 +65,7 @@ void *a50_Alloc(int slot, int size, int a, int b)
 }
 
 /* 0x00053850: as 0x00053820 but always from the high end of the heap. */
-void *a50_AllocHigh(int slot, int size, int a, int b)
+void *a50_AllocHigh(int slot, int size, const void *a, int b)
 {
     if (slot == 10)
         return sub_00047450(a50_slotHeap[8], size, a, b);
@@ -75,18 +75,18 @@ void *a50_AllocHigh(int slot, int size, int a, int b)
 }
 
 /* 0x0008BD80: allocate size bytes in slot 10 (kind 5) or slot 4 (others);
-   0 when p is null. */
-void *rtc_AllocForKind(int kind, void *p, int size)
+   0 when align is zero. line and file pass through to 0x0007F480. */
+void *rtc_AllocForKind(int kind, int align, int size, int line, const void *file)
 {
-    if (!p)
+    if (!align)
         return 0;
-    return a6b_HeapAlloc(kind == 5 ? 10 : 4, p, size);
+    return a6b_HeapAlloc(kind == 5 ? 10 : 4, align, size, line, file);
 }
 
 /* 0x0008D1B0: release the process reference stored at +0x0C. */
 void rtc_ReleaseRefC(RtcObj *o)
 {
-    sub_00089420(o->iC);
+    sub_00089420(o->pC);
 }
 
 /* 0x0008FAC0: field +8 of table entry 0 of the object's table (0 without
@@ -180,7 +180,7 @@ int rtc_TexFindOrLoad(const char *name)
 }
 
 /* 0x0008E1C0: create the actor's ramp on first use, otherwise update it. */
-void rtc_RampCreateOrSet(RtcActor *a, int p1, int p2, int p3, int p4)
+void rtc_RampCreateOrSet(RtcActor *a, float p1, float p2, float p3, float p4)
 {
     if (!a->ramp120) {
         a->ramp120 = sub_000904F0(p1, p2, p3, p4);

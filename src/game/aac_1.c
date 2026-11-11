@@ -177,7 +177,7 @@ int aac_Locked_1AA520(int a)
 }
 
 /* 0x001AA550: call 0x1AA4D0(a, b) while holding handle 0x40C858. */
-int aac_Locked_1AA550(int a, int b)
+int aac_Locked_1AA550(int a, void *b)
 {
     int r;
     sub_001BD1CC(aac_g40C858, (uint32_t)-1);

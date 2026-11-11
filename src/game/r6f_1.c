@@ -139,7 +139,7 @@ int r6f_TaskRebindRefs(R6fTask *list, R6fTask *ctx, R6fTask *refs)
 
 /* 0x0008B860: merge the node *src into *list: nodes of the same kind accepted
    by pred are removed (moved to *removed when given, else released). */
-int r6f_TaskMerge(R6fTask **list, R6fTask **src, R6fTask **removed, R6fWorkPred pred)
+int r6f_TaskMerge(R6fTask **list, R6fTask **src, R6fTask **removed, uint8_t (*pred)(R6eWork *a, R6eWork *b))
 {
     int r = 0;
     R6eWork *w;

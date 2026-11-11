@@ -1,6 +1,7 @@
 #ifndef B3B_H
 #define B3B_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area b3b (0x00130000-0x0018FFFF, second pass): enemy condition predicates
  * and small state helpers. Names inferred. */
@@ -24,9 +25,9 @@ typedef struct B3bWork {
     float    f58;            /* +0x58 */
     uint8_t  unk5C[0x60 - 0x5C];
     float    f60;            /* +0x60 */
-    int32_t  i64;            /* +0x64 */
+    float    i64;            /* +0x64 */
     float    f68;            /* +0x68 */
-    int32_t  i6C;            /* +0x6C */
+    float    i6C;            /* +0x6C */
 } B3bWork;
 
 /* Enemy component, second argument of handlers and predicates. */
@@ -57,7 +58,7 @@ typedef struct B3bOwner {
     uint32_t flagsC;         /* +0x0C */
     uint32_t flags10;        /* +0x10 */
     uint8_t  unk14[0x30 - 0x14];
-    int32_t  handle30;       /* +0x30 */
+    void    *handle30;       /* +0x30 */
 } B3bOwner;
 
 /* Predicate parameter record, third argument. */
@@ -70,7 +71,7 @@ typedef struct B3bCond {
 } B3bCond;
 
 /* Integer view of a parameter record (Hypothesis). */
-typedef struct B3bArgs { uint8_t unk00[0x10]; int32_t p10, p14, p18; } B3bArgs;
+typedef struct B3bArgs { uint8_t unk00[0x10]; float p10, p14, p18; } B3bArgs;
 
 /* Two-float pair stored at +4. */
 typedef struct B3bPair { uint32_t unk0; float x, y; } B3bPair;
@@ -79,20 +80,15 @@ extern float b10_f3F7504;                    /* 0x003F7504 */
 
 int  sub_001C7EE1(void);                     /* CRT rand */
 unsigned sub_0018B6B0(void);                 /* count of active slots */
-void sub_000ED780(B3bOwner *o);
 void sub_0015A3D0(B3bOwner *o, B3bEnemy *e, B3bWork *w);
 void sub_00185540(B3bOwner *o);
-int  sub_000833E0(int handle);
 void sub_00167200(B3bOwner *o, B3bEnemy *e, int anim);
 void sub_00113370(B3bEnemy *e, B3bCond *n);
-int  sub_00145940(B3bOwner *o, int a, int b, int c, int d);
-void sub_001459D0(B3bOwner *o, int a, int b, int c);
 unsigned sub_00185420(B3bOwner *o);
 extern float a50_frameSeconds;               /* 0x0042C85C */
 extern float b3b_fZero25FB34;                /* 0x0025FB34 constant 0.0 */
 extern int32_t b3b_mode42CAFC;               /* 0x0042CAFC (Hypothesis: game mode) */
 
-int  *sub_0001D960(void *obj, int kind);
 void sub_0013A380(B3bOwner *o, int n, const int32_t *tbl);
 void sub_0018E700(void *res, int arg);
 extern const int32_t b3b_tbl31CE1C[];         /* 0x0031CE1C */
@@ -101,8 +97,6 @@ typedef int (*B3bCheckFn)(B3bOwner *o, B3bEnemy *e, const void *tbl);
 extern B3bCheckFn b3b_checkFns31D0B8[];       /* 0x0031D0B8 */
 extern const uint8_t b3b_tbl2797C8[];         /* 0x002797C8 16-byte records */
 extern float a50_frameUnits;                  /* 0x0042C858 */
-void sub_00113090(B3bOwner *o, B3bEnemy *e, int state);
-int  sub_00113040(B3bOwner *o, B3bEnemy *e, int state);
 void sub_00113480(B3bEnemy *e, int slot);
 void sub_00139FA0(B3bOwner *o, B3bEnemy *e, int state);
 void b10_AddClampF(float *v, float d, float max);

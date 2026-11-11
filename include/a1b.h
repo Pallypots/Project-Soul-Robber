@@ -1,6 +1,7 @@
 #ifndef A1B_H
 #define A1B_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "a12.h"
 
 /* Object stepped by sub_00014E80 (0x00015070). */
@@ -50,13 +51,9 @@ typedef struct A1bTimer {
 
 char *sub_00013370(const char *path);
 void  sub_00014E80(A1bStepper *s);
-void  sub_0003FCE0(int32_t *p);
-void  sub_0003FBD0(int a, int32_t *p);
 void  sub_0003FC10(int32_t *p);
 void  a60_Set3E74B8(void);
-void  sub_00048AF0(int k);
 void  sub_000D9AB0(int id);
-int   sub_000D1E10(PlayerStats *s, int index, int delta);
 
 extern int32_t  a1b_buf4326A0, a1b_end4326A4;
 extern int32_t  a1b_val37B558;
@@ -87,14 +84,12 @@ typedef struct A1bSubOwner {
     A1bSub  *sub;           /* +0x140 */
 } A1bSubOwner;
 
-void *sub_00053AB0(int size, int a, int line);
 void  sub_0001D980(A12Node *n);
 void *__fastcall sub_0001DAA0(int index, void *table);
-int   sub_0001F6C0(int a, int b, int c, int d, int e);
+void *sub_0001F6C0(int a, int b, int c, int d, void *e);
 void  sub_000226B0(void);
-int   sub_000227B0(int x);
+void *sub_000227B0(void *x);
 int   sub_000D9A70(int id);
-void  sub_001A1130(int a);
 void  sub_0002C7A0(void);
 
 extern int32_t  a1b_on37C4C0;

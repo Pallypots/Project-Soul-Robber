@@ -110,7 +110,7 @@ int32_t a8b_GetSlot(int i) { return a8b_slots428EE0[i]; }
 /* 0x0008CD50: clear the global at 0x3ED528. */
 void a8b_ClearG3ED528(void) { a8b_g3ED528 = 0; }
 /* 0x0008CD60: read the global at 0x3ED528. */
-int32_t sub_0008CD60(void) { return a8b_g3ED528; }
+void *sub_0008CD60(void) { return a8b_g3ED528; }
 /* 0x0008CD70: bit 2 of the first byte. */
 int a8b_TestBit2(const uint8_t *p) { return (*p >> 2) & 1; }
 /* 0x0008CD80: set bits 0 and 1 of the first word. */

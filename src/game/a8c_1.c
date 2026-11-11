@@ -48,10 +48,10 @@ void a8c_AttachChild(A8cLinkObj *p, A8cLinkObj *c)
     p->child88 = c;
 }
 
-/* 0x00082D70: apply 0x1A3F50 to the 0x1AD9D0 transform of x. */
-void a8c_ApplyTransformed(float x)
+/* 0x00082D70: length of vector v: sqrt (0x1A3F50) of its dot product with itself (0x1AD9D0). */
+float a8c_ApplyTransformed(const void *v)
 {
-    sub_001A3F50(sub_001AD9D0(x));
+    return sub_001A3F50(sub_001AD9D0(v, v));
 }
 
 /* 0x00082F40: append a callback node to the end of the list. */

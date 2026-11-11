@@ -7,7 +7,7 @@ void b4c_Range154D00(B4cOwner *o, B4cEnemy *e, const B4cArgs *c)
 {
     B4cEWork2 *w = (B4cEWork2 *)e->work;
     if (sub_00145940(o, w->i78, w->i80, c->p10, c->p14))
-        sub_00155FB0(w->i78, w->i80, c->p18);
+        sub_00155FB0(o, w->i78, w->i80, c->p18);
 }
 
 /* 0x001560B0: add gravity to the vertical speed unless a skip flag is pending. */
@@ -41,5 +41,5 @@ void b4c_Range15A220(B4cOwner *o, B4cEnemy *e, const B4cArgs *c)
 {
     B4cEWork2 *w = (B4cEWork2 *)e->work;
     if (sub_00145940(o, w->i64, w->i6C, c->p10, c->p14))
-        sub_00155FB0(w->i64, w->i6C, c->p18);
+        sub_00155FB0(o, w->i64, w->i6C, c->p18);
 }

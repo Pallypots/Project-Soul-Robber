@@ -57,13 +57,14 @@ int r2c_Any0or14(void)
 }
 
 /* 0x0012E5E0: pass every key of kind 2 with sub-id 0 and then sub-id 0x0E
-   to 0x137F50 together with p. regargs: p=ESI (passed on to 0x137F50 as its
-   second argument). */
-void r2c_NotifyKind2B(void *p)
+   to 0x137F50 together with mode. regargs: mode=ESI (passed on to 0x137F50
+   as its second argument, which compares it with 3 and indexes a jump
+   table with it, so it is an int; r3 callers pass 0..3). */
+void r2c_NotifyKind2B(int mode)
 {
     void *k;
     for (k = r2c_FindKey(2, 0); k; k = r2c_FindKey(-1, -1))
-        sub_00137F50(k, p);
+        sub_00137F50(k, mode);
     for (k = r2c_FindKey(2, 0xE); k; k = r2c_FindKey(-1, -1))
-        sub_00137F50(k, p);
+        sub_00137F50(k, mode);
 }

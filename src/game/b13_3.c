@@ -97,7 +97,7 @@ int b13_RandRange(int lo, int hi)
 }
 
 /* 0x00145F40: look up record (a, b) and pass its +0x40 to 0x001ADA40. */
-void b13_Lookup145F40(void *a, int b, int c)
+void b13_Lookup145F40(void *a, int b, void *c)
 {
-    sub_001ADA40(c, sub_0001D0F0(a, b) + 0x40);
+    sub_001ADA40(c, (uint8_t *)sub_0001D0F0(a, b) + 0x40);
 }

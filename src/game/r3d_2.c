@@ -166,7 +166,7 @@ void r3d_Stage17FEC0(R3cObj *obj, R3cObj *act)
         return;
     w = act->work278;
     if (w->i14 == 0) {
-        if (sub_000E0770()->i324 == 1)
+        if (((R3cGame *)sub_000E0770())->i324 == 1)
             w->i14++;
         return;
     }

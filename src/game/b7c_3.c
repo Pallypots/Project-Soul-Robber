@@ -1,12 +1,9 @@
 /* Area b7c, group 3: enemy state handlers 0x0017D590-0x0017FB10. Names inferred. */
 #include "b7c.h"
+#include "shared_decls.h"
 
 typedef struct B7CMode324 { uint8_t unk00[0x324]; int32_t mode; } B7CMode324;
-B7CMode324 *sub_000E0770(void);
-void  sub_0001EB80(void *o);
-void *sub_000ED630(int a, int b, int c, int d, int e);
 int   sub_00101360(void);
-void  sub_001456E0(void *o, void *e, int a, int b);
 extern void *b7c_owner3FDE68;           /* 0x003FDE68 */
 extern void *b7c_enemy3FDE6C;           /* 0x003FDE6C */
 extern int32_t b7c_stage3FE060;         /* 0x003FE060 */
@@ -22,7 +19,7 @@ typedef struct B7COwnerA { uint8_t unk00[0x30]; B7CAnim *anim; } B7COwnerA;
 /* 0x0017D590: when the controller is in mode 1, put the stored enemy into state 1. */
 void b7c_Wake17D590(void)
 {
-    if (sub_000E0770()->mode == 1)
+    if (((B7CMode324 *)sub_000E0770())->mode == 1)
         sub_00113040(b7c_owner3FDE68, b7c_enemy3FDE6C, 1);
 }
 

@@ -102,8 +102,9 @@ void r4d_TrackSetPart(int i, int k, int vol, int a, int b)
 }
 
 /* 0x0019AD50: like 0x0019AC20 but only while the track is playing or paused. Stack args (i k vol);
-   calls 0x0019ABB0 with EAX=t ESI=k EDX=vol. */
-void r4d_TrackSetPartVolumeIfPlaying(int i, int k, int vol)
+   calls 0x0019ABB0 with EAX=t ESI=k EDX=vol. Callers push a 4th argument
+   (the pan) that is never read. */
+void r4d_TrackSetPartVolumeIfPlaying(int i, int k, int vol, int unused)
 {
     R4dTrack *t;
     if (i < 0 || i >= 3)

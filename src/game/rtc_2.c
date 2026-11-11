@@ -382,8 +382,9 @@ int rtc_OpenPage(int k)
 
 /* 0x000E0FB0: hide (on != 0) or show the message window; showing drops a
    stale record handle, refreshes message 0 of the current table at size
-   20 and then draws the window with b and c. */
-void rtc_MsgWindow(int on, int b, int c)
+   20 and then draws the window (tail jump to 0x0003FCE0, reusing the
+   argument slot). Only one argument is read. */
+void rtc_MsgWindow(int on)
 {
     if (on) {
         rtc_hidden3F0A68 = 0;
@@ -396,7 +397,7 @@ void rtc_MsgWindow(int on, int b, int c)
         sub_0003FC10(aec_3F118C);
         sub_0003FCB0(aec_3F118C, r6d_MsgGet(r2b_g3F1B1C, 0), 0, 20.0f, -1.0f);
     }
-    sub_0003FCE0(aec_3F118C, b, c);
+    sub_0003FCE0(aec_3F118C);
 }
 
 /* 0x000E6CE0: reset the menu block at 0x003F0758 for mode k (any mode but

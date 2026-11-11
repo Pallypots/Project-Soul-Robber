@@ -1,6 +1,7 @@
 #ifndef R4D_H
 #define R4D_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "r4c.h"
 /* Area r4d: remaining game functions in 0x00190000..0x001BC6D0 (fourth pass).
    All names inferred. Register mappings are in the comments and in
@@ -13,10 +14,10 @@ int    sub_001AB210(int cue, int bank);
 int    sub_001AB1F0(int cue, int bank);
 int    sub_001AB280(int cue, int bank);
 int    sub_001AC2E0(int cue, int bank);
-void   r4d_VoiceTick(int i);            /* 0x00199980 */
-void   r4d_VoiceStop(int i);            /* 0x00199A40 */
+void   r4d_VoiceTick(int i, int unused);    /* 0x00199980 (callers push 2 args) */
+void   r4d_VoiceStop(int i, int unused);    /* 0x00199A40 (callers push 2 args) */
 void   r4d_VoiceSetVolume(int i, int vol);   /* 0x00199A90 */
-void   r4d_VoiceStoreVolume(int i, int vol); /* 0x00199B20 */
+void   r4d_VoiceStoreVolume(int i, int vol, int unused); /* 0x00199B20 (callers push 3 args) */
 void   r4d_VoiceUpdateAll(void);        /* 0x00199B50 */
 void   r4d_CueStart(int cue, int bank); /* 0x00199C10 */
 int    r4d_CuePoll(int cue);            /* 0x00199CA0 */
@@ -51,7 +52,7 @@ void   sub_001AB810(int a, float b, int j);
 void   sub_001AB050(int a, int j, int x);
 int    sub_00199E20(int j);
 void   r4d_CueStartAll(int cue);        /* 0x00199EB0 */
-void   r4d_StreamResume(int j);         /* 0x0019A230 */
+void   r4d_StreamResume(int j, int unused); /* 0x0019A230 (callers push 2 args) */
 void   r4d_StreamSetVolume(int j, int vol);  /* 0x0019A2F0 */
 void   r4d_BankStopAll(int bank);       /* 0x0019A0E0 */
 void   r4d_StreamSetParams(int j, int vol, int a, unsigned b, float c, int d);  /* 0x0019A390 */
@@ -78,7 +79,6 @@ uint32_t OOG_STDCALL sub_001BD1CC(void *h, uint32_t ms);       /* WaitForSingleO
 int      OOG_STDCALL sub_001BCFF2(void *h);                    /* ReleaseMutex */
 int      OOG_STDCALL sub_001BC6FD(void *h);                    /* CloseHandle */
 int      OOG_STDCALL sub_001BC741(void);                       /* GetLastError */
-void    *OOG_STDCALL sub_001BD517(int size, int max, int align, int prot);
 void    *OOG_STDCALL sub_001BCF19(void *attr, int init, int max, const char *name);  /* CreateSemaphore */
 int      OOG_STDCALL sub_001BCF74(void *h, int n, int *prev);  /* ReleaseSemaphore */
 OOG_IMPORT void OOG_STDCALL r4d_Kernel25F8E8(void *p);          /* kernel thunk slot 2 */
@@ -120,7 +120,7 @@ void   r4d_TrackPause(int i);                   /* 0x0019AB40 */
 void   r4d_TrackApplyPart(R4dTrack *t, int k, int vol, int i);  /* 0x0019ABB0 regargs: t=EAX k=ESI vol=EDX */
 void   r4d_TrackSetPartVolume(int i, int k, int vol);           /* 0x0019AC20 */
 void   r4d_TrackSetPart(int i, int k, int vol, int a, int b);   /* 0x0019AC70 */
-void   r4d_TrackSetPartVolumeIfPlaying(int i, int k, int vol);  /* 0x0019AD50 */
+void   r4d_TrackSetPartVolumeIfPlaying(int i, int k, int vol, int unused);  /* 0x0019AD50 (callers push 4 args) */
 void   r4d_TrackUpdateAll(void);                /* 0x0019AE00 */
 
 /* ------------------------------------------------------------ sound driver (0x001AA970..0x001AB3C5) */
@@ -148,7 +148,6 @@ extern uint8_t  r4d_g40E300[];
 void OOG_STDCALL sub_002227C8(void *o);
 void OOG_STDCALL sub_00222790(void *o);
 void OOG_STDCALL sub_0022239E(void *dev, int kind, void **slot);
-int  OOG_STDCALL sub_002226F3(void *eng, R4dDrvMsg *m, void *out);
 void   r4d_DrvSetFade(int x);                     /* 0x001AA970 */
 void   r4d_DrvVoiceStop(int x, int j, int y);     /* 0x001AB050 */
 void   r4d_DrvReleaseGroup(int unused, int g);    /* 0x001AB370 */
@@ -168,14 +167,13 @@ extern int32_t  r4d_padSel3650C8;
 typedef struct R4dPad11C { uint8_t p0[0xD0]; int32_t fD0; uint8_t pD4[0x11C - 0xD4]; } R4dPad11C;
 extern R4dPad11C *r4d_pads40B9A4;
 extern int32_t  r4d_g1E2450;
-int   OOG_STDCALL sub_001BD59E(int64_t *freq);   /* QueryPerformanceFrequency */
 int   OOG_STDCALL sub_001BD58D(int64_t *count);  /* QueryPerformanceCounter */
 void *OOG_STDCALL sub_001BCD0D(const char *name, uint32_t access, uint32_t share, void *sa, uint32_t disp, uint32_t flags, void *tmpl); /* CreateFile */
 uint32_t OOG_STDCALL sub_001BCCD2(void *h, void *hi);   /* GetFileSize */
 int   OOG_STDCALL sub_001BC813(void *h, void *buf, uint32_t n, uint32_t *read, void *ov);  /* ReadFile */
 typedef struct R4dSysTime { uint16_t year, month, dow, day, hour, minute, second, ms; } R4dSysTime;
 void  OOG_STDCALL sub_001BDD62(R4dSysTime *t);   /* GetSystemTime */
-void *R4D_FASTCALL sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m */
+void  R4D_FASTCALL sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m; eax is a leftover push pointer */
 void  R4D_FASTCALL sub_001D2680(int kind, void *p, int n);
 void  R4D_FASTCALL sub_001D4350(int reg, int v);
 void   sub_001A5F50(void *o, int b);               /* regargs: o=ECX, b on the stack */
@@ -221,7 +219,6 @@ int      r4d_SaveCheck(int slot);                    /* 0x001A9D80 */
 extern int32_t r4d_g41316C, r4d_g413170;
 void   sub_00047B70(int m);
 int    sub_00047B90(int m);
-void   sub_00047A80(int m);
 int    sub_00047B10(int m);
 void   sub_00047B30(int m);
 int    sub_00047B50(int m);
@@ -233,10 +230,9 @@ void   sub_000D1930(PlayerStats *s);
 void   sub_0019BEB0(int id);
 int    sub_000DFC00(void);
 void   sub_0005BBC0(void);
-void   sub_0005C430(int a);
 int    sub_000DFD00(void);
 void   sub_000E0570(void);
-typedef struct R4dCtx1F0 { uint8_t p0[0x1F0]; int32_t f1F0; } R4dCtx1F0;
+typedef struct R4dCtx1F0 { uint8_t p0[0x1F0]; void *f1F0; } R4dCtx1F0;
 typedef struct R4dDoneFlag { int32_t f00; int32_t done04; } R4dDoneFlag;
 void   r4d_SwitchMode(int from, int to);       /* 0x0019BF80 */
 void   r4d_ReturnToGame(R4dDoneFlag *job);     /* 0x0019D2A0 */
@@ -256,12 +252,12 @@ extern int32_t      r4d_g40396C;
 extern int32_t      r4d_g403978;
 extern R4cShockTab *r4d_shocks403988;
 extern uint8_t      r4d_shake4042F8[];
-extern int32_t      r4d_names337748[3];
-extern int32_t      r4d_objs4046A4[3];
+extern const char  *r4d_names337748[3];
+extern void        *r4d_objs4046A4[3];
 extern int32_t      r4d_ids404688[3];
 extern int32_t      r4d_g40467C;
 void   sub_000DFD40(int *a, int *b);
-int    sub_000E6840(int a);
+int    sub_000E6840(void *a);
 void   sub_0004F0B0(void);
 void   sub_0005E9B0(void);
 void   sub_0004F4C0(void);
@@ -269,7 +265,7 @@ void   sub_00049470(void);
 void   sub_00048EE0(int ms);
 void   sub_000481B0(int a);
 void   sub_000483A0(int a);
-void   sub_0005CCD0(int a, int b);
+int sub_0005CCD0(void *a, int b);
 void   sub_000DF990(void);
 void   sub_000226B0(void);
 void   sub_0005EB50(void);
@@ -277,17 +273,11 @@ void   sub_001A7F90(int a);
 int    sub_001A7DC0(void);
 void   sub_001BB6E0(void);
 void   sub_0003FC10(void *s);
-int    sub_0003FA70(int a, int b);
-void   sub_0003FCB0(void *s, int a, int b, float c, float d);
-void   sub_0003FCE0(void *s);
 void   sub_0003D860(void *q);
 void   sub_0003D880(void *q, void *node);
 void  *sub_0003DC70(void *q);
 int    sub_0019B9D0(void);
 void   sub_000774C0(void);
-int    sub_00037570(int name, int a);
-int    sub_00084C00(int obj, int a);
-void   sub_000588D0(int a);
 void   sub_00058170(void);
 void   r4d_StageEnd(int a);                    /* 0x0019E750 */
 void   r4d_StageUnload(void *g);               /* 0x0019FD60 */
@@ -298,16 +288,15 @@ void   r4d_StageLoadCommon(void);              /* 0x001A1680 */
 /* ------------------------------------------------------------ temporary data slot and small lists (0x001A1AC0..0x001A24CC) */
 extern int32_t r4d_g4046BC;
 extern void   *r4d_blob4046C0, *r4d_blob4046C4, *r4d_blob4046C8;
-extern int32_t r4d_g4046CC, r4d_tempOn4046D0;
+extern int32_t r4d_tempOn4046D0;
+extern void   *r4d_g4046CC;
 void  *sub_000532B0(int a, int b);
 void  *sub_00052CB0(void *p);
 void   sub_0004F620(int id);
-void   sub_000539C0(int a, int b, int c);
+void   sub_000539C0(int a, void *b, int c);
 void   sub_00053A00(int a);
-int    sub_000512D0(int id, int b);
 void   sub_00052B00(void *p);
 void   sub_00052CF0(void *p, void *blob);
-void   sub_000535F0(int a, int b, int c);
 void   sub_00034370(void);
 typedef struct R4dVec16 { int32_t v[4]; } R4dVec16;
 typedef struct R4dList8 { uint32_t n; int32_t pad; R4dVec16 e[8]; } R4dList8;
@@ -323,7 +312,6 @@ typedef struct R4dSurfOwner { uint8_t p0[0x54]; void *surf54; } R4dSurfOwner;
 extern int32_t r4d_g40B0E8;
 extern void   *r4d_g40AE68;
 uint32_t sub_0003DDE0(int a);
-void  OOG_STDCALL sub_001D6ED0(int n, void *rects, uint32_t flags, uint32_t color, float z, uint32_t stencil);  /* Clear */
 void *OOG_STDCALL sub_001D3490(int index);                       /* GetBackBuffer */
 void  OOG_STDCALL sub_001D34E0(void *dst, void *a, void *b, void *src, void *c);  /* copy surface */
 void *OOG_STDCALL sub_001D61C0(void *tex, int level);           /* GetSurfaceLevel */
@@ -358,7 +346,7 @@ typedef struct R4dPart100 {   /* 0x100-byte parts */
     uint8_t  pD4[0x100 - 0xD4];
 } R4dPart100;
 typedef struct R4dModel100 { uint8_t p0[0xC0]; uint32_t nC0; R4dPart100 *partsC4; } R4dModel100;
-uint32_t r4d_PartsMask(R4dModel130 *m);                    /* 0x001AEE90 */
+uint32_t r4d_PartsMask(R4dModel130 *m, int unused);        /* 0x001AEE90 (callers push 2 args) */
 uint32_t r4d_PartsSetMask(R4dModel130 *m, uint32_t bits);  /* 0x001AEED0 */
 uint32_t r4d_PartsClearMask(R4dModel130 *m, uint32_t bits);/* 0x001AEF10 */
 void     r4d_PartsBoneOffset(R4dModel108 *m, int base);    /* 0x001B30C0 */
@@ -376,8 +364,6 @@ typedef struct R4dThread {    /* 0x0040EDD8 x32 */
 } R4dThread;
 extern R4dThread r4d_threads40EDD8[32];
 extern void     *r4d_threadLock40F0D8;
-int   OOG_STDCALL sub_001BD2B6(void *h);   /* ResumeThread */
-int   OOG_STDCALL sub_001BCEF9(void *h);   /* SetEvent */
 int   sub_001BD50A(void);                  /* GetCurrentThreadId */
 #ifdef _MSC_VER
 __declspec(noreturn)
@@ -390,10 +376,6 @@ void   r4d_ThreadExitSelf(void);           /* 0x001AD520 */
 
 /* ------------------------------------------------------------ matrices (0x001ADBF0) */
 typedef struct R4dMat { float m[4][4]; } R4dMat;
-void OOG_STDCALL sub_001E4D28(R4dMat *out, float angle);   /* rotation about Z */
-void OOG_STDCALL sub_001E4CAD(R4dMat *out, float angle);   /* rotation about Y */
-void OOG_STDCALL sub_001E4C33(R4dMat *out, float angle);   /* rotation about X */
-void OOG_STDCALL sub_001E522D(R4dMat *out, const R4dMat *a, const R4dMat *b);  /* multiply */
 void   r4d_MatRotateZYX(R4dMat *out, const R4dMat *in, const float *rot);  /* 0x001ADBF0 */
 
 #endif

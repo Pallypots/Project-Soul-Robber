@@ -2,6 +2,7 @@
 #ifndef ACB_H
 #define ACB_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Object carrying a flag word at +0x10 (Hypothesis: boss/actor object). */
 typedef struct AcbFlagObj {
@@ -68,18 +69,13 @@ extern AcbBossMgr *g_acb_bossMgr;    /* 0x003F610C */
 extern void       *g_acb_bossAux;    /* 0x003F6110 */
 extern float       a50_frameSeconds; /* 0x0042C85C */
 
-void *sub_0001D960(void *obj, int kind);
 int   sub_0019BE60(int k);
-void  sub_00053880(void *p);
 int   sub_000F3140(int kind);
 void  sub_000F3D10(void *a, void *b, int c);
 
 void  sub_00180930(void);
 void  sub_00181D20(void);
 void  sub_0017D590(void);
-AcbBossMgr *sub_000FE3D0(void);
-void  sub_000F3BF0(void *boss, int dmg, int flag);
-void  sub_00048AF0(int id);
 void  sub_000A34B0(int a, int b, int c);
 void  sub_0017C460(int on);
 void  sub_00183320(int on);

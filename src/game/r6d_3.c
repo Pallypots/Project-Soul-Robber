@@ -6,7 +6,7 @@ void r6d_MenuShowText(int id)
 {
     sub_00018620(a60_menu3E60CC->anim968, r6d_menuAnim2DDB00);
     a60_TextClear(a60_menu3E60CC->text970);
-    sub_0003FCB0(a60_menu3E60CC->anim968, sub_0003FA70(a60_menu3E60CC->anim988, id, 0, 0, -1.0f));
+    sub_0003FCB0(a60_menu3E60CC->anim968, sub_0003FA70(a60_menu3E60CC->anim988, id), 0, 0, -1.0f);
     a60_FlagsClear(a60_menu3E60CC->text970, 0x80);
 }
 
@@ -90,7 +90,7 @@ int r6d_ShopCheck(uint16_t id)
 
 /* 0x00061B70: translate a menu value for the current shop page and show it.
    calls 0x00060BF0 with EAX=v */
-int r6d_MenuPageValue(int v)
+void *r6d_MenuPageValue(void *v)
 {
     if (a60_mode3E64C0 != 100)
         return v;

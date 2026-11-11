@@ -23,10 +23,10 @@ void a19_Store402760(void)
 }
 
 /* 0x001997E0: remember b, forward to 0x001AB3D0. */
-int a19_Forward1AB3D0(int a, int b)
+void a19_Forward1AB3D0(int a, int b)
 {
     a19_g402758 = b;
-    return sub_001AB3D0(a, b);
+    sub_001AB3D0(a, b);
 }
 
 /* 0x00199800 */

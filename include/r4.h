@@ -1,6 +1,7 @@
 #ifndef R4_H
 #define R4_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r4: register-argument functions (and their callers) in 0x00190000..0x001BC6D0.
    All names inferred. Register mappings are in the comments and in
    config/function_states_r4.csv. */
@@ -86,10 +87,9 @@ extern void *r4_g32C7C8[];    /* 0x0032C7C8 table handed to slot controllers */
 extern void *r4_g32C800[];    /* 0x0032C800 */
 
 int  r4_SlotRelease(R4Actor *a, R4Ctl *ctl, void *msg); /* 0x00195150 */
-int  a9b_WorkTick(void *a, void *b, void *c);   /* 0x001951E0 */
+void a9b_WorkTick(void *a, void *b);   /* 0x001951E0 */
 int  sub_00195210(void *a, void *b, void *c);
 int  sub_00195400(void *a, void *b, void *c);
-int  sub_00196B40(void *a, void *b, void *c);
 
 void r4_SlotInitType2(R4Slot *s);            /* 0x001953B0 s=EDI */
 void r4_SlotInitType3(R4Slot *s);            /* 0x00196850 s=EDI */
@@ -98,15 +98,11 @@ void r4_SlotInitType0(R4Slot *s);            /* 0x00196790 s=ESI */
 int  r4_SlotAttach(R4Actor *a, R4Ctl *c, int type); /* 0x00196900 */
 
 /* callees */
-void sub_0001EE80(void *o, void *fn);
 void sub_0001D7A0(void *o);
 void sub_00189DA0(void *a, void *b, int c);
 void sub_0001EBF0(void *o, int n);
-void sub_0001EF00(void *o, float *v);
+void sub_0001EF00(void *o, const float *v);
 void sub_00033B30(void *o);
-void sub_0001EB80(void *o);
-void sub_001ADA40(void *node, const float *m);
-void sub_000385D0(void *a, void *b);
 
 /* ------------------------------------------------------------ scene nodes (0x001B1430..0x001B2A2A) */
 typedef struct R4Hook {       /* singly linked hook list entry */
@@ -127,8 +123,10 @@ extern R4Node *r4_g412F80[0x33]; /* 0x00412F80 */
 extern R4Node *r4_g413060[0x33]; /* 0x00413060 */
 extern float r4_g377F48;         /* 0x00377F48 upper limit */
 extern float r4_g40F1C4;         /* 0x0040F1C4 lower limit */
-extern int32_t r4_g40F1BC, r4_g40F1C0, r4_g40F208, r4_g40F324, r4_g40F328;
-extern void *r4_g40F1B0;
+extern int32_t r4_g40F1BC, r4_g40F1C0, r4_g40F328;
+extern void   *r4_g40F324;   /* 0x0040F324 currently selected texture */
+extern void *r4_g40F208;
+extern int32_t r4_g40F1B0;
 extern uint8_t r4_g367EA8[];     /* 0x00367EA8 embedded DDS image */
 
 typedef struct R4Skel { uint8_t unk00[0xB4]; uint8_t *mats; } R4Skel;     /* 0x130-byte records at +0xB4 */
@@ -138,13 +136,13 @@ typedef struct R4Part {       /* 0x180 bytes */
     int32_t      boneB4;      /* +0xB4 */
     R4PartOwner *ownerB8;     /* +0xB8 */
     uint8_t      unkBC[0x17C - 0xBC];
-    int32_t      i17C;        /* +0x17C */
+    void        *i17C;        /* +0x17C */
 } R4Part;
 typedef struct R4Model {
     uint8_t  unk00[0xC0];
     uint32_t count;           /* +0xC0 */
     R4Part  *parts;           /* +0xC4 */
-    int32_t  iC8;             /* +0xC8 */
+    void    *iC8;             /* +0xC8 */
     int32_t  iCC;             /* +0xCC */
     uint8_t  unkD0[0xE8 - 0xD0];
     int32_t  iE8, iEC;        /* +0xE8 */
@@ -160,14 +158,8 @@ typedef struct R4Fog {
 
 void  sub_001AD7E0(void *d, const void *s);
 int   sub_001B2270(void *p);
-void *sub_001BA7F0(const void *img);
-uint8_t *sub_001B9650(void *tex);
-uint32_t *sub_001B9CA0(uint32_t *cmd, void *tex);
-void  sub_001ADEE0(void *m, int a, int b, int c);
-void  sub_001A7280(int a);
+void  sub_001A7280(void *a);
 void  sub_001AD9F0(float *d, const float *a, const float *b);
-float sub_001AD9D0(const float *a, const float *b);
-float sub_001A3F50(float x);
 
 /* ------------------------------------------------------------ node pool (0x001B3380..0x001B3443) */
 typedef struct R4PoolItem {   /* 0x134 bytes */
@@ -268,7 +260,6 @@ typedef struct R4Bone {       /* 0x130 bytes */
 typedef struct R4Skin { uint8_t unk00[0xB0]; int32_t count; R4Bone *bones; } R4Skin;
 extern int32_t r4_g40F150, r4_g40F154, r4_g40F158, r4_g40F15C;
 extern float   r4_g40F160[16];   /* 0x0040F160 matrix */
-void sub_001AD940(float *m);
 void r4_SkinReset(R4Skin *s);    /* 0x001AEF60 s=EAX */
 
 /* ------------------------------------------------------------ worker threads (0x0040EDD8) */
@@ -276,11 +267,8 @@ typedef struct R4ThreadRec { void *handle; int32_t id; int32_t unk08; int32_t st
 extern R4ThreadRec aac_g40EDD8[32];
 extern int32_t r4_g40EDDC;       /* = aac_g40EDD8[0].id */
 extern void   *r4_g40F0D8;       /* lock */
-void  sub_001AA1E0(void *lock);
-void  sub_001AA1F0(void *lock);
 void *sub_001AA1A0(void);
 int   sub_001BD50A(void);
-void  OOG_STDCALL sub_001BC71B(int a, int b, int c, void *d, int e, int f, int g);
 void  OOG_STDCALL sub_001BD3B2(int a);
 #ifdef _MSC_VER
 __declspec(noreturn)

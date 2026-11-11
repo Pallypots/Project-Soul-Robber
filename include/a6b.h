@@ -1,6 +1,7 @@
 #ifndef A6B_H
 #define A6B_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area a6b: second pass over 0x00060000..0x0007FFFF. All names inferred. */
 
@@ -105,21 +106,13 @@ extern int32_t a6b_allocCount3E9308;    /* 0x003E9308 */
 
 void *a50_Alloc(int slot, int size, const char *file, int line);   /* 0x00053820 */
 void  a50_SlotEndTemp(int slot);                                    /* 0x00053970 */
-void  sub_00053880(void *p);
 void *sub_000538A0(int heap, const char *file, int line);
-int   sub_000374C0(int a);
-int   sub_00037550(int a, int b);
 void  sub_0008BCC0(void *p);
 int   sub_0007DAF0(char *buf, int size, const char *fmt, void *ap);
-int   sub_0007F1E0(void *p, int v, int n);
-int   sub_0007F210(void *dst, const void *src, int n);
 int   sub_0007F560(void *p, const char *s);
-void  sub_0007E1A0(A6bCamAnim *c);
-void  sub_0007EAD0(A6bNode *n);
+int sub_0007E1A0(A6bCamAnim *c);
 float *sub_0007EF30(A6bTrack *t, float x);
-A6bPartInfo *sub_00083120(A6bPartObj *o, int id);
 void  sub_001B1190(uint8_t *inst, float v);
-void  sub_001AEDD0(uint8_t *inst, float v);
 float sub_001A3ED0(float x);
 float sub_001A3EE0(float x);
 

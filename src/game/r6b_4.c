@@ -44,20 +44,20 @@ void r6b_StopAndShutdown(void *job)
 }
 
 /* 0x00079780: flush the renderer, then run 0x00034A90 with `a`. */
-void r6b_FlushRun34A90(int a)
+void *r6b_FlushRun34A90(void *a)
 {
     sub_001A7230();
-    sub_00034A90(a);
+    return sub_00034A90(a);
 }
 
 /* 0x00079790: call 0x000398D0 with (a, 0). */
-int r6b_Call398D0(int a)
+void *r6b_Call398D0(void *a)
 {
     return sub_000398D0(a, 0);
 }
 
 /* 0x00079810: set the clear colour to white, flush the renderer, return `a`. */
-int r6b_ClearWhite(int a)
+void *r6b_ClearWhite(void *a)
 {
     sub_001A7620(0xFFFFFF);
     sub_001A7230();
@@ -95,7 +95,7 @@ void r6b_ScreenReset(void)
 }
 
 /* 0x0007AA50: field +0x1E8. */
-int r6b_Obj1E8(R6bObj7A *o) { return o->i1E8; }
+void *r6b_Obj1E8(R6bObj7A *o) { return o->p1E8; }
 
 /* 0x0007AA60: address of the block at +0x144. */
 void *r6b_Obj144(R6bObj7A *o) { return o->blk144; }
@@ -117,28 +117,28 @@ void *r6b_ObjRecB(R6bObj7A *o, uint32_t i)
 }
 
 /* 0x0007AAB0: field +0x1EC. */
-int r6b_Obj1EC(R6bObj7A *o) { return o->i1EC; }
+void *r6b_Obj1EC(R6bObj7A *o) { return o->p1EC; }
 
 /* 0x0007AB00: address of the block at +0x1B8. */
 void *r6b_Obj1B8(R6bObj7A *o) { return o->blk1B8; }
 
 /* 0x0007F510: look up `name` (optionally returning the handle in *out), then select it. */
-void r6b_LookupSelect(void *name, int *out)
+void *r6b_LookupSelect(void *name, int *out)
 {
     if (out)
         *out = sub_000374C0(name);
-    sub_00037550(name, 0);
+    return sub_00037550(name, 0);
 }
 
 /* 0x0007FD30: push hook `b` on record idx (0x130 bytes each) of the object's +0xB4 table. */
-void r6b_ObjHookPush(R6bB4 *o, int b, int idx)
+void r6b_ObjHookPush(R6bB4 *o, void *b, int idx)
 {
     if (o->recs)
         r4_HookPushA8(o->recs + idx * 0x130, b);
 }
 
 /* 0x00080CF0: dispatch on bit 0 of +0x08. calls 0x00080B40 with EBX=a (and b on the stack). */
-int r6b_Dispatch80CF0(R6bFlag8 *a, int b)
+void *r6b_Dispatch80CF0(R6bFlag8 *a, void *b)
 {
     if (a->flags & 1)
         return sub_00080BD0(a, b);

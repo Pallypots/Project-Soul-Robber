@@ -1,6 +1,7 @@
 #ifndef R6D_H
 #define R6D_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "a60.h"
 #include "r6c.h"
 #include <string.h>
@@ -16,7 +17,7 @@ void *sub_000768D0(R6cText *t, void *ctx, void *fn, int n);          /* t in EDI
 void  sub_00076E30(R6cText *t, int colour, void *ctx, int n);        /* t=EAX colour=ESI ctx=EBX */
 void  sub_00076FA0(R6cText *t, int colour, void *ctx, int n);        /* t=EAX colour=ESI */
 void  sub_00038060(int v);
-void  sub_000385B0(void);
+void *sub_000385B0(void *, int, int, int, void *, int, float, float, int);
 void *r6d_TextDraw(void *ctx, R6cText *t);                           /* 0x000770B0 */
 
 /* ------------------------------------------------------------ sound channels (0x771xx) */
@@ -34,15 +35,10 @@ extern int32_t r6d_prices[];            /* 0x002DDA20 shop prices by item id */
 extern int32_t adc_413178;              /* 0x00413178 discount flag */
 void  a60_TextClear(void *t);
 void  a60_FlagsClear(void *t, int bits);
-int   sub_0003FA70(int a, int b, int c, float d, float e);
-void  sub_0003FCB0(void *anim, int item);
-int   sub_0003FBD0(int a, void *anim);
-void  sub_0003FCE0(void *anim);
-int   sub_000D1E10(PlayerStats *s, int index, int delta);
 void  sub_000D9AB0(int id);
 void  sub_00023D80(int a, int b);
-int   sub_00060BF0(int v);              /* v in EAX */
-int   sub_0005FFB0(int v);
+void *sub_00060BF0(void *v);          /* v in EAX */
+void *sub_0005FFB0(void *v);
 void  sub_000601E0(void);
 void  sub_000615F0(void);
 void  sub_00061290(void);
@@ -76,7 +72,7 @@ typedef struct R6dWork {
     uint8_t  anim[8];         /* +0xF91E8 */
     void    *text;            /* +0xF91F0 text handle */
     uint8_t  unkF91F4[0xF9208 - 0xF91F4];
-    int32_t  msgTables[2];    /* +0xF9208 */
+    void    *msgTables[2];    /* +0xF9208 */
 } R6dWork;
 #define R6D_WORK ((R6dWork *)a60_work42C5E8)
 extern int32_t r6d_statusAnims2DE3CC[]; /* 0x002DE3CC */
@@ -92,20 +88,19 @@ void  sub_000DFD40(int32_t *chapter, int32_t *stage);
 int   sub_0006B5E0(int chapter, int stage, int32_t *out);   /* ECX=chapter EAX=stage ESI=out */
 void  sub_00053E20(void *img, void *dst);
 void  sub_00026850(void);
-int   sub_00038070(int v);
 void  a60_Release659A0(void);
 void  a60_Release6A340(void);
 void  a60_ScreenRelease62200(void);
 void  a60_Release72FD0(void);
 void  a60_Release6DBB0(void);
 int   a5b_GetVideoMode(void);
-int   sub_00066050(int v);
-int   sub_0006A3A0(int v);
-int   sub_000622A0(int v);
-int   a60_Dispatch74700(int v);
-int   sub_0006EA30(int v);
-int   r6d_PausePageValue(int v);        /* 0x0006C160, v in EAX */
-int   sub_0006C750(int v);
+void *sub_00066050(void *v);
+void *sub_0006A3A0(void *v);
+void *sub_000622A0(void *v);
+void *a60_Dispatch74700(void *v);
+void *sub_0006EA30(void *v);
+void *r6d_PausePageValue(void *v);    /* 0x0006C160, v in EAX */
+void *sub_0006C750(void *v);
 void  sub_00070790(void);
 void  sub_00070E90(void);
 void  sub_00071230(void);
@@ -163,7 +158,6 @@ void  sub_00048860(int a, int b, int c);
 int   sub_00048890(int a, int b, int c);
 int   sub_0004ECC0(int a);
 int   sub_0004ECD0(int a);
-int   sub_0004ECE0(int a);
 int   sub_0004ECF0(int a);
 int   sub_0004ED00(int a);
 int   sub_0004ED20(int a);
@@ -224,7 +218,6 @@ typedef struct R6dScene {
 } R6dScene;
 void  sub_0007AEE0(void *child);
 void  r6b_Free81B80(void *p);
-void  sub_000F5D40(void *dst, const void *src);
 /* ------------------------------------------------------------ characters and strings (0x7Dxxx-0x7Exxx) */
 void *sub_001C7DB0(void *dst, const void *src, unsigned n);   /* CRT copy, cdecl */
 typedef struct R6dChar {
@@ -235,7 +228,7 @@ typedef struct R6dCharObj {
     uint8_t  unk00[0x5C];
     R6dChar *chr;                    /* +0x5C */
 } R6dCharObj;
-void *sub_0008FDC0(int a, int b, int c);
+void *sub_0008FDC0(void *a, int b, int c);
 void *r6b_FwdHolderData(void *h);
 void  r6b_ResLoad(void *r);
 void *r6b_ResLoaded(void *r);
@@ -319,13 +312,10 @@ extern R6dStreamEntry *a8c_g3ED1F4;     /* 0x003ED1F4 current stream entry */
 extern int32_t r6c_strA3ED1F8, r6c_strB3ED1FC, r6c_strH3ED200;
 int   Job_OnJobThread(void);
 int   sub_000480F0(int h);
-void  sub_00047A80(int h);
 int   sub_00047B10(int h);
 void  sub_00047B30(int h);
 int   sub_00047B50(int h);
 void  sub_000865F0(void);
-void  sub_000862A0(void *e);
-void  sub_00086460(void *e);
 void  sub_00086850(int a);
 void  sub_000CE8F0(void);
 void  r6c_StreamPlayWait(int a);
@@ -351,7 +341,6 @@ void  sub_00053710(int a);
 void  sub_00053740(void);
 void  sub_000ED4C0(int t);
 int   sub_000ED520(int t, int c);
-void  sub_000ED590(int t, int c);
 void  sub_000ED5D0(int t);
 void  sub_000488C0(int a, int b, int c);
 void  sub_00033BF0(int t, int v);
@@ -363,9 +352,7 @@ void  sub_00047B70(int v);
 int   sub_00047B90(int v);
 void  sub_000D2A50(PlayerStats *s, int on);
 void  sub_000DE330(int on);
-void  sub_000ED630(int t, int cue, void *a, void *b, int c);
 int   sub_000EDAD0(int t, int c);
-void  sub_000488F0(int a, int b);
 int   sub_00048910(int a, int b);
 void  sub_00048940(int a, int b);
 int   sub_00048970(int a, int b);
@@ -390,7 +377,7 @@ typedef struct R6dStageObj {
     uint8_t  unk00[0x1C];
     void    *nodes;                  /* +0x1C */
     uint8_t  unk20[0x48 - 0x20];
-    int32_t  handle;                 /* +0x48 */
+    void    *handle;                 /* +0x48 */
     R6dStageExt *ext;                /* +0x4C */
 } R6dStageObj;
 void *sub_0008B290(void *n, int a, int b);
@@ -399,15 +386,12 @@ void  a8b_RefDec(void *o);
 void  a8b_RefInc(void *o);
 void  sub_0003E200(int a, int b);
 void  sub_000893C0(R6dStageObj *o);
-void  sub_000AD090(int a, int b);
-void  r6b_ObjDestroy(int h);
+void  r6b_ObjDestroy(void *h);
 unsigned r6b_HolderCountSlots(void *h);
 void *r6b_HolderData(void *h);
 void  sub_000375A0(void);
 void  sub_000376D0(void *p);
 void *r6b_HolderBlk(void *h);
-void *sub_000390A0(void);
-void  sub_00037BB0(int a, int b);
 void  r6b_HolderFree(void *h);
 void  r6b_FreeRecs4(void *p);
 void  sub_0007AB10(void *obj, void *tint);
@@ -445,17 +429,12 @@ typedef struct R6dLinkNode {
     uint8_t  unk00[0x24];
     uint32_t flags;                  /* +0x24 */
 } R6dLinkNode;
-R6dRefRec *a80_CurRefX0C(int a, int b, int c);
-void *sub_0008E5E0(int id);
-void *sub_00033DC0(void *list, int key);
+R6dRefRec *a80_CurRefX0C(void);
 void  sub_00033DA0(void *p, int slot);
-void *sub_0008E1B0(void *t);
-void  sub_00033B30(void *s);
 int   sub_0008B320(R6dLinkObj *x, R6dLinkObj *y);
 void *sub_0008C3C0(int id, int type);
-void *sub_0008C6E0(int type, int a);
 int   sub_00089540(R6dLinkSrc *p, R6dLinkNode *n);
-void  r6b_NodeUnlinkRelease2(void *n);
+int   r6b_NodeUnlinkRelease2(void *n);
 void  sub_0008B3B0(R6dLink *l, R6dLinkNode *n);
 /* END */
 #endif

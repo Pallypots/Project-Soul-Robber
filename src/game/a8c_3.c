@@ -19,7 +19,7 @@ int a8c_ChildrenApply(A8cNode *o)
 }
 
 /* 0x00089540: replace the child chain via 0x8C900; -1 on failure. */
-int a8c_ChildrenReplace(A8cNode *o, int a)
+int a8c_ChildrenReplace(A8cNode *o, void *a)
 {
     A8cNode *n = sub_0008C900(o->child20, a);
     if (n == 0) return -1;

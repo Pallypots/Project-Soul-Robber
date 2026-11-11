@@ -1,6 +1,7 @@
 #ifndef R3B_H
 #define R3B_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r3b: more game functions in 0x00130000..0x00190000 (stack and register arguments).
    All names inferred. Register mappings are in the comments and in config/function_states_r3b.csv. */
 
@@ -22,9 +23,9 @@ typedef struct R3bWork {
     uint8_t  unk24[0x34 - 0x24];
     void    *p34;            /* +0x34 */
     uint8_t  unk38[0x140 - 0x38];
-    int32_t  i140;           /* +0x140 */
+    float    i140;           /* +0x140 */
     uint32_t unk144;
-    int32_t  i148;           /* +0x148 */
+    float    i148;           /* +0x148 */
     uint8_t  unk14C[0x160 - 0x14C];
     float    v160[4];        /* +0x160 (y.. at +0x164) */
     float    f170;           /* +0x170 */
@@ -63,7 +64,7 @@ typedef struct R3bObj {
     uint8_t *p20;            /* +0x020 model; position block at +0x30 */
     uint8_t  unk024[0x30 - 0x24];
     union {
-        int32_t anim30;      /* +0x030 animation handle */
+        void   *anim30;      /* +0x030 animation handle */
         struct R3bAnim *pa30; /* +0x030 the same, as a record */
     };
     uint8_t  unk034[0x4C - 0x34];
@@ -117,7 +118,7 @@ typedef struct R3bCond {
     int32_t active, kind;    /* +0x00, +0x04 */
     int32_t i08, i0C;        /* +0x08, +0x0C */
     union { int32_t i; float f; } a10, a14; /* +0x10, +0x14 */
-    int32_t i18;             /* +0x18 */
+    float   i18;             /* +0x18 */
 } R3bCond;
 
 /* Object picked by the condition target resolver 0x00155940 (seen through its +0x60 block). */
@@ -150,27 +151,13 @@ extern float     r3b_timer3FE39C;                    /* 0x003FE39C */
 extern float     r3_frameDelta;                      /* 0x0042C85C */
 
 /* Callees (stack arguments unless stated). */
-void  sub_000ED780(void *p);
 void  sub_000ED600(int v);
-void *sub_0001D960(void *o, int kind);               /* component lookup */
 void *sub_000EDC20(int a, int b);                    /* object iterator */
-void  sub_00113040(void *obj, void *act, int state);
-void  sub_00113090(void *obj, void *act, int state);
 void  sub_001134B0(void *act);
 void *sub_00113400(void *act, int slot);
-R3bTimer *sub_00113430(void *act, int slot);
-int   sub_001456E0(void *obj, void *act, int a, int b);
-void  sub_0001EB80(void *o);
 void  sub_0001D4E0(void *obj);
-int   sub_000833E0(int anim);                        /* animation finished */
 void  sub_00088190(void);
-int   sub_000494D0(int id, const float *pos, int c);
-void *sub_00036750(void *o, int b);
-void  sub_000F5D40(float *d, const float *s);
-void  sub_00145C90(float *d, void *a, const float *b);
 void  sub_00145CD0(float *d, const float *s, float k);
-int   sub_00145940(void *obj, int a, int b, int c, int d);
-void  sub_001459D0(void *obj, int a, int b, int c);
 int   sub_0013A4A0(void *obj, void *act);
 void  sub_0013A840(void *obj, void *act);
 int   sub_001A8830(void *a, void *b);
@@ -186,11 +173,9 @@ void  sub_00189DA0(void *a, void *b, int c);
 int   sub_001C7EE1(void);                            /* CRT rand */
 float sub_001A3F30(float v);                         /* absolute value */
 void  sub_00113370(void *act, void *step);
-void  sub_001AEDD0(R3bAnimInst *h, int v);
 void  sub_0001D700(void *o);
 
 int   sub_0013A7B0(void *obj, void *act);
-void  sub_00113CB0(void *blk, float v, int c);
 void  sub_00113C90(void *blk, int a, int b);
 void  sub_00113480(void *act, int ev);
 void  sub_0013B960(void *obj, void *act);

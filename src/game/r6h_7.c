@@ -34,7 +34,7 @@ R6hTxa *r6h_TexAnimLoad(void *a, void *b, int tex)
     t->unkC = 0;
     f = t->frames;
     cur2 = sub_000134C0(a, b);
-    sz = sub_001B9650(tex)->size;
+    sz = ((R6hTexEnt *)sub_001B9650(tex))->size;
     w = (float)sz->w;
     h = (float)sz->h;
     for (line = sub_00012FA0(&cur2); line; line = sub_00012FA0(&cur2)) {

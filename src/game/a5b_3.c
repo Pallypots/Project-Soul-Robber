@@ -91,7 +91,7 @@ int a5b_SlotFirstUsed(A5bSlotList *l)
 }
 
 /* 0x0005A990: store two parameters and run 0x0003F9C0 with table 0x002DD450. */
-int a5b_Run3F9C0(int a, int b, int c)
+void *a5b_Run3F9C0(void *a, void *b, void *c)
 {
     a5b_g3E4B54 = b;
     a5b_g3E4B58 = c;

@@ -1,6 +1,7 @@
 #ifndef R1F_H
 #define R1F_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "a12.h"
 #include <string.h>
 #if defined(_M_IX86)
@@ -83,7 +84,6 @@ extern uint8_t r1f_stepper37D51C[];              /* 0x0037D51C */
 extern float   r1f_scaleX37D8E0;                 /* 0x0037D8E0 */
 extern float   r1f_scaleY37D8E4;                 /* 0x0037D8E4 */
 extern float   r1f_scaleX37D94C;                 /* 0x0037D94C */
-void  sub_00014E30(void *p, int a, int b, int c, int d);
 float sub_001A3ED0(float x);                     /* sin */
 void  r1_QueuePop8(int32_t *q);                  /* 0x000268D0 regargs: q=EAX */
 void  sub_000243B0(int a, int b);
@@ -116,7 +116,6 @@ typedef struct R1fStageG {
     uint16_t n30;               /* +0x30 */
 } R1fStageG;
 extern R1fStageG r1f_seqG37E090;                 /* 0x0037E090 */
-void sub_00048AF0(int id);
 
 /* stage block with the fade level at +0x30 (0x0037F480, as stage C) */
 typedef struct R1fStage2 {
@@ -188,8 +187,6 @@ void sub_00052EC0(int *outKey, int key, int *outSub, int sub);  /* regargs: outK
 /* ------------------------------------------------------------ group 9 */
 /* job group setup (0x000575D0) */
 void sub_001A8A70(int a);
-void sub_001A1030(void *g, int slot, int prio, void (*fn)(void), int a, int stack);
-void sub_001A1060(void *g, int slot);
 void sub_000550F0(void);
 void sub_000574F0(void);
 void sub_00057160(void);
@@ -210,11 +207,9 @@ typedef struct R1fModel {
     uint8_t  u34[8];
     struct R1fModel *next;      /* +0x3C */
 } R1fModel;
-void sub_000832D0(void *o, int anim);
 
 /* save worker job (0x0005A200) */
 uint16_t sub_00072FA0(void *obj);
-uint32_t sub_0004ECE0(int pad);
 uint32_t sub_0004ECF0(int pad);
 uint32_t sub_0004ED20(int pad);
 uint32_t sub_0004ED40(int pad);
@@ -241,10 +236,6 @@ extern void    *r1e_mArg3E0DC4;                  /* 0x003E0DC4 caller buffer */
 extern void    *r1e_m3E0DC8;                     /* 0x003E0DC8 */
 extern int32_t  a50_streamHandle;                /* 0x003E0D68 */
 extern R1fMovie *a30_curSlot;                    /* 0x003E11F0 */
-void *sub_00053AB0(int size, int a, int tag);
-void  sub_001A8490(int fd, int pos, int whence);
-void  sub_00102FA0(int a, ...);
-void  sub_001A8410(int fd, void *buf, int size);
 
 /* movie archive: 0x20-byte header read to 0x003E0D90, then a directory of
    0x20-byte entries after a 0x20-byte header */
@@ -263,13 +254,11 @@ extern const char *r1e_m3E0DC0;                  /* 0x003E0DC0 archive name */
 extern int32_t    r1f_dirSize3E0D6C;             /* 0x003E0D6C */
 extern R1fArcEnt *r1f_dir3E0D70;                 /* 0x003E0D70 */
 extern int32_t    r1f_dirCount3E0D74;            /* 0x003E0D74 */
-int       sub_001A8210(const char *name, int mode);
 R1fMovie *sub_0004F8E0(const char *name);        /* regargs: name=EDI */
 
 /* ------------------------------------------------------------ group 11 */
 /* GS packet words at 0x003DE500 (0x003DE560 is a packet buffer) */
 extern uint32_t r1f_pkt3DE500[];                 /* 0x003DE500 */
-void sub_000AD090(void *p, ...);                 /* returns 0 on this build */
 
 
 /* main loop (0x0003E0F0) */
@@ -278,13 +267,12 @@ void sub_001A5480(void);
 int  sub_001C80BE(int t);                        /* CRT time */
 void sub_001C7ED4(int seed);                     /* CRT srand */
 void sub_0004F0B0(void);
-int  sub_000586E0(int a);
 void sub_0019C4B0(void);
 void sub_0005E9B0(void);
 void sub_0004F4C0(void);
 void sub_00049470(void);
 void sub_000ED350(void);
-void sub_0019C4D0(void);
+int sub_0019C4D0(void);
 int  sub_001C7EE1(void);                         /* CRT rand */
 extern int32_t b3b_mode42CAFC;                   /* 0x0042CAFC */
 extern int32_t g_ad0_42CAE0;                     /* 0x0042CAE0 */
@@ -319,7 +307,6 @@ void sub_00040240(void);
 void sub_00046CF0(void);
 void sub_00046D50(void);
 void sub_000403A0(void);
-void sub_0003FCE0(void *p);
 void sub_00043A90(void);
 void sub_00043C20(void);
 extern int32_t a4c_mode3DF1EC;                   /* 0x003DF1EC */
@@ -339,16 +326,12 @@ extern int32_t r1f_sub3E0004;                    /* 0x003E0004 */
 
 /* ------------------------------------------------------------ group 15 */
 /* stage loader (0x00031B60) */
-const char *sub_00052A10(unsigned id);
+const char *sub_00052A10(); /* 0x31B60 pushes an id the callee ignores */
 int  a6b_Printf2(char *buf, const char *fmt, ...); /* 0x0007E0A0 */
 void sub_0004F700(int a);
 void sub_00053E20(const char *name, void *dst);
-int  sub_00053CA0(int a);
 void sub_0004F720(void);
-void sub_001B9FC0(int tex);
-int  sub_00084C00(void *p, int a);
 void sub_00014DA0(void *p);
-void sub_00014D00(void *obj, void *p, int tex);
 extern uint32_t r1f_stage381830;                 /* 0x00381830 */
 extern char     r1f_name3817E8[];                /* 0x003817E8 */
 extern const char r1f_fmt283614[];               /* 0x00283614 */
@@ -363,7 +346,6 @@ void sub_0002D790(void);
 void sub_0002DBC0(void);
 void sub_0002C870(void);
 void sub_0002C750(void);
-void sub_0002CF50(void);
 void r1f_ScreenJob(void);                        /* 0x0002E470 */
 void sub_0002E2F0(void);
 void sub_00053C70(void);

@@ -123,14 +123,14 @@ int r6f_TaskCopyMat(R6fTask *t, R6fRangeArg *x)
 int r6f_TaskSyncSpeed(R6eTask *t, R6fRefObj *ref)
 {
     float v;
-    if (t->p28 && ((R6eAnimRef *)t->p28)->i5C && sub_000896D0(ref, 0x400)) {
+    if (t->p28 && ((R6eAnimRef *)t->p28)->p5C && sub_000896D0(ref, 0x400)) {
         sub_0008E6A0(t);
-        sub_0008DE70(t, ref->i10, sub_00089450(ref));
+        sub_0008DE70(t, ref->f10, sub_00089450(ref));
         if (t->p120)
-            v = sub_00090480(t->p120, ref->i10);
+            v = sub_00090480(t->p120, ref->f10);
         else
             v = 1.0f;
-        sub_000EE6D0(((R6eAnimRef *)t->p28)->i5C, v);
+        sub_000EE6D0(((R6eAnimRef *)t->p28)->p5C, v);
     }
     return 0;
 }

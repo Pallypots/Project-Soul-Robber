@@ -73,8 +73,9 @@ int r4b_FileSeek(int idx, int off, int whence)
     return off;
 }
 
-/* 0x001A8500: poll a read on slot idx; returns 1 busy, 0 done, -1 error (the 15th error runs 0x001A7A70). Stack args (idx n). */
-int r4b_FileReadPoll(int idx, uint32_t *n)
+/* 0x001A8500: poll a read on slot idx; returns 1 busy, 0 done, -1 error (the 15th error runs 0x001A7A70). Stack args (idx which n); which is never
+   read (callers pass 1), n is the bytes-out pointer at [esp+0xC]. */
+int r4b_FileReadPoll(int idx, int which, uint32_t *n)
 {
     R4bOverlapped *ov;
     int err;

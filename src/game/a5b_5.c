@@ -91,7 +91,7 @@ int a5b_JobResume(int id)
 }
 
 /* 0x000592C0: run 0x001A1130 then 0x00058B40 on the same argument. */
-int a5b_Run58B40(int a)
+int a5b_Run58B40(void *a)
 {
     sub_001A1130(a);
     return sub_00058B40(a);

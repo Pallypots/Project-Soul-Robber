@@ -1,6 +1,7 @@
 #ifndef A12_H
 #define A12_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Render-state style callbacks: (owner, unused, out-record) -> 0. */
 typedef struct A12StateOut {
@@ -45,7 +46,6 @@ typedef struct A12Node {
 
 void sub_0001C160(void *ctx, A12Actor *a);
 void sub_0001BEE0(void *ctx, A12Actor *a);
-A12Res *sub_001B9650(int handle);
 
 extern int32_t a12_state37C544, a12_state37D434, a12_state37DAA4, a12_state37DC28,
                a12_state37DCFC, a12_state37ED04, a12_state37E094, a12_state37EECC;

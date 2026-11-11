@@ -41,7 +41,7 @@ void r6c_ObjSetMatrix(R6cObj7 *o, const void *b)
 }
 
 /* 0x0007AAC0: place the object's light from matrix a and intensity b. */
-void r6c_ObjPlaceLight(R6cObj7 *o, int a, int b)
+void r6c_ObjPlaceLight(R6cObj7 *o, const void *a, int b)
 {
     sub_000385D0(&o->m154, a);
     sub_001B74E0(&o->light, 224.0f, b);
@@ -60,9 +60,9 @@ void r6c_ObjResetPose(R6cObj7 *o)
 }
 
 /* 0x0007D1B0: draw the object's three layers, attachments and shadow; a selects the pass. */
-void r6c_ObjDrawAll(R6cObj7 *o, int a)
+void r6c_ObjDrawAll(R6cObj7 *o, void *a)
 {
-    int h;
+    void *h;
     sub_000AD090(0xFFFFFF);
     sub_00081E60(o->i48, 0);
     sub_00081E60(o->i4C, 0);

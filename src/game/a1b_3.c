@@ -8,7 +8,7 @@ int32_t a1b_GetVal(void) { return a1b_val37B558; }
 /* 0x00018550: init the shared object. */
 void a1b_ObjInit(void) { sub_0003FCE0(&a1b_obj37B560); }
 /* 0x00018560: pass a value to the shared object. */
-void a1b_ObjPut(int a) { sub_0003FBD0(a, &a1b_obj37B560); }
+void a1b_ObjPut(void *a) { sub_0003FBD0(a, &a1b_obj37B560); }
 /* 0x00018610: release the shared object. */
 void a1b_ObjFree(void) { sub_0003FC10(&a1b_obj37B560); }
 /* 0x000186A0: set slot i. */

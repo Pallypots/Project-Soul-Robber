@@ -85,7 +85,7 @@ int r6f_TaskCopyNode(R6fTask **out, R6fTask *src)
 
 /* 0x0008CC50: run the step handler of the first entry's task; on a result pop
    the entry, else drop it when its task has finished (flag 2). */
-int r6f_RefListStep(R6fRef **list, int arg)
+int r6f_RefListStep(R6fRef **list, void *arg)
 {
     R6fRef *e;
     R6fOps *ops;

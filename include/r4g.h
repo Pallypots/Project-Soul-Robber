@@ -1,6 +1,7 @@
 #ifndef R4G_H
 #define R4G_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r4g: larger game functions in 0x00190000..0x001BC6D0 (seventh pass).
    All names inferred. Register mappings are in the comments and in
    config/function_states_r4g.csv. */
@@ -63,8 +64,6 @@ extern const uint8_t r4g_d32C62C[];    /* 0x0032C62C */
 
 void sub_000F5D60(void *o, float a, float b, float c, const float *v);
 void sub_000F5DD0(void *o, float a, float b, const float *v);
-void sub_000F5E30(void *o, float a, const float *v1, const float *v2);
-void sub_000F5D40(float *d, const float *s);
 void sub_00189DA0(void *a, void *b, int c);
 void sub_0018F6F0(void *o, void *a);
 void sub_0018F760(void *o, void *a);
@@ -82,8 +81,6 @@ int   sub_00190900(void *o, void *a);
 void  sub_001909C0(void *o, void *a);
 
 int   sub_00191EA0(void *o, void *a, void *msg);
-void  sub_00196B40(void);
-void  sub_0001EE80(void *o, void (*fn)(void));
 float sub_00171D50(int kind, int id, int v);
 int   r4g_FxSpawnB(R4gNode *o, R4gActor *a, int mode);   /* 0x00192180 */
 
@@ -96,7 +93,6 @@ extern R4gCueRec   r4c_cues330F30[119];
 extern R4gWaveSize r4g_waves41344C[];
 extern uint32_t    r4g_poolBase402750;    /* 0x00402750 */
 extern uint32_t    r4g_poolTotal402754;   /* 0x00402754 */
-uint32_t sub_000AD090(uint32_t a, ...);   /* stub returning 0 on this build */
 void r4g_SndPoolLayout(void);             /* 0x001995A0 */
 
 /* ------------------------------------------------------------ static model draw node (0x001B8FB0) */
@@ -113,8 +109,8 @@ typedef struct R4gSubInfo { int32_t f00; R4gBoneDesc *bones04; uint8_t unk08[4];
 typedef struct R4gModelInfo { uint8_t *base; R4gSubInfo *subs; } R4gModelInfo;
 typedef struct R4gModel {     /* model / mesh owning the draw nodes */
     uint8_t  unk00[0xB4];
-    int32_t  iB4;             /* +0xB4 */
-    int32_t  iB8;             /* +0xB8 */
+    void    *texB4;           /* +0xB4 (texture, see r4b) */
+    void    *iB8;             /* +0xB8 */
     R4gModelInfo *infoBC;     /* +0xBC */
     uint8_t  unkC0[0xCC - 0xC0];
     float    vCC[4];          /* +0xCC */
@@ -139,9 +135,9 @@ typedef struct R4gDrawNode {  /* 0x108 bytes */
     R4gMeshDesc *meshBC;      /* +0xBC */
     R4gModel *modelC0;        /* +0xC0 */
     int32_t  itemsC4;         /* +0xC4 */
-    int32_t  texC8;           /* +0xC8 */
-    int32_t  selCC;           /* +0xCC */
-    int32_t  texD0;           /* +0xD0 */
+    void    *texC8;           /* +0xC8 */
+    void    *selCC;           /* +0xCC */
+    void    *texD0;           /* +0xD0 */
     int32_t  iD4;             /* +0xD4 */
     int32_t  texD8;           /* +0xD8 */
     float    vDC[4];          /* +0xDC */
@@ -150,22 +146,19 @@ typedef struct R4gDrawNode {  /* 0x108 bytes */
     int32_t  fmt100;          /* +0x100 */
     int32_t  fmt104;          /* +0x104 */
 } R4gDrawNode;
-extern int32_t r4_g40F324;            /* 0x0040F324 */
-extern int32_t r4_g40F208;            /* 0x0040F208 */
+extern void   *r4_g40F324;            /* 0x0040F324 */
+extern void   *r4_g40F208;            /* 0x0040F208 */
 extern R4gCam *r4b_g40F334;           /* 0x0040F334 current camera */
 extern int32_t r4b_g41312C;           /* 0x0041312C */
-uint32_t *sub_001B2A10(uint32_t *cmd, int sel);
-uint32_t *sub_001B26A0(uint32_t *cmd, int tex);
-uint32_t *sub_001B9CA0(uint32_t *cmd, int tex);
+uint32_t *sub_001B2A10(uint32_t *cmd, void *sel);
+uint32_t *sub_001B26A0(uint32_t *cmd, void *tex);
 void      sub_001A69C0(int a, int b);
 uint32_t *sub_001B8EE0(R4gDrawNode *n, uint32_t *cmd);
-void      sub_001AD7C0(float *dst, const float *a, const float *b);
 void      sub_001A6C90(const float *m);
 void      sub_001A2350(int i, const float *m);
 int       sub_001A3080(R4gDrawNode *n);
 uint32_t *sub_001B3340(uint32_t *cmd, int items);
 uint32_t *r4g_DrawStaticNode(uint32_t *cmd, R4gDrawNode *n);   /* 0x001B8FB0 */
-void      sub_001ADA40(float *dst, const float *src);
 void      r4g_MeshLinkNode(R4gModel *m, R4gDrawNode *base, int idx); /* 0x001B8C80 */
 
 /* ------------------------------------------------------------ skinned draw node link (0x001B8410) */
@@ -182,9 +175,9 @@ typedef struct R4gSkinNode {  /* 0x110 bytes */
     R4gMeshDesc *meshBC;      /* +0xBC */
     R4gModel *modelC0;        /* +0xC0 */
     int32_t  itemsC4;         /* +0xC4 */
-    int32_t  texC8;           /* +0xC8 */
-    int32_t  selCC;           /* +0xCC */
-    int32_t  texD0;           /* +0xD0 */
+    void    *texC8;           /* +0xC8 */
+    void    *selCC;           /* +0xCC */
+    void    *texD0;           /* +0xD0 */
     int32_t  iD4;             /* +0xD4 */
     float    vD8[4];          /* +0xD8 */
     int32_t  fmtE8, fmtEC;    /* +0xE8 */
@@ -225,10 +218,9 @@ void   sub_001AB4A0(int bank, int kind);
 void   sub_001ABD10(int a, int i);
 void   sub_001ABFE0(int i, int a);
 void   sub_001ABF20(int a, int i);
-void   sub_00102FA0(int chan);        /* folded empty stub; 0x0019BCF0 calls it without an argument */
 void   sub_0019ABB0(R4gTrack *t, int k, int vol, int i);   /* regargs: t=EAX k=ESI vol=EDX */
-int    r4g_TrackStart(int snd);       /* 0x0019B6A0 */
-void   r4g_TrackResume(int i);        /* 0x0019B800 */
+int    r4g_TrackStart(int snd, int unused1, int unused2); /* 0x0019B6A0 (callers push 3 args) */
+void   r4g_TrackResume(int i, int unused);  /* 0x0019B800 (callers push 2 args) */
 
 /* ------------------------------------------------------------ music player open (0x001ABD10) */
 typedef struct R4gMus {       /* 0x0040E358 x4, 0x70 bytes */
@@ -277,12 +269,10 @@ typedef struct R4gBone180 {   /* 0x180 bytes */
 } R4gBone180;
 R4gBoneDesc2 *sub_001AE8E0(void *img, int k);
 void      sub_001AE060(void *xf, const float *m);
-void      sub_001AD940(float *m);
 void      r4g_BoneLinkNode(R4gBoneOwner *m, R4gBone180 *base, int idx);   /* 0x001B1200 */
 
 /* ------------------------------------------------------------ boot loading thread (0x001A13E0) */
 typedef struct R4gLoadCtx { uint8_t unk00[4]; int32_t state04; int32_t go08; } R4gLoadCtx;
-int    sub_00057E90(void);
 void   sub_000580D0(void);
 void   sub_001A1AC0(void);
 void   sub_0019B9E0(void);
@@ -296,12 +286,10 @@ void   sub_0019BEB0(int a);
 void   sub_0006C030(void);
 int    sub_0006D350(void);
 void   sub_000325A0(int a);
-void   sub_00036F40(int a, int b, int c, int d);
 int    sub_0006DA80(void);
 void   sub_0006C070(void);
 void   sub_00032140(int a, int b, int c);
 void   sub_00058670(void);
-void   sub_00058540(void (*fn)(void), void *arg);   /* start job fn(arg) */
 void   sub_001A13D0(void);
 void   sub_000488C0(int a, int b, int c);
 void   sub_00079340(void);
@@ -314,7 +302,6 @@ extern uint64_t a50_frameCounter0;     /* 0x0042C918 64-bit frame counter */
 void   sub_001A5500(void);
 void   sub_0004EC40(void);
 void   sub_0004EB50(void);
-void   sub_0004F4E0(void);
 void   sub_00058780(void);
 void   sub_0019D680(void);
 void   sub_000583C0(void);
@@ -343,10 +330,8 @@ typedef struct R4gHit { uint8_t unk00[0x40]; float pos40[4]; } R4gHit;
 typedef struct R4gCtxE4 { uint8_t unk00[0x54]; void *p54; } R4gCtxE4;
 extern R4gCtxE4 *a80_ctx42C8E4;     /* 0x0042C8E4 */
 int     sub_000F5CD0(void *o, int a, int b);
-void    sub_001ADB60(float *d, const float *s, float k);
 void   *sub_00080970(void);
 void    sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
-R4gHit *sub_00080CB0(void *pool, const float *from, const float *to);
 void    r4g_ModelSnapToGround(float *m, R4gSnapArg *p);   /* 0x00196B40 */
 
 /* ------------------------------------------------------------ pop effect spawner (0x00198080) */
@@ -377,8 +362,7 @@ void  sub_00197040(void *o, void *a);
 int   sub_00197160(void *o, void *a, void *msg);
 void  sub_00197650(void *o, void *x);
 void  sub_0001C9E0(void *o, int unused, void (*fn)(void *, void *));
-void  sub_0001EEC0(void *o, float k);
-void  sub_0001EF00(void *o, float *v);
+void  sub_0001EF00(void *o, const float *v);
 int   r4g_FxPopSpawn(R4gNode *o, R4gActor *a);   /* 0x00198080 */
 
 /* ------------------------------------------------------------ scene play loop (0x001A0970) */
@@ -393,14 +377,10 @@ int    sub_001A80C0(void);
 void   sub_001A01A0(int id);
 void   sub_001A0020(int id, int prev);
 void   sub_001A0200(void);
-uint32_t sub_0004ECE0(int pad);
 uint32_t sub_001A9130(int pad);
 void   sub_0019FEF0(float a, int b, int c, int d, int e, int f);
 void   sub_001A1090(R4gScene *s, int a);
 void   sub_0019FE60(R4gScene *s);
-void   sub_001A0830(void *arg);
-void   sub_001A1030(R4gScene *s, int a, int b, void (*fn)(void *), int c, int d);
-void   sub_001A1060(R4gScene *s, int a);
 void   r4g_ScenePlayLoop(R4gScene *s);   /* 0x001A0970 */
 
 #endif

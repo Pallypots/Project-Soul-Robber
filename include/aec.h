@@ -2,10 +2,11 @@
 #ifndef AEC_H
 #define AEC_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "acb.h"
 
 /* Target of a 0x28-byte slot record: sub-object at +0x30, float at +0x64. */
-typedef struct AecSlotSub { uint8_t unk00[0x14]; int32_t v14; } AecSlotSub;
+typedef struct AecSlotSub { uint8_t unk00[0x14]; void *v14; } AecSlotSub;
 typedef struct AecSlotTarget {
     uint8_t     unk00[0x30];
     AecSlotSub *o30;          /* +0x30 */
@@ -100,25 +101,18 @@ extern int    *aec_tbl31852C[7];    /* 0x0031852C */
 extern int    *aec_tbl318548[7];    /* 0x00318548 */
 extern int    *aec_tbl318564[7];    /* 0x00318564 */
 
-int   sub_0003FA70(int a, int b);
-void  sub_0003FCB0(void *t, int a, int b, float c, float d);
 void  sub_0019A9D0(int h);
 int   sub_00048510(int a);
-void  sub_000494D0(int a, int b, int c);
 void  sub_000E9950(int a, int b);
-void  sub_0001EB80(void *p);
-int   sub_001AEE90(int a, int b);
 void  sub_000E1F60(AecObj *o, int i, int f);
 void *sub_0001D080(void *a, int b, int c);
-void *sub_000E2540(int a, int i);
-void  sub_0003FBD0(int a, void *b);
 void  sub_000E9B00(void);
 int   sub_000E0C80(int a);
 int   sub_000E0CD0(int b);
 int   sub_000E0CF0(int a);
 int   sub_000E0D30(int b);
 void  sub_000E0A80(AecObj *o, int k, int a, int b, int c);
-void  sub_000E3EB0(int a, int b, int c, int d, int e);
+int sub_000E3EB0(int a, int b, int c, int d, int e);
 void  sub_000E0840(int a, int b, void *c);
 void  sub_000CEEA0(void);
 void  sub_000CEF00(void);
@@ -126,12 +120,10 @@ void  sub_000F6F00(int *p);
 void  sub_001060B0(int *p);
 void  sub_000E1350(AecObj *o, int a, void *b, int c);
 void  sub_000E1520(AecObj *o, int a, int b);
-void  sub_00033A70(void *p);
 void  sub_000EC670(void *p);
-void  sub_000D2A00(int a);
+int sub_000D2A00(int a);
 void  sub_000E4950(void *a, float f, int b, int c, int d);
 void  sub_000E1C80(void *a, float f);
-void *sub_000E23F0(int a, int b);
 void  sub_0012D600(int a);
 void  sub_000FE5A0(void);
 void  sub_001002E0(void);
@@ -144,14 +136,13 @@ void  sub_00179140(void);
 void  sub_0017FFB0(int h);
 int   sub_00034AF0(int a, int b);
 void  sub_000ECB60(void);
-void *sub_0003DBC0(void *list, int a, int b);
 void  sub_0003D8C0(void *p);
 void  sub_0003D860(void *p);
 int   sub_000EE1B0(int i);
 int   sub_000EE470(int a, int b, int c, float f, int d);
 
 /* Object initialised by 0x000EE270: three callbacks and zeroed state. */
-typedef void (*AecCb)(void);
+typedef void (*AecCb)();
 typedef struct AecCbObj {
     uint8_t unk00[0x10];
     int32_t v10, v14;
@@ -160,8 +151,6 @@ typedef struct AecCbObj {
     AecCb   cb24, cb28, cb2C;
     int32_t v30, v34, v38;
 } AecCbObj;
-void  sub_000AD090(void);
-void  sub_00102FA0(void);
 typedef struct AecEC { uint8_t unk00[0xEC]; int32_t vEC; } AecEC;
 
 #endif

@@ -1,6 +1,7 @@
 #ifndef R4C_H
 #define R4C_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r4c: remaining game functions in 0x00190000..0x001BC6D0 (third pass).
    All names inferred. Register mappings are in the comments and in
    config/function_states_r4c.csv. */
@@ -48,7 +49,7 @@ typedef struct R4cNode {
     int32_t  i124;            /* +0x124 */
     uint32_t flags128;        /* +0x128 */
     uint8_t  unk12C[0x130 - 0x12C];
-    int32_t  i130;            /* +0x130 */
+    void    *i130;            /* +0x130 */
     uint8_t  unk134[0x140 - 0x134];
     struct R4cCam *cam140;    /* +0x140 */
     uint8_t  unk144[0x14C - 0x144];
@@ -150,32 +151,20 @@ float  r4c_VecLenXZ(const float *v);                           /* 0x000F5F50 */
 float  r4c_VecLen(const float *v);                             /* 0x000F5F10 */
 void   r4c_Spin(R4cNode *o, const float *rate);                /* 0x000F6450 */
 void   r4c_Model34E00(void *h, float *pos, float *out, float *col); /* 0x00034E00 */
-void   sub_000F5D40(void *dst, const void *src);
 void   sub_000C56B0(R4cNode *o);
 void   sub_0018F8D0(R4cNode *o);                               /* regargs: p1=EAX */
-void   sub_000ED780(void *o);
-R4cMgr *sub_00100110(void);
 void   sub_00048250(int h);
 void   sub_00189DA0(void *a, void *b, int c);
 void   sub_000F3FD0(R4cNode *o);
-void  *sub_000ED630(int a, int b, float *pos, int c, int d);
-void  *sub_00035DD0(void *fx, int a, int b, int c);
 void   sub_00033880(void *h, float *out);
-void  *sub_0001D960(void *o, int kind);   /* component lookup */
-void   sub_000494D0(int id, float *pos, int c);
 int    sub_000F5CD0(void *o, int a, int b);
 void   sub_00033B30(R4cNode *o);
-void   sub_0001EB80(R4cNode *o);
 int    sub_00101360(void);
 R4cNode *sub_001012D0(int i);
 void   sub_0001C9E0(R4cNode *o, int unused, void (*fn)(R4cNode *, void *));
-void  *sub_00101220(void);
 float  sub_001A3EC0(float y, float x);
 R4cSys *sub_000F3F80(void);
 void   sub_001B2080(void *n);
-void   sub_001B2020(void *parent, void *n);
-void  *sub_0001D0F0(void *o, int part);
-void   sub_001AD940(void *m);
 void  *sub_000CB9B0(void);
 void   sub_0001E9B0(void *ctx, R4cNode *o, int a, int b, int c);
 int    sub_001C7EE1(void);
@@ -187,7 +176,6 @@ void r4c_FxCheckHit(R4cNode *o, void *other);                 /* 0x00190AF0 */
 int  r4c_FxStop(R4cNode *o, R4cActor *a);                      /* 0x00190900 */
 void r4c_SlotAttach(int idx, int part);                        /* 0x00192320 */
 void r4c_SlotScale(int idx, float s);                          /* 0x00192630 regargs: p1=EAX */
-int    sub_000F5D00(R4cNode *o);
 void   sub_000EE760(R4cNode *o, float k);
 /* ------------------------------------------------------------ bounce effects (0x00194780..0x00194EF6) */
 typedef struct R4cFxE {       /* work block of the 0x001948A0 family */
@@ -214,13 +202,10 @@ typedef struct R4cRec8C {     /* 0x00400E54 x18 */
 } R4cRec8C;
 typedef struct R4cOwner { uint8_t unk00[4]; int32_t i04, i08; } R4cOwner;
 extern R4cRec8C r4c_recs400E54[18];
-void   sub_00049700(int id, int r, int g, int b, float *pos, int a, float size, int c);
 int    sub_000C46A0(float a, float b, float c, float *pos, float *v0, float *v1);
-void   sub_000C4D30(R4cNode *o, int a, float b, int c);
 void   sub_000C4DF0(R4cNode *o, int a, float b, int c, float d, float e, float f, float *pos, float *v0, float *v1);
 void   r4c_Vec4Scale(float *d, const float *s, float k);      /* 0x001ADBA0 */
 void   sub_0018D680(R4cNode *o, void *p, float k);
-void   sub_000EE6D0(R4cNode *o, float k);
 /* ------------------------------------------------------------ thrown effects (0x001955B0..0x00197790) */
 typedef struct R4cFxG { uint8_t unk00[0x18]; float f18; } R4cFxG;
 typedef struct R4cFxH {       /* work of 0x00195B60 */
@@ -273,12 +258,7 @@ extern float     r4c_spin32C7B8[3], r4c_spin32C838[3];
 extern float     r4c_v27B0CC[4], r4c_v27B0E0[4], r4c_v27B0F0[4], r4c_v27B100[4];
 int    sub_000F6A80(void);
 void   sub_000F60C0(R4cNode *o, int a, int b);
-void   sub_0001EEC0(R4cNode *o, float k);
-void   sub_0001EE80(R4cNode *o, void (*fn)(void));
-void   sub_00196B40(void);
-void  *sub_00053AB0(int size, int a, int line);
 void   sub_001AD7E0(float *d, const float *s);
-void  *sub_000E23F0(int a, int b);
 void   sub_000F5EA0(float *d, const float *a, const float *b);
 void   sub_000C61B0(PlayerStats *s, R4cNode *o);
 void   sub_00196DB0(int kind, R4cNode *o);                    /* regargs: p1=EAX p2=ECX */
@@ -345,8 +325,6 @@ void   sub_001AA970(int ch);
 int    sub_00199850(int i);
 void   sub_001AAA00(int ch, int a);
 void   sub_001AA9D0(int ch);
-void   sub_001AA1E0(void *lock);
-void   sub_001AA1F0(void *lock);
 void   sub_001AB1D0(int cue, int bank);
 /* ------------------------------------------------------------ render targets (0x001A1E90..0x001A1F46) */
 extern void   *r4c_targets404734[14];  /* 0x00404734 */
@@ -361,7 +339,8 @@ uint32_t r4c_TargetSetOffset(int i, uint32_t off);             /* 0x001A1E90 */
 typedef struct R4cLoader {    /* set up by 0x0019C940 */
     int32_t  id;              /* +0x00 */
     void    *buf;             /* +0x04 */
-    int32_t  i08, i0C, i10;   /* +0x08 */
+    int32_t  i08, i0C;        /* +0x08 */
+    void    *i10;             /* +0x10 */
     uint8_t  b14;             /* +0x14 */
 } R4cLoader;
 typedef struct R4cGroup { uint8_t unk00[4]; int32_t i04; } R4cGroup;   /* group of 0x001A1030 entries */
@@ -376,21 +355,16 @@ int    sub_00032450(int a);
 uint32_t sub_0004ECD0(int pad);
 uint8_t sub_001AB610(void);
 void   sub_0019BED0(void);
-int    sub_0004F680(int id);
-int    sub_0008D340(void);
+void *sub_0008D340(void);
 int    sub_00037FC0(void);
-void   sub_00058540(void (*fn)(void *), void *arg);
 void   sub_0019C620(void *arg);
-void   sub_001A1030(void *g, int a, int b, void (*fn)(void), int d, int e);
-void   sub_001A10F0(void *g);
+int sub_001A10F0(void *g);
 void   sub_0019C9A0(void);
-void   sub_0019C6F0(void);
+void   sub_0019C6F0(void *);
 void   sub_0019CE60(void);
 int    sub_0004F6D0(int id);
 void   sub_00053710(int a);
-void   sub_0004FA70(int id, void *buf);
 int    sub_0004F4D0(void);
-void   sub_000586E0(int a);
 void   sub_00053740(void);
 void   sub_0004F700(int id);
 void   sub_0005EE40(void);
@@ -402,7 +376,8 @@ typedef struct R4cShockTab { uint8_t unk00[8]; int32_t n; R4cShockEnt e[1]; } R4
 typedef struct R4cBufRec { uint32_t *cmd; int32_t f4, f8; } R4cBufRec;   /* 0x0042CAC8, 12 bytes */
 extern int32_t     r4c_g403130;
 extern void       *r4c_g40431C;
-extern int32_t     r4c_g404318, r4c_g403988, r4c_g40396C;
+extern int32_t     r4c_g403988, r4c_g40396C;
+extern void       *r4c_g404318;
 extern R4cShockTab *r4c_g40398C;
 extern int32_t     r4c_g403984;
 extern int32_t     r4c_bufIndex42CAC0;
@@ -410,38 +385,30 @@ extern R4cBufRec   r4c_bufs42CAC8[2];
 void   sub_0019B9E0(void);
 void   sub_0005C510(void);
 int    sub_000E3370(void);
-int    sub_000E0770(void);
-void   sub_000E51A0(int a);
+int sub_000E51A0(void *a);
 int    sub_000D9A70(int bit);
 void   sub_00048A60(void);
 void   sub_00048110(int a);
 void   sub_00048370(void);
 void   sub_000DF970(void);
 void   sub_0019B9F0(void);
-void   sub_00053880(void *p);
-void   sub_0019BE50(int a);
+void *sub_0019BE50(void *a);
 void   sub_001A1090(void *g, int a);
 void   sub_001A10C0(void *g, int a);
-void   sub_0005EB10(int a, int b);
-void   sub_001A1130(int a);
 int    sub_00079460(void);
 void   sub_000580D0(void);
 void   sub_001A0D70(void);
 void   sub_00058190(void);
 uint32_t *sub_0019C800(uint32_t *cmd);                       /* regargs: p1=EAX, result EAX */
-uint32_t *sub_00079480(uint32_t *cmd);
 void   sub_001B96D0(void);
-int    sub_000AD090(int a, ...);
 void   sub_001A8A70(int a);
-void   sub_001A13E0(void);
-void   sub_001A1280(void);
-void   sub_001A1320(void);
+void   sub_001A13E0(void *);
+void   sub_001A1280(void *);
+void   sub_001A1320(void *);
 /* ------------------------------------------------------------ D3D resource release (0x001A3F60) */
 extern void   *r4c_g40AD70, *r4c_g40AD74;
 extern uint8_t r4c_g40AD78[0x18], r4c_g40AD90[0x10];
-extern void   *r4c_g40AE10, *r4c_g40AE14;
+extern int32_t r4c_g40AE10, r4c_g40AE14;
 void OOG_STDCALL sub_001D3210(void *a, void *b);
 void OOG_STDCALL sub_001D3850(void *a);
-void OOG_STDCALL sub_001D3D80(void *a, void *b, void *c);
-void OOG_STDCALL sub_001D5F50(void *a);
 #endif

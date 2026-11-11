@@ -38,10 +38,10 @@ int r6f_TaskBlendKeys(R6fTask *t)
         wb = (R6fKeyWork *)first->work;
         second = first;
     }
-    sub_0007F610(o->ch30, wa->mode, wa->i14, wb->i14);
-    sub_0007F610(o->ch48, wa->mode, wa->i18, wb->i18);
-    sub_0007F610(o->ch60, wa->mode, wa->i1C, wb->i1C);
-    sub_0007F610(o->ch78, wa->mode, wa->i20, wb->i20);
+    sub_0007F610(o->ch30, wa->mode, wa->f14, wb->f14);
+    sub_0007F610(o->ch48, wa->mode, wa->f18, wb->f18);
+    sub_0007F610(o->ch60, wa->mode, wa->f1C, wb->f1C);
+    sub_0007F610(o->ch78, wa->mode, wa->f20, wb->f20);
     o->i28 = ((R6fKeyWork *)first->work)->i00;
     o->i2C = ((R6fKeyWork *)second->work)->i00;
     if (wa->i24)
@@ -92,7 +92,7 @@ int r6f_TaskMatHandler(R6fTask *t, void *ref)
     sub_00053740();
     sub_000535F0(-1, ((R6fTaskMat *)t)->i2C, ((R6fTaskMat *)t)->i30);
     n = sub_00089610(ref);
-    sub_0008E340((uint8_t)t->workId, ref, (void *)(intptr_t)((R6eAnimRef *)t->p28)->i5C, n);
+    sub_0008E340((uint8_t)t->workId, ref, ((R6eAnimRef *)t->p28)->p5C, n);
     return 0;
 }
 

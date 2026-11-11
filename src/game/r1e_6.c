@@ -40,7 +40,7 @@ int r1e_MovieRun(void)
 
 /* 0x0004FA70: start movie id in mode 2 unless one is running (-1) or the
    movie is marked unplayable. */
-int r1e_MovieStartA(int id, int arg)
+int r1e_MovieStartA(int id, void *arg)
 {
     if (r1e_mstate3E0DB4 != 0)
         return -1;
@@ -58,7 +58,7 @@ int r1e_MovieStartA(int id, int arg)
 }
 
 /* 0x0004FAE0: as 0x0004FA70 in mode 4. */
-int r1e_MovieStartB(int id, int arg)
+int r1e_MovieStartB(int id, void *arg)
 {
     if (r1e_mstate3E0DB4 != 0)
         return -1;

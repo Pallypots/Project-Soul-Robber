@@ -44,7 +44,7 @@ void a9b_ReleaseSlots(void)
 void a9b_WorkTick(void *ctx, a9b_Actor *a)
 {
     a9b_Work *w = a->work;
-    sub_0001EEC0(ctx, w->f18);
+    sub_0001EEC0(ctx, A9B_WF18(w));
     w->fC += a50_frameSeconds;
 }
 

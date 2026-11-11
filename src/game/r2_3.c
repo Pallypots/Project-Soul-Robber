@@ -67,7 +67,7 @@ int r2_GetHitKind(R2Body *obj, int *out)
 
 /* 0x0011B110: forward (p, b, c) to 0x1130F0 and 0x119FF0 for kind-2 records of
    sub-kind 3 or 4.  regargs: p=ESI b=EBX c=EDI */
-void r2_RecNotify(R2Rec *p, int b, int c)
+void r2_RecNotify(R2Rec *p, void *b, int c)
 {
     if (p && p->kind04 == 2 && (p->sub08 == 3 || p->sub08 == 4)) {
         sub_001130F0(p, b, c);
@@ -77,7 +77,7 @@ void r2_RecNotify(R2Rec *p, int b, int c)
 
 /* 0x0011B140: map kind 3 -> 0x0EDBE0(2, 4) and kind 4 -> 0x0EDBE0(2, 3), else 0.
    regargs: kind=EAX */
-int r2_SelectKind(int kind)
+void *r2_SelectKind(int kind)
 {
     switch (kind) {
     case 3:

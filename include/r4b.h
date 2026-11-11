@@ -1,6 +1,7 @@
 #ifndef R4B_H
 #define R4B_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area r4b: remaining game functions in 0x00190000..0x001BC6D0 (second pass).
    All names inferred. Register mappings are in the comments and in
    config/function_states_r4b.csv. */
@@ -9,9 +10,9 @@
 typedef struct R4bHook {      /* hook list entry walked by 0x001B24E0 */
     struct R4bHook *next;     /* +0x00 */
     uint32_t unk04;
-    void (*fn)(int arg, void *node, struct R4bHook *h); /* +0x08 */
+    void (*fn)(void *dl, void *node, struct R4bHook *h); /* +0x08 */
 } R4bHook;
-typedef void (*R4bNodeFn)(int arg, void *node);
+typedef void (*R4bNodeFn)(void *dl, void *node);   /* dl: display-list pointer passed through 0x001B24E0 */
 
 typedef struct R4bPart {      /* 0x180-byte part record */
     uint8_t  unk000[0x40];
@@ -44,8 +45,8 @@ typedef struct R4bNode {
     R4bHook *hooksA8;         /* +0xA8 */
     R4bHook *hooksAC;         /* +0xAC */
     int32_t  iB0;             /* +0xB0 */
-    int32_t  texB4;           /* +0xB4 */
-    int32_t  selB8;           /* +0xB8 */
+    void    *texB4;           /* +0xB4 */
+    void    *selB8;           /* +0xB8 */
     void    *pBC;             /* +0xBC */
     int32_t  count;           /* +0xC0 parts */
     R4bPart *parts;           /* +0xC4 */
@@ -70,7 +71,8 @@ typedef struct R4bSkinRef { uint8_t unk00[0xB4]; struct { uint8_t unk00[0xC4]; i
 
 extern R4bNode *r4_g412F80[0x33]; /* 0x00412F80 */
 extern R4bNode *r4_g413060[0x33]; /* 0x00413060 */
-extern int32_t r4_g40F208, r4_g40F324;
+extern void   *r4_g40F324;
+extern void *r4_g40F208;
 extern int32_t r4b_g40F330, r4b_g40F388;
 typedef struct R4bCam R4bCam;
 extern R4bCam *r4b_g40F334;    /* 0x0040F334 current camera */
@@ -80,21 +82,14 @@ extern R4bNodeFn *r4b_g378040[18];
 extern float   r4b_g40F20C[4];
 
 void sub_001B05E0(void *a, int b);
-void sub_001AEF10(void *s, int n);
-void sub_001AEED0(void *s, int n);
 void sub_001B0E20(void *bone, float t);
 void sub_001B1200(R4bNode *n, R4bPart *base, int idx);
 void sub_001B25B0(void *n);
-void sub_001ADA40(void *node, const float *m);
-void sub_001AD940(float *m);
-void sub_001AD7C0(void *dst, void *a, void *b);
 void r4_MatCopyRotation(float *d, const float *s);
-uint32_t *r4_Set40F324(uint32_t *cmd, int b);      /* 0x001B2A10, returns cmd */
-uint32_t *r4_Select40F208(uint32_t *cmd, int b);   /* 0x001B26A0, returns cmd */
-uint32_t *sub_001B9CA0(uint32_t *cmd, int tex);
+uint32_t *r4_Set40F324(uint32_t *cmd, void *b);      /* 0x001B2A10, returns cmd */
+uint32_t *r4_Select40F208(uint32_t *cmd, void *b);   /* 0x001B26A0, returns cmd */
 void sub_001A69C0(int a, int b);
 void sub_001A32F0(void *n, void *p);
-void sub_001ADEE0(void *m, float *a, float *b, float *c);
 void sub_001ADE10(float *m, const float *a, const float *b, const float *c, const float *d);
 
 
@@ -142,14 +137,13 @@ typedef struct R4bMesh {
     struct { uint8_t unk00[0x0C]; int32_t root0C; } **skelBC; /* +0xBC */
     uint32_t     count;       /* +0xC0 */
     R4bMeshItem *items;       /* +0xC4 */
-    int32_t      iC8;         /* +0xC8 */
+    void        *iC8;         /* +0xC8 */
     float        vCC[4];      /* +0xCC */
     uint8_t      unkDC[0xE0 - 0xDC];
     int32_t      iE0, iE4;    /* +0xE0 */
 } R4bMesh;
 typedef struct R4bCmdCtx { uint32_t *cur; uint32_t *start; } R4bCmdCtx;
 extern int32_t r4b_g40F330, r4b_g40F388;
-void sub_000F5D40(float *d, const float *s);
 void r4b_MeshCopyI94(R4bMesh *m);  /* 0x001B31D0 */
 
 /* ------------------------------------------------------------ emitter sets with 0x12C-byte items (0x001B6260..0x001B6B6B) */
@@ -246,7 +240,7 @@ typedef struct R4bNodeCItem { /* 0x110 bytes */
     uint8_t unk000[0x94];
     int32_t i94;              /* +0x94 */
     uint8_t unk098[0xD0 - 0x98];
-    int32_t iD0;              /* +0xD0 */
+    const float *iD0;         /* +0xD0 light (float[4]) copied from the node's +0xB8 */
     uint8_t unkD4[0xD8 - 0xD4];
     float   vD8[4];           /* +0xD8 */
     int32_t iE8, iEC;         /* +0xE8 */
@@ -258,7 +252,9 @@ typedef struct R4bNodeC {
     uint8_t unk90[0x94 - 0x90];
     int32_t i94;              /* +0x94 */
     uint8_t unk98[0xB0 - 0x98];
-    int32_t iB0, iB4, iB8, iBC; /* +0xB0 */
+    int32_t iB0, iB4;         /* +0xB0 */
+    const float *iB8;         /* +0xB8 light (float[4]) set by 0x001B82E0 */
+    int32_t iBC;              /* +0xBC */
     int32_t count;            /* +0xC0 */
     R4bNodeCItem *items;      /* +0xC4 */
     int32_t iC8;              /* +0xC8 */
@@ -337,7 +333,7 @@ void     sub_001BB710(int a, int b);
 void     sub_001A6820(R4bTexEnt *e);
 R4bTexEnt *r4b_TexEntGet(int idx); /* 0x001B9650 */
 
-int  sub_001BA6E0(int group, int x);
+int  sub_001BA6E0(int group, void *x);   /* x deref'd ([ebx+0x20]) */
 
 /* ------------------------------------------------------------ type-17 nodes (0x001BA820..0x001BA982) */
 typedef struct R4bPartRec { uint8_t unk000[0x3C0]; R4bPart *part; } R4bPartRec; /* 0x3C4 bytes */
@@ -410,8 +406,8 @@ typedef struct R4bNode6 {
     uint8_t    unkB8[0xC0 - 0xB8];
     R4bModel6 *modelC0;       /* +0xC0 */
     void      *itemsC4;       /* +0xC4 */
-    int32_t    texC8;         /* +0xC8 */
-    int32_t    selCC;         /* +0xCC */
+    void      *texC8;         /* +0xC8 */
+    void      *selCC;         /* +0xCC */
     int32_t    texD0;         /* +0xD0 */
     uint8_t    unkD4[0xF8 - 0xD4];
     int32_t    iF8, iFC;      /* +0xF8 */
@@ -439,10 +435,7 @@ typedef struct R4bVoiceSet {
     R4bVoiceHnd  hnd[2][4];   /* +0x58 */
 } R4bVoiceSet;
 void *sub_001C8864(uint32_t n);
-int  OOG_STDCALL sub_002039CA(int a, int b, int c, int d, int e, int f, void *g, int h, int i);
-void *OOG_STDCALL sub_001BD517(int size, int max, int align, int prot);
 void OOG_STDCALL sub_001D6030(void *res, void *mem);
-void OOG_STDCALL sub_001D6210(void *res, int a, int32_t *out, int b, int c);
 void r4b_VoiceSetFree(int unused, R4bVoiceSet *s);  /* 0x001BC060 */
 int  r4b_VoiceAlloc(int a, int b, int fmt, void **res, void **mem, int32_t *data, int32_t *size); /* 0x001BC130 */
 void OOG_STDCALL sub_001D3AB0(int stage, void *rt);
@@ -468,7 +461,6 @@ void *OOG_STDCALL sub_001D3A80(int a);
 void sub_001BC6C0(void);
 void sub_001BC320(int a, R4bVoiceSet *s, int w, int h, int x, int y, float sx, float sy, float alpha);
 void __fastcall sub_001D4350(int reg, int v);
-void OOG_STDCALL sub_001D5F50(void *p);
 
 /* ------------------------------------------------------------ file slots (0x001A8330..0x001A8584) */
 typedef struct R4bOverlapped { uint32_t status; uint32_t done; uint32_t pos; uint32_t posHigh; void *event; } R4bOverlapped; /* OVERLAPPED */

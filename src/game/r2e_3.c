@@ -372,7 +372,7 @@ void r2e_RandEvent(R2eActor *a, R2eActor *o)
             k = 1;
         else
             k = 0x11;
-        sub_0011F2B0(a, o, k);
+        sub_0011F2B0(a, k, o);
     }
 }
 

@@ -24,10 +24,11 @@ void r1e_ShakeStep(R1eMover *o)
 /* 0x0001E7D0: walk a part list; store the head part's value in *first and
    the largest value of the other parts in *rest. Parts whose object is of
    kind 1 or 9 take that object's value, others keep the previous one. */
-void r1e_PartValues(int value, int *first, int *rest, R1ePart *head)
+void r1e_PartValues(int *first, int *rest, R1ePart *head)
 {
     R1ePart *p;
     R1ePartObj *o;
+    int value;
     if (first == 0)
         first = &value;
     if (rest == 0)

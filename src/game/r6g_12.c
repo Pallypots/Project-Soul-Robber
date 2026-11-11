@@ -9,7 +9,7 @@
     end = sub_00081A20(o->box[b], buf);                         \
     sub_000AD090();                                             \
     if (end)                                                    \
-        sub_00053890(buf, end - buf);                           \
+        sub_00053890(buf, (int)(end - buf));                    \
     else                                                        \
         sub_00053880(buf)
 

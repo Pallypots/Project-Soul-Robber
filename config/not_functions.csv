@@ -210,3 +210,5 @@ va,reason
 0x000BFF96,inside 0xBFDE0 (within its inventory range); not 16-aligned
 0x000C3CEB,inside 0xC3730 (within its inventory range); not 16-aligned
 0x00020000,inside 0x1FE70 (753 bytes; ends 0x20161); no prologue, uses ESI/EDI/EBP before setting them
+0x000149B0,interior tail-jump alias inside 0x14940 (mid stack frame; pushes do not balance)
+0x00040AC0,interior label of 0x40AB0 (second time-rank test)

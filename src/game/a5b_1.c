@@ -19,15 +19,15 @@ void a5b_CacheRelease(int32_t *entry)
 }
 
 /* 0x00053880: forward to the heap routine at 0x00047640. */
-void a5b_HeapOp47640(int heap)
+void a5b_HeapOp47640(void *p)
 {
-    sub_00047640(heap);
+    sub_00047640(p);
 }
 
 /* 0x00053890: shrink a heap to `size` bytes. */
-void a5b_HeapShrink(int heap, int size)
+void *a5b_HeapShrink(void *p, int size)
 {
-    sub_00047760(heap, size);
+    return sub_00047760(p, size);
 }
 
 /* 0x00053A40: create the main game heap and reset the slot heaps. */
@@ -50,7 +50,7 @@ void a5b_InitSlotHeaps(void)
 }
 
 /* 0x00053AB0: allocate from the slot on top of the heap stack. */
-void *a5b_AllocCur(int size, int a, int b)
+void *a5b_AllocCur(int size, const void *a, int b)
 {
     int slot = a50_heapStack[a50_heapDepth];
     if (slot != 10) {
@@ -62,7 +62,7 @@ void *a5b_AllocCur(int size, int a, int b)
 }
 
 /* 0x00053B10: allocate from the high end of the current slot heap. */
-void *a5b_AllocCurHigh(int size, int a, int b)
+void *a5b_AllocCurHigh(int size, const void *a, int b)
 {
     int slot = a50_heapStack[a50_heapDepth];
     if (slot == 10)
@@ -73,7 +73,7 @@ void *a5b_AllocCurHigh(int size, int a, int b)
 }
 
 /* 0x00053B70: heap routine 0x00047560 on the current slot heap. */
-void *a5b_CurHeapOp47560(int a, int b)
+void *a5b_CurHeapOp47560(const void *a, int b)
 {
     int slot = a50_heapStack[a50_heapDepth];
     if (slot == 10)

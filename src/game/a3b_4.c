@@ -16,10 +16,10 @@ int a3b_CbApplyIfOwner(A3bObj *o, int owner)
 }
 
 /* 0x00036750: forward with the field at +0x130. */
-void a3b_Fwd130(char *p, int a) { sub_00035DD0(p, *(int32_t *)(p + 0x130), a, 0); }
+void *a3b_Fwd130(char *p, int a) { return sub_00035DD0(p, *(void **)(p + 0x130), a, 0); }
 
 /* 0x00036770: forward with mode 4. */
-void a3b_FwdMode4(void *p, int a, int b) { sub_00035DD0(p, a, b, 4); }
+void a3b_FwdMode4(void *p, void *a, int b) { sub_00035DD0(p, a, b, 4); }
 
 /* 0x00036790: forward the range fields. */
 void a3b_RangeFwdA(A3bRange *r) { sub_00035FD0(r, r->f04, r->f08); }
@@ -55,10 +55,10 @@ void a3b_SetF3DA0B0(float v)
 float a3b_GetF3DA0B0(void) { return a3b_f3DA0B0; }
 
 /* 0x00037550: forward with two zero arguments. */
-void a3b_Fwd373A0(int a, int b) { sub_000373A0(a, 0, 0, b); }
+void *a3b_Fwd373A0(const void *a, void *buf) { return sub_000373A0(a, 0, 0, buf); }
 
 /* 0x00037570: forward with zero arguments. */
-void a3b_Fwd373A0Z(int a) { sub_000373A0(a, 0, 0, 0); }
+void *a3b_Fwd373A0Z(const void *a, int align) { return sub_000373A0(a, 0, 0, 0); }
 
 /* 0x00037780: address of the object at 0x0042CB20. */
 void *a3b_GetObj42CB20(void) { return a3b_obj42CB20; }

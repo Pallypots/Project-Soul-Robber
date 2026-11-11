@@ -316,11 +316,11 @@ void r3c_Clear18E7C0(void *o)
 /* 0x0018F650: is the current object's component 7 in mode 1 or 2? */
 int r3c_Mode18F650(void)
 {
-    R3cObj *o = sub_00100110()->p1C4;
+    R3cObj *o = ((R3cObj *)sub_00100110())->p1C4;
     int m;
 
     if (o != 0 && (o->flags0C & 1)) {
-        m = sub_0001D960(o, 7)->i60;
+        m = ((R3cObj *)sub_0001D960(o, 7))->i60;
         if (m == 1 || m == 2)
             return 1;
     }
@@ -561,7 +561,7 @@ void r3c_Reset18AB00(R3cObj *o)
 /* 0x0018B660: aim component 7 of o at target x from point v with speed -k. */
 void r3c_Aim18B660(void *o, R3cObj *x, const float *v, float k)
 {
-    R3cBlk74 *b = sub_0001D960(o, 7)->p74;
+    R3cBlk74 *b = ((R3cObj *)sub_0001D960(o, 7))->p74;
 
     b->obj04 = x;
     b->i08 = x->i130;

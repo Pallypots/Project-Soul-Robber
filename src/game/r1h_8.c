@@ -8,7 +8,7 @@
    (10 while button 2 is held), inserts or deletes keys and closes the menu
    on button 0x40; message 2 draws the title, one row per key and the end
    row. */
-int r1h_SeqEditProc(int ctx, R1hMenu *m, int msg)
+void *r1h_SeqEditProc(void *ctx, R1hMenu *m, int msg)
 {
     R1hSeEnt *keys = *sub_0005EBA0(r1h_seq3E6094);
     R1hSeEnt *k;
@@ -95,7 +95,7 @@ int r1h_SeqEditProc(int ctx, R1hMenu *m, int msg)
    pattern r1h_seq3E6094, whose level is only on or off: buttons 0x2000 and
    0x8000 set it to 1 and 0. Message 0 clears r1h_g3E6098 instead of
    r1h_g3E6090, and keys are inserted and deleted in list 1. */
-int r1h_SeqEdit2Proc(int ctx, R1hMenu *m, int msg)
+void *r1h_SeqEdit2Proc(void *ctx, R1hMenu *m, int msg)
 {
     R1hSeEnt *keys = sub_0005EBA0(r1h_seq3E6094)[1];
     R1hSeEnt *k;

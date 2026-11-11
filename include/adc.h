@@ -4,6 +4,7 @@
 #ifndef ADC_H
 #define ADC_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "ad0.h"
 
 /* Little-endian unaligned 32-bit float operand. */
@@ -34,11 +35,10 @@ int  af0_GetVar3EDCF8(void);
 void af0_SetVar3EDCF8(int v);
 void af0_SetVar3EDCFC(int v);
 int  af0_GetVar3EDCFC(void);
-void sub_00036F40(int a, int b, int c, float d);
 void sub_0002C790(void);
 void sub_000A86A0(void);
 int  sub_0002CC20(void);
-void sub_000DE8E0(int a);
+int sub_000DE8E0(int a);
 int  sub_00037FE0(void);
 void sub_0019C5E0(int a);
 void sub_0019C5F0(uint32_t a, uint32_t b, uint32_t c);
@@ -51,10 +51,8 @@ void sub_000AA490(int a);
 void sub_00048160(int a);
 void sub_00048200(int a);
 void sub_0005CA80(void);
-void sub_0005C430(int a);
-void a5b_Swap2DD4D8(int a);
+int a5b_Swap2DD4D8(int a);
 void sub_00036FD0(float a);
-void sub_0005EB10(int a, int b);
 void sub_00049AA0(int a);
 void sub_0019B9E0(void);
 void sub_0019B9F0(void);
@@ -98,8 +96,8 @@ void sub_000252A0(int a, int b);
 void sub_000253D0(int a, int b);
 void sub_00025C10(int a, int b);
 void sub_00025D50(int a, int b);
-void sub_00025F50(int a, int b);
-void sub_00025F90(int a, int b);
+void sub_00025F50(int a, int b);   /* callers push 2 args; callee reads only a */
+void sub_00025F90(int a, int b);   /* callers push 2 args; callee reads only a */
 void aab_Sound260C0(int a, int b, int c);
 int a12_Level_37C544(void);
 int a12_Level_37D434(void);
@@ -130,22 +128,19 @@ typedef struct AdcThread {
 extern int32_t   adc_threadCount;     /* 0x003EF030 */
 extern AdcThread adc_threads[64];     /* 0x003EF034 */
 extern int32_t  *adc_scriptTable;     /* 0x00417864, self-relative offsets, -1 ends */
-extern int32_t   adc_3EE6B0;          /* 0x003EE6B0 */
+extern void     *adc_3EE6B0;          /* 0x003EE6B0 */
 extern int32_t   af0_var3EE6A8, af0_var3F0734, af0_var3F0738, af0_var3F073C, af0_var3EDD1C;
 
 void adc_ClearChannels(void);
 void a60_PostCommand(int a, int b);
 void sub_000325A0(int a);
 void *adc_StatD0030(PlayerStats *s, int v);   /* PlayerObj_D0030 */
-void sub_00048AF0(int a);
 int  sub_000E03D0(void);
-void a5b_SndPause(void);
+int a5b_SndPause(void);
 void a5b_SndRelease(void);
 void sub_000D7590(void);
 void sub_0003FC10(void *q);
-int  sub_0003FA70(int a, int b, int c, float d, float e);
-void sub_0003FCB0(void *q, int item);
 void sub_0003FC40(void *q);
-void a60_FlagBit8(int o, int v);
-void a60_FlagBit1(int o, int v);
+void a60_FlagBit8(void *o, int v);
+void a60_FlagBit1(void *o, int v);
 #endif

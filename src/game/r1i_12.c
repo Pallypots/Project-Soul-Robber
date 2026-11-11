@@ -21,7 +21,7 @@ void r1i_BodyInit(R1iBodyInit *b)
     b->fC0 = 0.0f;
     b->scale = 1.0f;
     b->iD0 = 0;
-    b->onHit = sub_00102FA0;
+    b->onHit = (R1iHitFn)sub_00102FA0;
     b->ofs[0] = 0.0f;
     b->ofs[1] = 0.0f;
     b->ofs[2] = 0.0f;

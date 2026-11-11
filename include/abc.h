@@ -1,6 +1,7 @@
 #ifndef ABC_H
 #define ABC_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* Area abc (0x000B0000..0x000C0000), third pass. All names inferred. */
 
 /* State of an event message handler. */
@@ -46,8 +47,7 @@ typedef struct AbcPartSet {
     AbcPartRec *recs;    /* +0x08 */
 } AbcPartSet;
 extern AbcPartSet *abc_partSet;   /* 0x00420E9C */
-AbcPartRec *sub_0001D2D0(void *model, int id);
-int   sub_0001D960(AbcPartRec *r, int a);
+AbcPartRec *sub_0001D2D0(void *model, const void *id);
 
 /* Ring queue of ints (0x000BC5F0..0x000BC6B0). */
 typedef struct AbcQueue {
@@ -136,22 +136,16 @@ void  sub_000193C0(void);
 float sub_00082A90(float y, float x);
 void  sub_000D24A0(AbcPlayer *s);
 void  sub_000BCA60(int a);
-void  sub_001AD9B0(float *dst, const float *a, const float *b);
 void  abc_Vec3Copy(float *dst, const float *src);   /* 0x000F5D40 */
 void  sub_00053710(int heap);
 void  sub_00053740(void);
-int   sub_0004F680(int id);
-int   sub_00053820(int heap, int size, int a, int b);
-void  sub_000512D0(int id, int mem);
 void  sub_0004F700(int id);
 void  sub_0004F720(void);
-void  sub_00022630(void *o, const char *path);
 void  sub_001BA8F0(void *o);
 void  sub_000D0530(AbcPlayer *s, int a, int b);
 void  sub_000D51E0(void *o);
 void  sub_000D2F60(AbcPlayer *s);
 void  sub_000D2D90(AbcPlayer *s);
-void  sub_000832D0(void *anim, int id);
 void  sub_000D9A30(void *o, float a);
 void  sub_000BC770(void);
 void  abc_SetState(AbcPlayer *p, int state);   /* 0x000BD4D0 */
@@ -175,7 +169,6 @@ void  sub_000A2D40(int slot, uint32_t f);
 void  sub_000A3620(int slot, int a);
 void  sub_000A2E10(int slot, int a);
 AbcSlot *sub_000A4290(int slot);
-void  sub_00033A70(void *h);
 void  sub_00048250(int id);
 void  sub_000B1EF0(void);
 void  sub_000A2D70(int slot, int a);
@@ -184,6 +177,6 @@ void  sub_000A3480(int slot, int a, int b);
 void  sub_000D9B30(int ev);
 AbcRec9DA0 *sub_000A9DA0(int i);
 int   sub_000A4370(int slot);
-void  abc_PlayerD0030(AbcPlayer *p, int a);   /* 0x000D0030 */
+void *abc_PlayerD0030(AbcPlayer *p, int a);   /* 0x000D0030 */
 
 #endif

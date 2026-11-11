@@ -48,19 +48,19 @@ void a3c_ReleasePools(void)
 }
 
 /* 0x00034DD0: apply 0x000337A0 to every node. */
-void a3c_ListApplyA(A3cPNode *n, int a, int b, int c)
+void a3c_ListApplyA(A3cPNode *n, void *a, void *b, void *c)
 {
     for (; n; n = n->next) sub_000337A0(n, a, b, c);
 }
 
 /* 0x00034E00: apply 0x00033800 to every node. */
-void a3c_ListApplyB(A3cPNode *n, int a, int b, int c)
+void a3c_ListApplyB(A3cPNode *n, void *a, void *b, void *c)
 {
     for (; n; n = n->next) sub_00033800(n, a, b, c);
 }
 
 /* 0x00034E60: forward to the +0xA5C block of every idle node. */
-void a3c_ListIdleForward(A3cPNode *n, int a)
+void a3c_ListIdleForward(A3cPNode *n, float a)
 {
     for (; n; n = n->next)
         if (n->busy == 0) sub_001B6A60((char *)n + 0xA5C, a);

@@ -77,7 +77,7 @@ void a1a_Enable_1A6E40(int on)
 int a1a_Get40AECC(void) { return a1a_g40AECC; }
 
 /* 0x001A73F0: fetch two 64-byte blocks and pass them on. */
-void a1a_Combine_1A73F0(int p)
+void a1a_Combine_1A73F0(void *p)
 {
     uint8_t b[0x40];
     uint8_t a[0x40];

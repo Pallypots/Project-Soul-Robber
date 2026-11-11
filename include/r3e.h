@@ -1,6 +1,7 @@
 #ifndef R3E_H
 #define R3E_H
 #include "oogie.h"
+#include "shared_decls.h"
 /* oogie.h declares sub_000F5D40 (vector copy) and sub_00036750. */
 
 /* Area r3e: more game functions in 0x00130000..0x00190000 (stack and register arguments).
@@ -23,9 +24,6 @@ void     r3_SetStateA(R3eObj *obj, R3eObj *act, int state);         /* 0x0013131
 void     r3_SetStateB(R3eObj *obj, R3eObj *act, int state);         /* 0x00135A70 regargs: obj=ESI act=EDI state=stack */
 int      sub_00145780(R3eObj *obj, float t);                        /* animation passed time t */
 void     sub_00113480(R3eObj *act, int ev);
-int      sub_000833E0(int anim);                                    /* animation finished */
-void     sub_00113090(R3eObj *obj, R3eObj *act, int anim);          /* play animation */
-void     sub_00113040(R3eObj *obj, R3eObj *act, int state);         /* set state */
 
 /* 16-byte condition records and their dispatchers (named in area r3b). */
 typedef struct R3eRec16 { int32_t i[4]; } R3eRec16;
@@ -63,14 +61,10 @@ void     sub_000C56B0(R3eObj *obj);
 void     r3_SetState16C820(R3eObj *a, R3eObj *m, int state);       /* 0x0016C820 regargs: a=EAX m=EDI state=stack */
 /* Game controller block returned by 0x000E0770 (only the touched fields). */
 typedef struct R3eGame { uint8_t unk000[0x324]; int32_t i324; uint8_t unk328[4]; int32_t i32C; } R3eGame;
-R3eGame *sub_000E0770(void);
 int      sub_000E3380(void);
-void     sub_0001EB80(R3eObj *obj);
 void     sub_0001E9B0(void *scene, R3eObj *obj, int a, int b, int c);
 extern void *r3_ctx42C8E4;                                          /* 0x0042C8E4 scene context */
-R3eObj  *sub_0001D960(R3eObj *obj, int kind);                       /* find linked component */
 void     sub_001453B0(R3eObj *obj, R3eObj *act);                    /* regargs: obj=ESI act=EDI */
-void     sub_001130F0(R3eObj *obj, R3eObj *act, int b);
 void     sub_00189DE0(void *fx, int on);
 
 #endif
@@ -109,7 +103,7 @@ typedef struct R3eObj {
     uint32_t unk024;
     void    *p28;            /* +0x028 node */
     uint32_t unk02C;
-    union { int32_t anim30; struct R3eAnim *pa30; }; /* +0x030 animation handle */
+    union { void *anim30; struct R3eAnim *pa30; }; /* +0x030 animation handle */
     uint8_t  unk034[0x4C - 0x34];
     union { uint32_t flags4C; int32_t i4C; }; /* +0x04C */
     union { int32_t state50; float f50; }; /* +0x050 state, or a value */
@@ -129,7 +123,7 @@ typedef struct R3eObj {
     uint8_t  unk110[0x128 - 0x110];
     uint32_t flags128;       /* +0x128 */
     uint8_t  unk12C[0x13C - 0x12C];
-    int32_t  i13C;           /* +0x13C */
+    void    *i13C;           /* +0x13C */
     uint8_t  unk140[0x270 - 0x140];
     float    f270, f274;     /* +0x270 maximum, +0x274 current (health) */
     union { R3eWork *work278; uint32_t flags278; }; /* +0x278 work block, or flags */
@@ -165,7 +159,6 @@ extern float r3e_frameUnits;                                        /* 0x0042C85
 extern float r3e_frameSeconds;                                      /* 0x0042C85C */
 
 /* ---- callees (stack arguments unless stated) */
-int      sub_001456E0(R3eObj *obj, R3eObj *act, int cond, int arg); /* run a state condition */
 void     sub_0001D4E0(R3eObj *obj);                                 /* free object */
 R3eNode *sub_00113400(R3eObj *act, int key);
 void     sub_00113A40(R3eObj *obj, R3eObj *act);
@@ -173,11 +166,9 @@ void     sub_001AD7E0(float *d, const float *s);                    /* normalize
 void     sub_001ADA60(float *d, const float *a, const float *b);    /* cross product */
 void     sub_001ADBA0(float *d, const float *s, float k);          /* d = s * k */
 void     sub_001AD9F0(float *d, const float *a, const float *b);    /* d = a - b */
-float    sub_001AD9D0(const float *a, const float *b);              /* dot product */
 float    sub_001A3F30(float x);                                     /* fabsf */
 int      sub_00113670(R3eObj *obj, R3eObj *act, int idx, int *out);
 int      sub_000D3BF0(PlayerStats *st, R3eObj *obj, int idx, int *h, float *dir);
-void     sub_000494D0(int id, const float *pos, int arg);
 void     sub_0012E5E0(int mode);                                    /* regargs: mode=ESI */
 void     sub_00113370(R3eObj *act, R3eNode *blk);
 int      sub_001C7EE1(void);                                        /* rand */
@@ -187,9 +178,6 @@ void     r3_SetStateA(R3eObj *obj, R3eObj *act, int state);         /* 0x0013131
 void     r3_SetStateB(R3eObj *obj, R3eObj *act, int state);         /* 0x00135A70 regargs: obj=ESI act=EDI state=stack */
 int      sub_00145780(R3eObj *obj, float t);                        /* animation passed time t */
 void     sub_00113480(R3eObj *act, int ev);
-int      sub_000833E0(int anim);                                    /* animation finished */
-void     sub_00113090(R3eObj *obj, R3eObj *act, int anim);          /* play animation */
-void     sub_00113040(R3eObj *obj, R3eObj *act, int state);         /* set state */
 
 /* 16-byte condition records and their dispatchers (named in area r3b). */
 typedef struct R3eRec16 { int32_t i[4]; } R3eRec16;
@@ -227,20 +215,13 @@ void     sub_000C56B0(R3eObj *obj);
 void     r3_SetState16C820(R3eObj *a, R3eObj *m, int state);       /* 0x0016C820 regargs: a=EAX m=EDI state=stack */
 /* Game controller block returned by 0x000E0770 (only the touched fields). */
 typedef struct R3eGame { uint8_t unk000[0x324]; int32_t i324; uint8_t unk328[4]; int32_t i32C; } R3eGame;
-R3eGame *sub_000E0770(void);
 int      sub_000E3380(void);
-void     sub_0001EB80(R3eObj *obj);
 void     sub_0001E9B0(void *scene, R3eObj *obj, int a, int b, int c);
 extern void *r3_ctx42C8E4;                                          /* 0x0042C8E4 scene context */
-R3eObj  *sub_0001D960(R3eObj *obj, int kind);                       /* find linked component */
 void     sub_001453B0(R3eObj *obj, R3eObj *act);                    /* regargs: obj=ESI act=EDI */
-void     sub_001130F0(R3eObj *obj, R3eObj *act, int b);
 void     sub_00189DE0(void *fx, int on);
 
-void     r3_FsmEnter172B50(int st, R3eObj *c, R3eObj *obj);         /* 0x00172B50 regargs: st=EAX c=ECX obj=stack */
-R3eNode *sub_00113430(R3eObj *act, int key);                        /* renew node */
-void     sub_00113CB0(void *blk, float v, int c);
-R3eObj  *sub_000E23F0(int a, int b);                                /* find actor */
+int      r3_FsmEnter172B50(int st, R3eObj *c, R3eObj *obj);         /* 0x00172B50 regargs: st=EAX c=ECX obj=stack; returns the handler result */
 R3eObj  *sub_000CB9B0(void);
 float    sub_000F7720(R3eObj *obj, const float *pos);               /* turn angle toward pos */
 void     sub_0017EF30(void);
@@ -258,8 +239,6 @@ extern R3eRec58 r3e_recs3FE0C0[3];
 int      sub_00147780(R3eObj *act, R3eObj *obj, int k);            /* regargs: act=EAX obj, k=stack */
 int      r3e_InFrame145730(float t, unsigned int n);                /* 0x00145730 */
 void     sub_00155D10(R3eObj *act, int k);
-int      sub_00113190(R3eObj *obj, R3eObj *act, int k);
-void     sub_001671D0(R3eObj *a, R3eObj *b, int st);
 
 float    sub_00113200(R3eObj *obj, const float *pos);               /* turn angle toward pos */
 void     sub_00139CF0(void);
@@ -291,7 +270,5 @@ extern const uint8_t b3b_tbl31CE1C[];                               /* 0x0031CE1
 void     sub_001B2080(void *node);
 int      sub_0018E640(void *ref, R3eObj *obj);                      /* release a reference */
 void     sub_00048250(int h);
-void     sub_0005BE30(int h);
-void     sub_00033A70(void *p);
 
 #endif

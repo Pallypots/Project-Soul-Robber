@@ -1,6 +1,7 @@
 #ifndef R1I_H
 #define R1I_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Area r1i: larger game functions 0x00012000..0x00060000 (ninth pass).
@@ -29,7 +30,6 @@ typedef struct R1iTex {
     uint8_t  u00[0x28];
     uint32_t reg[10];           /* +0x28 */
 } R1iTex;
-R1iTex *sub_001B9650(int handle);
 void    sub_001A69C0(uint32_t lo, uint32_t hi);   /* texture register flush */
 
 /* sprite packet template (0xA0 bytes, built by 0x00012010) */
@@ -158,15 +158,11 @@ typedef struct R1iTrkVal {
     uint32_t col;               /* +0x18 */
 } R1iTrkVal;
 extern R1iTrkVal r1i_trkVal42CE60;              /* 0x0042CE60 */
-extern int32_t   a1b_val37B558;                 /* 0x0037B558 */
+extern void     *a1b_val37B558;                 /* 0x0037B558 */
 void r1i_TrackLerp(R1iTrack *t);                /* 0x00017F70 regargs t=EAX */
 void r1i_TrackStepA(R1iTrack *t);               /* 0x000181B0 regargs t=EDI */
 void r1i_TrackStepC(R1iTrack *t);               /* 0x00018340 regargs t=EDI */
-void sub_00014D00(R1iSprite *s, void *data, int tex);
-void sub_00014E30(R1iSprite *s, int a, int b, int c, int d);
-int  sub_00017AE0(int v, R1iSprite *s);
 uint32_t *r1i_SprDraw17C00(uint32_t *p, R1iSprite *s);   /* 0x00017C00 */
-int  sub_00017C00(int v, R1iSprite *s);
 
 /* ------------------------------------------------------------ key curves */
 /* one curve: slice pointers (times, values, spline terms) and storage */
@@ -202,12 +198,8 @@ int  r1i_CurveSetBuild(R1iCurveSet *s, const R1iCurveSrc *src);   /* 0x00019030 
 
 /* ------------------------------------------------------------ aim limit */
 typedef float R1iMat[4][4];
-void  sub_000385D0(R1iMat dst, const R1iMat src);   /* orthonormal copy */
-void  sub_000F5D40(float *dst, const float *src);   /* vector copy */
 void  sub_001AD9A0(R1iMat dst, const R1iMat src);   /* inverse */
-void  sub_001AD9B0(float *dst, const R1iMat m, const float *v);
 void  sub_001AD7E0(float *d, const float *s);       /* normalise */
-float sub_001AD9D0(const float *a, const float *b); /* dot */
 float sub_001A3F20(float x);                        /* acos (Hypothesis) */
 void  sub_001ADC60(float *d, const float *a, const float *b, float t);   /* lerp */
 void  sub_001ADA60(float *d, const float *a, const float *b);            /* cross */
@@ -237,7 +229,6 @@ typedef struct R1iAim {
 void r1i_AimLimit(R1iAim *o);                       /* 0x00018B70 regargs o=EAX */
 
 /* ------------------------------------------------------------ camera */
-void sub_001AD940(R1iMat m);                        /* identity */
 void sub_00062050(R1iCurve *c, void *buf, int n);   /* carve the slices */
 typedef struct R1iCamView {
     R1iMat   m;                 /* +0x00 */
@@ -283,10 +274,7 @@ extern int32_t a1b_i37C050;                     /* 0x0037C050 */
 void r1i_CamBlend(R1iCam *c, float t);          /* 0x0001A800 */
 
 /* ------------------------------------------------------------ bounding boxes */
-void  sub_001ADBF0(R1iMat d, const R1iMat m, const float *v);  /* scale */
-void  sub_001AD7C0(R1iMat d, const R1iMat a, const R1iMat b);  /* multiply */
-void  sub_001ADB60(float *d, const float *s, float k);         /* d = s * k */
-float sub_00082D70(const float *v);                            /* length */
+void  sub_001ADBF0(void *d, void *m, const float *v);  /* scale */
 typedef struct R1iBoxObj {
     uint8_t  u00[0x0C];
     uint32_t flags;             /* +0x0C 0x100: use the matrix at +0x20 */
@@ -363,13 +351,11 @@ typedef struct R1iBodyInit {
     int32_t  i124;              /* +0x124 */
     uint32_t flags128;          /* +0x128 */
 } R1iBodyInit;
-void sub_00102FA0(R1iBody *self, R1iBody *other, int pushed);  /* empty stub */
 void sub_00080D20(void *list);                  /* list reset */
 void r1i_BodyInit(R1iBodyInit *b);              /* 0x0001C8A0 */
 
 void *sub_00080970(void);                       /* collision pool */
 void  sub_000822D0(void *ctx, void *pool, const float *pos, float r, void *list, void *out);
-uint8_t *sub_00080CF0(void *pool, const float *pos);  /* nearest hit (point at +0x40) or 0 */
 int r1i_BodyHitWorld(R1iBody *b, float *pos, void **list);   /* 0x0001C630 */
 
 /* ------------------------------------------------------------ char units */
@@ -438,8 +424,6 @@ typedef struct R1iScene {
     uint8_t  u48[0x18];
     float    light[4];          /* +0x60 */
 } R1iScene;
-void *sub_000847F0(void *cams, int id);
-void  sub_001B2020(void *parent, void *n);
 void  sub_001B82E0(R1iMdlNode *n, const float *light);
 void  sub_001B3160(R1iMdlNode *n);
 void  r1i_UnitsAttach(R1iScene *s, R1iUnit *u, int shadowCam, int modelCam, int fxCam);  /* 0x0001E9B0 */
@@ -447,11 +431,7 @@ void  r1i_UnitsAttach(R1iScene *s, R1iUnit *u, int shadowCam, int modelCam, int 
 void sub_00074F10(R1iMdlNode *n);
 void sub_000754A0(R1iMdlNode *n);
 void sub_000751C0(R1iMdlNode *n);
-void sub_001B9FC0(int tex);                     /* free texture */
-void sub_00053880(void *p);                     /* free */
 void sub_000533B0(int a, int b);
-void sub_00033C20(void *p);
-void sub_0005BC50(void *p);
 void r1i_UnitsRelease(R1iUnit *head);           /* 0x0001E550 */
 
 /* ------------------------------------------------------------ screen wipe */
@@ -470,7 +450,7 @@ void      r1c_ReqPush(int value, int a, int b); /* 0x000389C0 */
 uint32_t *r1_PacketBuild(uint32_t *p);          /* 0x00038F10 */
 uint32_t *sub_00072180(uint32_t *p, int x, float y, int w, float h, int z,
                        int c0, int c1, int c2, int c3);
-void r1i_WipeDraw(uint32_t *p);                 /* 0x000227B0 */
+uint32_t *r1i_WipeDraw(uint32_t *p);            /* 0x000227B0 */
 
 /* ------------------------------------------------------------ HUD orbit */
 extern int16_t   r1i_hudX37DCF4, r1i_hudY37DCF6;   /* 0x0037DCF4 / 0x0037DCF6 */

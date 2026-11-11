@@ -77,11 +77,11 @@ AfcActor *afc_DispatchByType(AfcActor *o)
 {
     if (o != 0 && o->type != 3) {
         if (o->type == 4)
-            return sub_00100110(o);
+            return sub_00100110();
         if (o->type == 5)
-            return sub_000FBAF0(o);
+            return sub_000FBAF0();
     }
-    return sub_000FE3D0(o);
+    return sub_000FE3D0();
 }
 
 /* 0x000F62C0: set boss sub-state and clear +0xBC. */

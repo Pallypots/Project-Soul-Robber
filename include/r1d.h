@@ -1,6 +1,7 @@
 #ifndef R1D_H
 #define R1D_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Area r1d: game functions 0x00012000..0x00060000 (fourth pass). Names
@@ -21,7 +22,6 @@ typedef struct R1dTex {
     uint8_t  unk00[0x28];
     uint32_t reg[10];           /* +0x28 five 64-bit register values */
 } R1dTex;
-R1dTex *sub_001B9650(int handle);
 
 /* sprite packet template (0x00012010) */
 typedef struct R1dSprTpl {
@@ -107,8 +107,7 @@ typedef struct R1dPkt {
 extern int32_t r1b_dma37B390;
 extern int32_t r1b_pktIdx37B4A0;
 extern R1dPkt  r1b_pkts37B4AC[2];
-void      r1b_PktOp(void *pkt, ...);    /* 0x00102FA0 */
-uint32_t  sub_000AD090(void *p, ...);   /* returns 0 on this build */
+void      r1b_PktOp();    /* 0x00102FA0 */
 void      r1b_PktSubmit(void);          /* 0x00013AA0 */
 uint64_t *sub_000138F0(void);
 
@@ -137,19 +136,17 @@ typedef struct R1dTrack {
     R1dAnimBank *bank;          /* +0x3C */
 } R1dTrack;
 extern int32_t r1d_g37B554;
-void sub_00015150(char *elem, int a, R1dTrack *t);     /* regargs: elem=EAX */
-void sub_00015E10(char *elem, int a, R1dTrack *t);     /* regargs: elem=EAX */
-void sub_00016B80(char *elem, int a, R1dTrack *t);     /* regargs: elem=EAX */
-void sub_00017650(R1dTrack *t, char *elem, int a);     /* regargs: t=ESI elem=EDI */
+void sub_00015150(char *elem, void *a, R1dTrack *t);   /* regargs: elem=EAX */
+void sub_00015E10(char *elem, void *a, R1dTrack *t);   /* regargs: elem=EAX */
+void sub_00016B80(char *elem, void *a, R1dTrack *t);   /* regargs: elem=EAX */
+void sub_00017650(R1dTrack *t, char *elem, void *a);   /* regargs: t=ESI elem=EDI */
 
 /* menu text line */
 void a60_FlagsSet(void *t, int bits);
 void a60_FlagsClear(void *t, int bits);
-int  sub_0003FA70(int table, int id);
-void sub_0003FCB0(void *rec, int item, int a, int b, float c);
 extern uint8_t r1b_menu37B580[];
 extern uint8_t a1b_obj37B560[];
-extern int32_t a1b_slots37BEE8[];
+extern void   *a1b_slots37BEE8[];
 
 /* block copied by 0x000187E0 */
 typedef struct R1dBlk510 { uint32_t d[0x144]; } R1dBlk510;
@@ -165,15 +162,14 @@ typedef struct R1dSet {
     int32_t   d558;             /* +0x558 */
 } R1dSet;
 void sub_000195F0(R1dSet *s);
-void sub_000F5D40(void *dst, const void *src);
 
 void r1d_PktSend9(int a, int b, int c, int d, int e, int f, int g, int h, int i);
 int  r1d_RectSend(R1dRect *r);
-int  r1d_TrackApplyA(int a, R1dTrack *t);
-int  r1d_TrackApplyB(int a, R1dTrack *t);
-int  r1d_TrackApplyC(int a, R1dTrack *t);
-int  r1d_TrackApplyD(int a, R1dTrack *t);
-void r1d_MenuLine(int i, int id, int a, int b, float c);
+void *r1d_TrackApplyA(void *a, R1dTrack *t);
+void *r1d_TrackApplyB(void *a, R1dTrack *t);
+void *r1d_TrackApplyC(void *a, R1dTrack *t);
+void *r1d_TrackApplyD(void *a, R1dTrack *t);
+void r1d_MenuLine(int i, int id, int a, float b, float c);
 void r1d_SetCopy(R1dSet *src, R1dSet *dst);
 
 /* ------------------------------------------------------------ group 3 */
@@ -181,7 +177,6 @@ extern int32_t  a30_g41316C, a30_g413170;
 void sub_000D9AB0(int bit);
 int  sub_00049B70(void);
 void sub_0019E900(int a);
-void sub_00048AF0(int a);
 
 /* segment list filled by 0x0001B7B0 / 0x0001B840 */
 typedef struct R1dSeg { R1dVec4 v[5]; uint8_t unk50[0x10]; } R1dSeg;
@@ -202,9 +197,7 @@ typedef struct R1dResNode {
     uint8_t unk34[8];
     struct R1dResNode *next;    /* +0x3C */
 } R1dResNode;
-int32_t *sub_00083120(R1dRes *r, int key);
 int32_t *sub_00083140(R1dRes *r, int idx);
-void     sub_000832D0(R1dRes *r, int v);
 
 void r1d_ResetChapterFlags(void);
 void r1d_SegAddA(R1dVec4 *a, R1dVec4 *b, int d, float e, R1dVec4 *c, R1dSegList *l);
@@ -213,7 +206,6 @@ void r1d_ResChainSelect(R1dResNode *n, int key, int keep);
 
 /* ------------------------------------------------------------ group 4 */
 void r1c_ReqPush(int reg, int lo, int hi);  /* 0x000389C0 */
-int  sub_00038F10(int p);
 void sub_001A27D0(int mode);
 
 /* skinned model (bone records of 0x108 bytes for type 1, 0x180 for type 9) */
@@ -252,12 +244,11 @@ typedef struct R1dMTask {
     uint8_t u08[8];
     R1dMNode *node;             /* +0x10 */
 } R1dMTask;
-void sub_001ADA40(float *dst, const float *src);
 void sub_001B2150(R1dMTask *t);
 void r4_HookAppendAC(R1dModel *m, R1dMTask *t);     /* 0x001B21D0 */
 
-int  r1d_TexBasePkt2(int p);
-int  r1d_TexBasePkt3(int p);
+void *r1d_TexBasePkt2(void *p);
+void *r1d_TexBasePkt3(void *p);
 void r1d_BonesFollow(R1dModel *m, R1dMTask *t);
 void r1d_BonesLink(R1dMTask *t, R1dMNode *src, R1dMNode *dst);
 int  r1d_BonesSelect(R1dMNode *n, int which);
@@ -265,10 +256,8 @@ int  r1d_BonesSelect(R1dMNode *n, int which);
 /* ------------------------------------------------------------ group 5 */
 void     *a50_AllocTop(const char *name, int tag);     /* 0x00053BC0 */
 void      a5b_CurSlotEndTemp(void);                    /* 0x00053BE0 */
-void      sub_00053880(void *p);               /* free */
-uint32_t *sub_00037570(const char *name, int align);
-int       sub_00021B00(int a, const char *name, uint32_t *buf, void *h);
-int       sub_000201C0(int a, const char *name, uint32_t *buf, void *h);
+int       sub_00021B00(void *a, const char *name, uint32_t *buf, void *h);
+int       sub_000201C0(void *a, const char *name, uint32_t *buf, void *h);
 
 /* sequence state blocks (a fixed field holds flag bit 0) */
 typedef struct R1dSeqA {            /* 0x0037C4FC, template at 0x0037FB78 */
@@ -344,7 +333,7 @@ void sub_0002ABD0(void);
 void sub_00023B70(void);
 int  sub_00026910(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j);
 
-int  r1d_LoadPack(int a, const char *name);
+int  r1d_LoadPack(void *a, const char *name);
 void r1d_SeqEnable(int which, unsigned int on);
 void r1d_SeqInitAll(void);
 int  r1d_Fwd26910(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j);
@@ -355,9 +344,8 @@ void r1d_SeqDStep(void);
 typedef struct R1dAnimObj {
     uint8_t   u00[0x2C];
     R1dModel *model;            /* +0x2C */
-    int32_t   anim;             /* +0x30 */
+    void     *anim;             /* +0x30 */
 } R1dAnimObj;
-int sub_0003F9C0(int anim, const void *table);
 extern const uint8_t r1d_anims282AD8[], r1d_anims282C7C[], r1d_anims282E24[],
                      r1d_anims282F18[], r1d_anims283008[], r1d_anims2831F4[],
                      r1d_anims2833C0[];
@@ -369,15 +357,12 @@ extern char   *r1d_heap381A5C;                         /* 0x00381A5C */
 extern int32_t r1d_sel38182C;
 extern char    r1d_path381A70[];
 extern const char r1d_fmt2835E8[];
-void sub_001B9FC0(int h);
 void sub_0004F5D0(int tag);
 void sub_0004F700(int tag);
 void sub_0004F720(void);
 int  a6b_Printf2(char *dst, const char *fmt, ...);     /* 0x0007E0A0 */
 void sub_00053E20(const char *name, void *dst);
-int  sub_00053CA0(int a);
 void sub_000580D0(void);
-int  sub_00084C00(void *data, int a);
 
 /* state queue at 0x00381834 */
 extern int32_t r1b_queue381834[4];
@@ -398,9 +383,8 @@ typedef struct R1dPair { int32_t u00; int32_t a; int32_t b; } R1dPair;
 extern char *r1c_bank283698;                /* 0x00283698 */
 extern void *r1_g3DA080, *r1_g3DA084;
 void  r4_NodeDetach(void *node);            /* 0x001B2080 */
-void  sub_001B2020(void *list, void *node);
-char *a50_Alloc(int kind, int size, int a, int b);     /* 0x00053820 */
-void  r1_BankInit(void);                    /* 0x00033330 */
+char *a50_Alloc(int kind, int size, const void *file, int line); /* 0x00053820 */
+void  r1_BankInit(void *b);                 /* 0x00033330, regargs: b=EAX */
 
 int  r1d_AnimObjBind(R1dAnimObj *o, R1dModel *m);
 void r1d_ViewerRelease(void);
@@ -479,7 +463,7 @@ typedef struct R1dHostGrp {
 /* scene context (pointer at 0x0042C8E4) */
 typedef struct R1dActor {
     uint8_t      u000[0x44];
-    int32_t      d44;           /* +0x044 */
+    void        *d44;           /* +0x044 */
     uint8_t      u048[0x1A0];
     R1dHostGrp **hosts;         /* +0x1E8 */
 } R1dActor;
@@ -494,7 +478,6 @@ void      r4b_EmitSetSet11C(R1dEmitElem *e, int v); /* 0x001B6260 */
 void      r4_EmitClearFlag1(void *blk);         /* 0x001B6120 */
 R1dNodeEnt *r1c_PoolFind(void *cur, int stride, void *fn, void *ctx);   /* 0x00036B70 */
 void      a5b_RangeInit(R1dRange *r);           /* 0x0005A400 */
-void     *sub_000847F0(int a, int b);
 
 void     r1d_NodeFree(R1dNode *n);
 R1dNode *r1d_NodeFindId(int id, R1dNode *after);
@@ -528,7 +511,6 @@ typedef struct R1dSpawn {
 typedef struct R1dSpawnList { uint8_t u00[4]; R1dSpawn *head; } R1dSpawnList;
 R1dRangeEnt *r1c_PoolTake(void *pool, int stride);     /* 0x00036AD0 */
 void sub_00033710(R1dRange *r);
-void sub_00033C20(R1dRange *r);
 void a5b_PairSet(R1dRange *r, R1dRangeSpec *s);        /* 0x0005A6D0 */
 int  sub_000D9A70(int flag);
 
@@ -539,9 +521,6 @@ int  r1d_SpawnRanges(R1dSpawnList *l);
 typedef int (*R1dPoolFn)(void *entry, void *ctx);
 int   r1c_PoolForEach(void *pool, int stride, R1dPoolFn fn, void *ctx);   /* 0x00036B30 */
 int   sub_00034AC0(void *entry, void *ctx);
-int   sub_00034270(void *entry, void *ctx);
-int   sub_000335D0(void *entry, void *ctx);
-int   sub_00034B50(void *entry, void *ctx);
 R1dFx *a50_CacheGetData(int a, int b);      /* 0x000532B0 */
 extern int32_t r1d_fxBank420DA8;
 void  sub_00034DD0(R1dNode *n, float *r3, float *r2, float *r1);
@@ -557,7 +536,6 @@ typedef struct R1dGroup {
     uint8_t    list[4];         /* +0x08 */
     R1dGrpEnt *head;            /* +0x0C */
 } R1dGroup;
-void *sub_00053AB0(int size, int a, int tag);
 void  sub_0003D860(void *list);
 void  a4c_ListAppend(void *list, void *item);   /* 0x0003D880 */
 
@@ -571,7 +549,7 @@ R1dGrpEnt *r1d_GroupFindAdd(R1dGroup *g, int id);
 /* ------------------------------------------------------------ group 11 */
 typedef struct R1dLnk { struct R1dLnk *next; uint8_t u04[8]; void *obj; } R1dLnk;
 typedef struct R1dChainSrc { uint8_t u00[0x18]; R1dLnk *head; } R1dChainSrc;
-R1dNode *sub_00035C60(void *obj, int a, int b, int c, int d);
+R1dNode *sub_00035C60(void *obj, void *a, int b, int c, int d);
 extern uint8_t r1_bank381AC0[];             /* 0x00381AC0 static bank */
 
 /* timer-pair block (+0x14 of a 0x6C-byte list entry) */
@@ -592,11 +570,11 @@ void sub_00035320(R1dTimers *t, int a);
 void r1c_ObjSlotsReset(R1dTimers *t);       /* 0x00036340 */
 
 /* scene objects */
-typedef struct R1dSceneObj { uint8_t u00[4]; int32_t d04; } R1dSceneObj;
+typedef struct R1dSceneObj { uint8_t u00[4]; void *d04; } R1dSceneObj;   /* d04: command pointer threaded by 0x00079A00 */
 void         a50_PushHeap(int kind);        /* 0x00053710 */
 R1dSceneObj *r6b_Alloc214(void);            /* 0x00079880 */
 void         r6c_ObjInit(R1dSceneObj *o);   /* 0x000798B0 */
-int          sub_00079A00(R1dSceneObj *o, int v);
+void        *sub_00079A00(R1dSceneObj *o, void *v);
 void         sub_0007ABB0(R1dSceneObj *o);
 void         r6c_ObjResetPose(R1dSceneObj *o);  /* 0x0007ACC0 */
 void         sub_00079E00(R1dSceneObj *o);
@@ -612,7 +590,7 @@ void     sub_0001E550(void *p);
 void     sub_00020170(void *p);
 uint16_t r4b_TexSetGroup(int g);            /* 0x001BA0B0 */
 
-R1dNode *r1d_ChainBuild(R1dChainSrc *src, int a, int b, int c, int d);
+R1dNode *r1d_ChainBuild(R1dChainSrc *src, void *a, int b, int c, int d);
 void     r1d_BankRestore(void);
 void     r1d_TEntInit(R1dTEnt *e);
 void     r1d_SceneCreate(void);
@@ -621,8 +599,6 @@ R1dTEnt *r1d_TListFindAdd(R1dTList *l, int id);
 void     r1d_SceneSetup(void);
 
 /* ------------------------------------------------------------ group 13 */
-void sub_000586E0(int a);
-int  sub_001A8210(const char *name, int flags, int mode);  /* open */
 int  r4b_FileClose(int h);                  /* 0x001A8330 */
 int  r4b_FileSeek(int h, int off, int whence);  /* 0x001A8490 */
 int  sub_00051850(const char *name);
@@ -707,13 +683,10 @@ void r1d_Fade1Mode(int m);
 /* ------------------------------------------------------------ group 17 */
 int sub_000390E0(int i, int v);             /* regargs: i=EAX */
 int sub_00039440(int i, int v);             /* regargs: i=EAX */
-int sub_000396E0(int v);
 
 typedef struct R1dCamRef { uint8_t u00[0x0C]; uint32_t *flags; } R1dCamRef;
 extern int32_t r1c_camList3DDC60;           /* 0x003DDC60 camera list */
 int        sub_0003ABC0(void *e, int key);
-R1dCamRef *sub_0003DBC0(void *list, int (*match)(void *, int), int key);
-R1dCamRef *sub_0003DC10(void *node, int (*match)(void *, int), int key);
 
 /* title/menu screen state */
 extern int32_t r1d_g3DDC74, r1d_g3DDC80;
@@ -728,13 +701,11 @@ void sub_0019BE90(int mask);
 void sub_0003C7E0(void);
 void sub_001A0D70(void);
 void r1c_JobFinish(void);                   /* 0x00058190 */
-typedef struct R1dBufRec { int32_t cmd; int32_t f4, f8; } R1dBufRec;
+typedef struct R1dBufRec { void *cmd; int32_t f4, f8; } R1dBufRec;
 extern int32_t   r4c_bufIndex42CAC0;
 extern R1dBufRec r4c_bufs42CAC8[2];
 void sub_001A5310(void);
-int  sub_0003C740(int v);
-int  sub_000727E0(int v, void *obj);
-int  sub_00079480(int v);
+void *sub_0003C740(void *v);
 
 void r1d_CamSetFlag(int key, int on);
 void r1d_TitleRelease(void);
@@ -760,11 +731,10 @@ extern R1dCamNode  a4c_groupNodes[2][64];   /* 0x003DDCF0 */
 typedef struct R1dPage { uint8_t u00[8]; int32_t count; int32_t first; int32_t cur; } R1dPage;
 extern int32_t *a4c_pg2C4B08;
 extern const char r1d_fmt266FC0[];
-int sub_0002E8C0(int a, int b, int c, int g, int d, int e, const char *fmt, int ch);
 
 void r1d_TitleStart(void *job);
 void r1d_CamGroupInit(int i, R1dCamGrp *g);
-int  r1d_PageArrowUp(int a, int b, int c, int d, int e, R1dPage *p);
-int  r1d_PageArrowDown(int a, int b, int c, int d, int e, R1dPage *p);
+void *r1d_PageArrowUp(void *a, int b, int c, void *d, void *e, R1dPage *p);
+void *r1d_PageArrowDown(void *a, int b, int c, void *d, void *e, R1dPage *p);
 
 #endif

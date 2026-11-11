@@ -1,6 +1,7 @@
 #ifndef B4C_H
 #define B4C_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Area b4c (0x00140000-0x0016FFFF, third pass): small actor state handlers
  * of the second actor state machine and level sound/task helpers.
@@ -39,10 +40,7 @@ typedef struct B4cAct {
 
 int  b16_SetState(B4cModel *m, B4cAct *a, int state);   /* 0x001671D0 */
 void sub_00167200(B4cModel *m, B4cAct *a, int anim);    /* play animation */
-void sub_000EE6D0(B4cModel *m, int b);
-int  sub_000833E0(void *anim);
 void aab_Hide1D700(B4cModel *m);
-void sub_00033A70(void *o);
 void b4c_VecCopy(void *dst, const void *src);   /* 0x000F5D40 */
 int  sub_001C7EE1(void);
 extern float a50_frameUnits;            /* 0x0042C858 */
@@ -72,8 +70,6 @@ typedef struct B4cHandler {
     void (*fnD0)(B4cObj *o, struct B4cHandler *h);           /* +0xD0 */
 } B4cHandler;
 struct B4cObj { uint8_t unk00[0xC]; uint32_t flagsC; uint8_t unk10[0x150 - 0x10]; };  /* 0x150 bytes */
-B4cHandler *sub_0001D960(B4cObj *o, int type);
-void sub_0001EB80(B4cObj *o);
 int  sub_000EE5F0(B4cObj *o);
 void sub_00025D50(int a, int b);
 extern B4cObj *b4c_objs3F840C;          /* 0x003F840C, 16 records */
@@ -122,9 +118,6 @@ typedef struct B4cOwner {
     void    *anim30;           /* +0x30 */
 } B4cOwner;
 typedef struct B4cTimer { int32_t on; uint8_t unk04[0x0C]; float f10, f14, f18, f1C; } B4cTimer;
-void sub_00113090(B4cOwner *o, B4cEnemy *e, int state);
-int  sub_00113040(B4cOwner *o, B4cEnemy *e, int state);
-B4cTimer *sub_00113430(B4cEnemy *e, int slot);
 float sub_001A3F30(float v);
 float sub_001135C0(B4cOwner *o, B4cEnemy *e);
 float sub_00113570(B4cOwner *o, B4cEnemy *e);
@@ -137,10 +130,6 @@ void sub_00113370(B4cEnemy *e, B4cTimer *t);
 int  sub_00083450(void *anim, int id);
 void sub_00048250(int h);
 void b16_ClearBit0(void *o);            /* 0x001661B0 */
-void sub_001AD940(float *m);
-void sub_001AD8E0(float *d, const float *s, float a);
-void sub_001AD9B0(float *dst, const float *a, const void *b);
-void sub_001ADA40(float *m, const void *src);
 typedef struct B4cAnimState { uint8_t unk00[0xC4]; float rateC4; uint8_t unkC8[0xD8 - 0xC8]; float timeD8; } B4cAnimState;
 typedef struct B4cMdl { uint8_t unk00[0x14]; B4cAnimState *anim14; } B4cMdl;
 typedef struct B4cActor { uint8_t unk00[0x30]; B4cMdl *model30; } B4cActor;
@@ -153,15 +142,15 @@ typedef struct B4cEWork2 {
     uint8_t  unk54[4];
     int32_t  i58;              /* +0x58 */
     uint8_t  unk5C[0x64 - 0x5C];
-    int32_t  i64;              /* +0x64 */
+    float    i64;              /* +0x64 */
     uint8_t  unk68[4];
-    int32_t  i6C;              /* +0x6C */
+    float    i6C;              /* +0x6C */
     uint8_t  unk70[0x78 - 0x70];
-    int32_t  i78;              /* +0x78 */
+    float    i78;              /* +0x78 */
     uint8_t  unk7C[4];
-    int32_t  i80;              /* +0x80 */
+    float    i80;              /* +0x80 */
 } B4cEWork2;
-typedef struct B4cArgs { uint8_t unk00[0x10]; int32_t p10, p14, p18; } B4cArgs;
+typedef struct B4cArgs { uint8_t unk00[0x10]; float p10, p14, p18; } B4cArgs;
 int  b4c_Enter1456E0(B4cOwner *o, B4cEnemy *e, int s, int unused);
 typedef struct B4cMotion {
     uint32_t flags;            /* +0x00 */
@@ -171,9 +160,7 @@ typedef struct B4cMotion {
     float    f24, f28, f2C, f30; /* +0x24 */
 } B4cMotion;
 void b4c_MotionSet156180(B4cMotion *m, float a, float b, float c, float t);
-void sub_00155FB0(int a, int b, int c);
+int  sub_00155FB0(void *a, float x, float z, float maxStep); /* 0x00155FB0 regargs: a=EDI (actor); returns 0/1 */
 typedef struct B4cBody { uint8_t unk000[0x128]; uint8_t b128; } B4cBody;
 void sub_000414A0(int n);
-int  sub_00145940(B4cOwner *o, int a, int b, int c, int d);
-void sub_001459D0(B4cOwner *o, int a, int b, int c);
 #endif

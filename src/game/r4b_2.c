@@ -9,13 +9,13 @@ void r4b_PartApplyBone(R4bBonePart *p)
 }
 
 /* 0x001B3070: set +0xC8 of the mesh and +0xD4 of every item. Stack args (m v). */
-void r4b_MeshSetC8(R4bMesh *m, int v)
+void r4b_MeshSetC8(R4bMesh *m, void *v)
 {
     uint32_t i;
     R4bMeshItem *it = m->items;
     m->iC8 = v;
     for (i = 0; i < m->count; i++, it++)
-        it->skelD4 = (R4bSkelMats *)v;
+        it->skelD4 = v;
 }
 
 /* 0x001B31D0: copy +0x94 of the mesh into every item. Stack args. */
@@ -28,12 +28,21 @@ void r4b_MeshCopyI94(R4bMesh *m)
             it->i94 = m->i94;
 }
 
-/* 0x001B32E0: store a, a, b. Stack args. */
-void r4b_Set3(int *p, int a, int b)
+/* Buffer header filled by 0x001B32E0: base, cursor, size. */
+typedef struct R4bBufHdr {
+    void *base;     /* +0x00 */
+    void *cur;      /* +0x04 */
+    int   size;     /* +0x08 */
+} R4bBufHdr;
+
+/* 0x001B32E0: store a, a, b (buffer base and cursor, then size). Stack args;
+   callers pass buffers (r1e_buf3E05DC, a 0x00053AB0 block) as a. */
+void r4b_Set3(void *p, void *a, int b)
 {
-    p[0] = a;
-    p[1] = a;
-    p[2] = b;
+    R4bBufHdr *h = (R4bBufHdr *)p;
+    h->base = a;
+    h->cur = a;
+    h->size = b;
 }
 
 /* 0x001B3300: reset the render state cache and start a command list with a 0x70000000 header. Stack args. */

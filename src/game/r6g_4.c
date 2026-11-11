@@ -62,9 +62,9 @@ void r6g_ReturnToTitle(void)
 /* 0x00079A00: create the model list of a 3D object (18 entries), chain it with v,
    apply the object's light, set the slot sizes and install the per-slot draw
    hooks. Returns the result of the chain call. */
-int r6g_ObjModelsCreate(R6gObj7 *o, int v)
+void *r6g_ObjModelsCreate(R6gObj7 *o, void *v)
 {
-    int r;
+    void *r;
     o->mdl = sub_000846D0(0x12);
     r = sub_00084730(o->mdl, v);
     sub_00079980(o->mdl, o->light);

@@ -1,6 +1,7 @@
 #ifndef A4C_H
 #define A4C_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include "a30.h"
 
 /* 8-byte sound slots at 0x003DFEA0, 4 entries (end bound 0x003DFEC4 seen in loops). */
@@ -30,7 +31,6 @@ extern int  (*a4c_fnTbl2C88C4[])(void);
 extern int  (*a4c_fnTbl2C88CC[])(void);
 extern int  (*a4c_fnTbl2C88D4[])(void);
 
-int  sub_00057E90(void);
 void sub_0019AE90(void);
 int  sub_0019A040(int i);
 int  sub_0019A180(int i);
@@ -51,7 +51,6 @@ void sub_0019A6A0(int ch);
 int  sub_0019ADE0(int id);
 int  sub_0019AD10(int id, int i);
 void sub_0019AC20(int h, int i, int v);
-void sub_0019B800(int h, int v);
 int  sub_0019B9A0(int code);
 int  sub_0019A480(int i);
 void sub_0019B690(int i, int a, int b, int c, int d, int e);
@@ -138,7 +137,7 @@ typedef struct A4cElem {
 typedef struct A4cTextBox {
     uint8_t unk00[4];
     int32_t state;           /* +0x04 */
-    int32_t text;            /* +0x08 */
+    void   *text;            /* +0x08 */
     float   scale;           /* +0x0C */
     uint8_t unk10[0x0C];
     int32_t f1C;             /* +0x1C */
@@ -148,12 +147,8 @@ extern const char a4c_strMenu[];         /* 0x00266FB8 "MENU" */
 extern int32_t   *a4c_pg2C4B08;
 extern int32_t    a4c_g2C4BA4;
 void sub_0003EC30(A4cOption *o, int a, int b, int c, int d, int e);
-void sub_0003F880(int a, void *p, int code);
-void sub_0002E8C0(int a, int b, int c, int g, int d, int e, const char *fmt, const char *s);
-int  sub_0003EF00(A4cOptEntry *e, int v);
-A4cElem *sub_0003F8B0(int a, int b, int c);
-void sub_00075F00(int t);
-void a60_TextClear(int t);
+void sub_0003F880(void *a, void *p, int code);
+void a60_TextClear(void *t);
 int  sub_0003FAF0(int a, int b, int c, int d, int e, int f);
 
 extern int32_t  a4c_mode3DF1EC;
@@ -169,7 +164,6 @@ void sub_00044B90(void);
 void sub_000450F0(void);
 void sub_00045480(void);
 void sub_000459E0(void);
-void sub_0003FCE0(void *p);
 void sub_00049000(void);
 void sub_00049250(void);
 void sub_00047FB0(void);
@@ -177,10 +171,9 @@ void sub_000483D0(void);
 void sub_00039650(void);
 void sub_00037130(void);
 void sub_00072EE0(void *o, int a, float t, int b);
-void sub_00053880(void *p);                     /* free */
 
 int  sub_0003DBA0(A4cNode *n, void *arg);
-void sub_001A7430(void);
+int sub_001A7430(void);
 void sub_001B9720(void);
 void a4c_ListAppend(A4cList *list, A4cNode *node);
 void a4c_ListRemove(A4cNode *node);

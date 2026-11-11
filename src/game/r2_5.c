@@ -125,7 +125,7 @@ int r2_RollAttack(R2Actor *obj)
     if (!obj)
         for (;;) ;
     c = (R2Comp5B *)sub_0001D960(obj, 5);
-    if (PlayerObj_GetState(&g_stats) == 8 &&
+    if (PlayerObj_GetState((PlayerObj *)&g_stats) == 8 &&
         r2_chance31A094[c->row150][c->col158] >= (float)aab_Rand() * 3.0518509e-05f) {
         switch (c->kind14C) {
         case 0:

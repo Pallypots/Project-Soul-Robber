@@ -128,7 +128,7 @@ void r1e_VarInitFloatRange(R1eVar *v, float x, float a, float b, float c, float 
 
 /* 0x0003F780: script object operation: 0 counts the entries, 1 starts it
    unless busy, 2 forwards to 0x0003F650. Returns a (or the forward result). */
-int r1e_SObjOp(int a, R1eSObj *o, int op)
+void *r1e_SObjOp(void *a, R1eSObj *o, int op)
 {
     R1eE24 *e;
     int n;

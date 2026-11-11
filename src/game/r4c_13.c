@@ -48,7 +48,7 @@ void r4c_ShockById(int id)
 }
 
 /* 0x001A0B30: reset both session slots (flags cleared, scale 1.0) after 0x001A1130. Stack args. */
-void r4c_SessionSlotsReset(int a)
+void r4c_SessionSlotsReset(void *a)
 {
     int i;
     sub_001A1130(a);

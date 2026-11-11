@@ -22,7 +22,7 @@ int a3b_ReleaseSub(char *p)
 int a3b_HeaderSet(int32_t *p) { return p[-4] != 0; }
 
 /* 0x00033880: forward +0x20 when the object is idle. */
-void a3b_ForwardIfIdle(int32_t *p, int a)
+void a3b_ForwardIfIdle(int32_t *p, void *a)
 {
     if (p && p[0] == 0) sub_001ADA40(a, (char *)p + 0x20);
 }

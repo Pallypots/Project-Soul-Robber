@@ -1,6 +1,7 @@
 #ifndef R6I_H
 #define R6I_H
 #include "oogie.h"
+#include "shared_decls.h"
 
 /* Float to int truncation (copy of RFL_FTOI). The original inlines
    cvttss2si where the value is in an SSE register (modern cl calls
@@ -10,7 +11,9 @@
 #include <xmmintrin.h>
 #define R6I_FTOI(x) _mm_cvtt_ss2si(_mm_set_ss(x))
 #else
-#define R6I_FTOI(x) ((int)(x))void  sub_000A2E10(int idx, int v);
+#define R6I_FTOI(x) ((int)(x))
+#endif
+void  sub_000A2E10(int idx, int v);
 void  sub_000A2E50(int idx, int v);
 void  sub_000A4340(int idx, int v);
 int   sub_000A4370(int idx);
@@ -37,7 +40,6 @@ int   r6b_Slot0Value110(void);            /* 0x00095300 */
 void  sub_000D1930(PlayerStats *p);
 void  sub_000DFD40(int32_t *chapter, int32_t *stage);
 
-#endif
 /* Area r6i: larger functions (300-2500 bytes) in 0x00060000..0x000D0000.
    All names inferred. Register mappings are in the comments and in
    config/function_states_r6i.csv. Callees are declared under their sub_ name
@@ -54,7 +56,7 @@ typedef struct R6iMenuBlk {
     uint8_t  unk000[0x968];
     uint8_t  snd968[4];       /* +0x968 sound object */
     int32_t  mode96C;         /* +0x96C */
-    int32_t  text970;         /* +0x970 text handle */
+    void    *text970;         /* +0x970 text handle */
 } R6iMenuBlk;
 typedef void (*R6iPageFn)(void);
 extern R6iMenuBlk *a60_menu3E60CC;        /* 0x003E60CC */
@@ -70,7 +72,6 @@ extern int32_t   a60_res3E64BC;           /* 0x003E64BC */
 extern uint32_t *r1e_padMasks2C4AE8;      /* 0x002C4AE8 */
 extern R6iPageFn r6i_pageFns2DDAE0[];     /* 0x002DDAE0 */
 uint32_t sub_0004ECD0(int pad);
-uint32_t sub_0004ECE0(int pad);
 uint32_t sub_0004ECF0(int pad);
 uint32_t sub_0004ED00(int pad);
 uint32_t sub_0004ED20(int pad);
@@ -78,9 +79,7 @@ uint32_t sub_0004ED40(int pad);
 void  r6d_MenuShowText(int id);
 void  a60_StepByFrame(float *v, int dir);
 void  sub_0003FC40(void *snd);
-void  a60_TextClear(int t);
-void  sub_00048AF0(int id);
-void  sub_001B9FC0(int handle);
+void  a60_TextClear(void *t);
 
 /* ------------------------------------------------------------ status page step (0x68740) */
 /* Part of the work block at 0x0042C5E8 used by the status texts. */
@@ -253,13 +252,10 @@ typedef struct R6iGimmick {
     R6iPart *part12C;         /* +0x12C */
 } R6iGimmick;
 extern void *r1_ctx42C8E4;                /* 0x0042C8E4 */
-void  sub_0001EB80(R6iModel *m);
 void  sub_0001E9B0(void *ctx, R6iModel *m, int a, int b, int c);
 void  sub_000A4010(R6iGimmick *g, int anim);
-int   sub_000833E0(void *anim);
 int   sub_0017C4D0(void);
 void  sub_000A22C0(R6iGimmick *g, R6iPart *p);
-void  sub_000ED780(R6iPart *p);
 void  sub_000A5440(R6iGimmick *g);
 
 /* ------------------------------------------------------------ door key step (0xB34F0) */
@@ -291,7 +287,6 @@ void  sub_000A4410(int idx, int v);
 
 /* ------------------------------------------------------------ room script 0xBACA0 */
 extern float     r1e_fps42C964;           /* 0x0042C964 frames per second */
-void  sub_00036C00(int a, int b, float t);
 int   sub_00036D40(void);
 void  sub_000A2E10(int idx, int v);
 void  sub_000A2E50(int idx, int v);

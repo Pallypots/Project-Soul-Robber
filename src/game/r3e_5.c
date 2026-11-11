@@ -223,7 +223,7 @@ int r3e_OnMsg1740F0(R3eObj *obj, int *msg)
 int r3e_Facing17CEC0(void)
 {
     R3eObj *a = sub_000E23F0(3, 7);
-    int k = sub_000E23F0(3, 7)->pa30->kind08;
+    int k = ((R3eObj *)sub_000E23F0(3, 7))->pa30->kind08;
     float ang;
 
     if ((k == 0x23 || k == 0x24 || k == 0x25 || k == 0x27) && sub_000CB9B0() == a) {

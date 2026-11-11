@@ -1,6 +1,7 @@
 #ifndef R1G_H
 #define R1G_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Area r1g: larger game functions 0x00012000..0x00060000 (seventh pass).
@@ -30,7 +31,6 @@ typedef struct R1gTex {
     uint8_t  unk00[0x28];
     uint32_t reg[10];           /* +0x28 five 64-bit register values */
 } R1gTex;
-R1gTex *sub_001B9650(int handle);
 void sub_001A69C0(uint32_t lo, uint32_t hi);
 
 /* sprite packet template (built by 0x00012010) */
@@ -109,8 +109,7 @@ typedef struct R1gPkt {
 extern int32_t r1b_dev37B4A4;                   /* 0x0037B4A4 */
 extern uint8_t r1g_buf37B2A0[];                 /* 0x0037B2A0 */
 int32_t  sub_001A1FD0(int n);
-void     r1b_PktOp(void *pkt, ...);             /* 0x00102FA0 */
-uint32_t sub_000AD090();                        /* returns 0 on this build; called with 0, 1 or 2 arguments */
+void     r1b_PktOp();             /* 0x00102FA0 */
 uint32_t sub_001BB240(int a, int b, int c);
 void     sub_001A2020(int dev, uint32_t tag, uint32_t n);
 
@@ -165,7 +164,6 @@ typedef struct R1gKeyBuf {
     R1gCode  *codes;            /* +0x110 */
     int32_t   matched;          /* +0x114 */
 } R1gKeyBuf;
-uint32_t sub_0004ECE0(int pad);                 /* newly pressed buttons */
 
 
 /* ------------------------------------------------------------ HUD stage queues */
@@ -206,7 +204,6 @@ extern int16_t  r1g_comboShown37EEC2;           /* 0x0037EEC2 */
 extern int16_t  r1g_comboReset37EEC4;           /* 0x0037EEC4 1 after a reset */
 extern const uint16_t r1g_comboSteps28090C[2][6];  /* 0x0028090C */
 void Grade_AddBestCombo(int combo);             /* 0x00041480 */
-void sub_00048AF0(int id);
 
 
 /* ------------------------------------------------------------ char_unit.c */
@@ -261,14 +258,13 @@ typedef struct R1gAnimObj {
     uint8_t  unk00[0x18];
     void    *buf18;             /* +0x18 */
 } R1gAnimObj;
-void *a5b_AllocCur(int size, int a, int tag);   /* 0x00053AB0 */
+void *a5b_AllocCur(int size, const void *file, int tag); /* 0x00053AB0 */
 void *a50_AllocTop(const char *name, int tag);  /* 0x00053BC0 */
 void  a5b_CurSlotEndTemp(void);                 /* 0x00053BE0 */
 void  r1e_PartValues(int *a, int *b, R1gCharUnit *u);   /* 0x0001E7D0 */
 R1gUnitTbl *sub_0001F210(int a, int b);
 void  r4b_NodeReset(void *n);                   /* 0x001B25B0 */
 void *r4e_NodeInit(void *n);                    /* 0x001AE970 */
-R1gAnimObj *sub_00083030(void *node, int a, R1gCharUnit *u);
 void *sub_0007FC60(void);
 void  a3c_TaskInit(void *t, R1gCharUnit *u);    /* 0x0003D6C0 */
 extern const char r1g_srcCharUnit25FC08[];      /* 0x0025FC08 "\Project\nightmareXbox\app\char_unit.c" */
@@ -276,7 +272,7 @@ void a5b_HeapOp47640(void *p);                  /* 0x00053880 heap free */
 void a60_Remove6994(void *m);                   /* 0x00074F10 */
 void a60_Remove6974(void *m);                   /* 0x000754A0 */
 void a60_DetachEff6984(void *m);                /* 0x000751C0 */
-void r4b_TexFree(int h);                        /* 0x001B9FC0 */
+int r4b_TexFree(int h);                        /* 0x001B9FC0 */
 void r1_EntAge(int a, int b);                   /* 0x00053350 */
 void r1b_RecFreeRes(void *u);                   /* 0x0001D190 */
 
@@ -312,14 +308,14 @@ typedef struct R1gAttach {
 } R1gAttach;
 R1gCharUnit *r1b_RecFindName(R1gCharUnit *c, const int32_t *ids);  /* 0x0001D2D0 */
 void *sub_0001DAF0(R1gCharUnit *c, int bone);
-void r4b_NodeInitType9(R1gModel *m);            /* 0x001B1440 */
+void *r4b_NodeInitType9(R1gModel *m);            /* 0x001B1440 */
 void r4_ModelSetCC(R1gModel *m, int tex);       /* 0x001B1530 */
 void r4b_Node5SetE0(R1gModel *m, int a, int b); /* 0x001BBA00 */
 void r4_ModelSetE8(R1gModel *m, int a, int b);  /* 0x001B1540 */
 void r4b_NodeAttachParts(void *buf, R1gModel *m);   /* 0x001B1360 */
 void r4_NodeAttach(void *bone, R1gModel *m);    /* 0x001B2020 */
 void a60_AttachEff6974(R1gModel *m, int tex, int a, int b);   /* 0x00075420 */
-void r4e_Node1Init(R1gModel *m);                /* 0x001B2FE0 */
+void *r4e_Node1Init(R1gModel *m);                /* 0x001B2FE0 */
 void r4b_MeshAttachItems(void *buf, R1gModel *m);   /* 0x001B8E10 */
 void r4d_PartsBoneOffset(R1gModel *m, int tex); /* 0x001B30C0 */
 void r4f_EmitASetPair(R1gModel *m, int a, int b);   /* 0x001B3210 */
@@ -386,7 +382,7 @@ typedef struct R1gEffFile {
     uint8_t  packed[0x10];      /* +0x10 kind 2: id at +0x10 of each entry, blob after */
     R1gEffRec rec[1];           /* +0x20 kinds 0, 1 */
 } R1gEffFile;
-R1gEffFile *a3b_Fwd373A0Z(int id, int a);      /* 0x00037570 */
+R1gEffFile *a3b_Fwd373A0Z(const void *name, int align); /* 0x00037570 */
 void a3c_Clear16(void *task);                   /* 0x0003D860 */
 void r1d_TEntInit(R1gEffObj *e);                /* 0x00036390 */
 void a4c_ListAppend(void *list, void *item);    /* 0x0003D880 */
@@ -426,13 +422,13 @@ typedef struct R1gMenu {
     uint8_t  u2C[0x0C];
     R1gMenuData *data;          /* +0x38 */
 } R1gMenu;
-int  r1e_SObjOp(int ctx, R1gMenu *m, int msg);  /* 0x0003F780 default handler */
-int  sub_0003E4B0(int ctx, int x, int y, int *px, int *py, const char *fmt, ...);   /* title */
-int  r1d_PageArrowUp(int ctx, int x, int y, int *px, int *py, R1gMenu *m);         /* 0x0003E550 */
-int  sub_0003E610(int ctx, int x, int y, int *px, int *py, int hilite, int on, const char *fmt, ...);
-int  r1d_PageArrowDown(int ctx, int x, int y, int *px, int *py, R1gMenu *m);       /* 0x0003E5B0 */
+void *r1e_SObjOp(void *ctx, R1gMenu *m, int msg);  /* 0x0003F780 default handler */
+void *sub_0003E4B0(void *ctx, int x, int y, int *px, int *py, const char *fmt, ...);   /* title */
+void *r1d_PageArrowUp(void *ctx, int x, int y, int *px, int *py, R1gMenu *m);         /* 0x0003E550 */
+void *sub_0003E610(void *ctx, int x, int y, int *px, int *py, int hilite, int on, const char *fmt, ...);
+void *r1d_PageArrowDown(void *ctx, int x, int y, int *px, int *py, R1gMenu *m);       /* 0x0003E5B0 */
 int  a3c_CallED50(R1gMenu *m);                  /* 0x0003F770 */
-void a4c_ItemProcessEntry(R1gMenu *m);          /* 0x0003F570 */
+int a4c_ItemProcessEntry(R1gMenu *m);          /* 0x0003F570 */
 void a4c_ItemRelease(R1gMenu *m, int sel);      /* 0x0003E410 */
 extern const char r1g_str3816DC[], r1g_str38171C[], r1g_fmt26058C[];
 

@@ -1,5 +1,6 @@
 #ifndef FIX_H
 #define FIX_H
+#include "shared_decls.h"
 #include <stdint.h>
 /* Area fix: callers that were blocked by wrong callee signatures in r3c.h
    (0x000ED630 result, 0x0018E270 register arguments, 0x00145940/0x001459D0
@@ -59,22 +60,14 @@ extern void    *g_playerObj;             /* 0x00420E98, Jack's model node */
 extern float    a50_frameSeconds;        /* 0x0042C85C */
 
 /* ---- callees (stack arguments unless stated) */
-void    *sub_000ED630(int type, int id, const float *pos, const float *rot, int e);
-FixObj  *sub_0001D960(void *o, int kind);
-FixGame *sub_000E0770(void);
 void     sub_0018E270(FixObj *obj, FixObj *c, int k);   /* obj=ESI c=EAX k=stack */
 void     sub_00189DA0(void *a, void *b, int c);
 void     sub_001AD7E0(float *d, const float *s);          /* normalise */
-void     sub_001ADB60(float *d, const float *s, float k);
 void     sub_001AD9F0(float *d, const float *a, const float *b); /* d = a - b */
 void     sub_001ADAF0(float *d, const float *a, const float *b); /* d = a + b */
 void     sub_001ADBA0(float *d, const float *s, float k);  /* d = s * k */
-int      sub_00145940(void *obj, float x, float z, float lo, float hi);
-void     sub_001459D0(void *obj, float x, float z, float v);
 void     sub_00145C50(float *d, const float *s, float angle); /* rotate s about Y */
 void     sub_00145F40(void *obj, int part, float *m);     /* world matrix of a part */
 float    sub_001B2770(const float *a, const float *b);    /* distance */
-void     sub_000F5D40(float *d, const float *s);          /* copy vector */
-void    *sub_000E23F0(int a, int b);
 
 #endif

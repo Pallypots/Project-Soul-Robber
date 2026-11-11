@@ -16,7 +16,7 @@ void r2e_TrioDispatch(void *o, int kind, int mode)
         if (kind == 2)
             sub_000F8940(o, kind, mode);
     } else {
-        sub_000F8B40(o, kind, mode);
+        sub_000F8B40();
     }
 }
 

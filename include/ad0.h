@@ -3,6 +3,7 @@
 #ifndef AD0_H
 #define AD0_H
 #include "oogie.h"
+#include "shared_decls.h"
 #include <string.h>
 
 /* Event-script interpreter context passed to every opcode handler. The
@@ -54,7 +55,6 @@ int  sub_000DFDF0(void);
 void sub_00032140(int a, int b, int c);
 void sub_000A9D40(int a);
 int  sub_000A9D80(int a);
-int  sub_000D1E10(PlayerStats *s, int index, int delta);
 void sub_000408B0(int a);
 void sub_000408C0(int a);
 void sub_001A0D30(int a, int b);
@@ -65,11 +65,9 @@ void sub_00060B70(int a);
 int  sub_00060BD0(void);
 int  sub_0005F860(void);
 void sub_000E00D0(void);
-void sub_00038070(int a);
 int  sub_00086B30(void);
 int  sub_00087570(int a, int b);
 void sub_000EE0C0(void);
-void sub_00047BF0(int a);
 void sub_00054160(int a);
 void sub_00054170(int a);
 void sub_0019E850(void);

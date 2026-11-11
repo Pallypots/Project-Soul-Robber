@@ -122,7 +122,7 @@ void     Player_Refresh(void);                                          /* 0x000
 void     PlayerObj_SetAnim(PlayerObj *p, int anim);                     /* 0x000CF490 */
 int      PlayerObj_GetState(PlayerObj *p);                              /* 0x000CF4F0 */
 void    *PlayerObj_D0030(PlayerObj *p, int b);                                 /* 0x000D0030 */
-void    *PlayerObj_D0060(PlayerObj *p, int a, int b);                   /* 0x000D0060 */
+void    *PlayerObj_D0060(PlayerObj *p, int a, void *b);                   /* 0x000D0060 */
 int      Player_D00A0(int a, void *b);                                  /* 0x000D00A0 */
 void     Player_D0450(void);                                            /* 0x000D0450 */
 void     Stats_Init(PlayerStats *s);                                    /* 0x000CF6E0 */
@@ -182,28 +182,28 @@ void Frame_Present(void);                   /* 0x001A7BA0 */
 void sub_00024D30(int a, int b);            /* cdecl, 2 args; called with (2, -souls) */
 void sub_00025FD0(int a, int b);            /* cdecl, 2 args; called with (1, 0x78) */
 void sub_001A7940(void);
-void sub_000F5D40(void *dst, const void *src); /* 16-byte vector copy (dst, src) */
+void sub_000F5D40(void *d, const void *s); /* 16-byte vector copy (dst, src) */
 void sub_001ADAF0(float *d, const float *a, const float *b); /* 4-float vector add d = a + b */
 int  sub_00171CD0(PlayerStats *s);          /* stat 0x17 maximum = result * 10 */
 void sub_00023D80(int a, int b);            /* cdecl; called with (3, damage) */
 void sub_000CEF00(void);                    /* Jack's death sequence */
 void sub_000CA6C0(PlayerStats *s);
-int  sub_001AEE50(void *obj, int b);
+int sub_001AEE50(void *obj, int b);
 void sub_0001D610(void *obj);
 void sub_000CE970(void);
 void sub_000CEF60(void);
 void sub_0019BA70(void);
-void sub_00102FA0(void);
+void sub_00102FA0();
 int  sub_0019FEE0(void);
 int  sub_001A0CC0(void);
 int  sub_000479F0(void);
-void  sub_000832D0(void *o, int anim);
+void sub_000832D0(void *anim, int id);
 float sub_00171CF0(void);
 void *sub_00036750(void *o, int b);
 void *sub_00035D80(void *o, int a, int b);
-void  sub_00034E00(void *o, int a, char *s1, char *s2);
-void  sub_00033A40(void *a);
-void  sub_00053880(void *p);
+void sub_00034E00(void *o, void *a, void *s1, void *s2);
+void sub_00033A40(void *a);
+void sub_00053880(void *p);
 void  sub_0004F5D0(int slot);   /* slot index 0..0x21D into the table at 0x002C8900 */
 
 /* ------------------------------------------------------------ XDK / kernel */

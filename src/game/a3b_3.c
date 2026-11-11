@@ -37,14 +37,14 @@ int a3b_ProcessSub(char *p)
 }
 
 /* 0x00034D70: apply to every idle node of a pool chain. */
-void a3b_PoolApplyA(A3bPNode *n, int a)
+void a3b_PoolApplyA(A3bPNode *n, float a)
 {
     for (; n; n = n->next)
         if (n->busy == 0) sub_001B6670(n->sub20, a);
 }
 
 /* 0x00034DA0: apply to every idle node of a pool chain. */
-void a3b_PoolApplyB(A3bPNode *n, int a)
+void a3b_PoolApplyB(A3bPNode *n, float a)
 {
     for (; n; n = n->next)
         if (n->busy == 0) sub_001B67F0(n->sub20, a);
@@ -65,7 +65,7 @@ void a3b_PoolApplyD(A3bPNode *n)
 }
 
 /* 0x00034F60: apply to every node of a pool chain. */
-void a3b_PoolApplyE(A3bPNode *n, int a)
+void a3b_PoolApplyE(A3bPNode *n, void *a)
 {
     for (; n; n = n->next)
         sub_000339C0(n, a);

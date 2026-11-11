@@ -35,9 +35,9 @@ void a80_ModeSetFlag4(void)
 /* 0x000882E0: call 0x252A0 with zeros. */
 void a80_Call252A0(void) { sub_000252A0(0, 0); }
 /* 0x00089390: field 0x0C of the current reference, 0 if none. */
-int32_t a80_CurRefX0C(void) { A80Ref *r = sub_0008CD60(); if (r) return r->x0C; return 0; }
+void *a80_CurRefX0C(void) { A80Ref *r = sub_0008CD60(); if (r) return r->x0C; return 0; }
 /* 0x000893A0: get field 0x48. */
-int32_t a80_GetX48(A80Obj *o) { return o->x48; }
+void *a80_GetX48(A80Obj *o) { return o->x48; }
 /* 0x000893B0: get field 0x20. */
 int32_t a80_GetX20(A80Obj *o) { return o->x20; }
 /* 0x00089450: flag bit 9. */
@@ -47,7 +47,7 @@ int32_t a80_GetX04(A80Obj *o) { return o->x04; }
 /* 0x00089660: get field 0x18 as a word. */
 int32_t a80_GetX18(A80Obj *o) { return *(int32_t *)&o->f18; }
 /* 0x00089670: print the object's id with a format. */
-void a80_PrintId(A80Obj *o, int out) { sub_0007E0A0(out, a80_str26FACC, a80_str26FA20, o->x04); }
+void a80_PrintId(A80Obj *o, void *out) { sub_0007E0A0(out, a80_str26FACC, a80_str26FA20, o->x04); }
 /* 0x00089690: value for id from table 0x2E0908. */
 int32_t a80_IdValue(int u, int i) { return a80_idTab2E0908[i].value; }
 /* 0x000896A0: clear flag bits. */
@@ -60,10 +60,11 @@ int a80_TestFlags(A80Obj *o, uint32_t m) { return (o->flags & m) != 0; }
 int a80_ReleaseX24(A80Obj *o) { sub_0008CC50(&o->x24, o); return o->x24 == 0; }
 /* 0x00089700: forward sub4C+4 to 0x7AB10 with the global context. */
 void a80_ForwardSub4C(A80Obj *o) { sub_0007AB10(a80_ctx42C8E4, (uint8_t *)o->sub4C + 4); }
-/* 0x00089720: forward a fixed string to 0x7AB10. */
-void a80_ForwardStr(void) { sub_0007AB10(a80_ctx42C8E4, (void *)a80_str26FA70); }
+/* 0x00089720: forward a fixed string to 0x7AB10. Callers push one argument
+   (the task handler's 2nd arg) which this function never reads. */
+void a80_ForwardStr(void *unused) { sub_0007AB10(a80_ctx42C8E4, (void *)a80_str26FA70); }
 /* 0x000897A0: field 0x1C of sub4C. */
-int32_t a80_Sub4CX1C(A80Obj *o) { return o->sub4C->x1C; }
+void *a80_Sub4CX1C(A80Obj *o) { return o->sub4C->x1C; }
 /* 0x00089E60: address of static object 0x2E0958. */
 void *a80_Obj2E0958(void) { return a80_obj2E0958; }
 /* 0x00089EE0: address of static object 0x2E09C8. */

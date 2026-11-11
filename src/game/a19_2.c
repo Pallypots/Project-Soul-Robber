@@ -24,14 +24,14 @@ void a19_C7_Set0(void *obj, int value)
 void a19_C7_Set88(void *obj, int16_t v)
 {
     if (obj != 0)
-        sub_0001D960(obj, 7)->work->s88 = v;
+        ((a19_Actor *)sub_0001D960(obj, 7))->work->s88 = v;
 }
 
 /* 0x00194D00 */
 void a19_C7_Set8A(void *obj, int16_t v)
 {
     if (obj != 0)
-        sub_0001D960(obj, 7)->work->s8A = v;
+        ((a19_Actor *)sub_0001D960(obj, 7))->work->s8A = v;
 }
 
 /* 0x00194D30: pass component 7 of obj to 0x00189DA0. */
@@ -46,6 +46,6 @@ float a19_C7_Get18(void *obj)
 {
     if (obj == 0)
         return 0.0f;
-    return A19_F18(sub_0001D960(obj, 7)->work);
+    return A19_F18(((a19_Actor *)sub_0001D960(obj, 7))->work);
 }
 

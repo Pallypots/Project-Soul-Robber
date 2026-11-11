@@ -1,8 +1,9 @@
 /* Area r4d: model part table helpers around 0x001AEE90-0x001BB928 (r4d_14). Names inferred. */
 #include "r4d.h"
 
-/* 0x001AEE90: OR of the masks of all parts that are in use. Stack arg (m). */
-uint32_t r4d_PartsMask(R4dModel130 *m)
+/* 0x001AEE90: OR of the masks of all parts that are in use. Stack arg (m;
+   callers push a 2nd one that is never read). */
+uint32_t r4d_PartsMask(R4dModel130 *m, int unused)
 {
     R4dPart130 *p = m->partsB4;
     uint32_t r = 0;

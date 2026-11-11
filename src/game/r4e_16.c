@@ -4,7 +4,7 @@
 /* 0x001AEFD0: start animation anim on o lasting frames ticks of the current rate,
    with new state flags; if flag 2 was set before, also re-pose o (0x001AEF60, o in EAX).
    Stack args (o anim flags frames). */
-void r4e_MotionStart(R4eMotion *o, int anim, int flags, int frames)
+void r4e_MotionStart(R4eMotion *o, void *anim, int flags, int frames)
 {
     if (*(uint8_t *)&o->flagsBC & 2) {
         *(uint8_t *)&o->flagsBC = 0;
