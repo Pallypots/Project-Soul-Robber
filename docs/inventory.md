@@ -28,3 +28,5 @@ These are **candidate** counts from XboxRecomp's disassembler, not a final funct
 
 ## Denominator change (2026-11-11)
 `config/not_functions.csv` lists the inventory entries that recovery work found to be interior fragments of larger functions or jump-table data (all not 16-byte aligned). `tools/progress.py` excludes them from the game total. Their bytes are still covered by the enclosing functions' ranges. Further aligned fragments reported by helpers (e.g. switch-case blocks at 0x639A0, 0x63E00) are not excluded until reviewed.
+
+Added 2026-11-11: every `tail_jump_alias` inventory entry with zero unique bytes, not 16-byte aligned and not recorded as a recovered function (124 entries) - jump targets inside other functions. Game total after exclusions: 7,553 functions; byte total unchanged.
