@@ -196,3 +196,16 @@ va,reason
 0x0005E5A5,starts inside 0x5E2B0 (1536 bytes); not 16-aligned
 0x0005B860,inside 0x5B2C0 (1952 bytes; ends 0x5BA60); starts mid-function using registers it never set
 0x0005B880,inside 0x5B2C0 (1952 bytes; ends 0x5BA60)
+0x000AB1AE,inside 0xAB160 (within its inventory range); not 16-aligned
+0x000AB44E,inside 0xAB400 (within its inventory range); not 16-aligned
+0x000AB76E,inside 0xAB720 (within its inventory range); not 16-aligned
+0x000ABE1F,inside 0xABD70 (within its inventory range); not 16-aligned
+0x000AC1BF,inside 0xAC110 (within its inventory range); not 16-aligned
+0x000AC50D,inside 0xAC4B0 (within its inventory range); not 16-aligned
+0x000AD597,inside 0xAD500 (within its inventory range); not 16-aligned
+0x000AFFE5,inside 0xAFF40 (within its inventory range); not 16-aligned
+0x000B176B,inside 0xB16F0 (within its inventory range); not 16-aligned
+0x000B72E9,inside 0xB7270 (within its inventory range); not 16-aligned
+0x000B74F1,inside 0xB74A0 (within its inventory range); not 16-aligned
+0x000BFF96,inside 0xBFDE0 (within its inventory range); not 16-aligned
+0x000C3CEB,inside 0xC3730 (within its inventory range); not 16-aligned
