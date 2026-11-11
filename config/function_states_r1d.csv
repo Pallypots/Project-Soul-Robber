@@ -1,0 +1,69 @@
+va,name,state,source,obj,waivers,notes
+0x00012010,r1d_SprTplInit,Structurally compared,src/game/r1d_1.c,build/obj_r1d/r1d_1.obj,imm:0x73;imm:0x86;imm:0x8a;imm:0x8e;imm:0x92,store merging: modern cl combines the bytes at +0x72/+0x73 into one word store and adjacent zero word stores at +0x84..+0x92 into dword stores
+0x00012fa0,r1d_ReadLine,Structurally compared,src/game/r1d_1.c,build/obj_r1d/r1d_1.obj,,
+0x00013a30,r1d_DmaKick,Structurally compared,src/game/r1d_1.c,build/obj_r1d/r1d_1.obj,,regargs: addr=stack qwc=EDX
+0x00014da0,r1d_AnimBankFixup,Structurally compared,src/game/r1d_1.c,build/obj_r1d/r1d_1.obj,imm:0x41;imm:0x4e;imm:0x54;imm:0x5;imm:0x6;imm:0x7,store merging: the original writes the tag 'A' 'N' 'T' 0 as four byte stores at +4..+7 and modern cl as one dword store of 0x544E41
+0x00017de0,r1d_PoolAlloc,Structurally compared,src/game/r1d_1.c,build/obj_r1d/r1d_1.obj,imm:0xffffff50;jcc:be/a,regargs: r=ESI. Waivers: unsigned count zero guard emitted as jbe by the original and folded into the loop test by modern cl; loop strength reduction bias -0xB0 in the marking loop
+0x00013b70,r1d_PktSend9,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,
+0x000141b0,r1d_RectSend,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,regargs: r=ESI
+0x00017ae0,r1d_TrackApplyA,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,calls 0x00015150 with EAX=elem stack=(a t)
+0x00017b70,r1d_TrackApplyB,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,calls 0x00015E10 with EAX=elem stack=(a t)
+0x00017c00,r1d_TrackApplyC,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,calls 0x00016B80 with EAX=elem stack=(a t)
+0x00017c90,r1d_TrackApplyD,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,calls 0x00017650 with ESI=t EDI=elem stack=(a)
+0x00018580,r1d_MenuLine,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,
+0x000187e0,r1d_SetCopy,Structurally compared,src/game/r1d_2.c,build/obj_r1d/r1d_2.obj,,regargs: src=stack dst=EBX
+0x0001aff0,r1d_ResetChapterFlags,Structurally compared,src/game/r1d_3.c,build/obj_r1d/r1d_3.obj,imm:0x3;imm:0x5;imm:0x2;imm:0xfffffffd;jcc:l/ge;jcc:le/g;jcc:be/a,range check 3..5 emitted as unsigned (c-3)>2 by modern cl vs the original signed pair
+0x0001b7b0,r1d_SegAddA,Structurally compared,src/game/r1d_3.c,build/obj_r1d/r1d_3.obj,,regargs: a=stack b=stack d=stack e=stack c=EBX l=EDI
+0x0001b840,r1d_SegAddB,Structurally compared,src/game/r1d_3.c,build/obj_r1d/r1d_3.obj,,regargs: a=stack b=stack d=stack e=EDX c=EBX l=EDI
+0x0001d7f0,r1d_ResChainSelect,Structurally compared,src/game/r1d_3.c,build/obj_r1d/r1d_3.obj,,
+0x0001ede0,r1d_TexBasePkt2,Structurally compared,src/game/r1d_4.c,build/obj_r1d/r1d_4.obj,,
+0x0001ee30,r1d_TexBasePkt3,Structurally compared,src/game/r1d_4.c,build/obj_r1d/r1d_4.obj,,
+0x0001ef40,r1d_BonesFollow,Structurally compared,src/game/r1d_4.c,build/obj_r1d/r1d_4.obj,,
+0x0001efe0,r1d_BonesLink,Structurally compared,src/game/r1d_4.c,build/obj_r1d/r1d_4.obj,,
+0x0001f070,r1d_BonesSelect,Structurally compared,src/game/r1d_4.c,build/obj_r1d/r1d_4.obj,jcc:be/a;imm:0xfffffef8,range check 0..1 emitted as unsigned which>1 by modern cl vs the original signed pair; loop store addressed with a -0x108 bias after the pointer step by modern cl
+0x00022630,r1d_LoadPack,Structurally compared,src/game/r1d_5.c,build/obj_r1d/r1d_5.obj,,
+0x000267a0,r1d_SeqEnable,Structurally compared,src/game/r1d_5.c,build/obj_r1d/r1d_5.obj,,
+0x00026850,r1d_SeqInitAll,Structurally compared,src/game/r1d_5.c,build/obj_r1d/r1d_5.obj,,
+0x0002ba70,r1d_Fwd26910,Structurally compared,src/game/r1d_5.c,build/obj_r1d/r1d_5.obj,,calls 0x00026910 with stack=(a b c d g h i) EDX=e ECX=f EBX=j
+0x0002c1b0,r1d_SeqBStep,Structurally compared,src/game/r1d_5.c,build/obj_r1d/r1d_5.obj,,
+0x0002c230,r1d_SeqDStep,Structurally compared,src/game/r1d_5.c,build/obj_r1d/r1d_5.obj,,
+0x0002ead0,r1d_AnimObjBind,Structurally compared,src/game/r1d_6.c,build/obj_r1d/r1d_6.obj,,
+0x00031a10,r1d_ViewerRelease,Structurally compared,src/game/r1d_6.c,build/obj_r1d/r1d_6.obj,,
+0x00031ac0,r1d_ViewerLoad,Structurally compared,src/game/r1d_6.c,build/obj_r1d/r1d_6.obj,,
+0x00033280,r1d_KeyDecode,Structurally compared,src/game/r1d_6.c,build/obj_r1d/r1d_6.obj,,
+0x00033390,r1d_BankRealloc,Structurally compared,src/game/r1d_6.c,build/obj_r1d/r1d_6.obj,,
+0x00033560,r1d_NodeFree,Structurally compared,src/game/r1d_7.c,build/obj_r1d/r1d_7.obj,imm:0xb30;imm:0xb20,same field addressed two ways: the original reaches the entry link from the entry base (n-0x10)+0xB30 and modern cl from the node n+0xB20
+0x000336b0,r1d_NodeFindId,Structurally compared,src/game/r1d_7.c,build/obj_r1d/r1d_7.obj,,
+0x000335f0,r1d_NodeCreate,Structurally compared,src/game/r1d_8.c,build/obj_r1d/r1d_8.obj,,
+0x000339c0,r1d_NodeAttach,Structurally compared,src/game/r1d_8.c,build/obj_r1d/r1d_8.obj,,
+0x00033b70,r1d_NodeKillMatch,Structurally compared,src/game/r1d_8.c,build/obj_r1d/r1d_8.obj,,
+0x00033d10,r1d_HostRangeNew,Structurally compared,src/game/r1d_9.c,build/obj_r1d/r1d_9.obj,,
+0x000341e0,r1d_SpawnRanges,Structurally compared,src/game/r1d_9.c,build/obj_r1d/r1d_9.obj,imm:0xc;imm:0x20,same field addressed two ways: the original writes the spec field through the spec pointer (entry+0x14)+0xC and modern cl from the entry +0x20
+0x00034af0,r1d_NodeForKey,Structurally compared,src/game/r1d_10.c,build/obj_r1d/r1d_10.obj,imm:0xff000000;imm:0xffff0000,select idiom: the original builds the mask as ((b==-1)-1)&0xFF000000 plus 0xFF0000 (sete/dec/and/add) and modern cl selects the constant 0xFFFF0000 directly
+0x00034bb0,r1d_SceneFreeRanges,Structurally compared,src/game/r1d_10.c,build/obj_r1d/r1d_10.obj,,
+0x00034c30,r1d_NodeSpawnKey,Structurally compared,src/game/r1d_10.c,build/obj_r1d/r1d_10.obj,,
+0x00034f90,r1d_NodeRefresh,Structurally compared,src/game/r1d_10.c,build/obj_r1d/r1d_10.obj,,
+0x00035bf0,r1d_GroupFindAdd,Structurally compared,src/game/r1d_10.c,build/obj_r1d/r1d_10.obj,,
+0x00035b20,r1d_SpawnReset,Structurally compared,src/game/r1d_9.c,build/obj_r1d/r1d_9.obj,imm:0xc;imm:0x20,same field addressed two ways: the original writes the spec field through the spec pointer (entry+0x14)+0xC and modern cl from the entry +0x20
+0x00035d20,r1d_ChainBuild,Structurally compared,src/game/r1d_11.c,build/obj_r1d/r1d_11.obj,,
+0x000360e0,r1d_BankRestore,Structurally compared,src/game/r1d_11.c,build/obj_r1d/r1d_11.obj,,
+0x00036390,r1d_TEntInit,Structurally compared,src/game/r1d_11.c,build/obj_r1d/r1d_11.obj,,
+0x000370c0,r1d_SceneCreate,Structurally compared,src/game/r1d_11.c,build/obj_r1d/r1d_11.obj,,
+0x00037130,r1d_SceneDestroy,Structurally compared,src/game/r1d_11.c,build/obj_r1d/r1d_11.obj,,
+0x000363f0,r1d_TListFindAdd,Structurally compared,src/game/r1d_12.c,build/obj_r1d/r1d_12.obj,,
+0x00037230,r1d_SceneSetup,Structurally compared,src/game/r1d_12.c,build/obj_r1d/r1d_12.obj,,
+0x000372f0,r1d_FileWrite,Structurally compared,src/game/r1d_13.c,build/obj_r1d/r1d_13.obj,,
+0x00037ef0,r1d_ChanUpdate,Structurally compared,src/game/r1d_14.c,build/obj_r1d/r1d_14.obj,,calls 0x00037C70 with EDI=ctx
+0x00037f10,r1d_PicInit,Structurally compared,src/game/r1d_15.c,build/obj_r1d/r1d_15.obj,,
+0x00038d30,r1d_PktClose,Structurally compared,src/game/r1d_15.c,build/obj_r1d/r1d_15.obj,,
+0x00038d90,r1d_PkAddTex,Structurally compared,src/game/r1d_16.c,build/obj_r1d/r1d_16.obj,,calls 0x00038BF0 with EBX=&stream(0x003DA320)
+0x00038e10,r1d_PkAdd4,Structurally compared,src/game/r1d_16.c,build/obj_r1d/r1d_16.obj,,calls 0x00038BF0 with EBX=&stream(0x003DA320)
+0x00039820,r1d_Fade1Mode,Structurally compared,src/game/r1d_16.c,build/obj_r1d/r1d_16.obj,,
+0x0003aeb0,r1d_CamSetFlag,Structurally compared,src/game/r1d_17.c,build/obj_r1d/r1d_17.obj,,
+0x0003c3c0,r1d_TitleRelease,Structurally compared,src/game/r1d_17.c,build/obj_r1d/r1d_17.obj,,
+0x0003c9d0,r1d_TitleLoop,Structurally compared,src/game/r1d_17.c,build/obj_r1d/r1d_17.obj,,
+0x0003ca50,r1d_FrameLoop,Structurally compared,src/game/r1d_17.c,build/obj_r1d/r1d_17.obj,,
+0x0003cab0,r1d_TitleStart,Structurally compared,src/game/r1d_18.c,build/obj_r1d/r1d_18.obj,,
+0x0003d020,r1d_CamGroupInit,Structurally compared,src/game/r1d_18.c,build/obj_r1d/r1d_18.obj,,
+0x0003e550,r1d_PageArrowUp,Structurally compared,src/game/r1d_18.c,build/obj_r1d/r1d_18.obj,imm:0x3e;imm:0x5e,select idiom: the original builds 0x20 or 0x5E as (setle-1)&0x3E plus 0x20 and modern cl selects the constant 0x5E directly
+0x0003e5b0,r1d_PageArrowDown,Structurally compared,src/game/r1d_18.c,build/obj_r1d/r1d_18.obj,imm:0x56;imm:0x76,select idiom: the original builds 0x20 or 0x76 as (setge-1)&0x56 plus 0x20 and modern cl selects the constant 0x76 directly
