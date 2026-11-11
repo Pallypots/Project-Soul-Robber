@@ -5,7 +5,7 @@
    "@CPB" parser (0x00021B00) or the plain one (0x000201C0). */
 int r1d_LoadPack(int a, const char *name)
 {
-    int h = a50_AllocTop(name, 0x725);
+    void *h = a50_AllocTop(name, 0x725);
     uint32_t *buf = sub_00037570(name, 0x40);
     int r;
     if (buf == 0) {

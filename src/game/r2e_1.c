@@ -201,12 +201,12 @@ void r2e_SlotRamp(R2eStage *o, int idx)
    id), or the player for type 1; 0 when either is missing. */
 int r2e_StageAttach(int a, int type, int id)
 {
-    R2eRes130 *m = (R2eRes130 *)(intptr_t)sub_0001D080(r2e_ctx->res1E8, 3, sub_000E2420(&r2e_stage3F0758));
+    R2eRes130 *m = sub_0001D080(r2e_ctx->res1E8, 3, sub_000E2420(&r2e_stage3F0758));
     void *t;
     if (type == 1)
         t = g_playerObj;
     else
-        t = (void *)(intptr_t)sub_0001D080(r2e_ctx->res1E8, type, id);
+        t = sub_0001D080(r2e_ctx->res1E8, type, id);
     if (m && t)
         return sub_00036770(t, m->v130, a);
     return 0;

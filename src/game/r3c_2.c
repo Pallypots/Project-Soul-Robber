@@ -10,7 +10,7 @@ void r3c_ReleaseIds174CD0(void)
     for (i = 0; i < 40; i++) {
         id = r3c_ids279F00[i].id;
         if (id != 0x21D && sub_0004F6D0(id))
-            sub_0004F5D0((void *)(intptr_t)id);
+            sub_0004F5D0(id);
     }
 }
 

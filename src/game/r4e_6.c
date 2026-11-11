@@ -58,15 +58,15 @@ void r4e_DrawVertexBlock(R4eVtxHdr **pp)
     R4eVtxHdr *h = *pp;
     int size = h->count00 * 16;
     uint8_t *p = (uint8_t *)h + 0x10;
-    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
     sub_001D26C0(0, &r4e_streams40AFF8[0], 0x10);
     p += size;
     r4e_streams40AFF8[1].addr04 = 0;
     sub_001D26C0(1, &r4e_streams40AFF8[1], 0x10);
-    r4e_streams40AFF8[2].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+    r4e_streams40AFF8[2].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
     sub_001D26C0(2, &r4e_streams40AFF8[2], 0x10);
     p += size;
-    r4e_streams40AFF8[3].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+    r4e_streams40AFF8[3].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
     sub_001D26C0(3, &r4e_streams40AFF8[3], 0x10);
     p += size;
     r4e_streams40AFF8[4].addr04 = 0;
@@ -93,21 +93,21 @@ void r4e_DrawVertexBlockOpt(R4eVtxHdr **pp, int flags)
     R4eVtxHdr *h = *pp;
     int size = h->count00 * 16;
     uint8_t *p = (uint8_t *)h + 0x10;
-    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
     sub_001D26C0(0, &r4e_streams40AFF8[0], 0x10);
     p += size;
     if (flags & 1) {
-        r4e_streams40AFF8[1].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+        r4e_streams40AFF8[1].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
         sub_001D26C0(1, &r4e_streams40AFF8[1], 0x10);
         p += size;
     }
     if (flags & 2) {
-        r4e_streams40AFF8[2].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+        r4e_streams40AFF8[2].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
         sub_001D26C0(2, &r4e_streams40AFF8[2], 0x10);
         p += size;
     }
     if (flags & 4) {
-        r4e_streams40AFF8[3].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF;
+        r4e_streams40AFF8[3].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
         sub_001D26C0(3, &r4e_streams40AFF8[3], 0x10);
         p += size;
     }

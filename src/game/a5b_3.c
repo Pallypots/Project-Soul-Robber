@@ -3,7 +3,7 @@
 #include "a5b.h"
 
 /* 0x0005A6D0: store the second field of a pair. */
-void a5b_PairSet(A5bPair *p, int value)
+void a5b_PairSet(A5bPair *p, void *value)
 {
     p->value = value;
 }

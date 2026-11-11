@@ -75,8 +75,8 @@ void  sub_001ADBA0(float *d, const float *s, float k);
 void  sub_000F5D40(float *d, const float *s);           /* copy vector */
 int   sub_001C7EE1(void);                               /* CRT rand */
 void *r1b_Pool80970(void);                              /* 0x00080970 */
-void  sub_000824F0(void *a, void *pool, const float *p, int b, int c, int d);
-uint8_t *sub_00080CB0(void *pool, const float *p, int b);
+void  sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
+uint8_t *sub_00080CB0(void *pool, const float *from, const float *to);
 
 /* Event-script context (same layout as af0's Af0Script). Handlers return
    0x1000 = branch taken, 0x2000 | n = done and skip n operand bytes,
@@ -335,7 +335,7 @@ float rfl_TargetDistanceXZ(RflActor *obj, RflTarget *t);
 float rfl_TargetDistance113200(void *obj, RflTarget *t);
 float rfl_FacingAngleXZ(RflActor *a, float x, float z);
 float rfl_AngleFromZ(const float *dir);
-float rfl_PickDistance(const float *pos, int b, int c, int d, void *out);
+float rfl_PickDistance(const float *pos, const float *to, void *list, void *work, void *out);
 float rfl_TableValue(int tbl, int row, int col);
 float rfl_PlayerAngleTo(const float *pos);
 void  rfl_ActorStep(RflActor *a, float dist);

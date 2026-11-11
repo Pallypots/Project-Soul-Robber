@@ -78,5 +78,5 @@ void r4d_UploadBones(uint8_t *obj, R4dIdxList *l)
 {
     uint32_t k;
     for (k = 0; k < l->n; k++)
-        sub_001D24F0(0x40 + 4 * k, (int)(intptr_t)(obj + l->idx[k] * 0x180 + 0xFC));
+        sub_001D24F0(0x40 + 4 * k, obj + l->idx[k] * 0x180 + 0xFC);
 }

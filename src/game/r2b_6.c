@@ -3,12 +3,12 @@
 
 /* 0x000E01D0: reset record idx of table 0x3F0740 and, when b is set, store the item
    built from (a, b, c, 30, -1) in it. */
-void r2b_TableSet(int a, int b, int c, int idx)
+void r2b_TableSet(void *tbl, int b, int c, int idx)
 {
     uint8_t *t = (uint8_t *)g_acb_table;
     sub_0003FC10(t + idx * 32);
     if (b != -1)
-        sub_0003FCB0((uint8_t *)g_acb_table + idx * 32, sub_0003FA70(a, b, c, 30.0f, -1.0f));
+        sub_0003FCB0((uint8_t *)g_acb_table + idx * 32, sub_0003FA70(tbl, b, c, 30.0f, -1.0f));
 }
 
 /* 0x000E0570: per-frame script work in driver state 3: run the threads, the stage
@@ -156,6 +156,6 @@ void r2b_PlayHint(int b)
         return;
     if (aec_413140 || aec_3F0A84 || !b) {
         sub_0003FC10(aec_3F118C);
-        sub_0003FCB0(aec_3F118C, sub_0003FA70((int)r2b_g3F1B1C, b, 0, 20.0f, -1.0f));
+        sub_0003FCB0(aec_3F118C, sub_0003FA70(r2b_g3F1B1C, b, 0, 20.0f, -1.0f));
     }
 }

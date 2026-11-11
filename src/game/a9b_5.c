@@ -70,8 +70,8 @@ void a9b_BufferWorker(void)
 /* 0x0019E5F0: register the two workers in group g and start them. */
 void a9b_StartWorkers(void *g)
 {
-    a1a_GroupAdd(g, 0, 1, (int)sub_0019E530, 8, 0x10000);
-    a1a_GroupAdd(g, -1, 4, (int)a9b_BufferWorker, 8, 0x10000);
+    a1a_GroupAdd(g, 0, 1, sub_0019E530, 8, 0x10000);
+    a1a_GroupAdd(g, -1, 4, a9b_BufferWorker, 8, 0x10000);
     a1a_GroupReleaseAll(g);
 }
 

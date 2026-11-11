@@ -26,7 +26,7 @@ typedef struct R2Comp5 {
     uint8_t unk000[0x6C];
     int32_t mode6C;            /* +0x06C */
     uint8_t unk070[0xD4 - 0x70];
-    int32_t hD4;               /* +0x0D4 handle freed by 0x00033A70 */
+    void   *hD4;               /* +0x0D4 handle freed by 0x00033A70 */
     int32_t effD8;             /* +0x0D8 effect id released by 0x00048250 */
     uint8_t unk0DC[0xE4 - 0xDC];
     int32_t effE4;             /* +0x0E4 effect id */
@@ -43,7 +43,7 @@ typedef struct R2State {
     uint8_t  unk018[0x20 - 0x18];
     int32_t  h20;              /* +0x020 */
     uint8_t  unk024[0x34 - 0x24];
-    int32_t  h34;              /* +0x034 */
+    void    *h34;              /* +0x034 handle (0x00036750) */
     uint8_t  unk038[0x50 - 0x38];
     float    f50;              /* +0x050 (also used54 in other actors) */
     int32_t  used54;           /* +0x054 */
@@ -117,7 +117,7 @@ extern R2Node  *r2_tail3F60E4;        /* 0x003F60E4 */
 /* External callees (stack arguments unless noted) */
 void   *sub_0001D960(void *obj, int kind);
 void    sub_000F3D10(void *a, void *b, int c);
-void    sub_00033A70(int h);
+void    sub_00033A70(void *h);
 void    sub_00048250(int id);
 int     sub_000494D0(int id, void *pos, int c);
 void   *sub_0001D0F0(void *a, int b);
@@ -152,7 +152,7 @@ extern float a50_frameUnits;          /* 0x0042C858 */
 R2Actor *r2_NearTarget(R2Actor *obj);                         /* 0x000FB6C0 obj=EDI */
 void r2_PartCallRes(R2Actor *obj, int arg);                   /* 0x00100030 obj=ECX */
 void r2_SetPairAnim(R2Actor *a, R2Actor *b, int anim);        /* 0x001000C0 a=ECX b=EAX */
-void r2_TurnAndNotify(R2Actor *obj, int arg);                 /* 0x00100FF0 */
+void r2_TurnAndNotify(R2Actor *obj, void *arg);               /* 0x00100FF0 */
 void r2_EffectAtPart(void *a, int c, int id);                 /* 0x00107310 a=ECX c=EAX */
 void r2_SetComp5Mode(R2Actor *obj, int mode);                 /* 0x00108B80 obj=ESI mode=EDI */
 void r2_SetComp5ModeB(R2Actor *obj, int mode);                /* 0x0010CB30 obj=ESI mode=EDI */
@@ -161,15 +161,15 @@ void r2_Comp5ReleaseE4(R2Actor *obj);                         /* 0x0010D2F0 obj=
 void    sub_001ADC60(float *dst, const float *a, const float *b, float t);
 void    sub_001ADA40(float *dst, const float *src);
 void    sub_0011F640(int idx, float *dst);                     /* idx=EAX dst=ESI */
-int     sub_000EDC20(int a, int b);
+void   *sub_000EDC20(int a, int b);   /* object iterator */
 void    sub_00025C10(int a, int b);
 void    sub_001130F0(void *a, int b, int c);
 void    sub_00119FF0(void *a, int b, int c);
 void    sub_00113040(void *a, void *b, int c);
 void    sub_00113AA0(void *a, void *b);
 void    sub_000EE660(int h, float f);
-void    sub_00033560(int h);
-int     sub_00036750(void *o, int b);
+void    sub_00033560(void *h);
+void *sub_00036750(void *o, int b);
 typedef int (*R2TblFn)(int a, int b, void *c);
 extern R2TblFn   r2_fn31B0C4[];       /* 0x0031B0C4 */
 extern float     r2_vec279598[][4];   /* 0x00279598 */

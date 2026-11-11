@@ -5,7 +5,7 @@
 void r4d_RenderUpload(uint8_t *p)
 {
     RtlEnterCriticalSection(g_renderLock);
-    sub_001D24F0(0x0D, (int)(intptr_t)(p + 0x40));
+    sub_001D24F0(0x0D, p + 0x40);
     sub_001D2680(0x11, p, 0x0C);
     RtlLeaveCriticalSection(g_renderLock);
 }

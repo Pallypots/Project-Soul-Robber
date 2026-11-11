@@ -7,9 +7,15 @@
 
 /* Per-object work block reached through object +0x74. */
 typedef struct a9c_Work {
-    uint32_t flags0;         /* +0x00 (some kinds store an owner object here) */
+    union {
+        uint32_t flags0;           /* +0x00 flags */
+        struct a9c_Obj *owner0;    /* +0x00 owner object (some kinds) */
+    };
     int32_t  f4;             /* +0x04 */
-    int32_t  f8;             /* +0x08 */
+    union {
+        int32_t  f8;               /* +0x08 value */
+        struct a9c_Obj *obj8;      /* +0x08 target object (some kinds) */
+    };
     float    fC;             /* +0x0C */
     int32_t  f10;            /* +0x10 */
     float    f14;            /* +0x14 */
@@ -31,7 +37,7 @@ typedef struct a9c_Obj {
     uint8_t   p88[0x128 - 0x88];
     uint32_t  f128;          /* +0x128 */
 } a9c_Obj;
-#define A9C_OWNER(w) ((a9c_Obj *)(w)->flags0)
+#define A9C_OWNER(w) ((w)->owner0)
 
 typedef struct a9c_Rec18 { int32_t f0, f4; uint8_t p8[0x10]; } a9c_Rec18;          /* 0x00400120 x26 */
 typedef struct a9c_Slot38 { int32_t f0, f4, f8; uint8_t pC[4]; int32_t f10, f14; uint8_t p18[0x20]; } a9c_Slot38; /* 0x00401D70 x45 */
@@ -43,8 +49,8 @@ typedef struct a9c_Rec36 { int32_t f0; uint8_t p4[0x20]; } a9c_Rec36; /* 0x00331
 extern a9c_Rec60  a9c_g4019D8[3];
 extern a9c_Rec36  a9c_g3317C0[0x264];
 extern int32_t    a30_g41316C, a30_g413170;
-extern int32_t    a19_g401828, a19_g40182C, a19_g401830;
-extern int32_t    a80_ctx42C8E4;
+extern void      *a19_g401828, *a19_g40182C, *a19_g401830;   /* heap blocks (0x00401828..) */
+extern void      *a80_ctx42C8E4;        /* 0x0042C8E4 context object */
 extern uint8_t    a9c_g3DE5B0[1];
 extern float      a9c_g403124;
 extern int32_t    a9b_g40312C;
@@ -77,15 +83,15 @@ void sub_000D1D00(PlayerStats *s);
 void sub_000D1930(PlayerStats *s);
 void sub_001A8A70(int a);
 void sub_00079340(void);
-void sub_00079F50(int ctx, void *p, int k);
+void sub_00079F50(void *ctx, void *p, int k);
 void sub_001A11B0(void);
 void sub_001A1130(int a);
 void sub_00049860(int a);
 void sub_0019A230(int i, int b);
 void sub_0019A4B0(int i);
-void sub_00053880(int h);
+void sub_00053880(void *p);                     /* free */
 int  sub_001C7EE1(void);
-int  a1a_GroupAdd(void *g, int a, int b, int c, int d, int e);
+int  a1a_GroupAdd(void *g, int slot, int prio, void (*fn)(void), int a, int stack);
 int  a1a_GroupReleaseAll(void *g);
 void sub_0019D460(void);
 void sub_0019D120(void);

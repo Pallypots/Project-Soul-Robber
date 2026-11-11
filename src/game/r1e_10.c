@@ -50,7 +50,7 @@ void r1e_FxFreeAll(void)
    calls 0x0005D620 with EAX=0 EDX=0 stack=(a c style) */
 int r1e_DrawPlain(int a, R1eDrawObj *o, int c)
 {
-    return sub_0005D620(0, 0, a, c, o->ctx->u2C.style);
+    return sub_0005D620(0, 0, a, c, o->ctx->u2C.items);
 }
 
 /* 0x0005E8E0: draw with 0x0005D620 at the current item's position in its
@@ -62,7 +62,7 @@ int r1e_DrawItem(int a, R1eDrawObj *o, int c)
     R1eSceneItem *it = *x->u2C.items;
     R1eUList *l = it->fx->list;
     int idx = r1e_UsedIndexOf(l, sub_0003EB10(&x->vars->ents[1]));
-    return sub_0005D620(idx, (int)it, a, c, (int)l);
+    return sub_0005D620(idx, it, a, c, l);
 }
 
 /* 0x0005E930: free all cell pages and both page tables. */

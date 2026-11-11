@@ -274,14 +274,14 @@ void r3d_Reset17E210(R3cObj *obj, R3cObj *act)
     w->f2C = 0.0f;
     sub_00182770(2);
     sub_000494D0(0x1D2, obj->pos60, 1);
-    sub_00033A40(w->i14);
-    w->i14 = 0;
-    sub_00033A40(w->i10);
-    w->i10 = 0;
-    sub_00033A40(w->i18);
-    w->i18 = 0;
-    sub_00033A40(w->i1C);
-    w->i1C = 0;
+    sub_00033A40(w->p14);
+    w->p14 = 0;
+    sub_00033A40(w->p10);
+    w->p10 = 0;
+    sub_00033A40(w->p18);
+    w->p18 = 0;
+    sub_00033A40(w->p1C);
+    w->p1C = 0;
 }
 
 /* 0x0016C3D0: store in act's motion block how many of the stage bits 0x12, 0x20.. are set
@@ -577,9 +577,9 @@ int r3d_Release179E40(R3cObj *obj, R3cObj *act)
         sub_00048250(w->i28);
         w->i28 = -1;
     }
-    if (w->i24) {
-        sub_00033A70(w->i24);
-        w->i24 = 0;
+    if (w->p24) {
+        sub_00033A70(w->p24);
+        w->p24 = 0;
     }
     R3D_ZERO(r3d_blk3FDC3C, sizeof(r3d_blk3FDC3C));
     act->work278 = 0;
@@ -657,7 +657,7 @@ int r3d_SoundStep174C50(int idx)
    the work sound +0x28 (while still playing) and set the work wait +0x20 to 10. */
 void r3d_Quiet179DC0(void)
 {
-    R3cObj *e = (R3cObj *)(intptr_t)sub_000EDBE0(4, 5);
+    R3cObj *e = sub_000EDBE0(4, 5);
     R3cObj *c;
     R3dWork *w;
 

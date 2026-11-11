@@ -32,7 +32,7 @@ void r1d_BankRestore(void)
     r4_NodeDetach(r1c_bank283698 + 0x5850C);
     old = r1c_bank283698;
     r1c_bank283698 = (char *)r1_bank381AC0;
-    sub_00053880((int)(intptr_t)old);
+    sub_00053880(old);
     sub_001B2020(r1_g3DA080, r1c_bank283698 + 0x5845C);
     sub_001B2020(r1_g3DA084, r1c_bank283698 + 0x5850C);
 }

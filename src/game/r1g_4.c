@@ -79,7 +79,7 @@ void r1g_CharUnitAlloc(int kind, int count, int nodesRoot, int nodesChild, R1gCh
         int j = -1;
         for (; u; u = u->child) {
             uint32_t mask;
-            u->p148 = (void *)(intptr_t)a50_AllocTop(r1g_srcCharUnit25FC08, 0x1132);
+            u->p148 = a50_AllocTop(r1g_srcCharUnit25FC08, 0x1132);
             n = nodesRoot;
             if (j >= 0)
                 n = nodesChild;
@@ -173,7 +173,7 @@ void r1g_CharUnitAllocFrom(int kind, R1gUnitTbl *src)
         for (; u; u = u->child, j++) {
             int *cnt;
             int n;
-            u->p148 = (void *)(intptr_t)a50_AllocTop(r1g_srcCharUnit25FC08, 0x1242);
+            u->p148 = a50_AllocTop(r1g_srcCharUnit25FC08, 0x1242);
             cnt = rootCnt;
             if (j)
                 cnt = childCnt;

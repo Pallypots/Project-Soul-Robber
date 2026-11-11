@@ -98,7 +98,7 @@ int aac_Build3_1AD910(int a, int b, int c)
 /* 0x001AD9A0: library call forwarder. */
 int aac_Call_1AD9A0(int a, int b) { return sub_001E4BC6(a, b); }
 /* 0x001AD9B0: library call forwarder with the last two arguments swapped. */
-int aac_Call_1AD9B0(int a, int b, int c) { return sub_001E4B2D(a, c, b); }
+void *aac_Call_1AD9B0(void *out, const void *m, const void *v) { return sub_001E4B2D(out, v, m); }
 
 /* 0x001AD9D0: dot product of two 3-vectors. */
 float aac_Dot3(const AacVec3 *a, const AacVec3 *b)

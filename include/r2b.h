@@ -17,7 +17,7 @@ typedef struct R2bPlayer {
     uint8_t  unk154[0x1B8 - 0x154];
     int32_t  mode1B8;          /* +0x1B8 */
     uint8_t  unk1BC[0x604 - 0x1BC];
-    int32_t  h604;             /* +0x604 effect handle */
+    void    *h604;             /* +0x604 effect handle */
     uint8_t  unk608[0xE04 - 0x608];
     int32_t  count_E04;        /* +0xE04 */
     uint8_t  unkE08[0xEF4 - 0xE08];
@@ -52,16 +52,16 @@ extern R2bCtx54 *r2b_ctx42C8E4;        /* 0x0042C8E4 */
 /* External callees */
 void  r1_ChildHide(void *model, int id);                      /* 0x0001D4B0 */
 void  r1_ChildShow(void *model, int id);                      /* 0x0001D470 */
-int   adc_StatD0030(void *p, int v);                          /* 0x000D0030 */
-void  b16_Free33A40(int h);                                   /* 0x00033A40 */
+void *adc_StatD0030(void *p, int v);                          /* 0x000D0030 */
+void  b16_Free33A40(void *h);                                   /* 0x00033A40 */
 void *r1b_Pool80970(void);                                    /* 0x00080970 */
 int   sub_000D9A70(int id);
 void *sub_0001D290(void *o, int k);
 void  sub_000CED50(void *p);
-void  sub_000822D0(void *a, void *pool, int b, int c, int d, int e);
-void  sub_000824F0(void *a, void *pool, int b, int c, int d, int e);
-uint8_t *sub_00080CF0(void *pool, int a);
-uint8_t *sub_00080CB0(void *pool, int a, int b);
+void  sub_000822D0(void *ctx, void *pool, const float *pos, float r, void *list, void *out);
+void  sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
+uint8_t *sub_00080CF0(void *pool, const float *pos);
+uint8_t *sub_00080CB0(void *pool, const float *from, const float *to);
 
 void  sub_0003C2D0(void *dst, void *rend, int id);
 void  sub_000D2440(PlayerStats *s);
@@ -72,8 +72,8 @@ void  sub_000BD4D0(void *s, int a);
 extern uint32_t r2b_flags420010;       /* 0x00420010 (g_stats + 0x150) */
 extern int32_t  r2b_g42007C;           /* 0x0042007C */
 extern int32_t  r2b_g420080;           /* 0x00420080 */
-extern int32_t  r2b_h4204D8;           /* 0x004204D8 */
-extern int32_t  r2b_h4204DC;           /* 0x004204DC */
+extern void    *r2b_h4204D8;           /* 0x004204D8 handle */
+extern void    *r2b_h4204DC;           /* 0x004204DC handle */
 extern int32_t  r2b_g41FFEC;           /* 0x0041FFEC */
 extern const int32_t r2b_ids2E7C80[4]; /* 0x002E7C80 */
 extern const int32_t r2b_ids2E7D38[5]; /* 0x002E7D38 */
@@ -177,7 +177,7 @@ extern R2bThread adc_threads[64];      /* 0x003EF034 */
 
 extern void   *g_acb_table;           /* 0x003F0740 */
 void  sub_0003FC10(void *rec);
-int   sub_0003FA70(int a, int b, int c, float d, float e);
+int   sub_0003FA70(void *tbl, int b, int c, float d, float e);
 void  sub_0003FCB0(void *rec, int item);
 extern int32_t af0_var3F0734;          /* 0x003F0734 */
 extern int32_t af0_var3F0738;          /* 0x003F0738 */
@@ -216,8 +216,8 @@ void r2b_ShowChild(R2bPlayer *p, int show, int id);           /* 0x000D0530 */
 void r2b_SetChildAnim(R2bPlayer *p, int anim, int key);       /* 0x000D0560 */
 void r2b_UpdateEffect604(R2bPlayer *p);                       /* 0x000D0850 */
 int  r2b_CheckE04(R2bPlayer *p, int any);                     /* 0x000D08F0 */
-int  r2b_PoolGetA(int a, int b, void *dst40, void *dst30);    /* 0x000D0DC0 */
-int  r2b_PoolGetB(int a, int b, void *dst40, void *dst30);    /* 0x000D0E30 */
+int  r2b_PoolGetA(const float *pos, float r, void *dst40, void *dst30);        /* 0x000D0DC0 */
+int  r2b_PoolGetB(const float *from, const float *to, void *dst40, void *dst30); /* 0x000D0E30 */
 void r2b_LoadTexA(R2bPlayer *p);                              /* 0x000D1670 */
 void r2b_LoadTexB(R2bPlayer *p);                              /* 0x000D1700 */
 void r2b_ClearEffects(void);                                  /* 0x000D2180 */
@@ -287,7 +287,7 @@ void r2b_ApplyUnlocks(void);                                  /* 0x000DF830 */
 void r2b_SuspendThreads(int keep);                            /* 0x000DFCC0 */
 void r2b_RunThreads(void);                                    /* 0x000E0510 */
 /* r2b_6 */
-void r2b_TableSet(int a, int b, int c, int idx);              /* 0x000E01D0 */
+void r2b_TableSet(void *tbl, int b, int c, int idx);          /* 0x000E01D0 */
 void r2b_ScriptTick(void);                                    /* 0x000E0570 */
 int  r2b_MapKind(int k);                                      /* 0x000E0790 */
 char *r2b_FormatName(char *buf, int kind, int a, int b, int c); /* 0x000E0870 */

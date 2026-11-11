@@ -129,7 +129,7 @@ void b13_State138800(B13Owner *o, B13Enemy *e)
 /* 0x00138BE0: if the model is ready, switch to animation 0xD. */
 void b13_State138BE0(B13Owner *o, B13Enemy *e)
 {
-    if (sub_000833E0((int)o->model)) {
+    if (sub_000833E0(o->model)) {
         o->flags10 &= ~0x20u;
         sub_00113040(o, e, 0xD);
     }

@@ -126,12 +126,12 @@ typedef struct R3Fsm { uint8_t unk00[0x4C]; int32_t state4C; int32_t i50; float 
 typedef int (*R3FsmFn)(void *arg, R3Fsm *o);
 extern R3FsmFn r3_fsmEnter32B1B0[11];               /* 0x0032B1B0 */
 extern float   r3_points31F0E0[][4];                 /* 0x0031F0E0 */
-typedef struct R3SndSlot { int16_t mode00; uint16_t unk02; void *p04; int32_t h08; } R3SndSlot;
+typedef struct R3SndSlot { int16_t mode00; uint16_t unk02; void *p04; void *h08; } R3SndSlot;
 typedef struct R3SndOwner { uint8_t unk00[0x20]; uint32_t flags20; uint8_t unk24[0x74 - 0x24]; R3SndSlot *slot74; } R3SndOwner;
 typedef struct R3Rec4 { int32_t a; float f4; int32_t c; int32_t d; } R3Rec4;
 void  sub_0018E7C0(void *p);
 float sub_00082D70(void *p);
-int   sub_00036750(void *o, int b);
+void *sub_00036750(void *o, int b);
 void  sub_001AD9F0(float *dst, const float *a, const float *b);
 float sub_001B27C0(const float *a, const float *b);
 

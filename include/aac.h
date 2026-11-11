@@ -112,7 +112,7 @@ void OOG_STDCALL sub_001E4C33(void *, int);
 void OOG_STDCALL sub_001E4CAD(void *, int);
 void OOG_STDCALL sub_001E4D28(void *, int);
 int  OOG_STDCALL sub_001E4BC6(int, int);
-int  OOG_STDCALL sub_001E4B2D(int, int, void *);
+void *OOG_STDCALL sub_001E4B2D(void *out, const void *v, const void *m);   /* D3DX vec4 transform */
 void a19_VecOp(float *a, float *b);                 /* 0x000F5D40 */
 void sub_001AEBF0(int, int, int);
 

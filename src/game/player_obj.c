@@ -154,7 +154,7 @@ int PlayerObj_GetState(PlayerObj *p)
 }
 
 /* 0x000D0030 */
-int PlayerObj_D0030(PlayerObj *p, int b)
+void *PlayerObj_D0030(PlayerObj *p, int b)
 {
     uint8_t *o = p->unkFD8;
     if (o != NULL && *(int32_t *)(o + 0x20) != 0)
@@ -171,7 +171,7 @@ void *PlayerObj_D0060(PlayerObj *p, int a, int b)
 }
 
 /* 0x000D00A0 */
-int Player_D00A0(int a, int b)
+int Player_D00A0(int a, void *b)
 {
     (void)a;
     sub_00033A40(b);

@@ -45,7 +45,7 @@ int r3d_Release184610(void)
     int i;
 
     for (i = 0; i < 4; i++)
-        if (r3c_recs3FE3B0[i].i0 && ((R3cObj *)(intptr_t)r3c_recs3FE3B0[i].i8)->state50 == 1)
+        if (r3c_recs3FE3B0[i].i0 && r3c_recs3FE3B0[i].obj8->state50 == 1)
             return 0;
     if (o->i138 != -1) {
         sub_00048250(o->i138);
@@ -80,7 +80,7 @@ int r3d_Detach184670(R3cObj *o, R3cObj *act)
     if (!(o->flags0C & 1))
         return 0;
     for (i = 0; i < 4; i++)
-        if (r3c_recs3FE3B0[i].i0 == (int32_t)(intptr_t)o)
+        if (r3c_recs3FE3B0[i].obj0 == o)
             break;
     if (i >= 4)
         return 0;

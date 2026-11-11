@@ -7,7 +7,7 @@ void r3c_Start181730(R3cObj *obj, R3cObj *act)
 {
     R3cWork *w = act->work278;
 
-    sub_000832D0((void *)(intptr_t)obj->anim30, 5);
+    sub_000832D0(obj->pa30, 5);
     w->u0C.s = 0;
     w->p34->flags90 &= ~0x40u;
     obj->flags10 |= 0xD;
@@ -18,7 +18,7 @@ void r3c_Start181730(R3cObj *obj, R3cObj *act)
 void r3c_Reset1827A0(void)
 {
     sub_00113040(r3c_obj3FE368, r3c_act3FE36C, 0);
-    sub_000832D0((void *)(intptr_t)r3c_obj3FE368->anim30, 0);
+    sub_000832D0(r3c_obj3FE368->pa30, 0);
     sub_000F5D40(r3c_obj3FE368->pos60, r3c_vec27A95C);
 }
 
@@ -332,7 +332,7 @@ void r3c_Start1811A0(R3cObj *obj, R3cObj *act)
 {
     R3cWork *w = act->work278;
 
-    sub_000832D0((void *)(intptr_t)obj->anim30, 1);
+    sub_000832D0(obj->pa30, 1);
     act->i274 = act->i270;
     w->p34->flags90 &= ~0x40u;
     w->u0C.s = 0;
@@ -345,7 +345,7 @@ void r3c_Start181610(R3cObj *obj, R3cObj *act)
 
     w->u0C.s = 0;
     w->f10 = 0.0f;
-    sub_000832D0((void *)(intptr_t)obj->anim30, 2);
+    sub_000832D0(obj->pa30, 2);
     obj->flags10 |= 0xD;
     w->i14 = 0;
 }
@@ -563,7 +563,7 @@ void r3c_Aim18B660(void *o, R3cObj *x, const float *v, float k)
 {
     R3cBlk74 *b = sub_0001D960(o, 7)->p74;
 
-    b->i04 = (int32_t)(intptr_t)x;
+    b->obj04 = x;
     b->i08 = x->i130;
     sub_000F5D40(b->v24, v);
     sub_000F5D40(b->v34, v);
@@ -580,7 +580,7 @@ void r3c_Reset183620(R3cObj *o)
     r3c_f3FE394 = 0.0f;
     r3c_f3FE3A0 = 0.0f;
     r3c_i3FE398 = 0;
-    sub_000832D0((void *)(intptr_t)o->anim30, 1);
+    sub_000832D0(o->pa30, 1);
     sub_0001D610(o);
 }
 

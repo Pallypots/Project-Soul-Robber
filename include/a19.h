@@ -54,7 +54,7 @@ typedef struct a19_Rec12 { uint8_t p0[8]; int8_t b8; int8_t b9; uint8_t pA[8]; }
 
 extern a19_Rec88  a19_g400A88[4];
 extern int32_t    a19_g400CA8[0x69];
-extern int32_t    a19_g401828, a19_g40182C, a19_g401830;
+extern void      *a19_g401828, *a19_g40182C, *a19_g401830;   /* heap blocks (0x00401828..) */
 extern a19_RecB4C a19_g401B4C[16];
 extern a19_Rec38  a19_g401D98[45];
 extern a19_Rec60  a19_g4019D8[3];

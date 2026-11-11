@@ -161,7 +161,7 @@ void   sub_000F3FD0(R4cNode *o);
 void  *sub_000ED630(int a, int b, float *pos, int c, int d);
 void  *sub_00035DD0(void *fx, int a, int b, int c);
 void   sub_00033880(void *h, float *out);
-int    sub_0001D960(void *o, int kind);
+void  *sub_0001D960(void *o, int kind);   /* component lookup */
 void   sub_000494D0(int id, float *pos, int c);
 int    sub_000F5CD0(void *o, int a, int b);
 void   sub_00033B30(R4cNode *o);
@@ -176,7 +176,7 @@ void   sub_001B2080(void *n);
 void   sub_001B2020(void *parent, void *n);
 void  *sub_0001D0F0(void *o, int part);
 void   sub_001AD940(void *m);
-int    sub_000CB9B0(void);
+void  *sub_000CB9B0(void);
 void   sub_0001E9B0(void *ctx, R4cNode *o, int a, int b, int c);
 int    sub_001C7EE1(void);
 void   r4c_Fn1909C0(R4cNode *o, R4cActor *a);                  /* 0x001909C0 */
@@ -293,7 +293,7 @@ typedef struct R4cPart { uint8_t unk00[0x30]; float v30[3]; } R4cPart;
 typedef struct R4cModelX { uint8_t unk00[0xDC]; float fDC; } R4cModelX;
 typedef struct R4cRec1C8 { int32_t f0, f4; uint8_t unk08[0x14]; } R4cRec1C8;   /* 0x00401838 x8 */
 typedef struct R4cRecB18 { R4cNode *obj; int32_t i4, i8; uint8_t unk0C[0x0C]; } R4cRecB18; /* 0x00401918 x8 */
-typedef struct R4cTimedW { int32_t i00, i04, i08; float v0C[4]; } R4cTimedW;  /* +0x0C velocity */
+typedef struct R4cTimedW { int32_t i00; void *i04; int32_t i08; float v0C[4]; } R4cTimedW;  /* +0x04 handle, +0x0C velocity */
 typedef struct R4cTimedV { int32_t i00, i04; float v08[4]; } R4cTimedV;       /* +0x08 velocity */
 extern R4cRec1C8 r4c_recs401838[8];
 extern R4cRecB18 r4c_recs401918[8];

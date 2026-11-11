@@ -5,7 +5,7 @@
    blend mode `mode` (0..6; modes 0..2 use buffer 0x0042C900, 3..6 buffer
    0x0042C800), writing the header with matrix 0 and recording the batch
    pointers. calls 0x0003A020 with EAX=p EBX=matrix */
-void r1g_BatchBegin(int p, uint32_t mode, int count)
+void r1g_BatchBegin(uint32_t *p, uint32_t mode, int count)
 {
     uint8_t *q;
     mode &= 7;
@@ -53,7 +53,7 @@ void r1g_BatchBegin(int p, uint32_t mode, int count)
         r1g_batchC3DCF08 = 5;
         break;
     }
-    q = sub_0003A020((uint8_t *)(intptr_t)p, rtc_mtx3DCE70[0]);
+    q = sub_0003A020((uint8_t *)p, rtc_mtx3DCE70[0]);
     r1g_batchHead3DCEF0 = q;
     r1g_batchStart3DCEF8 = q + 0x10;
     r1g_batchCur3DCEFC = q + 0x10;

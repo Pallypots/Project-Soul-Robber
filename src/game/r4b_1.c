@@ -68,10 +68,10 @@ uint32_t *r4b_NodeEmit(uint32_t *cmd, R4bNode *n)
     R4bPart *part;
     int i;
     if (n->texB4 && r4_g40F324 != n->texB4)
-        r4_Set40F324((int)cmd, n->texB4);
+        r4_Set40F324(cmd, n->texB4);
     if (n->selB8 && r4_g40F208 != n->selB8)
-        r4_Select40F208((int)cmd, n->selB8);
-    p = (uint32_t *)sub_001B9CA0((int)cmd, n->iCC);
+        r4_Select40F208(cmd, n->selB8);
+    p = sub_001B9CA0(cmd, n->iCC);
     for (i = 0, part = n->parts; i < n->count; i++, part++) {
         float *fc = part->mFC;
         float *w = fc - 0x2F;     /* part->m40 */

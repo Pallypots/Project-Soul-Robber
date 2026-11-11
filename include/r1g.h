@@ -262,7 +262,7 @@ typedef struct R1gAnimObj {
     void    *buf18;             /* +0x18 */
 } R1gAnimObj;
 void *a5b_AllocCur(int size, int a, int tag);   /* 0x00053AB0 */
-int   a50_AllocTop(const char *name, int tag);  /* 0x00053BC0 */
+void *a50_AllocTop(const char *name, int tag);  /* 0x00053BC0 */
 void  a5b_CurSlotEndTemp(void);                 /* 0x00053BE0 */
 void  r1e_PartValues(int *a, int *b, R1gCharUnit *u);   /* 0x0001E7D0 */
 R1gUnitTbl *sub_0001F210(int a, int b);
@@ -439,7 +439,7 @@ extern const char r1g_str3816DC[], r1g_str38171C[], r1g_fmt26058C[];
 
 
 /* ------------------------------------------------------------ primitive batch */
-int       r4_Set40F324(int p, void *buf);       /* 0x001B2A10, returns p */
+uint32_t *r4_Set40F324(uint32_t *p, void *buf); /* 0x001B2A10, returns p */
 uint8_t  *sub_0003A020(uint8_t *out, const float *mtx);   /* regargs out=EAX mtx=EBX; returns the packet end */
 extern float    rtc_mtx3DCE70[2][16];           /* 0x003DCE70 */
 extern uint8_t  r1g_buf42C800[], r1g_buf42C900[];

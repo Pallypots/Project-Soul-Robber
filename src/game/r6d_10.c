@@ -58,7 +58,7 @@ void r6d_EndingStep(void)
    calls 0x00079590 with EAX=x ECX=ctx */
 void *r6d_DrawCentredMessage(void *ctx)
 {
-    const uint8_t *s = (const uint8_t *)r6d_MsgGet(r6d_msgTables26F32C[a5b_GetVideoMode()], 3);
+    const uint8_t *s = r6d_MsgGet(r6d_msgTables26F32C[a5b_GetVideoMode()], 3);
     int n = r6c_TextCount(s);
     int w = 0;
     int i;

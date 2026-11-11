@@ -82,11 +82,11 @@ uint32_t *r4b_Node6Emit(uint32_t *cmd, R4bNode6 *n)
         return cmd;
     changed = 0;
     if (n->texC8 && r4_g40F324 != n->texC8) {
-        cmd = (uint32_t *)r4_Set40F324((int)cmd, n->texC8);
+        cmd = r4_Set40F324(cmd, n->texC8);
         changed = 1;
     }
     if (n->selCC && r4_g40F208 != n->selCC)
-        cmd = (uint32_t *)r4_Select40F208((int)cmd, n->selCC);
+        cmd = r4_Select40F208(cmd, n->selCC);
     prev = n->prevA0;
     if (!prev)
         changed |= 2;
@@ -101,7 +101,7 @@ uint32_t *r4b_Node6Emit(uint32_t *cmd, R4bNode6 *n)
             changed |= 0x20;
     }
     if (changed & 0x1E)
-        cmd = (uint32_t *)sub_001B9CA0((int)cmd, n->texD0);
+        cmd = sub_001B9CA0(cmd, n->texD0);
     if (!(n->flags90 & 0x100))
         sub_001A69C0(n->iF8, n->iFC);
     if (changed & 0x2F)
@@ -186,7 +186,7 @@ void r4b_VoiceSetFree(int unused, R4bVoiceSet *s)
 }
 
 /* 0x001BC130: allocate one voice resource and its 128-byte aligned physical buffer; returns 1 on success. Stack args. */
-int r4b_VoiceAlloc(int a, int b, int fmt, void **res, int32_t *mem, int32_t *data, int32_t *size)
+int r4b_VoiceAlloc(int a, int b, int fmt, void **res, void **mem, int32_t *data, int32_t *size)
 {
     void *r;
     void *phys;
@@ -205,7 +205,7 @@ int r4b_VoiceAlloc(int a, int b, int fmt, void **res, int32_t *mem, int32_t *dat
     sub_001D6030(r, phys);
     *data = a;
     *res = r;
-    *mem = (int32_t)phys;
+    *mem = phys;
     *size = n;
     sub_001D6210(r, 0, &tmp, 0, 0);
     *data = tmp;

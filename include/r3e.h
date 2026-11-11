@@ -12,7 +12,11 @@
 #include <xmmintrin.h>
 #define R3E_FTOI(x) _mm_cvtt_ss2si(_mm_set_ss(x))
 #else
-#define R3E_FTOI(x) ((int)(x))int      sub_001C7EE1(void);                                        /* rand */
+#define R3E_FTOI(x) ((int)(x))
+#endif
+#if 0 /* PORT: this block was hidden by a misplaced #endif and never compiled on any target;
+         enabling it gives redefinition errors against declarations later in this header. */
+int      sub_001C7EE1(void);                                        /* rand */
 float    sub_001B2770(const float *a, const float *b);              /* distance */
 int      sub_0012DC90(int table, R3eObj *obj, R3eObj *act);         /* regargs: table=EAX obj=EBX act=EDI */
 void     r3_SetStateA(R3eObj *obj, R3eObj *act, int state);         /* 0x00131310 regargs: obj=EBX act=EDI state=stack */

@@ -148,11 +148,11 @@ void r2_BodyResetMat(R2Body *obj, int kind, float f)
    regargs: kind=EAX self=EDI */
 int r2_AnyFlag2000(int kind, void *self)
 {
-    void *e = (void *)sub_000EDC20(2, kind);
+    void *e = sub_000EDC20(2, kind);
     while (e) {
         if (e != self && (((R2Comp4 *)sub_0001D960(e, 4))->st278->flags04 & 0x2000))
             return 1;
-        e = (void *)sub_000EDC20(-1, -1);
+        e = sub_000EDC20(-1, -1);
     }
     return 0;
 }
@@ -161,11 +161,11 @@ int r2_AnyFlag2000(int kind, void *self)
    regargs: kind=EAX self=EDI mask=ESI */
 int r2_AnyFlagMask(int kind, void *self, uint32_t mask)
 {
-    void *e = (void *)sub_000EDC20(2, kind);
+    void *e = sub_000EDC20(2, kind);
     while (e) {
         if (e != self && (((R2Comp4 *)sub_0001D960(e, 4))->st278->flags04 & mask))
             return 1;
-        e = (void *)sub_000EDC20(-1, -1);
+        e = sub_000EDC20(-1, -1);
     }
     return 0;
 }

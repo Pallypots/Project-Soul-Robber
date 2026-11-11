@@ -13,7 +13,7 @@ void b13_State13EFB0(B13Owner *o, B13Enemy *e)
 /* 0x0013F290: once the model is ready, animation 0x29. */
 void b13_State13F290(B13Owner *o, B13Enemy *e)
 {
-    if (sub_000833E0((int)o->model)) sub_00113040(o, e, 0x29);
+    if (sub_000833E0(o->model)) sub_00113040(o, e, 0x29);
 }
 
 /* 0x0013F990: if 0x0013A670 allows, animation 0x1E. */
@@ -25,7 +25,7 @@ void b13_State13F990(B13Owner *o, B13Enemy *e)
 /* 0x0013FF00: once the model is ready, clear +0x74 and animation 0xC. */
 void b13_State13FF00(B13Owner *o, B13Enemy *e)
 {
-    if (sub_000833E0((int)o->model)) {
+    if (sub_000833E0(o->model)) {
         e->f74 = 0.0f;
         sub_00113040(o, e, 0xC);
     }

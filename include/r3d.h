@@ -65,7 +65,7 @@ typedef struct R3dAct {
     int32_t  i58;            /* +0x58 */
     uint8_t  unk5C[0x6C - 0x5C];
     int32_t  h6C;            /* +0x6C handle (-1 none) */
-    int32_t  h70;            /* +0x70 block */
+    void    *h70;            /* +0x70 block */
     uint8_t  unk74[0x78 - 0x74];
     float    v78[4];         /* +0x78 velocity */
     float    v88[4];         /* +0x88 */
@@ -95,12 +95,12 @@ typedef struct R3dWork {
     uint32_t flags00;        /* +0x00 */
     uint8_t  unk04[0x0C - 0x04];
     float    f0C;            /* +0x0C */
-    union { float f10; int32_t i10; }; /* +0x10 */
-    union { float f14; int32_t i14; }; /* +0x14 */
-    union { float f18; int32_t i18; }; /* +0x18 */
-    union { float f1C; int32_t i1C; }; /* +0x1C */
+    union { float f10; int32_t i10; void *p10; }; /* +0x10 (p: effect handle) */
+    union { float f14; int32_t i14; void *p14; }; /* +0x14 */
+    union { float f18; int32_t i18; void *p18; }; /* +0x18 */
+    union { float f1C; int32_t i1C; void *p1C; }; /* +0x1C */
     float    f20;            /* +0x20 */
-    union { float f24; int32_t i24; }; /* +0x24 */
+    union { float f24; int32_t i24; void *p24; }; /* +0x24 */
     union { float f28; int16_t s28; int32_t i28; }; /* +0x28 */
     float    f2C, f30;       /* +0x2C, +0x30 */
     uint8_t  unk34[0x40 - 0x34];
@@ -174,7 +174,7 @@ int     r2b_TestBit(int i);                           /* 0x000D9A70 (area r2b) *
 void    b4c_MotionSet156180(void *w, float a, float b, float c, float t); /* 0x00156180 (area b4c) */
 void    sub_000EE850(void *o, float v);
 void    sub_000EE6D0(void *o, float v);
-int     sub_000EDBE0(int list, int side);
+void   *sub_000EDBE0(int list, int side);   /* object lookup */
 int     sub_00113190(void *obj, void *act, int k);
 int     sub_00048100(int h);
 void    sub_001AD9B0(float *d, const float *m, const float *v);   /* transform */
@@ -189,7 +189,7 @@ void    sub_001561D0(void *w, float a, float b);
 void    sub_001AD9F0(float *d, const float *a, const float *b);   /* d = a - b */
 void    sub_001ADBA0(float *d, const float *s, float k);
 void    sub_000A7950(int h);
-void    sub_00033A70(int h);
+void    sub_00033A70(void *h);
 void    sub_00189510(int h);
 void    sub_000C56B0(void *o);
 void    r4c_Spin(void *o, const float *rate);         /* 0x000F6450 (area r4c) */

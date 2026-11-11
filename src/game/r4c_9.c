@@ -13,7 +13,7 @@ void r4c_TimedAttachCam0(R4cNode *o, R4cActor *a)
     w->v08[3] = r4c_frameSeconds * 0.0f;
     a->f70 = r4c_g32C91C;
     r4c_CamPoint(v, o);
-    sub_00034CF0((void *)sub_00036750(o, 0), v[0], v[1], v[2], v[3]);
+    sub_00034CF0(sub_00036750(o, 0), v[0], v[1], v[2], v[3]);
 }
 
 /* 0x001998C0: start a free voice of bank 0 on channel ch (0 or 1); returns its voice index or -1.

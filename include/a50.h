@@ -6,10 +6,10 @@
 #include "oogie.h"
 
 /* ---- streaming sound handle at 0x003E0D68 */
-extern void   *a50_streamHandle;          /* 0x003E0D68 */
+extern int32_t a50_streamHandle;          /* 0x003E0D68 file handle number (indexes 0x0040B210) */
 extern int32_t a50_streamState;           /* 0x003E0DB8: 0 idle, 10 started, 20 failed */
-int  sub_001A8330(void *h);
-int  sub_001A8500(void *h, int which, int *out);
+int  sub_001A8330(int h);
+int  sub_001A8500(int h, int which, int *out);   /* h indexes the handle table at 0x0040B210 */
 
 /* ---- video timing */
 extern int32_t     a50_videoMode;          /* 0x003E2540 */
@@ -27,7 +27,7 @@ void sub_001BBD70(float units);
 /* ---- relocatable table blob (0x00052B00) */
 typedef struct A50TableEntry {   /* 0x18 bytes */
     uint8_t unk00[0x10];
-    int32_t ptr;                 /* +0x10 offset, rebased to pointer */
+    int32_t ptr;                 /* +0x10 offset, rebased to pointer */ /* XBOX32: 32-bit file offset, rebased to a 32-bit pointer in place */
     int32_t id;                  /* +0x14 */
 } A50TableEntry;
 typedef struct A50Table {
@@ -37,8 +37,8 @@ typedef struct A50Table {
 } A50Table;
 typedef struct A50Blob {
     int32_t   unk00;
-    int32_t   tableA;            /* +0x04 offset then pointer */
-    int32_t   tableB;            /* +0x08 */
+    int32_t   tableA;            /* +0x04 offset then pointer */ /* XBOX32: 32-bit file offset, rebased to a 32-bit pointer in place */
+    int32_t   tableB;            /* +0x08 */ /* XBOX32: 32-bit file offset, rebased to a 32-bit pointer in place */
     uint32_t  flags;             /* +0x0C bit 0: rebased */
 } A50Blob;
 
@@ -55,7 +55,7 @@ int   sub_000470C0(int heap);
 void  sub_00047140(int heap);
 void  sub_00047760(int heap, int size);
 void  sub_000471B0(int heap, int size, const char *name, const char *file, int line);
-void *sub_000538A0(int heap, int a, int b);
+void *sub_000538A0(int heap, const char *file, int line);
 void *sub_000531C0(int a, int b);
 void  sub_00053760(void);
 extern const char a50_strHeapName[];      /* 0x0026BF14 */

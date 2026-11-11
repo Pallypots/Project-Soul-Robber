@@ -16,7 +16,7 @@ void r1c_GameStateReset(void)
         }
     }
     R1C_ZERO(r1c_state37C4F8, sizeof(r1c_state37C4F8));
-    sub_0004F5D0((char *)sub_000529F0() + 0xA8);
+    sub_0004F5D0(sub_000529F0() + 0xA8);
     r1c_g3813B4 = 0;
 }
 

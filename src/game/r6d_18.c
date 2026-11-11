@@ -7,7 +7,7 @@
 /* 0x000869C0: find the first stream set entry whose event flag is set and load it. */
 int r6d_StreamLoadStep(void)
 {
-    R6dStreamSet *set = (R6dStreamSet *)a80_g3ED208;
+    R6dStreamSet *set = a80_g3ED208;
     R6dStreamEntry *e;
     int i;
     if (!set)
@@ -19,18 +19,18 @@ int r6d_StreamLoadStep(void)
         e = set->entries;
         for (i = 0; i < set->count; i++) {
             if (sub_000D9A70(e->event)) {
-                a8c_g3ED1F4 = (int32_t)e;
+                a8c_g3ED1F4 = e;
                 break;
             }
             e = (R6dStreamEntry *)((uint8_t *)e + e->n * 8 + 8);
         }
-        if (!a8c_g3ED1F4 || !((R6dStreamEntry *)a8c_g3ED1F4)->n)
+        if (!a8c_g3ED1F4 || !a8c_g3ED1F4->n)
             return 0;
         sub_000865F0();
         a8c_g3ED1F0 = 10;
     case 10:
         if (Job_OnJobThread()) {
-            sub_000862A0((void *)a8c_g3ED1F4);
+            sub_000862A0(a8c_g3ED1F4);
             r6d_StreamsStop(0);
             a8c_g3ED1F0 = 0;
             return 0;
@@ -64,7 +64,7 @@ int r6d_StreamFreeStep(void)
     case 0:
         sub_000CE8F0();
         if (Job_OnJobThread()) {
-            sub_00086460((void *)a8c_g3ED1F4);
+            sub_00086460(a8c_g3ED1F4);
             sub_00086850(0);
             break;
         }

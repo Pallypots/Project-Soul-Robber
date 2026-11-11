@@ -121,13 +121,14 @@ float    PlayerObj_AngleDelta(PlayerObj *p);                            /* 0x000
 void     Player_Refresh(void);                                          /* 0x000CF0D0 */
 void     PlayerObj_SetAnim(PlayerObj *p, int anim);                     /* 0x000CF490 */
 int      PlayerObj_GetState(PlayerObj *p);                              /* 0x000CF4F0 */
-int      PlayerObj_D0030(PlayerObj *p, int b);                                 /* 0x000D0030 */
+void    *PlayerObj_D0030(PlayerObj *p, int b);                                 /* 0x000D0030 */
 void    *PlayerObj_D0060(PlayerObj *p, int a, int b);                   /* 0x000D0060 */
-int      Player_D00A0(int a, int b);                                    /* 0x000D00A0 */
+int      Player_D00A0(int a, void *b);                                  /* 0x000D00A0 */
 void     Player_D0450(void);                                            /* 0x000D0450 */
 void     Stats_Init(PlayerStats *s);                                    /* 0x000CF6E0 */
 extern char  g_378188[], g_378198[];        /* data passed to 0x00034E00 */
-extern void *g_3EDB38, *g_3EDB3C;
+extern int32_t g_3EDB38;        /* 0x003EDB38 movie slot index */
+extern void   *g_3EDB3C;
 extern void      *g_playerObj;              /* 0x00420E98 = g_stats.unkFD8, Jack's model node (+0x60 position) */
 extern uint8_t   *g_42C8EC;                 /* 0x0042C8EC, object with a pointer at +0x3B0 */
 
@@ -198,12 +199,12 @@ int  sub_001A0CC0(void);
 int  sub_000479F0(void);
 void  sub_000832D0(void *o, int anim);
 float sub_00171CF0(void);
-int   sub_00036750(void *o, int b);
+void *sub_00036750(void *o, int b);
 void *sub_00035D80(void *o, int a, int b);
 void  sub_00034E00(void *o, int a, char *s1, char *s2);
-void  sub_00033A40(int a);
+void  sub_00033A40(void *a);
 void  sub_00053880(void *p);
-void  sub_0004F5D0(void *p);
+void  sub_0004F5D0(int slot);   /* slot index 0..0x21D into the table at 0x002C8900 */
 
 /* ------------------------------------------------------------ XDK / kernel */
 int      OOG_STDCALL D3DDevice_Swap(uint32_t flags);                        /* 0x001D6D20 */

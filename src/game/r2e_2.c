@@ -39,7 +39,7 @@ void r2e_FlagIfAboveB(void *o, R2eObj68 *t)
 
 /* 0x000FFD90: when the node is active, set the minion's +0x1B8 to 2.5 and send
    event 0x28 with a. */
-void r2e_MinionKick(void *o, int a)
+void r2e_MinionKick(void *o, void *a)
 {
     if (sub_000F5D00(o)) {
         r2e_minion3F6120->f1B8 = 2.5f;
@@ -48,13 +48,13 @@ void r2e_MinionKick(void *o, int a)
 }
 
 /* 0x001179A0: send event 3.  calls 0x00117580 with EDI=c */
-void r2e_Event3(void *o, int c)
+void r2e_Event3(void *o, void *c)
 {
     sub_00117580(o, 3, c);
 }
 
 /* 0x00119770: send event 0x1F.  calls 0x00117580 with EDI=c */
-void r2e_Event1F(void *o, int c)
+void r2e_Event1F(void *o, void *c)
 {
     sub_00117580(o, 0x1F, c);
 }
@@ -68,7 +68,7 @@ void r2e_ReleaseIds(void)
         sub_000ED600(3);
     for (p = r2e_ids318CA8; p < r2e_ids318CA8 + 16; p++) {
         if (*p != -1 && sub_0004F6D0(*p))
-            sub_0004F5D0((void *)(intptr_t)*p);
+            sub_0004F5D0(*p);
     }
 }
 
@@ -127,7 +127,7 @@ void r2e_HelperDrain(void)
     if (k > 0)
         sub_000253D0(2, k);
     if (0.0f >= ((R2eActor *)h)->f54) {
-        sub_000F3D10(r2e_helper3F611C->p8C, (int)(intptr_t)r2e_helper3F611C, 0xA);
+        sub_000F3D10(r2e_helper3F611C->p8C, r2e_helper3F611C, 0xA);
         sub_000F3B70(n, 3);
         n->v10 |= 0xD;
     }

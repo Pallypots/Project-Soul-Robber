@@ -73,7 +73,7 @@ void a50_SlotDiscardTemp(int slot)
 }
 
 /* 0x00053BC0: allocate from the heap on top of the heap stack. */
-void *a50_AllocTop(int a, int b)
+void *a50_AllocTop(const char *file, int line)
 {
-    return sub_000538A0(a50_heapStack[a50_heapDepth], a, b);
+    return sub_000538A0(a50_heapStack[a50_heapDepth], file, line);
 }

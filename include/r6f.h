@@ -25,7 +25,10 @@ typedef struct R6fTask {
         uint8_t  b0;          /* +0x18 low flag byte */
         struct { uint16_t w; int8_t type; uint8_t b1B; } s;  /* type: +0x1A */
     } f18;
-    R6eWork *work;            /* +0x1C */
+    union {
+        R6eWork *work;        /* +0x1C work block */
+        int32_t  workId;      /* +0x1C packed id (kind<<20 | sub<<8 | n) for id-keyed tasks */
+    };
     int8_t   state;           /* +0x20 */
     int8_t   heap;            /* +0x21 */
     uint8_t  unk22;
@@ -100,7 +103,7 @@ extern int32_t r6f_g3ED524;            /* 0x003ED524 */
 extern int32_t r6f_g428EFC;            /* 0x00428EFC */
 
 R6fDesc *sub_0008AF80(int kind, int sub);
-int   sub_0008B210(R6fTask *t, R6fKeyMsg *m, int n);
+R6fTask *sub_0008B210(R6fTask *t, R6fKeyMsg *m, int n);
 R6fTask *sub_0008B290(R6fTask *t, int kind, int sub);
 int   sub_0008B010(R6fTask **out, R6fTask *src);
 void  sub_0008B760(R6fTask *t);
@@ -219,14 +222,14 @@ typedef struct R6fTaskMat { uint8_t unk00[0x2C]; int32_t i2C; int32_t i30; } R6f
 void  sub_0007F610(void *ch, int mode, int a, int b);
 void *sub_000893A0(void *ref);
 void *sub_0007EB80(void *r, int a, int b);
-void  sub_0008CCF0(void **root, int v);
+void  sub_0008CCF0(void **root, void *v);
 void  sub_0008CBE0(void **root, void *n);
 void  sub_00053710(int a);
 void  sub_00053740(void);
 void  sub_0007E910(void *m, void *r, int a, int b);
 void  sub_000535F0(int a, int b, int c);
 int   sub_00089610(void *ref);
-int   sub_0008E340(int a, int b, void *ch, int n);   /* ch=EDI n=EBX */
+int   sub_0008E340(int a, void *ref, void *ch, int n);   /* ch=EDI n=EBX */
 void  sub_0008FCB0(R6fModelRec *rec, int a, int b);
 void  sub_0008F900(void *list, void *rec);
 

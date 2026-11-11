@@ -131,7 +131,7 @@ void r6c_LinkAppend(R6cLinkHead *owner, R6cLink *l, uint8_t *obj, int v)
 }
 
 /* 0x00082200: gather the entries under root between two points into out (0-terminated). */
-void r6c_CollectBetween(int *root, const R6cVec4 *a, const R6cVec4 *b, int32_t *out)
+void r6c_CollectBetween(int *root, const R6cVec4 *a, const R6cVec4 *b, void **out)
 {
     if (!out)
         return;

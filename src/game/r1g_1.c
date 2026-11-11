@@ -57,7 +57,7 @@ void r1g_ClearScreen(int r, int g, int b, int a)
 {
     R1gPkt pkt;
     r1b_dev37B4A4 = sub_001A1FD0(2);
-    r1b_PktOp(&pkt, (uint32_t)(uintptr_t)r1g_buf37B2A0 | 0x20000000);
+    r1b_PktOp(&pkt, (uint32_t)(uintptr_t)r1g_buf37B2A0 | 0x20000000); /* XBOX32: GPU push-buffer word holds a 32-bit address */
     r1b_PktOp(&pkt);
     r1b_PktOp(&pkt, 0x800A, 0x10000000);
     r1b_PktOp(&pkt, 0xE, 0);

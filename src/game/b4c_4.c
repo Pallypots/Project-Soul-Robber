@@ -88,7 +88,7 @@ int b4c_Release1460E0(B4cOwner *o, B4cEnemy *e)
         e->fx6C = -1;
     }
     if (e->i70) {
-        sub_00033A70((void *)e->i70);
+        sub_00033A70(e->i70);
         e->i70 = 0;
     }
     b16_ClearBit0(w->obj3C);

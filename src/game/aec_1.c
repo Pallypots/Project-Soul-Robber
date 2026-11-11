@@ -301,7 +301,7 @@ int aec_EEB90(int a, int b, int c, int d)
 /* 0x000EEDF0: free 0x003F60F0 and clear it. */
 void aec_Free3F60F0(void)
 {
-    sub_00053880((void *)g_acb_3F60F0);
+    sub_00053880(g_acb_3F60F0);
     g_acb_3F60F0 = 0;
 }
 /* 0x000EFA30: close menu 8 if +0xEC is set. */

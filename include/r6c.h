@@ -229,7 +229,7 @@ typedef struct R6cKeyInfo { uint8_t unk00[0x10]; int32_t i10; uint8_t unk14[0x24
 typedef struct R6cKeyObj { uint8_t unk00[0x1C]; int32_t i1C; } R6cKeyObj;
 #define R6C_NEXT(p) ((p) ? (p)->next : 0)
 
-extern int32_t a80_ctx42C8E4;              /* 0x0042C8E4 object pointer */
+extern void   *a80_ctx42C8E4;              /* 0x0042C8E4 object pointer */
 R6cTNode *sub_0007F300(R6cTNode *n);       /* next sibling (NULL safe) */
 R6cTNode *sub_0007F320(R6cTNode *n);       /* first child (NULL safe) */
 R6cTNode *sub_0007F2B0(R6cTNode *n);       /* unlink */
@@ -323,7 +323,7 @@ extern int32_t   r6c_v3ECA1C;              /* 0x003ECA1C */
 extern void     *r6c_p3ECA38;              /* 0x003ECA38 */
 extern R6cHitSrc *r6c_src3ECA7C;           /* 0x003ECA7C */
 extern int32_t   r6c_n3ECA20;              /* 0x003ECA20 */
-extern int32_t  *r6c_out3ECA78;            /* 0x003ECA78 */
+extern void    **r6c_out3ECA78;            /* 0x003ECA78 collected entry pointers */
 extern R6cVec4   r6c_vec3EC9E8, r6c_vec3EC864;
 extern int32_t   a30_g41316C, a30_g413170;
 void *sub_00080A60(R6cColl *a, int b, int c);               /* c in ECX */

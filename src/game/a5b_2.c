@@ -12,10 +12,10 @@ void a5b_BuildDemoEfaPath(char *dst, int kind, int num)
     if (kind == 0x12)
         memcpy(name, a5b_strBg, 3);
     else if (kind == 10)
-        a6b_Printf3((int)name, 3, (int)a5b_strHex2, kind);
+        a6b_Printf3(name, 3, a5b_strHex2, kind);
     else
         for (;;) ;
-    a6b_Printf3((int)dst, 0xFF, (int)a5b_strDemoEfa, demo, demo, demo, name, num);
+    a6b_Printf3(dst, 0xFF, a5b_strDemoEfa, demo, demo, demo, name, num);
 }
 
 /* 0x00053F20: start channel `ch` (or restart the current one). */
@@ -51,7 +51,7 @@ int a5b_SndCallback(int id)
 void a5b_SndBegin(void)
 {
     sub_001A8720();
-    a60_ChannelStart(a5b_sndChannel, (int)a5b_SndCallback);
+    a60_ChannelStart(a5b_sndChannel, a5b_SndCallback);
     sub_000773A0(a5b_sndChannel, 0);
 }
 

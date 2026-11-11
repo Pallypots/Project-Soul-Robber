@@ -111,7 +111,7 @@ extern Ac0Entity g_ac0_entities[32];    /* 0x004242C0 */
 
 typedef struct Ac0Rec41E2A0 { uint8_t b[0xE0]; } Ac0Rec41E2A0;
 extern Ac0Rec41E2A0 g_ac0_41E2A0[32];   /* 0x0041E2A0 */
-extern int32_t g_ac0_handles[8];        /* 0x0041FEA0 */
+extern void   *g_ac0_handles[8];        /* 0x0041FEA0 */
 
 extern const int32_t g_ac0_soundTable[];  /* 0x002E7140 */
 extern const int32_t g_ac0_effectTable[]; /* 0x002E71F0 */
@@ -125,9 +125,9 @@ extern float   g_ac0_41FEE4[4];         /* 0x0041FEE4 */
 int   sub_000BD4D0(void *obj, int anim);
 int   sub_000494D0(int id, void *pos, int c);
 void  sub_000AA2E0(int id);
-int   sub_00033AD0(int h);
-void  sub_00033AC0(int h);
-void  sub_00033A70(int h);
+int   sub_00033AD0(void *h);
+void  sub_00033AC0(void *h);
+void  sub_00033A70(void *h);
 void  sub_000C4B70(void *rec);
 void  sub_000C7CC0(int a);
 void  sub_000D45B0(void *obj, int a, float b, float c);
@@ -136,7 +136,7 @@ void  sub_000CF330(void *a, void *b, int c);
 void  ac0_VecCopy(void *dst, const void *src);  /* 0x000F5D40 */
 void *sub_000EDB10(int a);
 void *sub_000EDB90(void);
-void  sub_000CB390(Ac0Actor *a, int h);
+void  sub_000CB390(Ac0Actor *a, void *e);
 void  sub_000CCA40(Ac0Actor *a, int b);
 int   sub_000CD180(Ac0Actor *a, int i);
 
@@ -162,8 +162,8 @@ typedef struct Ac0SndEntry { int32_t level; int32_t a; int32_t b; } Ac0SndEntry;
 extern const Ac0SndEntry g_ac0_sndEntries[];  /* 0x002E6F30 */
 
 void  sub_000D0560(Ac0Actor *a, int anim, int c);
-void  sub_00033AB0(int h);
-int   sub_000D0DC0(void *pos, float r, float *a, float *b);
+void  sub_00033AB0(void *h);
+int   sub_000D0DC0(const float *pos, float r, void *dst40, void *dst30);   /* r2b_PoolGetA */
 uint8_t *sub_0001D290(void *o, int k);
 int   sub_000CCD60(int a, int b, int c);
 int   sub_0019BE60(int k);

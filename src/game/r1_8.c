@@ -7,7 +7,7 @@ int r1_FileRead(R1File *f, void *buf, int n)
 {
     int st;
     sub_001A8490(f->h, f->pos, 0);
-    while (sub_001A8500((void *)f->h, 1, &st)) ;
+    while (sub_001A8500(f->h, 1, &st)) ;
     sub_00102FA0(0);
     sub_001A8410(f->h, buf, n);
     f->pos += n;
@@ -62,10 +62,10 @@ int r1_FileReadWait(R1File *f, void *buf, int n)
 {
     int st;
     sub_001A8490(f->h, f->pos, 0);
-    while (sub_001A8500((void *)f->h, 1, &st)) sub_001AB850();
+    while (sub_001A8500(f->h, 1, &st)) sub_001AB850();
     sub_00102FA0(0);
     sub_001A8410(f->h, buf, n);
-    while (sub_001A8500((void *)f->h, 1, &st)) sub_001AB850();
+    while (sub_001A8500(f->h, 1, &st)) sub_001AB850();
     f->pos += n;
     return n;
 }

@@ -66,7 +66,7 @@ int r4c_SlotMsg(R4cNode *o, R4cActor *a, R4cMsg *msg)
         return 0;
     case 42:
         sys = sub_000F3F80();
-        if (sub_000CB9B0() == (int)sys->p8C) {
+        if (sub_000CB9B0() == sys->p8C) {
             sub_00189DA0(o, a, 5);
             return 0;
         }

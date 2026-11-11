@@ -39,8 +39,8 @@ int r4f_ThreadCreate(const R4fThreadDesc *d, void *arg)
     t->h00 = h;
     t->id04 = id;
     t->state0C = 1;
-    t->ev14 = (int32_t)(intptr_t)sub_001BCE98(0, 0, 0, 0);
-    t->f08 = (int32_t)(intptr_t)d->fn04;
+    t->ev14 = sub_001BCE98(0, 0, 0, 0);
+    t->f08 = d->fn04;
     sub_001AD570(id, d->prio14);
     sub_001AA1F0(r4d_threadLock40F0D8);
     return id;

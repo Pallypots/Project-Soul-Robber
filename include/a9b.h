@@ -8,7 +8,7 @@
 /* Per-object work block reached through actor +0x74 (fields used here only). */
 typedef struct a9b_Work {
     uint32_t flags0;         /* +0x00 (some kinds store an owner pointer here) */
-    int32_t  f4;             /* +0x04 */
+    void    *f4;             /* +0x04 handle (freed with 0x00033A70) */
     int32_t  f8;             /* +0x08 */
     float    fC;             /* +0x0C */
     int32_t  f10;            /* +0x10 */
@@ -38,7 +38,7 @@ typedef struct a9b_Rec4C { int32_t f0; uint8_t p4[0x48]; } a9b_Rec4C;          /
 typedef struct a9b_Rec40 { int32_t f0, f4; uint8_t p8[4]; float fC; int32_t f10; uint8_t p14[0x2C]; } a9b_Rec40; /* 0x00400688 x16 */
 typedef struct a9b_Rec18 { int32_t f0, f4; uint8_t p8[0x10]; } a9b_Rec18;      /* 0x00400120 x26 */
 typedef struct a9b_Rec88 { a9b_Actor *obj; uint8_t p4[0x84]; } a9b_Rec88;       /* 0x00400A88 x4 */
-typedef struct a9b_Rec8C { int32_t f0, f4; uint8_t p8[8]; int32_t f10; uint8_t p14[0x78]; } a9b_Rec8C; /* 0x00400E50 x18 */
+typedef struct a9b_Rec8C { int32_t f0; void *f4; uint8_t p8[8]; int32_t f10; uint8_t p14[0x78]; } a9b_Rec8C; /* 0x00400E50 x18, f4 = object */
 typedef struct a9b_Rec30 { int32_t f0; uint8_t p4[4]; int32_t f8; uint8_t pC[0x24]; } a9b_Rec30;          /* 0x00401AF8 x1 */
 typedef struct a9b_Rec24w { uint16_t f0; uint8_t p2[0x16]; } a9b_Rec24w;        /* 0x003317B8 x1 (24 bytes) */
 typedef struct a9b_Rec36 { int32_t f0; uint8_t p4[2]; uint16_t w6; uint8_t p8[0x1C]; } a9b_Rec36; /* 0x003317C0 x0x264; words at +6+8j */
@@ -97,7 +97,7 @@ int  sub_000324B0(int a);
 void sub_000580D0(void);
 void sub_0019E530(void);
 void a9b_BufferWorker(void);
-int  a1a_GroupAdd(void *g, int a, int b, int c, int d, int e);
+int  a1a_GroupAdd(void *g, int slot, int prio, void (*fn)(void), int a, int stack);
 int  a1a_GroupReleaseAll(void *g);
 int  sub_0019BE60(int k);
 void sub_0001EEC0(void *a, int b);
@@ -105,5 +105,5 @@ void sub_001ADB60(float *dst, float *src, float s);
 void sub_0001D720(a9b_Actor *a);
 void sub_0001D7A0(a9b_Actor *a);
 int  sub_001AA520(int a);
-void *__fastcall sub_001D24F0(int size, int b);
+void *__fastcall sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m */
 #endif

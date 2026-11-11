@@ -243,7 +243,7 @@ extern A8cDescGetter a8b_descGetters[];
 
 /* external callees */
 void  sub_00081B10(int32_t *ctx, A8cChainNode *n);
-void  sub_00082200(int a, int b, int c, void *out);
+void  sub_00082200(void *root, const float *from, const float *to, void *list);
 float sub_001AD9D0(float x);
 void  sub_001A3F50(float x);
 void  sub_001B1FC0(void);

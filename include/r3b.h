@@ -46,7 +46,7 @@ typedef struct R3bAct {
     int32_t  i64;            /* +0x064 */
     float    f68;            /* +0x068 time in state */
     int32_t  h6C;            /* +0x06C */
-    int32_t  h70;            /* +0x070 attached part handle */
+    void    *h70;            /* +0x070 attached part handle */
     float    f74;            /* +0x074 */
     float    v78[4];         /* +0x078 */
     uint8_t  unk088[0x278 - 0x88];
@@ -165,7 +165,7 @@ void  sub_0001D4E0(void *obj);
 int   sub_000833E0(int anim);                        /* animation finished */
 void  sub_00088190(void);
 int   sub_000494D0(int id, const float *pos, int c);
-int   sub_00036750(void *o, int b);
+void *sub_00036750(void *o, int b);
 void  sub_000F5D40(float *d, const float *s);
 void  sub_00145C90(float *d, void *a, const float *b);
 void  sub_00145CD0(float *d, const float *s, float k);

@@ -256,12 +256,16 @@ typedef struct R1bCtx {
     void   *obj54;              /* +0x54 */
 } R1bCtx;
 extern R1bCtx *r1_ctx42C8E4;
-void  sub_00082200(void *o, int a, int b, int c);
+/* Collision pool queries (0x00080970 family). Every declaration of these
+   addresses (r1b.h, r2b.h, r4g.h, rfl.h, a8c.h, ac0.h, r3c.h) uses the same
+   pointer types: entry code reads pos/from/to as float vectors, list as a
+   pointer to the result list (default 0x003EC448) and out as a work buffer. */
+void  sub_00082200(void *root, const float *from, const float *to, void *list);
 void *r1b_Pool80970(void);              /* 0x00080970 */
-void  sub_000822D0(int z, void *p, int a, int b, int c, int d);
-void  sub_000824F0(int z, void *p, int a, int b, int c, int d);
-void  sub_00080CF0(void *p, int a);
-void *sub_00080CB0(void *p, int a, int b);
+void  sub_000822D0(void *ctx, void *pool, const float *pos, float r, void *list, void *out);
+void  sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
+uint8_t *sub_00080CF0(void *pool, const float *pos);
+uint8_t *sub_00080CB0(void *pool, const float *from, const float *to);
 void  r6_Mat1ADB40(float *dst, const void *src);
 typedef struct R1bLocObj {
     uint8_t unk000[0x60];

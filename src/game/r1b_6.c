@@ -35,34 +35,34 @@ void r1b_NodeDetach(void *key)
 }
 
 /* 0x0001B420: forward a query to the context's object at +0x54. */
-void r1b_CtxQuery(int a, int b, int *c)
+void r1b_CtxQuery(const float *from, const float *to, void **list)
 {
-    sub_00082200(r1_ctx42C8E4->obj54, a, b, *c);
+    sub_00082200(r1_ctx42C8E4->obj54, from, to, *list);
 }
 
 /* 0x0001B450: fill a pool from a query and finish it with one key. */
-void r1b_PoolFill1(int a, int b, int *c, int d)
+void *r1b_PoolFill1(const float *pos, float r, void **list, void *out)
 {
     void *p = r1b_Pool80970();
-    sub_000822D0(0, p, a, b, *c, d);
-    sub_00080CF0(p, a);
+    sub_000822D0(0, p, pos, r, *list, out);
+    return sub_00080CF0(p, pos);
 }
 
 /* 0x0001B490: fill a pool from a query and finish it with two keys. */
-void r1b_PoolFill2(int a, int b, int *c, int d)
+void *r1b_PoolFill2(const float *from, const float *to, void **list, void *out)
 {
     void *p = r1b_Pool80970();
-    sub_000824F0(0, p, a, b, *c, d);
-    sub_00080CB0(p, a, b);
+    sub_000824F0(0, p, from, to, *list, out);
+    return sub_00080CB0(p, from, to);
 }
 
 /* 0x0001C840: query a pool for an object's position and copy the result. */
-int r1b_PoolLocate(R1bLocObj *o, int a, int b, int *c)
+int r1b_PoolLocate(R1bLocObj *o, const float *from, const float *to, void **list)
 {
     uint8_t *r;
     void *p = r1b_Pool80970();
-    sub_000824F0(0, p, a, b, *c, (int)(uintptr_t)o->f11C);
-    r = sub_00080CB0(p, a, b);
+    sub_000824F0(0, p, from, to, *list, o->f11C);
+    r = sub_00080CB0(p, from, to);
     if (r == 0) return 0;
     r6_Mat1ADB40(o->f60, r + 0x40);
     return 1;

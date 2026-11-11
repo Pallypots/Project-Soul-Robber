@@ -329,6 +329,9 @@ void  sub_000A4410(int a, int b);
 #define R6G_FTOI(x) _mm_cvtt_ss2si(_mm_set_ss(x))
 #else
 #define R6G_FTOI(x) ((int)(x))
+#endif
+#if 0 /* PORT: this block was hidden by a misplaced #endif and never compiled on any target;
+         enabling it gives redefinition errors against declarations later in this header. */
 /* ------------------------------------------------------------ entity teardown (0xA5520) */
 /* Model record of the entity pools (0x150 bytes). */
 typedef struct R6gEntMdl {

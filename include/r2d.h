@@ -47,9 +47,9 @@ typedef struct R2dPlayer {
     uint8_t  unk1D8[0x5F0 - 0x1D8];
     int32_t  fx5F0;            /* +0x5F0 effect handle, -1 none */
     uint8_t  unk5F4[0x600 - 0x5F4];
-    int32_t  snd600;           /* +0x600 */
+    void    *snd600;           /* +0x600 handle (0x00036750) */
     uint8_t  unk604[0x608 - 0x604];
-    int32_t  snd608;           /* +0x608 */
+    void    *snd608;           /* +0x608 handle (0x00036750) */
     uint8_t  unk60C[0xE04 - 0x60C];
     int32_t  vE04;             /* +0xE04 */
     uint8_t  unkE08[0xFD8 - 0xE08];
@@ -181,7 +181,7 @@ typedef struct R2dRec150 { uint8_t unk00[0x30]; R2dModel *m30; uint8_t unk34[0x1
 /* Sound bank state 0x003F59D0.. */
 extern void   *aec_3F59D0;
 extern int32_t aec_3F59D4, aec_3F59DC, aec_3F59E4, aec_3F59E8, aec_3F59EC, aec_3F59F0;
-extern void   *r2d_banks318680[7];     /* 0x00318680 */
+extern int32_t r2d_banks318680[7];     /* 0x00318680 slot indices (0x0004F5D0 family indexes 0x002C8900 with them) */
 extern const char *r2d_names3187A0[5]; /* 0x003187A0 */
 typedef struct R2dBank { uint8_t unk00[0x14]; uint8_t *data14; uint8_t *body18; } R2dBank;
 extern R2dBank aec_recs1C[5];          /* 0x003F59F8 */
@@ -315,10 +315,10 @@ int   sub_00048510(int a);
 uint8_t *sub_0001D0F0(void *o, int k);
 void *sub_0001F210(int a, int b);
 void  sub_0001DA40(void *o);
-int   sub_0004F6D0(void *b);
-int   sub_0004F680(void *b);
+int   sub_0004F6D0(int slot);
+int   sub_0004F680(int slot);
 void *sub_00053AB0(int size, int a, int line);
-void  sub_000512D0(void *b, void *mem);
+void  sub_000512D0(int slot, void *mem);
 void  sub_000EC770(void);
 uint8_t *sub_00037550(const char *name, int a);
 R2dComp *sub_0001D960(void *o, int k);

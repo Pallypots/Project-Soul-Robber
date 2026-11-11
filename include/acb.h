@@ -94,7 +94,7 @@ extern AcbVoidFn g_acb_hook;       /* 0x003F5A90 */
 extern int       g_acb_hookArg;    /* 0x003F5B98 */
 extern float     g_acb_3F4B38;     /* 0x003F4B38 */
 extern int       g_acb_3F57BC;     /* 0x003F57BC */
-extern int       g_acb_3F60F0;     /* 0x003F60F0 */
+extern void     *g_acb_3F60F0;     /* 0x003F60F0 */
 
 /* Object with a float at +0x10C. */
 typedef struct AcbF10C { uint8_t unk00[0x10C]; float f10C; } AcbF10C;

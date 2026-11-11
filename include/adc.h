@@ -136,7 +136,7 @@ extern int32_t   af0_var3EE6A8, af0_var3F0734, af0_var3F0738, af0_var3F073C, af0
 void adc_ClearChannels(void);
 void a60_PostCommand(int a, int b);
 void sub_000325A0(int a);
-int  adc_StatD0030(PlayerStats *s, int v);
+void *adc_StatD0030(PlayerStats *s, int v);   /* PlayerObj_D0030 */
 void sub_00048AF0(int a);
 int  sub_000E03D0(void);
 void a5b_SndPause(void);

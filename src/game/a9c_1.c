@@ -34,7 +34,7 @@ void a9c_TimerMode2(a9c_Obj *ctx, a9c_Obj *a)
 {
     a9c_Work *w = a->work;
     if (w->fC > 11.0f)
-        sub_00189DA0(ctx, (void *)w->f8, 2);
+        sub_00189DA0(ctx, w->obj8, 2);
     w->fC += a50_frameSeconds;
 }
 

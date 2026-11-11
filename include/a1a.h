@@ -54,7 +54,7 @@ typedef struct A1aStateOwner {
 
 void sub_001A0320(void);
 void sub_00102FA0(void);
-int  sub_00058B00(int a, int b, int c, int d, A1aGroup *g, int id, int e);
+int  sub_00058B00(int prio, void (*fn)(void), int a, int stack, A1aGroup *g, int id, int slot);
 A1aRes *sub_00057FC0(int group, int key);
 A1aRes *sub_00058020(int group);
 A1aRes *sub_00058060(A1aRes *r, int group);
@@ -79,9 +79,9 @@ void sub_001A5300(void);
 void sub_001A52F0(void);
 void OOG_STDCALL sub_001D3D80(int a, int b, int *c);
 void OOG_STDCALL sub_001D2F40(void *a, void *b, void *c);
-int  __fastcall sub_001D24F0(int a, int b);
+void *__fastcall sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m */
 
-int  a1a_GroupAdd(A1aGroup *g, int a, int b, int c, int d, int e);
+int  a1a_GroupAdd(A1aGroup *g, int slot, int prio, void (*fn)(void), int a, int stack);
 int  a1a_GroupReleaseOne(A1aGroup *g, int key);
 int  a1a_GroupReleaseAll(A1aGroup *g);
 
@@ -104,7 +104,7 @@ int  OOG_STDCALL sub_001BCEF9(int h);
 int  OOG_STDCALL sub_001D76A0(int);
 void OOG_STDCALL sub_001BD0D6(int, int);
 void OOG_STDCALL sub_001D5F50(int);
-void OOG_STDCALL sub_001D2CF0(int, int);
+void OOG_STDCALL sub_001D2CF0(int stage, const void *m);   /* copies a 4x4 matrix from m */
 void OOG_STDCALL sub_001D55A0(int);
 void OOG_STDCALL sub_001D6ED0(int, int, int, int, float, int);
 void OOG_STDCALL sub_001D2E10(int, void *);

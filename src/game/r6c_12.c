@@ -8,7 +8,7 @@ void r6c_EvRunJobA(void)
     case 0:
         if (sub_00057E90())
             return;
-        sub_00058540((void (*)(void))sub_000856F0, (int)(intptr_t)r6c_grp3ED254);
+        sub_00058540((void (*)(void))sub_000856F0, r6c_grp3ED254);
         r6c_v3ED270 = 10;
         /* fall through */
     case 10:
@@ -26,7 +26,7 @@ void r6c_EvRunJobB(void)
     case 0:
         if (sub_00057E90())
             return;
-        sub_00058540((void (*)(void))sub_00085820, (int)(intptr_t)r6c_grp3ED254);
+        sub_00058540((void (*)(void))sub_00085820, r6c_grp3ED254);
         r6c_v3ED250 = 10;
         /* fall through */
     case 10:
@@ -44,7 +44,7 @@ void r6c_EvRunJobC(void)
     case 0:
         if (sub_00057E90())
             return;
-        sub_00058540((void (*)(void))sub_00085930, (int)(intptr_t)r6c_grp3ED254);
+        sub_00058540((void (*)(void))sub_00085930, r6c_grp3ED254);
         r6c_v3ED24C = 10;
         /* fall through */
     case 10:

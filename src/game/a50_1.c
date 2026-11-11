@@ -95,17 +95,17 @@ void a50_BlobRebase(A50Blob *b)
 
     if (b->flags != 0)
         return;
-    b->tableA += (int32_t)b;
-    b->tableB += (int32_t)b;
-    t = (A50Table *)b->tableA;
+    b->tableA += (int32_t)b; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
+    b->tableB += (int32_t)b; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
+    t = (A50Table *)b->tableA; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
     for (i = t->count, e = t->entries; i > 0; i--, e++)
-        e->ptr += (int32_t)b;
-    t = (A50Table *)b->tableB;
+        e->ptr += (int32_t)b; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
+    t = (A50Table *)b->tableB; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
     for (i = t->count, e = t->entries; i > 0; i--, e++) {
-        e->ptr += (int32_t)b;
-        p = (int32_t *)e->ptr;
+        e->ptr += (int32_t)b; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
+        p = (int32_t *)e->ptr; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
         if (p[0] != 0)
-            p[1] += (int32_t)p;
+            p[1] += (int32_t)p; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
     }
     b->flags |= 1;
 }
@@ -114,7 +114,7 @@ void a50_BlobRebase(A50Blob *b)
  * allocated from the shared heap. */
 int32_t *a50_BlobListEntries(A50Blob *b)
 {
-    A50Table *t = (A50Table *)b->tableA;
+    A50Table *t = (A50Table *)b->tableA; /* XBOX32: loaded blob stores 32-bit offsets rebased in place to 32-bit pointers */
     int n = t->count;
     int32_t *list = a50_Alloc(10, n * 4 + 4, 0, 0);
     int i;

@@ -233,7 +233,7 @@ void r4c_TimedAttachCam(R4cNode *o, R4cActor *a)
 {
     R4cTimedW *w = (R4cTimedW *)a->work;
     float v[4];
-    int h;
+    void *h;
     w->v0C[0] = r4c_frameSeconds * 0.0f;
     w->v0C[1] = r4c_frameSeconds * 0.0f;
     w->v0C[2] = r4c_frameSeconds * 0.0f;
@@ -242,5 +242,5 @@ void r4c_TimedAttachCam(R4cNode *o, R4cActor *a)
     r4c_CamPoint(v, o);
     h = sub_00036750(o, 3);
     w->i04 = h;
-    sub_00034CF0((void *)h, v[0], v[1], v[2], v[3]);
+    sub_00034CF0(h, v[0], v[1], v[2], v[3]);
 }

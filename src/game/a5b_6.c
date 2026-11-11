@@ -51,9 +51,9 @@ A5bCell **a5b_ShockTable(int i)
 void a5b_ShockFileName(char *dst, int n)
 {
     if (n < 0x10)
-        a6b_Printf2((int)dst, (int)a5b_strShock0, n);
+        a6b_Printf2(dst, a5b_strShock0, n);
     else if (n < 0x100)
-        a6b_Printf2((int)dst, (int)a5b_strShock, n);
+        a6b_Printf2(dst, a5b_strShock, n);
 }
 
 /* 0x0005EDA0: delete cell `b` of row `c` in table `t`, shifting the rest

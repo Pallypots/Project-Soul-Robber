@@ -103,7 +103,7 @@ int r6f_TaskCopyMat(R6fTask *t, R6fRangeArg *x)
         t->f18.u &= ~2;
         return 0;
     }
-    id = (int)(intptr_t)m->work;
+    id = m->workId;
     r = sub_0008E5E0(sub_000893B0(x), (id >> 20) & 0xFF, (id >> 8) & 0xFFF, id & 0xFF);
     if (r && r->p28 && m->p28) {
         sub_0007ED10(r->p28, m->p28);

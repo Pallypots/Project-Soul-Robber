@@ -86,13 +86,13 @@ int r2b_CheckE04(R2bPlayer *p, int any)
 
 /* 0x000D0DC0: look up entry (a, b) in the pool and copy its two vectors (+0x40, +0x30)
    out; 1 on success, -1 when missing. */
-int r2b_PoolGetA(int a, int b, void *dst40, void *dst30)
+int r2b_PoolGetA(const float *pos, float r, void *dst40, void *dst30)
 {
     void *ctx = r2b_ctx42C8E4->p54;
     void *pool = r1b_Pool80970();
     uint8_t *e;
-    sub_000822D0(ctx, pool, a, b, 0, 0);
-    e = sub_00080CF0(pool, a);
+    sub_000822D0(ctx, pool, pos, r, 0, 0);
+    e = sub_00080CF0(pool, pos);
     if (!e)
         return -1;
     sub_000F5D40(dst40, e + 0x40);
@@ -101,13 +101,13 @@ int r2b_PoolGetA(int a, int b, void *dst40, void *dst30)
 }
 
 /* 0x000D0E30: like 0x0D0DC0 with the second pool lookup pair (0x0824F0 / 0x080CB0). */
-int r2b_PoolGetB(int a, int b, void *dst40, void *dst30)
+int r2b_PoolGetB(const float *from, const float *to, void *dst40, void *dst30)
 {
     void *ctx = r2b_ctx42C8E4->p54;
     void *pool = r1b_Pool80970();
     uint8_t *e;
-    sub_000824F0(ctx, pool, a, b, 0, 0);
-    e = sub_00080CB0(pool, a, b);
+    sub_000824F0(ctx, pool, from, to, 0, 0);
+    e = sub_00080CB0(pool, from, to);
     if (!e)
         return -1;
     sub_000F5D40(dst40, e + 0x40);

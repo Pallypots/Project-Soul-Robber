@@ -92,7 +92,7 @@ int ac0_AnyNear(uint8_t *obj)
     float a[4], b[4];
     a[0] = 0.0f; a[1] = 0.0f; a[2] = 0.0f; a[3] = 1.0f;
     b[0] = 0.0f; b[1] = 0.0f; b[2] = 0.0f; b[3] = 1.0f;
-    return sub_000D0DC0(obj + 0x34, 2.5f, b, a) > 0;
+    return sub_000D0DC0((const float *)(obj + 0x34), 2.5f, b, a) > 0;
 }
 /* 0x000C9210: reset the 20 transform records to identity. */
 void ac0_Xforms_Reset(void)

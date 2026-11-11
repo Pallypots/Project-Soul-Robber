@@ -182,8 +182,8 @@ void ac0_Handle_Start(int a, int b)
     int i;
     for (i = 0; i < 8; i++) {
         if (g_ac0_handles[i] == 0) {
-            g_ac0_handles[i] = (int32_t)sub_00035D80(p, a, 3);
-            sub_00034E00((void *)g_ac0_handles[i], b, g_378198, g_378188);
+            g_ac0_handles[i] = sub_00035D80(p, a, 3);
+            sub_00034E00(g_ac0_handles[i], b, g_378198, g_378188);
             sub_00033AB0(g_ac0_handles[i]);
             return;
         }

@@ -153,7 +153,7 @@ void  sub_0003FAB0(void *anim, void *owner);
 void  sub_00075F00(A60Menu *m);
 void  sub_000603C0(int v);
 int   sub_000D9A70(int id);
-void  sub_00058540(void (*fn)(void), int a);
+void  sub_00058540(void (*fn)(void), void *arg);   /* start job fn(arg) */
 void  sub_00065F00(void);
 int   sub_00057E90(void);
 void  sub_000580D0(void);
@@ -168,7 +168,7 @@ void *sub_00053AB0(int size, const void *file, int line);
 void  sub_0003D880(void *list, void *node);
 void *sub_0003DC10(void *node, int a, void *key);
 void  sub_001A85D0(int v);
-int   sub_001A8580(int v, int a, int b);
+int   sub_001A8580(int v, int (*cb)(int), int b);   /* cb: voice callback */
 void  sub_001A85A0(int v, int id);
 void  sub_001A8600(int v);
 int   sub_000529F0(void);

@@ -5,9 +5,9 @@
 void r6d_MenuShowText(int id)
 {
     sub_00018620(a60_menu3E60CC->anim968, r6d_menuAnim2DDB00);
-    a60_TextClear((int)a60_menu3E60CC->text970);
+    a60_TextClear(a60_menu3E60CC->text970);
     sub_0003FCB0(a60_menu3E60CC->anim968, sub_0003FA70(a60_menu3E60CC->anim988, id, 0, 0, -1.0f));
-    a60_FlagsClear((int)a60_menu3E60CC->text970, 0x80);
+    a60_FlagsClear(a60_menu3E60CC->text970, 0x80);
 }
 
 /* 0x000609A0: give the player one bought shop item.

@@ -209,3 +209,4 @@ va,reason
 0x000B74F1,inside 0xB74A0 (within its inventory range); not 16-aligned
 0x000BFF96,inside 0xBFDE0 (within its inventory range); not 16-aligned
 0x000C3CEB,inside 0xC3730 (within its inventory range); not 16-aligned
+0x00020000,inside 0x1FE70 (753 bytes; ends 0x20161); no prologue, uses ESI/EDI/EBP before setting them

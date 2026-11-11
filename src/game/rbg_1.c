@@ -29,7 +29,7 @@ void rbg_LoadDance0D00B0(RbgJack *m, int idx)
     sub_0004FA70(movie, sub_00053AB0(sub_0004F680(movie), 0, 0xCD4));
     sub_0004F4E0();
     sub_0004F700(movie);
-    g_3EDB38 = (void *)movie;
+    g_3EDB38 = movie;
     g_3EDB3C = sub_00053BC0(rbg_sJkMngSub, 0xCDA);
     node = sub_00053AB0(0xE0, 0, 0xCDC);
     sub_001AE970(node);

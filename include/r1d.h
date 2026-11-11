@@ -66,9 +66,9 @@ typedef struct R1dAnimBank {
     int32_t u08[3];
     int32_t n14;                /* +0x14 */
     int32_t n18;                /* +0x18 */
-    char    *elems;             /* +0x1C 0x54-byte elements (offsets, made absolute) */
-    int32_t **lists;            /* +0x20 -1 terminated element index lists */
-    struct R1dKey **keys;       /* +0x24 key tables */
+    char    *elems;             /* +0x1C 0x54-byte elements (offsets, made absolute) */ /* XBOX32: file data field: 32-bit offset/pointer, struct layout needs 32-bit fields natively */
+    int32_t **lists;            /* +0x20 -1 terminated element index lists */ /* XBOX32: file data field: 32-bit offset/pointer */
+    struct R1dKey **keys;       /* +0x24 key tables */ /* XBOX32: file data field: 32-bit offset/pointer */
 } R1dAnimBank;
 typedef struct R1dKey {
     int32_t u00;
@@ -263,12 +263,12 @@ void r1d_BonesLink(R1dMTask *t, R1dMNode *src, R1dMNode *dst);
 int  r1d_BonesSelect(R1dMNode *n, int which);
 
 /* ------------------------------------------------------------ group 5 */
-int       a50_AllocTop(const char *name, int tag);     /* 0x00053BC0 */
+void     *a50_AllocTop(const char *name, int tag);     /* 0x00053BC0 */
 void      a5b_CurSlotEndTemp(void);                    /* 0x00053BE0 */
-void      sub_00053880(int h);
+void      sub_00053880(void *p);               /* free */
 uint32_t *sub_00037570(const char *name, int align);
-int       sub_00021B00(int a, const char *name, uint32_t *buf, int h);
-int       sub_000201C0(int a, const char *name, uint32_t *buf, int h);
+int       sub_00021B00(int a, const char *name, uint32_t *buf, void *h);
+int       sub_000201C0(int a, const char *name, uint32_t *buf, void *h);
 
 /* sequence state blocks (a fixed field holds flag bit 0) */
 typedef struct R1dSeqA {            /* 0x0037C4FC, template at 0x0037FB78 */
@@ -365,7 +365,8 @@ extern const uint8_t r1d_anims282AD8[], r1d_anims282C7C[], r1d_anims282E24[],
 /* model viewer slot handles (-1 = none) */
 extern int32_t a3b_mode381AB8;              /* 0x00381AB8 (100 = special mode) */
 extern int32_t r1d_tex381AB4, r1d_tex381AB0, r1d_tex381A60, r1d_tex381A64, r1d_tex381A68;
-extern int32_t r1d_heap381A5C, r1d_sel38182C;
+extern char   *r1d_heap381A5C;                         /* 0x00381A5C */
+extern int32_t r1d_sel38182C;
 extern char    r1d_path381A70[];
 extern const char r1d_fmt2835E8[];
 void sub_001B9FC0(int h);
@@ -373,10 +374,10 @@ void sub_0004F5D0(int tag);
 void sub_0004F700(int tag);
 void sub_0004F720(void);
 int  a6b_Printf2(char *dst, const char *fmt, ...);     /* 0x0007E0A0 */
-void sub_00053E20(const char *name, int heap);
+void sub_00053E20(const char *name, void *dst);
 int  sub_00053CA0(int a);
 void sub_000580D0(void);
-int  sub_00084C00(int heap, int a);
+int  sub_00084C00(void *data, int a);
 
 /* state queue at 0x00381834 */
 extern int32_t r1b_queue381834[4];
@@ -603,7 +604,7 @@ void         sub_00053740(void);
 extern int32_t r1c_obj2836DC;
 extern void   *r1c_bufAData3DA0C0, *r1c_bufBData3DA0B8;
 extern void   *r1c_bufA3DA0C8, *r1c_bufB3DA0CC, *r1c_data3DA0D0, *r1d_g3DA0BC;
-extern int32_t r1d_heap3DA0D4;
+extern void   *r1d_heap3DA0D4;                         /* 0x003DA0D4 */
 extern R1dActor *r1d_saved3DA0C4;
 extern uint16_t r1d_texGrp3DA0B4;
 extern const char r1d_name261588[];
@@ -651,8 +652,8 @@ void r1d_ChanUpdate(void *ctx);
 extern int32_t a3c_g2C4460, a3c_g2C4464, a3c_busy3DA310, a3c_g3DA2FC;
 extern char    a3c_obj2C4090[];
 extern int32_t r1d_tex3DA2EC[4];            /* 0x003DA2EC */
-extern int32_t r1d_src3DA300[4];            /* 0x003DA300 */
-extern const int32_t r1d_srcTbl2C3800[];    /* 0x002C3800 */
+extern void   *r1d_src3DA300[4];            /* 0x003DA300 */
+extern void *const r1d_srcTbl2C3800[];      /* 0x002C3800  addresses of built-in images */
 extern char    r1d_blob2C3810[];            /* 0x002C3810 */
 extern int32_t r1d_g3DA318;
 extern void   *r1c_paged3DA314;             /* 0x003DA314 */
@@ -715,7 +716,8 @@ R1dCamRef *sub_0003DBC0(void *list, int (*match)(void *, int), int key);
 R1dCamRef *sub_0003DC10(void *node, int (*match)(void *, int), int key);
 
 /* title/menu screen state */
-extern int32_t r1d_g3DDC74, r1d_heap3DDC70, r1d_g3DDC80;
+extern int32_t r1d_g3DDC74, r1d_g3DDC80;
+extern void   *r1d_heap3DDC70;                         /* 0x003DDC70 */
 extern int32_t r1d_tex3DDC98[7];            /* 0x003DDC98 */
 int  a5b_GetVideoMode(void);                /* 0x000529F0 */
 void sub_001A1B90(void);

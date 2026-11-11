@@ -17,7 +17,7 @@ typedef struct R2eModel {
 } R2eModel;
 typedef struct R2eSlot {
     R2eModel *p00;             /* +0x00 model */
-    int32_t  h04;              /* +0x04 resource handle */
+    void    *h04;              /* +0x04 resource (from 0x0001D080) */
     float    v08[4];           /* +0x08 */
     float    f18;              /* +0x18 */
     int32_t  state1C;          /* +0x1C */
@@ -168,7 +168,7 @@ typedef struct R2eActor {
     int32_t  kind64;           /* +0x064 */
     float    f68;              /* +0x068 */
     int32_t  v6C;              /* +0x06C */
-    int32_t  v70;              /* +0x070 */
+    void    *v70;              /* +0x070 handle (0x00036750) */
     float    f74;              /* +0x074 */
     float    v78[4];           /* +0x078 */
     uint8_t  unk088[0x94 - 0x88];
@@ -367,7 +367,7 @@ int   sub_00145940(void *a, int b, int c, int d, int e);
 void  sub_001459D0(void *a, int b, int c, int d);
 void  sub_00033250(void);
 void  sub_000580D0(void);
-void  sub_00058540(void (*fn)(void), int a);
+void  sub_00058540(void (*fn)(void), void *arg);   /* start job fn(arg) */
 void  sub_000E5300(void);
 void  r2d_PlayerPlace(void *p, const void *pos);       /* 0x000D1CA0 */
 void  sub_000CF330(void *p, const void *pos, float f);
@@ -430,18 +430,18 @@ R2eEvtFn sub_000E9BC0(int owner, int kind);
 R2eEvtFn sub_000E9C00(int owner, int kind);
 R2eEvtFn sub_000E9C40(int owner, int kind);
 int   sub_000E2420(R2eStage *o);
-int   sub_0001D080(void *bank, int type, int id);
+void *sub_0001D080(void *bank, int type, int id);
 void  sub_0001D7F0(void *model, int a, int b);
 void  sub_000E23F0(int a, int b);
 void  sub_0012D600(int a);
 void  sub_000F09E0(int a);             /* regargs: p1=EAX */
-void  sub_00117580(void *o, int ev, int c); /* regargs: p3=EDI */
+void  sub_00117580(void *o, int ev, void *c); /* regargs: p3=EDI */
 void  sub_000F8940(void *a, int b, int c);
 void  sub_000F8B40(void *a, int b, int c);
 void  sub_0005BBB0(int a);
 void  sub_0003D880(void *list, void *node);
 int   sub_000F5D00(void *o);
-void  sub_000F3D10(void *o, int a, int b);
+void  sub_000F3D10(void *o, void *m, int state);   /* m: state block (+0x6C state) */
 void *sub_000F5F80(void *o);
 int   sub_000494D0(int id, void *pos, int c);
 

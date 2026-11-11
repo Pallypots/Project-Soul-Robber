@@ -6,7 +6,7 @@
 void a5b_AttachInline(A5bPair *owner, uint8_t *obj)
 {
     *(uint8_t **)(obj + 0xC) = obj + 0x10;
-    a5b_PairSet(owner, (int)obj);
+    a5b_PairSet(owner, obj);
 }
 
 /* 0x0005C8D0: walk obj->+0xC with callback 0x0005BC90. */

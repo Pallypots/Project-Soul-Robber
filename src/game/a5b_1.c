@@ -11,7 +11,7 @@ int a5b_GetVideoMode(void)
 /* 0x00052E10: release every table handle of a cache entry's blob. */
 void a5b_CacheRelease(int32_t *entry)
 {
-    A50Table *t = (A50Table *)((A50Blob *)entry[3])->tableA;
+    A50Table *t = (A50Table *)((A50Blob *)entry[3])->tableA; /* XBOX32: cache entry word and blob table hold 32-bit addresses */
     uint32_t i;
     for (i = 0; i < t->count; i++)
         sub_001B9FC0(t->entries[i].ptr);

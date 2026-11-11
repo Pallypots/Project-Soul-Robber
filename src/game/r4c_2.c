@@ -29,7 +29,7 @@ void r4c_FxKill(R4cNode *o)
     sub_00033880(h, m);
     r4c_Model34E00(h, o->pos, out, col);
     if (fx) {
-        sub_00189DA0(fx, (void *)sub_0001D960(fx, 7), 1);
+        sub_00189DA0(fx, sub_0001D960(fx, 7), 1);
         sub_000494D0(0x78, ((R4cNode *)fx)->pos, 1);
     }
     sub_000ED780(o);

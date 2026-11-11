@@ -509,7 +509,7 @@ typedef struct R1eDrawCtx {
     R1eSObjX *vars;             /* +0x38 */
 } R1eDrawCtx;
 typedef struct R1eDrawObj { uint8_t unk00[0x34]; R1eDrawCtx *ctx; } R1eDrawObj;
-int  sub_0005D620(int ea, int ed, int a, int b, int c);   /* regargs: ea=EAX ed=EDX */
+int  sub_0005D620(int ea, void *ed, int a, int b, void *c);   /* regargs: ea=EAX ed=EDX; c = base pointer */
 int  sub_0003EB10(void *var);
 typedef struct R1eCell { uint8_t ch; int8_t attr; } R1eCell;
 typedef struct R1ePage { union { R1eCell *p; int32_t n; } row[2]; uint8_t unk08[4]; R1eCell data[1]; } R1ePage;

@@ -4,7 +4,7 @@
 /* 0x00084C30: query a handle, -1 for null. */
 int a80_HandleQuery(int h) { if (h == 0) return -1; return sub_001BA7C0(h); }
 /* 0x00084EC0: get word 0x3ED1B0. */
-int32_t a80_Get3ED1B0(void) { return a80_g3ED1B0; }
+void *a80_Get3ED1B0(void) { return a80_g3ED1B0; }
 /* 0x000852E0: clear three state words. */
 void a80_Clear3ED1C4(void) { a80_g3ED1CC = 0; a80_g3ED1C8 = 0; a80_g3ED1C4 = 0; }
 /* 0x00085360: set word 0x3ED1CC. */
@@ -16,11 +16,11 @@ void a80_Zero3ED1CC(void) { a80_g3ED1CC = 0; }
 /* 0x00085BF0: clear two state words. */
 void a80_Clear3ED1D0(void) { a80_g3ED1D4 = 0; a80_g3ED1D0 = 0; }
 /* 0x00085DA0: get word 0x3ED1D4. */
-int32_t a80_Get3ED1D4(void) { return a80_g3ED1D4; }
+void *a80_Get3ED1D4(void) { return a80_g3ED1D4; }
 /* 0x00086200: set word 0x3ED208. */
-void a80_Set3ED208(int32_t v) { a80_g3ED208 = v; }
+void a80_Set3ED208(void *v) { a80_g3ED208 = v; }
 /* 0x00086210: get word 0x3ED208. */
-int32_t a80_Get3ED208(void) { return a80_g3ED208; }
+void *a80_Get3ED208(void) { return a80_g3ED208; }
 /* 0x00086220: clear word 0x3ED208. */
 void a80_Zero3ED208(void) { a80_g3ED208 = 0; }
 /* 0x00086230: dispatch through handler table 0x2E03B4. */

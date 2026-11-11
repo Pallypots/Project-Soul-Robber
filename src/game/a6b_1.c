@@ -4,23 +4,23 @@
 #include "a6b.h"
 
 /* 0x0007E070: varargs front end of 0x0007DAF0. */
-int a6b_Printf3(int a, int b, int c, ...)
+int a6b_Printf3(char *buf, int size, const char *fmt, ...)
 {
     va_list ap;
     int r;
-    va_start(ap, c);
-    r = sub_0007DAF0(a, b, c, &ap);
+    va_start(ap, fmt);
+    r = sub_0007DAF0(buf, size, fmt, &ap);
     va_end(ap);
     return r;
 }
 
 /* 0x0007E0A0: varargs front end of 0x0007DAF0 with b fixed at 10000. */
-int a6b_Printf2(int a, int c, ...)
+int a6b_Printf2(char *buf, const char *fmt, ...)
 {
     va_list ap;
     int r;
-    va_start(ap, c);
-    r = sub_0007DAF0(a, 10000, c, &ap);
+    va_start(ap, fmt);
+    r = sub_0007DAF0(buf, 10000, fmt, &ap);
     va_end(ap);
     return r;
 }

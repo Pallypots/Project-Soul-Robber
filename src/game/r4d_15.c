@@ -13,7 +13,7 @@ int r4d_ThreadClose(int id)
         sub_001AA1F0(r4d_threadLock40F0D8);
         return -1;
     }
-    sub_001BC6FD((void *)(intptr_t)t->ev14);
+    sub_001BC6FD(t->ev14);
     sub_001BC6FD(t->h00);
     t->h00 = (void *)-1;
     t->id04 = -1;

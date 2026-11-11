@@ -23,7 +23,7 @@ void    sub_001B9FC0(int handle);
 /* ---- effect paths */
 void *sub_0008CD60(void);
 int  sub_0008CDA0(void *ref);
-int  a6b_Printf3(int a, int b, int c, ...);
+int  a6b_Printf3(char *buf, int size, const char *fmt, ...);   /* 0x0007E070 */
 extern const char a5b_strBg[];             /* 0x0026BE48 "bg" */
 extern const char a5b_strHex2[];           /* 0x0026BE88 "%02x" */
 extern const char a5b_strDemoEfa[];        /* 0x0026BE4C */
@@ -38,7 +38,7 @@ void     sub_001A8720(void);
 void     sub_001A8760(void);
 void     sub_000771E0(int ch, int a, int b);
 void     sub_000773A0(int ch, int a);
-void     a60_ChannelStart(int ch, int arg);
+void     a60_ChannelStart(int ch, int (*cb)(int));
 void     a60_ChannelStop(int ch);
 uint16_t a60_ChannelLevel(int ch);
 void     a60_ChannelSetC00(int ch);
@@ -48,7 +48,7 @@ int      a5b_SndCallback(int id);
 extern int32_t a5b_g3E3944, a5b_g3E393C, a5b_g3E3910, a5b_g3E3F4C, a5b_g3E3F48;
 
 /* ---- small records in 0x0005A6D0.. */
-typedef struct A5bPair { int32_t unk00; int32_t value; } A5bPair;
+typedef struct A5bPair { int32_t unk00; void *value; } A5bPair;
 typedef struct A5bTimer {      /* 0x10 bytes */
     int32_t unk00;
     float   rate;              /* +0x04 */
@@ -67,7 +67,7 @@ typedef struct A5bSlotList {
     int32_t  count;            /* +0x08 */
     A5bSlot *slots;            /* +0x0C */
 } A5bSlotList;
-void a5b_PairSet(A5bPair *p, int value);
+void a5b_PairSet(A5bPair *p, void *value);
 int  a12_List_Count(void *list);
 void *a12_List_At(void *list, int i);
 int  sub_0003F9C0(int a, void *b);
@@ -86,8 +86,8 @@ int  sub_0005CD00(void *p, int a, int b);
 extern uint8_t a5b_jobLists[6][16];        /* 0x003E46E0 */
 void *sub_001AD560(void);
 void  sub_001AA460(int h);
-void  sub_001AD440(int h);
-void *sub_0003DBC0(void *list, int a, void *key);
+void  sub_001AD440(void *thread);
+void *sub_0003DBC0(void *list, int (*match)(uint8_t *obj, int key), void *key);   /* a4c_ListFind */
 int   a50_ObjIdIs(uint8_t *obj, int id);
 int   a50_ObjKindIs(uint8_t *obj, int kind);
 void  sub_0003D910(void *desc);
@@ -115,6 +115,6 @@ extern const char a5b_strShock0[];         /* 0x0026CDE4 */
 extern const char a5b_strShock[];          /* 0x0026CDC8 */
 int  sub_0005EA60(int a, void *b, float scale);
 void sub_0004ED60(int i, int a, int b);
-int  a6b_Printf2(int a, int c, ...);
+int  a6b_Printf2(char *buf, const char *fmt, ...);             /* 0x0007E0A0 */
 
 #endif

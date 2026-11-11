@@ -22,7 +22,7 @@ typedef struct A30Slot {
     int32_t  size;          /* +0x0C */
     int32_t  f10;           /* +0x10 */
     uint8_t  unk14[4];
-    int32_t  f18;           /* +0x18 */
+    void    *f18;           /* +0x18  heap buffer (runtime, freed with 0x00053880) */
     int32_t  f1C;           /* +0x1C */
 } A30Slot;
 #define A30_SLOT_COUNT 0x21E

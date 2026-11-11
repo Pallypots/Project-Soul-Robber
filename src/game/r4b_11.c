@@ -31,7 +31,7 @@ int r4b_MovieDraw(void)
                      0, 0, 1.0f, 1.0f, r4b_g40B104 * (1.0f / 255.0f));
         sub_001D4350(0x40304, 1);
         aac_g1E243C = 1;
-        sub_001D3AB0(0, (int)rt);
+        sub_001D3AB0(0, rt);
         if (rt)
             sub_001D5F50(rt);
     }
@@ -48,7 +48,7 @@ void r4b_MovieDrawMode16(void)
                      0, 0, 1.0f, 1.0f, r4b_g40B104 * (1.0f / 255.0f));
         sub_001D4350(0x40304, 1);
         aac_g1E243C = 1;
-        sub_001D3AB0(0, (int)rt);
+        sub_001D3AB0(0, rt);
         if (rt)
             sub_001D5F50(rt);
     }

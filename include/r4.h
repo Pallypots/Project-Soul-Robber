@@ -162,7 +162,7 @@ void  sub_001AD7E0(void *d, const void *s);
 int   sub_001B2270(void *p);
 void *sub_001BA7F0(const void *img);
 uint8_t *sub_001B9650(void *tex);
-int   sub_001B9CA0(int a, void *tex);
+uint32_t *sub_001B9CA0(uint32_t *cmd, void *tex);
 void  sub_001ADEE0(void *m, int a, int b, int c);
 void  sub_001A7280(int a);
 void  sub_001AD9F0(float *d, const float *a, const float *b);

@@ -56,12 +56,12 @@ float rfl_AngleFromZ(const float *dir)
 /* 0x00145DA0: run the pick query at pos and return the distance to the hit
    (copying the 0x60-byte hit record to out when given); -1 when nothing was
    hit. */
-float rfl_PickDistance(const float *pos, int b, int c, int d, void *out)
+float rfl_PickDistance(const float *pos, const float *to, void *list, void *work, void *out)
 {
     void *pool = r1b_Pool80970();
     uint8_t *hit;
-    sub_000824F0(rfl_ctx->v54, pool, pos, b, c, d);
-    hit = sub_00080CB0(pool, pos, b);
+    sub_000824F0(rfl_ctx->v54, pool, pos, to, list, work);
+    hit = sub_00080CB0(pool, pos, to);
     if (!hit)
         return -1.0f;
     if (out)

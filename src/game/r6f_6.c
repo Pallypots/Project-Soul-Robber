@@ -82,7 +82,7 @@ int r6f_TaskMatHandler(R6fTask *t, void *ref)
             return 0;
         }
         t->f18.u = (t->f18.u & ~0xC) | 2;
-        sub_0008CCF0(&ref, (int)(intptr_t)t);
+        sub_0008CCF0(&ref, t);
         sub_0008CBE0((void **)((uint8_t *)sub_00089390() + 0x24), ref);
         return 0;
     }
@@ -92,7 +92,7 @@ int r6f_TaskMatHandler(R6fTask *t, void *ref)
     sub_00053740();
     sub_000535F0(-1, ((R6fTaskMat *)t)->i2C, ((R6fTaskMat *)t)->i30);
     n = sub_00089610(ref);
-    sub_0008E340((uint8_t)(uintptr_t)t->work, (int)(intptr_t)ref, (void *)(intptr_t)((R6eAnimRef *)t->p28)->i5C, n);
+    sub_0008E340((uint8_t)t->workId, ref, (void *)(intptr_t)((R6eAnimRef *)t->p28)->i5C, n);
     return 0;
 }
 

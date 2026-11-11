@@ -4,7 +4,7 @@
 /* 0x0003D0A0: unqueue all nodes of group i and forget it. */
 void a4c_GroupFree(int i)
 {
-    A4cNode *n = a4c_ListFind(&a4c_groupList, 0, (int)(intptr_t)a4c_groupData[i]);
+    A4cNode *n = a4c_ListFind(&a4c_groupList, 0, a4c_groupData[i]);
     while (n) {
         A4cNode *next = n->next;
         a4c_ListRemove(n);

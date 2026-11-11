@@ -14,6 +14,9 @@
 #define R4F_FTOI(x) _mm_cvtt_ss2si(_mm_set_ss(x))
 #else
 #define R4F_FTOI(x) ((int)(x))
+#endif
+#if 0 /* PORT: this block was hidden by a misplaced #endif and never compiled on any target;
+         enabling it gives redefinition errors against declarations later in this header. */
 /* ------------------------------------------------------------ driver slot reset and stream file close (0x001A3A80, 0x001AD150) */
 typedef struct R4fStrFile {   /* streamed file: a std::string name, a handle and a lock */
     uint8_t  name00[0x1C];    /* +0x00 std::string */

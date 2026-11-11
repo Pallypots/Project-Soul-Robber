@@ -22,7 +22,7 @@ int r4e_DrawPrimsUP(const void *verts, int count)
     r4e_SetVSConst1D24F0(8, &r);
     sub_001D4350(0x40358, 0x10101);
     r4e_rs1E245C = 0x10101;
-    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)verts & 0x0FFFFFFF;
+    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)verts & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
     sub_001D26C0(0, &r4e_streams40AFF8[0], 0x30);
     sub_001D5AC0(6, count, verts, 0x30);
     sub_001D4350(0x40358, 0x1010101);
@@ -50,7 +50,7 @@ int r4e_DrawQuadsUP(const void *verts, int count)
     r4e_SetVSConst1D24F0(8, &r);
     sub_001D4350(0x40358, 0x10101);
     r4e_rs1E245C = 0x10101;
-    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)verts & 0x0FFFFFFF;
+    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)verts & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
     sub_001D26C0(0, &r4e_streams40AFF8[0], 0x80);
     sub_001D5AC0(8, count * 4, verts, 0x80);
     sub_001D4350(0x40358, 0x1010101);

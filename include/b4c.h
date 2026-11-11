@@ -99,7 +99,7 @@ typedef struct B4cEnemy {
     int32_t  i64;              /* +0x64 */
     uint8_t  unk068[0x6C - 0x68];
     int32_t  fx6C;             /* +0x6C */
-    int32_t  i70;              /* +0x70 */
+    void    *i70;              /* +0x70 attached handle (0x00036750) */
     float    f74;              /* +0x74 */
     uint8_t  unk078[0xF8 - 0x78];
     int32_t  iF8;              /* +0xF8 */

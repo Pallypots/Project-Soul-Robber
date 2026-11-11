@@ -54,7 +54,7 @@ void r4_CreateBuiltinTexture(void)
 }
 
 /* 0x001B1710: bind the built-in texture. */
-int r4_BindBuiltinTexture(int a)
+uint32_t *r4_BindBuiltinTexture(uint32_t *a)
 {
     return sub_001B9CA0(a, r4_g40F1B0);
 }
@@ -84,7 +84,7 @@ uint32_t *r4_FogEmit(R4Fog *f, uint32_t *cmd)
     f->cmd34 = cmd;
     f->f30 = k;
     f->f20 = 0.0f - f->f0C * k;
-    cmd[1] = (uint32_t)(uintptr_t)&f->f14;
+    cmd[1] = (uint32_t)(uintptr_t)&f->f14; /* XBOX32: GPU push-buffer word holds a 32-bit address */
     cmd[0] = 0x30000002;
     cmd[2] = 0x1000101;
     cmd[3] = 0x6C02000E;
@@ -268,7 +268,7 @@ void r4_MatBuildW1(float *m, int a, int b, int c)
 }
 
 /* 0x001B26A0: select b (0x001A7280) and remember it; returns a. */
-int r4_Select40F208(int a, int b)
+uint32_t *r4_Select40F208(uint32_t *a, int b)
 {
     sub_001A7280(b);
     r4_g40F208 = b;
@@ -299,7 +299,7 @@ void r4_Clear2(int32_t *p)
 }
 
 /* 0x001B2A10: remember b; returns a. */
-int r4_Set40F324(int a, int b)
+uint32_t *r4_Set40F324(uint32_t *a, int b)
 {
     r4_g40F324 = b;
     return a;

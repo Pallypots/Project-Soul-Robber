@@ -61,15 +61,17 @@ void sub_000252A0(int a, int b);
 A80Ref *sub_0008CD60(void);
 void sub_0008CC50(int32_t *slot, A80Obj *o);
 void sub_0007E0A0(int a, const char *fmt, const char *s, int v);
-void sub_0007AB10(int ctx, void *p);
+void sub_0007AB10(void *ctx, void *p);
 
 extern A80Pool a80_pool;
 extern uint8_t a80_poolStorage[];
 extern uint8_t a80_tbl2E0380[];
 extern uint8_t a80_obj2E0958[], a80_obj2E09C8[];
 extern const char a80_str26FA20[], a80_str26FACC[], a80_str26FA70[];
-extern int32_t a80_g3ED1B0, a80_g3ED1C4, a80_g3ED1C8, a80_g3ED1CC, a80_g3ED1D0, a80_g3ED1D4;
-extern int32_t a80_g3ED204, a80_g3ED208, a80_g3ED210, a80_g3ED214, a80_g3ED218;
+extern int32_t a80_g3ED1C4, a80_g3ED1C8, a80_g3ED1CC;
+extern void   *a80_g3ED1B0, *a80_g3ED1D0, *a80_g3ED1D4;   /* 0x003ED1B0.. table pointers */
+extern int32_t a80_g3ED204, a80_g3ED210, a80_g3ED214, a80_g3ED218;
+extern void   *a80_g3ED208;             /* 0x003ED208 current stream set */
 extern int32_t a80_state3ED21C, a80_saved3ED220, a80_g3ED238, a80_g3ED23C, a80_g3ED248;
 extern int32_t *a80_ptr3ED240;
 extern int32_t a80_g3ED25C, a80_mode3ED274;
@@ -78,5 +80,5 @@ extern int32_t a80_curMode;
 extern A80ModeRec a80_modeTable[];
 extern A80Fn2 a80_fnTab2E03B4[], a80_fnTab2E0408[];
 extern A80IdVal a80_idTab2E0908[];
-extern int32_t a80_ctx42C8E4;
+extern void   *a80_ctx42C8E4;           /* 0x0042C8E4 context object */
 #endif

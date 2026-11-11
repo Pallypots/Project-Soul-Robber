@@ -62,7 +62,7 @@ typedef struct A6bNode {
 } A6bNode;
 
 /* Character work object (y_character.c). */
-typedef struct A6bCharRes { uint8_t unk00[0x0C]; int32_t handle; } A6bCharRes;
+typedef struct A6bCharRes { uint8_t unk00[0x0C]; void *handle; } A6bCharRes;
 typedef struct A6bChar {
     uint8_t  unk00[0x12C];
     A6bCharRes *res;        /* +0x12C */
@@ -106,11 +106,11 @@ extern int32_t a6b_allocCount3E9308;    /* 0x003E9308 */
 void *a50_Alloc(int slot, int size, const char *file, int line);   /* 0x00053820 */
 void  a50_SlotEndTemp(int slot);                                    /* 0x00053970 */
 void  sub_00053880(void *p);
-int   sub_000538A0(int a, const char *file, int line);
+void *sub_000538A0(int heap, const char *file, int line);
 int   sub_000374C0(int a);
 int   sub_00037550(int a, int b);
 void  sub_0008BCC0(void *p);
-int   sub_0007DAF0(int a, int b, int c, void *ap);
+int   sub_0007DAF0(char *buf, int size, const char *fmt, void *ap);
 int   sub_0007F1E0(void *p, int v, int n);
 int   sub_0007F210(void *dst, const void *src, int n);
 int   sub_0007F560(void *p, const char *s);

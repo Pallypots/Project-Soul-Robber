@@ -22,7 +22,7 @@ BackgroundJob *a5b_JobCurrent(void)
     if (g_job.thread == self)
         return &g_job;
     for (i = 0; i < 6; i++) {
-        node = (uint8_t *)sub_0003DBC0(a5b_jobLists[i], (int)a50_ObjIdIs, self);
+        node = (uint8_t *)sub_0003DBC0(a5b_jobLists[i], a50_ObjIdIs, self);
         if (node != 0)
             return (BackgroundJob *)(*(uint8_t **)(node + 0xC) + 0x10);
     }
@@ -37,7 +37,7 @@ BackgroundJob *a5b_JobById(int id)
     if (id == -1)
         return 0;
     for (i = 0; i < 6; i++) {
-        node = (uint8_t *)sub_0003DBC0(a5b_jobLists[i], (int)a50_ObjIdIs, (void *)id);
+        node = (uint8_t *)sub_0003DBC0(a5b_jobLists[i], a50_ObjIdIs, (void *)(intptr_t)id);
         if (node != 0)
             return (BackgroundJob *)(*(uint8_t **)(node + 0xC) + 0x10);
     }
@@ -50,7 +50,7 @@ BackgroundJob *a5b_JobByKind(int kind)
     int i;
     uint8_t *node;
     for (i = 0; i < 6; i++) {
-        node = (uint8_t *)sub_0003DBC0(a5b_jobLists[i], (int)a50_ObjKindIs, (void *)kind);
+        node = (uint8_t *)sub_0003DBC0(a5b_jobLists[i], a50_ObjKindIs, (void *)(intptr_t)kind);
         if (node != 0)
             return (BackgroundJob *)(*(uint8_t **)(node + 0xC) + 0x10);
     }
@@ -75,7 +75,7 @@ int a5b_JobStop(int id)
     if (j == 0 || j->thread == (void *)-1 || j->thread == sub_001AD560())
         return -1;
     j->state = 0;
-    sub_001AD440((int)j->thread);
+    sub_001AD440(j->thread);
     return 0;
 }
 

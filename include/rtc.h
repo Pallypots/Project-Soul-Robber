@@ -447,7 +447,7 @@ void  sub_001ADA40(void *d, const void *s);
 
 void  r1c_PktTexBase(void);                                /* 0x0001ED90 */
 void  sub_00048D70(int on);
-void  sub_00058540(void (*fn)(int), int arg);
+void  sub_00058540(void (*fn)(int), void *arg);   /* start job fn(arg) */
 void  r4_ModelSetPartValue(void *m, int v);                /* 0x001B14E0 */
 void  r4b_MeshSetC8(void *m, int v);                       /* 0x001B3070 */
 const char *sub_000133B0(const char *name);

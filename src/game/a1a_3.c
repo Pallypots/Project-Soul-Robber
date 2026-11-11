@@ -25,7 +25,7 @@ void a1a_Pump_1A53B0(int flags)
 }
 
 /* 0x001A6C90: set device stage 6 under the lock. */
-void a1a_SetStage6(int v)
+void a1a_SetStage6(const float *v)
 {
     RtlEnterCriticalSection(a1a_renderLock);
     sub_001D2CF0(6, v);
@@ -33,7 +33,7 @@ void a1a_SetStage6(int v)
 }
 
 /* 0x001A6CC0: set device stage 0 under the lock. */
-void a1a_SetStage0(int v)
+void a1a_SetStage0(const float *v)
 {
     RtlEnterCriticalSection(a1a_renderLock);
     sub_001D2CF0(0, v);
@@ -44,7 +44,7 @@ void a1a_SetStage0(int v)
 void a1a_SetStage1(uint8_t *o)
 {
     RtlEnterCriticalSection(a1a_renderLock);
-    sub_001D2CF0(1, (int)(o + 0x130));
+    sub_001D2CF0(1, o + 0x130);
     RtlLeaveCriticalSection(a1a_renderLock);
 }
 

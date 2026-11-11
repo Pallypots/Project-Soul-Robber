@@ -73,7 +73,7 @@ typedef struct A4cList {
     A4cNode *head;           /* +0x04 */
     A4cNode *tail;           /* +0x08 */
 } A4cList;
-typedef int (*A4cNodeFn)(A4cNode *n, int arg);
+typedef int (*A4cNodeFn)(A4cNode *n, void *arg);
 
 /* 0x30-byte record inside a group header. */
 typedef struct A4cRec30 {
@@ -177,12 +177,12 @@ void sub_000483D0(void);
 void sub_00039650(void);
 void sub_00037130(void);
 void sub_00072EE0(void *o, int a, float t, int b);
-void sub_00053880(int r);
+void sub_00053880(void *p);                     /* free */
 
-int  sub_0003DBA0(A4cNode *n, int arg);
+int  sub_0003DBA0(A4cNode *n, void *arg);
 void sub_001A7430(void);
 void sub_001B9720(void);
 void a4c_ListAppend(A4cList *list, A4cNode *node);
 void a4c_ListRemove(A4cNode *node);
-A4cNode *a4c_ListFind(A4cList *list, A4cNodeFn fn, int arg);
+A4cNode *a4c_ListFind(A4cList *list, A4cNodeFn fn, void *arg);
 #endif

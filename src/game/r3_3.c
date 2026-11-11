@@ -84,7 +84,7 @@ void r3_SlotSound18E230(R3SndOwner *o, void *src, int on)
     if (on)
         s->h08 = sub_00036750(src, 3);
     else
-        sub_00033A70((void *)s->h08);
+        sub_00033A70(s->h08);
 }
 
 /* 0x0018E360: combine b and a with 0x001AD9F0 into a temporary vector and measure it against c with 0x001B27C0.

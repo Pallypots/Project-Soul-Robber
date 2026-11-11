@@ -20,7 +20,7 @@ int r1d_PicInit(void)
         if (r1d_src3DA300[i] == 0) break;
         r1d_tex3DA2EC[i] = sub_00084C00(r1d_src3DA300[i], 0);
     }
-    a3c_g3DA2FC = sub_00084C00((int)(intptr_t)r1d_blob2C3810, 0);
+    a3c_g3DA2FC = sub_00084C00(r1d_blob2C3810, 0);
     r1d_AnimBankFixup((R1dAnimBank *)a3c_obj2C4090);
     r1d_g3DA318 = 0;
     a3c_busy3DA310 = 0;

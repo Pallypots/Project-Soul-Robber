@@ -219,7 +219,7 @@ int r6e_TaskEvCam1(R6eTask *t, const uint32_t *ev)
         if (sub_0003D090(1))
             sub_0003D0A0(1);
         if (t->p28) {
-            sub_0003D020(1, (int)t->p28);
+            sub_0003D020(1, t->p28);
             sub_0003D100(1);
         }
         t->u24.i &= ~1;
@@ -234,7 +234,7 @@ int r6e_TaskCam1Release(R6eTask *t)
     if (t->state != 2)
         return -1;
     if (t->f18.b & 2) {
-        if (sub_0003D090(1) == (int)t->p28)
+        if (sub_0003D090(1) == t->p28)
             sub_0003D0A0(1);
         if (t->u24.i & 2) {
             sub_0008BCC0(t->p28);

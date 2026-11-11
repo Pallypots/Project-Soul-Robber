@@ -50,11 +50,11 @@ void r2_SetPairAnim(R2Actor *a, R2Actor *b, int anim)
 
 /* 0x00100FF0: turn obj toward the player by 3 degrees per frame unit and, when
    0x0F5D00 reports it done, send event 0x26 with arg.  Stack args only. */
-void r2_TurnAndNotify(R2Actor *obj, int arg)
+void r2_TurnAndNotify(R2Actor *obj, void *arg)
 {
     sub_000F7C40(obj, r2_player, a50_frameUnits * 0.05235988f);
     if (sub_000F5D00(obj))
-        sub_000F3D10(obj, (void *)arg, 0x26);
+        sub_000F3D10(obj, arg, 0x26);
 }
 
 /* 0x00107310: spawn effect `id` at offset +0x70 of a's part 0x11, with c.

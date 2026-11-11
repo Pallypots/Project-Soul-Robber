@@ -34,9 +34,9 @@ void a8c_ChainApply(A8cChainOwner *o)
 }
 
 /* 0x000822A0: fill the shared buffer at 0x3EC448 and return it. */
-uint8_t *a8c_FillShared(int a, int b, int c)
+uint8_t *a8c_FillShared(void *root, const float *from, const float *to)
 {
-    sub_00082200(a, b, c, a8c_buf3EC448);
+    sub_00082200(root, from, to, a8c_buf3EC448);
     return a8c_buf3EC448;
 }
 

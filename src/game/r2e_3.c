@@ -12,7 +12,7 @@ void r2e_PushPart5(void *o, R2eObj68 *t)
             for (;;) ;
         m = sub_0001D960(o, 5);
         if (m->state6C != 3)
-            sub_000F3D10(o, (int)(intptr_t)m, 3);
+            sub_000F3D10(o, m, 3);
     }
 }
 
@@ -545,7 +545,7 @@ void r2e_ActorPush17(R2eActor *o, R2eActor *t)
     if (t->fBC > 0.0f && (o->flags128 & 0x18)) {
         m = sub_0001D960(o, 5);
         if (m->state6C != 0x17)
-            sub_000F3D10(o, (int)(intptr_t)m, 0x17);
+            sub_000F3D10(o, m, 0x17);
     }
 }
 
@@ -690,7 +690,7 @@ void r2e_ActorStrength(R2eActor *o, R2eActor *t)
             for (;;) ;
         m = sub_0001D960(o, 5);
         if (m->state6C)
-            sub_000F3D10(o, (int)(intptr_t)m, 0);
+            sub_000F3D10(o, m, 0);
         sub_000F3B70(o, 3);
     }
 }

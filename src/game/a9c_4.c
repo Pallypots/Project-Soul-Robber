@@ -4,9 +4,9 @@
 /* 0x0019D620: add the three standard tasks to group g and release the group's pending list. */
 void a9c_GroupAddStdTasks(void *g)
 {
-    a1a_GroupAdd(g, 0, 1, (int)sub_0019D460, 8, 0xC800);
-    a1a_GroupAdd(g, 1, 2, (int)sub_0019D120, 8, 0x2800);
-    a1a_GroupAdd(g, -1, 4, (int)sub_0019D390, 8, 0x2800);
+    a1a_GroupAdd(g, 0, 1, sub_0019D460, 8, 0xC800);
+    a1a_GroupAdd(g, 1, 2, sub_0019D120, 8, 0x2800);
+    a1a_GroupAdd(g, -1, 4, sub_0019D390, 8, 0x2800);
     a1a_GroupReleaseAll(g);
 }
 

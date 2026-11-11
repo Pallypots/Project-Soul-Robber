@@ -13,6 +13,9 @@
 #define R1C_ZERO(p, n) __stosd((unsigned long *)(p), 0, (n) / 4)
 #else
 #define R1C_ZERO(p, n) memset((p), 0, (n))
+#endif
+#if 0 /* PORT: this block was hidden by a misplaced #endif and never compiled on any target;
+         enabling it gives redefinition errors against declarations later in this header. */
 /* ------------------------------------------------------------ group 6 */
 typedef struct R1cTexCtx { uint8_t unk00[0x28]; uint64_t q28; } R1cTexCtx;
 R1cTexCtx *sub_001B9650(int h);
@@ -133,8 +136,8 @@ extern int32_t r1c_tex380C24[9];            /* 0x00380C24 texture handles */
 extern uint32_t r1c_state37C4F8[0xD9E];     /* 0x0037C4F8 game state block */
 extern int32_t r1c_g3813B4;                 /* 0x003813B4 */
 void  sub_001B9FC0(int h);
-void *sub_000529F0(void);
-void  sub_0004F5D0(void *p);
+int   sub_000529F0(void);         /* current video mode */
+void  sub_0004F5D0(int slot);   /* slot index into the table at 0x002C8900 */
 
 extern int32_t  r1c_seqStep37C544;          /* 0x0037C544 */
 extern uint32_t r1c_seqFlags37C540;         /* 0x0037C540 */
@@ -671,8 +674,8 @@ extern int32_t r1c_tex380C24[9];            /* 0x00380C24 texture handles */
 extern uint32_t r1c_state37C4F8[0xD9E];     /* 0x0037C4F8 game state block */
 extern int32_t r1c_g3813B4;                 /* 0x003813B4 */
 void  sub_001B9FC0(int h);
-void *sub_000529F0(void);
-void  sub_0004F5D0(void *p);
+int   sub_000529F0(void);         /* current video mode */
+void  sub_0004F5D0(int slot);   /* slot index into the table at 0x002C8900 */
 
 extern int32_t  r1c_seqStep37C544;          /* 0x0037C544 */
 extern uint32_t r1c_seqFlags37C540;         /* 0x0037C540 */

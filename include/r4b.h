@@ -89,9 +89,9 @@ void sub_001ADA40(void *node, const float *m);
 void sub_001AD940(float *m);
 void sub_001AD7C0(void *dst, void *a, void *b);
 void r4_MatCopyRotation(float *d, const float *s);
-int  r4_Set40F324(int a, int b);
-int  r4_Select40F208(int a, int b);
-int  sub_001B9CA0(int a, int tex);
+uint32_t *r4_Set40F324(uint32_t *cmd, int b);      /* 0x001B2A10, returns cmd */
+uint32_t *r4_Select40F208(uint32_t *cmd, int b);   /* 0x001B26A0, returns cmd */
+uint32_t *sub_001B9CA0(uint32_t *cmd, int tex);
 void sub_001A69C0(int a, int b);
 void sub_001A32F0(void *n, void *p);
 void sub_001ADEE0(void *m, float *a, float *b, float *c);
@@ -444,8 +444,8 @@ void *OOG_STDCALL sub_001BD517(int size, int max, int align, int prot);
 void OOG_STDCALL sub_001D6030(void *res, void *mem);
 void OOG_STDCALL sub_001D6210(void *res, int a, int32_t *out, int b, int c);
 void r4b_VoiceSetFree(int unused, R4bVoiceSet *s);  /* 0x001BC060 */
-int  r4b_VoiceAlloc(int a, int b, int fmt, void **res, int32_t *mem, int32_t *data, int32_t *size); /* 0x001BC130 */
-void OOG_STDCALL sub_001D3AB0(int a, int b);
+int  r4b_VoiceAlloc(int a, int b, int fmt, void **res, void **mem, int32_t *data, int32_t *size); /* 0x001BC130 */
+void OOG_STDCALL sub_001D3AB0(int stage, void *rt);
 int  OOG_STDCALL sub_001BD587(int h);
 void sub_001C885F(void *p);
 

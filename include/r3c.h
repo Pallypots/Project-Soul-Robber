@@ -10,7 +10,7 @@
 typedef struct R3cWork {
     union { uint32_t flags00; struct R3cObj *obj00; }; /* +0x00 flags, or the owner object */
     union { uint32_t flags04; struct R3cObj *act04; }; /* +0x04 flags, or the owner actor */
-    int32_t  i08;            /* +0x08 */
+    void    *i08;            /* +0x08 handle (0x00036750) */
     union { int16_t s; int32_t i; float f; } u0C; /* +0x0C */
     union { float f10; int32_t i10; }; /* +0x10 */
     union { int32_t i14; float f14; }; /* +0x14 */
@@ -38,7 +38,10 @@ typedef struct R3cKey { uint8_t unk00[0x10]; int32_t i10; } R3cKey;
 /* Motion/flag block at +0x74 of some components. */
 typedef struct R3cBlk74 {
     uint32_t flags;          /* +0x00 (low half also read as a 16-bit kind) */
-    int32_t  i04;            /* +0x04 */
+    union {
+        int32_t  i04;            /* +0x04 */
+        struct R3cObj *obj04;    /* +0x04 aim target object */
+    };
     int32_t  i08;            /* +0x08 */
     float    f0C;            /* +0x0C */
     float    f10;            /* +0x10 */
@@ -185,7 +188,13 @@ extern int32_t  r3c_i413178;                         /* 0x00413178 */
 extern R3cCompFn r3c_fns32B1DC[];                    /* 0x0032B1DC by state +0x4C */
 extern R3cCompFn r3c_fns31F50C[];                    /* 0x0031F50C by state +0x50 (kind < 10) */
 extern R3cCompFn r3c_fns31F52C[];                    /* 0x0031F52C by state +0x50 (kind >= 10) */
-typedef struct R3cRec34 { int32_t i0, i4, i8, iC; uint8_t unk10[0x34 - 0x10]; } R3cRec34;
+typedef struct R3cRec34 {
+    union { int32_t i0; struct R3cObj *obj0; };   /* +0x00 object */
+    int32_t i4;
+    union { int32_t i8; struct R3cObj *obj8; };   /* +0x08 object */
+    int32_t iC;
+    uint8_t unk10[0x34 - 0x10];
+} R3cRec34;
 extern R3cRec34 r3c_recs3FE3B0[4];                   /* 0x003FE3B0 */
 extern int32_t  r3c_i3FE480;                         /* 0x003FE480 */
 extern float    r3c_f3FE394, r3c_f3FE3A0;            /* 0x003FE394, 0x003FE3A0 */
@@ -221,7 +230,7 @@ void    sub_0001EB80(void *o);
 int     sub_000EE5F0(void *o);
 R3cObj *sub_00100110(void);
 R3cGame *sub_000E0770(void);
-int     sub_0001B450(void *a, float f, void *b, float *v);
+void   *sub_0001B450(const float *pos, float r, void **list, void *out);   /* r1b_PoolFill1 */
 int     sub_000ED780(void *o);
 void    sub_001789E0(void *obj, void *act);
 void    sub_000ED600(int v);

@@ -32,8 +32,8 @@ typedef struct R6dChFlags {
 extern int32_t r6d_menuAnim2DDB00;      /* 0x002DDB00 */
 extern int32_t r6d_prices[];            /* 0x002DDA20 shop prices by item id */
 extern int32_t adc_413178;              /* 0x00413178 discount flag */
-void  a60_TextClear(int t);
-void  a60_FlagsClear(int t, int bits);
+void  a60_TextClear(void *t);
+void  a60_FlagsClear(void *t, int bits);
 int   sub_0003FA70(int a, int b, int c, float d, float e);
 void  sub_0003FCB0(void *anim, int item);
 int   sub_0003FBD0(int a, void *anim);
@@ -74,7 +74,7 @@ extern int32_t r6d_g429708, r6d_g428F8C, r6d_g428F90;
 typedef struct R6dWork {
     uint8_t  unk00000[0xF91E8];
     uint8_t  anim[8];         /* +0xF91E8 */
-    int32_t  text;            /* +0xF91F0 */
+    void    *text;            /* +0xF91F0 text handle */
     uint8_t  unkF91F4[0xF9208 - 0xF91F4];
     int32_t  msgTables[2];    /* +0xF9208 */
 } R6dWork;
@@ -185,8 +185,8 @@ void  sub_000483A0(int a);
 extern uint8_t r6d_b413147;             /* 0x00413147 */
 extern int32_t r6d_g42CA24;             /* 0x0042CA24 */
 extern int32_t a9b_g413168, a9b_g413164;
-extern int32_t r6d_msgTables26F32C[];   /* 0x0026F32C per video mode */
-int   r6d_MsgGet(int table, int id);    /* 0x0003FA70 called with two arguments */
+extern void *const r6d_msgTables26F32C[];   /* 0x0026F32C per video mode (message table addresses) */
+void *r6d_MsgGet(void *table, int id);  /* 0x0003FA70 called with two arguments */
 typedef struct R6dGlyph { uint8_t unk0[6]; uint16_t width; } R6dGlyph;   /* +0x06 width */
 typedef struct R6dGlyphSize { int16_t w; int16_t h; } R6dGlyphSize;
 void *sub_000380A0(void *ctx, int x, int y, int z, R6dGlyphSize *sz, int colour,
@@ -268,7 +268,7 @@ typedef struct R6dTree {
 } R6dTree;
 int   r6c_BoxBehind(const R6cVec4 *a, const R6cVec4 *b, const R6cVec4 *c, const R6cVec4 *d);
 typedef struct R6dCountTable { uint8_t unk00[8]; int32_t count; } R6dCountTable;   /* +0x08 */
-extern int32_t a80_g3ED1B0;             /* 0x003ED1B0 */
+extern void   *a80_g3ED1B0;             /* 0x003ED1B0 count table */
 extern void   *a8c_g3ECCA8;             /* 0x003ECCA8 */
 /* ------------------------------------------------------------ boxes, texture headers, sound slots (0x82xxx-0x86xxx) */
 typedef struct R6dIVec4 { int32_t v[4]; } R6dIVec4;    /* float vector copied as raw words */
@@ -298,7 +298,7 @@ typedef struct R6dSound {            /* 0x10 bytes, also the slot array at 0x003
     int32_t  handle;                 /* +0x08 */
     int32_t  unk0C;
 } R6dSound;
-extern int32_t a80_g3ED1D0, a80_g3ED1D4;
+extern void   *a80_g3ED1D0, *a80_g3ED1D4;   /* sound array, count table */
 int   sub_000A79B0(int h);
 void  sub_000A7950(int h);
 /* ------------------------------------------------------------ streaming jobs (0x867xx-0x86Exx) */
@@ -313,8 +313,9 @@ typedef struct R6dStreamSet {
     R6dStreamEntry entries[1];       /* +0x10 variable-sized */
 } R6dStreamSet;
 extern int32_t a8c_handles3ED1DC[3];    /* 0x003ED1DC */
-extern int32_t a80_g3ED208;             /* 0x003ED208 */
-extern int32_t a8c_g3ED1F0, a8c_g3ED1E8, a8c_g3ED1F4, a8c_g3ED1D8;
+extern void   *a80_g3ED208;             /* 0x003ED208 current stream set */
+extern int32_t a8c_g3ED1F0, a8c_g3ED1E8, a8c_g3ED1D8;
+extern R6dStreamEntry *a8c_g3ED1F4;     /* 0x003ED1F4 current stream entry */
 extern int32_t r6c_strA3ED1F8, r6c_strB3ED1FC, r6c_strH3ED200;
 int   Job_OnJobThread(void);
 int   sub_000480F0(int h);
@@ -412,7 +413,7 @@ void  r6b_FreeRecs4(void *p);
 void  sub_0007AB10(void *obj, void *tint);
 void  sub_0008BCC0(void *p);
 void  sub_000360E0(void);
-extern int32_t a80_ctx42C8E4;           /* 0x0042C8E4 */
+extern void   *a80_ctx42C8E4;           /* 0x0042C8E4 context object */
 /* ------------------------------------------------------------ stage links (0x8Axxx) */
 typedef struct R6dLinkObj {
     uint8_t  unk00[0x1C];

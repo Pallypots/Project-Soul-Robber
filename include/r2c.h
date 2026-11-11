@@ -10,6 +10,9 @@
 #define R2C_ZERO(p, n) __stosd((unsigned long *)(p), 0, (n) / 4)
 #else
 #define R2C_ZERO(p, n) memset((p), 0, (n))
+#endif
+#if 0 /* PORT: this block was hidden by a misplaced #endif and never compiled on any target;
+         enabling it gives redefinition errors against declarations later in this header. */
 /* ---------------------------------------------------------------- r2c_3 */
 typedef struct R2cAnimTarget { uint8_t unk00[0xB8]; uint32_t flagsB8; } R2cAnimTarget;
 typedef struct R2cPart { uint8_t unk00[8]; int32_t i08; uint8_t unk0C[8]; R2cAnimTarget *t14; } R2cPart;
@@ -34,7 +37,7 @@ typedef struct R2cBossMgr {
     uint8_t  unk070[0x8C - 0x70];
     R2cModel *sub8C;           /* +0x08C */
     R2cModel *sub90;           /* +0x090 */
-    int32_t  h94;              /* +0x094 */
+    void    *h94;              /* +0x094 handle */
     uint8_t  unk098[0xA6 - 0x98];
     int16_t  wA6;              /* +0x0A6 */
     int16_t  wA8;              /* +0x0A8 */
@@ -243,7 +246,7 @@ typedef struct R2cScr {
     R2cModel *sub8C;           /* +0x08C */
     uint8_t  unk090[0x238 - 0x90];
     int32_t  h238;             /* +0x238 */
-    int32_t  h23C;             /* +0x23C */
+    void    *h23C;             /* +0x23C handle */
 } R2cScr;
 /* Small object (0x90 bytes) at b10_obj3F6134. */
 typedef struct R2cObj90 {
@@ -257,13 +260,13 @@ typedef struct R2cComp5b { uint8_t unk00[0x64]; R2cOwner *owner64; } R2cComp5b;
 typedef struct R2cKeyObj { uint8_t unk00[4]; int32_t kind04; int32_t v08; } R2cKeyObj;
 extern R2cScr   *b10_scr;              /* 0x003F6130 */
 extern R2cObj90 *b10_obj3F6134;        /* 0x003F6134 */
-extern int32_t   r2c_fx3F613C[5];      /* 0x003F613C */
-void  sub_00033A40(int h);
+extern void     *r2c_fx3F613C[5];      /* 0x003F613C effect handles */
+void  sub_00033A40(void *h);
 void  sub_00101280(int a);
 void  sub_00105D80(void);
 void  sub_001061B0(void);
 void  sub_001208A0(R2cModel *m, int a);
-int   sub_000336A0(int h);
+int   sub_000336A0(void *h);
 
 void  r2c_ScrStop(void);                              /* 0x00104AF0 */
 R2cModel *r2c_ScrAttach(R2cModel *m);                 /* 0x00105F90 */
@@ -457,7 +460,7 @@ typedef struct R2cComp0D {
 /* Component kind 5 (state component): effect handles at +0xD4/+0xD8. */
 typedef struct R2cComp5 {
     uint8_t  unk00[0xD4];
-    int32_t  hD4;              /* +0x0D4 attached effect, 0 = none */
+    void    *hD4;              /* +0x0D4 attached effect, 0 = none */
     int32_t  hD8;              /* +0x0D8 sound/effect id, -1 = none */
 } R2cComp5;
 /* Actor state block: kind at +0x70, flags at +0x100/+0x104. */
@@ -471,8 +474,8 @@ typedef struct R2cState {
 void *sub_0001D960(void *obj, int kind);              /* component lookup */
 void *sub_0001D0F0(void *obj, int kind);
 int   sub_000494D0(int id, void *pos, int c);
-int   sub_00036750(void *obj, int b);
-void  sub_00033A70(int h);
+void *sub_00036750(void *obj, int b);
+void  sub_00033A70(void *h);
 void  sub_00048250(int h);
 
 int  r2c_CompHit(void *obj, void *target);            /* 0x000EE010 */
@@ -506,7 +509,7 @@ typedef struct R2cBossMgr {
     uint8_t  unk070[0x8C - 0x70];
     R2cModel *sub8C;           /* +0x08C */
     R2cModel *sub90;           /* +0x090 */
-    int32_t  h94;              /* +0x094 */
+    void    *h94;              /* +0x094 handle */
     uint8_t  unk098[0xA6 - 0x98];
     int16_t  wA6;              /* +0x0A6 */
     int16_t  wA8;              /* +0x0A8 */
@@ -715,7 +718,7 @@ typedef struct R2cScr {
     R2cModel *sub8C;           /* +0x08C */
     uint8_t  unk090[0x238 - 0x90];
     int32_t  h238;             /* +0x238 */
-    int32_t  h23C;             /* +0x23C */
+    void    *h23C;             /* +0x23C handle */
 } R2cScr;
 /* Small object (0x90 bytes) at b10_obj3F6134. */
 typedef struct R2cObj90 {
@@ -729,13 +732,13 @@ typedef struct R2cComp5b { uint8_t unk00[0x64]; R2cOwner *owner64; } R2cComp5b;
 typedef struct R2cKeyObj { uint8_t unk00[4]; int32_t kind04; int32_t v08; } R2cKeyObj;
 extern R2cScr   *b10_scr;              /* 0x003F6130 */
 extern R2cObj90 *b10_obj3F6134;        /* 0x003F6134 */
-extern int32_t   r2c_fx3F613C[5];      /* 0x003F613C */
-void  sub_00033A40(int h);
+extern void     *r2c_fx3F613C[5];      /* 0x003F613C effect handles */
+void  sub_00033A40(void *h);
 void  sub_00101280(int a);
 void  sub_00105D80(void);
 void  sub_001061B0(void);
 void  sub_001208A0(R2cModel *m, int a);
-int   sub_000336A0(int h);
+int   sub_000336A0(void *h);
 
 void  r2c_ScrStop(void);                              /* 0x00104AF0 */
 R2cModel *r2c_ScrAttach(R2cModel *m);                 /* 0x00105F90 */

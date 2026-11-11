@@ -45,7 +45,7 @@ void r4d_StageUnload(void *g)
     r4c_g403988 = 0;
     r4c_g40398C = 0;
     if (sub_0004F6D0(0xE6))
-        sub_0004F5D0((void *)0xE6);
+        sub_0004F5D0(0xE6);
     if (r4d_g403964) {
         sub_00053880(r4d_g403964);
         r4d_g403964 = 0;

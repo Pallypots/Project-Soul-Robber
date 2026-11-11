@@ -175,7 +175,7 @@ uint32_t OOG_STDCALL sub_001BCCD2(void *h, void *hi);   /* GetFileSize */
 int   OOG_STDCALL sub_001BC813(void *h, void *buf, uint32_t n, uint32_t *read, void *ov);  /* ReadFile */
 typedef struct R4dSysTime { uint16_t year, month, dow, day, hour, minute, second, ms; } R4dSysTime;
 void  OOG_STDCALL sub_001BDD62(R4dSysTime *t);   /* GetSystemTime */
-void *R4D_FASTCALL sub_001D24F0(int size, int b);
+void *R4D_FASTCALL sub_001D24F0(int reg, const void *m);   /* set 4 shader constants from matrix m */
 void  R4D_FASTCALL sub_001D2680(int kind, void *p, int n);
 void  R4D_FASTCALL sub_001D4350(int reg, int v);
 void   sub_001A5F50(void *o, int b);               /* regargs: o=ECX, b on the stack */
@@ -369,15 +369,15 @@ void     r4d_Parts100BoneLookup(R4dModel100 *m, const int32_t *tbl); /* 0x001BB8
 typedef struct R4dThread {    /* 0x0040EDD8 x32 */
     void    *h00;             /* +0x00 thread handle */
     int32_t  id04;            /* +0x04 */
-    int32_t  f08;
+    void    *f08;             /* +0x08 thread entry (descriptor +0x04) */
     int32_t  state0C;         /* +0x0C */
     int32_t  f10;
-    int32_t  ev14;            /* +0x14 event handle */
+    void    *ev14;            /* +0x14 event handle */
 } R4dThread;
 extern R4dThread r4d_threads40EDD8[32];
 extern void     *r4d_threadLock40F0D8;
 int   OOG_STDCALL sub_001BD2B6(void *h);   /* ResumeThread */
-int   OOG_STDCALL sub_001BCEF9(int h);     /* SetEvent */
+int   OOG_STDCALL sub_001BCEF9(void *h);   /* SetEvent */
 int   sub_001BD50A(void);                  /* GetCurrentThreadId */
 #ifdef _MSC_VER
 __declspec(noreturn)

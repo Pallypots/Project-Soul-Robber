@@ -83,7 +83,7 @@ void r6d_TreeCollect(R6dTree *t)
                 e = base + *(int32_t *)(base + it->index * 0x50 + 0x28);
                 if (r6c_BoxBehind((const R6cVec4 *)(e + 0x20), (const R6cVec4 *)(e + 0x10),
                                   &r6c_vec3EC9E8, &r6c_vec3EC864))
-                    r6c_out3ECA78[r6c_n3ECA20++] = (int32_t)it;
+                    r6c_out3ECA78[r6c_n3ECA20++] = it;
             }
             if (t->left)
                 r6d_TreeCollect(t->left);
@@ -99,7 +99,7 @@ void r6d_SlotsAlloc(R6dCountTable *t)
 {
     uint8_t *p;
     unsigned n;
-    a80_g3ED1B0 = (int32_t)t;
+    a80_g3ED1B0 = t;
     if (t) {
         p = (uint8_t *)a50_Alloc(3, t->count * 8, 0, 0);
         n = ((R6dCountTable *)a80_g3ED1B0)->count * 8;

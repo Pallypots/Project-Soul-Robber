@@ -69,7 +69,7 @@ int r6d_StageObjFree(R6dStageObj *o)
         sub_00037BB0(4, 0);
         r6b_HolderFree(&o->ext->holder);
         r6b_FreeRecs4(&o->ext->recs);
-        sub_0007AB10((void *)a80_ctx42C8E4, &o->ext->tint);
+        sub_0007AB10(a80_ctx42C8E4, &o->ext->tint);
         sub_0008BCC0(o->ext);
         sub_0008BCC0(o);
         sub_000360E0();

@@ -211,7 +211,7 @@ extern R1KeyRec r1_keyTbl[];    /* 0x002C6B20 */
 
 int  sub_001AA520(int h);
 void sub_0003D880(void *list, void *node);
-int  sub_001A8500(void *p, int a, int *out);
+int  sub_001A8500(int h, int a, int *out);       /* h indexes the handle table at 0x0040B210 */
 typedef struct R1File { int32_t h; int32_t pos; } R1File;
 
 typedef struct R1Ent20 {

@@ -6,7 +6,7 @@ int a9b_WorkDetach(void *ctx, a9b_Actor *a)
 {
     a9b_Work *w = a->work;
     if (w->f4) {
-        sub_00033A70((void *)w->f4);
+        sub_00033A70(w->f4);
         w->f4 = 0;
     }
     w->flags0 = 0;

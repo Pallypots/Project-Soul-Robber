@@ -38,7 +38,7 @@ typedef struct B13Enemy {
     uint8_t  unk05C[0x68 - 0x5C];
     float    stateTime68;    /* +0x68 */
     int32_t  sound6C;        /* +0x6C -1 none */
-    int32_t  effect70;       /* +0x70 0 none */
+    void    *effect70;       /* +0x70 0 none */
     float    f74;            /* +0x74 */
     uint8_t  unk078[0xF8 - 0x78];
     int32_t  hasTarget;      /* +0xF8 */
@@ -57,12 +57,12 @@ void      sub_00113040(B13Owner *o, B13Enemy *e, int anim);
 int       sub_00113190(B13Owner *o, B13Enemy *e, int arg);
 B13Timer *sub_00113430(B13Enemy *e, int slot);
 void      sub_00113480(B13Enemy *e, int slot);
-int       sub_000833E0(int handle);
+int       sub_000833E0(void *anim);   /* animation finished */
 void      sub_001AEDD0(int handle, int arg);
 void      sub_0018E7C0(void *p);
 int       sub_0013A0A0(B13Owner *o, B13Enemy *e);
 void      sub_00048250(int h);
-void      sub_00033A70(int h);
+void      sub_00033A70(void *h);
 void      sub_0001D700(void *o);
 void      Grade_AddExclamations(int amount);
 typedef struct B13FTimer { uint8_t unk00[0x10]; float t; } B13FTimer;

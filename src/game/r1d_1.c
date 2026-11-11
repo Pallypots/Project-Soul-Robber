@@ -79,7 +79,7 @@ at_end:
     return line;
 }
 
-#define R1D_HW(a) (*(volatile uint32_t *)(uintptr_t)(a))
+#define R1D_HW(a) (*(volatile uint32_t *)(uintptr_t)(a)) /* XBOX32: fixed Xbox hardware register address */
 
 /* 0x00013A30: start a DMA transfer of qwc quadwords at addr once the
    channel is idle and the FIFO has room.  regargs: addr=stack qwc=EDX */
@@ -115,17 +115,17 @@ void r1d_AnimBankFixup(R1dAnimBank *h)
     uint32_t magic = h->m.magic;
     if (magic == 0x544E41) return;
     if (magic != 0x424E41) for (;;) ;
-    h->elems = (char *)h + (intptr_t)h->elems;
-    h->lists = (int32_t **)((char *)h + (intptr_t)h->lists);
-    h->keys = (R1dKey **)((char *)h + (intptr_t)h->keys);
+    h->elems = (char *)h + (intptr_t)h->elems; /* XBOX32: loaded file image: 32-bit offsets rebased in place into 32-bit pointers */
+    h->lists = (int32_t **)((char *)h + (intptr_t)h->lists); /* XBOX32: loaded file image: 32-bit offsets rebased in place into 32-bit pointers */
+    h->keys = (R1dKey **)((char *)h + (intptr_t)h->keys); /* XBOX32: loaded file image: 32-bit offsets rebased in place into 32-bit pointers */
     h->m.tag[0] = 'A';
     h->m.tag[1] = 'N';
     h->m.tag[2] = 'T';
     h->m.tag[3] = 0;
     for (i = 0; i < h->n14; i++)
-        h->lists[i] = (int32_t *)((char *)h + (intptr_t)h->lists[i]);
+        h->lists[i] = (int32_t *)((char *)h + (intptr_t)h->lists[i]); /* XBOX32: loaded file image: 32-bit offsets rebased in place into 32-bit pointers */
     for (i = 0; i < h->n18; i++)
-        h->keys[i] = (R1dKey *)((char *)h + (intptr_t)h->keys[i]);
+        h->keys[i] = (R1dKey *)((char *)h + (intptr_t)h->keys[i]); /* XBOX32: loaded file image: 32-bit offsets rebased in place into 32-bit pointers */
 }
 
 /* 0x00017DE0: find cmd[1] consecutive free pool slots, mark them used and

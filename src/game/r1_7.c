@@ -76,8 +76,8 @@ void r1_CopyTail(char *dst, const char *src, uint32_t n)
 
 /* 0x0004FA50: query value 1 of p into a local and return the status.
    regargs: p=ECX */
-int r1_Query1(void *p)
+int r1_Query1(int h)
 {
     int v;
-    return sub_001A8500(p, 1, &v);
+    return sub_001A8500(h, 1, &v);
 }

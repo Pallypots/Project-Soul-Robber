@@ -77,7 +77,10 @@ struct R6eTask {
     union { uint16_t w; uint8_t b; } f18;  /* +0x18 bit 1 active, bits 2..3 mode */
     int8_t   type;            /* +0x1A index into a8b_opsGetters */
     uint8_t  unk1B;
-    R6eWork *work;            /* +0x1C */
+    union {
+        R6eWork *work;        /* +0x1C work block */
+        int32_t  workId;      /* +0x1C packed id (kind<<20 | sub<<8 | n) for id-keyed tasks */
+    };
     int8_t   state;           /* +0x20 1/3 running, 2 idle, 4 waiting */
     int8_t   heap;            /* +0x21 */
     uint8_t  unk22;
@@ -90,7 +93,7 @@ struct R6eTask {
     uint8_t  unk38[4];
     void    *p3C;             /* +0x3C */
     uint8_t  unk40[4];
-    int32_t  i44;             /* +0x44 */
+    void    *i44;             /* +0x44 (0x0003D090 value) */
     uint8_t  unk48[0x120 - 0x48];
     void    *p120;            /* +0x120 refcounted resource */
     int32_t  i124;            /* +0x124 */
@@ -99,7 +102,7 @@ struct R6eTask {
 /* Argument record of 0x0008D4A0. */
 typedef struct R6eArg20 { uint8_t unk00[0x20]; int32_t i20; } R6eArg20;
 /* Second argument of 0x0008BC30. */
-typedef struct R6eArg44 { uint8_t unk00[0x44]; int32_t i44; } R6eArg44;
+typedef struct R6eArg44 { uint8_t unk00[0x44]; void *i44; } R6eArg44;
 
 /* refcounted resource (0x904C0) */
 typedef struct R6eRes {
@@ -172,7 +175,7 @@ void  sub_0008BCC0(void *p);
 void  sub_0007E240(void *p);
 void *sub_00089390(void);
 void  sub_00089740(void *ref, void *b);
-int   sub_0007F3F0(void *a, void *b);
+void *sub_0007F3F0(void *list, void *n);   /* returns the list head */
 void *sub_0008B560(void *a);
 void *sub_0008C5F0(void *a);
 void  sub_0008B400(void *n);
@@ -209,9 +212,9 @@ void  sub_0008E3D0(R6eTask *t, int v);
 void  sub_0008DD80(R6eArr *a, uint32_t n);
 void  sub_000904C0(void *r);
 void  sub_0007EB40(void *p);
-int   sub_0003D090(int a);
+void *sub_0003D090(int a);
 void  sub_0003D0A0(int a);
-void  sub_0003D020(int a, int b);
+void  sub_0003D020(int a, void *b);
 void  sub_0003D100(int a);
 void  sub_000186A0(int a, void *b);
 void  sub_00018580(int a, int b, int c, float d, float e);
@@ -268,7 +271,7 @@ extern R6eActorFn r6e_actorFns2E17C0[]; /* 0x002E17C0 */
 extern R6eActorFn r6e_actorFns2E2758[]; /* 0x002E2758 */
 typedef struct R6eKindObj { uint32_t flags; int32_t kind; } R6eKindObj;
 extern int32_t a30_g41316C, a30_g413170, r6e_g3ED760;
-typedef struct R6eRecDC { uint32_t flags; uint8_t unk04[0xD4 - 4]; int32_t hD4; R6eModel *modelD8; } R6eRecDC;
+typedef struct R6eRecDC { uint32_t flags; uint8_t unk04[0xD4 - 4]; void *hD4; R6eModel *modelD8; } R6eRecDC;
 extern R6eRecDC aab_recDC[8];          /* 0x00420F20 */
 typedef struct R6eObj128 { uint8_t unk00[0x128]; uint32_t flags128; } R6eObj128;
 

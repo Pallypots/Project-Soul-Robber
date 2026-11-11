@@ -301,7 +301,7 @@ int    sub_0006DA80(void);
 void   sub_0006C070(void);
 void   sub_00032140(int a, int b, int c);
 void   sub_00058670(void);
-void   sub_00058540(void (*fn)(void), int a);
+void   sub_00058540(void (*fn)(void), void *arg);   /* start job fn(arg) */
 void   sub_001A13D0(void);
 void   sub_000488C0(int a, int b, int c);
 void   sub_00079340(void);
@@ -345,8 +345,8 @@ extern R4gCtxE4 *a80_ctx42C8E4;     /* 0x0042C8E4 */
 int     sub_000F5CD0(void *o, int a, int b);
 void    sub_001ADB60(float *d, const float *s, float k);
 void   *sub_00080970(void);
-void    sub_000824F0(void *z, void *h, float *a, float *b, int c, int d);
-R4gHit *sub_00080CB0(void *h, float *a, float *b);
+void    sub_000824F0(void *ctx, void *pool, const float *from, const float *to, void *list, void *out);
+R4gHit *sub_00080CB0(void *pool, const float *from, const float *to);
 void    r4g_ModelSnapToGround(float *m, R4gSnapArg *p);   /* 0x00196B40 */
 
 /* ------------------------------------------------------------ pop effect spawner (0x00198080) */

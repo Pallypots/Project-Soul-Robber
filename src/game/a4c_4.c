@@ -44,7 +44,7 @@ A4cNode *a4c_ListGetAt(A4cList *list, int i)
     return n;
 }
 /* 0x0003DB60: call fn on each node until it returns nonzero; returns that value. */
-int a4c_ListForEach(A4cList *list, A4cNodeFn fn, int arg)
+int a4c_ListForEach(A4cList *list, A4cNodeFn fn, void *arg)
 {
     A4cNode *n;
     int r;
@@ -54,7 +54,7 @@ int a4c_ListForEach(A4cList *list, A4cNodeFn fn, int arg)
     return 0;
 }
 /* 0x0003DBC0: first node matching fn (default: data == arg). */
-A4cNode *a4c_ListFind(A4cList *list, A4cNodeFn fn, int arg)
+A4cNode *a4c_ListFind(A4cList *list, A4cNodeFn fn, void *arg)
 {
     A4cNode *n;
     if (list == 0) return 0;
@@ -64,7 +64,7 @@ A4cNode *a4c_ListFind(A4cList *list, A4cNodeFn fn, int arg)
     return 0;
 }
 /* 0x0003DC10: next node after node matching fn (default: data == arg). */
-A4cNode *a4c_ListFindNext(A4cNode *node, A4cNodeFn fn, int arg)
+A4cNode *a4c_ListFindNext(A4cNode *node, A4cNodeFn fn, void *arg)
 {
     A4cNode *n;
     if (node == 0) return 0;

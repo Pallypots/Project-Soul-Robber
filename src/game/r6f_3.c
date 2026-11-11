@@ -46,13 +46,13 @@ int r6f_TaskPickFreeId(R6fTask *t, void *ref)
     i = 0;
     while (n) {
         for (x = n; x; x = (R6fTask *)sub_0007F300(x))
-            if (x->f18.s.type == 7 && (int)(intptr_t)x->work == i)
+            if (x->f18.s.type == 7 && x->workId == i)
                 break;
         if (!x)
             break;
         i++;
     }
-    t->work = (R6eWork *)(intptr_t)i;
+    t->workId = i;
     t->p3C = 0;
     sub_000341C0(&t->p28);
     return 0;
@@ -90,8 +90,8 @@ void r6f_TaskShareMat(R6eArg20 *x, R6fTask *t)
     uint32_t a, b;
     if (t->f18.u & 2) {
         for (n = (R6fTask *)sub_0008C3C0(x->i20, 8); n; n = (R6fTask *)sub_0007F300(n)) {
-            a = (uint32_t)(uintptr_t)t->work;
-            b = (uint32_t)(uintptr_t)n->work;
+            a = (uint32_t)t->workId;
+            b = (uint32_t)n->workId;
             if (!((a ^ b) & 0x0FF00000) && !((a ^ b) & 0x000FFF00) && n->p28)
                 sub_0007ED70(n->p28, t->p28);
         }

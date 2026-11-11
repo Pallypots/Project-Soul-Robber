@@ -2,7 +2,7 @@
 #include "a60.h"
 
 /* 0x00077220: start channel ch (0 or 1) streaming source arg. */
-void a60_ChannelStart(int ch, int arg)
+void a60_ChannelStart(int ch, int (*cb)(int))
 {
     int v, id;
     switch (ch) {
@@ -12,7 +12,7 @@ void a60_ChannelStart(int ch, int arg)
     }
     sub_001A85D0(v);
     if (a60_chId[ch] < 0) {
-        id = sub_001A8580(v, arg, -1);
+        id = sub_001A8580(v, cb, -1);
         a60_chId[ch] = id;
         if (id < 0)
             return;

@@ -36,7 +36,7 @@ void a9b_ReleaseSlots(void)
     int i;
     for (i = 0; i < 18; i++) {
         if ((a9b_g400E50[i].f10 == 3 || a9b_g400E50[i].f10 == 4) && a9b_g400E50[i].f4)
-            sub_000ED780((void *)a9b_g400E50[i].f4);
+            sub_000ED780(a9b_g400E50[i].f4);
     }
 }
 

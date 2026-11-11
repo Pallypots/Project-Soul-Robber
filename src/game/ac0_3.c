@@ -37,7 +37,7 @@ void ac0_ApplyToList(Ac0Actor *a)
     void *e;
     if (a->flags150 & 0x10000000) return;
     for (e = sub_000EDB10(0); e; e = sub_000EDB90())
-        sub_000CB390(a, (int)e);
+        sub_000CB390(a, e);
 }
 
 /* 0x000CB340: clear the actor's cycle table. */

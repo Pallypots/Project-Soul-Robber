@@ -21,7 +21,7 @@ R6fTask *r6f_TaskSortList(R6fTask *list)
             nx = (R6fTask *)sub_0007F300(t);
             if (t->f18.s.type > nx->f18.s.type)
                 sub_0008C2C0(&t->hdr, &nx->hdr);
-            else if (t->f18.s.type == nx->f18.s.type && (intptr_t)t->work > (intptr_t)nx->work)
+            else if (t->f18.s.type == nx->f18.s.type && t->workId > nx->workId)
                 sub_0008C2C0(&t->hdr, &nx->hdr);
             else
                 t = nx;
