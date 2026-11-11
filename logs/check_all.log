@@ -2363,6 +2363,31 @@ PASS  r2c_CtlAnim25 @ 0x00100a70  orig 23 insns, ours 28 insns
 PASS  r2c_CtlAnim0 @ 0x00100f10  orig 28 insns, ours 30 insns
 PASS  r2c_CtlAnim29 @ 0x00101040  orig 36 insns, ours 38 insns
 PASS  r2c_CtlAttach @ 0x00101170  orig 42 insns, ours 42 insns
+PASS  r2c_ScrStop @ 0x00104af0  orig 25 insns, ours 21 insns
+PASS  r2c_ScrAttach @ 0x00105f90  orig 42 insns, ours 42 insns
+PASS  r2c_ScrDetach @ 0x00106020  orig 44 insns, ours 39 insns
+PASS  r2c_Obj90Create @ 0x00106170  orig 20 insns, ours 20 insns
+PASS  r2c_Obj90Attach @ 0x001062c0  orig 44 insns, ours 46 insns
+PASS  r2c_ReleaseKids @ 0x00106550  orig 33 insns, ours 33 insns
+PASS* r2c_PushEffect @ 0x00109050  orig 53 insns, ours 49 insns  (1 documented waivers)
+PASS  r2c_DropTarget @ 0x0010a750  orig 29 insns, ours 29 insns
+PASS  r2c_HitFlash @ 0x00110050  orig 26 insns, ours 23 insns
+PASS  r2c_RunHandler @ 0x00112aa0  orig 34 insns, ours 37 insns
+PASS  r2c_DescTrigger @ 0x00114a90  orig 33 insns, ours 23 insns
+PASS  r2c_NotifyKind2 @ 0x001154a0  orig 16 insns, ours 19 insns
+PASS  r2c_AnimDoneStep @ 0x001183e0  orig 17 insns, ours 14 insns
+PASS  r2c_AnimDoneStep23 @ 0x00119970  orig 30 insns, ours 30 insns
+PASS  r2c_PartnerFree @ 0x0011dcf0  orig 57 insns, ours 36 insns
+PASS  r2c_TargetCheckPlayer @ 0x0011ef60  orig 26 insns, ours 20 insns
+PASS  r2c_TargetCheck @ 0x0011efd0  orig 28 insns, ours 20 insns
+PASS  r2c_KeyMatches @ 0x0011f010  orig 31 insns, ours 26 insns
+PASS  r2c_DescStep2F @ 0x0012b080  orig 25 insns, ours 19 insns
+PASS  r2c_Step2F @ 0x0012ba10  orig 11 insns, ours 6 insns
+PASS  r2c_AnimDoneStep1 @ 0x0012c7c0  orig 17 insns, ours 14 insns
+PASS  r2c_Step1 @ 0x0012cee0  orig 11 insns, ours 6 insns
+PASS  r2c_NoFlag2000 @ 0x0012d2c0  orig 16 insns, ours 16 insns
+PASS  r2c_Any0or14 @ 0x0012dd40  orig 12 insns, ours 14 insns
+PASS  r2c_NotifyKind2B @ 0x0012e5e0  orig 31 insns, ours 35 insns
 PASS  r3_SetStateA @ 0x00131310  orig 89 insns, ours 89 insns
 PASS  r3_State132110 @ 0x00132110  orig 10 insns, ours 6 insns
 PASS  r3_State132230 @ 0x00132230  orig 13 insns, ours 10 insns
@@ -3028,4 +3053,4 @@ PASS  r6c_ScnUpdate12 @ 0x00088710  orig 46 insns, ours 45 insns
 PASS  r6c_EvStopEffects @ 0x000887a0  orig 36 insns, ours 36 insns
 PASS  r6c_ScnUpdatePlay12 @ 0x00088870  orig 30 insns, ours 29 insns
 PASS  r6c_EvTimerTick @ 0x00087f70  orig 21 insns, ours 24 insns
-3030/3030 pass
+3055/3055 pass

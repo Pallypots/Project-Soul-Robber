@@ -1,0 +1,91 @@
+va,name,state,source,obj,waivers,notes
+0x00076120,r6c_TextReset,Structurally compared,src/game/r6c_1.c,build/obj_r6c/r6c_1.obj,,rewind both animation players of a text box unless a movie owns the screen; regargs: t=EAX
+0x000762a0,r6c_TextCount,Structurally compared,src/game/r6c_1.c,build/obj_r6c/r6c_1.obj,,number of visible characters in an encoded string; hangs on NULL
+0x00076330,r6c_TextLen,Structurally compared,src/game/r6c_1.c,build/obj_r6c/r6c_1.obj,,byte length of an encoded string; hangs on NULL
+0x000763a0,r6c_TextIndex,Structurally compared,src/game/r6c_1.c,build/obj_r6c/r6c_1.obj,,byte index of visible character n
+0x00076620,r6c_TextNextPage,Structurally compared,src/game/r6c_1.c,build/obj_r6c/r6c_1.obj,,move the cursor past the next page break (code 6) and recount the page
+0x000773a0,r6c_ChannelPlay,Structurally compared,src/game/r6c_1.c,build/obj_r6c/r6c_1.obj,,restart a sound channel at a level and write its three registers
+0x00076430,r6c_TextCharAt,Structurally compared,src/game/r6c_2.c,build/obj_r6c/r6c_2.obj,,character code of visible character n (clamped); two-byte codes big-endian
+0x00078170,r6c_MovieTask,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,,movie task: wait for loading then start playback and finish the task
+0x000781f0,r6c_MovieLoop,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,,movie render loop (never returns); calls 0x00077AA0 with EAX=frame
+0x00079270,r6c_MovieStart,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,,register the three movie tasks and reset the movie state
+0x000796d0,r6c_SetFogColour,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,,set the fog colour from the table at 0x002DFF70
+0x00079700,r6c_SpriteInitA,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,data:0x3e925a;data:0x3e925e;imm:0x1c00;imm:0x2000;imm:0x7000;imm:0x7900;imm:0x1c002000;imm:0x79007000,initialise the first full-screen sprite; modern cl merges the four halfword stores into two dword stores
+0x000797a0,r6c_SpriteInitB,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,data:0x3e9283;data:0x3e9292;data:0x3e9296;imm:0x1c00;imm:0x2000;imm:0x7000;imm:0x7900;imm:0x1c002000;imm:0x79007000,initialise the second (black) full-screen sprite; modern cl merges the halfword stores into dword stores and two of the zero byte stores into one halfword store
+0x00079830,r6c_DrawToBackBuffer,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,,point the GPU at the current back buffer (64-bit register value) and draw object a
+0x00079c40,r6c_BuildMatrix,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,data:fconst:1.0;imm:0x3f800000,build a matrix from rotation angles a per-row scale and a position; regargs: m=ESI rot=EAX; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x00079f50,r6c_ObjCopyColour,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,data:fconst:1.0;imm:0x3f800000,copy the object colour into one of two colour slots; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x0007ab40,r6c_ObjUpdateAttach,Structurally compared,src/game/r6c_3.c,build/obj_r6c/r6c_3.obj,,re-attach or detach each linked attachment of the object
+0x000798b0,r6c_ObjInit,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,data:fconst:250.0;imm:0x437a0000,initialise a sprite object; float argument 250.0 pushed from .rdata by modern cl instead of as an immediate
+0x00079980,r6c_ApplyVecs,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,,give every model part its table vector and light it; calls 0x00079910 with EDX=i EDI=&v
+0x00079da0,r6c_ObjRebuild,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,,rebuild the object matrix; calls 0x00079C40 with ESI=&o->m154 EAX=&o->v194 and 0x00079CB0 with ESI=o
+0x00079de0,r6c_ObjSetMatrix,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,,set the object matrix from b then refresh; calls 0x00079CB0 with ESI=o
+0x0007aac0,r6c_ObjPlaceLight,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,data:fconst:224.0;imm:0x43600000,place the object light; float argument 224.0 pushed from .rdata by modern cl instead of as an immediate
+0x0007acc0,r6c_ObjResetPose,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,data:fconst:1.0,reset rotation and position and scale then rebuild; calls 0x00079C40 with ESI=&o->m154 EAX=&o->v194 and 0x00079CB0 with ESI=o; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x0007d1b0,r6c_ObjDrawAll,Structurally compared,src/game/r6c_4.c,build/obj_r6c/r6c_4.obj,,draw the object's three layers and attachments and shadow
+0x0007a9f0,r6c_ObjPrepare,Structurally compared,src/game/r6c_5.c,build/obj_r6c/r6c_5.obj,,light and tint and colour the object for drawing
+0x0007e0d0,r6c_CamAnimCopy,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,imm:0x4;imm:0x20,copy a camera animation header and return its track set when the version is 0x65; original advances a pointer to +0x1C then by 4 and modern cl folds the offset into one +0x20
+0x0007e1a0,r6c_CamAnimInit,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,imm:0x8;imm:0x28,initialise a camera animation (name; version 0x65; ten cleared tracks; one reference); loop strength reduction: original advances the +0x20 set pointer by 8 and modern cl folds the track offset into +0x28
+0x0007e5c0,r6c_AttachToPart,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,attach b's first part to bone c of part n of a
+0x0007e620,r6c_AttachToHand,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,attach b's first part to bone 9 of the current character; -1 for no node
+0x0007e6c0,r6c_NodeRelease,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,release a part chain resource and clear every active flag; regargs: p=EAX
+0x0007ec40,r6c_ListAddUnique,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,add an item to a part list unless already a member; regargs: l=ESI it=EDX
+0x0007ec90,r6c_ListRemove,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,remove an item from a part list; regargs: l=EDI it=ESI
+0x0007ede0,r6c_KeyNew,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,allocate a 0x20-byte key block holding v; -2 when out of memory
+0x0007f3b0,r6c_TreeFreeAll,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,free a node and its children and following siblings
+0x0007f3f0,r6c_TreeInsertAfter,Structurally compared,src/game/r6c_6.c,build/obj_r6c/r6c_6.obj,,insert a sibling chain after a node
+0x0007e8b0,r6c_TreeRelease,Structurally compared,src/game/r6c_7.c,build/obj_r6c/r6c_7.obj,,drop one reference from each sibling and release nodes that reach zero; calls 0x0007E6C0 with EAX=n->parts
+0x0007ed10,r6c_PartsAddItems,Structurally compared,src/game/r6c_7.c,build/obj_r6c/r6c_7.obj,,add each node item to the matching part list; calls 0x0007EC40 with ESI=list EDX=item
+0x0007ed70,r6c_PartsRemoveItems,Structurally compared,src/game/r6c_7.c,build/obj_r6c/r6c_7.obj,,remove each node item from the matching part list; calls 0x0007EC90 with EDI=list ESI=item
+0x0007ee50,r6c_KeyNewFrom,Structurally compared,src/game/r6c_7.c,build/obj_r6c/r6c_7.obj,,allocate a key block and fill +0x1C from decoded key info
+0x0007f430,r6c_TreeAddChild,Structurally compared,src/game/r6c_7.c,build/obj_r6c/r6c_7.obj,,append a sibling chain to a parent's children
+0x0007ead0,r6c_TreeFree,Structurally compared,src/game/r6c_7.c,build/obj_r6c/r6c_7.obj,,free a whole subtree with its record chains
+0x0007eb40,r6c_TreeUnref,Structurally compared,src/game/r6c_8.c,build/obj_r6c/r6c_8.obj,,drop one reference and release the node at zero; calls 0x0007E6C0 with EAX=n->parts
+0x0007eb80,r6c_TreeCreate,Structurally compared,src/game/r6c_8.c,build/obj_r6c/r6c_8.obj,,create a 0x60-byte tree node for (a b c); calls 0x0007E6C0 with EAX=n->parts
+0x0007fd60,r6c_ChildClearRec,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,clear record i of the child entity (types 2 and 10) of an entity of type 1 or 9
+0x00080cb0,r6c_PickNearest,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,pick the nearest hit with one of two search methods; calls 0x00080A60 with ECX=c (a and b on the stack) and 0x000809C0 with EBX=a ECX=c (b on the stack)
+0x00080da0,r6c_BoxNew,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,data:fconst:-8388000.0;data:fconst:1.0;data:fconst:8388000.0;imm:0x3f800000;imm:0x4afffb40;imm:0xcafffb40,allocate an empty bounding box record; float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00080f20,r6c_BoxExtend,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,grow a bounding box to include lo..hi
+0x00081b10,r6c_BTreeRemove,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,remove an item from the item chain of any node of a binary tree; 1 when found
+0x00081ff0,r6c_CollectHits,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,collect the hits of src and give them to owner; 1 when there were any
+0x00082060,r6c_LinkAppend,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,fill a link record and append it to the owner chain
+0x00082200,r6c_CollectBetween,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,gather the entries under root between two points into a zero-terminated array
+0x00082950,r6c_BoxBehind,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,1 when the box test vector has no positive component (or in free mode)
+0x000829d0,r6c_AngleAdd,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,a + b wrapped into -pi..pi (float result in st0)
+0x00082a30,r6c_RotateVec,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,rotate a vector by x then y then z angles
+0x00083070,r6c_Res3Free,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,free a resource record and its parts; returns the chain error
+0x00083480,r6c_E28Add,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,data:fconst:1.0;imm:0x3f800000,create a list member for resource a and append it; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x000846d0,r6c_MdlListNew,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,allocate a model part list of n parts with cleared headers
+0x00084730,r6c_MdlListChain,Structurally compared,src/game/r6c_9.c,build/obj_r6c/r6c_9.obj,,run every model part through 0x001B7520 and 0x001B72C0 threading x through
+0x00084d60,r6c_TimersTick,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,imm:0xfffffffc,count down every positive timer and clamp negatives; loop strength reduction: original advances a pointer to the +4 time field and reads the object at -4
+0x000853b0,r6c_EvFirstA,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,imm:0x4,first entry of an event group whose flag is set (bytes to *a *b); regargs: g=EDI; original keeps a pointer to the +0x20 entries and reads +4 while modern cl folds it to +0x24
+0x00085430,r6c_EvNextA,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,imm:0x24,next entry of an event group whose flag is set (bytes to *a *b); regargs: g=EDI; modern cl reads the first flag at +0x24 from the group instead of +4 from the entry pointer
+0x000854b0,r6c_EvFirstB,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,imm:0x4,first entry of an event group whose flag is set or NULL; regargs: g=EDI; original keeps a pointer to the +0x20 entries and reads +4 while modern cl folds it to +0x24
+0x00085520,r6c_EvNextB,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,imm:0x24,next entry of an event group whose flag is set or NULL; regargs: g=EDI; modern cl reads the first flag at +0x24 from the group instead of +4 from the entry pointer
+0x00085ac0,r6c_EvStartForEntry,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,,start the first event group for the current entry that has a set flag
+0x00085b60,r6c_EvStartGlobal,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,,start the first global (key 0xFF) event group with a set flag; 1 when it is not done
+0x00085d20,r6c_ItemSlotsInit,Structurally compared,src/game/r6c_10.c,build/obj_r6c/r6c_10.obj,imm:0xfffffffc;imm:0xffffffec;imm:0xfffffff0;imm:0xfffffff4,bind the item set and build its slot array; loop strength reduction: the slot pointer is biased by +8 in the original and by +0x10 in modern cl so the field offsets differ
+0x00086890,r6c_StreamPlayWait,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,,start the current stream and wait until it has played out
+0x00086920,r6c_StreamSwitchWait,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,,stop the current stream then load and settle the next one
+0x00086c60,r6c_StreamReleaseStep,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,,step the stream release job (0 finished; 1 busy)
+0x00086ef0,r6c_CamMarkersPlace,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,data:fconst:1.0;imm:0x3f800000,place every event camera marker at its position and yaw; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x00087030,r6c_EvJump,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,,run event jump handler i (table 0x002E03BC) when the event camera is on
+0x00087050,r6c_CamGet,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,data:fconst:1.0;imm:0x3f800000,current event camera position and direction and id; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x00087310,r6c_CamReset,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,data:fconst:1.0;imm:0x3f800000,reset the event camera and run its six init hooks; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x000873a0,r6c_CamTick,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,,run the event camera state handler then its six tick hooks
+0x00087450,r6c_CamFollowPlayer,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,imm:0x300;imm:0x74;imm:0x374,aim the event camera at the player; original keeps a pointer to the +0x300 body block across the call and modern cl folds +0x300+0x74 into one offset
+0x00087c70,r6c_EvSceneBegin,Structurally compared,src/game/r6c_11.c,build/obj_r6c/r6c_11.obj,,begin an event scene and pick the camera mode
+0x00087570,r6c_EvJumpStep,Structurally compared,src/game/r6c_5.c,build/obj_r6c/r6c_5.obj,,step an event jump (0 finished; 1 running)
+0x00087b00,r6c_EvSceneReset,Structurally compared,src/game/r6c_5.c,build/obj_r6c/r6c_5.obj,,reset the event scene state and point the camera at the player
+0x00087d90,r6c_EvRunJobA,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,run the group's first job (0x000856F0) in the background then switch to mode 6
+0x00087de0,r6c_EvRunJobB,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,run the group's second job (0x00085820) in the background then switch to mode 7
+0x00087e70,r6c_EvRunJobC,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,run the group's third job (0x00085930) in the background then switch to mode 10
+0x00088030,r6c_EvSpawnStep,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,spawn more of the group's enemies while there is room; mode 12 when none are active
+0x000880c0,r6c_ScnClearAll,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,clear the scene step states and the nine scene records at 0x002E0690
+0x000881b0,r6c_ScnEnterStep,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,step a scene's enter handler (direct or as a background job); regargs: s=ESI
+0x00088240,r6c_ScnLeaveStep,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,step a scene's leave handler (direct or as a background job); regargs: s=ESI
+0x00088400,r6c_ScnUpdate11,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,scene update: lock the player and play effect 11 until the finish flag then unlock
+0x00088710,r6c_ScnUpdate12,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,scene update: lock the player and play effect 12 until the finish flag then unlock
+0x000887a0,r6c_EvStopEffects,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,stop effect channel 2 and wait for stream 15 to finish
+0x00088870,r6c_ScnUpdatePlay12,Structurally compared,src/game/r6c_12.c,build/obj_r6c/r6c_12.obj,,scene update: play effect 12 once and finish at state 20
+0x00087f70,r6c_EvTimerTick,Structurally compared,src/game/r6c_5.c,build/obj_r6c/r6c_5.obj,,advance the event timer and reset the event scene when it runs out

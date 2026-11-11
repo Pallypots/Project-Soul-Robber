@@ -217,7 +217,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
             # conditional move / set: same decision as a branch (modern cl
             # uses cmov, which 2005-era code for this game never does)
             c = JCC_CLASS["j" + (m[4:] if m.startswith("cmov") else m[3:])]
-            if c == "s/ns" and prev is not None and sign_test(prev):
+            if c == "s/ns" and flagsrc is not None and sign_test(flagsrc):
                 c = "l/ge"   # same folding as js/jns after test r,r
             jcc[c] += 1
         elif m == "sbb" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and \
@@ -228,7 +228,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
             jcc["e/ne" if flagsrc.mnemonic == "neg" else "b/ae"] += 1
         elif m in JCC_CLASS:
             c = JCC_CLASS[m]
-            if c == "s/ns" and prev is not None and sign_test(prev):
+            if c == "s/ns" and flagsrc is not None and sign_test(flagsrc):
                 c = "l/ge"
             jcc[c] += 1
             # conditional tail call: jcc rel32 straight to another function
@@ -467,7 +467,11 @@ def main():
                 print(f"FAIL  {r['name']} @ {r['va']}  object missing: {r['obj']}")
                 bad += 1
                 continue
-            bad += not compare(obj, r["name"], int(r["va"], 16), None, a.v, xbe, syms, waivers=w)
+            try:
+                bad += not compare(obj, r["name"], int(r["va"], 16), None, a.v, xbe, syms, waivers=w)
+            except OSError as e:   # object being rebuilt by a parallel compile
+                print(f"FAIL  {r['name']} @ {r['va']}  object unreadable: {e}")
+                bad += 1
         print(f"{n - bad}/{n} pass")
         sys.exit(1 if bad else 0)
     ok = compare(a.obj, a.symbol, int(a.va, 16), a.size, a.v, dump=a.dump)
