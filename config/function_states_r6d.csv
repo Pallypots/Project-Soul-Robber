@@ -1,0 +1,69 @@
+va,name,state,source,obj,waivers,notes
+0x00076700,r6d_TextAppend,Structurally compared,src/game/r6d_1.c,build/obj_r6d/r6d_1.obj,,append an encoded string to a text box (hangs over 0x800 bytes); rep movsd/movsb copy written as __movsd/__movsb with a memcpy fallback
+0x000770b0,r6d_TextDraw,Structurally compared,src/game/r6d_1.c,build/obj_r6d/r6d_1.obj,,draw a text box and its frame passes; calls 0x00076E30 with EAX=t ESI=0x80 EBX=ctx; 0x00076FA0 with EAX=t ESI=0x80; 0x000768D0 with EDI=t
+0x00077110,r6d_TextDrawAlpha,Structurally compared,src/game/r6d_2.c,build/obj_r6d/r6d_2.obj,,draw a text box faded to an alpha level; calls 0x00076E30 with EAX=t ESI=(alpha>>1)&0x7F EBX=ctx; 0x00076FA0 with EAX=t ESI=(alpha>>1)&0x7F
+0x00060900,r6d_MenuShowText,Structurally compared,src/game/r6d_3.c,build/obj_r6d/r6d_3.obj,data:fconst:-1.0;imm:0xbf800000,show a new message in the shop menu text box; float argument -1.0 pushed from .rdata by modern cl instead of as an immediate
+0x000609a0,r6d_ShopGive,Structurally compared,src/game/r6d_3.c,build/obj_r6d/r6d_3.obj,,give the player one bought shop item; regargs: id=AX (zero-extended)
+0x00061500,r6d_ShopCheck,Structurally compared,src/game/r6d_3.c,build/obj_r6d/r6d_3.obj,,why a shop item cannot be bought (1 too expensive 2 unavailable 0 ok); regargs: id=SI (zero-extended)
+0x00061b70,r6d_MenuPageValue,Structurally compared,src/game/r6d_3.c,build/obj_r6d/r6d_3.obj,,translate a menu value for the current shop page; calls 0x00060BF0 with EAX=v
+0x00061bc0,r6d_MenuUpdate,Structurally compared,src/game/r6d_3.c,build/obj_r6d/r6d_3.obj,,run the current shop page and update the menu animation
+0x00060b20,r6d_ItemPrice,Structurally compared,src/game/r6d_4.c,build/obj_r6d/r6d_4.obj,imm:0x3c;imm:0x4;imm:0x2,shop price of an item (item 28 halved until stat 0x29; 60 percent without the flag at 0x413178); multiply by 60 via imul in original vs shl/sub/shl in modern cl
+0x00060300,r6d_ShopCloseStep,Structurally compared,src/game/r6d_4.c,build/obj_r6d/r6d_4.obj,data:fconst:20.0;imm:0x41a00000,shop close sequence (fade out then restore the game state and reset the page); 20.0f stored as an immediate by modern cl instead of a load from .rdata
+0x00065ae0,r6d_LoadTexSet,Structurally compared,src/game/r6d_5.c,build/obj_r6d/r6d_5.obj,imm:0xffffffc8;jcc:be/a;jcc:b/ae,select a texture set and load its seven images into the work block; the conditional decrement (unsigned n>4) is made branchless with cmp/sbb by modern cl
+0x00065db0,r6d_StatusIcon,Structurally compared,src/game/r6d_5.c,build/obj_r6d/r6d_5.obj,,icon index for entry k of the current status page; regargs: k=EDX
+0x00065e50,r6d_StatusShowText,Structurally compared,src/game/r6d_5.c,build/obj_r6d/r6d_5.obj,data:fconst:-1.0;imm:0xbf800000,show a message in status text box i; regargs: i=ESI; float argument -1.0 pushed from .rdata by modern cl instead of as an immediate
+0x00065ee0,r6d_StatusShowTextS,Structurally compared,src/game/r6d_6.c,build/obj_r6d/r6d_6.obj,,stack-argument wrapper; calls 0x00065E50 with ESI=i (modern cl tail-calls it)
+0x0006bfa0,r6d_AreaLoadImages,Structurally compared,src/game/r6d_7.c,build/obj_r6d/r6d_7.obj,,pick the area picture for the current chapter and stage and load four images; calls 0x0006B5E0 with ECX=chapter EAX=stage ESI=0x003E65E8
+0x0006c070,r6d_PauseRelease,Structurally compared,src/game/r6d_7.c,build/obj_r6d/r6d_7.obj,,leave the pause screens: stop sounds and release every page and the work block
+0x0006c160,r6d_PausePageValue,Structurally compared,src/game/r6d_7.c,build/obj_r6d/r6d_7.obj,,pass a menu value to the handler of the current pause page; regargs: v=EAX; returns v for unknown pages
+0x0006d310,r6d_PauseShowValue,Structurally compared,src/game/r6d_8.c,build/obj_r6d/r6d_8.obj,,in page 10000 translate a value and show it; calls 0x0006C160 with EAX=v
+0x00071f90,r6d_PausePageRun,Structurally compared,src/game/r6d_8.c,build/obj_r6d/r6d_8.obj,,run the current pause page (tail calls)
+0x00072230,r6d_Forward13,Structurally compared,src/game/r6d_8.c,build/obj_r6d/r6d_8.obj,,forward thirteen arguments to 0x001A78F0 and return the first argument
+0x0006db00,r6d_PauseHandlesInit,Structurally compared,src/game/r6d_9.c,build/obj_r6d/r6d_9.obj,,mark all 32 pause-screen sound handles free
+0x00072dd0,r6d_MenuSetOrder,Structurally compared,src/game/r6d_9.c,build/obj_r6d/r6d_9.obj,,set the four draw-order slots of a menu for a layout mode and selection; regargs: m=EAX sel=ECX mode=DX (zero-extended)
+0x00074410,r6d_PausePageStopSounds,Structurally compared,src/game/r6d_9.c,build/obj_r6d/r6d_9.obj,,release the sound handles of the current pause page
+0x00074df0,r6d_ModelSetUV2,Structurally compared,src/game/r6d_9.c,build/obj_r6d/r6d_9.obj,,register a model in the effect list and set the second UV offset of every active part with a key; hangs on NULL or unknown type
+0x00075780,r6d_ModelSetUV1,Structurally compared,src/game/r6d_9.c,build/obj_r6d/r6d_9.obj,,set the first UV offset of every active part with a key; regargs: m=EAX key=EBX v=EDI
+0x00078050,r6d_WaitForKey,Structurally compared,src/game/r6d_10.c,build/obj_r6d/r6d_10.obj,,block until the pad is idle and key 0x2BC has been pressed and released
+0x00078e70,r6d_EndingStep,Structurally compared,src/game/r6d_10.c,build/obj_r6d/r6d_10.obj,,ending sequence step: start the credits fade then switch to chapter 0x18
+0x00079600,r6d_DrawCentredMessage,Structurally compared,src/game/r6d_10.c,build/obj_r6d/r6d_10.obj,,draw message 3 centred with a four-way shadow; calls 0x00079590 with EAX=x ECX=ctx; 0x0003FA70 called with two arguments (alias r6d_MsgGet)
+0x00079590,r6d_DrawString,Structurally compared,src/game/r6d_11.c,build/obj_r6d/r6d_11.obj,imm:0x3f800000,draw an encoded string glyph by glyph; regargs: x=EAX ctx=ECX; the original pushes an unused third argument 0 to 0x00076430; the two 1.0f arguments are built with fld1 by modern cl instead of pushed as immediates
+0x0007ae30,r6d_NodeAdd,Structurally compared,src/game/r6d_12.c,build/obj_r6d/r6d_12.obj,,allocate a 0x84-byte named node and append it to the owner list at +0x1F8; returns the node
+0x0007d090,r6d_SceneFree,Structurally compared,src/game/r6d_12.c,build/obj_r6d/r6d_12.obj,,free every child of a scene object and its six resource slots (slot helper inlined six times as in the original)
+0x0007d4a0,r6d_CopyN,Structurally compared,src/game/r6d_13.c,build/obj_r6d/r6d_13.obj,,copy at most max bytes of src to dst and return dst advanced; regargs: max=EAX src=EBX
+0x0007e910,r6d_CharLoad,Structurally compared,src/game/r6d_13.c,build/obj_r6d/r6d_13.obj,,load a character resource into an object and create its effect list; calls 0x0007E680 with EDI=table; 0x0007E720 with EBX=o->chr
+0x0007e680,r6d_TableFirstFree,Structurally compared,src/game/r6d_14.c,build/obj_r6d/r6d_14.obj,jcc:le/g,first table entry with bit 0 at +0x0C clear (0 found / -1 none); regargs: t=EDI; integer compare operands swapped on the loop entry test (cmp i;[t] jge vs cmp [t];i jle)
+0x0007f1e0,r6d_MemFill,Structurally compared,src/game/r6d_15.c,build/obj_r6d/r6d_15.obj,imm:0x8,fill n bytes and return 0 (rep stosd/stosb written as __stosd/__stosb with a memset fallback); the fill byte is copied into the second byte with mov bh;bl by the original vs shl 8 by modern cl
+0x0007f210,r6d_MemCopy,Structurally compared,src/game/r6d_15.c,build/obj_r6d/r6d_15.obj,,copy n bytes and return 0 (rep movsd/movsb written as __movsd/__movsb with a memcpy fallback)
+0x0007f560,r6d_StrCompare,Structurally compared,src/game/r6d_15.c,build/obj_r6d/r6d_15.obj,,compare two strings four bytes at a time; NULL a gives -1 and NULL b gives 1
+0x00082140,r6d_TreeCollect,Structurally compared,src/game/r6d_15.c,build/obj_r6d/r6d_15.obj,,collect visible items of a scene box tree into the draw list (max 256); recursion on the left child and a loop on the right child as in the original
+0x00084e70,r6d_SlotsAlloc,Structurally compared,src/game/r6d_15.c,build/obj_r6d/r6d_15.obj,,remember a table and allocate one zeroed 8-byte slot per entry (rep stos written as __stosd/__stosb with a memset fallback)
+0x00082d90,r6d_BoxCorners,Structurally compared,src/game/r6d_16.c,build/obj_r6d/r6d_16.obj,,write the eight corners of the box lo..hi copying raw words
+0x00084b40,r6d_TexHeaderInit,Structurally compared,src/game/r6d_16.c,build/obj_r6d/r6d_16.obj,data:0x10001;imm:0xe;imm:0x25;imm:0x14,initialise a P2IG texture header (name up to 8 characters; log2 of width and height capped at 32); modern cl merges the two halfword stores of 1 into one dword store of 0x10001 (in image range so listed as data) and the two zero byte stores into one halfword store and addresses the second name word directly
+0x00086090,r6d_SoundUpdate,Structurally compared,src/game/r6d_16.c,build/obj_r6d/r6d_16.obj,imm:0xfffffff8;imm:0xfffffffc,update a playing sound: on end stop the sounds of its group; stop early once its event flag is set; the slot loop pointer is strength-reduced to the handle field (-8/-4 offsets) by the original vs indexed by modern cl
+0x000867f0,r6d_StreamsStop,Structurally compared,src/game/r6d_17.c,build/obj_r6d/r6d_17.obj,,stop both busy streaming voices and wait until idle (job entry point; argument unused)
+0x000869c0,r6d_StreamLoadStep,Structurally compared,src/game/r6d_18.c,build/obj_r6d/r6d_18.obj,,resumable job step: find the first stream set entry whose event flag is set and load it (direct on the job thread or as queued jobs)
+0x00086b30,r6d_StreamFreeStep,Structurally compared,src/game/r6d_18.c,build/obj_r6d/r6d_18.obj,,resumable job step: release the current stream set entry
+0x00086ce0,r6d_StreamPlay,Structurally compared,src/game/r6d_18.c,build/obj_r6d/r6d_18.obj,,resumable job step: start stream (a b) on the third voice
+0x00086da0,r6d_StreamSwitch,Structurally compared,src/game/r6d_18.c,build/obj_r6d/r6d_18.obj,,resumable job step: switch the third voice to stream (a b)
+0x000882f0,r6d_CsAudioInA,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio in layout A: pause music tracks and start voice 0x0E with busy waits (voice helpers inlined)
+0x00088490,r6d_CsAudioOutA,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio out layout A: resume tracks and stop voice 0x0E then send the stage key handshake
+0x00088560,r6d_CsAudioInB,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio in layout B (voices 0x0F and 9)
+0x00088650,r6d_CsAudioOutB,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio out layout B
+0x000888c0,r6d_CsAudioInC,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio in layout C (voice 0x10)
+0x000889c0,r6d_CsAudioOutC,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio out layout C
+0x00088a90,r6d_CsEventA,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene event A: cue 0x0D on track 2 until flag 4 then end (states 0/10/20)
+0x00088b20,r6d_CsKeyWait,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,send the stage key through the two-argument handshake
+0x00088c30,r6d_CsEventB,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene event B: cue chosen by stage 5 or 0x0B on track 3
+0x00088cf0,r6d_CsAudioInD,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio in layout D (voice 8)
+0x00088db0,r6d_CsAudioOutD,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene audio out layout D
+0x00088e10,r6d_CsEventC,Structurally compared,src/game/r6d_19.c,build/obj_r6d/r6d_19.obj,,cutscene event C: cues 3 and 4 on track 2; ends when tracks 2 and 5 are done
+0x00089040,r6d_ScnLeaveCurrent,Structurally compared,src/game/r6d_20.c,build/obj_r6d/r6d_20.obj,,step the leave sequence of the current event scene (1 while running); calls 0x00088240 with ESI=&scene record (0x18 bytes at 0x002E0680)
+0x000895a0,r6d_NodePairAt,Structurally compared,src/game/r6d_20.c,build/obj_r6d/r6d_20.obj,,the n-th matching node of an object and the next matching node after it (both NULL when missing)
+0x00089740,r6d_StageSetMaterial,Structurally compared,src/game/r6d_20.c,build/obj_r6d/r6d_20.obj,,switch an object material keeping reference counts and render state 4
+0x000897b0,r6d_StageObjFree,Structurally compared,src/game/r6d_20.c,build/obj_r6d/r6d_20.obj,jcc:be/a,destroy a stage object and everything it owns (0xB0-byte state block copied back); the unsigned slot count test n<=0 (jbe) is emitted as n==0 (je) by modern cl
+0x0008a9c0,r6d_LinkDetachSound,Structurally compared,src/game/r6d_21.c,build/obj_r6d/r6d_21.obj,,detach a link sound from its target effect list and clear the link words
+0x0008aaa0,r6d_LinkStopSound,Structurally compared,src/game/r6d_21.c,build/obj_r6d/r6d_21.obj,,stop the sound playing on the link target
+0x0008ada0,r6d_LinkCompare,Structurally compared,src/game/r6d_21.c,build/obj_r6d/r6d_21.obj,,order two links by 0x0008B320 then by word +0x10 then by word +0x14
+0x0008adf0,r6d_LinkAttachA,Structurally compared,src/game/r6d_21.c,build/obj_r6d/r6d_21.obj,,attach a type-7 node for a source to a link creating it when missing (0 / -2 / attach error)
+0x0008aed0,r6d_LinkAttachB,Structurally compared,src/game/r6d_21.c,build/obj_r6d/r6d_21.obj,,attach a type-7 node for a source to a link (variant returning early)

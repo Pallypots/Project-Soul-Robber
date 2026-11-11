@@ -1,0 +1,82 @@
+va,name,state,source,obj,waivers,notes
+0x00190260,r4c_FxFallInit,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,data:fconst:1.0;imm:0x3f800000,stack args (o a); float constant 1.0 stored as an immediate by modern cl instead of an .rdata load
+0x00190540,r4c_FxFallUpdate,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a)
+0x001905b0,r4c_ClearRecs4000B0,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,no inputs
+0x001905e0,r4c_FxFallMsg,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a msg); jump table switch on msg id
+0x001908a0,r4c_ReleaseAllRecs,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,no inputs
+0x00190900,r4c_FxStop,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a)
+0x00190af0,r4c_FxCheckHit,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o other); calls 0x00190A00 with EDI=o
+0x00190b40,r4c_FxCollide,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,jcc:l/ge;jcc:b/ae,regargs: p1=EAX; calls 0x00190A00 with EDI; pointer loop end compared unsigned by modern cl vs signed
+0x001911f0,r4c_FxAim,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a)
+0x001912f0,r4c_FxAimUpdate,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a); calls 0x00190A00 with EDI=o
+0x00191360,r4c_FxDropInit,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,data:fconst:1.0;data:fconst:1.5;imm:0x3f800000;imm:0x3fc00000,stack args (o a); float constants 1.0 and 1.5 stored as immediates by modern cl instead of .rdata loads
+0x001913e0,r4c_FxRise,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,data:fconst:1.0;imm:0x14;imm:0x4,stack args (o a); 1.0f/fps built with fld1 by modern cl; original keeps a pointer to work+0x14 and addresses field +0x18 as +4
+0x00191490,r4c_FxRiseUpdate,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a); calls 0x00190A00 with EDI=o
+0x00191520,r4c_FxFlyUpdate,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a); calls 0x00190A00 with EDI=o
+0x00191b00,r4c_ResetRecs400688,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,no inputs
+0x00191ca0,r4c_SlotBind,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,jcc:b/ae,stack args (o a x); pointer loop end compared unsigned by modern cl (original loop compare signed)
+0x00191d50,r4c_FxKillInArc,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (a0 a1 radius pos); calls 0x00190A00 with EDI
+0x00191e20,r4c_FxMsg,Structurally compared,src/game/r4c_1.c,build/obj_r4c/r4c_1.obj,,stack args (o a msg); calls 0x00190A00 with EDI=o
+0x00190a00,r4c_FxKill,Structurally compared,src/game/r4c_2.c,build/obj_r4c/r4c_2.obj,data:fconst:1.0;imm:0x3f800000,regargs: p1=EDI; float constant 1.0 stored as an immediate by modern cl
+0x00192320,r4c_SlotAttach,Structurally compared,src/game/r4c_2.c,build/obj_r4c/r4c_2.obj,imm:0x4;imm:0x3;jcc:l/ge;jcc:be/a,stack args (idx part); signed 0..3 range check folded to unsigned idx<=3 by modern cl
+0x00192630,r4c_SlotScale,Structurally compared,src/game/r4c_2.c,build/obj_r4c/r4c_2.obj,imm:0x4;imm:0x3;jcc:l/ge;jcc:be/a;data:fconst:1.0;imm:0x3f800000;data:fconst:2.0,regargs: p1=EAX (s on stack); signed 0..3 range check folded to unsigned idx<=3 by modern cl; 1.0 stored as an immediate; s*2.0 emitted as s+s by modern cl
+0x001923b0,r4c_SlotsSpawn,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,,no inputs
+0x00192470,r4c_SlotStop,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,data:fconst:1.0;data:fconst:1.7;imm:0x3f800000;imm:0x3fd9999a,stack args (o a); float constants 1.0 and 1.7 stored as immediates by modern cl instead of .rdata loads
+0x00192530,r4c_SlotMsg,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,,stack args (o a msg); jump table switch on msg id
+0x00192880,r4c_SlotStart,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,data:fconst:1.0,stack args (o a); calls 0x00192630 with EAX=idx; float constant 1.0 stored as an immediate by modern cl instead of an .rdata load
+0x00192970,r4c_SlotLaunch,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,data:fconst:1.0;imm:0x62,stack args (o a); calls 0x00192630 with EAX=idx; 1.0 stored as an immediate; modern cl merges the two zero word stores at +0x60/+0x62 into one dword store
+0x00192ce0,r4c_SlotGrow,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,data:fconst:0.7;data:fconst:1.7;data:fconst:2.2;imm:0x400ccccd;imm:0x3f333333;imm:0x3fd9999a,stack args (unused a); calls 0x00192630 with EAX=idx; float constants: original pushes 2.2 as an immediate and loads 0.7/1.7 from .rdata while modern cl does the opposite
+0x00192d30,r4c_SlotPulse,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,imm:0x40000000;imm:0x40a00000,stack args (o a); float constants 2.0 and 5.0 stored as immediates by modern cl (original stores the register already holding them)
+0x00192e30,r4c_SlotGrowBig,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,data:fconst:2.9;imm:0x4039999a,stack args (unused a); calls 0x00192630 with EAX=idx; float argument 2.9 pushed as an immediate by the original vs loaded from .rdata by modern cl
+0x00192e60,r4c_SlotFly,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,,stack args (o a)
+0x00193670,r4c_SlotReset,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,data:fconst:1.0;data:fconst:1.7;data:fconst:2.9;imm:0x4039999a;imm:0x3f800000;imm:0x3fd9999a,stack args (o a); calls 0x00192630 with EAX=idx; float constants: original pushes 2.9 as an immediate and loads 1.0/1.7 from .rdata while modern cl does the opposite
+0x00193e10,r4c_Rec1CAlloc,Structurally compared,src/game/r4c_3.c,build/obj_r4c/r4c_3.obj,jcc:l/ge;jcc:b/ae,no inputs; pointer loop end compared unsigned by modern cl and the redundant index bound check dropped
+0x00194780,r4c_FxBurst,Structurally compared,src/game/r4c_4.c,build/obj_r4c/r4c_4.obj,data:fconst:0.01666667;data:fconst:10.0;data:fconst:100.0;data:fconst:12.5;data:fconst:2.5;imm:0x3c888889;imm:0x3f800000;imm:0x40200000;imm:0x41200000;imm:0x41480000;imm:0x42c80000,stack args (o a); float stack arguments pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x001948a0,r4c_FxBounce,Structurally compared,src/game/r4c_4.c,build/obj_r4c/r4c_4.obj,data:fconst:2.0;data:fconst:-2.0;data:fconst:80.0;imm:0xc0000000;imm:0x42a00000,stack args (o a); float argument -2.0 pushed as an immediate by the original and 80.0 stored as an immediate by modern cl; x*2.0 emitted as x+x by modern cl
+0x00194970,r4c_FxBounceStop,Structurally compared,src/game/r4c_4.c,build/obj_r4c/r4c_4.obj,data:fconst:1.0;data:fconst:2.0;data:fconst:-2.0;data:fconst:80.0;imm:0xc0000000;imm:0x42a00000,stack args (o a); float argument -2.0 pushed as an immediate by the original; 1.0 and 80.0 stored as immediates by modern cl; x*2.0 emitted as x+x by modern cl
+0x00194a80,r4c_FxBounceFace,Structurally compared,src/game/r4c_4.c,build/obj_r4c/r4c_4.obj,data:fconst:2.0;data:fconst:-1.0;data:fconst:-2.0;data:fconst:80.0;imm:0xbf800000;imm:0xc0000000;imm:0x42a00000,stack args (o a); float arguments -2.0 and -1.0 pushed as immediates by the original; 80.0 stored as an immediate by modern cl; x*2.0 emitted as x+x by modern cl
+0x00194d90,r4c_SpawnShot,Structurally compared,src/game/r4c_4.c,build/obj_r4c/r4c_4.obj,,stack args (owner p0 p1 k)
+0x00194e30,r4c_SpawnShot1F,Structurally compared,src/game/r4c_4.c,build/obj_r4c/r4c_4.obj,,stack args (owner p0 p1 k)
+0x001955b0,r4c_FxScale,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,data:fconst:1.0;imm:0x3f800000,regargs: p1=EAX (o) with s on the stack; float constant 1.0 stored as an immediate by modern cl instead of an .rdata load
+0x00195b60,r4c_FxGrowFade,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,,stack args (o a)
+0x00195c80,r4c_FxThrowRise,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,,stack args (o a)
+0x00195d20,r4c_FxThrowFly,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,,stack args (o a)
+0x00195de0,r4c_FxThrowSlide,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,,stack args (o a)
+0x00196120,r4c_FxThrowAim,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,data:fconst:0.3;data:fconst:1.0;imm:0x3e99999a;imm:0x3f800000,stack args (o a); float constants 0.3 and 1.0 stored as immediates by modern cl instead of .rdata loads
+0x00196430,r4c_FxThrowAimLow,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,data:fconst:0.3;data:fconst:1.0;imm:0x3e99999a;imm:0x3f800000,stack args (o a); float constants 0.3 and 1.0 stored as immediates by modern cl instead of .rdata loads
+0x00196c90,r4c_FreeDynRecs,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,,no inputs
+0x00196d30,r4c_AllocDynRecs,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,,no inputs; assert-style hang when an allocation fails
+0x001976b0,r4c_FxJReset,Structurally compared,src/game/r4c_5.c,build/obj_r4c/r4c_5.obj,data:fconst:1.0;data:fconst:-83.0;imm:0x3f800000;imm:0xc2a60000,regargs: p1=EDI; float constants 1.0 and -83.0 stored as immediates by modern cl instead of .rdata loads
+0x00197160,r4c_FxPopMsg,Structurally compared,src/game/r4c_6.c,build/obj_r4c/r4c_6.obj,,stack args (o a msg); jump table switch on msg id; calls 0x00196DB0 with EAX=kind ECX=o
+0x001975d0,r4c_FxHomeFly,Structurally compared,src/game/r4c_6.c,build/obj_r4c/r4c_6.obj,,stack args (o a); calls 0x00196DB0 with EAX=kind ECX=o
+0x00197650,r4c_FxPopHit,Structurally compared,src/game/r4c_6.c,build/obj_r4c/r4c_6.obj,,stack args (o other); calls 0x00196DB0 with EAX=kind ECX=o
+0x00197ce0,r4c_DynRecsReset,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,no inputs
+0x00197d90,r4c_DynStop,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (o a)
+0x00198330,r4c_DynBind,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (o a x); calls 0x001977A0 with the record on the stack and ECX=x
+0x001983e0,r4c_ClearRecs401838,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,no inputs
+0x00198810,r4c_TimedStopW,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (unused a)
+0x00198860,r4c_TimedFadePart,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (o a)
+0x001988c0,r4c_TimedGrow,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (o a)
+0x00198980,r4c_TimedStopV6,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (o a)
+0x00198af0,r4c_TimedStopV,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (unused a)
+0x00198ca0,r4c_TimedShrink,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,data:fconst:1.0,stack args (o a); 1.0f/k built with fld1 by modern cl x87 code instead of an .rdata load
+0x00198f90,r4c_RecB18Bind,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,data:fconst:1.0;data:fconst:-5.0;imm:0x3f800000;imm:0xc0a00000;jcc:l/ge;jcc:b/ae,stack args (o a); float constants 1.0 and -5.0 stored as immediates by modern cl; pointer loop end compared unsigned by modern cl vs signed
+0x00199460,r4c_TimedAttachCam,Structurally compared,src/game/r4c_7.c,build/obj_r4c/r4c_7.obj,,stack args (o a); calls 0x00198DA0 with ESI=point EDI=o
+0x00198da0,r4c_CamPoint,Structurally compared,src/game/r4c_8.c,build/obj_r4c/r4c_8.obj,data:fconst:1.0;data:fconst:-1.0;imm:0x3f800000;imm:0xbf800000,regargs: p1=ESI (out) p2=EDI (o); float argument -1.0 pushed as an immediate by the original and 1.0 stored as an immediate by modern cl
+0x00199500,r4c_TimedAttachCam0,Structurally compared,src/game/r4c_9.c,build/obj_r4c/r4c_9.obj,,stack args (o a); calls 0x00198DA0 with ESI=point EDI=o
+0x001998c0,r4c_VoiceAlloc,Structurally compared,src/game/r4c_9.c,build/obj_r4c/r4c_9.obj,imm:0x2;jcc:be/a,stack args; assert-style hang on a bad channel; signed range check -1<ch<2 folded to unsigned ch<=1 by modern cl
+0x001a1e90,r4c_TargetSetOffset,Structurally compared,src/game/r4c_10.c,build/obj_r4c/r4c_10.obj,,stack args (i off); D3D callees are __stdcall
+0x001a1ee0,r4c_TargetSelect,Structurally compared,src/game/r4c_11.c,build/obj_r4c/r4c_11.obj,,stack args; D3D callees are __stdcall
+0x0019c2d0,r4c_SessionPoll,Structurally compared,src/game/r4c_12.c,build/obj_r4c/r4c_12.obj,,no inputs
+0x0019c350,r4c_OptionsDefaults,Structurally compared,src/game/r4c_12.c,build/obj_r4c/r4c_12.obj,,no inputs; ends in a tail call to 0x0019BED0
+0x0019c940,r4c_LoaderInit,Structurally compared,src/game/r4c_12.c,build/obj_r4c/r4c_12.obj,,stack args (l id)
+0x0019d0a0,r4c_GroupSetup,Structurally compared,src/game/r4c_12.c,build/obj_r4c/r4c_12.obj,,stack args
+0x0019d720,r4c_LoadPackE3,Structurally compared,src/game/r4c_12.c,build/obj_r4c/r4c_12.obj,,no inputs; ends in a tail call to 0x0004F720
+0x0019e6e0,r4c_StageResume,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,,stack args (force); ends in a tail call to 0x0019B9F0
+0x0019fe60,r4c_StageShutdown,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,,stack args
+0x001a01a0,r4c_ShockById,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,,stack args
+0x001a0b30,r4c_SessionSlotsReset,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,data:0x3de6b1;data:0x3de6b2;data:0x3de6b3;data:0x3de7a1;data:0x3de7a2;data:0x3de7a3;data:fconst:1.0;imm:0x3f800000,stack args; modern cl merges the four byte stores of each slot into one dword store and stores 1.0f as an integer bit pattern (same idiom as Session_Reset)
+0x001a0b80,r4c_MovieWaitJob,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,,stack args; ends in a tail call to 0x00058190
+0x001a0bd0,r4c_RenderJob,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,,stack args; never returns; calls 0x0019C800 with EAX=buffer (result in EAX)
+0x001a1610,r4c_GroupSetup2800,Structurally compared,src/game/r4c_13.c,build/obj_r4c/r4c_13.obj,,stack args
+0x001a3f60,r4c_D3dRelease,Structurally compared,src/game/r4c_14.c,build/obj_r4c/r4c_14.obj,,no inputs; D3D library callees are __stdcall
