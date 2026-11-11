@@ -1,0 +1,50 @@
+va,name,state,source,obj,waivers,notes
+0x0019b500,r4e_SoundInit,Structurally compared,src/game/r4e_2.c,build/obj_r4e/r4e_2.obj,,no inputs; table clears inlined as rep stosd (__stosd on x86 and memset elsewhere); calls the empty stub 0x00102FA0 with one argument
+0x0019ba70,r4e_GameInit,Structurally compared,src/game/r4e_3.c,build/obj_r4e/r4e_3.obj,imm:0x3f800000,no inputs; float argument 1.0 pushed as an immediate by the original and built with fld1 by modern cl
+0x0019bc60,r4e_GameStart,Structurally compared,src/game/r4e_3.c,build/obj_r4e/r4e_3.obj,,no inputs
+0x0019c4d0,r4e_GameFrame,Structurally compared,src/game/r4e_3.c,build/obj_r4e/r4e_3.obj,data:fconst:0.1;imm:0x3dcccccd,no inputs; float argument 0.1 pushed as an immediate by the original and loaded from .rdata by modern cl
+0x0019d460,r4e_StageEnter,Structurally compared,src/game/r4e_4.c,build/obj_r4e/r4e_4.obj,imm:0x3;data:fconst:128.0;imm:0x43000000,stack arg (t); 8-byte record row offset scaled with shl 3 by the original and folded into the *8 address scale by modern cl; float argument 128.0 pushed as an immediate by the original and loaded from .rdata by modern cl
+0x0019df20,r4e_LoaderInit,Structurally compared,src/game/r4e_4.c,build/obj_r4e/r4e_4.obj,,no inputs; original passes an extra 0 argument to 0x001AD3D0 which reads only one
+0x0019e530,r4e_TitleTask,Structurally compared,src/game/r4e_4.c,build/obj_r4e/r4e_4.obj,,stack arg (t)
+0x0019fcf0,r4e_SceneSetup,Structurally compared,src/game/r4e_5.c,build/obj_r4e/r4e_5.obj,,stack args (stage b mode c d e); block clear inlined as rep stosd (__stosd on x86 and memset elsewhere)
+0x001a0540,r4e_SceneRunLoop,Structurally compared,src/game/r4e_5.c,build/obj_r4e/r4e_5.obj,data:fconst:52.0;imm:0x42500000,stack arg (state); float argument 52.0 pushed as an immediate by the original and loaded from .rdata by modern cl
+0x001a0660,r4e_SceneEnd,Structurally compared,src/game/r4e_5.c,build/obj_r4e/r4e_5.obj,data:fconst:-1.0;data:fconst:20.0;imm:0x41a00000;imm:0xbf800000,stack args (a b c d e f) with a a float forwarded to 0x0019FEF0; float arguments 20.0 and -1.0 pushed as immediates by the original and loaded from .rdata by modern cl
+0x001a0830,r4e_SceneJob,Structurally compared,src/game/r4e_5.c,build/obj_r4e/r4e_5.obj,,stack arg (state)
+0x001a1320,r4e_DrawThread,Structurally compared,src/game/r4e_6.c,build/obj_r4e/r4e_6.obj,,stack arg (job); never returns
+0x001a1da0,r4e_RenderTargetsInit,Structurally compared,src/game/r4e_6.c,build/obj_r4e/r4e_6.obj,,no inputs; XDK callees 0x001D2330 and 0x001D2870 are stdcall
+0x001a2130,r4e_DrawVertexBlock,Structurally compared,src/game/r4e_6.c,build/obj_r4e/r4e_6.obj,,stack arg (pp); XDK callees 0x001D26C0 and 0x001D5C30 are stdcall
+0x001a2250,r4e_DrawVertexBlockOpt,Structurally compared,src/game/r4e_6.c,build/obj_r4e/r4e_6.obj,,stack args (pp flags); XDK callees 0x001D26C0 and 0x001D5C30 are stdcall
+0x001a2d80,r4e_DrawPrimsUP,Structurally compared,src/game/r4e_8.c,build/obj_r4e/r4e_8.obj,,stack args (verts count); XDK callees are stdcall except 0x001D24F0 and 0x001D4350 which are fastcall (ECX EDX); the 0x0040AD48 bit is the guard of a function-local static with an empty initialiser
+0x001a36a0,r4e_DrawQuadsUP,Structurally compared,src/game/r4e_8.c,build/obj_r4e/r4e_8.obj,,stack args (verts count); XDK callees are stdcall except 0x001D24F0 and 0x001D4350 which are fastcall (ECX EDX); the 0x0040AD4C bit is the guard of a function-local static with an empty initialiser
+0x001a5480,r4e_SetSafeViewport,Structurally compared,src/game/r4e_9.c,build/obj_r4e/r4e_9.obj,,no inputs; XDK callee 0x001D3D80 is stdcall
+0x001a6e80,r4e_SetRenderState4035C,Structurally compared,src/game/r4e_9.c,build/obj_r4e/r4e_9.obj,,stack arg (on); 0x001D4350 is fastcall (ECX EDX)
+0x001a6f90,r4e_WrapFrameBuffers,Structurally compared,src/game/r4e_9.c,build/obj_r4e/r4e_9.obj,,no inputs; XDK callees are stdcall
+0x001a7040,r4e_WrapBackBuffer,Structurally compared,src/game/r4e_9.c,build/obj_r4e/r4e_9.obj,,no inputs; XDK callees are stdcall
+0x001a70a0,r4e_WrapDepthBuffer,Structurally compared,src/game/r4e_9.c,build/obj_r4e/r4e_9.obj,,no inputs; XDK callees are stdcall
+0x001a7640,r4e_SetDepthRange,Structurally compared,src/game/r4e_9.c,build/obj_r4e/r4e_9.obj,,stack args (a b) floats; XDK callee 0x001D4080 is stdcall
+0x001a7750,r4e_RenderInit,Structurally compared,src/game/r4e_10.c,build/obj_r4e/r4e_10.obj,data:fconst:2.0;imm:0x40000000;jcc:l/ge;jcc:b/ae,no inputs; constant 2.0f stored as an immediate by modern cl instead of a load from .rdata (same value); pool pointer loop end compared signed by the original and unsigned by modern cl; XDK callees are stdcall
+0x001ab210,r4e_DrvSlotSettle,Structurally compared,src/game/r4e_12.c,build/obj_r4e/r4e_12.obj,,stack args (unused i); kernel callees are stdcall; calls 0x001ACF30 and 0x001ACF00 with ECX=slot (member functions without stack arguments)
+0x001ae430,r4e_TimerInit,Structurally compared,src/game/r4e_14.c,build/obj_r4e/r4e_14.obj,data:fconst:1.0,no inputs; constant 1.0 loaded from .rdata by the original and built with fld1 by modern cl; kernel callees are stdcall
+0x001ae710,r4e_TimerTick,Structurally compared,src/game/r4e_14.c,build/obj_r4e/r4e_14.obj,,no inputs; kernel callee is stdcall
+0x001ae8e0,r4e_ImgLevelPtr,Structurally compared,src/game/r4e_15.c,build/obj_r4e/r4e_15.obj,,stack args (img k)
+0x001ae920,r4e_MeshNext,Structurally compared,src/game/r4e_15.c,build/obj_r4e/r4e_15.obj,,stack args (m mesh)
+0x001af260,r4e_VecLerp,Structurally compared,src/game/r4e_15.c,build/obj_r4e/r4e_15.obj,,regargs: p3=EAX (a) p4=ESI (b); stack args (out k) with k a float; ESI is pushed once as the third argument of 0x001AD9F0
+0x001aefd0,r4e_MotionStart,Structurally compared,src/game/r4e_16.c,build/obj_r4e/r4e_16.obj,data:fconst:1.0,stack args (o anim flags frames); calls 0x001AEF60 with EAX=o; constant 1.0 loaded from .rdata by the original and built with fld1 by modern cl
+0x001ad7e0,r4e_VecNormalize3,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,data:fconst:1.0;imm:0x3f800000,stack args (out in); D3DX callee 0x001E51AB is stdcall; constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x001ad940,r4e_MatIdentity,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,data:fconst:1.0;imm:0x3f800000,stack arg (m); constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x001ad9f0,r4e_VecSub4,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d a b)
+0x001ada60,r4e_VecCross3,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d a b)
+0x001adaf0,r4e_VecAdd4,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d a b)
+0x001adba0,r4e_VecScale4,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d s k) with k a float
+0x001adc60,r4e_VecLerp4,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d a b t) with t a float
+0x001adcd0,r4e_VecLerp3,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d a b t) with t a float
+0x001add30,r4e_VecClamp4,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d v lo hi) with lo and hi floats
+0x001ade90,r4e_VecMul4,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d a b)
+0x001ae010,r4e_MatCopyTranslate,Structurally compared,src/game/r4e_17.c,build/obj_r4e/r4e_17.obj,,stack args (d s t)
+0x001ae970,r4e_NodeInit,Structurally compared,src/game/r4e_18.c,build/obj_r4e/r4e_18.obj,data:fconst:1.0;imm:0x3f800000,stack arg (n); constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x001b2fe0,r4e_Node1Init,Structurally compared,src/game/r4e_19.c,build/obj_r4e/r4e_19.obj,data:fconst:128.0;imm:0x43000000,stack arg (n); constant 128.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x001b3450,r4e_Node14Init,Structurally compared,src/game/r4e_19.c,build/obj_r4e/r4e_19.obj,data:fconst:1.0;imm:0x3f800000,stack arg (n); constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0019bed0,r4e_ApplyOptions,Structurally compared,src/game/r4e_22.c,build/obj_r4e/r4e_22.obj,,no inputs
+0x0019fc60,r4e_GameStateStart,Structurally compared,src/game/r4e_22.c,build/obj_r4e/r4e_22.obj,data:fconst:1.0;imm:0x3f800000,stack arg (state); constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0019c6f0,r4e_FadeInJob,Structurally compared,src/game/r4e_23.c,build/obj_r4e/r4e_23.obj,data:fconst:1.0;imm:0x43000000,stack arg (job); constant 1.0 loaded from .rdata by the original and built with fld1 by modern cl; float argument 128.0 pushed as an immediate by the original and loaded from .rdata by modern cl
+0x001a1280,r4e_ShakeFadeJob,Structurally compared,src/game/r4e_23.c,build/obj_r4e/r4e_23.obj,imm:0x43000000,stack arg (job); float argument 128.0 pushed as an immediate by the original and loaded from .rdata by modern cl
