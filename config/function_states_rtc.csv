@@ -1,0 +1,107 @@
+va,name,state,source,obj,waivers,notes
+0x0001c4f0,rtc_ActorStateHandler,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0001ef00,rtc_PktTexSetVec,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0002e280,rtc_DrawPanelOrText,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,data:fconst:-232.0;data:fconst:-264.0;data:fconst:464.0;data:fconst:528.0;imm:0x43e80000;imm:0x44040000;imm:0xc3680000;imm:0xc3840000,float arguments -264 -232 528 464 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x00033c20,rtc_SlotsFreeAll,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x000385b0,rtc_DrawGlyphIndexed,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00039fe0,rtc_LoadViewMatrix,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0003fbd0,rtc_ItemTextDraw,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0003fbf0,rtc_ItemTextDrawAlpha,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0003ff60,rtc_StageTexturesRelease,Structurally compared,src/game/rtc_4.c,build/obj_rtc/rtc_4.obj,,original tail-calls after rewriting its own argument slots
+0x000487c0,rtc_SetScale,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00048d70,rtc_SoundReset,Structurally compared,src/game/rtc_4.c,build/obj_rtc/rtc_4.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value); the original pushes one argument to 0x000AD090 here (the callee reads none)
+0x00049490,rtc_StartWorker,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0004bda0,rtc_StageLeave,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0004ea40,rtc_GroupsInit,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00052900,rtc_SetRateMode,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,data:fconst:1.0,constant 1.0 built with fld1 by modern cl (x87 code) vs loaded from .rdata by the original SSE code (same value)
+0x00052970,rtc_SetTimeScale,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,data:fconst:1.0,constant 1.0 built with fld1 by modern cl (x87 code) vs loaded from .rdata by the original SSE code (same value)
+0x00053820,a50_Alloc,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00053850,a50_AllocHigh,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0005a9c0,rtc_ModeDispatch,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00079e00,rtc_TextBoxInit,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,data:fconst:10.0;data:fconst:1000.0;data:fconst:255.0;imm:0x41200000;imm:0x437f0000;imm:0x447a0000,float constants 1000 255 and 10 stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00083160,rtc_ApplyValueToModel,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00084ce0,rtc_TexFindOrLoad,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00088b80,rtc_StageUnloadWait,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x000893c0,rtc_TaskOwnerShutdown,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0008bd80,rtc_AllocForKind,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,imm:0x4;imm:0xfffffffa,10/4 select: original sete;dec;and -6;add 10 vs modern cmov
+0x0008d1b0,rtc_ReleaseRefC,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0008e1c0,rtc_RampCreateOrSet,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x0008fac0,rtc_TableEntry0Get8,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x00094f10,rtc_ProximityShock,Structurally compared,src/game/rtc_1.c,build/obj_rtc/rtc_1.obj,,original tail-calls after rewriting its own argument slots
+0x000cc180,rtc_CameraChoose,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000d2360,rtc_PlayerEventA,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000d3620,rtc_PlayerEventB,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000d4590,rtc_ActorDetachNodes,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000d51e0,rtc_ActorHideNode,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000d5870,rtc_SwitchUpdate,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000d7100,rtc_StageSelectByButtons,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,calls 0x000D7090 with EAX=b; original reuses its argument slot for the looked-up id
+0x000de8e0,rtc_SelectRemember,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e07f0,rtc_ActorHandleQuery,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e0d50,rtc_OpenPage,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,imm:0x6,switch range: the original jump table also covers case 6 (same target as default) which modern cl folds into the default range check
+0x000e0ee0,rtc_GroupFlag,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e0fb0,rtc_MsgWindow,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,data:fconst:-1.0;data:fconst:20.0;imm:0x41a00000;imm:0xbf800000,float arguments 20.0 and -1.0 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x000e3c00,rtc_ActorPauseTrack,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e6ce0,rtc_MenuReset,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e9d20,rtc_ScreenReset,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e9df0,rtc_ApplyItemToStats,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000e9f30,rtc_ScreenFinish,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ea3c0,rtc_ItemShock,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ea500,rtc_GiveItem,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ea6f0,rtc_MenuClose,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ea770,rtc_ScreenMode1,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ea790,rtc_ScreenMode0,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ea900,rtc_StageLinkFreeById,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000eadf0,rtc_StageCallById,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000eb000,rtc_ItemTimedCall,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000eb250,rtc_PanelShowItem,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000f4e30,rtc_BossEvent,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000f5330,rtc_BossAnim10,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000f5410,rtc_BossPhase3,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,data:fconst:-1.570796;imm:0xbfc90fdb,float constant -pi/2 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000f9280,rtc_SetAnim1CIfNot,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000f9590,rtc_SetAnim18,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000f9d90,rtc_SetAnim2,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000faeb0,rtc_SetAnim33,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000faf10,rtc_SetAnim40,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000fb260,rtc_SetAnim30,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000fc8c0,rtc_HelperLinkAnim0,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000fd160,rtc_HelperLinkAnim1,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000fe540,rtc_MinionSwapVisible,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ffd40,rtc_MinionAnim2B,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x000ffdd0,rtc_MinionAnim2C,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x00100c00,rtc_CtlAnim26,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x00100fa0,rtc_CtlAnim28,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x001010f0,rtc_CtlAnim2A,Structurally compared,src/game/rtc_2.c,build/obj_rtc/rtc_2.obj,,original tail-calls after rewriting its own argument slots
+0x00109600,rtc_F3F00Half,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,data:fconst:0.5;imm:0x3f000000,float argument 0.5 stored as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00109650,rtc_ClearF50Half,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,data:fconst:0.5;imm:0x3f000000,float argument 0.5 stored as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x0010ac30,rtc_MoverStart,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0010b990,rtc_MoverStartFall,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0010ba40,rtc_MoverStartTurned,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,data:fconst:1.570796;imm:0x3fc90fdb,float constant pi/2 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0011b900,rtc_EnemyKnockOut,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0013b3f0,rtc_ReactRandom1B,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0013b480,rtc_ReactRandom1C,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0013b960,rtc_ActorSyncBody,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00142d60,rtc_EnemyMarkAndScale,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,data:fconst:2.0;imm:0x40000000,float argument 2.0 stored as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x001598f0,rtc_MotionReset,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00178ad0,rtc_FallStep,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00178c00,rtc_CopyPlayerV50,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00178d10,rtc_TurnStep,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00179740,rtc_ClearAndAnim7,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0017b290,rtc_ResetSlot0,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0017fba0,rtc_ResetAnim1,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0017fe80,rtc_ResetAnim5,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00181ca0,rtc_PairAnimA,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00192380,rtc_RecSetAnim,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,imm:0x4;imm:0x3;jcc:l/ge;jcc:be/a,signed 0<=i<4 bounds check emitted as unsigned i<=3 by modern cl
+0x00192910,rtc_PlaceByKind,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x00196a30,rtc_RecMatrixApply,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x001999e0,rtc_VoiceCountDown,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,imm:0xf;jcc:l/ge;jcc:be/a,signed 0<=i<16 bounds check emitted as unsigned i<=15 by modern cl
+0x0019a4b0,rtc_StreamRestart,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,imm:0x2d;imm:0x2c;imm:0x38;jcc:l/ge;jcc:be/a,signed 0<=i<45 bounds check emitted as unsigned i<=44 by modern cl; stride 0x38 multiply expressed by a lea chain by modern cl (array+field still compared via elem)
+0x0019b5f0,rtc_PlayCue,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,imm:0x77;imm:0x76;jcc:l/ge;jcc:le/g;jcc:be/a,assert-style hang on i outside 0..118 tested as two signed compares by the original vs one unsigned bounds check by modern cl
+0x0019b620,rtc_CuePickSlot,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,imm:0x77;imm:0x76;imm:0x38;jcc:l/ge;jcc:le/g;jcc:be/a,assert-style hang on i outside 0..118 tested as two signed compares by the original vs one unsigned bounds check by modern cl; stride 0x38 multiply expressed by a lea chain by modern cl (array+field still compared via elem)
+0x0019c620,rtc_SaveStep,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0019d710,rtc_QueryHandle402FF4,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0019d7f0,rtc_StartSeq0,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x0019d830,rtc_StartSeq2,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x001b2690,rtc_MatrixOp40,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x001b72c0,rtc_FogEmit290,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x001b72e0,rtc_ADA40At0B0,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots
+0x001b7300,rtc_CopyVecTo270,Structurally compared,src/game/rtc_3.c,build/obj_rtc/rtc_3.obj,,original tail-calls after rewriting its own argument slots

@@ -1,0 +1,84 @@
+va,name,state,source,obj,waivers,notes
+0x00136e60,r3d_Reset136E60,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00138310,r3d_Swing138310,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:2.792527;data:fconst:-2.792527;imm:0x4032b8c3;imm:0xc032b8c3,constants +-2.792527 (160 degrees) stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00138ac0,r3d_Phase138AC0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:0.25;imm:0x3e800000,constant 0.25 stored as an immediate by modern cl instead of a load from .rdata (same value); act word +0x58 is the phase
+0x00139540,r3d_Turn139540,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments
+0x00139d50,r3d_RandomFrame139D50,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments; float to int by inline cvttss2si (intrinsic in the x86 build)
+0x0013b9a0,r3d_Hit13B9A0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments
+0x0013e130,r3d_Restart13E130,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments
+0x0013e1a0,r3d_Swing13E1A0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:0.2617994;data:fconst:-0.2617994;imm:0x3e860a92;imm:0xbe860a92,constants +-0.2617994 (15 degrees) stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0013e5c0,r3d_Swing13E5C0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:0.1745329;data:fconst:-0.1745329;imm:0x3e32b8c3;imm:0xbe32b8c3,constants +-0.1745329 (10 degrees) stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0013ee90,r3d_Swing13EE90,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:0.1745329;data:fconst:-0.1745329;imm:0x3e32b8c3;imm:0xbe32b8c3,constants +-0.1745329 (10 degrees) stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0013ef10,r3d_Swing13EF10,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:0.1745329;data:fconst:-0.1745329;imm:0x3e32b8c3;imm:0xbe32b8c3,constants +-0.1745329 (10 degrees) stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0013f140,r3d_Phase13F140,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments; act word +0x58 is the phase
+0x00142990,r3d_Start142990,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:20.0;imm:0x41a00000,float argument 20.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x001467b0,r3d_Start1467B0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments; calls 0x00156180 with (work 0 0 0 speed) on the stack
+0x00146ba0,r3d_Start146BA0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:-10.0;imm:0xc1200000,float argument -10.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value); calls 0x00156180 and 0x001561D0 with the work block first
+0x00146c20,r3d_Start146C20,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments; calls 0x00156180 with (work 40/s -50/s 0 speed) on the stack
+0x001471f0,r3d_Fade1471F0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;imm:0x3f800000;jcc:b/ae,constant 1.0 used as an immediate (fld1 and a stored immediate) by modern cl (same value); float compare operands swapped (comiss 0;v jb vs fcomi with v first and jbe)
+0x001474d0,r3d_TargetIs1474D0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments; first argument unused
+0x00147710,r3d_SetNode147710,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,regargs: act=ECX key=EAX (a b c d on the stack); calls 0x00113400 with act and key on the stack
+0x00155b70,r3d_TargetIs155B70,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,,Stack arguments; first argument unused
+0x00156100,r3d_Blend156100,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 used as an immediate (fld1) by modern cl instead of a load from .rdata (same value)
+0x00156930,r3d_Reset156930,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;data:fconst:300.0;imm:0x3f800000;imm:0x43960000,constants 1.0 and 300.0 stored as immediates by modern cl instead of loads from .rdata (same values)
+0x001569b0,r3d_Reset1569B0,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00157810,r3d_Reset157810,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00159650,r3d_Reset159650,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00159960,r3d_Reset159960,Structurally compared,src/game/r3d_1.c,build/obj_r3d/r3d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x001668d0,r3d_Reset1668D0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x00166940,r3d_SoundStep166940,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x4;imm:0x3;jcc:l/ge;jcc:be/a,signed 0<=i<4 bounds check emitted as unsigned i<=3 by modern cl
+0x00168c60,r3d_Finish168C60,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x00169e20,r3d_Once169E20,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,data:fconst:3.402823e+38;imm:0x7f7fffff,float argument FLT_MAX pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x0016afb0,r3d_Shrink16AFB0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x0016bda0,r3d_Pick16BDA0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x20;imm:0x22,two bit tests on the same word (bit 2 set and bit 0x20 clear) merged by modern cl into one (f & 0x22) == 2 compare
+0x0016c3d0,r3d_Stage16C3D0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,regargs: act=EAX want=stack
+0x0016cf40,r3d_Start16CF40,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x0016e1e0,r3d_Start16E1E0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,data:fconst:3.0;imm:0x40400000,constant 3.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0016f7f0,r3d_SoundStep16F7F0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x00170910,r3d_Grow170910,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x3f800000,float argument 1.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00171150,r3d_Grow171150,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x3f800000,float argument 1.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00171f30,r3d_Reset171F30,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,jcc:l/ge;jcc:b/ae,pool pointer loop end compared signed by the original and unsigned by modern cl (signed vs unsigned loop end)
+0x00172000,r3d_SoundStep172000,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x18;imm:0x17;jcc:l/ge;jcc:be/a,signed 0<=i<24 bounds check emitted as unsigned i<=23 by modern cl
+0x001744c0,r3d_Hand1744C0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x10;imm:0x14;imm:0x4;imm:0xfffffff0;jcc:l/ge;jcc:le/g;jcc:be/a,range check 16..20 emitted as unsigned (k-16)>4 by modern cl vs the original signed pair
+0x00174c50,r3d_SoundStep174C50,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x28;imm:0x27;jcc:l/ge;jcc:be/a,signed 0<=i<40 bounds check emitted as unsigned i<=39 by modern cl
+0x001751d0,r3d_Unref1751D0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; work block slots at +0x24
+0x00175220,r3d_TurnRate175220,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x00175290,r3d_EaseTurn175290,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x00175c40,r3d_Timer175C40,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; act word +0x58 is the phase
+0x00176400,r3d_Land176400,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x00176970,r3d_AngleToPlayer176970,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,data:fconst:-1.0;imm:0xbf800000,regargs: o=ESI; float result in st0; constant -1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00176d10,r3d_Timer176D10,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; act word +0x58 is the phase
+0x001777a0,r3d_Unref1777A0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; work block slots at +0x28 and flags at +0x10
+0x00177ec0,r3d_Timer177EC0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; act word +0x58 is the phase
+0x00178c90,r3d_Steer178C90,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x3f800000,float argument 1.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00179dc0,r3d_Quiet179DC0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,data:fconst:10.0;imm:0x41200000,constant 10.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00179e40,r3d_Release179E40,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; first argument unused; inline rep stosd zeroing (intrinsic in the x86 build)
+0x0017c2b0,r3d_Release17C2B0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; first argument unused
+0x0017cb90,r3d_Move17CB90,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x0017e210,r3d_Reset17E210,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x0017e280,r3d_Sink17E280,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0xc2c00000,constant -96.0 stored as an immediate by modern cl instead of a store from the register loaded from .rdata (same value)
+0x0017f7e0,r3d_ResetStage17F7E0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,imm:0x6;imm:0xe,loop induction: modern cl iterates the record id 8..13 (compared against 14) instead of a counter 0..5 plus 8
+0x0017fd40,r3d_Start17FD40,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments
+0x0017fec0,r3d_Stage17FEC0,Structurally compared,src/game/r3d_2.c,build/obj_r3d/r3d_2.obj,,Stack arguments; 0x0017F390 takes no arguments
+0x00181e00,r3d_Detach181E00,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x00181e80,r3d_Detach181E80,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x001827e0,r3d_Detach1827E0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x001842f0,r3d_Light1842F0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:500.0;imm:0x43fa0000,float argument 500.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00184610,r3d_Release184610,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x00184670,r3d_Detach184670,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x001853e0,r3d_ClearRecs1853E0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,inline rep stosd zeroing (intrinsic in the x86 build)
+0x00185630,r3d_Release185630,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x00185890,r3d_Retarget185890,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments; first argument unused
+0x00187df0,r3d_Reset187DF0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00188240,r3d_Reset188240,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:1.0;imm:0x3f800000;imm:0x4;jcc:e/ne,constant 1.0 stored as an immediate by modern cl (same value); 3/4 select on act flag bit 0: original branch pushing 3 or 4 vs modern cl and+add without a branch
+0x001882f0,r3d_Reset1882F0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:1.0;imm:0x3f800000;jcc:e/ne,constant 1.0 stored as an immediate by modern cl (same value); 0/1 select on act flag bit 0: original branch pushing 0 or 1 vs modern cl and without a branch
+0x00188c00,r3d_Hold188C00,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,jcc:l/ge,loop of 3 rows counted down to zero by modern cl instead of counted up and compared against 3 (loop induction)
+0x00188eb0,r3d_Blend188EB0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a store from the register loaded from .rdata (same value)
+0x001895a0,r3d_Reset1895A0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,no arguments
+0x00189d30,r3d_Update189D30,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x0018a920,r3d_Burst18A920,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:0.5;data:fconst:20.0;data:fconst:30.0;data:fconst:5.0;imm:0x3f000000;imm:0x40a00000;imm:0x41a00000;imm:0x41f00000,regargs: o=ESI; float arguments 30 20 0.5 5 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x0018ad00,r3d_Rise18AD00,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate (and loaded with fld1) by modern cl instead of a load from .rdata (same value)
+0x0018b620,r3d_ClearRecs18B620,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,inline rep stosd zeroing (intrinsic in the x86 build)
+0x0018ca90,r3d_Spin18CA90,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,data:fconst:-2.0;imm:0xc0000000,regargs: act=EAX obj=ESI; float argument -2.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x0018e900,r3d_Follow18E900,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments
+0x0018f6f0,r3d_Detach18F6F0,Structurally compared,src/game/r3d_3.c,build/obj_r3d/r3d_3.obj,,Stack arguments

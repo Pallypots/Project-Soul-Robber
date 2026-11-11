@@ -48,3 +48,4 @@ Much of the game was compiled with whole-program optimisation, which passes some
 ## Notes from recovery (2026-11-11)
 - Functions that tail-call after rewriting their own argument slots were skipped by rule at first. Some of them (e.g. 0x113520, 0x113570, 0x1135C0, float pass-through) compile the same way with cl 19.44 and pass without waivers, so helpers should try them before skipping.
 - A float result left on the x87 stack (st0) is the normal C `float` return; such functions are in scope. Only XMM-register float arguments/results are out of scope.
+- Additional accepted waiver idioms (reviewed 2026-11-11): two bit tests on the same word merged into one masked compare (e.g. `(f & 2) && !(f & 0x20)` as `(f & 0x22) == 2`); fixed-count loops counted down to zero; loop indices offset by a constant (`i + 8` folded into the range). The "tail call after rewriting argument slots" pattern is no longer a skip reason: 106 of 121 such functions compiled identically.
