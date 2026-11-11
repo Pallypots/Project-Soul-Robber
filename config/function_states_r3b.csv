@@ -1,0 +1,88 @@
+va,name,state,source,obj,waivers,notes
+0x00130af0,r3b_Reset130AF0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,data:fconst:1.0;imm:0x3f800000,PASS* float constant 1.0 stored as immediate in ours vs .rdata load in original
+0x00135500,r3b_Step135500,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001356c0,r3b_Release1356C0,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,Stack-argument
+0x001356d0,r3b_AnimCond1356D0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x00135780,r3b_Any135780,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,regargs: kind=EAX
+0x001357c0,r3b_AnyFlagged1357C0,Structurally compared,src/game/r3b_4.c,build/obj_r3b/r3b_4.obj,,calls 0x00135780 with EAX=kind
+0x00135c10,r3b_KeyVec135C10,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,imm:0x38,regargs: act=ECX idx=EAX key=ESI dst=stack; PASS* stride 0x38 multiply expressed by lea chain in ours vs imul in original
+0x00136070,r3b_AnimDone136070,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001383f0,r3b_State1383F0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x00138450,r3b_State138450,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001384b0,r3b_State1384B0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x00138500,r3b_State138500,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x00138550,r3b_State138550,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001385a0,r3b_State1385A0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001385f0,r3b_State1385F0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x00138840,r3b_State138840,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001388a0,r3b_State1388A0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,data:fconst:10.0;imm:0x41200000,PASS* float constant 10.0 stored as immediate in ours vs .rdata load in original
+0x001388e0,r3b_State1388E0,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,data:fconst:10.0;imm:0x41200000,PASS* float constant 10.0 stored as immediate in ours vs .rdata load in original
+0x00138920,r3b_State138920,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,data:fconst:10.0;imm:0x41200000,PASS* float constant 10.0 stored as immediate in ours vs .rdata load in original
+0x00138960,r3b_State138960,Structurally compared,src/game/r3b_3.c,build/obj_r3b/r3b_3.obj,,Stack-argument
+0x001389b0,r3b_State1389B0,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139480,r3b_StepAnim139480,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x001394e0,r3b_Transfer1394E0,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139a70,r3b_StepWait139A70,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139ab0,r3b_StepFlag139AB0,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139b10,r3b_Dispatch139B10,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,regargs: idx=EAX b=EDX a=stack
+0x00139c50,r3b_InReach139C50,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139cb0,r3b_InRange139CB0,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139cf0,r3b_MarkItems139CF0,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x00139db0,r3b_IdInList139DB0,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x0013b390,r3b_State13B390,Structurally compared,src/game/r3b_5.c,build/obj_r3b/r3b_5.obj,,Stack-argument
+0x0013b950,r3b_Fwd13B950,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,Stack-argument
+0x0013ba10,r3b_Enter13BA10,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,Stack-argument
+0x0013ccb0,r3b_State13CCB0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013cf40,r3b_State13CF40,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013d8b0,r3b_TryCharge13D8B0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,regargs: act=EAX obj=ECX; calls 0x0013D380 with EDI=act EBX=obj
+0x0013e0e0,r3b_State13E0E0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013e560,r3b_State13E560,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013e970,r3b_Timer13E970,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,data:fconst:15.0;data:fconst:30.0;imm:0x41700000;imm:0x41f00000,PASS* float argument 30.0/15.0 selected as immediates in ours vs .rdata loads in original
+0x0013eaa0,r3b_State13EAA0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013eba0,r3b_RandSpeed13EBA0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013ec50,r3b_State13EC50,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013eca0,r3b_State13ECA0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013eda0,r3b_State13EDA0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013ee20,r3b_State13EE20,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,data:fconst:0.08726647;data:fconst:0.4363323;imm:0x3db2b8c3;imm:0x3edf66f3,PASS* float constants 0.4363323 and 0.08726647 stored as immediates in ours vs .rdata loads in original
+0x0013eff0,r3b_State13EFF0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,data:fconst:20.0;imm:0x41a00000,PASS* float argument 20.0 pushed as immediate in original vs .rdata load in ours
+0x0013f1c0,r3b_State13F1C0,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013fc70,r3b_State13FC70,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x0013ff30,r3b_State13FF30,Structurally compared,src/game/r3b_6.c,build/obj_r3b/r3b_6.obj,,Stack-argument
+0x00140040,r3b_Dispatch140040,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,regargs: idx=EAX b=EDX a=stack
+0x00143740,r3b_Dispatch143740,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,regargs: idx=EAX b=EDX a=stack
+0x00145a40,r3b_Fwd145A40,Structurally compared,src/game/r3b_1.c,build/obj_r3b/r3b_1.obj,,Stack-argument
+0x001472d0,r3b_CondDist1472D0,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x00147330,r3b_CondHeight147330,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x001473a0,r3b_CondAnim1473A0,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x001559a0,r3b_CondDist1559A0,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x00155a00,r3b_CondHeight155A00,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x00155a70,r3b_CondAnim155A70,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x00155c20,r3b_CondState155C20,Structurally compared,src/game/r3b_7.c,build/obj_r3b/r3b_7.obj,,calls 0x00155940 with EAX=c ECX=b and a on the stack
+0x00166cd0,r3b_Fwd166CD0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x001771d0,r3b_Fwd1771D0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0017e300,r3b_Fwd17E300,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0017f280,r3b_Enter17F280,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,regargs: obj=ESI state=stack
+0x001833b0,r3b_Tick1833B0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x001833e0,r3b_Clear1833E0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00183a70,r3b_Clear183A70,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00183c10,r3b_Unmark183C10,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00184020,r3b_Clear184020,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00184240,r3b_TargetPlayer184240,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00184370,r3b_Check184370,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00184510,r3b_Enter184510,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x001854d0,r3b_Give1854D0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00185da0,r3b_Fwd185DA0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00185db0,r3b_Fwd185DB0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x001863e0,r3b_Bit1863E0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00186460,r3b_IsSet186460,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00188e90,r3b_Zero188E90,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x00189a70,r3b_Call189A70,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018ab50,r3b_Mark18AB50,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018b100,r3b_Reset18B100,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,data:fconst:1.0;imm:0x3f800000,PASS* float constant 1.0 stored as immediate in ours vs .rdata load in original
+0x0018c3e0,r3b_ClearBlock18C3E0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018c6a0,r3b_Release18C6A0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018c790,r3b_Stop18C790,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018d3a0,r3b_ClearBlock18D3A0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018d650,r3b_Unlink18D650,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018d740,r3b_Stop18D740,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
+0x0018ecb0,r3b_Call18ECB0,Structurally compared,src/game/r3b_2.c,build/obj_r3b/r3b_2.obj,,Stack-argument
