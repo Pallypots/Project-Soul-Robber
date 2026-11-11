@@ -279,6 +279,10 @@ def events(code, base, resolve, md, fconst=None, local=None):
             elif (o.mem.base not in (0, x86.X86_REG_ESP, frame_reg) or
                   (o.mem.base == 0 and o.mem.index != 0)) and o.mem.disp:
                 imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1
+            elif o.mem.base == 0 and o.mem.index == 0 and o.mem.disp:
+                # absolute address outside the image (hardware registers): a
+                # constant, whether written as [k] or as `mov r,k` + [r]
+                imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1
         for o in ops:
             if o.type == x86.X86_OP_IMM:
                 v = o.imm & 0xFFFFFFFF
@@ -372,6 +376,20 @@ def fmt(e):
     }
 
 
+def code_size(xbe, va, size, md):
+    """Stop at the function's own jump table when it lies inside the
+    recorded range (switch tables placed right after the code)."""
+    end = va + size
+    for i in md.disasm(xbe.read_va(va, size), va):
+        if i.address >= end:
+            break
+        if i.mnemonic == "jmp" and i.operands and i.operands[0].type == x86.X86_OP_MEM                 and i.operands[0].mem.index != 0 and i.operands[0].mem.base == 0:
+            t = i.operands[0].mem.disp & 0xFFFFFFFF
+            if va < t < end:
+                end = t
+    return end - va
+
+
 def compare(obj, sym, va, size=None, verbose=False, xbe=None, syms=None, dump=False, waivers=None):
     md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     md.detail = True
@@ -387,6 +405,7 @@ def compare(obj, sym, va, size=None, verbose=False, xbe=None, syms=None, dump=Fa
                 sizes[int(r["va"], 16)] = int(r["size"], 0)
         size = sizes[va]
     # the original's own jump tables sit right after its code
+    size = code_size(xbe, va, size, md)
     a = events(xbe.read_va(va, size), va, orig_resolver(), md, orig_fconst(xbe), local=(va, va + size + 0x100))
     coff = Coff(obj)
     code, relmap, cursec = coff.function(sym)

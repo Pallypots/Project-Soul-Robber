@@ -1,0 +1,76 @@
+va,name,state,source,obj,waivers,notes
+0x00013140,r1b_NextToken,Structurally compared,src/game/r1b_1.c,build/obj_r1b/r1b_1.obj,imm:0x3f,255-byte buffer clear: the original expands it as rep stosd (count 0x3F) + stosw + stosb; ours uses rep stosb with count 0xFF (same 255 bytes zeroed)
+0x00013300,r1b_NextSegment,Structurally compared,src/game/r1b_1.c,build/obj_r1b/r1b_1.obj,,regargs: pp=EDX
+0x00013480,r1b_LoadFile,Structurally compared,src/game/r1b_1.c,build/obj_r1b/r1b_1.obj,,
+0x00013240,r1b_ParseFloat,Structurally compared,src/game/r1b_2.c,build/obj_r1b/r1b_2.obj,,
+0x00013280,r1b_ParseInt,Structurally compared,src/game/r1b_2.c,build/obj_r1b/r1b_2.obj,,
+0x000131c0,r1b_FindKey,Structurally compared,src/game/r1b_2.c,build/obj_r1b/r1b_2.obj,,
+0x00013370,r1b_PathTail,Structurally compared,src/game/r1b_2.c,build/obj_r1b/r1b_2.obj,,calls 0x00013300 with EDX=&path
+0x000130c0,r1b_PopFile,Structurally compared,src/game/r1b_1.c,build/obj_r1b/r1b_1.obj,imm:0x8;imm:0xfffffdf8;imm:0xfffffdf7,loop strength reduction: the first name copy is addressed from the source end (+0x8/-0x208) by the original and from the record base with a -0x209 bias by modern cl
+0x00012110,r1b_StateDefaults,Structurally compared,src/game/r1b_1.c,build/obj_r1b/r1b_1.obj,imm:0x23;imm:0x32;imm:0x36;imm:0x8080,store merging: modern cl combines the bytes at +0x22/+0x23 into one word store (0x8080) and the words at +0x30/+0x32 and +0x34/+0x36 into dword stores
+0x00012300,r1b_PacketWrap,Structurally compared,src/game/r1b_1.c,build/obj_r1b/r1b_1.obj,,
+0x00013aa0,r1b_PktSubmit,Structurally compared,src/game/r1b_3.c,build/obj_r1b/r1b_3.obj,,calls 0x00013A30 with stack=tag&0x3FF0 EDX=result of 0x000AD090; 0x000AD090 is a stub returning 0 called with one and two arguments
+0x00013b20,r1b_PktSubmitFixed,Structurally compared,src/game/r1b_3.c,build/obj_r1b/r1b_3.obj,,calls 0x00013A30 with stack=0x0037B544&0x3FF0 EDX=1
+0x000132c0,r1b_ParseHex,Structurally compared,src/game/r1b_2.c,build/obj_r1b/r1b_2.obj,,
+0x00014b60,r1b_PktInit,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x00014e30,r1b_StepperSet,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x000150e0,r1b_StepperRun,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x00017d50,r1b_TrackInit,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,imm:0x2e,store merging: modern cl combines the zero words at +0x2C/+0x2E into one dword store
+0x00018150,r1b_TrackReset,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,imm:0x2e;imm:0xffffff50,store merging: zero words at +0x2C/+0x2E combined into one dword store; loop strength reduction (modern cl advances the entry offset before the store and addresses it with -0xB0)
+0x00018b10,r1b_SlotsFree,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x00018ef0,r1b_PoseLerp,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x00019370,r1b_FadeStart,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x0001a7a0,r1b_ObjSyncMatrix,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x0001a9b0,r1b_ObjAim,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x0001aec0,r1b_Act_1AEC0,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,imm:0x3;imm:0x5;imm:0x2;imm:0xfffffffd;jcc:l/ge;jcc:le/g;jcc:be/a,range check 3..5 emitted as unsigned (i-3)>2 by modern cl
+0x0001af70,r1b_Act_1AF70,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x0001afc0,r1b_Act_1AFC0,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,imm:0x3;imm:0x5;imm:0x2;imm:0xfffffffd;jcc:l/ge;jcc:le/g;jcc:be/a,range check 3..5 emitted as unsigned (i-3)>2 by modern cl
+0x0001b0a0,r1b_Act_1B0A0,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,imm:0x3;imm:0x5;imm:0x2;imm:0xfffffffd;jcc:l/ge;jcc:le/g;jcc:be/a,range check 3..5 emitted as unsigned (i-3)>2 by modern cl
+0x00018620,r1b_ApplyLayout,Structurally compared,src/game/r1b_4.c,build/obj_r1b/r1b_4.obj,,
+0x000184d0,r1b_TrackRun,Structurally compared,src/game/r1b_5.c,build/obj_r1b/r1b_5.obj,,calls 0x000181B0 and 0x00018340 with EDI=t; 0x00017DE0 and 0x00017E80 with ESI=t; 0x00017F40 with EAX=t
+0x000186c0,r1b_MenuReset,Structurally compared,src/game/r1b_5.c,build/obj_r1b/r1b_5.obj,,
+0x0001b370,r1b_NodesInit,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,jcc:l/ge;jcc:b/ae,loop strength reduction: pointer loop end compared signed by the original and unsigned by modern cl
+0x0001b3a0,r1b_NodeAttach,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001b3f0,r1b_NodeDetach,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001b420,r1b_CtxQuery,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001b450,r1b_PoolFill1,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001b490,r1b_PoolFill2,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001c840,r1b_PoolLocate,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001cff0,r1b_ListAppend,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001d030,r1b_ListRemove,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001d080,r1b_RecFind,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,imm:0xfffffffc,loop strength reduction: modern cl biases the record pointer by -4
+0x0001d0f0,r1b_PartItemChecked,Structurally compared,src/game/r1b_6.c,build/obj_r1b/r1b_6.obj,,
+0x0001d190,r1b_RecFreeRes,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d1e0,r1b_RecSetName,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d240,r1b_RecAddChild,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d2d0,r1b_RecFindName,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d330,r1b_PartsUnhideTree,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d370,r1b_PartsHideTree,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d860,r1b_RecNameIs,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d8d0,r1b_RecAddItem,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d910,r1b_RecRemoveItem,Structurally compared,src/game/r1b_7.c,build/obj_r1b/r1b_7.obj,,
+0x0001d720,r1b_RecSyncVisible,Structurally compared,src/game/r1b_8.c,build/obj_r1b/r1b_8.obj,,
+0x0001d7a0,r1b_RecHideAll,Structurally compared,src/game/r1b_8.c,build/obj_r1b/r1b_8.obj,,
+0x0001da40,r1b_TableVisit,Structurally compared,src/game/r1b_8.c,build/obj_r1b/r1b_8.obj,,
+0x0001e0c0,r1b_CmdSelect,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001e370,r1b_CmdSetPos,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001e3f0,r1b_CmdColor90,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001e430,r1b_CmdColor50,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001e460,r1b_CmdColor60,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001e490,r1b_CmdFill70,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001eb80,r1b_RecDetachNodes,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001ec90,r1b_PartsSetF94,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001f460,r1b_CmdMakeCtl,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x00020170,r1b_TableFree,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,,
+0x0001ec10,r1b_RecSetPartValue,Structurally compared,src/game/r1b_9.c,build/obj_r1b/r1b_9.obj,imm:0xd0;imm:0xffffffc8,loop strength reduction: modern cl advances the item pointer past +0xD0 and addresses the field with -0x38
+0x0002c7a0,r1b_ScreenClose,Structurally compared,src/game/r1b_10.c,build/obj_r1b/r1b_10.obj,jcc:l/ge;jcc:b/ae,loop strength reduction: pointer loop end compared signed by the original and unsigned by modern cl
+0x0002c810,r1b_ScreenCode,Structurally compared,src/game/r1b_10.c,build/obj_r1b/r1b_10.obj,,
+0x0002c870,r1b_ScreenMode4,Structurally compared,src/game/r1b_10.c,build/obj_r1b/r1b_10.obj,,
+0x0002e4e0,r1b_ScreenStart,Structurally compared,src/game/r1b_10.c,build/obj_r1b/r1b_10.obj,,
+0x0002eb80,r1b_BindValue,Structurally compared,src/game/r1b_10.c,build/obj_r1b/r1b_10.obj,,
+0x0002a240,r1b_QueueStep37ED04,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,,
+0x00032600,r1b_Queue381834Tick,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,,
+0x00032670,r1b_Queue381834PopA,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,,
+0x00032a00,r1b_Queue381834PopC,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,,
+0x00032840,r1b_Queue381834PopB,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,data:fconst:768.0;imm:0x44400000,float constant 768.0 stored as an immediate by modern cl vs loaded from .rdata (same value)
+0x00032bf0,r1b_Queue381834PopD,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,data:fconst:192.0;imm:0x43400000,float constant 192.0 stored as an immediate by modern cl vs loaded from .rdata (same value)
