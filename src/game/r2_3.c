@@ -215,3 +215,24 @@ int r2_CountKinds0E(void)
         while (sub_000EDC20(-1, -1));
     return n;
 }
+
+/* 0x00114D60: pick the target named by condition c: 1 = player, 2 = ctx's linked
+   actor when it is an active kind-13 actor, 3 = self, 4 = none.
+   regargs: c=EAX ctx=ECX; self is the stack arg */
+void *r2_PickTarget(const R2Cond *c, R2Ctx *ctx, void *self)
+{
+    switch (c->kind) {
+    case 1:
+        return r2_player;
+    case 2:
+        if (ctx->mode0F8 == 1 && (ctx->link104->flags0C & 1) && ctx->link104->kind04 == 0xD)
+            return ctx->link104;
+        return 0;
+    case 3:
+        return self;
+    case 4:
+        return 0;
+    default:
+        for (;;) ;
+    }
+}

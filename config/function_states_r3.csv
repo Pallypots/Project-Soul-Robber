@@ -1,0 +1,71 @@
+va,name,state,source,obj,waivers,notes
+0x00131310,r3_SetStateA,Structurally compared,src/game/r3_1.c,build/obj_r3/r3_1.obj,,regargs: obj=EBX act=EDI state=stack (third arg); calls 0x0012E5E0 with ESI=mode; duplicated tail call passes 0x18 literally where state==0x18 is known
+0x00132110,r3_State132110,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00132230,r3_State132230,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00132530,r3_State132530,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00132580,r3_State132580,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args); calls 0x0012E5E0 with ESI=0
+0x00132bb0,r3_State132BB0,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00133950,r3_State133950,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00133970,r3_State133970,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00133b00,r3_State133B00,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,data:fconst:0.3;data:fconst:10.0;data:fconst:3.402823e+38;imm:0x41200000;imm:0x7f7fffff;imm:0x3e99999a,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args); calls 0x0012E630 with EAX=act and obj on the stack; PASS* float constants as immediates vs .rdata loads (0.3 10.0 FLT_MAX)
+0x00133f50,r3_State133F50,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,data:fconst:0.3;imm:0x3e99999a,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args); calls 0x0012E630 with EAX=act and obj on the stack; PASS* float constant 0.3 stored as immediate in ours vs .rdata load in original
+0x00134a70,r3_State134A70,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,data:fconst:1.0;imm:0x3f800000;jcc:b/ae;jcc:be/a,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args); PASS* float constant 1.0 immediate in ours vs .rdata load and float-compare operand swap
+0x00134b60,r3_State134B60,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00134d10,r3_State134D10,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00131310 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00135730,r3_CheckConds135730,Structurally compared,src/game/r3_1.c,build/obj_r3/r3_1.obj,,regargs: table=EAX obj=EBX act=EDI; each callback gets (obj act entry) on the stack
+0x00135a70,r3_SetStateB,Structurally compared,src/game/r3_1.c,build/obj_r3/r3_1.obj,,regargs: obj=ESI act=EDI state=stack (third arg)
+0x00135e10,r3_Count135E10,Structurally compared,src/game/r3_1.c,build/obj_r3/r3_1.obj,,stack-argument function (no inputs); returns count in EAX
+0x00135e60,r3_Raise135E60,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,,regargs: act=EAX; calls 0x00135E10 (no args)
+0x00135eb0,r3_Request135EB0,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,stack arg mode; calls 0x00135A70 with ESI=obj EDI=act
+0x00136c70,r3_State136C70,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,data:fconst:16.0;imm:0x41800000,calls 0x00135A70 with ESI=obj EDI=act (obj and act are the two stack args); PASS* float constant 16.0 .rdata load in ours vs immediate push in original
+0x00136dc0,r3_State136DC0,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,data:fconst:24.0;imm:0x41c00000,calls 0x00135A70 with ESI=obj EDI=act (obj and act are the two stack args); PASS* float constant 24.0 .rdata load in ours vs immediate push in original
+0x00137460,r3_State137460,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00135A70 with ESI=obj EDI=act (obj and act are the two stack args)
+0x00137490,r3_State137490,Structurally compared,src/game/r3_2.c,build/obj_r3/r3_2.obj,,calls 0x00135A70 with ESI=obj EDI=act (obj and act are the two stack args)
+0x0013d380,r3_SpawnCharge13D380,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,,regargs: act=EDI obj=EBX
+0x0013d4b0,r3_ReleasePair13D4B0,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,,regargs: act=EAX
+0x00140170,r3_OtherBusy140170,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,,regargs: self=ESI
+0x00140540,r3_Hold140540,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,stack arg act; calls 0x00140170 with ESI=act
+0x00147270,r3_CheckConds147270,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,imm:0xe;imm:0xd;jcc:l/ge;jcc:be/a,regargs: table=EAX a=EBX b=EDI; each callback gets (a b entry) on the stack; PASS* unsigned bounds check in ours vs two signed compares
+0x001558f0,r3_CheckConds1558F0,Structurally compared,src/game/r3_4.c,build/obj_r3/r3_4.obj,,regargs: table=EAX a=EBX b=EDI; each callback gets (a b entry) on the stack
+0x00155e30,r3_AddClamped155E30,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,imm:0x44610000,regargs: act=EAX d=stack; PASS* float constant 900.0 stored as immediate in ours
+0x00167d90,r3_TimedEffect167D90,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,data:fconst:80.0;imm:0x42a00000,regargs: obj=EAX; PASS* float argument 80.0 pushed as immediate in original vs .rdata load in ours
+0x00169d10,r3_GetPoint169D10,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,,regargs: idx=EAX; returns pointer in EAX
+0x0016c820,r3_SetState16C820,Structurally compared,src/game/r3_4.c,build/obj_r3/r3_4.obj,,regargs: a=EAX m=EDI state=stack
+0x0016fb60,r3_FreeList16FB60,Structurally compared,src/game/r3_4.c,build/obj_r3/r3_4.obj,,regargs: list=ESI
+0x00172b50,r3_FsmEnter172B50,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,imm:0xb;imm:0xa;jcc:l/ge;jcc:be/a,regargs: idx=EAX o=ECX arg=stack; PASS* unsigned bounds check in ours vs two signed compares
+0x00172c90,r3_PlayAnim172C90,Structurally compared,src/game/r3_9.c,build/obj_r3/r3_9.obj,,regargs: b=EAX a=ESI anim=EDI; calls 0x00172B80 with EAX=a EBX=b and the flag on the stack
+0x00172ff0,r3_InRange172FF0,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,,regargs: obj=ESI p=EAX
+0x001733e0,r3_Anim1733E0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,calls 0x00172C90 with EAX=b ESI=a EDI=anim (a and b are the two stack args)
+0x001736b0,r3_Anim1736B0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,calls 0x00172C90 with EAX=b ESI=a EDI=anim (a and b are the two stack args)
+0x001738f0,r3_Anim1738F0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,calls 0x00172C90 with EAX=b ESI=a EDI=anim (a and b are the two stack args)
+0x00174470,r3_GlobalAnim174470,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,stack arg anim; calls 0x00172C90 with EAX=controller ESI=global object at 0x003FD7C4 EDI=anim
+0x00176930,r3_MakeEffect176930,Structurally compared,src/game/r3_4.c,build/obj_r3/r3_4.obj,,regargs: act=EAX e=EDI
+0x0017a2b0,r3_SetStateD,Structurally compared,src/game/r3_8.c,build/obj_r3/r3_8.obj,data:fconst:5.0;imm:0x40a00000,regargs: obj=EBX act=ESI state=stack; PASS* float constant 5.0 stored as immediate in ours vs .rdata load
+0x0017a6c0,r3_State17A6C0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,calls 0x0017A2B0 with EBX=obj ESI=act (obj and act are the two stack args)
+0x0017a720,r3_State17A720,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,calls 0x0017A2B0 with EBX=obj ESI=act (obj and act are the two stack args)
+0x0017c5d0,r3_Pulse17C5D0,Structurally compared,src/game/r3_8.c,build/obj_r3/r3_8.obj,imm:0x3f333333;imm:0x4059999a,regargs: s=EAX; PASS* float constants 3.4 and 0.7 stored as immediates in ours vs .rdata loads
+0x0017c670,r3_Tick17C670,Structurally compared,src/game/r3_9.c,build/obj_r3/r3_9.obj,data:fconst:1.5;imm:0x3fc00000,regargs: s=ESI; calls 0x0017C5D0 with EAX=s; PASS* float constant 1.5 stored as immediate in ours vs .rdata load
+0x0017cea0,r3_Tick17CEA0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,stack args (unused act); calls 0x0017C670 with ESI=act->work278
+0x0017e4d0,r3_ClearRec17E4D0,Structurally compared,src/game/r3_8.c,build/obj_r3/r3_8.obj,,regargs: r=EAX; PASS* loop unrolling (original fully unrolled the six-entry loop)
+0x0017eac0,r3_ClearAll17EAC0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,jcc:l/ge;jcc:b/ae,no inputs; calls 0x0017E4D0 with EAX=record; PASS* signed vs unsigned loop end on the pointer compare
+0x00186160,r3_CheckConds186160,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,imm:0xa;imm:0x9;jcc:l/ge;jcc:be/a,regargs: table=EAX a=EBX b=EDI; each callback gets (a b entry) on the stack; PASS* unsigned bounds check in ours vs two signed compares
+0x00186b00,r3_State186B00,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00186bf0,r3_State186BF0,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00186cf0,r3_State186CF0,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00187330,r3_State187330,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,data:fconst:15.0;imm:0x41700000,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args); PASS* float constant 15.0 stored as immediate in ours
+0x00187430,r3_State187430,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00187e70,r3_State187E70,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args); calls 0x00186160 with EAX=table EBX=obj EDI=act
+0x00187f50,r3_State187F50,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args)
+0x001882b0,r3_State1882B0,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,calls 0x00186470 with EBX=obj EDI=act (obj and act are the two stack args)
+0x00188c80,r3_Clear188C80,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,,regargs: r=EAX
+0x0018cb10,r3_Rotate18CB10,Structurally compared,src/game/r3_5.c,build/obj_r3/r3_5.obj,,regargs: o=ESI a=stack
+0x0018d9e0,r3_Reset18D9E0,Structurally compared,src/game/r3_1.c,build/obj_r3/r3_1.obj,data:fconst:-2.0;data:fconst:0.03490658;data:fconst:2.0;data:fconst:80.0;imm:0x3d0efa35;imm:0x42a00000;imm:0xc0000000,regargs: a=EAX b=EDI; PASS* float constants as immediates vs .rdata loads and multiply by 2.0 done as an add in ours
+0x0018dd30,r3_TurnBack18DD30,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,data:fconst:2.0,stack args (b a); calls 0x0018D9E0 with EAX=a EDI=b; PASS* multiply by 2.0 done as an add in ours
+0x0018ddc0,r3_Restart18DDC0,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,data:fconst:1.0;imm:0x3f800000,stack args (b a); calls 0x0018D9E0 with EAX=a EDI=b; PASS* float constant 1.0 stored as immediate in ours
+0x0018de60,r3_FacePlayer18DE60,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,data:fconst:-2.0;imm:0xc0000000,stack args (b a); calls 0x0018D9E0 with EAX=a EDI=b; PASS* float argument -2.0 pushed as immediate in original vs .rdata load in ours
+0x0018e230,r3_SlotSound18E230,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,,regargs: o=EAX src=stack (first) on=stack (second)
+0x0018e360,r3_Measure18E360,Structurally compared,src/game/r3_3.c,build/obj_r3/r3_3.obj,,regargs: a=EAX b=ECX c=stack; float result in ST0
+0x0018e5a0,r3_Spawn18E5A0,Structurally compared,src/game/r3_4.c,build/obj_r3/r3_4.obj,data:fconst:0.01666667;data:fconst:10.0;data:fconst:12.5;data:fconst:2.5;imm:0x3c888889;imm:0x40200000;imm:0x41200000;imm:0x41480000,regargs: o=ESI; PASS* float arguments pushed as immediates in original vs .rdata loads in ours
+0x0018e5f0,r3_Spawn18E5F0,Structurally compared,src/game/r3_4.c,build/obj_r3/r3_4.obj,data:fconst:10.0;data:fconst:12.5;data:fconst:2.5;imm:0x3f800000;imm:0x40200000;imm:0x41200000;imm:0x41480000,regargs: o=EAX; PASS* float arguments pushed as immediates in original vs .rdata loads (or fld1) in ours
+0x0018e700,r3_Sound18E700,Structurally compared,src/game/r3_6.c,build/obj_r3/r3_6.obj,,stack args (h on); calls 0x0018E230 with EAX=component and h on as stack args
+0x0018e7f0,r3_Rate18E7F0,Structurally compared,src/game/r3_7.c,build/obj_r3/r3_7.obj,,stack args (h on); calls 0x0018E230 with EAX=component and (h on==0) on the stack
