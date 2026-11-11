@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="908" height="598" viewBox="0 0 908 598" font-family="Segoe UI,Helvetica,Arial,sans-serif">
 <rect width="908" height="598" rx="8" fill="#0d1117" stroke="#30363d"/>
-<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 11.04% of the game&#8217;s code</text>
-<text x="24" y="66" font-size="13" fill="#8b949e">183,394 of 1,661,514 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
+<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 11.24% of the game&#8217;s code</text>
+<text x="24" y="66" font-size="13" fill="#8b949e">186,715 of 1,661,514 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.40"><title>0x00012000: 167 of 1978 bytes Structurally compared</title></rect>
 <rect x="42" y="96" width="14" height="14" rx="3" fill="#30363d"/>
@@ -383,13 +383,13 @@
 <rect x="798" y="168" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="798" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.74"><title>0x00087800: 1123 of 1870 bytes Structurally compared</title></rect>
 <rect x="816" y="168" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="816" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.71"><title>0x00088000: 1064 of 1940 bytes Structurally compared</title></rect>
+<rect x="816" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="1.00"><title>0x00088000: 1940 of 1940 bytes Structurally compared</title></rect>
 <rect x="834" y="168" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="834" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.41"><title>0x00088800: 167 of 1935 bytes Structurally compared</title></rect>
+<rect x="834" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.85"><title>0x00088800: 1490 of 1935 bytes Structurally compared</title></rect>
 <rect x="852" y="168" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="852" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.52"><title>0x00089000: 470 of 1778 bytes Structurally compared</title></rect>
+<rect x="852" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.64"><title>0x00089000: 796 of 1778 bytes Structurally compared</title></rect>
 <rect x="870" y="168" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="870" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.37"><title>0x00089800: 68 of 1967 bytes Structurally compared</title></rect>
+<rect x="870" y="168" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.41"><title>0x00089800: 187 of 1967 bytes Structurally compared</title></rect>
 <rect x="24" y="186" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="24" y="186" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.48"><title>0x0008a000: 378 of 1943 bytes Structurally compared</title></rect>
 <rect x="42" y="186" width="14" height="14" rx="3" fill="#30363d"/>
@@ -1278,10 +1278,11 @@
 <rect x="366" y="384" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="366" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.43"><title>0x0019b800: 226 of 1896 bytes Structurally compared</title></rect>
 <rect x="384" y="384" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="384" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.59"><title>0x0019c000: 680 of 1859 bytes Structurally compared</title></rect>
+<rect x="384" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.66"><title>0x0019c000: 891 of 1859 bytes Structurally compared</title></rect>
 <rect x="402" y="384" width="14" height="14" rx="3" fill="#30363d"/>
+<rect x="402" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.38"><title>0x0019c800: 84 of 2023 bytes Structurally compared</title></rect>
 <rect x="420" y="384" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="420" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.46"><title>0x0019d000: 324 of 1889 bytes Structurally compared</title></rect>
+<rect x="420" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.53"><title>0x0019d000: 532 of 1889 bytes Structurally compared</title></rect>
 <rect x="438" y="384" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="438" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.39"><title>0x0019d800: 121 of 1981 bytes Structurally compared</title></rect>
 <rect x="456" y="384" width="14" height="14" rx="3" fill="#30363d"/>
@@ -1298,7 +1299,7 @@
 <rect x="564" y="384" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="564" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.48"><title>0x001a1000: 380 of 1910 bytes Structurally compared</title></rect>
 <rect x="582" y="384" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="582" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.44"><title>0x001a1800: 275 of 1926 bytes Structurally compared</title></rect>
+<rect x="582" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.50"><title>0x001a1800: 449 of 1926 bytes Structurally compared</title></rect>
 <rect x="600" y="384" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="600" y="384" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.41"><title>0x001a2000: 188 of 1937 bytes Structurally compared</title></rect>
 <rect x="618" y="384" width="14" height="14" rx="3" fill="#30363d"/>

@@ -1,0 +1,62 @@
+va,name,state,source,obj,waivers,notes
+0x000d0930,r2d_LightSetInit,Structurally compared,src/game/r2d_4.c,build/obj_r2d/r2d_4.obj,data:fconst:0.1;imm:0x3dcccccd,constant stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000d0a50,r2d_PlayerPulse,Structurally compared,src/game/r2d_4.c,build/obj_r2d/r2d_4.obj,,
+0x000d0c50,r2d_PlayerGuardOn,Structurally compared,src/game/r2d_4.c,build/obj_r2d/r2d_4.obj,data:fconst:600.0;imm:0x44160000,constant stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000d0d30,r2d_PlayerGuardOff,Structurally compared,src/game/r2d_4.c,build/obj_r2d/r2d_4.obj,,
+0x000d0ea0,r2d_PlayerTurn,Structurally compared,src/game/r2d_4.c,build/obj_r2d/r2d_4.obj,,
+0x000d1180,r2d_PlayerSetLink,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000d1750,r2d_LightsRefresh,Structurally compared,src/game/r2d_2.c,build/obj_r2d/r2d_2.obj,data:fconst:-1.0;imm:0xbf800000,float argument -1.0f pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x000d1890,r2d_TintA,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,data:fconst:0.1;data:fconst:0.2;data:fconst:0.5;data:fconst:0.95;imm:0x3dcccccd;imm:0x3e4ccccd;imm:0x3f000000;imm:0x3f733333,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000d18e0,r2d_TintB,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,data:fconst:0.1;data:fconst:0.2;data:fconst:0.95;data:fconst:0.98;imm:0x3dcccccd;imm:0x3e4ccccd;imm:0x3f733333;imm:0x3f7ae148,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000d1ca0,r2d_PlayerPlace,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000d23d0,r2d_PlayerWarp,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,,
+0x000d2440,r2d_PlayerResetD8,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,,
+0x000d2d30,r2d_PlayerCheckFall,Structurally compared,src/game/r2d_1.c,build/obj_r2d/r2d_1.obj,,
+0x000d45b0,r2d_RigSetAim,Structurally compared,src/game/r2d_3.c,build/obj_r2d/r2d_3.obj,,
+0x000d4c10,r2d_RigClear,Structurally compared,src/game/r2d_3.c,build/obj_r2d/r2d_3.obj,,
+0x000e14c0,r2d_StageLinkFree,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,imm:0x14d;imm:0x6f,link array offset 0x534 folded into the scaled index differently (0x14d*4 vs 0x6f*12) same address
+0x000e1520,r2d_StageLinkTarget,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,imm:0x5;imm:0x4;jcc:le/g;jcc:be/a,range check 1..5 emitted as unsigned (k-1)>4 by modern cl vs signed pair
+0x000e1570,r2d_StageTrackSet,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e19f0,r2d_StageRestore,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000e1c20,r2d_StageFadeColor,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e1c80,r2d_StageFadeGrey,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,data:fconst:128.0;data:fconst:24.0;imm:0x43000000;imm:0x41c00000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000e1f60,r2d_StageSlotSetState,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e3af0,r2d_StageStreamDone,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e3b40,r2d_StageStreamOpen,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e3ba0,r2d_StageStreamStop,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e3c40,r2d_StageStreamPos,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e3eb0,r2d_StageFxAt,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,
+0x000e3fa0,r2d_StageMarkTracks,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,
+0x000e3ff0,r2d_StageClearModel,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,
+0x000e40f0,r2d_StageModelSet,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,
+0x000e4870,r2d_StageStart,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e51a0,r2d_StagePause,Structurally compared,src/game/r2d_5.c,build/obj_r2d/r2d_5.obj,,
+0x000e8ca0,r2d_FxNearEnd,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,,
+0x000e99f0,r2d_FxTickAll,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,calls 0x000E8220/0x000E82E0/0x000E83A0/0x000E8D90/0x000E8E80 with ESI=f
+0x000ec350,r2d_BankOpen,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,
+0x000ec3a0,r2d_BankLoad,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,imm:0x7;imm:0x6;jcc:l/ge;jcc:be/a,signed 0<=i<7 bounds check emitted as unsigned i<=6 by modern cl
+0x000ecb60,r2d_BankRun,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,imm:0x7;imm:0x6;jcc:l/ge;jcc:be/a,signed 0<=i<7 bounds check emitted as unsigned i<=6 by modern cl
+0x000ecc10,r2d_BankLoadData,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,imm:0x1c,multiply-by-constant 0x1C via imul in original vs lea/sub in modern cl
+0x000ed100,r2d_ListFirstActive,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,regargs: l=ESI
+0x000ed150,r2d_ListNextActive,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,regargs: l=ECX cur=EAX
+0x000ed430,r2d_QueuesReset,Structurally compared,src/game/r2d_9.c,build/obj_r2d/r2d_9.obj,,
+0x000ed780,r2d_ObjDestroy,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,calls 0x000ED380 with EAX=o
+0x000edda0,r2d_ObjCompValue,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,,
+0x000ede00,r2d_ObjTopA,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000ede60,r2d_ObjTopB,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000edec0,r2d_ObjTarget,Structurally compared,src/game/r2d_6.c,build/obj_r2d/r2d_6.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000edf90,r2d_ObjSyncHeight,Structurally compared,src/game/r2d_9.c,build/obj_r2d/r2d_9.obj,,
+0x000ee660,r2d_NodesScale,Structurally compared,src/game/r2d_9.c,build/obj_r2d/r2d_9.obj,,
+0x000eed90,r2d_PoolInit7,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,imm:0x3,inlined memset of k*size bytes: the byte remainder (and 3) is folded away by modern cl since the size is a multiple of 4
+0x000ef930,r2d_SwitchOn,Structurally compared,src/game/r2d_9.c,build/obj_r2d/r2d_9.obj,,regargs: o=EBX
+0x000ef9b0,r2d_SwitchOff,Structurally compared,src/game/r2d_9.c,build/obj_r2d/r2d_9.obj,,regargs: o=EBX
+0x000f5e30,r2d_MoverSet,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,,
+0x00102f40,r2d_ScnInWindow,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,data:fconst:1.0,constant 1.0 loaded from .rdata by the original vs fld1 by modern cl (same value)
+0x00106350,r2d_PoolInit0,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,imm:0x3,inlined memset of k*size bytes: the byte remainder (and 3) is folded away by modern cl since the size is a multiple of 4
+0x00108b10,r2d_PoolInit2,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,imm:0x3,inlined memset of k*size bytes: the byte remainder (and 3) is folded away by modern cl since the size is a multiple of 4
+0x001134b0,r2d_PListPrune,Structurally compared,src/game/r2d_8.c,build/obj_r2d/r2d_8.obj,,
+0x00113600,r2d_TrkTargetOffset,Structurally compared,src/game/r2d_8.c,build/obj_r2d/r2d_8.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00113aa0,r2d_GfxReset,Structurally compared,src/game/r2d_8.c,build/obj_r2d/r2d_8.obj,imm:0x3f800000,float constant 1.0 pushed as an immediate by the original vs fld1 by modern cl
+0x00114400,r2d_HookAttach,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,,
+0x001153d0,r2d_PosIsClear,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,,regargs: pos=ESI
+0x0012d600,r2d_ApplyToKeys,Structurally compared,src/game/r2d_7.c,build/obj_r2d/r2d_7.obj,,
