@@ -194,3 +194,5 @@ va,reason
 0x0016F800,interior entry of 0x16F7F0 (starts with dec ecx; je; ret), reviewed
 0x001A3A4A,C++ exception-unwind fragment (reads parent EBP; ends in call 0x1C8D3E + int3)
 0x0005E5A5,starts inside 0x5E2B0 (1536 bytes); not 16-aligned
+0x0005B860,inside 0x5B2C0 (1952 bytes; ends 0x5BA60); starts mid-function using registers it never set
+0x0005B880,inside 0x5B2C0 (1952 bytes; ends 0x5BA60)
