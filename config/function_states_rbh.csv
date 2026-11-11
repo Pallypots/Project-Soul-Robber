@@ -1,0 +1,19 @@
+va,name,state,source,obj,waivers,notes
+0x000e70c0,rbh_CkptLoad0E70C0,Structurally compared,src/game/rbh_2.c,build/obj_rbh/rbh_2.obj,,
+0x001146d0,rbh_HitState1146D0,Structurally compared,src/game/rbh_3.c,build/obj_rbh/rbh_3.obj,,regargs: act=EBX p=EDX (p is passed on to 0x00113AA0)
+0x0012d6f0,rbh_HitState12D6F0,Structurally compared,src/game/rbh_4.c,build/obj_rbh/rbh_4.obj,imm:0x5,regargs: act=EBX p=EDX; 0x1F/0x1A select done with neg/sbb/and 5/add by the original and cmov by modern cl (same values)
+0x00185680,rbh_HitState185680,Structurally compared,src/game/rbh_8.c,build/obj_rbh/rbh_8.obj,imm:0x8,regargs: act=EBX; 0x13/0x0B select done with neg/sbb/and 8/add by the original and cmov by modern cl (same values)
+0x00140370,rbh_EnemyStart140370,Structurally compared,src/game/rbh_5.c,build/obj_rbh/rbh_5.obj,data:fconst:100.0;imm:0x42c80000;imm:0x3c;imm:0x3b,calls 0x00140200 with ESI=obj EDI=act; 0x0013D380 with EDI=act EBX=obj; constant 100.0 loaded from .rdata by the original and stored as an immediate by modern cl; base 0x3C built by modern cl as lea 1 + 0x3B from the known flag (same values)
+0x001051d0,rbh_HandHit1051D0,Structurally compared,src/game/rbh_1.c,build/obj_rbh/rbh_1.obj,data:fconst:13.125;imm:0x4151ffff,radius 13.124999 loaded from .rdata by the original and stored as an immediate by modern cl (same value)
+0x000ddf40,rbh_EnterRoom0DDF40,Structurally compared,src/game/rbh_9.c,build/obj_rbh/rbh_9.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 loaded from .rdata by the original and stored as an immediate by modern cl (same value)
+0x0010c6b0,rbh_FxAttach10C6B0,Structurally compared,src/game/rbh_1.c,build/obj_rbh/rbh_1.obj,,calls 0x0010A7A0 with ESI=obj
+0x0013cd00,rbh_Recover13CD00,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,imm:0xfffffffa;imm:0xa,calls 0x00139B10 with EAX=k EDX=act and obj on the stack; 0xA/0x10 select done with setge/dec/and -6/add 0x10 by the original and a branch or cmov by modern cl (same values)
+0x0013ca10,rbh_Wait13CA10,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,,calls 0x00139B10 with EAX=k EDX=act and obj on the stack
+0x0013baf0,rbh_Rise13BAF0,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,,calls 0x00139B10 with EAX=k EDX=act and obj on the stack
+0x0013c4f0,rbh_Wait13C4F0,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,data:fconst:1.0,calls 0x00139B10 with EAX=k EDX=act and obj on the stack; 1.0 in 1/frameUnits loaded from .rdata by the original and built with fld1 by modern cl (same value)
+0x0013bdc0,rbh_Idle13BDC0,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,data:fconst:1.0,calls 0x00139B10 with EAX=k EDX=act and obj on the stack; 1.0 in 1/frameUnits loaded from .rdata by the original and built with fld1 by modern cl (same value)
+0x0013c0e0,rbh_Walk13C0E0,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,,calls 0x00139B10 with EAX=k EDX=act and obj on the stack
+0x0013c2d0,rbh_Guard13C2D0,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,data:fconst:1.0,calls 0x00139B10 with EAX=k EDX=act and obj on the stack; 1.0 in 1/frameUnits loaded from .rdata by the original and built with fld1 by modern cl (same value)
+0x0013c630,rbh_Slam13C630,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,,calls 0x00139B10 with EAX=k EDX=act and obj on the stack
+0x0013c7e0,rbh_Rise13C7E0,Structurally compared,src/game/rbh_6.c,build/obj_rbh/rbh_6.obj,,calls 0x00139B10 with EAX=k EDX=act and obj on the stack
+0x0011aec0,rbh_Move11AEC0,Structurally compared,src/game/rbh_3.c,build/obj_rbh/rbh_3.obj,data:fconst:0.008;imm:0x3c03126f;imm:0x4,constant 0.008 loaded from .rdata by the original and stored as an immediate by modern cl; 0xB/7 select done with neg/sbb/and 4/add by the original and cmov by modern cl (same values); inventory size 341 runs past the jump table into the next function 0x0011AFE0

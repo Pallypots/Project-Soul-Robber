@@ -205,7 +205,7 @@ void r3d_Move17CB90(R3cObj *obj, R3cObj *act)
 {
     R3dWork34 *w = (R3dWork34 *)act->work278;
 
-    sub_001ADAF0((int)(intptr_t)obj->pos60, (int)(intptr_t)obj->pos60, (int)(intptr_t)w->v34);
+    sub_001ADAF0((float *)obj->pos60, (const float *)obj->pos60, (const float *)w->v34);
     r4c_Spin(obj, r3d_rate32B698);
     w->f44 += r4c_VecLenXZ(w->v34);
     sub_000C56B0(obj);
@@ -487,7 +487,7 @@ void r3d_Blend156100(R3dMotion *m)
 
     sub_001ADBA0(b, m->v14, 1.0f - m->t10);
     sub_001ADBA0(a, m->v24, m->t10);
-    sub_001ADAF0((int)(intptr_t)m->v14, (int)(intptr_t)b, (int)(intptr_t)a);
+    sub_001ADAF0((float *)m->v14, (const float *)b, (const float *)a);
     m->t10 += m->speed0C;
     if (m->t10 > 1.0f)
         m->t10 = 1.0f;

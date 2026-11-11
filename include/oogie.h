@@ -114,7 +114,7 @@ void     PlayerObj_SetFlags(PlayerObj *p, uint32_t lo, uint32_t hi);    /* 0x000
 void     PlayerObj_ClearFlags(PlayerObj *p, uint32_t lo, uint32_t hi);  /* 0x000CF3F0 */
 uint32_t PlayerObj_TestFlags(PlayerObj *p, uint32_t mask, int high);    /* 0x000CF420 */
 void     PlayerObj_ForwardFD8(PlayerObj *p, const void *src);                            /* 0x000CF450 */
-int      PlayerObj_Call1ADAF0(int a, int b);                            /* 0x000CF470 */
+void     PlayerObj_Call1ADAF0(float *a, const float *b);                            /* 0x000CF470 */
 void     PlayerObj_ClearFlags22(PlayerObj *p);                          /* 0x000CF4E0 */
 int      PlayerObj_TimerDone(PlayerObj *p);                             /* 0x000CF070 */
 float    PlayerObj_AngleDelta(PlayerObj *p);                            /* 0x000CF120 */
@@ -182,7 +182,7 @@ void sub_00024D30(int a, int b);            /* cdecl, 2 args; called with (2, -s
 void sub_00025FD0(int a, int b);            /* cdecl, 2 args; called with (1, 0x78) */
 void sub_001A7940(void);
 void sub_000F5D40(void *dst, const void *src); /* 16-byte vector copy (dst, src) */
-int  sub_001ADAF0(int a, int b, int c);     /* cdecl, 3 args; called as (a, a, b) */
+void sub_001ADAF0(float *d, const float *a, const float *b); /* 4-float vector add d = a + b */
 int  sub_00171CD0(PlayerStats *s);          /* stat 0x17 maximum = result * 10 */
 void sub_00023D80(int a, int b);            /* cdecl; called with (3, damage) */
 void sub_000CEF00(void);                    /* Jack's death sequence */

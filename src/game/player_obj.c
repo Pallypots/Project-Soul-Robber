@@ -57,9 +57,9 @@ void PlayerObj_ForwardFD8(PlayerObj *p, const void *src)
 }
 
 /* 0x000CF470 */
-int PlayerObj_Call1ADAF0(int a, int b)
+void PlayerObj_Call1ADAF0(float *a, const float *b)
 {
-    return sub_001ADAF0(a, a, b);
+    sub_001ADAF0(a, a, b);   /* a += b (4 floats) */
 }
 
 /* 0x000CF4E0 */
