@@ -1,0 +1,62 @@
+va,name,state,source,obj,waivers,notes
+0x00017f40,r1_ClearList,Structurally compared,src/game/r1_1.c,build/obj_r1/r1_1.obj,imm:0xffffff50,regargs: l=EAX; loop strength reduction (modern cl advances the entry offset before the store and addresses it with -0xB0)
+0x00018e00,r1_TickFade,Structurally compared,src/game/r1_1.c,build/obj_r1/r1_1.obj,,regargs: flags=EAX
+0x000192c0,r1_PickSel,Structurally compared,src/game/r1_1.c,build/obj_r1/r1_1.obj,,regargs: o=EDI
+0x0001a390,r1_LoadCurSet,Structurally compared,src/game/r1_2.c,build/obj_r1/r1_2.obj,,regargs: o=EAX; calls 0x000192C0 with EDI=o
+0x0001ceb0,r1_StateReset,Structurally compared,src/game/r1_3.c,build/obj_r1/r1_3.obj,data:fconst:1.0;data:fconst:128.0;imm:0x3f800000;imm:0x43000000,regargs: s=ESI id=EAX; float constants 1.0 and 128.0 stored as immediates by modern cl vs loaded from .rdata (same values)
+0x0001d3b0,r1_PartsShow,Structurally compared,src/game/r1_3.c,build/obj_r1/r1_3.obj,,regargs: o=ESI
+0x0001d410,r1_PartsHide,Structurally compared,src/game/r1_3.c,build/obj_r1/r1_3.obj,,regargs: o=ESI
+0x0001daa0,r1_PartItem,Structurally compared,src/game/r1_3.c,build/obj_r1/r1_3.obj,,regargs: p=EDX idx=ECX
+0x0001e4c0,r1_PickBlock,Structurally compared,src/game/r1_3.c,build/obj_r1/r1_3.obj,,regargs: k=EDX
+0x0001e850,r1_PartsRange,Structurally compared,src/game/r1_3.c,build/obj_r1/r1_3.obj,,regargs: o=EAX r=EDI
+0x000268d0,r1_QueuePop8,Structurally compared,src/game/r1_4.c,build/obj_r1/r1_4.obj,,regargs: q=EAX
+0x0002b520,r1_TimerStep,Structurally compared,src/game/r1_4.c,build/obj_r1/r1_4.obj,data:fconst:120.0;imm:0x42f00000,regargs: t=ESI; float constant 120.0 stored as an immediate by modern cl vs loaded from .rdata (same value)
+0x0002c8c0,r1_HudSelect,Structurally compared,src/game/r1_4.c,build/obj_r1/r1_4.obj,data:fconst:-1.0;imm:0xbf800000,regargs: id=ESI; float argument -1.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00033330,r1_BankInit,Structurally compared,src/game/r1_4.c,build/obj_r1/r1_4.obj,,regargs: b=EAX
+0x0003e230,r1_MatClearFlag,Structurally compared,src/game/r1_5.c,build/obj_r1/r1_5.obj,,regargs: n=ECX
+0x0003e260,r1_MatApplyFlags,Structurally compared,src/game/r1_5.c,build/obj_r1/r1_5.obj,,regargs: list=EDX count=EAX e=stack arg 1
+0x0003fa90,r1_FaderReset,Structurally compared,src/game/r1_5.c,build/obj_r1/r1_5.obj,,regargs: f=ESI
+0x0003e2e0,r1_MatSelect,Structurally compared,src/game/r1_6.c,build/obj_r1/r1_6.obj,,regargs: s=ESI u=EDI; calls 0x0003E230 with ECX=u->list and 0x0003E260 with EDX=u->list EAX=t->count stack=entries
+0x0003e370,r1_MatDefault,Structurally compared,src/game/r1_6.c,build/obj_r1/r1_6.obj,,regargs: u=ESI; calls 0x0003E260 with EDX=u->list EAX=t->count stack=entries
+0x00047060,r1_StreamWait,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,,regargs: s=ESI
+0x00047080,r1_HeapFindFit,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,,regargs: h=ECX size=EDX
+0x00047160,r1_HeapReset,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,imm:0xffffffbc;imm:0x44,regargs: h=ECX; size minus 0x44 emitted as add -0x44 by the original vs sub 0x44 by modern cl (same as dec vs add -1)
+0x00048470,r1_KeyWord,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,,regargs: a=EBX b=EDI k=stack arg 1
+0x000484b0,r1_KeyDword,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,,regargs: a=EBX b=EDI
+0x0004f8b0,r1_CopyTail,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,,regargs: src=EBX n=ESI dst=EDX
+0x0004fa50,r1_Query1,Structurally compared,src/game/r1_7.c,build/obj_r1/r1_7.obj,,regargs: p=ECX
+0x0004fbf0,r1_FileRead,Structurally compared,src/game/r1_8.c,build/obj_r1/r1_8.obj,,regargs: f=ESI n=EDI buf=stack arg 1
+0x00053230,r1_EntFind,Structurally compared,src/game/r1_8.c,build/obj_r1/r1_8.obj,,regargs: prev=EAX a=stack arg 1 b=stack arg 2; calls 0x00052EC0 with EAX=&a EDX=a EBX=&b stack=b; original loop re-tests the same record (no pointer advance)
+0x00058220,r1_ResRelease,Structurally compared,src/game/r1_8.c,build/obj_r1/r1_8.obj,,regargs: r=EAX
+0x0005bac0,r1_DirDot,Structurally compared,src/game/r1_8.c,build/obj_r1/r1_8.obj,,regargs: mode=EAX p=stack arg 1 scale=stack arg 2; float result in ST0
+0x0004eee0,r1_HoldStep,Structurally compared,src/game/r1_9.c,build/obj_r1/r1_9.obj,,regargs: i=EAX a=ESI b=EDX
+0x0004ef60,r1_HoldStep2,Structurally compared,src/game/r1_9.c,build/obj_r1/r1_9.obj,,regargs: i=EAX a=ESI b=EDX
+0x0004fb50,r1_FileReadWait,Structurally compared,src/game/r1_8.c,build/obj_r1/r1_8.obj,,regargs: f=ESI n=EBX buf=stack arg 1
+0x000487f0,r1_KeyPlayA,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,,calls 0x00048470 with EBX=a EDI=b stack=k
+0x00048820,r1_KeyStateW,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,,calls 0x00048470 with EBX=a EDI=b stack=k
+0x00048860,r1_KeyStopW,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,,calls 0x00048470 with EBX=a EDI=b stack=k
+0x00048890,r1_KeyQueryW,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,,calls 0x00048470 with EBX=a EDI=b stack=k
+0x000488c0,r1_KeyReleaseW,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,,calls 0x00048470 with EBX=a EDI=b stack=k
+0x000488f0,r1_KeyApplyD,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,,calls 0x000484B0 with EBX=a EDI=b
+0x00048910,r1_KeyStateD,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,calls 0x000484B0 with EBX=a EDI=b; range check 3..23 emitted as unsigned (v-3)>20 by modern cl vs signed pair
+0x00048940,r1_KeyStopD,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,calls 0x000484B0 with EBX=a EDI=b; range check 3..23 emitted as unsigned (v-3)>20 by modern cl vs signed pair
+0x00048970,r1_KeyQueryD,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,calls 0x000484B0 with EBX=a EDI=b; range check 3..23 emitted as unsigned (v-3)>20 by modern cl vs signed pair
+0x000489a0,r1_KeyReleaseD,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,calls 0x000484B0 with EBX=a EDI=b; range check 3..23 emitted as unsigned (v-3)>20 by modern cl vs signed pair
+0x000489d0,r1_KeyQuery2D,Structurally compared,src/game/r1_10.c,build/obj_r1/r1_10.obj,imm:0x18;imm:0x3;imm:0x14;imm:0xfffffffd;jcc:l/ge;jcc:be/a,calls 0x000484B0 with EBX=a EDI=b; range check 3..23 emitted as unsigned (v-3)>20 by modern cl vs signed pair
+0x0001d160,r1_StateNew,Structurally compared,src/game/r1_11.c,build/obj_r1/r1_11.obj,,calls 0x0001CEB0 with ESI=s EAX=id
+0x0001d470,r1_ChildShow,Structurally compared,src/game/r1_11.c,build/obj_r1/r1_11.obj,,calls 0x0001D3B0 with ESI=child
+0x0001d4b0,r1_ChildHide,Structurally compared,src/game/r1_11.c,build/obj_r1/r1_11.obj,,calls 0x0001D410 with ESI=child
+0x0001d700,r1_NodeHide,Structurally compared,src/game/r1_11.c,build/obj_r1/r1_11.obj,,calls 0x0001D410 with ESI=n
+0x0005bb30,r1_TargetDot,Structurally compared,src/game/r1_11.c,build/obj_r1/r1_11.obj,,calls 0x0005BAC0 with EAX=mode stack=target then scale
+0x0002c370,r1_FxUpdate,Structurally compared,src/game/r1_12.c,build/obj_r1/r1_12.obj,,calls 0x0002B380 / 0x0002B450 / 0x0002B520 with ESI=slot
+0x00034a30,r1_BankSetup,Structurally compared,src/game/r1_12.c,build/obj_r1/r1_12.obj,,calls 0x00033330 with EAX=bank
+0x00053350,r1_EntAge,Structurally compared,src/game/r1_12.c,build/obj_r1/r1_12.obj,,calls 0x00053230 with EAX=prev stack=a then b
+0x000533b0,r1_EntReleaseAll,Structurally compared,src/game/r1_12.c,build/obj_r1/r1_12.obj,,calls 0x00053230 with EAX=prev stack=a then b
+0x0003e3c0,r1_MatApply,Structurally compared,src/game/r1_5.c,build/obj_r1/r1_5.obj,,calls 0x0003E2E0 with ESI=s EDI=u and 0x0003E370 with ESI=u
+0x00029850,r1_QTimerA,Structurally compared,src/game/r1_13.c,build/obj_r1/r1_13.obj,,calls 0x000268D0 with EAX=q
+0x0002a000,r1_QTimerB,Structurally compared,src/game/r1_13.c,build/obj_r1/r1_13.obj,,calls 0x000268D0 with EAX=q
+0x0002b310,r1_QTimerC,Structurally compared,src/game/r1_13.c,build/obj_r1/r1_13.obj,,calls 0x000268D0 with EAX=q
+0x00038f10,r1_PacketBuild,Structurally compared,src/game/r1_13.c,build/obj_r1/r1_13.obj,,calls 0x00038AD0 with ECX=p+8 ESI=0x003DA320 (EAX result)
+0x00058960,r1_ResStop,Structurally compared,src/game/r1_13.c,build/obj_r1/r1_13.obj,,calls 0x00058220 with EAX=r
+0x000535f0,r1_EntAcquire,Structurally compared,src/game/r1_12.c,build/obj_r1/r1_12.obj,,calls 0x00053400 with ECX=slot stack=a then b
+0x00053610,r1_EntAcquireLocked,Structurally compared,src/game/r1_12.c,build/obj_r1/r1_12.obj,,calls 0x00053400 with ECX=slot stack=a then b
