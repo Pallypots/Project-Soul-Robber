@@ -1,0 +1,76 @@
+va,name,state,source,obj,waivers,notes
+0x000e3000,r2_LookupApplyN,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: a=ECX b=EAX n=EDX; arg on stack
+0x000e3030,r2_LookupApply,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: a=ECX b=EAX; arg on stack
+0x000ed380,r2_ListDrop,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: key=EAX
+0x000eef90,r2_ActorCallComp5,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: obj=ESI; arg on stack
+0x000ef8a0,r2_Comp5FreeD4,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: obj=EAX
+0x000ef8d0,r2_Comp5ReleaseD8,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: obj=EAX
+0x000ef900,r2_CheckStateE3380,Structurally compared,src/game/r2_1.c,build/obj_r2/r2_1.obj,,regargs: obj=EAX (original tail-jumps to 0x000BCA50)
+0x000fb6c0,r2_NearTarget,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: obj=EDI; returns pointer in EAX
+0x000fc6f0,r2_PartCall3D10,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: a=EAX
+0x00100030,r2_PartCallRes,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: obj=ECX; arg on stack
+0x001000c0,r2_SetPairAnim,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: a=ECX b=EAX; anim on stack
+0x00100ff0,r2_TurnAndNotify,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,stack args only (obj arg)
+0x00107310,r2_EffectAtPart,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: a=ECX c=EAX; id on stack (original pushes c early as the third arg of 0x000494D0)
+0x00108b80,r2_SetComp5Mode,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: obj=ESI mode=EDI
+0x0010cb30,r2_SetComp5ModeB,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: obj=ESI mode=EDI
+0x0010d2b0,r2_Comp5StartE4,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: obj=EAX; id on stack
+0x0010d2f0,r2_Comp5ReleaseE4,Structurally compared,src/game/r2_2.c,build/obj_r2/r2_2.obj,,regargs: obj=EAX
+0x00112cd0,r2_LerpMat,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: a=EAX b=ECX dst=EDX; t on stack
+0x00114d10,r2_RunSteps31A380,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: idx=EAX a=EBX b=EDI; returns int in EAX
+0x00115440,r2_UpdateFreeSlots,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: obj=EAX
+0x0011b020,r2_CallTbl31B0C4,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: a=EAX b=EDX; arg on stack
+0x0011b0d0,r2_GetHitKind,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: obj=ECX out=EDX
+0x0011b110,r2_RecNotify,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: p=ESI b=EBX c=EDI
+0x0011b140,r2_SelectKind,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: kind=EAX
+0x0011b170,r2_RecHit,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: p=ESI; arg on stack
+0x0011b1c0,r2_BodyReattach,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,imm:0x3f800000,regargs: obj=EAX b=EDI. Waiver: float constant 1.0 pushed as an immediate by the original vs fld1 by modern cl
+0x0011ede0,r2_RunSteps31C110,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: idx=EAX a=EBX b=EDI
+0x0011fa60,r2_BodyResetMat,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: obj=EAX kind=EBX; f on stack; calls 0x0011F640 with EAX=kind ESI=&st->mat138
+0x0011fac0,r2_AnyFlag2000,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: kind=EAX self=EDI
+0x0011fb40,r2_AnyFlagMask,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: kind=EAX self=EDI mask=ESI
+0x0012dc90,r2_RunSteps31C510,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,regargs: idx=EAX a=EBX b=EDI
+0x0012e330,r2_GetPoint,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,imm:0x38,regargs: obj=ECX idx=EAX key=ESI dst=EDI. Waiver: stride 0x38 multiply expressed by a lea chain by modern cl (multiply-by-constant)
+0x0012e540,r2_CountKinds0E,Structurally compared,src/game/r2_3.c,build/obj_r2/r2_3.obj,,no register inputs; returns int in EAX
+0x00114dc0,r2_TargetInRange,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,stack args (self ctx c); calls 0x00114D60 with EAX=c ECX=ctx and self on stack
+0x0011ee90,r2_TargetInRangeB,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,stack args (self ctx c); calls 0x0011EE30 with EAX=c ECX=ctx and self on stack
+0x0011eef0,r2_TargetHeightInRange,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,stack args (self ctx c); calls 0x0011EE30 with EAX=c ECX=ctx and self on stack
+0x0011fb10,r2_AnyFlag2000Kinds,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,regargs: self=EAX; calls 0x0011FAC0 with EAX=kind EDI=self
+0x0011fb90,r2_AnyFlagKinds,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,regargs: mask=EAX self=ECX; calls 0x0011FB40 with EAX=kind EDI=self ESI=mask
+0x0012e590,r2_UpdateFreeSlotsB,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,regargs: obj=EAX
+0x000efcf0,r2_ClearVel,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,regargs: obj=EAX
+0x0010f0d0,r2_SetScale,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,regargs: obj=ESI; s on stack
+0x000d8f80,r2_ResetBlk3EDC00,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,data:fconst:1.0;imm:0x3f800000,no inputs. Waiver: constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000fca00,r2_HelperFace,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,stack arg a only
+0x000d7040,r2_ResetModesA,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,no inputs
+0x000d7440,r2_ResetModesB,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,no inputs
+0x000d7480,r2_ResetModesC,Structurally compared,src/game/r2_4.c,build/obj_r2/r2_4.obj,,stack arg v only
+0x000d9100,r2_NearestPoint,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,regargs: t=EBX; pos on stack; returns int in EAX
+0x000ddc60,r2_MsgCheckRange,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,stack arg msg only (original reuses the arg slot for the float)
+0x000ef810,r2_PickRandomSlot,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,regargs: obj=EAX; returns int in EAX
+0x000efd50,r2_SetBallistic,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,data:fconst:1.0,regargs: obj=EAX; t h d on stack. Waiver: constant 1.0 loaded from .rdata by the original vs fld1 by modern cl (same value)
+0x000f4510,r2_BossClampSpeed,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,imm:0x3fbd70a4,no inputs. Waiver: float constant 1.48 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00102fc0,r2_ScrPickDir,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,stack arg a only
+0x00109460,r2_RandomSpin,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,stack arg o only
+0x0010caa0,r2_RollAttack,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,regargs: obj=EAX; returns int in EAX
+0x0011a300,r2_BodyAdjust14,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,data:fconst:20.0;data:fconst:255.0;data:fconst:5.0;imm:0x40a00000;imm:0x41a00000;imm:0x437f0000,regargs: obj=EAX. Waiver: float arguments 5/20/255 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x0011f480,r2_BodySetMotion,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,imm:0x3f800000,regargs: obj=EAX; a b c d on stack. Waiver: constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00120820,r2_PlayerOutOfReach,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,jcc:be/a,regargs: obj=EAX self=ESI. Waiver: float-compare operand swap (d < 100 tested as 100 > d by modern cl)
+0x0012d350,r2_HookInit,Structurally compared,src/game/r2_5.c,build/obj_r2/r2_5.obj,,regargs: a=EBX b=EDI
+0x000f43e0,r2_BossPickDir,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,no inputs
+0x000e8d00,r2_SlotAlloc,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,data:fconst:1.0;imm:0x3f800000;jcc:b/ae;jcc:l/ge,stack args a b; returns int in EAX. Waivers: constant 1.0f stored as an immediate by modern cl instead of a load from .rdata; pointer loop end compared signed (jl) by the original vs unsigned (jb) by modern cl
+0x000e48c0,r2_SeqStep,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,regargs: q=ESI
+0x000fe9e0,r2_MinionTurn,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,stack args obj arg
+0x00102e80,r2_ClampToCenter,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,regargs: obj=EAX
+0x000e8080,r2_ApplyFades,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,regargs: v=EAX; returns EAX
+0x0011b040,r2_InAttackCone,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,stack args self other rec
+0x00113f10,r2_PointInView,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,regargs: self=EDI pt=ESI; dist ang on stack
+0x00103640,r2_ScrPickDirB,Structurally compared,src/game/r2_6.c,build/obj_r2/r2_6.obj,,stack arg a only
+0x00103200,r2_ScrApproach,Structurally compared,src/game/r2_7.c,build/obj_r2/r2_7.obj,,no inputs
+0x000fbef0,r2_BodyTurn,Structurally compared,src/game/r2_7.c,build/obj_r2/r2_7.obj,,stack args obj arg
+0x00100640,r2_CtlTurn,Structurally compared,src/game/r2_7.c,build/obj_r2/r2_7.obj,,stack args obj arg
+0x0010d320,r2_SetScaleB,Structurally compared,src/game/r2_7.c,build/obj_r2/r2_7.obj,,regargs: obj=ESI; s on stack
+0x000f7100,r2_TrioReleaseEffects,Structurally compared,src/game/r2_8.c,build/obj_r2/r2_8.obj,,no inputs (the original reads an uninitialised local before the loop assigns it)
+0x001154d0,r2_PlayerInFrontA,Structurally compared,src/game/r2_8.c,build/obj_r2/r2_8.obj,data:fconst:-1.0;data:fconst:45.0;imm:0x42340000;imm:0xbf800000,regargs: obj=EAX; self on stack. Waiver: float arguments -1.0 and 45.0 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x0012e630,r2_PlayerInFrontB,Structurally compared,src/game/r2_8.c,build/obj_r2/r2_8.obj,data:fconst:-1.0;data:fconst:45.0;imm:0x42340000;imm:0xbf800000,regargs: obj=EAX; self on stack. Waiver: float arguments -1.0 and 45.0 pushed as immediates by the original vs loaded from .rdata by modern cl (same values)
+0x000f8b40,r2_TrioReset,Structurally compared,src/game/r2_7.c,build/obj_r2/r2_7.obj,imm:0x4;imm:0xb8,no inputs. Waiver: three-entry part loop strength-reduced to a pointer step of 4 by the original vs unrolled (+0xB8 offset) by modern cl

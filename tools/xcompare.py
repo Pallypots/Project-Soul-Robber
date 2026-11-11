@@ -380,6 +380,11 @@ def compare(obj, sym, va, size=None, verbose=False, xbe=None, syms=None, dump=Fa
     if size is None:
         sizes = {int(r["va"], 16): int(r["size"]) for r in
                  csv.DictReader(open(os.path.join(ROOT, "config", "inventory", "functions.csv")))}
+        # reviewed corrections where the disassembler's boundary swallowed the next function
+        ov = os.path.join(ROOT, "config", "size_overrides.csv")
+        if os.path.exists(ov):
+            for r in csv.DictReader(open(ov)):
+                sizes[int(r["va"], 16)] = int(r["size"], 0)
         size = sizes[va]
     # the original's own jump tables sit right after its code
     a = events(xbe.read_va(va, size), va, orig_resolver(), md, orig_fconst(xbe), local=(va, va + size + 0x100))
