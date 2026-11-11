@@ -42,11 +42,12 @@ int a50_ObjKindIs(uint8_t *obj, int kind)
     return *(int32_t *)(*(uint8_t **)(obj + 0xC) + 0x30) == kind;
 }
 
-/* 0x00058170: wait for a free request slot, clear it, then kick the loader. */
+/* 0x00058170: take a free request slot (hangs if none), clear it, then kick the loader. */
 void a50_KickLoader(void)
 {
     int *p;
-    while ((p = sub_00057F30()) == 0) ;
+    p = sub_00057F30();
+    if (p == 0) for (;;) ;
     *p = 0;
     sub_00102FA0(0);
     sub_001AD540();

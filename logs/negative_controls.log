@@ -9,5 +9,6 @@ ok   missing-function                   expected FAIL, got FAIL
 ok   wrong-array-field                  expected FAIL, got FAIL
 ok   wrong-tail-call-target             expected FAIL, got FAIL
 ok   wrong-struct-offset                expected FAIL, got FAIL
+ok   deleted-hang                       expected FAIL, got FAIL
 ok   LIMIT pure negation (< vs >=)      expected PASS, got PASS
 ok   LIMIT swapped fields both used     expected PASS, got PASS

@@ -5,7 +5,8 @@
 int b3b_AnimInRange1457C0(B3bActor *a, float lo, float hi)
 {
     float t;
-    if (hi < lo) for (;;) ;
+    /* the original re-compares hi and lo on every spin */
+    if (hi < lo) for (;;) ;   /* assert-style hang */
     t = a->model30->anim14->timeD8;
     if (t >= lo && hi > t) return 1;
     return 0;

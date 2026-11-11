@@ -29,8 +29,8 @@ void r3d_Unref1751D0(R3cObj *a, void *ref)
     for (i = 0; i < 3; i++)
         if (r->refs24[i] == ref)
             break;
-    while (i == 3)
-        ;
+    if (i == 3)
+        for (;;) ;
     r->refs24[i] = 0;
 }
 
@@ -87,8 +87,8 @@ void r3d_Unref1777A0(R3cObj *a, void *ref, uint32_t mask)
     for (i = 0; i < 3; i++)
         if (r->refs28[i] == ref)
             break;
-    while (i == 3)
-        ;
+    if (i == 3)
+        for (;;) ;
     r->refs28[i] = 0;
     r->flags10 &= ~mask;
 }

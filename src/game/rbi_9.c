@@ -201,9 +201,9 @@ void rbi_SpinUp12CAA0(RbiKbObj *obj, RbiKbAct *act)
     w->i178 = 1;
     step = 6.28318548f / (a50_framesPerSecond * 6.0f);
     w = (RbiWork12C *)act->work278;
+    /* assert-style hang: the original re-compares the step on every spin */
     if (!(step <= 6.28318548f))
-        for (;;)
-            ;
+        for (;;) ;
     w->f74 = 5.0f;
     w->step78 = step;
     w->flags04 |= 2;

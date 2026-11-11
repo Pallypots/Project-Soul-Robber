@@ -14,8 +14,10 @@ int r4h_FxSlotSpawn(R4hFxNodeD *o, R4hFxActD *a, int idx)
 
     if (!o || !a)
         return 0;
-    while (idx < 0 || idx >= 4)
-        ;
+    if (idx < 0)
+        for (;;) ;
+    if (idx >= 4)
+        for (;;) ;
     rec = &r4c_recs400A88[idx];
     rec->obj = o;
     rec->actor = a;

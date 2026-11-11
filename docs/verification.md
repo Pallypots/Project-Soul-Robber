@@ -13,13 +13,14 @@ Our C is compiled by VS 2022 `cl` 19.44 for x86 (`/O2 /Oy /GS- /Gy /Zl /arch:SSE
 | jcc | Set of decision kinds. A condition and its negation are one kind (block layout can invert them). `cmov`, `setcc`, `neg;sbb` and `cmp;sbb` count as decisions. `js/jns` right after `test r,r` count as `l/ge`. |
 | ret | `ret N` values (calling convention: callee-pops vs caller-pops). |
 | jtables | Number of jump-table dispatches. |
+| hangs | Whether the function contains an assert-style spin loop (a branch back to itself or to a compare, with only compares, conditional jumps, register loads or stack stores in between). Catches hangs that cl deleted (`while (bad) ;`) and loops that re-call a function the original called once. |
 
 Also normalised (each found by recovery work and re-qualified with the negative controls; reviewed function-size corrections live in `config/size_overrides.csv` with a reason each; the original range also stops at the function's own jump table when it sits inside the recorded size; absolute addresses outside the image (hardware registers) count as constants): high-byte register tests (`test ah,8` = bit 0x800); `js/jns` after `test r,r` or `cmp x,0` = `l/ge`; `call [obj+off]` records the slot offset; calls through a function-pointer table compare the table address; jumps through a table outside the function are indirect tail calls, not switches; conditional tail calls (`jcc` to another function) count as calls; a tail call and call+ret to the same target are equal (targets and order still compared); 0.0 float constants are ignored (built with xorps); 0xFF and 0xFFFF masks are ignored like 0/1 (`and 0xFF` equals a zero-extending load); `__fastcall` names undecorate; cl's `__ftol2_sse` float-to-int helper is the same CRT routine as the original's `_ftol2` (0x001C7D38) and is aliased to it in config/symbols.csv.
 
 Register choice, instruction selection, ordering of independent instructions and counts of repeated accesses are deliberately not compared.
 
 ## Negative controls (`tests/negative_controls.py`, log `logs/negative_controls.log`)
-Each control plants one bug in a copy of real recovered source and must FAIL: wrong constant, reversed condition, wrong call target, wrong tail-call target, wrong global, wrong float constant, wrong field, wrong struct offset, wrong array field, extra call (calling convention/stack), missing function. Result on 2026-11-09: 13/13 behaved as expected.
+Each control plants one bug in a copy of real recovered source and must FAIL: wrong constant, reversed condition, wrong call target, wrong tail-call target, wrong global, wrong float constant, wrong field, wrong struct offset, wrong array field, extra call (calling convention/stack), missing function. Also: a deleted assert hang (2026-11-11). Result on 2026-11-11: 14/14 behaved as expected.
 
 ## Known blind spots (also tested, expected to PASS)
 - A pure negation (`<` vs `>=`) is invisible, because layout may invert a branch.

@@ -174,7 +174,23 @@ def events(code, base, resolve, md, fconst=None, local=None):
                                     insns[1].op_str == "ebp, esp") else -1
     prev = None
     flagsrc = None
+    hangs = 0
     for i in insns:
+        # assert-style hang: a branch back to itself, or back to a compare/test
+        # with nothing else in between (the loop has no effect but to spin)
+        if i.mnemonic.startswith("j") and i.operands and i.operands[0].type == x86.X86_OP_IMM                 and i.address - 16 <= i.operands[0].imm <= i.address:
+            t = i.operands[0].imm
+            body = [k for k in insns if t <= k.address < i.address]
+            def harmless(k):
+                if k.mnemonic in ("cmp", "test", "lea", "nop", "comiss", "ucomiss", "comisd", "ucomisd", "fcomp", "fcom", "fucomp", "fnstsw", "movss", "fld", "fstp") or k.mnemonic in JCC_CLASS:
+                    return True
+                if k.mnemonic in ("mov", "movzx", "movsx") and k.operands:
+                    d = k.operands[0]
+                    # register loads, or stores only to the stack
+                    return d.type == x86.X86_OP_REG or (d.type == x86.X86_OP_MEM and d.mem.base == x86.X86_REG_ESP)
+                return False
+            if all(harmless(k) for k in body):
+                hangs += 1
         if prev is not None and prev.mnemonic not in ("mov", "movzx", "movsx", "lea", "push", "pop", "movss", "movsd", "fld", "fstp", "fst"):
             flagsrc = prev
         off = i.address - base
@@ -310,7 +326,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
     # Addresses and constants are compared as sets: instruction selection
     # (read-modify-write vs load/store, re-reads) changes how often each
     # appears, not which ones appear.
-    return dict(calls=calls, data=set(data), imm=set(imm), jcc=set(jcc), ret=ret, jtables=jt,
+    return dict(calls=calls, data=set(data), imm=set(imm), jcc=set(jcc), ret=ret, jtables=jt, hangs=hangs,
                 n=len(insns), insns=insns)
 
 
@@ -379,6 +395,7 @@ def fmt(e):
         "jcc": sorted(e["jcc"]),
         "ret": sorted(e["ret"] or ({0} if any(isinstance(c, tuple) and c[0] == "tail" for c in e["calls"]) else set())),
         "jtables": e["jtables"],
+        "hangs": min(e["hangs"], 1) if e["hangs"] else 0,
     }
 
 

@@ -38,7 +38,8 @@ void a1a_Post2(int a, int b)
 {
     A1aJobNode *n;
     A1aJobMsg *m;
-    do n = sub_0003DC70(a1a_jobQueue404410); while (n == 0);
+    n = sub_0003DC70(a1a_jobQueue404410);
+    if (n == 0) for (;;) ;
     m = n->msg;
     m->a = a;
     m->kind = 2;
@@ -51,7 +52,8 @@ void a1a_Post0(int a, int b)
 {
     A1aJobNode *n;
     A1aJobMsg *m;
-    do n = sub_0003DC70(a1a_jobQueue404410); while (n == 0);
+    n = sub_0003DC70(a1a_jobQueue404410);
+    if (n == 0) for (;;) ;
     m = n->msg;
     m->a = a;
     m->kind = 0;
@@ -64,7 +66,8 @@ void a1a_Post1(void)
 {
     A1aJobNode *n;
     A1aJobMsg *m;
-    do n = sub_0003DC70(a1a_jobQueue404410); while (n == 0);
+    n = sub_0003DC70(a1a_jobQueue404410);
+    if (n == 0) for (;;) ;
     m = n->msg;
     m->kind = 1;
     m->a = -1;

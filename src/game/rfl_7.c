@@ -9,10 +9,11 @@
 int rfl_FacingInRange(RflActor *a, float x, float z, float lo, float hi)
 {
     float ang;
-    if (lo < -RFL_PI || RFL_PI < lo)
-        for (;;) ;
-    if (hi < -RFL_PI || RFL_PI < hi)
-        for (;;) ;
+    /* the original re-reads and re-compares each bound on every spin */
+    if (lo < -RFL_PI) for (;;) ;
+    if (RFL_PI < lo) for (;;) ;
+    if (hi < -RFL_PI) for (;;) ;
+    if (RFL_PI < hi) for (;;) ;
     ang = rfl_FacingAngleXZ(a, x, z);
     if (ang >= lo && hi >= ang)
         return 1;

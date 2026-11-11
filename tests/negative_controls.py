@@ -22,6 +22,7 @@ CASES = [
     ("wrong-array-field", "grade.c", "Grade_CommitChapter", 0x40C10, "rec->grade = 4", "rec->rank[3] = 4", "FAIL"),
     ("wrong-tail-call-target", "player_obj.c", "PlayerObj_ForwardFD8", 0xCF450, "sub_000F5D40(p->unkFD8 + 0x60, src);", "sub_00171CD0((PlayerStats *)(p->unkFD8 + 0x60));", "FAIL"),
     ("wrong-struct-offset", "player_obj.c", "PlayerObj_ClearFlags22", 0xCF4E0, "p->flags[0] &= ~0x22u;", "p->flags[1] &= ~0x22u;", "FAIL"),
+    ("deleted-hang", "grade.c", "Grade_CommitChapter", 0x40C10, "        for (;;)\n            ;   /* deliberate hang", "        (void)0;   /* deliberate hang", "FAIL"),
     # documented blind spots
     ("LIMIT pure negation (< vs >=)", "grade.c", "Grade_AddBestCombo", 0x41480, "bestCombo < combo", "bestCombo >= combo", "PASS"),
     ("LIMIT swapped fields both used", "stats.c", "Stats_Get", 0xCF790, "case 0:  return s->maxHealth;\n    case 1:  return s->health;", "case 0:  return s->health;\n    case 1:  return s->maxHealth;", "PASS"),
