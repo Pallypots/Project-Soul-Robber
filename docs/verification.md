@@ -44,3 +44,7 @@ Much of the game was compiled with whole-program optimisation, which passes some
 - every register input is mapped to a named C parameter, and the record's `notes` column states the mapping exactly, e.g. `regargs: p1=EAX p2=ESI` (inputs read before being written) and, for callers of such functions, which C argument goes in which register;
 - the checker passes as usual (it compares calls, data, constants and decisions; it does not compare which register or stack slot an argument arrives in, which is why the mapping must be written down);
 - the state stays "Structurally compared". The register mapping is only proven by a behaviour test in the recomp test bench (the swap adapter reads g_eax/g_edx/... per the note).
+
+## Notes from recovery (2026-11-11)
+- Functions that tail-call after rewriting their own argument slots were skipped by rule at first. Some of them (e.g. 0x113520, 0x113570, 0x1135C0, float pass-through) compile the same way with cl 19.44 and pass without waivers, so helpers should try them before skipping.
+- A float result left on the x87 stack (st0) is the normal C `float` return; such functions are in scope. Only XMM-register float arguments/results are out of scope.
