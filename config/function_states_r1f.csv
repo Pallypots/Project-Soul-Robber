@@ -1,0 +1,52 @@
+va,name,state,source,obj,waivers,notes
+0x0001c400,r1f_ActorDispatchA,Structurally compared,src/game/r1f_1.c,build/obj_r1f/r1f_1.obj,,
+0x0001c460,r1f_ActorDispatchB,Structurally compared,src/game/r1f_1.c,build/obj_r1f/r1f_1.obj,imm:0x7;imm:0x3;imm:0xfffffffc;jcc:le/g;jcc:be/a,range check 5<=kind<=7 (after kind==4 is excluded) emitted as one unsigned (kind-4)>3 compare by modern cl
+0x0001c490,r1f_ActorDispatchC,Structurally compared,src/game/r1f_1.c,build/obj_r1f/r1f_1.obj,,
+0x00029680,r1f_FadeOutC,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,imm:0x41a00000,constant 20.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00029770,r1f_FadeInC,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00028630,r1f_SeqAOpen,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,imm:0x41a00000,constant 20.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00028740,r1f_SeqAClose,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,data:fconst:120.0;data:fconst:20.0;imm:0x41a00000;imm:0x42f00000,constants 20.0f and 120.0f stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00028890,r1f_SeqAWait,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,,calls 0x000268D0 with EAX=q
+0x00028eb0,r1f_SeqBFadeOut,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,imm:0x41200000,constant 10.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00028fe0,r1f_SeqBFadeIn,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,data:fconst:10.0;imm:0x41200000,constant 10.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000290f0,r1f_SeqBCycle,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,imm:0x40c00000,constant 6.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00029230,r1f_SeqBStepWait,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,data:fconst:180.0;imm:0x43340000,constant 180.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00029310,r1f_SeqBZoom,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,data:fconst:1.0;data:fconst:60.0;imm:0x41200000;imm:0x42700000,constants 10.0f and 60.0f stored as immediates and 1.0 built with fld1 by modern cl instead of loads from .rdata (same values); calls 0x000268D0 with EAX=q
+0x00029470,r1f_SeqBCurtainOpen,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,imm:0x41a00000,constant 20.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00029580,r1f_SeqBCurtainClose,Structurally compared,src/game/r1f_3.c,build/obj_r1f/r1f_3.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x000299f0,r1f_SeqDFadeOut,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x00029ae0,r1f_SeqDFadeIn,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x00029ce0,r1f_SeqDFadeIn2,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002a070,r1f_SeqFFadeOut,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002a160,r1f_SeqFFadeIn,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002a6c0,r1f_SeqGFadeIn,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x00029bc0,r1f_SeqDFlash,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:180.0;imm:0x42700000;imm:0x43340000,constants 60.0f and 180.0f stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00029dc0,r1f_SeqECurtainOpen,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x00029ef0,r1f_SeqECurtainClose,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002a2c0,r1f_SeqFDrain,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:10.0;imm:0x41200000,constant 10.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002b140,r1f_SeqIFadeOut,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002b230,r1f_SeqIFadeIn,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002b5a0,r1f_SeqJFadeOut,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002b690,r1f_SeqJFadeIn,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002b770,r1f_SeqJWait,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:120.0;imm:0x42f00000,constant 120.0f stored as immediate by modern cl instead of load from .rdata (same value)
+0x0002b380,r1f_CurtainOpen,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value); regargs: c=ESI
+0x0002b450,r1f_CurtainClose,Structurally compared,src/game/r1f_4.c,build/obj_r1f/r1f_4.obj,data:fconst:20.0;imm:0x41a00000,constant 20.0f stored as immediate by modern cl instead of load from .rdata (same value); regargs: c=ESI
+0x0002abd0,r1f_SeqHFadeIn,Structurally compared,src/game/r1f_5.c,build/obj_r1f/r1f_5.obj,data:fconst:1.0;data:fconst:100.0;imm:0x3f800000;imm:0x42c80000,constants 1.0f and 100.0f stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000397a0,r1f_ChanDefaults,Structurally compared,src/game/r1f_6.c,build/obj_r1f/r1f_6.obj,,regargs: i=ECX
+0x00052e60,r1f_SndLookup,Structurally compared,src/game/r1f_8.c,build/obj_r1f/r1f_8.obj,,regargs: key=EDX sub=EDI. The original compiler folded the first table id (1) into the search loop; written as an explicit start value
+0x00052ec0,r1f_SndAlias,Structurally compared,src/game/r1f_8.c,build/obj_r1f/r1f_8.obj,,regargs: outKey=EAX key=EDX outSub=EBX sub=stack. The original compiler folded the first table id (1) into the search loop; written as an explicit start value
+0x000575d0,r1f_JobsInit,Structurally compared,src/game/r1f_9.c,build/obj_r1f/r1f_9.obj,,
+0x000507d0,r1f_MovieLoadA,Structurally compared,src/game/r1f_10.c,build/obj_r1f/r1f_10.obj,imm:0x21e;imm:0x21d;jcc:l/ge;jcc:be/a,signed 0<=id<0x21E bounds check emitted as unsigned id<=0x21D by modern cl
+0x00050f00,r1f_MovieLoadB,Structurally compared,src/game/r1f_10.c,build/obj_r1f/r1f_10.obj,imm:0x21e;imm:0x21d;jcc:l/ge;jcc:be/a,signed 0<=id<0x21E bounds check emitted as unsigned id<=0x21D by modern cl
+0x00050440,r1f_MovieArchiveOpen,Structurally compared,src/game/r1f_10.c,build/obj_r1f/r1f_10.obj,,calls 0x0004F8E0 with EDI=entry name
+0x00050b60,r1f_MovieLoadChunked,Structurally compared,src/game/r1f_10.c,build/obj_r1f/r1f_10.obj,imm:0x21e;imm:0x21d;jcc:be/a;jcc:s/ns,signed 0<=id<0x21E bounds check emitted as unsigned id<=0x21D by modern cl; the len<0 fallback is a cmovns select after the subtraction instead of test/jge on the result (same sign test)
+0x0003dd30,r1f_PktInit,Structurally compared,src/game/r1f_11.c,build/obj_r1f/r1f_11.obj,,
+0x0003e0f0,r1f_MainLoop,Structurally compared,src/game/r1f_11.c,build/obj_r1f/r1f_11.obj,,
+0x00046f00,r1f_MenuJob,Structurally compared,src/game/r1f_12.c,build/obj_r1f/r1f_12.obj,,
+0x00046fa0,r1f_MenuJobsInit,Structurally compared,src/game/r1f_12.c,build/obj_r1f/r1f_12.obj,,
+0x0002e470,r1f_ScreenJob,Structurally compared,src/game/r1f_13.c,build/obj_r1f/r1f_13.obj,,
+0x00046e90,r1f_MenuStep,Structurally compared,src/game/r1f_12.c,build/obj_r1f/r1f_12.obj,,
+0x0004e970,r1f_TitleStep,Structurally compared,src/game/r1f_14.c,build/obj_r1f/r1f_14.obj,,
+0x0004e830,r1f_TitleSubStep,Structurally compared,src/game/r1f_14.c,build/obj_r1f/r1f_14.obj,,
+0x00031b60,r1f_StageBgLoad,Structurally compared,src/game/r1f_15.c,build/obj_r1f/r1f_15.obj,,
+0x0005a200,r1f_SaveJob,Structurally compared,src/game/r1f_9.c,build/obj_r1f/r1f_9.obj,,
