@@ -1,0 +1,76 @@
+va,name,state,source,obj,waivers,notes
+0x000de530,r2e_PlayerSavePos,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000e2240,r2e_SlotReplay,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000e22a0,r2e_SlotRamp,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000e2350,r2e_SlotCue,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000e3f20,r2e_StageAttach,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000e45f0,r2e_SlotReload01,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,imm:0x10e;imm:0x870,slot array offset folded into the scaled index differently (index*5+0x10e then *8 vs displacement 0x870) same address
+0x000e4640,r2e_SlotReload11,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,imm:0x10e;imm:0x870,slot array offset folded into the scaled index differently (index*5+0x10e then *8 vs displacement 0x870) same address
+0x000e4770,r2e_SlotReloadIf,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,imm:0x10e;imm:0x870,slot array offset folded into the scaled index differently (index*5+0x10e then *8 vs displacement 0x870) same address
+0x000e47d0,r2e_SlotReload20,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,imm:0x10e;imm:0x870,slot array offset folded into the scaled index differently (index*5+0x10e then *8 vs displacement 0x870) same address
+0x000e4820,r2e_SlotReload30,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,imm:0x10e;imm:0x870,slot array offset folded into the scaled index differently (index*5+0x10e then *8 vs displacement 0x870) same address
+0x000e5cf0,r2e_RunJobE5300,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000e9300,r2e_FadeQStep,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,data:fconst:220.0;imm:0x435c0000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000e9cb0,r2e_CamSpan,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000e9d70,r2e_CamSpanEnd,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000ea660,r2e_MgrCueHit,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000eb180,r2e_StageFadeRec,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000eb200,r2e_DirCue,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000eb820,r2e_Key3On,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000ebbd0,r2e_Key4On,Structurally compared,src/game/r2e_1.c,build/obj_r2e/r2e_1.obj,,
+0x000f25a0,r2e_Forward0F09E0,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,calls 0x000F09E0 with EAX=a
+0x000f25b0,r2e_VelClear,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,imm:0x4;imm:0x114,store address folded differently: the original advances the base to +0x110 and stores at +0/+4 while modern cl uses +0x110/+0x114 (same addresses)
+0x000f32f0,r2e_ReleaseIds,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,jcc:l/ge;jcc:b/ae,pointer loop end compare signed in the original vs unsigned in modern cl
+0x000f6f00,r2e_PlayerPlaceStart,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,data:fconst:-28.0;data:fconst:1.0;data:fconst:14.0;imm:0x41600000;imm:0xc1e00000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x000f8c20,r2e_TrioDispatch,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,
+0x000fa8c0,r2e_FlagIfAboveA,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,
+0x000faed0,r2e_FlagIfAboveB,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,
+0x000fd870,r2e_HelperDrain,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,
+0x000ff070,r2e_MinionReset,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,
+0x000ffd90,r2e_MinionKick,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,data:fconst:2.5;imm:0x40200000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00100d50,r2e_CtlReset,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x00103fe0,r2e_ScrIntro,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x00109170,r2e_PushPart5,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:0.5;imm:0x3f000000,float argument pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x001092f0,r2e_ActorStrength,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x00109690,r2e_ActorPush17,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x00109ac0,r2e_ActorStop,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,calls 0x00108B80 with ESI=o EDI=k
+0x00109e40,r2e_ActorFlip,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:3.141593;imm:0x40490fdb,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0010b060,r2e_TimerResetFree,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0010b0e0,r2e_ActorTimerReset2,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0010b4c0,r2e_TimerResetPush,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:0.5;imm:0x3f000000,float argument pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x0010b550,r2e_ActorTimerReset,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0010bac0,r2e_TimerResetSpin,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:50.26548;imm:0x42490fdb,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0010f010,r2e_EntsRelease,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x001125b0,r2e_CmdStart,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,imm:0x11;imm:0x10;jcc:l/ge;jcc:be/a,range check 0..0x10 emitted as unsigned by modern cl vs signed pair
+0x00113d90,r2e_FxSetFree,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x00114a30,r2e_ActorDamp,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x001155c0,r2e_BodyReset1,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,calls 0x00115000 with EAX=o; float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00115840,r2e_BodyReset0,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x001158a0,r2e_BodyReset0b,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00115900,r2e_BodyReset0d,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;data:fconst:2.0;imm:0x3f800000;imm:0x40000000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00115b80,r2e_BodyReset1B,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00115be0,r2e_BodyReset38,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00115c60,r2e_BodyReset13,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00115d60,r2e_BodyReset,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00116040,r2e_BodyReset0c,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00116280,r2e_BodyReset33,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00116e40,r2e_BodyReset40,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x001179a0,r2e_Event3,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,calls 0x00117580 with EDI=c
+0x00117e60,r2e_ResetKind1,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:9.0;imm:0x41100000,calls 0x00117580 with EDI=o; float argument pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x00119770,r2e_Event1F,Structurally compared,src/game/r2e_2.c,build/obj_r2e/r2e_2.obj,,calls 0x00117580 with EDI=c
+0x0011ab30,r2e_HitGauge,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:20.0;data:fconst:255.0;data:fconst:40.0;imm:0x41a00000;imm:0x42200000;imm:0x437f0000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0011ae60,r2e_MarkKind3B,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0011c8e0,r2e_TestEvent,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0011d580,r2e_HitReact,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,imm:0x50,two bit tests on the same word (bit 0x40 set and bit 0x10 clear) merged by modern cl into one (f & 0x50) == 0x40 compare
+0x0012b990,r2e_HitStep6,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012ca30,r2e_RandEvent,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:5.0;imm:0x40a00000,calls 0x0011F2B0 with EDI=a EBX=k; float argument pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x0012d2f0,r2e_CondOther,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,calls 0x0011FB40 with EAX=id EDI=self ESI=c->mask8
+0x0012d9a0,r2e_ActorDamp164,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0012dce0,r2e_InRange,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,,
+0x0012ec00,r2e_BodyReset164c,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,calls 0x0012E190 with EAX=o; float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012eeb0,r2e_BodyReset164b,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012ef20,r2e_BodyReset164d,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012f8f0,r2e_BodyReset2B,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;data:fconst:3.0;imm:0x3f800000;imm:0x40400000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012f970,r2e_BodyReset14,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012f9f0,r2e_BodyReset164,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0012fc30,r2e_BodyReset164e,Structurally compared,src/game/r2e_3.c,build/obj_r2e/r2e_3.obj,data:fconst:1.0;imm:0x3f800000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
