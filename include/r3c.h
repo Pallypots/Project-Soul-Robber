@@ -19,9 +19,9 @@ typedef struct R3cWork {
     union { float f20; int32_t i20; }; /* +0x20 */
     union { float f24; struct { int16_t s24, s26; }; }; /* +0x24 */
     float    f28, f2C;       /* +0x28, +0x2C */
-    union { int32_t i30; struct { int16_t s30, s32; }; }; /* +0x30 */
+    union { int32_t i30; struct { int16_t s30, s32; }; float f30; }; /* +0x30 (also a float x, see 0x00185DC0) */
     struct R3cObj *p34;      /* +0x34 */
-    struct R3cObj *p38;      /* +0x38 */
+    union { struct R3cObj *p38; float f38; }; /* +0x38 (also a float z, see 0x00185DC0) */
     uint8_t  unk3C[0x44 - 0x3C];
     float    f44, f48;       /* +0x44, +0x48 */
     uint8_t  unk4C[0x54 - 0x4C];
@@ -116,7 +116,7 @@ typedef struct R3cRange {
     int32_t i00, i04, i08, i0C;
     union { float lo; int32_t i10; };  /* +0x10 */
     union { float hi; int32_t i14; };  /* +0x14 */
-    int32_t i18;                       /* +0x18 */
+    union { float val; int32_t i18; }; /* +0x18 */
 } R3cRange;
 
 /* ---- globals */
@@ -232,7 +232,7 @@ int     sub_001730A0(void *a, void *b, float k);   /* a=EAX b=EBX k=stack */
 void    sub_00172C90(void *a, void *b, int anim);  /* b=EAX a=ESI anim=EDI */
 R3cA4290 *sub_000A4290(int id);
 void    sub_000A22C0(R3cA4290 *x, R3cObj *o);
-void    sub_000ED630(int a, int b, int c, int d, int e);
+void   *sub_000ED630(int type, int id, const float *pos, const float *rot, int e); /* returns the spawned object (EAX = ESI at 0x000ED775) */
 void    sub_000FB4D0(void *o);
 R3cNode *sub_001133E0(void *act, int k);
 int     sub_000494D0(int id, const float *pos, int c);
@@ -247,8 +247,8 @@ void    sub_0001D700(void *o);
 void    sub_001ADB60(float *a, float *b, float k);
 float   sub_00113200(void *o, const float *pos);
 int     sub_000F40B0(void);
-int     sub_00145940(void *obj, int a, void *b, int c, int d);
-void    sub_001459D0(void *obj, int a, void *b, int c);
+int     sub_00145940(void *obj, float x, float z, float lo, float hi); /* floats: x,z passed to 0x00145820; lo,hi compared with comiss */
+void    sub_001459D0(void *obj, float x, float z, float v);
 void    sub_001A8820(float *d, const void *s);
 void    sub_001A8840(float *d, const float *a, const float *b, float t);
 int     sub_001A8830(void *d, const float *s);
@@ -270,7 +270,7 @@ void    sub_001671D0(void *a, void *b, int k);
 
 int     sub_00087500(void);
 float   sub_001A3F30(float v);                       /* absolute value */
-void    sub_0018E270(int k);
+void    sub_0018E270(R3cObj *obj, R3cObj *c, int k);   /* obj=ESI c=EAX k=stack */
 void    sub_0001F070(void *o, int k);
 void    sub_0001EBF0(void *o, int k);
 int     sub_00176150(void *obj, void *act, int32_t *p);

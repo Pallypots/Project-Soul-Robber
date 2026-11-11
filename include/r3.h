@@ -111,7 +111,7 @@ extern float r3_frameUnits;                          /* 0x0042C858 */
 void sub_000C56B0(R3Obj *obj);
 int  sub_001456E0(R3Obj *obj, R3Actor *act, int a, int b);
 void sub_0001D4E0(R3Obj *obj);
-void sub_000494D0(int id, const float *pos, int c);
+int  sub_000494D0(int id, const float *pos, int c);   /* returns the effect handle (0x0019B690 result) */
 void sub_000C62A0(R3Obj *obj);
 void sub_00025D50(int a, int b);
 

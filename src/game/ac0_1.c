@@ -178,7 +178,7 @@ void ac0_GetAnchor(Ac0Actor *a, float *p, int32_t *q)
 /* 0x000C52E0: start sound a in the first free handle slot. */
 void ac0_Handle_Start(int a, int b)
 {
-    PlayerObj *p = g_playerObj;
+    void *p = g_playerObj;
     int i;
     for (i = 0; i < 8; i++) {
         if (g_ac0_handles[i] == 0) {

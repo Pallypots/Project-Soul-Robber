@@ -36,31 +36,54 @@ void Grade_AddExclamations(int amount);     /* 0x000414A0 */
 void Grade_AddDamage(int amount);           /* 0x000414F0 */
 void Grade_CommitChapter(int chapter);      /* 0x00040C10, chapter passed in EAX in the original */
 
-/* ------------------------------------------------------------ player stats */
-/* 0x0041FEC0: player stats object. Only the fields reached by the accessor
- * functions are named; the rest is unanalysed. */
+/* ------------------------------------------------------------ player stats / character */
+/* 0x0041FEC0: Jack's character data. One object: the stats accessors and the
+ * PlayerObj_* helpers (0x000CF070-0x000CF4F0) both take it. Verified: all
+ * 193 direct calls to those helpers push 0x0041FEC0, and the other 133 pass the
+ * argument of the per-frame update 0x000D2F60, whose only caller (0x000BCF35)
+ * pushes 0x0041FEC0; the state dispatcher 0x000C2A40 on that path indexes by
+ * +0x1B8 and +0xD8, the stats fields at 0x00420078 and 0x0041FF98. PlayerObj is
+ * kept as a second name for the same type. Only touched fields are named. */
 typedef struct PlayerStats {
-    uint8_t unk000[0xD8];
-    int32_t unkD8;            /* +0x0D8  (0x0041FF98) */
-    uint8_t unkDC[0x1B8 - 0xDC];
-    int32_t unk1B8;           /* +0x1B8  (0x00420078) */
-    uint8_t unk1BC[0xD5C - 0x1BC];
-    int32_t unkD5C;           /* +0xD5C  base of stat slots: stat i (4..6, 8..11) at +0xD5C + 4*i */
-    uint32_t flags;           /* +0xD60  (0x00420C20) */
-    int32_t maxHealth;        /* +0xD64  stat 0  (0x00420C24) */
-    int32_t health;           /* +0xD68  stat 1  (0x00420C28) */
-    int32_t slotsD6C[8];      /* +0xD6C  4 zeroed + 4 set to -1 by Stats_Init */
-    int32_t stat3;            /* +0xD8C  stat 3 (read only through Stats_Get) */
-    float   timerD90;         /* +0xD90  zeroed when flag bit 0 is set */
-    float   timerD94;         /* +0xD94  zeroed when flag bit 1 is set (0x00420C54) */
-    float   stat2;            /* +0xD98  stat 2, float, read truncated */
-    float   fD9C;             /* +0xD9C  set from 0x00171CF0 at init */
-    int32_t soulsLifetime;    /* +0xDA0  (0x00420C60) */
-    int32_t soulsWallet;      /* +0xDA4  stat 12 (0x00420C64) */
-    int32_t levels[0x50];     /* +0xDA8  per-item values; 0x50 entries like g_statMaxTable (Hypothesis: levels/counts) */
-    uint8_t unkEE8[0xEFC - 0xEE8];
-    int32_t unkEFC;           /* +0xEFC  (0x00420DBC) */
+    uint8_t  unk000[0xD4];
+    int32_t  unkD4;           /* +0x0D4 */
+    int32_t  unkD8;           /* +0x0D8  (0x0041FF98) */
+    uint8_t  unkDC[0xEC - 0xDC];
+    int32_t  modeEC;          /* +0x0EC  low byte tested with 0x33 */
+    uint8_t  unkF0[0xFC - 0xF0];
+    float    angleFC;         /* +0x0FC  an angle in radians (Hypothesis: facing) */
+    uint8_t  unk100[0x108 - 0x100];
+    float    angle108;        /* +0x108  reference angle */
+    float    f10C;            /* +0x10C */
+    uint8_t  unk110[0x128 - 0x110];
+    int32_t  anim128;         /* +0x128  current animation id, -1 none */
+    int32_t  anim12C;         /* +0x12C  requested animation id */
+    float    timer130;        /* +0x130  limit for timer134 */
+    float    timer134;        /* +0x134 */
+    uint8_t  unk138[0x150 - 0x138];
+    uint32_t flags[2];        /* +0x150, +0x154: 64 flag bits (PlayerObj_SetFlags etc.) */
+    uint8_t  unk158[0x1B8 - 0x158];
+    int32_t  unk1B8;          /* +0x1B8  (0x00420078) */
+    uint8_t  unk1BC[0xD5C - 0x1BC];
+    int32_t  unkD5C;          /* +0xD5C  base of stat slots: stat i (4..6, 8..11) at +0xD5C + 4*i */
+    uint32_t flagsD60;        /* +0xD60  (0x00420C20) */
+    int32_t  maxHealth;       /* +0xD64  stat 0  (0x00420C24) */
+    int32_t  health;          /* +0xD68  stat 1  (0x00420C28) */
+    int32_t  slotsD6C[8];     /* +0xD6C  4 zeroed + 4 set to -1 by Stats_Init */
+    int32_t  stat3;           /* +0xD8C  stat 3 (read only through Stats_Get) */
+    float    timerD90;        /* +0xD90  zeroed when flag bit 0 is set */
+    float    timerD94;        /* +0xD94  zeroed when flag bit 1 is set (0x00420C54) */
+    float    stat2;           /* +0xD98  stat 2, float, read truncated */
+    float    fD9C;            /* +0xD9C  set from 0x00171CF0 at init */
+    int32_t  soulsLifetime;   /* +0xDA0  (0x00420C60) */
+    int32_t  soulsWallet;     /* +0xDA4  stat 12 (0x00420C64) */
+    int32_t  levels[0x50];    /* +0xDA8  per-item values; 0x50 entries like g_statMaxTable (Hypothesis: levels/counts) */
+    uint8_t  unkEE8[0xEFC - 0xEE8];
+    int32_t  unkEFC;          /* +0xEFC  (0x00420DBC) */
+    uint8_t  unkF00[0xFD8 - 0xF00];
+    uint8_t *unkFD8;          /* +0xFD8  Jack's model node; this field is the global g_playerObj (0x00420E98) */
 } PlayerStats;
+typedef struct PlayerStats PlayerObj;
 
 extern PlayerStats g_stats;                 /* 0x0041FEC0 */
 extern uint8_t     g_cheatFlags;            /* 0x00413130, bit 0: health never below 1 */
@@ -82,30 +105,7 @@ int  Stats_Get1B8(void);                                /* 0x000CF6B0 */
 int  Stats_HasEFC(void);                                /* 0x000CF6C0 */
 extern const int32_t g_statMaxTable[0x50];              /* 0x002E7AE0 */
 
-/* ------------------------------------------------------------ player character object */
-/* Object taken by the 0x000CF180-0x000CF4EB helpers (same original source
- * file as the stats code). Probably Jack's character object (pointer at
- * 0x00420E98): Hypothesis. Only touched fields are named. */
-typedef struct PlayerObj {
-    uint8_t  unk000[0xD4];
-    int32_t  unkD4;           /* +0x0D4 */
-    uint8_t  unkD8[0xEC - 0xD8];
-    int32_t  modeEC;          /* +0x0EC  low byte tested with 0x33 */
-    uint8_t  unkF0[0xFC - 0xF0];
-    float    angleFC;         /* +0x0FC  an angle in radians (Hypothesis: facing) */
-    uint8_t  unk100[0x108 - 0x100];
-    float    angle108;        /* +0x108  reference angle */
-    float    f10C;            /* +0x10C */
-    uint8_t  unk110[0x128 - 0x110];
-    int32_t  anim128;         /* +0x128  current animation id, -1 none */
-    int32_t  anim12C;         /* +0x12C  requested animation id */
-    float    timer130;        /* +0x130  limit for timer134 */
-    float    timer134;        /* +0x134 */
-    uint8_t  unk138[0x150 - 0x138];
-    uint32_t flags[2];        /* +0x150, +0x154: 64 flag bits */
-    uint8_t  unk158[0xFD8 - 0x158];
-    uint8_t *unkFD8;          /* +0xFD8  sub-object; +0x60 passed to 0x000F5D40 */
-} PlayerObj;
+/* ------------------------------------------------------------ player character helpers (same object as PlayerStats) */
 
 int      PlayerObj_ModeSign(PlayerObj *p);                              /* 0x000CF180 */
 int      PlayerObj_IsActive(PlayerObj *p);                              /* 0x000CF1A0 */
@@ -128,7 +128,7 @@ void     Player_D0450(void);                                            /* 0x000
 void     Stats_Init(PlayerStats *s);                                    /* 0x000CF6E0 */
 extern char  g_378188[], g_378198[];        /* data passed to 0x00034E00 */
 extern void *g_3EDB38, *g_3EDB3C;
-extern PlayerObj *g_playerObj;              /* 0x00420E98 */
+extern void      *g_playerObj;              /* 0x00420E98 = g_stats.unkFD8, Jack's model node (+0x60 position) */
 extern uint8_t   *g_42C8EC;                 /* 0x0042C8EC, object with a pointer at +0x3B0 */
 
 /* ------------------------------------------------------------ chapter unlocks */

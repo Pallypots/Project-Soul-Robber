@@ -127,24 +127,24 @@ int Player_TakeDamage(PlayerStats *s, int damage)
 int Stats_SetFlag2(PlayerStats *s)
 {
     s->timerD94 = 0.0f;
-    if (!(s->flags & 2))
-        s->flags |= 2;
+    if (!(s->flagsD60 & 2))
+        s->flagsD60 |= 2;
     return 1;
 }
 
 /* 0x000CF9F0: while flag bit 1 is set and timerD94 is below 720, call 0x000CA6C0. */
 void Stats_UpdateFlag2(void)
 {
-    if ((g_stats.flags & 2) && 720.0f > g_stats.timerD94)
+    if ((g_stats.flagsD60 & 2) && 720.0f > g_stats.timerD94)
         sub_000CA6C0(&g_stats);
 }
 
 /* 0x000CFA20 */
 int Stats_SetFlag1(PlayerStats *s)
 {
-    if (s->flags & 1)
+    if (s->flagsD60 & 1)
         return -1;
-    s->flags |= 1;
+    s->flagsD60 |= 1;
     s->timerD90 = 0.0f;
     return 1;
 }
@@ -152,7 +152,7 @@ int Stats_SetFlag1(PlayerStats *s)
 /* 0x000CFA50 */
 uint32_t Stats_TestFlags(PlayerStats *s, uint32_t mask)
 {
-    return s->flags & mask;
+    return s->flagsD60 & mask;
 }
 
 /* 0x000CF6A0 */
@@ -179,7 +179,7 @@ void Stats_Init(PlayerStats *s)
 {
     int i;
 
-    s->flags = 0;
+    s->flagsD60 = 0;
     s->maxHealth = 10;
     s->health = 10;
     s->stat3 = 0;

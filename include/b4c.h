@@ -105,7 +105,7 @@ typedef struct B4cEnemy {
     int32_t  iF8;              /* +0xF8 */
     float    distFC;           /* +0xFC */
     float    f100;             /* +0x100 */
-    PlayerObj *target104;      /* +0x104 */
+    void      *target104;      /* +0x104 (g_playerObj, Jack's model node) */
     uint8_t  unk108[0x270 - 0x108];
     float    maxHp270;         /* +0x270 */
     float    hp274;            /* +0x274 */

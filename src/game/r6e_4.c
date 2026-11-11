@@ -61,5 +61,5 @@ int r6e_PlayerCanAct(void)
         return -1;
     if (r6e_g41FF94 == 4 || r6e_g41FF94 == 5)
         return -1;
-    return (g_stats.flags & 1) ? 2 : 1;
+    return (g_stats.flagsD60 & 1) ? 2 : 1;
 }

@@ -1,0 +1,9 @@
+va,name,state,source,obj,waivers,notes
+0x0017c460,fix_SpawnLinks17C460,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,,Stack-argument; uses the result of 0x000ED630 (spawned object in EAX)
+0x0018e740,fix_Launch18E740,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,data:fconst:70.0;imm:0x428c0000;imm:0x3,Stack-argument; callee 0x0018E270 gets obj=ESI c=EAX k=stack; float argument 70.0 pushed from .rdata by modern cl instead of as immediate; selection 3 or 2 by bit 0 written by modern cl as and+add (no constant 3) instead of a branch
+0x00146f50,fix_Mirror146F50,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,,Stack-argument; 0x00145940/0x001459D0 take float x z lo hi / x z v
+0x0012da00,fix_Apply12DA00,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,,Stack-argument; 0x00145940/0x001459D0 take float arguments
+0x00146fd0,fix_Orbit146FD0,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,,Stack-argument; 0x001459D0 takes float arguments
+0x001860b0,fix_Face1860B0,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,data:fconst:3.141593;imm:0x40490fdb,Stack-argument; float argument pi pushed from .rdata by modern cl instead of as immediate
+0x000eba00,fix_SpawnAtPlayerEBA00,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,,Stack-argument; 0x000ED630 takes pos and rot vector pointers
+0x000eba50,fix_SpawnAtEBA50,Structurally compared,src/game/fix_1.c,build/obj_fix/fix_1.obj,,Stack-argument; 0x000ED630 takes pos and rot vector pointers

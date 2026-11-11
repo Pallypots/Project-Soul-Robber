@@ -140,12 +140,12 @@ void r2b_LoadTexB(R2bPlayer *p)
 /* 0x000D2180: clear stat flags 2 and 1 and free their effect handles. */
 void r2b_ClearEffects(void)
 {
-    g_stats.flags &= ~2u;
+    g_stats.flagsD60 &= ~2u;
     if (r2b_h4204DC) {
         b16_Free33A40(r2b_h4204DC);
         r2b_h4204DC = 0;
     }
-    g_stats.flags &= ~1u;
+    g_stats.flagsD60 &= ~1u;
     if (r2b_h4204D8) {
         b16_Free33A40(r2b_h4204D8);
         r2b_h4204D8 = 0;

@@ -1,5 +1,5 @@
 /* Player character object helpers (0x000CF180-0x000CF4EB). Reference build
- * OOGIE-XBOX-US-RETAIL. Names inferred; the object type is a Hypothesis.
+ * OOGIE-XBOX-US-RETAIL. Names inferred. The object is g_stats (0x0041FEC0), see oogie.h.
  * Same original source file as stats.c (address order). Records:
  * docs/functions/stats.md */
 #include "oogie.h"

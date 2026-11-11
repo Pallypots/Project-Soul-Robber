@@ -91,7 +91,7 @@ va,name,state,source,obj,waivers,notes
 0x0018e680,r3c_IsKind18E680,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
 0x0018e6c0,r3c_Scale18E6C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
 0x0018e7c0,r3c_Clear18E7C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
-0x0018e850,r3c_Hide18E850,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e850,r3c_Hide18E850,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument; callee 0x0018E270 gets obj=ESI c=EAX k=stack
 0x0018e8b0,r3c_Start18E8B0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
 0x0018e980,r3c_Start18E980,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
 0x0018e9d0,r3c_Hide18E9D0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument

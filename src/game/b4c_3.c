@@ -51,7 +51,7 @@ int b4c_PredJoin142150(B4cOwner *o, B4cEnemy *e, const float *c)
 /* 0x001423E0: target the player and refresh distance and angle. */
 void b4c_Target1423E0(B4cOwner *o, B4cEnemy *e)
 {
-    PlayerObj *p = g_playerObj;
+    void *p = g_playerObj;
     if (e->iF8 != 1 || e->target104 != p) {
         e->iF8 = 1;
         e->target104 = p;

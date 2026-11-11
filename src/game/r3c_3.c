@@ -518,8 +518,8 @@ void r3c_Apply185DC0(void *obj, R3cObj *act, const R3cRange *c)
 {
     R3cWork *w = act->work278;
 
-    if (sub_00145940(obj, w->i30, w->p38, c->i10, c->i14))
-        sub_001459D0(obj, w->i30, w->p38, c->i18);
+    if (sub_00145940(obj, w->f30, w->f38, c->lo, c->hi))
+        sub_001459D0(obj, w->f30, w->f38, c->val);
 }
 
 /* Holder released by 0x00189510. */
@@ -765,14 +765,14 @@ void r3c_Sink182890(R3cObj *o, R3cObj *act)
         sub_00113040(o, act, 0);
 }
 
-/* 0x0018E850: hide obj, notify 0x0018E270 and replace c's looping sound by effect 0x8C. */
+/* 0x0018E850: hide obj, notify 0x0018E270 (obj in ESI, c in EAX) and replace c's looping sound by effect 0x8C. */
 void r3c_Hide18E850(R3cObj *obj, R3cObj *c)
 {
     int16_t *s = (int16_t *)c->p74;
 
     obj->flags0C &= ~0x40u;
     obj->flags10 |= 5;
-    sub_0018E270(1);
+    sub_0018E270(obj, c, 1);
     if (s[1] >= 0) {
         sub_00048250(s[1]);
         s[1] = -1;
