@@ -25,3 +25,6 @@ These are **candidate** counts from XboxRecomp's disassembler, not a final funct
 - LIBCPMT (C++ standard library) and any game-side middleware may sit inside the "game" range; not yet separated.
 - BINKDATA (writable) was swept as code; probably data.
 - No RTTI/vtable pass of our own yet; the recomp's func_id reports 318 thiscall functions and vtables, so the game is at least partly C++.
+
+## Denominator change (2026-11-11)
+`config/not_functions.csv` lists 28 inventory entries that recovery work found to be interior fragments of larger functions or jump-table data (all not 16-byte aligned). `tools/progress.py` excludes them from the game total. Their bytes are still covered by the enclosing functions' ranges. Further aligned fragments reported by helpers (e.g. switch-case blocks at 0x639A0, 0x63E00) are not excluded until reviewed.

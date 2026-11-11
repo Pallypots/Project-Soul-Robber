@@ -46,6 +46,11 @@ def load():
                 raise SystemExit(f"function {r['va']} recorded twice")
             states[va] = r["state"]
     rows = list(csv.DictReader(open(P("config", "inventory", "functions.csv"))))
+    # reviewed inventory entries that are not functions (fragments, table data)
+    nf = P("config", "not_functions.csv")
+    if os.path.exists(nf):
+        drop = {int(r["va"], 16) for r in csv.DictReader(open(nf))}
+        rows = [r for r in rows if int(r["va"], 16) not in drop]
     known = {int(r["va"], 16) for r in rows}
     missing = set(states) - known
     if missing:

@@ -7,7 +7,7 @@
 | Structurally compared | 3,605 | 215,790 |
 | Draft source | 0 | 0 |
 | Analyzed | 0 | 0 |
-| Unanalyzed | 4,130 | 1,445,724 |
-| **Game total** | **7,735** | **1,661,514** |
+| Unanalyzed | 4,102 | 1,445,304 |
+| **Game total** | **7,707** | **1,661,094** |
 | Library (not counted) | 2,762 | 484,722 |
 | Unknown owner | 3 | |
