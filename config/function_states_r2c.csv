@@ -1,0 +1,82 @@
+va,name,state,source,obj,waivers,notes
+0x000e8530,r2c_FxResetAll,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000e89f0,r2c_FaderC,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000e98e0,r2c_FxStart,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000e9950,r2c_WaitTicks,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000e9c60,r2c_GaugeFullCheck,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000eae50,r2c_LinkPart,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000eda50,r2c_ListHasActive,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000edb90,r2c_FindNext,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000edc20,r2c_FindKey,Structurally compared,src/game/r2c_1.c,build/obj_r2c/r2c_1.obj,,
+0x000ee010,r2c_CompHit,Structurally compared,src/game/r2c_2.c,build/obj_r2c/r2c_2.obj,,
+0x000ee040,r2c_CompQuery,Structurally compared,src/game/r2c_2.c,build/obj_r2c/r2c_2.obj,,
+0x000efb90,r2c_StateFreeD4,Structurally compared,src/game/r2c_2.c,build/obj_r2c/r2c_2.obj,,
+0x000efc90,r2c_StateFreeD4B,Structurally compared,src/game/r2c_2.c,build/obj_r2c/r2c_2.obj,,
+0x000f0b10,r2c_SetEffectD4,Structurally compared,src/game/r2c_2.c,build/obj_r2c/r2c_2.obj,,regargs: obj=EDI kind=stack1
+0x000f0b70,r2c_SetSoundD8,Structurally compared,src/game/r2c_2.c,build/obj_r2c/r2c_2.obj,,regargs: obj=ESI id=stack1 c=stack2
+0x000f4370,r2c_BossSetAnim,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,imm:0x20;imm:0x25;imm:0x5;imm:0xffffffe0;jcc:l/ge;jcc:le/g;jcc:be/a,regargs: anim=ESI; range check 0x20..0x25 emitted as unsigned (anim-0x20)>5 by modern cl vs signed pair
+0x000f4610,r2c_BossDefeat,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,,
+0x000f4d90,r2c_BossMgrCreate,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,,
+0x000f4e10,r2c_BossAnimIfActive,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,calls 0x000F4370 with ESI=anim
+0x000f5d40,r2c_Vec4Copy,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,,
+0x000f5fb0,r2c_CountA6,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,,
+0x000f6030,r2c_CountState6C,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,imm:0x1b;imm:0x9;jcc:l/ge;jcc:le/g;jcc:b/ae;jcc:be/a,range checks 0x12..0x1B emitted as unsigned (v-0x12)<=9 (setbe/cmp-adc) by modern cl vs signed pairs
+0x000f69e0,r2c_BossInit,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,,
+0x000f6aa0,r2c_BossModelReset,Structurally compared,src/game/r2c_3.c,build/obj_r2c/r2c_3.obj,,
+0x000f7ae0,r2c_BossStepSpeed,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000f7c40,r2c_DistTo,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000f9430,r2c_SnapToHelper,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000f9a10,r2c_FormCue20,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fa740,r2c_StepA,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fb3e0,r2c_StepB,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fb440,r2c_StepC,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fb710,r2c_StepD,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fba90,r2c_BodyAnim,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fbca0,r2c_BodyCheckRecover,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fbea0,r2c_BodyAnim21,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fc310,r2c_BodyAnim24,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fc410,r2c_BodyAttach,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fc4e0,r2c_HelperDetach,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fd1c0,r2c_HelperStop,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fd3c0,r2c_HelperCreate,Structurally compared,src/game/r2c_4.c,build/obj_r2c/r2c_4.obj,,
+0x000fe1f0,r2c_HelperAttach,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x000fe370,r2c_MinionAnim,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x000fe5a0,r2c_MinionCheckRecover,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x000fe890,r2c_MinionAnim2,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x000ffe50,r2c_MinionAnim2D,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x000fff30,r2c_MinionAttach,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x001000b0,r2c_CtlAnim,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x001002e0,r2c_CtlCheckRecover,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x001004f0,r2c_CtlAnim2,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x001005f0,r2c_CtlAnim21,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x001008a0,r2c_CtlAnim22,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x00100990,r2c_CtlAnim23,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x00100a70,r2c_CtlAnim25,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x00100f10,r2c_CtlAnim0,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x00101040,r2c_CtlAnim29,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x00101170,r2c_CtlAttach,Structurally compared,src/game/r2c_5.c,build/obj_r2c/r2c_5.obj,,
+0x00104af0,r2c_ScrStop,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,,
+0x00105f90,r2c_ScrAttach,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,,
+0x00106020,r2c_ScrDetach,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,,
+0x00106170,r2c_Obj90Create,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,,
+0x001062c0,r2c_Obj90Attach,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,,
+0x00106550,r2c_ReleaseKids,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,,
+0x00109050,r2c_PushEffect,Structurally compared,src/game/r2c_6.c,build/obj_r2c/r2c_6.obj,jcc:b/ae,signed bound i<4 emitted as unsigned jae by modern cl after proving i>=0 (bounds check idiom)
+0x0010a750,r2c_DropTarget,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,
+0x00110050,r2c_HitFlash,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,calls 0x0010FD50 with EAX=o (tail call)
+0x00112aa0,r2c_RunHandler,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,
+0x00114a90,r2c_DescTrigger,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,
+0x001154a0,r2c_NotifyKind2,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,regargs: p=ESI (forwarded as second argument of 0x0013DF90)
+0x001183e0,r2c_AnimDoneStep,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,calls 0x00117580 with stack (o 1) and EDI=b
+0x00119970,r2c_AnimDoneStep23,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,calls 0x00117580 with stack (o step) and EDI=b
+0x0011dcf0,r2c_PartnerFree,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,
+0x0011ef60,r2c_TargetCheckPlayer,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,calls 0x0011EE30 with EAX=c ECX=ctx and self on stack
+0x0011efd0,r2c_TargetCheck,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,calls 0x0011EE30 with EAX=c ECX=ctx and self on stack
+0x0011f010,r2c_KeyMatches,Structurally compared,src/game/r2c_7.c,build/obj_r2c/r2c_7.obj,,
+0x0012b080,r2c_DescStep2F,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,calls 0x0011F2B0 with EDI=obj EBX=0x2F and z on stack
+0x0012ba10,r2c_Step2F,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,calls 0x0011F2B0 with EDI=obj EBX=0x2F and a on stack
+0x0012c7c0,r2c_AnimDoneStep1,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,calls 0x0011F2B0 with EDI=o EBX=1 and a on stack
+0x0012cee0,r2c_Step1,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,calls 0x0011F2B0 with EDI=obj EBX=1 and a on stack
+0x0012d2c0,r2c_NoFlag2000,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,calls 0x0011FAC0 with EAX=kind EDI=self
+0x0012dd40,r2c_Any0or14,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,calls 0x00135780 with EAX=kind
+0x0012e5e0,r2c_NotifyKind2B,Structurally compared,src/game/r2c_8.c,build/obj_r2c/r2c_8.obj,,regargs: p=ESI (forwarded as second argument of 0x00137F50)
