@@ -25,6 +25,7 @@ Each control plants one bug in a copy of real recovered source and must FAIL: wr
 - A pure negation (`<` vs `>=`) is invisible, because layout may invert a branch.
 - Swapping two fields that are both used elsewhere in the same function is invisible (sets, not positions).
 - Byte vs dword access width is not distinguished.
+- The number and order of arguments passed to a call are not compared (call targets are; stack slots are not), so swapped or missing arguments can pass. Recovery helpers must read each callee's entry code; behaviour tests must cover argument order.
 - A fixed slot of a known record array read directly on one side and through an index register on the other side compares as different data (array mapping applies only to indexed accesses). Such functions are left out, not waived.
 These are why Structurally compared is below Semantic-tested: behaviour tests catch them.
 

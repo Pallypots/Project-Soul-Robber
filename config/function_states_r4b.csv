@@ -1,0 +1,89 @@
+va,name,state,source,obj,waivers,notes
+0x001b0e00,r4b_SkinRefApply,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,,stack args
+0x001b1190,r4b_SkinSetTime,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,,stack args (s t)
+0x001b1360,r4b_NodeAttachParts,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,,stack args (base n)
+0x001b1440,r4b_NodeInitType9,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,data:fconst:128.0;imm:0x43000000,stack args; float constant 128.0 stored as an immediate by modern cl instead of an .rdata load
+0x001b15d0,r4b_NodeEmit,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,imm:0xffffff44,stack args; loop strength reduction: original walks a pointer to part+0xFC and rebuilds part+0x40 as pointer-0xBC
+0x001b1fc0,r4b_NodeBucketsClear,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,,no inputs
+0x001b1fe0,r4b_NodeBucketsUnlink,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,,no inputs
+0x001b24e0,r4b_NodeRunAll,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,,stack args
+0x001b25b0,r4b_NodeReset,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,data:fconst:16770000.0;imm:0x4b7fe3d0,stack args; float constant stored as an immediate by modern cl instead of an .rdata load
+0x001b26c0,r4b_NodeRebuild,Structurally compared,src/game/r4b_1.c,build/obj_r4b/r4b_1.obj,data:fconst:1.0;imm:0x3f800000,stack args; float constant stored as an immediate by modern cl instead of an .rdata load
+0x001b13f0,r4b_PartApplyBone,Structurally compared,src/game/r4b_2.c,build/obj_r4b/r4b_2.obj,,stack args
+0x001b3070,r4b_MeshSetC8,Structurally compared,src/game/r4b_2.c,build/obj_r4b/r4b_2.obj,,stack args (m v)
+0x001b31d0,r4b_MeshCopyI94,Structurally compared,src/game/r4b_2.c,build/obj_r4b/r4b_2.obj,imm:0xfffffef8,stack args; loop strength reduction: modern cl biases the item pointer by -0x108 (one record) where the original walks item+0x94 directly
+0x001b32e0,r4b_Set3,Structurally compared,src/game/r4b_2.c,build/obj_r4b/r4b_2.obj,,stack args
+0x001b3300,r4b_CmdReset,Structurally compared,src/game/r4b_2.c,build/obj_r4b/r4b_2.obj,,stack args
+0x001b3340,r4b_CmdEnd,Structurally compared,src/game/r4b_2.c,build/obj_r4b/r4b_2.obj,,stack args
+0x001b3270,r4b_MeshApplyBones,Structurally compared,src/game/r4b_3.c,build/obj_r4b/r4b_3.obj,,stack args
+0x001b6260,r4b_EmitSetSet11C,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6270,r4b_EmitSetReleaseAll,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6610,r4b_EmitSetScale4,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6670,r4b_EmitSetScale,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6820,r4b_EmitSetSetD0,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6840,r4b_EmitSetSetD8,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6860,r4b_NodeInitType16,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b69d0,r4b_EmitHolderEmit,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6a40,r4b_EmitHolderSetSet,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6a60,r4b_EmitHolderSetTime,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6b10,r4b_EmitHolderClearTime,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args
+0x001b6b40,r4b_PoolSetup,Structurally compared,src/game/r4b_4.c,build/obj_r4b/r4b_4.obj,,stack args (pool size); calls 0x001B33F0 with ECX=pool (tail call)
+0x001b67f0,r4b_EmitSetScaleBy,Structurally compared,src/game/r4b_3.c,build/obj_r4b/r4b_3.obj,,stack args
+0x001b7320,r4b_CamCombine,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args
+0x001b7520,r4b_CamInit,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args (c parent)
+0x001b7b50,r4b_CmdEmitMatrix,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args (m cmd)
+0x001b7e50,r4b_CmdEmit3,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args (cmd a b p); calls 0x001B7C30 with EAX=x ESI=cmd and stack (p k)
+0x001b8240,r4b_NodeInitType12,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,data:fconst:32.0;data:fconst:64.0;imm:0x42000000;imm:0x42800000,stack args; float constants 32.0 and 64.0 stored as immediates by modern cl instead of .rdata loads
+0x001b82e0,r4b_NodeCSetB8,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args (n v)
+0x001b8390,r4b_NodeCCopyI94,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args; the original never advances the item pointer so only the first item is written
+0x001b87f0,r4b_NodeCSetMats,Structurally compared,src/game/r4b_5.c,build/obj_r4b/r4b_5.obj,,stack args
+0x001b83d0,r4b_NodeCApplyMats,Structurally compared,src/game/r4b_3.c,build/obj_r4b/r4b_3.obj,,stack args
+0x001b8e10,r4b_MeshAttachItems,Structurally compared,src/game/r4b_6.c,build/obj_r4b/r4b_6.obj,,stack args (base m)
+0x001b8ea0,r4b_MatUpload,Structurally compared,src/game/r4b_6.c,build/obj_r4b/r4b_6.obj,,stack args (m cmd)
+0x001b8ee0,r4b_MeshUploadAll,Structurally compared,src/game/r4b_6.c,build/obj_r4b/r4b_6.obj,,stack args (r cmd)
+0x001b9650,r4b_TexEntGet,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,stack args
+0x001b96d0,r4b_TexTickTimers,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,no inputs
+0x001b9720,r4b_TexHeapInit,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,no inputs (tail call)
+0x001b9730,r4b_TexHeapApply,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,no inputs; calls 0x001BB710 with stack (word 0)
+0x001b9c90,r4b_TexTable,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,no inputs
+0x001b9ca0,r4b_TexBindCmd,Structurally compared,src/game/r4b_3.c,build/obj_r4b/r4b_3.obj,,stack args (cmd idx)
+0x001b9fc0,r4b_TexFree,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,stack args; calls 0x001B9B90 with ESI=group ECX=key
+0x001ba0b0,r4b_TexSetGroup,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,stack args
+0x001ba0d0,r4b_TexGetGroup,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,no inputs; 16-bit result in AX
+0x001ba640,r4b_TexSetParity,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,stack args
+0x001ba650,r4b_TexInit,Structurally compared,src/game/r4b_7.c,build/obj_r4b/r4b_7.obj,,stack args (t size)
+0x001ba0f0,r4b_TexBind,Structurally compared,src/game/r4b_3.c,build/obj_r4b/r4b_3.obj,,stack args (cmd idx); calls 0x001B9460 with EAX=dst ECX=hdr and 0x001B9EC0 with ESI=dst and stack (hdr w)
+0x001ba6b0,r4b_TexFreeAll,Structurally compared,src/game/r4b_3.c,build/obj_r4b/r4b_3.obj,jcc:be/a;jcc:e/ne,no inputs; unsigned zero-count test emitted as jbe by the original and je by modern cl (same condition)
+0x001ba7f0,r4b_TexWithGroup,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,,stack args
+0x001ba820,r4b_NodeInitType17,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,data:fconst:0.2;data:fconst:128.0;imm:0x3e4ccccd;imm:0x43000000,stack args; float constants 0.2 and 128.0 stored as immediates by modern cl instead of .rdata loads
+0x001ba8b0,r4b_NodePStart,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,data:fconst:1.0,stack args (n k); constant 1.0f loaded from .rdata by the original and built with fld1 by modern cl (same value)
+0x001ba8f0,r4b_NodePRewind,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,,stack args
+0x001ba910,r4b_NodePBindParts,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,imm:0xfffffc3c,stack args (n unused ids recs); loop strength reduction: modern cl biases the record pointer by -0x3C4 (one record) where the original walks rec+0x3C0 directly
+0x001bb210,r4b_Set412F40,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,,stack args
+0x001bb230,r4b_Get412F40,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,,no inputs
+0x001bb2a0,r4b_HeapInit,Structurally compared,src/game/r4b_8.c,build/obj_r4b/r4b_8.obj,,stack args (h size)
+0x001bb810,r4b_NodeInitType5,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,data:fconst:128.0;imm:0x43000000,stack args; float constant 128.0 stored as an immediate by modern cl instead of an .rdata load
+0x001bb8b0,r4b_Node5SetSource,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args (n a b unused unused src)
+0x001bb930,r4b_Node5Apply,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args (cmd n)
+0x001bba00,r4b_Node5SetE0,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args
+0x001bbba0,r4b_Node5AttachItems,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args (base n)
+0x001bbc40,r4b_Node6Emit,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args (cmd n)
+0x001bbd70,r4b_SetFactor,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args (float)
+0x001bbd80,r4b_GetFactor,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,no inputs; float result in ST0
+0x001bbd90,r4b_RenderReset,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,data:fconst:1.0;imm:0x3f800000,no inputs; float constant 1.0 stored as an immediate by modern cl instead of an .rdata load
+0x001bbdd0,r4b_Get8,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args
+0x001bc030,r4b_IsP2od,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args
+0x001bc050,r4b_BlobChunk,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args
+0x001bc060,r4b_VoiceSetFree,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,,stack args (unused s); 0x001D3AB0 and 0x001BD587 are __stdcall XDK routines
+0x001bc130,r4b_VoiceAlloc,Structurally compared,src/game/r4b_9.c,build/obj_r4b/r4b_9.obj,imm:0x7;imm:0xffffff80,stack args; round-up (n>>7)<<7 folded to n & ~0x7F by modern cl (same value); 0x002039CA 0x001BD517 0x001D6030 0x001D6210 are __stdcall XDK routines
+0x001a7dc0,r4b_MovieUpdate,Structurally compared,src/game/r4b_11.c,build/obj_r4b/r4b_11.obj,,no inputs; 0x0022E730 and 0x0022E980 are __stdcall Bink routines
+0x001a7e30,r4b_MovieDraw,Structurally compared,src/game/r4b_11.c,build/obj_r4b/r4b_11.obj,imm:0x3f800000,no inputs; float constant 1.0 pushed as an immediate by the original vs fld1 by modern cl; calls 0x001D4350 (__fastcall) with ECX=0x40304 EDX=1
+0x001a7ee0,r4b_MovieDrawMode16,Structurally compared,src/game/r4b_11.c,build/obj_r4b/r4b_11.obj,imm:0x3f800000,no inputs; float constant 1.0 pushed as an immediate by the original vs fld1 by modern cl; calls 0x001D4350 (__fastcall) with ECX=0x40304 EDX=1
+0x001a8020,r4b_MovieSetColor,Structurally compared,src/game/r4b_11.c,build/obj_r4b/r4b_11.obj,data:fconst:255.0;imm:0x437f0000,stack args; float constant 255.0 stored as an immediate by modern cl instead of an .rdata load
+0x001a80d0,r4b_MovieSetVolume,Structurally compared,src/game/r4b_11.c,build/obj_r4b/r4b_11.obj,imm:0x7,stack args; multiply by 7 via imul in the original vs lea/sub in modern cl; 0x0022E840 and 0x0022E7E0 are __stdcall Bink routines
+0x001a81c0,r4b_MakeDvdPath,Structurally compared,src/game/r4b_11.c,build/obj_r4b/r4b_11.obj,imm:0x64;imm:0x3a64;imm:0x2;imm:0x3,stack args (dst src); store merging: modern cl writes the 'd' ':' bytes as one 16-bit store (0x3A64) and indexes the rest from the base
+0x001a8330,r4b_FileClose,Structurally compared,src/game/r4b_12.c,build/obj_r4b/r4b_12.obj,imm:0x40;imm:0x3f;imm:0x2;jcc:le/g;jcc:be/a,stack args; signed 0<idx<=0x40 check emitted as unsigned idx-1<=0x3F by modern cl; stride 0x14 multiply expressed by lea/shl in the original vs imul (array+field still compared via elem); 0x001BC6FD is __stdcall CloseHandle
+0x001a83a0,r4b_FileReadThread,Structurally compared,src/game/r4b_12.c,build/obj_r4b/r4b_12.obj,,thread argument unused; 0x001BCC81 0x001BC741 0x001BD345 are __stdcall XAPI routines (ReadFile GetLastError ExitThread)
+0x001a8410,r4b_FileReadAsync,Structurally compared,src/game/r4b_12.c,build/obj_r4b/r4b_12.obj,jcc:l/ge;jcc:le/g;jcc:be/a,stack args (idx buf size); signed 0<=idx<=0x40 check emitted as unsigned idx<=0x40 by modern cl; 0x001BD49C 0x001BD23E are __stdcall CreateThread SetThreadPriority
+0x001a8490,r4b_FileSeek,Structurally compared,src/game/r4b_12.c,build/obj_r4b/r4b_12.obj,,stack args (idx off whence); 0x001BCCD2 is __stdcall GetFileSize
+0x001a8500,r4b_FileReadPoll,Structurally compared,src/game/r4b_12.c,build/obj_r4b/r4b_12.obj,imm:0x3e3;imm:0x3e5;imm:0xfffffc1c;jcc:le/g;jcc:be/a,stack args (idx n); range check 0x3E3<err<=0x3E5 emitted as unsigned err-0x3E4<=1 by modern cl; 0x001BC7AE is __stdcall GetOverlappedResult
