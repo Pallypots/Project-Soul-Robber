@@ -173,7 +173,10 @@ def events(code, base, resolve, md, fconst=None, local=None):
                                     insns[0].op_str == "ebp" and insns[1].mnemonic == "mov" and
                                     insns[1].op_str == "ebp, esp") else -1
     prev = None
+    flagsrc = None
     for i in insns:
+        if prev is not None and prev.mnemonic not in ("mov", "movzx", "movsx", "lea", "push", "pop", "movss", "movsd", "fld", "fstp", "fst"):
+            flagsrc = prev
         off = i.address - base
         m = i.mnemonic
         ops = i.operands
@@ -191,7 +194,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                     fo = i.disp_offset if i.disp_offset else None
                     a = resolve(off, fo, o.mem.disp & 0xFFFFFFFF, "abs") if fo is not None else None
                     if a is not None:
-                        data[a] += 1
+                        ak = array_key(a) if isinstance(a, int) and o.mem.index != 0 else None
+                        data[ak[0] if ak else a] += 1
                     elif o.mem.base not in (0, x86.X86_REG_ESP, frame_reg):
                         imm[("k", o.mem.disp & 0xFFFFFFFF)] += 1   # call [obj+off]: the slot offset
             prev = i; continue
@@ -206,7 +210,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                 jt += 1
             else:
                 calls.append(("tail", "indirect"))
-                data[a] += 1
+                ak = array_key(a) if isinstance(a, int) else None
+                data[ak[0] if ak else a] += 1
             prev = i; continue
         if m.startswith(("cmov", "set")) and ("j" + m[4:] if m.startswith("cmov") else "j" + m[3:]) in JCC_CLASS:
             # conditional move / set: same decision as a branch (modern cl
@@ -217,9 +222,10 @@ def events(code, base, resolve, md, fconst=None, local=None):
             jcc[c] += 1
         elif m == "sbb" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and \
                 ops[1].type == x86.X86_OP_REG and ops[0].reg == ops[1].reg and \
-                prev is not None and prev.mnemonic in ("neg", "cmp", "sub"):
-            # `neg x; sbb r,r` (or cmp/sbb) materialises a condition branch-free
-            jcc["e/ne" if prev.mnemonic == "neg" else "b/ae"] += 1
+                flagsrc is not None and flagsrc.mnemonic in ("neg", "cmp", "sub"):
+            # `neg x; sbb r,r` (or cmp/sbb) materialises a condition branch-free;
+            # moves or stores may sit between them
+            jcc["e/ne" if flagsrc.mnemonic == "neg" else "b/ae"] += 1
         elif m in JCC_CLASS:
             c = JCC_CLASS[m]
             if c == "s/ns" and prev is not None and sign_test(prev):
