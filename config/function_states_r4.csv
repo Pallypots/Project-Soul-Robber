@@ -1,0 +1,71 @@
+va,name,state,source,obj,waivers,notes
+0x00196750,r4_SlotClearAll,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,,no register inputs (or edx -1 is a constant load); clears the 18 work slots at 0x00400E50
+0x00195150,r4_SlotRelease,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,data:0x400e54;data:0x40182c;data:0x401828;jcc:b/ae,stack args; loop strength reduction: original walks a pointer to slot+4 with a signed end compare and modern cl walks the slot base with an unsigned end compare (same array same bound)
+0x001953b0,r4_SlotInitType2,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,data:fconst:0.7;data:fconst:-500.0;imm:0x3f333333;imm:0xc3fa0000,regargs: s=EDI; float constants 0.7 and -500.0 stored as immediates by modern cl instead of .rdata loads
+0x00196850,r4_SlotInitType3,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,,regargs: s=EDI
+0x001968a0,r4_SlotInitType4,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,,regargs: s=EDI
+0x00196790,r4_SlotInitType0,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,data:fconst:-9.0;data:fconst:1.0;data:fconst:2.5;imm:0x3f800000;imm:0x40200000;imm:0xc1100000;imm:0x82,regargs: s=ESI; float constants -9.0 1.0 2.5 stored as immediates by modern cl instead of .rdata loads; store merging of the two zero words at +0x80/+0x82
+0x00196a70,r4_LinkSetMatrix,Structurally compared,src/game/r4_1.c,build/obj_r4/r4_1.obj,,stack args (a m)
+0x00196900,r4_SlotAttach,Structurally compared,src/game/r4_2.c,build/obj_r4/r4_2.obj,data:0x400e54;data:0x40182c;data:0x401828;jcc:b/ae;data:fconst:1.0;imm:0x3f800000;imm:0xfffffffe;imm:0xfffffffd,stack args; calls 0x00196790 with ESI=slot and 0x001953B0 0x00196850 0x001968A0 with EDI=slot; loop strength reduction (pointer to slot+4 signed end vs slot base unsigned end); 1.0f immediate store; modern cl builds the return value 1 as type-2 / type-3 after the type tests (constant materialisation)
+0x001b1430,r4_StoreRet,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b14e0,r4_ModelSetPartValue,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1530,r4_ModelSetCC,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1540,r4_ModelSetE8,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1560,r4_ModelApplyBones,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b16e0,r4_CreateBuiltinTexture,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1710,r4_BindBuiltinTexture,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1db0,r4_FogInit,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,data:fconst:1.0;data:fconst:256.0;imm:0x3f800000;imm:0x43800000,stack args; float constants stored as immediates by modern cl instead of .rdata loads
+0x001b1e10,r4_FogEmit,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1f40,r4_Vec4Set,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b1f70,r4_MatCopyRotation,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,data:fconst:1.0;imm:0x3f800000,stack args; float constants stored as immediates by modern cl instead of .rdata loads
+0x001b2020,r4_NodeAttach,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2080,r4_NodeDetach,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b20f0,r4_SetUpperLimit,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2120,r4_SetLowerLimit,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2150,r4_Clear3,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2160,r4_HookPushA8,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2190,r4_HookRemoveA8,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b21d0,r4_HookAppendAC,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2200,r4_HookRemoveAC,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2240,r4_HookRunA8,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2490,r4_RunPasses,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args; calls 0x001B2270 with a normal stack arg
+0x001b2660,r4_MatBuildW1,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,data:fconst:1.0;imm:0x3f800000,stack args; float constants stored as immediates by modern cl instead of .rdata loads
+0x001b26a0,r4_Select40F208,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2730,r4_Distance,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2770,r4_DistanceXZ,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b29f0,r4_Clear2,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2a10,r4_Set40F324,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b2a20,r4_Set40F328,Structurally compared,src/game/r4_3.c,build/obj_r4/r4_3.obj,,stack args
+0x001b3380,r4_PoolAlloc,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,regargs: pool=ECX (no stack args); returns the item in EAX
+0x001b33c0,r4_PoolFree,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,regargs: it=ECX (no stack args)
+0x001b33f0,r4_PoolInit,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,regargs: pool=ECX (no stack args)
+0x001b60c0,r4_EmitSetReset,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,imm:0xcc;imm:0xffffffa0,stack arg (mov edi edi filler is not a register read); loop strength reduction: modern cl biases the item pointer by +0xCC and indexes the count field at -0x60
+0x001b9b90,r4_TexFindByKey,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,regargs: group=ESI (low 16 bits) key=ECX; result index in EAX (division by the 0x58 record size)
+0x001b9bf0,r4_TexFindByName,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,imm:0x61;imm:0x7a;imm:0xe0;imm:0x19;imm:0xffffff9f;imm:0xffffffe0;jcc:le/g;jcc:be/a,stack args (group name); unsigned bounds check: the 'a'..'z' test is folded to (c-0x61)<=0x19 and -0x20 is encoded as a dword by modern cl
+0x001bb000,r4_HeapClearUsed,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,imm:0x8;imm:0xfffffff8,no inputs; loop strength reduction (pointer biased by the +8 field)
+0x001bb030,r4_HeapRunCost,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,regargs: b=EDX size=ECX (low 16 bits) code=EBX (BL); result in EAX
+0x001bb0b0,r4_HeapKindCode,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,regargs: kind=EAX (low 16 bits); result in AL
+0x001bb120,r4_HeapFindBlock,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,jcc:le/g,regargs: addr=EDX (low 16 bits); result in EAX; signed vs unsigned compare of two zero-extended 16-bit sums (modern cl uses ja for the original jg)
+0x001bb160,r4_HeapMerge,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,no inputs
+0x001bb1d0,r4_Set412F4C,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack args
+0x001bb1f0,r4_Set412F58,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack args
+0x001bb650,r4_Heap2Word0C,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,no inputs; result in AX
+0x001bb660,r4_Heap2Reset,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,imm:0xfffffff4,no inputs; loop strength reduction (pointer biased by the +0x10 field so the +4 byte is reached at -0xC)
+0x001bb6a0,r4_Heap2Merge,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,no inputs (mov edi edi filler is not a register read)
+0x001bb3e0,r4_HeapFindFit,Structurally compared,src/game/r4_6.c,build/obj_r4/r4_6.obj,,regargs: code=EAX (AL) first=ECX size=stack; calls 0x001BB030 with EDX=block ECX=size EBX=code; result in AX
+0x001bb5c0,r4_HeapAlloc,Structurally compared,src/game/r4_5.c,build/obj_r4/r4_5.obj,,stack args (size kind); calls 0x001BB0B0 with EAX=kind; 0x001BB3E0 with EAX=code ECX=first block and size on the stack; 0x001BB440 with EAX=size EDX=addr and (code 0) on the stack
+0x001bb620,r4_HeapClaim,Structurally compared,src/game/r4_5.c,build/obj_r4/r4_5.obj,,stack args (addr size kind); calls 0x001BB0B0 with EAX=kind and 0x001BB440 with EAX=size EDX=addr and (code 1) on the stack
+0x001bb6e0,r4_Heap2Init,Structurally compared,src/game/r4_5.c,build/obj_r4/r4_5.obj,imm:0x5,no inputs; store merging of the +4/+5 byte stores
+0x001ba7c0,r4_TexFindNamed,Structurally compared,src/game/r4_5.c,build/obj_r4/r4_5.obj,,stack arg; calls 0x001B9BF0 with normal stack args
+0x001a1ce0,r4_DevicesInit,Structurally compared,src/game/r4_7.c,build/obj_r4/r4_7.obj,,no register inputs (or eax -1 is a constant load); calls XDK 0x001D1B80 (stdcall two args) per slot
+0x001ad340,r4_ThreadSetState,Structurally compared,src/game/r4_7.c,build/obj_r4/r4_7.obj,,regargs: id=EAX state=stack; result in EAX
+0x001aee50,r4_SkinBoneMask,Structurally compared,src/game/r4_7.c,build/obj_r4/r4_7.obj,,stack arg (mov edi edi filler is not a register read)
+0x001aef60,r4_SkinReset,Structurally compared,src/game/r4_7.c,build/obj_r4/r4_7.obj,imm:0xfffffffc;imm:0xfffffecc;imm:0xfffffed0,regargs: s=EAX; loop strength reduction: original stores through a pointer biased by +0xD0 and advances it after the stores while modern cl advances it before the stores
+0x001ad540,r4_ThreadExit,Structurally compared,src/game/r4_8.c,build/obj_r4/r4_8.obj,,no inputs; calls 0x001AD340 with EAX=current thread id (XDK 0x001BD50A) and state 1 on the stack; XDK 0x001BD345 does not return
+0x001b6060,r4_EmitSetFlags180,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
+0x001b6070,r4_EmitSetFlag100,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
+0x001b6090,r4_EmitStart,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
+0x001b6120,r4_EmitClearFlag1,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
+0x001b6130,r4_EmitSetFlag8,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
+0x001b6140,r4_EmitIsDone,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,jcc:be/a,stack arg; unsigned loop end: the zero-count test on the unsigned count is jbe in the original and je in modern cl
+0x001b6190,r4_EmitIsFree,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
