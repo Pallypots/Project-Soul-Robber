@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="250" viewBox="0 0 760 250" font-family="Segoe UI,Helvetica,Arial,sans-serif">
 <rect width="760" height="250" rx="8" fill="#0d1117" stroke="#30363d"/>
 <text x="20" y="30" font-size="17" font-weight="600" fill="#e6edf3">Project Soul Robber: game code decompiled</text>
-<text x="20" y="60" font-size="12" fill="#8b949e">By code size: 328,792 of 1,660,873 bytes have recovered source (19.796%)</text>
+<text x="20" y="60" font-size="12" fill="#8b949e">By code size: 344,493 of 1,660,873 bytes have recovered source (20.742%)</text>
 <rect x="20" y="66" width="720" height="22" rx="4" fill="#30363d"/>
-<rect x="20.0" y="66" width="142.5" height="22" fill="#bf8700"><title>Structurally compared: 328792</title></rect>
-<text x="20" y="112" font-size="12" fill="#8b949e">By function: 4,287 of 7,540 functions (56.86%)</text>
+<rect x="20.0" y="66" width="149.3" height="22" fill="#bf8700"><title>Structurally compared: 344493</title></rect>
+<text x="20" y="112" font-size="12" fill="#8b949e">By function: 4,323 of 7,540 functions (57.33%)</text>
 <rect x="20" y="118" width="720" height="22" rx="4" fill="#30363d"/>
-<rect x="20.0" y="118" width="409.4" height="22" fill="#bf8700"><title>Structurally compared: 4287</title></rect>
+<rect x="20.0" y="118" width="412.8" height="22" fill="#bf8700"><title>Structurally compared: 4323</title></rect>
 <rect x="20" y="166" width="12" height="12" rx="2" fill="#1a7f37"/>
 <text x="37" y="176.5" font-size="11.5" fill="#e6edf3">Exact linked match (0)</text>
 <rect x="202" y="166" width="12" height="12" rx="2" fill="#2da44e"/>
@@ -16,12 +16,12 @@
 <rect x="566" y="166" width="12" height="12" rx="2" fill="#54aeff"/>
 <text x="583" y="176.5" font-size="11.5" fill="#e6edf3">Semantic-tested (0)</text>
 <rect x="20" y="188" width="12" height="12" rx="2" fill="#bf8700"/>
-<text x="37" y="198.5" font-size="11.5" fill="#e6edf3">Structurally compared (4287)</text>
+<text x="37" y="198.5" font-size="11.5" fill="#e6edf3">Structurally compared (4323)</text>
 <rect x="202" y="188" width="12" height="12" rx="2" fill="#d4a72c"/>
 <text x="219" y="198.5" font-size="11.5" fill="#e6edf3">Draft source (0)</text>
 <rect x="384" y="188" width="12" height="12" rx="2" fill="#8250df"/>
 <text x="401" y="198.5" font-size="11.5" fill="#e6edf3">Analyzed (0)</text>
 <rect x="566" y="188" width="12" height="12" rx="2" fill="#30363d"/>
-<text x="583" y="198.5" font-size="11.5" fill="#e6edf3">Unanalyzed (3253)</text>
+<text x="583" y="198.5" font-size="11.5" fill="#e6edf3">Unanalyzed (3217)</text>
 <text x="20" y="236" font-size="10.5" fill="#8b949e">Library code (2,762 functions, 484,722 bytes: XDK, Bink) is not counted. Byte matching is blocked; see docs/toolchain.md.</text>
 </svg>
