@@ -113,7 +113,7 @@ int      PlayerObj_IsIdle(PlayerObj *p);                                /* 0x000
 void     PlayerObj_SetFlags(PlayerObj *p, uint32_t lo, uint32_t hi);    /* 0x000CF3C0 */
 void     PlayerObj_ClearFlags(PlayerObj *p, uint32_t lo, uint32_t hi);  /* 0x000CF3F0 */
 uint32_t PlayerObj_TestFlags(PlayerObj *p, uint32_t mask, int high);    /* 0x000CF420 */
-int      PlayerObj_ForwardFD8(PlayerObj *p);                            /* 0x000CF450 */
+void     PlayerObj_ForwardFD8(PlayerObj *p, const void *src);                            /* 0x000CF450 */
 int      PlayerObj_Call1ADAF0(int a, int b);                            /* 0x000CF470 */
 void     PlayerObj_ClearFlags22(PlayerObj *p);                          /* 0x000CF4E0 */
 int      PlayerObj_TimerDone(PlayerObj *p);                             /* 0x000CF070 */
@@ -121,7 +121,7 @@ float    PlayerObj_AngleDelta(PlayerObj *p);                            /* 0x000
 void     Player_Refresh(void);                                          /* 0x000CF0D0 */
 void     PlayerObj_SetAnim(PlayerObj *p, int anim);                     /* 0x000CF490 */
 int      PlayerObj_GetState(PlayerObj *p);                              /* 0x000CF4F0 */
-int      PlayerObj_D0030(PlayerObj *p);                                 /* 0x000D0030 */
+int      PlayerObj_D0030(PlayerObj *p, int b);                                 /* 0x000D0030 */
 void    *PlayerObj_D0060(PlayerObj *p, int a, int b);                   /* 0x000D0060 */
 int      Player_D00A0(int a, int b);                                    /* 0x000D00A0 */
 void     Player_D0450(void);                                            /* 0x000D0450 */
@@ -181,7 +181,7 @@ void Frame_Present(void);                   /* 0x001A7BA0 */
 void sub_00024D30(int a, int b);            /* cdecl, 2 args; called with (2, -souls) */
 void sub_00025FD0(int a, int b);            /* cdecl, 2 args; called with (1, 0x78) */
 void sub_001A7940(void);
-int  sub_000F5D40(void *a);                 /* tail-called with (obj->unkFD8 + 0x60) */
+void sub_000F5D40(void *dst, const void *src); /* 16-byte vector copy (dst, src) */
 int  sub_001ADAF0(int a, int b, int c);     /* cdecl, 3 args; called as (a, a, b) */
 int  sub_00171CD0(PlayerStats *s);          /* stat 0x17 maximum = result * 10 */
 void sub_00023D80(int a, int b);            /* cdecl; called with (3, damage) */
@@ -198,7 +198,7 @@ int  sub_001A0CC0(void);
 int  sub_000479F0(void);
 void  sub_000832D0(void *o, int anim);
 float sub_00171CF0(void);
-int   sub_00036750(void *o);
+int   sub_00036750(void *o, int b);
 void *sub_00035D80(void *o, int a, int b);
 void  sub_00034E00(void *o, int a, char *s1, char *s2);
 void  sub_00033A40(int a);

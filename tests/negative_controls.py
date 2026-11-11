@@ -20,7 +20,7 @@ CASES = [
     ("wrong-calling-convention", "system.c", "Frame_Present", 0x1A7BA0, "    sub_001A7940();", "    sub_001A7940(); sub_00025FD0(1, 2);", "FAIL"),
     ("missing-function", "system.c", "Job_IsRunning", 0x57E90, "JobFunc Job_IsRunning(void)\n{\n    return g_job.func;\n}", "", "FAIL"),
     ("wrong-array-field", "grade.c", "Grade_CommitChapter", 0x40C10, "rec->grade = 4", "rec->rank[3] = 4", "FAIL"),
-    ("wrong-tail-call-target", "player_obj.c", "PlayerObj_ForwardFD8", 0xCF450, "return sub_000F5D40(p->unkFD8 + 0x60);", "return sub_00171CD0((PlayerStats *)(p->unkFD8 + 0x60));", "FAIL"),
+    ("wrong-tail-call-target", "player_obj.c", "PlayerObj_ForwardFD8", 0xCF450, "sub_000F5D40(p->unkFD8 + 0x60, src);", "sub_00171CD0((PlayerStats *)(p->unkFD8 + 0x60));", "FAIL"),
     ("wrong-struct-offset", "player_obj.c", "PlayerObj_ClearFlags22", 0xCF4E0, "p->flags[0] &= ~0x22u;", "p->flags[1] &= ~0x22u;", "FAIL"),
     # documented blind spots
     ("LIMIT pure negation (< vs >=)", "grade.c", "Grade_AddBestCombo", 0x41480, "bestCombo < combo", "bestCombo >= combo", "PASS"),

@@ -49,11 +49,11 @@ uint32_t PlayerObj_TestFlags(PlayerObj *p, uint32_t mask, int high)
     return p->flags[1] & mask;
 }
 
-/* 0x000CF450: forwards to 0x000F5D40 with the sub-object at +0xFD8, +0x60
- * (a tail call in the original; any further arguments pass through). */
-int PlayerObj_ForwardFD8(PlayerObj *p)
+/* 0x000CF450: copies the 16-byte vector `src` into the sub-object at +0xFD8, +0x60
+ * (a tail call to the vector copy 0x000F5D40 in the original). */
+void PlayerObj_ForwardFD8(PlayerObj *p, const void *src)
 {
-    return sub_000F5D40(p->unkFD8 + 0x60);
+    sub_000F5D40(p->unkFD8 + 0x60, src);
 }
 
 /* 0x000CF470 */
@@ -154,11 +154,11 @@ int PlayerObj_GetState(PlayerObj *p)
 }
 
 /* 0x000D0030 */
-int PlayerObj_D0030(PlayerObj *p)
+int PlayerObj_D0030(PlayerObj *p, int b)
 {
     uint8_t *o = p->unkFD8;
     if (o != NULL && *(int32_t *)(o + 0x20) != 0)
-        return sub_00036750(o);
+        return sub_00036750(o, b);
     return 0;
 }
 
