@@ -1,0 +1,101 @@
+va,name,state,source,obj,waivers,notes
+0x0013fcd0,r3c_FacePlayer13FCD0,Structurally compared,src/game/r3c_1.c,build/obj_r3c/r3c_1.obj,,Stack-argument
+0x00145a50,r3c_Blend145A50,Structurally compared,src/game/r3c_1.c,build/obj_r3c/r3c_1.obj,,Stack-argument
+0x00155940,r3c_Target155940,Structurally compared,src/game/r3c_1.c,build/obj_r3c/r3c_1.obj,,regargs: sel=EAX obj=ECX given=stack
+0x00156040,r3c_OutOfReach156040,Structurally compared,src/game/r3c_1.c,build/obj_r3c/r3c_1.obj,,regargs: o=ESI
+0x00169d30,r3c_InFront169D30,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,regargs: o=EDI
+0x00170c10,r3c_OutOfReach170C10,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,regargs: o=EDI
+0x00170f10,r3c_Land170F10,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,data:fconst:-1.0;imm:0xbf800000,PASS* constant -1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00171aa0,r3c_ParamI171AA0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00171af0,r3c_ParamF171AF0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00171b40,r3c_ParamF171B40,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00171b90,r3c_ParamF171B90,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00171be0,r3c_ParamF171BE0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00171cf0,r3c_RandParam171CF0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,data:fconst:0.5;data:fconst:1.0;data:fconst:1.5;imm:0x3f000000;imm:0x3f800000;imm:0x3fc00000,PASS* constants 0.5/1.0/1.5 of the local scale table stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00171eb0,r3c_TableVal171EB0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00172340,r3c_End172340,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x001723a0,r3c_Run1723A0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x001740a0,r3c_Enter1740A0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,imm:0x3f800000,calls 0x001730A0 with EAX=a EBX=b and 1.0f on the stack; PASS* float constant 1.0 pushed as an immediate by the original vs fld1 by modern cl
+0x00174410,r3c_Take174410,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00174cd0,r3c_ReleaseIds174CD0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00175db0,r3c_Jump175DB0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00176ec0,r3c_Jump176EC0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00177fc0,r3c_Jump177FC0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00178010,r3c_Jump178010,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00178470,r3c_Release178470,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00178c50,r3c_Step178C50,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x001790f0,r3c_Effects1790F0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x00179d70,r3c_Touch179D70,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017b060,r3c_Spawn17B060,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017b0b0,r3c_Spawn17B0B0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017b100,r3c_Restart17B100,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017b160,r3c_Spawn17B160,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,data:fconst:2.0;imm:0x40000000,PASS* constant 2.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0017b2d0,r3c_Turn17B2D0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,data:fconst:60.0;imm:0x42700000,PASS* float argument 60.0 pushed as an immediate by the original vs loaded from .rdata by modern cl (same value)
+0x0017c0e0,r3c_Phase17C0E0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017c4f0,r3c_Release17C4F0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017cb10,r3c_Reset17CB10,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017d920,r3c_Tick17D920,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017e690,r3c_Report17E690,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x0017e8c0,r3c_Ensure17E8C0,Structurally compared,src/game/r3c_2.c,build/obj_r3c/r3c_2.obj,,Stack-argument
+0x001811a0,r3c_Start1811A0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00181610,r3c_Start181610,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00181730,r3c_Start181730,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001827a0,r3c_Reset1827A0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00182890,r3c_Sink182890,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,imm:0xc2700000,PASS* clamp value -60.0f stored as an immediate by modern cl; the original reuses the same .rdata constant it compared against (same value)
+0x001828f0,r3c_Rise1828F0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,imm:0xc2200000,PASS* clamp value -40.0f stored as an immediate by modern cl; the original reuses the same .rdata constant it compared against (same value)
+0x00182fe0,r3c_Clear182FE0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001831d0,r3c_Spin1831D0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183320,r3c_Wake183320,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183360,r3c_Detach183360,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183620,r3c_Reset183620,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,data:fconst:1.0;imm:0x3f800000,PASS* constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00183b40,r3c_Both183B40,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183b70,r3c_Both183B70,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183ba0,r3c_Both183BA0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183bd0,r3c_Both183BD0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00183fc0,r3c_Step183FC0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00184260,r3c_Ortho184260,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001842b0,r3c_Wait1842B0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00184490,r3c_Timeout184490,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001844d0,r3c_Done1844D0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001848a0,r3c_Reset1848A0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,data:fconst:45.0;imm:0x42340000,PASS* constant 45.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00185130,r3c_Clear185130,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00185500,r3c_SetTarget185500,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00185dc0,r3c_Apply185DC0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001861c0,r3c_InRange1861C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001863b0,r3c_Flag1863B0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00186430,r3c_StateOk186430,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x001867c0,r3c_Reset1867C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,data:fconst:1.0;imm:0x3f800000,PASS* constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00188ca0,r3c_Detach188CA0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00188f30,r3c_Count188F30,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,data:fconst:1.0,PASS* constant 1.0 built with fld1 by modern cl for the increment instead of a second load from .rdata (same value)
+0x00188f90,r3c_Reset188F90,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189510,r3c_Release189510,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189560,r3c_Reset189560,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189a00,r3c_Create189A00,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189a30,r3c_Destroy189A30,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189cf0,r3c_TryEnd189CF0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189da0,r3c_SetMode189DA0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189de0,r3c_Enable189DE0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189e50,r3c_Run189E50,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x00189e90,r3c_Call189E90,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018a2d0,r3c_Drop18A2D0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018ab00,r3c_Reset18AB00,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,data:fconst:1.0;imm:0x3f800000,PASS* constant 1.0f stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0018b660,r3c_Aim18B660,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018c400,r3c_Alloc18C400,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018d150,r3c_Grow18D150,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018d230,r3c_Follow18D230,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018d3c0,r3c_Alloc18D3C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018dd70,r3c_Update18DD70,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018de10,r3c_Grow18DE10,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018dea0,r3c_Update18DEA0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e640,r3c_Release18E640,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e680,r3c_IsKind18E680,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e6c0,r3c_Scale18E6C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e7c0,r3c_Clear18E7C0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e850,r3c_Hide18E850,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e8b0,r3c_Start18E8B0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e980,r3c_Start18E980,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018e9d0,r3c_Hide18E9D0,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018ea30,r3c_Show18EA30,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018f650,r3c_Mode18F650,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018f690,r3c_Release18F690,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
+0x0018f760,r3c_Update18F760,Structurally compared,src/game/r3c_3.c,build/obj_r3c/r3c_3.obj,,Stack-argument
