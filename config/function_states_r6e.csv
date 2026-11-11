@@ -1,0 +1,87 @@
+va,name,state,source,obj,waivers,notes
+0x0006c720,r6e_SetView3,Structurally compared,src/game/r6e_4.c,build/obj_r6e/r6e_4.obj,data:fconst:110.0;imm:0x42dc0000,store three values and the default scale 110.0; 110.0f stored as an immediate by modern cl instead of a load from .rdata
+0x0008b700,r6e_TaskCopyWork,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,copy the work block of src into dst (size from the kind table) and take a reference on its object
+0x0008b780,r6e_ChainAppendB,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,append b after a (or start with b) and finish the chain with 0x0008B560
+0x0008b980,r6e_TaskCreate,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,create a task node (heap 4; 0x20 bytes) and initialise it; NULL on failure
+0x0008bc30,r6e_TaskCamInstall,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,task handler: drop camera slot 0 and install the object of x
+0x0008bf70,r6e_TaskFreeList,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,free a list of task nodes that have no references; children first
+0x0008c1f0,r6e_TaskSendAll,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,send an event to a list of task nodes until one handles it; clears the active bit of each node passed
+0x0008c240,r6e_TaskSendHeap,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,send an event to the nodes of one heap until one handles it
+0x0008c290,r6e_TaskSameTarget,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,do two task nodes refer to the same thing (same type and work block; and for type 5 the same byte +0x25)?; regargs: a=ESI b=EDX
+0x0008c900,r6e_ChainAppendC,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,append b after a (or start with b) and finish the chain with 0x0008C5F0
+0x0008cb90,r6e_TaskFreeTree,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,free a task tree: children and siblings first; then the node
+0x0008cbe0,r6e_RootAppend,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,append a node to the end of a root list (or make it the root)
+0x0008ccf0,r6e_RootCreate,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,create the 0x1C-byte root block in heap 3 and store v in it; -2 on failure
+0x0008cdc0,r6e_ProcStopStage,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,process step: stop the stream; free the stage object and switch the texture group; marks the process stopped
+0x0008d100,r6e_ProcWaitMode5,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,process step: when the game mode is 5 clear flag 0x200 of the reference; stamp it with the frame units and go to state 6
+0x0008d170,r6e_ProcWaitFlag2,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,process step: wait for the reference; then when its flag 2 is set stop the stream and go to state 5
+0x0008d1f0,r6e_ProcEnter,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,run the enter handler of a process state; on nonzero go to state 1
+0x0008d220,r6e_ProcRunToStop,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,run a process until it stops; restarting it in state 1 whenever a step reports completion
+0x0008d250,r6e_ProcFinish,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,run a process until done; then store v and go to state 2
+0x0008d340,r6e_ProcGet,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,the single process record; created on first use
+0x0008d3d0,r6e_ProcRunFree,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,restart a process; run it until it stops and free it
+0x0008d420,r6e_TaskShock,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,task handler: unless flag 0x200 is set; play the shock of the work block
+0x0008d4a0,r6e_TaskBind,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,task handler: mark the work block started and bind the source object
+0x0008d620,r6e_TaskStream,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,task handler: unless flag 0x200 is set; start the stream of the work block; -1 when there is none or it fails
+0x0008d670,r6e_TaskReleaseHeld,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,release what a task holds (flag 1: object at +0x24; flag 2: list at +0x28)
+0x0008d7f0,r6e_TaskLookup,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,look up a key and pass the result to 0x0008D780; -2 when not found
+0x0008d8a0,r6e_TaskCopyData,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,copy the data part (+0x18 onwards) of one task into another
+0x0008db70,r6e_TaskReleaseCam,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,task handler: release the camera animation of an idle task
+0x0008dbb0,r6e_TaskArgWord,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,imm:0xfffffffb,argument parser: one word into +0x24; returns 4 or -1; 4/-1 select: original setge;dec;and -5;add 4 vs modern cmov
+0x0008dbf0,r6e_TaskCopyDC,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,copy 0xDC bytes of task data from src to dst and add a reference to the camera animation of src
+0x0008dd80,r6e_ArrGrow,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,grow an array to hold n records (never shrinks below its count)
+0x0008dde0,r6e_ArrPush,Structurally compared,src/game/r6e_1.c,build/obj_r6e/r6e_1.obj,,append one record to an array; doubling its capacity when full
+0x0008e0b0,r6e_TaskStopTree,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler: drop the resource and; for a running task; its tree
+0x0008e150,r6e_TaskCopy110,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,copy 0x110 bytes of task data and add references to what src holds
+0x0008e200,r6e_TaskDropRes,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,imm:0x3f800000,drop the resource of a task and reset its animation speed to 1; the 1.0f argument is built with fld1 by modern cl instead of pushed as an immediate
+0x0008e340,r6e_TaskRunItems,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,run 0x0008E240 for n items between two resource locks of channel ch ;; regargs: ch=EDI n=EBX;; calls 0x0008E240 with ECX=i EDX=b
+0x0008e380,r6e_TaskStopTree2,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler: drop the resource and; for a running task; its tree; returns 0
+0x0008e6a0,r6e_TaskSyncRef,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,when the current reference value changed; store it and refresh the task
+0x0008e7e0,r6e_TaskEvDetach,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler for event bit 0x1000: detach the current reference
+0x0008e820,r6e_TaskReleaseMat,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler: release the material of an idle task when it is still the one installed on ref
+0x0008e880,r6e_TaskArgWordEven,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,imm:0xfffffff9;imm:0xfffffffd,argument parser: one word with bit 0 cleared into +0x24; returns 4 or -3; 4/-3 select: original setge;dec;and -7;add 4 vs modern cmov with the literal -3
+0x0008ea90,r6e_TaskFreeFx,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,free the block at +0x3C and the effect list at +0x28
+0x0008eac0,r6e_TaskFxToggle,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,start (flag 1) or stop the effect list of a task; tracking it in flag 2
+0x0008ec10,r6e_TaskArgWord2,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,imm:0xfffffffb,argument parser: one word into +0x24; returns 4 or -1; 4/-1 select: original setge;dec;and -5;add 4 vs modern cmov
+0x0008ec40,r6e_TaskMoveFx,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,copy 0x28 bytes of task data; then clear and release the effect list of src
+0x0008ec90,r6e_GetDesc270340,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task descriptor getter
+0x0008ed10,r6e_TaskIdleClear24,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,reset a task to idle and clear +0x24; returns 0
+0x0008ed30,r6e_TaskReleaseHold,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,imm:0xfffd,"task handler: release the held block of an idle task; 16-bit flag word: original clears bit 1 with and word ptr,ax (ax=0xfffd from the -3 already in eax) vs modern immediate 0xfffd"
+0x0008eea0,r6e_GetDesc270380,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task descriptor getter
+0x0008eeb0,r6e_GetDesc2703A4,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task descriptor getter
+0x0008eec0,r6e_TaskEvCam1,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler for event bit 0x800: install the object as camera 1
+0x0008ef20,r6e_TaskCam1Release,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler: remove an idle task's object from camera 1 and free it when owned
+0x0008ef80,r6e_TaskArgWordAlign4,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,argument parser: one word with bits 0-1 cleared into +0x24; returns 4 or -1
+0x0008f110,r6e_TaskResetTarget,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,data:fconst:-1.0;imm:0xbf800000,reset a task to idle with no target and both scales at -1; -1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x0008f140,r6e_TaskMenuLine,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,data:fconst:-1.0;data:fconst:20.0;imm:0x41a00000;imm:0xbf800000,show the menu line of a task (or close it when it has none); float arguments 20.0 and -1.0 pushed from .rdata by modern cl instead of as immediates
+0x0008f1d0,r6e_TaskCopy20,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,copy 0x20 bytes of task data from src to dst and clear src +0x28
+0x0008f5e0,r6e_TaskPass,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler: for an idle or waiting task pass a to 0x0008F350
+0x0008f620,r6e_TaskReroot,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,task handler: replace the node at +0x28 by its root and release the node made from a (idle or waiting tasks only)
+0x0008f6b0,r6e_TaskActivateChecked,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,imm:0xfffffff3;imm:0xfff3,activate an idle task in its heap (task checked); 16-bit flag word: original masks the zero-extended word with -13 vs modern 16-bit immediate 0xfff3
+0x0008f750,r6e_TaskActivate,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,imm:0xfffffff3;imm:0xfff3,activate an idle task in its heap; 16-bit flag word: original masks the zero-extended word with -13 vs modern 16-bit immediate 0xfff3
+0x0008f970,r6e_ListFindIf,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,advance *it until the predicate accepts a node or it reaches *end; returns the node
+0x0008fc50,r6e_PredMatch,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,predicate: does the node's table entry carry keys a and b?
+0x0008fdc0,r6e_ListFindKeys,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,find the first node of a list whose table entry carries keys a and b
+0x0008ff30,r6e_HolderCopySlots,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,copy the ten 0x48-byte slots of src into the holder's block
+0x00090420,r6e_RampSet,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,set a ramp from (x0; y0) to (x1; y1); both y clamped to 0..1
+0x00090480,r6e_RampEval,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,evaluate a ramp at x (held flat outside x0..x1)
+0x000904c0,r6e_ResRelease,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,drop a reference to a resource and free it at zero
+0x00090560,r6e_Dispatch,Structurally compared,src/game/r6e_2.c,build/obj_r6e/r6e_2.obj,,run the handler selected by +0x3C (none for -1)
+0x00092450,r6e_ActorStartShow,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,actor state step: start when 0x000A4180 allows it (state 10); then in state 10 reset it and show its model
+0x00092700,r6e_ActorReset10,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,actor step: in state 0; when 0x000A33E0 allows it; reset the actor and clear flag 0x10
+0x00092e60,r6e_ActorStartFlag80,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,actor state step: start when allowed (state 10); then in state 10 reset it and set flag 0x80
+0x00098430,r6e_ActorCountFree,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,number of actors 0x10..0x14 without flag 0x800
+0x0009f010,r6e_ActorShowOnce,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,actor step: show the model once (state 0 -> 1)
+0x0009f6d0,r6e_ActorSend,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,send an event to an actor through its handler table; 0 when it has none
+0x000a1020,r6e_Stage45Broadcast,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,in chapter 4 stage 5 broadcast every kind-2 object found
+0x000a2360,r6e_ActorUnlink,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,clear the link slot that holds v
+0x000a25a0,r6e_ActorSnap,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,move an actor and its second vector to the attachment point it reports
+0x000a25f0,r6e_ActorDragLinks,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,move every linked actor that is not pinned (flag 8) by the actor's offset
+0x000a2830,r6e_PlayerPin,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,set and clear the player stat flags for this scene and pin the player
+0x000a2f50,r6e_ActorFace,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,data:fconst:1.0;imm:0x3f800000,direction from actor i's model to another actor's position; passed to 0x00082D70; 1.0f stored as an immediate by modern cl instead of a load from .rdata
+0x000a4740,r6e_ActorShow,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,hide (on == 0) or show an actor's model; clears flag 0x40000000
+0x000a7950,r6e_RecRelease,Structurally compared,src/game/r6e_3.c,build/obj_r6e/r6e_3.obj,,release record i (model; handle) and reset it
+0x000cc4d0,r6e_PlayerBlend,Structurally compared,src/game/r6e_4.c,build/obj_r6e/r6e_4.obj,,pick the two blend widths from +0x18C ;; regargs: p=EAX
+0x000cd600,r6e_PlayerQueueAction,Structurally compared,src/game/r6e_4.c,build/obj_r6e/r6e_4.obj,,when nothing blocks it and an enabled button is held; queue the player's action ;; calls 0x000CD300 with EAX=p
+0x000cd930,r6e_PlayerStartAction,Structurally compared,src/game/r6e_4.c,build/obj_r6e/r6e_4.obj,,start the player action for a held button once ;; regargs: p=ESI mask=ECX;; calls 0x000CD300 with EAX=p
+0x000cffb0,r6e_PlayerCanAct,Structurally compared,src/game/r6e_4.c,build/obj_r6e/r6e_4.obj,,whether the player may act: -1 blocked; 2 with flag bit 0; else 1
