@@ -4,3 +4,4 @@ va,size,reason
 0x00155940,0x60,ends with its 5-entry jump table; inventory size 186 includes the next function 0x1559A0
 0x001AD520,0x15,ends at int3 padding; 0x1AD540 is a separate function
 0x00129180,0x51,branches into 0x1291A4 and ends at the ret at 0x1291D0; 0x1291A4 is its tail
+0x000791A0,0xAE,code ends at 0x7924E; its jump table follows at 0x79250 and 0x79270 is a separate function
