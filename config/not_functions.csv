@@ -191,3 +191,4 @@ va,reason
 0x00118FCE,tail fragment of a larger function reported by recovery (not 16-aligned)
 0x001291A4,tail of 0x129180 (branch target inside it)
 0x0008E10C,interior fragment of 0x8E100 reported by recovery (not 16-aligned)
+0x0016F800,interior entry of 0x16F7F0 (starts with dec ecx; je; ret), reviewed

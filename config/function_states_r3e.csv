@@ -1,0 +1,51 @@
+va,name,state,source,obj,waivers,notes
+0x00130030,r3e_Reset130030,Structurally compared,src/game/r3e_1.c,build/obj_r3e/r3e_1.obj,data:fconst:1.0;imm:0x3f800000;data:fconst:0.1;imm:0x3dcccccd,constants 1.0 and 0.1 stored as immediates by modern cl instead of loads from .rdata (same values)
+0x001303A0,r3e_Enter1303A0,Structurally compared,src/game/r3e_1.c,build/obj_r3e/r3e_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00130B60,r3e_Upright130B60,Structurally compared,src/game/r3e_1.c,build/obj_r3e/r3e_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00130C40,r3e_Face130C40,Structurally compared,src/game/r3e_1.c,build/obj_r3e/r3e_1.obj,data:fconst:1.0;imm:0x3f800000;data:fconst:0.08333334;imm:0x3daaaaab;data:fconst:-1.0;imm:0xbf800000,constants 1.0 and 1/12 stored as immediates by modern cl instead of loads from .rdata; float argument -1.0f pushed as an immediate by the original but loaded from .rdata by modern cl (same values)
+0x001310F0,r3e_Grab1310F0,Structurally compared,src/game/r3e_1.c,build/obj_r3e/r3e_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value); calls 0x0012E5E0 with ESI=1
+0x001311E0,r3e_Steer1311E0,Structurally compared,src/game/r3e_1.c,build/obj_r3e/r3e_1.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x00132250,r3e_Roll132250,Structurally compared,src/game/r3e_2.c,build/obj_r3e/r3e_2.obj,imm:0xffffffa2,modern cl materializes state 6 as lea eax [ecx-0x5E] from the divisor 100 left in ecx (constant selection idiom; same value); regargs: obj=EBX act=EDI; calls 0x0012DC90 with EAX=table EBX=obj EDI=act and 0x00131310 with EBX=obj EDI=act (state on the stack)
+0x00138740,r3e_Anim138740,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,imm:0x3e;imm:0x1f;imm:0xffffffde;jcc:l/ge,0x3E/0x60 select on the sign of the work flag word: original branch vs modern cl sar 31 + and -0x22 + add 0x60 without a branch
+0x001387C0,r3e_Anim1387C0,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,imm:0x1000000;imm:0x41;imm:0x7;jcc:e/ne,0/1 select on work flag 0x01000000: original branch pushing 0x40 or 0x41 vs modern cl not+and+or without a branch
+0x0013AAD0,r3e_Compact13AAD0,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,,
+0x0013BCE0,r3e_State13BCE0,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,,
+0x0013EC10,r3e_Anim13EC10,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,imm:0x1000000;imm:0x41;imm:0x7;jcc:e/ne,0/1 select on work flag 0x01000000: original branch pushing 0x40 or 0x41 vs modern cl not+and+or without a branch
+0x00186400,r3e_CanGrab186400,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,,
+0x00184120,r3e_Release184120,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,,
+0x00173EC0,r3e_Step173EC0,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,
+0x0018B6B0,r3e_CountRecs18B6B0,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,,
+0x0018B700,r3e_Release18B700,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,imm:0x4,multiply-by-constant: record stride 0x44 via shl 4 + add (x17) scaled by 4 in modern cl vs imul in the original
+0x00173610,r3e_Anim173610,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,calls 0x00172C90 with EAX=b ESI=a EDI=anim
+0x00173660,r3e_Anim173660,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,calls 0x00172C90 with EAX=b ESI=a EDI=anim
+0x0017B010,r3e_Spawn17B010,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,regargs: a=EAX b=EDI; calls 0x0017AF00 with EAX=b and a on the stack
+0x00145730,r3e_InFrame145730,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,,
+0x00169DA0,r3e_MarkOthers169DA0,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,imm:0x80;imm:0xffffff80,unrolled pointer step of 0x80 encoded by modern cl as sub -0x80 instead of add 0x80 (same value); regargs: self=ESI
+0x00170400,r3e_Restart170400,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,imm:0xfffffff6,conditional subtract of 10 done by modern cl as lea -10 + cmov instead of a branch around sub 10 (same value); regargs: obj=EAX
+0x0016E990,r3e_OnMsg16E990,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,data:0x200000;data:0x300000,two bit tests on the same word (0x100000 set and 0x200000 clear) merged by modern cl into one (f & 0x300000) == 0x100000 compare (masks in image range so listed as data); calls 0x0016C820 with EAX=obj EDI=obj and the state on the stack
+0x00178860,r3e_Watch178860,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,
+0x00183DF0,r3e_Follow183DF0,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,,
+0x001734F0,r3e_Anim1734F0,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,data:fconst:5.0;imm:0x40a00000,constant 5.0 stored as an immediate by modern cl instead of a load from .rdata (same value); calls 0x00172C90 with EAX=b ESI=a EDI=anim
+0x00170200,r3e_OnMsg170200,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,
+0x00145590,r3e_Start145590,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,,calls 0x001453B0 with ESI=obj EDI=act
+0x0013A0A0,r3e_Wake13A0A0,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,,
+0x0013E420,r3e_Turn13E420,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,data:fconst:0.4363323;data:fconst:0.08726647;imm:0x3edf66f3;imm:0x3db2b8c3,constants 25 and 5 degrees in radians stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00142A10,r3e_Enter142A10,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,data:fconst:20.0;imm:0x41a00000,float argument 20.0f pushed as an immediate by the original but loaded from .rdata by modern cl (same value)
+0x00155830,r3e_Shrink155830,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x001740F0,r3e_OnMsg1740F0,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,calls 0x00172B50 with EAX=state ECX=component and obj on the stack
+0x0017CEC0,r3e_Facing17CEC0,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,
+0x0017FF30,r3e_Clear17FF30,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,,
+0x00154C80,r3e_Wait154C80,Structurally compared,src/game/r3e_7.c,build/obj_r3e/r3e_7.obj,,calls 0x00147780 with EAX=act and obj and mode on the stack
+0x0015A190,r3e_Wait15A190,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,,
+0x0016BF00,r3e_State16BF00,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,data:fconst:0.02;data:fconst:0.5235988;imm:0x3ca3d70a;imm:0x3f060a92,constants 0.02 and 30 degrees in radians stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00186A80,r3e_Enter186A80,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,data:fconst:1.0;imm:0x3f800000,constant 1.0 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0013F9C0,r3e_State13F9C0,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,data:fconst:0.008;imm:0x3c03126f,constant 0.008 stored as an immediate by modern cl instead of a load from .rdata (same value)
+0x0013B590,r3e_Enter13B590,Structurally compared,src/game/r3e_3.c,build/obj_r3e/r3e_3.obj,data:fconst:0.3;data:fconst:0.25;imm:0x3e99999a;imm:0x3e800000,constants 0.3 and 0.25 stored as immediates by modern cl instead of loads from .rdata (same values)
+0x0017BB40,r3e_TurnAway17BB40,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,imm:0x3d0efa35;imm:0xbd0efa35,clamp limits +-2 degrees (also compared from .rdata) stored as immediates by modern cl instead of copied from the compare register (same values)
+0x0016F6F0,r3e_InitHolds16F6F0,Structurally compared,src/game/r3e_5.c,build/obj_r3e/r3e_5.obj,jcc:l/ge;jcc:b/ae,holder loop end compared signed by the original (index loop strength-reduced to a pointer) vs an unsigned pointer compare in modern cl
+0x001426B0,r3e_Down1426B0,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,,
+0x001434E0,r3e_Step1434E0,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,,
+0x0013B500,r3e_Down13B500,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,imm:0x6;imm:0x8,2/8 select on act flag bit 0: original neg/sbb/and 6/add 2 vs modern cl selecting 8 directly (same values)
+0x0013D2F0,r3e_Release13D2F0,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,,
+0x001597D0,r3e_Move1597D0,Structurally compared,src/game/r3e_6.c,build/obj_r3e/r3e_6.obj,data:fconst:1.0;data:fconst:-10.0;imm:0x3f800000;imm:0xc1200000,constants 1.0 and -10.0 stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00189610,r3e_Holds189610,Structurally compared,src/game/r3e_4.c,build/obj_r3e/r3e_4.obj,data:fconst:118.0;imm:0x42ec0000,float argument 118.0f pushed as an immediate by the original but loaded from .rdata by modern cl (same value)
