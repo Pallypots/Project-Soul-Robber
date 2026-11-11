@@ -53,6 +53,7 @@ int    sub_00199E20(int j);
 void   r4d_CueStartAll(int cue);        /* 0x00199EB0 */
 void   r4d_StreamResume(int j);         /* 0x0019A230 */
 void   r4d_StreamSetVolume(int j, int vol);  /* 0x0019A2F0 */
+void   r4d_BankStopAll(int bank);       /* 0x0019A0E0 */
 void   r4d_StreamSetParams(int j, int vol, int a, unsigned b, float c, int d);  /* 0x0019A390 */
 void   r4d_BankPause(int bank, int x);  /* 0x0019A5A0 */
 
@@ -377,9 +378,15 @@ extern R4dThread r4d_threads40EDD8[32];
 extern void     *r4d_threadLock40F0D8;
 int   OOG_STDCALL sub_001BD2B6(void *h);   /* ResumeThread */
 int   OOG_STDCALL sub_001BCEF9(int h);     /* SetEvent */
+int   sub_001BD50A(void);                  /* GetCurrentThreadId */
+#ifdef _MSC_VER
+__declspec(noreturn)
+#endif
+void  OOG_STDCALL sub_001BD345(int code);  /* ExitThread, does not return */
 int    r4d_ThreadClose(int id);            /* 0x001AD2C0 */
 int    r4d_ThreadStart(int id);            /* 0x001AD3D0 */
 int    r4d_ThreadStop(int id);             /* 0x001AD440 */
+void   r4d_ThreadExitSelf(void);           /* 0x001AD520 */
 
 /* ------------------------------------------------------------ matrices (0x001ADBF0) */
 typedef struct R4dMat { float m[4][4]; } R4dMat;

@@ -127,3 +127,28 @@ void r4d_BankPause(int bank, int x)
         }
     }
 }
+
+/* 0x0019A0E0: stop every used stream of a bank, last to first. Stack arg (bank); assert-style hang. */
+void r4d_BankStopAll(int bank)
+{
+    R4cBank *b;
+    R4dStream *s;
+    int i;
+    if (bank == -1)
+        return;
+    if (bank <= -1 || bank >= 11)
+        for (;;)
+            ;
+    b = &r4c_banks3316A0[bank];
+    s = &r4d_streams401D70[b->first10 + b->count11 - 1];
+    for (i = 0; i < b->count11; i++, s--) {
+        if (s->used00) {
+            sub_001AA1E0(r4c_g402778);
+            s->busy04 = 0;
+            s->n34 = 0;
+            s->state10 = 0;
+            sub_001AB2A0(s->cue08, s->bank0C);
+            sub_001AA1F0(r4c_g402778);
+        }
+    }
+}

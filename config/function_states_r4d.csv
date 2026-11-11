@@ -63,3 +63,5 @@ va,name,state,source,obj,waivers,notes
 0x001ad3d0,r4d_ThreadStart,Structurally compared,src/game/r4d_15.c,build/obj_r4d/r4d_15.obj,,stack arg (id)
 0x001ad440,r4d_ThreadStop,Structurally compared,src/game/r4d_15.c,build/obj_r4d/r4d_15.obj,,stack arg (id)
 0x001adbf0,r4d_MatRotateZYX,Structurally compared,src/game/r4d_16.c,build/obj_r4d/r4d_16.obj,,stack args (out in rot); D3DX-style callees are stdcall
+0x0019a0e0,r4d_BankStopAll,Structurally compared,src/game/r4d_2.c,build/obj_r4d/r4d_2.obj,imm:0xb;imm:0xa;jcc:be/a,stack arg (bank); assert-style hang on a bad bank; signed 0<=i<N bounds check emitted as unsigned i<=N-1 by modern cl; stream pointer starts at table-0x38 (needs the checker's 32-bit addend wrap)
+0x001ad520,r4d_ThreadExitSelf,Structurally compared,src/game/r4d_17.c,build/obj_r4d/r4d_17.obj,,no inputs; size 0x15 from config/size_overrides.csv; ExitThread callee declared noreturn
