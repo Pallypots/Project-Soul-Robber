@@ -5,3 +5,6 @@ va,size,reason
 0x001AD520,0x15,ends at int3 padding; 0x1AD540 is a separate function
 0x00129180,0x51,branches into 0x1291A4 and ends at the ret at 0x1291D0; 0x1291A4 is its tail
 0x000791A0,0xAE,code ends at 0x7924E; its jump table follows at 0x79250 and 0x79270 is a separate function
+0x00148F50,0x1FE,continues to its ret at 0x14914D before int3 padding (inventory 403 cut it short)
+0x000D9FE0,0x120,code ends at 0xDA0F8; jump table at 0xDA100; 0xDA130 is a separate function
+0x000E9A60,0x50,ends with its jump table; a separate function starts at 0xE9AB0
