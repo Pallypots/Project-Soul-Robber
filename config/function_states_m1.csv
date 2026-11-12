@@ -116,3 +116,5 @@ va,name,state,source,obj,waivers,notes
 0x000a56c0,m1_ClearJackFlagsA56C0,Structurally compared,src/game/m1_25.c,build/obj_m1/m1_25.obj,,"Run 0xA5520 and 0xA4B80, then clear Jack flags 0x800000 and 0x80 where set"
 0x00125de0,m1_AfterAnim125DE0,Structurally compared,src/game/m1_25.c,build/obj_m1/m1_25.obj,,"After the body animation: out of reach -> state 0x11, else 0xE if step list 9 runs (0x11EDE0 regargs id=EAX o=EBX b=EDI) otherwise 7"
 0x000a4de0,m1_ReleaseEntryA4DE0,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"Release entry object: 0x33B30, clear +0xC bit 0, 0x1EB80, stop both handles, 0x362B0/0x1D190/0x1B3F0, 0xA3810 (regargs e=ESI); regargs: e=EAX"
+0x000b6300,m1_SeqStepB6300,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer twin (step 10 resets the slot, fx 0x20); regargs: cmd=EAX s=ESI slot=EDI"
+0x000ccd60,m1_PadKeyCCD60,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Key mask k on pad p (pressed if edge else held, pads 0x4C at 0x42CA34); 0 while input is blocked (flags 0x82006, modes 2/4/5, system key 0x4101)"

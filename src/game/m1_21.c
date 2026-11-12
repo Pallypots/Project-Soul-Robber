@@ -221,3 +221,61 @@ void m1_RunHandlerCDA00(M1Act150 *o, uint32_t a, uint32_t b)
         o->flags150 |= 1;
 }
 
+
+/* 0x000B6300: sequencer twin of 0xAC8A0 (step 10 resets the slot and fires fx 0x20).
+ * regargs: cmd=EAX s=ESI slot=EDI */
+int m1_SeqStepB6300(int cmd, M1Seq *s, int slot)
+{
+    if (cmd == 0) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        s->ticks08 = 0;
+        return 1;
+    }
+    if (cmd == 1) {
+        s->flags00 |= 1;
+        s->step04 = 10;
+        s->ticks08 = 0;
+        return 1;
+    }
+    if (cmd == 3) {
+        s->flags00 = 0;
+        s->step04 = 0x14;
+    }
+    s->ticks08++;
+    if (s->step04 == 10) {
+        sub_000A42F0(slot, 0);
+        sub_000A43C0(slot, 0x20);
+        s->step04++;
+    } else if (s->step04 == 0x14) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        return 0;
+    }
+    return 1;
+}
+
+typedef struct M1Pad4C {
+    uint32_t pressed00;        /* +0x00 (0x0042CA34 for pad 0) */
+    uint32_t held04;           /* +0x04 */
+    uint8_t  unk08[0x4C - 8];
+} M1Pad4C;
+extern M1Pad4C  m1_pads42CA34[4];      /* 0x0042CA34 */
+extern uint32_t aa0_flags420010;       /* 0x00420010 */
+extern int32_t  m1_gameMode41FF94;     /* 0x0041FF94 */
+int sub_0019BE60(int k);
+
+/* 0x000CCD60: key mask k on pad p (pressed when edge is set, else held), or 0 while
+ * input is blocked (flags 0x82006, game modes 2/4/5, or system key 0x4101). */
+uint32_t m1_PadKeyCCD60(int p, int k, int edge)
+{
+    if (aa0_flags420010 & 0x82006)
+        return 0;
+    if (m1_gameMode41FF94 == 2 || m1_gameMode41FF94 == 4 || m1_gameMode41FF94 == 5)
+        return 0;
+    if (sub_0019BE60(0x4101))
+        return 0;
+    if (edge == 0)
+        return m1_pads42CA34[p].held04 & r6g_keyMask41CD00[k];
+    return m1_pads42CA34[p].pressed00 & r6g_keyMask41CD00[k];
+}
