@@ -261,12 +261,32 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
            x86.X86_REG_ESI, x86.X86_REG_EDI) + ((x86.X86_REG_EBP,) if frame_reg == -1 else ())
     targets = {k.operands[0].imm for k in insns
                if k.mnemonic.startswith("j") and k.operands and k.operands[0].type == x86.X86_OP_IMM}
+    jsrc = {}
+    for k in insns:
+        if k.mnemonic.startswith("j") and k.operands and k.operands[0].type == x86.X86_OP_IMM:
+            jsrc.setdefault(k.operands[0].imm, []).append(k.address)
+    nwrites = Counter()
+    if use_bias:
+        for k in insns:
+            if k.mnemonic == "pop":
+                continue   # epilogue restore of a callee-saved register
+            try:
+                for w in k.regs_access()[1]:
+                    nwrites[w] += 1
+            except Exception:
+                pass
     alias = {}
+    alias_def = {}
     skip_sel = set()
     for ii, i in enumerate(insns):
         if use_bias:
             if i.address in targets:
-                alias.clear()
+                # keep an offset whose register is written exactly once (its
+                # definition) when every jump into this point comes after it
+                for r in list(alias):
+                    d = alias_def.get(r)
+                    if d is None or nwrites[r] != 1 or not all(a > d for a in jsrc.get(i.address, [])):
+                        alias.pop(r)
             if i.mnemonic == "call":
                 for r in (x86.X86_REG_EAX, x86.X86_REG_ECX, x86.X86_REG_EDX):
                     alias.pop(r, None)
@@ -408,6 +428,7 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                 bb = bias.get(i.address)
                 adj = bb[2] if bb and bb[0] == "mem" and bb[1] == ops[1].mem.base else 0
                 alias[ops[0].reg] = alias.get(ops[1].mem.base, 0) + ops[1].mem.disp + adj
+                alias_def[ops[0].reg] = i.address
                 done = True
             elif m == "mov" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and ops[1].type == x86.X86_OP_REG and                     ops[0].reg in R32 and ops[1].reg in R32:
                 bb = bias.get(i.address)

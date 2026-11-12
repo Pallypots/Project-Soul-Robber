@@ -21,7 +21,8 @@ int m1_TextSelectDD880(M1TextArg *a)
 typedef struct M1Slot8C {
     int32_t f00;
     int32_t total04;           /* +0x04 */
-    uint8_t unk08[0x8C - 8];
+    uint8_t unk08[0x88 - 8];
+    float   timer88;           /* +0x88 */
 } M1Slot8C;
 typedef struct M1SlotOwner {
     uint8_t  unk000[0x200];
@@ -34,4 +35,21 @@ void m1_AddSlotTotalCD830(M1SlotOwner *o, int i)
 {
     M1Slot8C *s = &o->slots[i];
     s->total04 += sub_000CD180(o, i);
+}
+
+extern float m1_frameTime42C858;     /* 0x0042C858 */
+
+/* 0x000CD860: while slot i's timer is under the limit, adds 0xCD180's amount to
+ * its total; otherwise resets total and timer. The timer then advances by the
+ * frame time. */
+void m1_SlotTickCD860(M1SlotOwner *o, int i)
+{
+    M1Slot8C *s = &o->slots[i];
+    if (60.0f > s->timer88) {
+        s->total04 += sub_000CD180(o, i);
+    } else {
+        s->total04 = 0;
+        s->timer88 = 0.0f;
+    }
+    s->timer88 += m1_frameTime42C858;
 }

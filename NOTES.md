@@ -165,3 +165,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA36E0 m1_StartSlotEffectA36E0 PASS
 0xCDA00 m1_RunHandlerCDA00 PASS
 0xCDA50 m1_InputStepCDA50 PASS (own file so cl does not inline)
+0xCC4D0 m1_SetConfirmKeysCC4D0 PASS
+0xCD930 m1_PickStateCD930 PASS
+0xCD860 m1_SlotTickCD860 PASS (offset kept across a branch target when its register is written once)

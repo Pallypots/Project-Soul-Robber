@@ -112,3 +112,6 @@ va,name,state,source,obj,waivers,notes
 0x000a36e0,m1_StartSlotEffectA36E0,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"If handle slot j of entry i is free, spawn effect id (colour 0x80) at the entry object +0x60 and store the handle"
 0x000cda00,m1_RunHandlerCDA00,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Unless flags 0xC0000000, run handler [+0x1B8] of {0xCD8D0, 0xCCF60, 0xCC840} (local array, as the original); >0 sets flag 1; regargs: o=ESI a=EDX b=ECX"
 0x000cda50,m1_InputStepCDA50,Structurally compared,src/game/m1_33.c,build/obj_m1/m1_33.obj,,"Per-frame actor input step; callees: 0xCC4D0 o=EAX, 0xCDA00 o=ESI a=EDX b=ECX, 0xCC8C0 o=ESI a=EAX, 0xCD930 o=ESI a=ECX, 0xCCDD0 o=ESI"
+0x000cc4d0,m1_SetConfirmKeysCC4D0,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Key masks 11/12 = 0x80/0x10, swapped when +0x18C is set; regargs: o=EAX"
+0x000cd930,m1_PickStateCD930,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Key mask 6 on an unflagged actor: flags |= 0x101, pick = 0xCD300 (regargs o=EAX) into +0x1D8, state 0x13+pick; regargs: o=ESI buttons=ECX"
+0x000cd860,m1_SlotTickCD860,Structurally compared,src/game/m1_14.c,build/obj_m1/m1_14.obj,,"Slot i timer: below 60 adds 0xCD180 amount to the total, else resets total and timer; timer += frame time"

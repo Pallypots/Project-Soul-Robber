@@ -8,10 +8,14 @@ typedef struct M1Act150 {
     int32_t  stateEC;          /* +0x0EC */
     uint8_t  unk0F0[0x150 - 0xF0];
     uint32_t flags150;         /* +0x150 */
-    uint8_t  unk154[0x1B8 - 0x154];
+    uint8_t  unk154[0x18C - 0x154];
+    int32_t  swap18C;          /* +0x18C swapped confirm/cancel layout */
+    uint8_t  unk190[0x1B8 - 0x190];
     int32_t  handler1B8;       /* +0x1B8 index into the 0xCDA00 handler list */
+    uint8_t  unk1BC[0x1D8 - 0x1BC];
+    int32_t  pick1D8;          /* +0x1D8 */
 } M1Act150;
-extern uint32_t r6g_keyMask41CD00[10];  /* 0x0041CD00 button mask per action */
+extern uint32_t r6g_keyMask41CD00[13];  /* 0x0041CD00 button mask per action */
 void abc_SetState(M1Act150 *a, int state);
 
 /* 0x000CC840: when idle, enters state 0x24 for buttons b in mask A or state
@@ -215,4 +219,34 @@ void m1_RunHandlerCDA00(M1Act150 *o, uint32_t a, uint32_t b)
         return;
     if (fns[o->handler1B8](o, a, b) > 0)
         o->flags150 |= 1;
+}
+
+int sub_000CD300(M1Act150 *o);                     /* regargs: o=EAX */
+
+/* 0x000CC4D0: sets key masks 11/12 to 0x80/0x10, swapped when +0x18C is set.
+ * regargs: o=EAX */
+void m1_SetConfirmKeysCC4D0(M1Act150 *o)
+{
+    if (o->swap18C != 0) {
+        r6g_keyMask41CD00[11] = 0x80;
+        r6g_keyMask41CD00[12] = 0x10;
+        return;
+    }
+    r6g_keyMask41CD00[11] = 0x10;
+    r6g_keyMask41CD00[12] = 0x80;
+}
+
+/* 0x000CD930: on key mask 6 when not flagged, marks the actor (0x101), picks an
+ * option (0xCD300) and enters state 0x13 + pick. regargs: o=ESI buttons=ECX */
+void m1_PickStateCD930(M1Act150 *o, uint32_t buttons)
+{
+    int p;
+    if (o->flags150 & 1)
+        return;
+    if (!(buttons & r6g_keyMask41CD00[6]))
+        return;
+    o->flags150 |= 0x101;
+    p = sub_000CD300(o);
+    o->pick1D8 = p;
+    abc_SetState(o, p + 0x13);
 }
