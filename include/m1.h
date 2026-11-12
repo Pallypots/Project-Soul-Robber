@@ -92,4 +92,41 @@ extern const char *const m1_stageNames2C58C4[];                     /* 0x002C58C
 int  m1_LoadById36660(int arg, int a, int b);                       /* 0x00036660 */
 int  m1_LoadDemoEff366F0(int arg, int n);                           /* 0x000366F0 */
 void m1_LoadStageFlip40E90(const char *fmt, int idx);               /* 0x00040E90 regargs: idx=EDX */
+/* XDK library routines (stdcall), names left neutral. */
+void OOG_STDCALL sub_001BD5DF(int a, void *info);
+int  sub_001C7FDE(char *buf, const char *fmt, ...);                 /* CRT sprintf */
+int  OOG_STDCALL sub_001BED78(const char *path);
+int  OOG_STDCALL sub_001BE721(int a);
+void OOG_STDCALL sub_001BE735(int h, const void *data, int size);
+void OOG_STDCALL sub_001BE783(int h, uint32_t *digest);
+extern char m1_saveRoot40C040[];                                    /* 0x0040C040 path buffer */
+extern const char m1_fmtSS2780E0[], m1_strTitleMeta27B694[];        /* "%s%s", "TitleMeta.xbx" */
+typedef struct M1SysInfo { int32_t a, b, c, d; uint8_t rest[0xBF0]; } M1SysInfo;
+void m1_SysCall1A88D0(void);                                        /* 0x001A88D0 */
+int  m1_TitleMetaExists1A9A30(void);                                /* 0x001A9A30 */
+void sub_00053710(int heap);
+void sub_00053740(void);
+void sub_0001E9B0(void *scene, void *o, void *p, int a, int b);
+typedef struct M1Node { uint8_t unk000[0x14C]; void *x14C; /* +0x14C (XBOX32) */ } M1Node;
+extern void   *m1_figTmpl3DA0C0;                                    /* 0x003DA0C0 */
+extern M1Node *m1_figNode3DA0B8;                                    /* 0x003DA0B8 */
+extern void   *m1_scene42C8E4;                                      /* 0x0042C8E4 */
+extern const char m1_fmtFigure261558[];                             /* 0x00261558 */
+M1Node *m1_LoadFigure371A0(int n);                                  /* 0x000371A0 */
+typedef struct M1Task { uint8_t unk00[0x1A]; uint8_t kind; /* +0x1A */ uint8_t unk1B[9]; } M1Task;  /* 0x24 bytes */
+M1Task *sub_0008C350_m1(M1Task *n, const M1Task *ref, uint32_t mask);  /* 0x0008C350 */
+M1Task *m1_FindKind8C3C0(M1Task *n, int kind);                      /* 0x0008C3C0 */
+int   sub_0008BCD0(int heap);
+void  sub_0007F4A0(int slot, int heap);
+void *sub_0007F510(void *key, int *out);
+typedef struct M1Res {
+    uint8_t  unk00[0x18];
+    uint16_t flags;     /* +0x18: 2 = loaded */
+    uint8_t  unk1A[2];
+    int32_t  n;         /* +0x1C */
+    int8_t   kind;      /* +0x20 */
+    int8_t   heap;      /* +0x21 */
+    uint8_t  unk22[6];
+    void    *data;      /* +0x28 (XBOX32) */
+} M1Res;
 #endif

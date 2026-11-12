@@ -54,3 +54,20 @@ void m1_LoadStageFlip40E90(const char *fmt, int idx)
     sub_0007E0A0(path, fmt, m1_stageNames2C58C4[idx]);
     sub_00053E20(path, m1_stage3DFA5C + m1_flip3DF2F0 * 0x10080 + 0x102600);
 }
+
+/* 0x000371A0: on heap 4, load bonus figure chr0<n+0xE10>, rebuild the figure node and set it up. */
+M1Node *m1_LoadFigure371A0(int n)
+{
+    char path[0x40];
+    void *tmpl;
+    M1Node *node;
+    sub_00053710(4);
+    tmpl = m1_figTmpl3DA0C0;
+    sub_0007E0A0(path, m1_fmtFigure261558, n + 0xE10, n + 0xE10);
+    sub_00022630(tmpl, path);
+    node = m1_figNode3DA0B8;
+    sub_00022380(node, tmpl, m1_scene42C8E4);
+    sub_0001E9B0(m1_scene42C8E4, node, node->x14C, 5, 0x11);
+    sub_00053740();
+    return node;
+}

@@ -52,3 +52,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x36660 m1_LoadById36660 PASS
 0x366F0 m1_LoadDemoEff366F0 PASS
 0x40E90 m1_LoadStageFlip40E90 PASS
+0x1A88D0 m1_SysCall1A88D0 PASS
+0x1A9A30 m1_TitleMetaExists1A9A30 PASS
+0x1A9B90 digest compare: hard (original inline memcmp is repe cmpsd; cl 19 expands it differently)
+0x371A0 m1_LoadFigure371A0 PASS
+0x8C3C0 m1_FindKind8C3C0 PASS
+0x36860 skipped: loads arg2 into EBX and never uses it (not producible from C)
+0x8E900 load .clp resource: hard (cl writes the flag mask as 0xFFF3, original 0xFFFFFFF3; a checker rule for masks stored to 16-bit fields would fix it)

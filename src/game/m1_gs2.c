@@ -41,3 +41,4 @@ void m1_PathBms8F210(char *out, int i, M1DtObj *o)
     a80_PrintId(o, dir);
     sub_0007E0A0(out, m1_fmtBms270408, dir, id, id, a80_IdValue(o, i));
 }
+
