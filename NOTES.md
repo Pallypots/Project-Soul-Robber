@@ -192,3 +192,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x126090 actor check: hard (orig tests bit 15 as test ah,ah/js and orders the calls differently; tried 3 forms)
 0x11AC30 m1_EnemyAttack11AC30 PASS
 0xCC430 m1_DefaultKeysCC430 PASS
+0xE1E90 m1_FreeRigE1E90 PASS

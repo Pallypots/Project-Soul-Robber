@@ -131,3 +131,4 @@ va,name,state,source,obj,waivers,notes
 0x0013cf90,m1_EnemySeq13CF90,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy 3-step sequence gated by 0x13A900: anim 0x49; reaction 7 + sound 0x88 at its part; work flag 0x80000000 + event 0x1E"
 0x0011ac30,m1_EnemyAttack11AC30,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy attack start: shake (kind 3: 1, kind 4: random 1..2, strength 10), anim 0x37(+1), replace reaction-5 effect at work+0x38"
 0x000cc430,m1_DefaultKeysCC430,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Default key masks for the 13 actions; action 6 then takes pad table entry 5 (*0x2C4AE8)[5]"
+0x000e1e90,m1_FreeRigE1E90,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"Rig teardown (inverse of 0xE1E00): pending handle, five slot objects, task, root"

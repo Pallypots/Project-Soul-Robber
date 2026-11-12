@@ -2,7 +2,7 @@
 #include <stdint.h>
 
 typedef struct M1Slot28 {
-    int32_t f00;               /* +0x00 */
+    void   *obj00;             /* +0x00 */
     uint8_t unk04[0x28 - 4];
 } M1Slot28;
 typedef struct M1RigMgr {
@@ -38,7 +38,7 @@ void m1_SetupRigE1E00(M1RigMgr *m)
     m->root868 = root;
     m->task864 = sub_0001F6C0(5, 0, 0, 0, root);
     for (i = 0; i < 5; i++)
-        m->slots86C[i].f00 = 0;
+        m->slots86C[i].obj00 = 0;
 }
 
 typedef struct M1Pair8C {
@@ -72,4 +72,34 @@ void m1_StageReset189960(void)
     sub_00191B00(); sub_00191B30(); sub_00191C70(); sub_0018D3A0();
     sub_0018C3E0(); sub_00193DF0();
     m1_g3FF580 = 0;
+}
+
+void sub_00189510(int h);
+void sub_0001F300(void *o);
+void sub_00020170(void *task);
+void sub_0001E550(void *root);
+void sub_00053880(void *p);
+
+/* 0x000E1E90: tears down what 0xE1E00 built: releases the pending handle, the five
+ * slot objects, the task and the rig root. */
+void m1_FreeRigE1E90(M1RigMgr *m)
+{
+    int i;
+    if (m1_flag3F1B20 != 0)
+        sub_00189510(m1_flag3F1B20);
+    m1_flag3F1B20 = 0;
+    for (i = 0; i < 5; i++) {
+        if (m->slots86C[i].obj00 != 0)
+            sub_0001F300(m->slots86C[i].obj00);
+        m->slots86C[i].obj00 = 0;
+    }
+    if (m->task864 != 0)
+        sub_00020170(m->task864);
+    if (m->root868 != 0) {
+        sub_0001E550(m->root868);
+        sub_0001F300(m->root868);
+        sub_00053880(m->root868);
+    }
+    m->root868 = 0;
+    m->task864 = 0;
 }
