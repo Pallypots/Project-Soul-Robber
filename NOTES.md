@@ -99,3 +99,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x180970 pair notify loop: hard (orig signed pointer bound jl with -4 bias)
 0x1A24D0 vector iterator: hard (orig dec/js then dec/jne count loop; tried while, for, do-while)
 0x1A64F0 render-lock release: hard (cl tail-merges the two Leave calls)
+0x3EA40 m1_SetClamped3EA40 PASS (volatile state field keeps the 2-then-3 store)
+0xA23A0 m1_OffsetParts_A23A0 PASS (checker: sub r,-N = add r,N)
+0x194EB0 m1_DestroyDone194EB0 PASS (checker: loop pointer bias canonicalised)
+0x180970 m1_NotifyPairs180970 PASS (was hard; bias rule)
+0x180930 m1_WakePairs180930 PASS
+0x181CE0 link fire: hard (exit after found: cl recomputes the entry from the index, orig keeps the walking pointer; tried index, pointer)
+0xED9A0 m1_TakeSlotED9A0 PASS (goto found + hang; bias rule stops at reload)
+0xCC030 m1_ApplyActiveCC030 PASS

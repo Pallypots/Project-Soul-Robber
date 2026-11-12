@@ -162,7 +162,71 @@ def is_fp(m):
     return m.startswith("f") or m.endswith(("ss", "sd")) or m in ("comiss", "ucomiss", "comisd", "ucomisd")
 
 
-def events(code, base, resolve, md, fconst=None, local=None):
+REG_NAMES = {
+    x86.X86_REG_EAX: ("eax", "ax", "al", "ah"), x86.X86_REG_EBX: ("ebx", "bx", "bl", "bh"),
+    x86.X86_REG_ECX: ("ecx", "cx", "cl", "ch"), x86.X86_REG_EDX: ("edx", "dx", "dl", "dh"),
+    x86.X86_REG_ESI: ("esi", "si"), x86.X86_REG_EDI: ("edi", "di"), x86.X86_REG_EBP: ("ebp", "bp"),
+}
+
+
+def pointer_bias(insns, base, resolve):
+    """A loop pointer walking a global array may start at any field of the
+    first record: `mov r, A` ... `[r+d]` ... `add r, step` / `cmp r, B`.
+    Choosing a different field shifts A, B and every d by the same amount
+    without changing a single access. Canonical form: shift so that the
+    smallest d is 0. Applied only when r is used in no other way.
+    Returns {insn address: delta} for the A/B immediates and the [r+d] operands."""
+    import re
+    out = {}
+    for r, names in REG_NAMES.items():
+        pat = re.compile(r"\b(" + "|".join(names) + r")\b")
+        movs, cmps, mems, ok = [], [], [], True
+        for i in insns:
+            if not pat.search(i.op_str):
+                if i.mnemonic.startswith(("rep", "movs", "stos", "cmps", "lods", "scas")) and r in (x86.X86_REG_ESI, x86.X86_REG_EDI):
+                    ok = False
+                continue
+            ops = i.operands
+            off = i.address - base
+            # callee-saved register: saved before the walk, restored at exits
+            if i.mnemonic == "push" and i.op_str == names[0] and not movs:
+                continue
+            if i.mnemonic == "pop" and i.op_str == names[0]:
+                continue
+            if i.mnemonic in ("mov", "cmp") and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                     ops[0].reg == r and ops[1].type == x86.X86_OP_IMM:
+                fo = i.imm_offset if i.imm_offset else None
+                a = resolve(off, fo, ops[1].imm & 0xFFFFFFFF, "abs")
+                if not isinstance(a, int):
+                    ok = False; break
+                (movs if i.mnemonic == "mov" else cmps).append(i.address)
+                continue
+            if i.mnemonic in ("add", "sub") and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                     ops[0].reg == r and ops[1].type == x86.X86_OP_IMM:
+                continue
+            # after the loop's bound compare, a plain reload of r (not from r)
+            # starts an unrelated value: stop tracking there (later code is
+            # compared unadjusted, which can only make a match stricter)
+            if cmps and i.mnemonic in ("mov", "movzx", "movsx") and len(ops) == 2 and \
+                    ops[0].type == x86.X86_OP_REG and ops[0].reg == r and \
+                    len(pat.findall(i.op_str)) == 1:
+                break
+            memuse = [o for o in ops if o.type == x86.X86_OP_MEM and o.mem.base == r and o.mem.index == 0]
+            if memuse and not any(o.type == x86.X86_OP_REG and o.reg == r for o in ops) and                     len(pat.findall(i.op_str)) == len(memuse):
+                mems.append((i.address, memuse[0].mem.disp))
+                continue
+            ok = False; break
+        if not ok or len(movs) != 1 or not cmps or not mems:
+            continue
+        dmin = min(d for _, d in mems)
+        if dmin == 0:
+            continue
+        for a in movs + cmps:
+            out[a] = ("imm", dmin)
+        for a, _ in mems:
+            out[a] = ("mem", r, -dmin)
+    return out
+
+
+def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
     """resolve(insn_offset, field_offset, raw_value, kind) -> VA or None"""
     calls, data, imm, jcc, ret = [], Counter(), Counter(), Counter(), set()
     pushimm = set()   # values pushed as immediates (a float argument can be pushed as its bit pattern)
@@ -176,6 +240,7 @@ def events(code, base, resolve, md, fconst=None, local=None):
     prev = None
     flagsrc = None
     hangs = 0
+    bias = pointer_bias(insns, base, resolve) if use_bias else {}
     for ii, i in enumerate(insns):
         if i.mnemonic == "fld1":   # x87 load of the constant 1.0 (no .rdata literal)
             data[("fconst", 1.0)] += 1
@@ -276,10 +341,16 @@ def events(code, base, resolve, md, fconst=None, local=None):
             prev = i; continue
         # memory operands: an absolute address (original: in-image displacement;
         # object: relocated displacement) is data, otherwise a structure offset
+        bi = bias.get(i.address)
         for o in ops:
             if o.type != x86.X86_OP_MEM:
                 continue
             disp = o.mem.disp & 0xFFFFFFFF
+            if bi and bi[0] == "mem" and o.mem.base == bi[1]:
+                d2 = (o.mem.disp + bi[2]) & 0xFFFFFFFF
+                if d2:
+                    imm[("k", d2)] += 1
+                continue
             fo = i.disp_offset if i.disp_offset else None
             a = resolve(off, fo, disp, "abs") if fo is not None or o.mem.base == 0 else None
             if isinstance(a, tuple) and a[0] == "local":
@@ -313,6 +384,8 @@ def events(code, base, resolve, md, fconst=None, local=None):
                 v = o.imm & 0xFFFFFFFF
                 fo = i.imm_offset if i.imm_offset else None
                 a = resolve(off, fo, v, "abs")
+                if a is not None and bi and bi[0] == "imm" and isinstance(a, int):
+                    a += bi[1]
                 if a is not None:
                     data[a] += 1
                 elif not esp_op:
@@ -333,6 +406,9 @@ def events(code, base, resolve, md, fconst=None, local=None):
                                 if k.mnemonic == "mov" and k.op_str.startswith("word ptr [") and k.op_str.endswith("], " + r16):
                                     v &= 0xFFFF
                                 break
+                    # `sub r32, -N` is cl's short encoding of `add r32, N` (same value)
+                    if m == "sub" and ops[0].type == x86.X86_OP_REG and v >= 0xFFFFFF80:
+                        v = (-v) & 0xFFFFFFFF
                     imm[("k", v)] += 1
                     if m == "push":
                         pushimm.add(v)
@@ -460,12 +536,21 @@ def compare(obj, sym, va, size=None, verbose=False, xbe=None, syms=None, dump=Fa
         size = sizes[va]
     # the original's own jump tables sit right after its code
     size = code_size(xbe, va, size, md)
-    a = events(xbe.read_va(va, size), va, orig_resolver(), md, orig_fconst(xbe), local=(va, va + size + 0x100))
     coff = Coff(obj)
     code, relmap, cursec = coff.function(sym)
-    b = events(code, 0, obj_resolver(relmap, syms, code, cursec), md, obj_fconst)
-    fold_pushed_floats(a, b)
-    fa, fb = fmt(a), fmt(b)
+    # compare plainly first; then with loop-pointer bias canonicalised on both
+    # sides (pointer_bias); either comparison on its own is a full check
+    for use_bias in (False, True):
+        a = events(xbe.read_va(va, size), va, orig_resolver(), md, orig_fconst(xbe), local=(va, va + size + 0x100), use_bias=use_bias)
+        b = events(code, 0, obj_resolver(relmap, syms, code, cursec), md, obj_fconst, use_bias=use_bias)
+        fold_pushed_floats(a, b)
+        fa, fb = fmt(a), fmt(b)
+        if fa == fb:
+            break
+        if not use_bias:
+            plain = (a, b, fa, fb)
+    else:
+        a, b, fa, fb = plain
     # documented waivers: "category:item" entries allowed to differ, each with
     # a reason in the function record. Reported, never silent.
     waived = []
