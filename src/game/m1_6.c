@@ -70,3 +70,30 @@ int m1_ApplySave56740(M1Save *s)
     sub_00026280(hp, hp);
     return 0;
 }
+
+void sub_000CFA60(void *p);
+void sub_000D9BD0(void *p);
+extern int32_t a5b_g3E393C;                  /* 0x003E393C */
+extern float   m1_playTime41317C;            /* 0x0041317C (same word as m1_v41317C) */
+
+/* 0x00054770: build a save record (inverse of 0x56740): store both clocks, copy the
+ * 0x2D4-byte body, save the sub-blocks, header word, capped count and options.
+ * regargs: s=EAX */
+void m1_BuildSave54770(M1Save *s)
+{
+    int n;
+    m1_clock413180 = Clock_GetChapterTime();
+    m1_playTime41317C = Clock_GetPlayTime();
+    s->body = m1_body413160;
+    sub_000CFA60(s->unk2D8);
+    sub_000D9BD0(s->unk460);
+    s->unk000 = a5b_g3E393C;
+    n = m1_body413160.w[1];
+    if (n > 0x18)
+        n = 0x18;
+    s->body.w[1] = n;
+    s->opt4E0 = m1_opt413140;
+    *(int32_t *)s->opt4E4 = m1_opt413144;
+    s->opt4E8 = m1_opt413148;
+    s->opt4EC = m1_opt41314C;
+}
