@@ -95,3 +95,4 @@ va,name,state,source,obj,waivers,notes
 0x000cf000,m1_UpdateEntriesCF000,Structurally compared,src/game/m1_26.c,build/obj_m1/m1_26.obj,,"Per-frame update of in-use entries of the 0x54 table; callers pass e in registers: 0xCE680 e=ESI, 0xCE750 e=EDI, 0xCE020 e=EAX, 0xCE1C0 e=ESI"
 0x000a93f0,m1_VoiceStartA93F0,Structurally compared,src/game/m1_27.c,build/obj_m1/m1_27.obj,,"Find a voice slot (0xA88B0), store param at +0xD0, start it (0xA8510 regargs v=EDI a=EDX); slot index or -1"
 0x00054770,m1_BuildSave54770,Structurally compared,src/game/m1_6.c,build/obj_m1/m1_6.obj,,"Build a save record (inverse of 0x56740): clocks, body copy, sub-blocks, header, count capped at 0x18, options; regargs: s=EAX"
+0x000531c0,m1_FindSound531C0,Structurally compared,src/game/m1_28.c,build/obj_m1/m1_28.obj,,"Normalise (bank, cue) via 0x52EC0 (regargs outA=EAX a=EDX outB=EBX, b on stack) then find the loaded entry; cue -1 = any"

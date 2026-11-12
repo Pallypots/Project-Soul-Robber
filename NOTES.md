@@ -147,3 +147,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA93F0 m1_VoiceStartA93F0 PASS (regarg callee)
 0x188360 run mode 2/1: hard (cl computes the mode as (flag&1)+1 with one call; orig branches to two calls)
 0x54770 m1_BuildSave54770 PASS (regargs s=EAX)
+0x531C0 m1_FindSound531C0 PASS
+0x34050 effect name: hard (cl merges the type-1 and default snprintf calls; orig has three call sites)
