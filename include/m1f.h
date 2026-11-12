@@ -26,4 +26,26 @@ extern int32_t   m1_ynDone3E3988;            /* 0x003E3988 1 once answered */
 extern int32_t   m1_ynSel3E3964;             /* 0x003E3964 0 = yes, 1 = no */
 extern uint8_t  *m1_save3E3934;              /* 0x003E3934 */
 extern uint32_t *m1_padMasks2C4AE8;          /* 0x002C4AE8 [0] confirm, [1] cancel */
+typedef struct M1SaveBody { uint32_t w[0xB5]; } M1SaveBody;      /* 0x2D4 bytes copied whole */
+typedef struct M1Save {
+    uint32_t   unk000;
+    M1SaveBody body;         /* +0x004 -> 0x413160 */
+    uint8_t    unk2D8[0x188];  /* +0x2D8 handed to 0xCFB50 */
+    uint8_t    unk460[0x80];   /* +0x460 handed to 0xD9BB0 */
+    int32_t    opt4E0;       /* +0x4E0 */
+    uint8_t    opt4E4[4];    /* +0x4E4 (+0x4E5 = language, kept from the console) */
+    int32_t    opt4E8, opt4EC;
+} M1Save;
+uint8_t sub_001AB610(void);
+void    sub_0019BED0(void);
+void    sub_000CFB50(void *p);
+void    sub_000D9BB0(void *p);
+void    sub_0019C190(int v);
+void    sub_00026280(int maxHealth, int health);
+extern uint8_t    m1_lang413145, m1_opt413147;  /* 0x00413145, 0x00413147 */
+extern int32_t    m1_opt413140, m1_opt413144, m1_opt413148, m1_opt41314C;
+extern M1SaveBody m1_body413160;             /* 0x00413160 */
+extern int32_t    m1_v41317C;                /* 0x0041317C */
+extern float      m1_clock413180;            /* 0x00413180 chapter time */
+int m1_ApplySave56740(M1Save *s);            /* 0x00056740 */
 #endif

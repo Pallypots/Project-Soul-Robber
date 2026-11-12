@@ -47,3 +47,26 @@ int m1_JobFrame586E0(void)
     return 0;
 }
 
+
+/* 0x00056740: apply a loaded save: keep the console language, copy the options and the
+ * 0x2D4-byte body into globals, restore the sub-blocks, chapter time and health. */
+int m1_ApplySave56740(M1Save *s)
+{
+    int hp;
+    s->opt4E4[1] = m1_lang413145;
+    m1_opt413140 = s->opt4E0;
+    m1_opt413144 = *(int32_t *)s->opt4E4;
+    m1_opt413148 = s->opt4E8;
+    m1_opt41314C = s->opt4EC;
+    m1_opt413147 = sub_001AB610();
+    sub_0019BED0();
+    m1_body413160 = s->body;
+    sub_000CFB50(s->unk2D8);
+    sub_000D9BB0(s->unk460);
+    Clock_SetChapterTime(m1_clock413180);
+    sub_0019C190(m1_v41317C);
+    hp = Stats_Get(&g_stats, 0);
+    Stats_Set(&g_stats, 1, hp);
+    sub_00026280(hp, hp);
+    return 0;
+}

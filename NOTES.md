@@ -78,3 +78,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x54CC0 m1_StampTime54CC0 PASS (passing the record to the ESI-regarg callee keeps the base pointer)
 0x586E0 m1_JobFrame586E0 PASS
 0x54D50 yes/no input: hard (cl tail-merges the confirm-yes and confirm-no sound calls; orig has 3 call sites)
+0x56740 m1_ApplySave56740 PASS
+0x53CA0 record queue step: hard (n*0x44 built as shl/add leaves an extra shift count 4; stride waiver allows only the stride)
+0x52840 m1_InitLocks52840 PASS
+0x48590 m1_SoundReset48590 PASS
+0xC6920 m1_SetupBufsC6920 PASS
+0xC7B00 m1_SetupBufsC7B00 PASS
