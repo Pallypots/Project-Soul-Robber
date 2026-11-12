@@ -108,3 +108,5 @@ va,name,state,source,obj,waivers,notes
 0x00181da0,m1_ResetLinks181DA0,Structurally compared,src/game/m1_32.c,build/obj_m1/m1_32.obj,,"Reset the 4 links at 0x3FE2D8: clear part-6 flag 0x1000000 of b, animation 3 on b and a, event 0 for the watched object"
 0x00181d40,m1_LinksReady181D40,Structurally compared,src/game/m1_32.c,build/obj_m1/m1_32.obj,,"0 if a link in state 1 has its requested side (bit1 a, bit0 b) not ready via 0xF5D00, else 1"
 0x000a4670,m1_StopOwnedSoundsA4670,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"Stop both sounds (+0x154[2]) of in-use entries owned by owner"
+0x000cc8c0,m1_ReactButtonsCC8C0,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Idle unflagged actor: key masks 2/5 -> state 0xB, 3 -> 0xC, 4 -> 0xD; flags |= 0x40000001; regargs: o=ESI buttons=EAX"
+0x000a36e0,m1_StartSlotEffectA36E0,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"If handle slot j of entry i is free, spawn effect id (colour 0x80) at the entry object +0x60 and store the handle"

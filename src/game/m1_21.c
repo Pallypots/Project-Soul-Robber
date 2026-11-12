@@ -171,3 +171,25 @@ int m1_SeqStepAC930(int cmd, M1Seq *s)
     }
     return 1;
 }
+
+/* 0x000CC8C0: idle, unflagged actor: buttons in key mask 2 or 5 -> state 0xB,
+ * mask 3 -> 0xC, mask 4 -> 0xD; then marks it busy (0x40000001).
+ * regargs: o=ESI buttons=EAX */
+void m1_ReactButtonsCC8C0(M1Act150 *o, uint32_t buttons)
+{
+    int st;
+    if (o->flags150 & 0x80000001)
+        return;
+    if (o->stateEC != 0)
+        return;
+    if ((buttons & r6g_keyMask41CD00[2]) || (buttons & r6g_keyMask41CD00[5]))
+        st = 0xB;
+    else if (buttons & r6g_keyMask41CD00[3])
+        st = 0xC;
+    else if (buttons & r6g_keyMask41CD00[4])
+        st = 0xD;
+    else
+        return;
+    abc_SetState(o, st);
+    o->flags150 |= 0x40000001;
+}

@@ -9,7 +9,7 @@ typedef struct M1Ent260W {
     uint8_t  unk01C[0x120 - 0x1C];
     void    *obj120;           /* +0x120 */
     uint8_t  unk124[0x154 - 0x124];
-    int32_t  snd154[2];        /* +0x154, -1 = none */
+    int32_t  snd154[2];        /* +0x154 effect/sound handles, -1 = none */
     uint8_t  unk15C[0x260 - 0x15C];
 } M1Ent260W;
 extern M1Ent260W m1_ents4242C0[32];  /* 0x004242C0 */
@@ -134,4 +134,16 @@ void m1_StopOwnedSoundsA4670(void *owner)
             }
         }
     }
+}
+
+int sub_00049700(int id, int r, int g, int b, const void *pos, int a, float size, int c);
+
+/* 0x000A36E0: if effect slot j of entry i is free, spawns effect id (grey 0x80 colour)
+ * at the entry's object (position at +0x60) and stores the handle. */
+void m1_StartSlotEffectA36E0(int i, int id, int j, int a, float size, int c)
+{
+    M1Ent260W *e = &m1_ents4242C0[i];
+    if (e->snd154[j] != -1)
+        return;
+    e->snd154[j] = sub_00049700(id, 0x80, 0x80, 0x80, (uint8_t *)e->obj120 + 0x60, a, size, c);
 }
