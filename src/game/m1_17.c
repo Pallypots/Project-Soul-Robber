@@ -4,7 +4,9 @@
 typedef struct M1Ent260W {
     uint32_t flags00;          /* +0x000 bit 0 = in use, 0x20000000 = keep, 0x40000000 = paused */
     void    *owner004;         /* +0x004 */
-    uint8_t  unk008[0x120 - 8];
+    uint8_t  unk008[0x18 - 8];
+    int32_t  kind018;          /* +0x018 handler index */
+    uint8_t  unk01C[0x120 - 0x1C];
     void    *obj120;           /* +0x120 */
     uint8_t  unk124[0x260 - 0x124];
 } M1Ent260W;
@@ -96,4 +98,20 @@ void m1_FlagOwnedA4970(void *owner, uint32_t bits)
         M1_OWNFLAG(m1_ents4242C0[i + 2]);
         M1_OWNFLAG(m1_ents4242C0[i + 3]);
     }
+}
+
+typedef int (*M1EntFn)(M1Ent260W *e, void *arg);
+extern M1EntFn m1_entFns2E2758[];  /* 0x002E2758 per-kind handlers */
+
+/* 0x000A0FD0: counts in-use, non-paused entries whose kind handler returns nonzero. */
+int m1_CountHandledA0FD0(void *arg)
+{
+    int n = 0;
+    int i;
+    for (i = 0; i < 32; i++) {
+        if ((m1_ents4242C0[i].flags00 & 1) && !(m1_ents4242C0[i].flags00 & 0x40) &&
+            m1_entFns2E2758[m1_ents4242C0[i].kind018](&m1_ents4242C0[i], arg))
+            n++;
+    }
+    return n;
 }
