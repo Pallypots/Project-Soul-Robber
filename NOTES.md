@@ -174,3 +174,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA3810 entry reset: hard (cl fully unrolls the 4-step loop the original keeps rolled); checker gained: float literal stored as bit pattern = fconst
 0xB6300 m1_SeqStepB6300 PASS (regargs)
 0xCCD60 m1_PadKeyCCD60 PASS
+0xB4010 sequencer variant: hard (two 0xA4410 calls with 1/0; cl merges them)
+0x39660 m1_FadeColour39660 PASS (quad table declared as 2 x 0x1450 array)

@@ -381,3 +381,6 @@ m1_gameMode41FF94,0x0041FF94,data,,
 sub_0019BE60,0x0019BE60,func,,
 m1_SeqStepB6300,0x000B6300,func,,
 m1_PadKeyCCD60,0x000CCD60,func,,
+m1_fadeChans3DA4A8,0x003DA4A8,data,,
+m1_fadeQuads3DA500,0x003DA500,data,0x1450,2
+m1_FadeColour39660,0x00039660,func,,
