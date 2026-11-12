@@ -284,10 +284,12 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                 pass
     alias = {}
     alias_def = {}
+    zero_regs = set()
     skip_sel = set()
     for ii, i in enumerate(insns):
         if use_bias:
             if i.address in targets:
+                zero_regs.clear()
                 # keep an offset whose register is written exactly once (its
                 # definition) when every jump into this point comes after it
                 for r in list(alias):
@@ -461,6 +463,21 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                     imm[("k", alias[rr] & 0xFFFFFFFF)] += 1
             for r in wr:
                 alias.pop(r, None)
+        if use_bias:
+            # a 4-byte store of zero also clears the 16-bit field two bytes up:
+            # cl merges two adjacent word clears into one dword store
+            if m == "mov" and len(ops) == 2 and ops[0].type == x86.X86_OP_MEM and ops[0].size == 4 and                     ops[0].mem.base not in (0, x86.X86_REG_ESP, frame_reg) and ops[0].mem.index == 0 and                     ((ops[1].type == x86.X86_OP_IMM and ops[1].imm == 0) or
+                     (ops[1].type == x86.X86_OP_REG and ops[1].reg in zero_regs)) and abs(ops[0].mem.disp) < 0x10000:
+                eff = ops[0].mem.disp + alias.get(ops[0].mem.base, 0)
+                imm[("k", (eff + 2) & 0xFFFFFFFF)] += 1
+            if m == "xor" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                     ops[1].type == x86.X86_OP_REG and ops[0].reg == ops[1].reg:
+                zero_regs.add(ops[0].reg)
+            else:
+                try:
+                    for w in i.regs_access()[1]:
+                        zero_regs.discard(w)
+                except Exception:
+                    zero_regs.clear()
         bi = bias.get(i.address)
         if bi and bi[0] == "mem" and m == "push" and ops and ops[0].type == x86.X86_OP_REG and ops[0].reg == bi[1]:
             if bi[2]:

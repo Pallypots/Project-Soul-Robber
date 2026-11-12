@@ -51,3 +51,53 @@ int m1_SetupActor17E410(M1Obj124 *o, M1ActCb *a)
     sub_000832D0(o->anim030, 0);
     return 1;
 }
+
+typedef struct M1Ctl10 {
+    uint8_t  unk00[0x10];
+    uint32_t flags10;          /* +0x10 */
+} M1Ctl10;
+typedef struct M1Pl0EC {
+    uint8_t  unk000[0x8C];
+    M1Ctl10 *ctl08C;           /* +0x08C */
+    uint8_t  unk090[0xA4 - 0x90];
+    int16_t  wA4, wA6, wA8, wAA, wAC, wAE, wB0, wB2;   /* +0x0A4..+0x0B2 */
+    uint8_t  unk0B4[0xBC - 0xB4];
+    int16_t  wBC;              /* +0x0BC */
+    uint8_t  unk0BE[0xEC - 0xBE];
+    int16_t  wEC;              /* +0x0EC */
+} M1Pl0EC;
+typedef struct M1Mode8 {
+    uint8_t unk00[8];
+    int32_t mode08;            /* +0x08 */
+} M1Mode8;
+M1Pl0EC *sub_00100110(void);
+M1Pl0EC *sub_000FBAF0(void);
+M1Pl0EC *sub_000FE3D0(void);
+
+/* 0x000F6D80: picks the controlled body for mode 4 (0x100110), 5 (0xFBAF0) or
+ * otherwise (0xFE3D0); re-enables its controller (flags -0x44 +0x220) and clears its
+ * input words, leaving +0xAA = 1. */
+void m1_ResetInputF6D80(M1Mode8 *m)
+{
+    M1Pl0EC *p;
+    if (m != 0 && m->mode08 != 3 && m->mode08 == 4)   /* the original tests mode 3 first */
+        p = sub_00100110();
+    else if (m != 0 && m->mode08 == 5)
+        p = sub_000FBAF0();
+    else
+        p = sub_000FE3D0();
+    if (p != 0) {
+        p->wA4 = 0;
+        p->ctl08C->flags10 &= ~0x44u;
+        p->ctl08C->flags10 |= 0x220;
+    }
+    p->wA6 = 0;
+    p->wA8 = 0;
+    p->wAC = 0;
+    p->wAE = 0;
+    p->wB0 = 0;
+    p->wB2 = 0;
+    p->wBC = 0;
+    p->wEC = 0;
+    p->wAA = 1;
+}

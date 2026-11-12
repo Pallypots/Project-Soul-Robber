@@ -69,3 +69,6 @@ In the second comparison (with the loop-pointer bias form), `lea r,[b+K]`, `mov 
 
 ## Branch-free selects (added 2026-11-12, controls 14/14)
 In the second comparison, `neg x; sbb r,r; and r,D [; add r,K]` (or `setcc; dec r; and r,D [; add r,K]`) records the two constants K and K+D, and `setcc r8; add r32,K` records K and K+1. These are the same two values an `if` loads with two `mov`s in the original; the decision itself is still counted from the neg/sbb or setcc.
+
+## Merged zero stores (added 2026-11-12, controls 14/14)
+In the second comparison, a 4-byte store of zero (immediate 0, or a register cleared with `xor r,r` and not written since, reset at branch targets) to `[r+X]` also records the offset X+2. cl merges two adjacent 16-bit clears at X and X+2 into one dword store; the original keeps two word stores. Applied the same way to both sides.
