@@ -182,3 +182,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xEB3A0 give/anim: hard (cl merges the two 0xD0200 call sites)
 0xE1E00 m1_SetupRigE1E00 PASS
 0x189960 m1_StageReset189960 PASS (bias rule: pushed walking pointer)
+0x37B20 m1_ChanApply37B20 PASS (was hard; bias rule skips mov r,r no-ops and handles pushed pointers)

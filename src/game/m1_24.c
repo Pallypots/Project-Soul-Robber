@@ -24,3 +24,27 @@ void m1_ChanUpdate37AF0(void)
     }
 }
 
+
+void sub_00037910(M1Chan48 *c, int a);   /* regargs: c=ESI */
+void sub_00037790(M1Chan48 *c, int a);   /* regargs: c=ESI */
+
+/* 0x00037B20: passes a to every active channel: kind 1 -> 0x37910, kind 2 -> 0x37790. */
+void m1_ChanApply37B20(int a)
+{
+    int i;
+    M1Chan48 *c = m1_chans42CB20;
+    for (i = 0; i < 10; i++, c++) {
+        if (c->kind20 == 0)
+            return;
+        if (!(c->flags44 & 1)) {
+            switch (c->kind20) {
+            case 1:
+                sub_00037910(c, a);
+                break;
+            case 2:
+                sub_00037790(c, a);
+                break;
+            }
+        }
+    }
+}

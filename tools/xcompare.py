@@ -218,6 +218,9 @@ def pointer_bias(insns, base, resolve):
                     ops[0].type == x86.X86_OP_REG and ops[0].reg == r and \
                     len(pat.findall(i.op_str)) == 1:
                 break
+            # `mov r, r` is an alignment no-op
+            if i.mnemonic == "mov" and i.op_str == names[0] + ", " + names[0]:
+                continue
             # `push r` after the walk started passes the record pointer itself
             if i.mnemonic == "push" and i.op_str == names[0] and movs:
                 mems.append((i.address, 0))

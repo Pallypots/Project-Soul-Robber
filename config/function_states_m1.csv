@@ -123,3 +123,4 @@ va,name,state,source,obj,waivers,notes
 0x000a3780,m1_LookupKeyA3780,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,imm:0xc,"Find the (a, b) pair from 0xDFD40 in the 75-entry key table; store key and value; 0 if found else -1; waiver: stride 0xC built as shl/lea (documented idiom, element size 0xC in C)"
 0x000e1e00,m1_SetupRigE1E00,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"One-time rig setup: root with children 0/1 loaded from 0x2777BC, task 5 started on it, five 0x28 slots cleared"
 0x00189960,m1_StageReset189960,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"Stage reset: four globals, both halves of 19 pair records (kinds 7/0xD via 0x1D8B0), 14 subsystem resets, 0x3FF580 = 0"
+0x00037b20,m1_ChanApply37B20,Structurally compared,src/game/m1_24.c,build/obj_m1/m1_24.obj,,"Pass a to active channels: kind 1 -> 0x37910, kind 2 -> 0x37790 (both regargs c=ESI)"
