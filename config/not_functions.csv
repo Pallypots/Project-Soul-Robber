@@ -212,3 +212,7 @@ va,reason
 0x00020000,inside 0x1FE70 (753 bytes; ends 0x20161); no prologue, uses ESI/EDI/EBP before setting them
 0x000149B0,interior tail-jump alias inside 0x14940 (mid stack frame; pushes do not balance)
 0x00040AC0,interior label of 0x40AB0 (second time-rank test)
+0x000637D3,jump-table data (nop then table bytes)
+0x00065012,interior fragment (starts test edi 0x1000; no prologue)
+0x0009CEE0,interior fragment (uses caller ESI/EBX; jumps back to 0x9CAC8)
+0x0009DA80,interior fragment (mulss on uninitialised reg; ends with epilogue of a larger frame)
