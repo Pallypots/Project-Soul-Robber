@@ -89,3 +89,13 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x194B40 thunk PASS
 0x1A13D0 thunk PASS
 0x19C5D0/0x1A85C0/0x19D8B0 thunks PASS
+0x3DD20/0x19B690/0x1A7B90 thunks PASS
+0x1DF10 link part: hard (cookie exits: cl merges the two exits; same class as 0x8F260)
+0xF8D30/0x102FA0/0x1A7C00/0xFD8F0 stubs+thunk PASS
+0x1A88B0 m1_Check1A88B0 PASS (nested ifs, not &&)
+0xDD880 m1_TextSelectDD880 PASS
+0xCD830 slot total add: hard (pointer bias: orig keeps base+0x200 then +4; cl folds 0x204)
+0x16ADA0 mode 7/9 call: hard (cl tail-merges the two calls)
+0x180970 pair notify loop: hard (orig signed pointer bound jl with -4 bias)
+0x1A24D0 vector iterator: hard (orig dec/js then dec/jne count loop; tried while, for, do-while)
+0x1A64F0 render-lock release: hard (cl tail-merges the two Leave calls)
