@@ -86,3 +86,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xC7B00 m1_SetupBufsC7B00 PASS
 0xC72C0 m1_SetupBufsC72C0 PASS
 0xD9050 m1_LoadAtrD9050 PASS
+0x194B40 thunk PASS
+0x1A13D0 thunk PASS
+0x19C5D0/0x1A85C0/0x19D8B0 thunks PASS

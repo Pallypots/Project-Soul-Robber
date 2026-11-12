@@ -45,3 +45,8 @@ va,name,state,source,obj,waivers,notes
 0x000c7b00,m1_SetupBufsC7B00,Structurally compared,src/game/m1_9.c,build/obj_m1/m1_9.obj,,"Creates buffer 0x1F210(1,0) loaded with chkaz00_pk.txt via 0x22630, and 0x22260(4,0,8,0) attached to the scene root (1)"
 0x000c72c0,m1_SetupBufsC72C0,Structurally compared,src/game/m1_9.c,build/obj_m1/m1_9.obj,,"Buffer 0x1F210(2,0) loaded with two model lists (second at data+0x150), and 0x22260(0x14,0,8,0) attached to the scene root (1)"
 0x000d9050,m1_LoadAtrD9050,Structurally compared,src/game/m1_gs4.c,build/obj_m1/m1_gs4.obj,,"Loads logic/event.atr and logic/rubber.atr for the current area via 0x37550; stores each file and file+0x10; returns 0; /GS cookie"
+0x00194b40,m1_FxThrowMoveThunk194B40,Structurally compared,src/game/m1_10.c,build/obj_m1/m1_10.obj,,"Tail-call thunk to 0x194410 (r4h_FxThrowMove)"
+0x001a13d0,m1_TempRestoreThunk1A13D0,Structurally compared,src/game/m1_10.c,build/obj_m1/m1_10.obj,,"Tail-call thunk to 0x1A1B90 (r4d_TempRestore)"
+0x0019c5d0,m1_GroupFreeAllThunk19C5D0,Structurally compared,src/game/m1_11.c,build/obj_m1/m1_11.obj,,"Tail-call thunk to 0x1A1130 (a1a_GroupFreeAll)"
+0x001a85c0,m1_SwapHook8Thunk1A85C0,Structurally compared,src/game/m1_11.c,build/obj_m1/m1_11.obj,,"Tail-call thunk to 0x1A2120 (a1a_SwapHook8); this is the poll-callback swap used by 0x586E0"
+0x0019d8b0,m1_ResetAndPostThunk19D8B0,Structurally compared,src/game/m1_11.c,build/obj_m1/m1_11.obj,,"Tail-call thunk to 0xDE910 (adc_ResetAndPost)"
