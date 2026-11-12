@@ -163,3 +163,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA4670 m1_StopOwnedSoundsA4670 PASS (bias rule: mov copy of the walking pointer)
 0xCC8C0 m1_ReactButtonsCC8C0 PASS (regargs o=ESI buttons=EAX)
 0xA36E0 m1_StartSlotEffectA36E0 PASS
+0xCDA00 m1_RunHandlerCDA00 PASS
+0xCDA50 m1_InputStepCDA50 PASS (own file so cl does not inline)

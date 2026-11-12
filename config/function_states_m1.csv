@@ -110,3 +110,5 @@ va,name,state,source,obj,waivers,notes
 0x000a4670,m1_StopOwnedSoundsA4670,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"Stop both sounds (+0x154[2]) of in-use entries owned by owner"
 0x000cc8c0,m1_ReactButtonsCC8C0,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Idle unflagged actor: key masks 2/5 -> state 0xB, 3 -> 0xC, 4 -> 0xD; flags |= 0x40000001; regargs: o=ESI buttons=EAX"
 0x000a36e0,m1_StartSlotEffectA36E0,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"If handle slot j of entry i is free, spawn effect id (colour 0x80) at the entry object +0x60 and store the handle"
+0x000cda00,m1_RunHandlerCDA00,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Unless flags 0xC0000000, run handler [+0x1B8] of {0xCD8D0, 0xCCF60, 0xCC840} (local array, as the original); >0 sets flag 1; regargs: o=ESI a=EDX b=ECX"
+0x000cda50,m1_InputStepCDA50,Structurally compared,src/game/m1_33.c,build/obj_m1/m1_33.obj,,"Per-frame actor input step; callees: 0xCC4D0 o=EAX, 0xCDA00 o=ESI a=EDX b=ECX, 0xCC8C0 o=ESI a=EAX, 0xCD930 o=ESI a=ECX, 0xCCDD0 o=ESI"

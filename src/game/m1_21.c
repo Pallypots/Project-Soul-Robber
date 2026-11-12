@@ -2,10 +2,14 @@
 #include <stdint.h>
 
 typedef struct M1Act150 {
-    uint8_t  unk000[0xEC];
+    uint8_t  unk000[0xD4];
+    int32_t  modeD4;           /* +0x0D4 */
+    uint8_t  unk0D8[0xEC - 0xD8];
     int32_t  stateEC;          /* +0x0EC */
     uint8_t  unk0F0[0x150 - 0xF0];
     uint32_t flags150;         /* +0x150 */
+    uint8_t  unk154[0x1B8 - 0x154];
+    int32_t  handler1B8;       /* +0x1B8 index into the 0xCDA00 handler list */
 } M1Act150;
 extern uint32_t r6g_keyMask41CD00[10];  /* 0x0041CD00 button mask per action */
 void abc_SetState(M1Act150 *a, int state);
@@ -192,4 +196,23 @@ void m1_ReactButtonsCC8C0(M1Act150 *o, uint32_t buttons)
         return;
     abc_SetState(o, st);
     o->flags150 |= 0x40000001;
+}
+
+typedef int (*M1ActHandler)(M1Act150 *o, uint32_t a, uint32_t b);
+int  sub_000CD8D0(M1Act150 *o, uint32_t a, uint32_t b);
+int  sub_000CCF60(M1Act150 *o, uint32_t a, uint32_t b);
+
+/* 0x000CDA00: unless flagged 0xC0000000, runs the actor's current handler
+ * (0xCD8D0, 0xCCF60 or 0xCC840); a positive result sets flag 1.
+ * regargs: o=ESI a=EDX b=ECX */
+void m1_RunHandlerCDA00(M1Act150 *o, uint32_t a, uint32_t b)
+{
+    M1ActHandler fns[3];
+    fns[0] = sub_000CD8D0;
+    fns[1] = sub_000CCF60;
+    fns[2] = m1_ReactButtonsCC840;
+    if (o->flags150 & 0xC0000000)
+        return;
+    if (fns[o->handler1B8](o, a, b) > 0)
+        o->flags150 |= 1;
 }
