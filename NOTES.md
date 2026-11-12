@@ -191,3 +191,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x137170 enemy next attack: hard (cl builds the 3/5/1 attack choice from bit 7 arithmetic with one call)
 0x126090 actor check: hard (orig tests bit 15 as test ah,ah/js and orders the calls differently; tried 3 forms)
 0x11AC30 m1_EnemyAttack11AC30 PASS
+0xCC430 m1_DefaultKeysCC430 PASS

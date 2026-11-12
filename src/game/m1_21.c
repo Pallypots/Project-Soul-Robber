@@ -279,3 +279,25 @@ uint32_t m1_PadKeyCCD60(int p, int k, int edge)
         return m1_pads42CA34[p].held04 & r6g_keyMask41CD00[k];
     return m1_pads42CA34[p].pressed00 & r6g_keyMask41CD00[k];
 }
+
+extern uint32_t *m1_padMasks2C4AE8;    /* 0x002C4AE8 */
+
+/* 0x000CC430: default key masks for the 13 actions; action 6 then takes the pad
+ * table's entry 5. */
+void m1_DefaultKeysCC430(void)
+{
+    r6g_keyMask41CD00[0] = 0x80;
+    r6g_keyMask41CD00[6] = 0x40;
+    r6g_keyMask41CD00[7] = 2;
+    r6g_keyMask41CD00[8] = 4;
+    r6g_keyMask41CD00[9] = 8;
+    r6g_keyMask41CD00[10] = 1;
+    r6g_keyMask41CD00[4] = 0x2000;
+    r6g_keyMask41CD00[3] = 0x8000;
+    r6g_keyMask41CD00[11] = 0x10;
+    r6g_keyMask41CD00[5] = 0x4000;
+    r6g_keyMask41CD00[12] = 0x80;
+    r6g_keyMask41CD00[1] = 0x10;
+    r6g_keyMask41CD00[2] = 0x1000;
+    r6g_keyMask41CD00[6] = m1_padMasks2C4AE8[5];
+}
