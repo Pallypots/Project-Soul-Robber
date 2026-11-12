@@ -120,3 +120,4 @@ va,name,state,source,obj,waivers,notes
 0x000ccd60,m1_PadKeyCCD60,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Key mask k on pad p (pressed if edge else held, pads 0x4C at 0x42CA34); 0 while input is blocked (flags 0x82006, modes 2/4/5, system key 0x4101)"
 0x00039660,m1_FadeColour39660,Structurally compared,src/game/m1_34.c,build/obj_m1/m1_34.obj,,"Set the 4 quad vertices of fade channel i to its grey level, alpha 0x80; regargs: i=EAX"
 0x000a4b80,m1_ResetAllA4B80,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,,"Forget both shared resources, reset all 32 entries (0xA3810 regargs e=ESI), 16 handles at 0x423FEC = -1, count 0x423FE8 = 0"
+0x000a3780,m1_LookupKeyA3780,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,imm:0xc,"Find the (a, b) pair from 0xDFD40 in the 75-entry key table; store key and value; 0 if found else -1; waiver: stride 0xC built as shl/lea (documented idiom, element size 0xC in C)"

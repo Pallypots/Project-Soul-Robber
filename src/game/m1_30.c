@@ -86,3 +86,34 @@ void m1_ResetAllA4B80(void)
         m1_handles423FEC[i] = -1;
     m1_count423FE8 = 0;
 }
+
+typedef struct M1Key0C {
+    int32_t a00;               /* +0x00, -1 ends the table */
+    int32_t b04;               /* +0x04 */
+    int32_t val08;             /* +0x08 */
+} M1Key0C;
+extern M1Key0C m1_keys2E2D50[];        /* 0x002E2D50 */
+extern int32_t m1_keyVal423FE0;        /* 0x00423FE0 */
+extern int32_t m1_keyA423FE4;          /* 0x00423FE4 */
+void sub_000DFD40(int *a, int *b);
+
+/* 0x000A3780: looks up the current (a, b) pair from 0xDFD40 in the key table and
+ * stores its key and value; 0 when a value was found, else -1. */
+int m1_LookupKeyA3780(void)
+{
+    int b, a;
+    int i;
+    m1_keyVal423FE0 = 0;
+    m1_keyA423FE4 = -1;
+    sub_000DFD40(&a, &b);
+    for (i = 0; m1_keys2E2D50[i].a00 != -1; i++) {
+        if (m1_keys2E2D50[i].a00 == a && m1_keys2E2D50[i].b04 == b) {
+            m1_keyA423FE4 = m1_keys2E2D50[i].a00;
+            m1_keyVal423FE0 = m1_keys2E2D50[i].val08;
+            break;
+        }
+    }
+    if (m1_keyVal423FE0 == 0)
+        return -1;
+    return 0;
+}

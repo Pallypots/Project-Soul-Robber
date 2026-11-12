@@ -389,3 +389,8 @@ sub_000A3810R,0x000A3810,func,,
 m1_handles423FEC,0x00423FEC,data,,
 m1_count423FE8,0x00423FE8,data,,
 m1_ResetAllA4B80,0x000A4B80,func,,
+m1_keys2E2D50,0x002E2D50,data,0xC,76
+m1_keyVal423FE0,0x00423FE0,data,,
+m1_keyA423FE4,0x00423FE4,data,,
+sub_000DFD40,0x000DFD40,func,,
+m1_LookupKeyA3780,0x000A3780,func,,

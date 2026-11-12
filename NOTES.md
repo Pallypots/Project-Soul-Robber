@@ -178,3 +178,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x39660 m1_FadeColour39660 PASS (quad table declared as 2 x 0x1450 array)
 0x79910 record copy by id: hard (cl merges the direct-slot call with the final call)
 0xA4B80 m1_ResetAllA4B80 PASS
+0xA3780 m1_LookupKeyA3780 PASS* (stride waiver)
