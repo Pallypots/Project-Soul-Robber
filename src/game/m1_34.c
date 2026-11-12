@@ -33,3 +33,4 @@ void m1_FadeColour39660(int i)
         q->v[k].a04 = 0x80;
     }
 }
+

@@ -64,3 +64,25 @@ void m1_SetupA5730(int a)
     sub_0001CFF0(m1_scene42C8E4S->list1E8, r, 0xC);
     sub_00053740();
 }
+
+typedef struct M1EntSlot { uint8_t raw[0x260]; } M1EntSlot;
+extern M1EntSlot m1_entsRaw4242C0[32];  /* 0x004242C0 */
+void sub_000A3810R(M1EntSlot *e);      /* 0x000A3810 regargs: e=ESI */
+extern int32_t m1_handles423FEC[16];    /* 0x00423FEC */
+extern int32_t m1_count423FE8;          /* 0x00423FE8 */
+
+/* 0x000A4B80: forgets both shared resources, resets all 32 entries (0xA3810),
+ * clears the 16 handles to -1 and the count to 0. */
+void m1_ResetAllA4B80(void)
+{
+    int i;
+    m1_resA3ED534 = 0;
+    m1_idA3ED52C = 0;
+    m1_resB3ED538 = 0;
+    m1_idB3ED530 = 0;
+    for (i = 0; i < 32; i++)
+        sub_000A3810R(&m1_entsRaw4242C0[i]);
+    for (i = 0; i < 16; i++)
+        m1_handles423FEC[i] = -1;
+    m1_count423FE8 = 0;
+}

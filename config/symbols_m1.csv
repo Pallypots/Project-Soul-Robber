@@ -384,3 +384,8 @@ m1_PadKeyCCD60,0x000CCD60,func,,
 m1_fadeChans3DA4A8,0x003DA4A8,data,,
 m1_fadeQuads3DA500,0x003DA500,data,0x1450,2
 m1_FadeColour39660,0x00039660,func,,
+m1_entsRaw4242C0,0x004242C0,data,,
+sub_000A3810R,0x000A3810,func,,
+m1_handles423FEC,0x00423FEC,data,,
+m1_count423FE8,0x00423FE8,data,,
+m1_ResetAllA4B80,0x000A4B80,func,,

@@ -176,3 +176,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCCD60 m1_PadKeyCCD60 PASS
 0xB4010 sequencer variant: hard (two 0xA4410 calls with 1/0; cl merges them)
 0x39660 m1_FadeColour39660 PASS (quad table declared as 2 x 0x1450 array)
+0x79910 record copy by id: hard (cl merges the direct-slot call with the final call)
+0xA4B80 m1_ResetAllA4B80 PASS
