@@ -63,4 +63,33 @@ extern void *m1_eventBms417868, *m1_talkBms41786C, *m1_shopBms417874;
 int m1_LoadEventBmsE0010(void);                                     /* 0x000E0010 */
 int m1_LoadTalkBmsE0070(void);                                      /* 0x000E0070 */
 int m1_LoadShopBmsE00D0(void);                                      /* 0x000E00D0 */
+void sub_000DFED0(void);
+extern const char m1_fmtQuiz277660[], m1_fmtEventLgc277690[], m1_fmtRubber2776C0[], m1_fmtMb277744[];
+extern void *m1_quizBms417870, *m1_eventLgc417864;                 /* 0x00417870, 0x00417864 */
+extern int32_t m1_lgcState3F0734;                                   /* 0x003F0734 */
+extern uint8_t *m1_rubber3F0748, *m1_rubberBody3F074C;              /* 0x003F0748, 0x003F074C */
+extern const char *const m1_langTab317CF0[8];                       /* 0x00317CF0 (XBOX32 pointers) */
+int m1_LoadQuizBmsE0150(void);                                      /* 0x000E0150 */
+int m1_LoadEventLgcE05B0(void);                                     /* 0x000E05B0 */
+int m1_LoadRubberE0700(void);                                       /* 0x000E0700 */
+void *m1_LoadMbBmsE0DD0(int lang, int n);                           /* 0x000E0DD0 */
+void *sub_001C7DB0(void *dst, const void *src, unsigned n);       /* 0x001C7DB0 CRT copy */
+int  sub_00084CE0(const char *path);
+void sub_0005EBB0(int i, const char *path);
+typedef struct M1PigOwner { uint8_t unk00[0x44]; int32_t pigA; int32_t pigB; } M1PigOwner;
+typedef struct M1PigDir { uint8_t unk00[8]; const char *dir; /* +8 (XBOX32) */ } M1PigDir;
+extern const char m1_fmtPig25FBE8[];                                /* 0x0025FBE8 "%spig/%s.pig" */
+extern const char m1_fmtShd26CDE4[], m1_fmtShd26CDC8[];             /* 0x0026CDE4, 0x0026CDC8 */
+int  m1_LoadPigA1DBF0(M1PigOwner *o, const char *name, const M1PigDir *d);   /* 0x0001DBF0 */
+int  m1_LoadPigB1DC70(M1PigOwner *o, const char *name, const M1PigDir *d);   /* 0x0001DC70 */
+int  sub_00057660(int a, int b);
+void sub_000340D0_m1(char *out, int id);    /* 0x000340D0 regargs: id=ESI */
+int  sub_000364A0_m1(const char *path, int arg);  /* 0x000364A0 regargs: path=EAX */
+extern const char m1_fmtDemoEff2614C8[];                            /* 0x002614C8 */
+extern int32_t m1_flip3DF2F0;                                       /* 0x003DF2F0 */
+extern uint8_t *m1_stage3DFA5C;                                     /* 0x003DFA5C */
+extern const char *const m1_stageNames2C58C4[];                     /* 0x002C58C4 (XBOX32 pointers) */
+int  m1_LoadById36660(int arg, int a, int b);                       /* 0x00036660 */
+int  m1_LoadDemoEff366F0(int arg, int n);                           /* 0x000366F0 */
+void m1_LoadStageFlip40E90(const char *fmt, int idx);               /* 0x00040E90 regargs: idx=EDX */
 #endif

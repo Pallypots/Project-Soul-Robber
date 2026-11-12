@@ -42,3 +42,13 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xE0010 m1_LoadEventBmsE0010 PASS
 0xE0070 m1_LoadTalkBmsE0070 PASS
 0xE00D0 m1_LoadShopBmsE00D0 PASS (early returns stop cl folding the 6..8 range)
+0xE0150 m1_LoadQuizBmsE0150 PASS
+0xE05B0 m1_LoadEventLgcE05B0 PASS
+0xE0700 m1_LoadRubberE0700 PASS
+0xE0DD0 m1_LoadMbBmsE0DD0 PASS
+0x1DBF0 m1_LoadPigA1DBF0 PASS
+0x1DC70 m1_LoadPigB1DC70 PASS
+0x5EE40 shock .shd loop: hard (cl drops the always-true i<0x100 check the original keeps)
+0x36660 m1_LoadById36660 PASS
+0x366F0 m1_LoadDemoEff366F0 PASS
+0x40E90 m1_LoadStageFlip40E90 PASS
