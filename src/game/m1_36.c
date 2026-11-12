@@ -101,3 +101,47 @@ void m1_ResetInputF6D80(M1Mode8 *m)
     p->wEC = 0;
     p->wAA = 1;
 }
+
+typedef struct M1EWork {
+    uint8_t  unk00[4];
+    uint32_t flags04;          /* +0x04 */
+    uint8_t  unk08[0x14 - 8];
+    float    v14[4];           /* +0x14 */
+} M1EWork;
+typedef struct M1Enemy278 {
+    uint8_t  unk000[0x20];
+    uint8_t  b020;             /* +0x020 */
+    uint8_t  unk021;
+    uint8_t  b022;             /* +0x022 */
+    uint8_t  unk023[0x58 - 0x23];
+    int32_t  state058;         /* +0x058 */
+    uint8_t  unk05C[0x278 - 0x5C];
+    M1EWork *work278;          /* +0x278 */
+} M1Enemy278;
+void sub_00113090(void *o, void *e, int anim);
+void sub_000414A0(int n);
+void sub_00113C60(float *v, float a, float b);
+void sub_00113CB0(float *v, float a, int b);
+
+/* 0x00142AF0: enemy hit: animation 0x12 (+1 when bit 0 of +0x22 is set), score 1;
+ * flag 0x20000000 flashes (40, 255); otherwise fades (20) and moves to state 2 when
+ * flagged 0x40000000, or to state 4 (owner flags |= 6) when bit 0 of +0x20 is set. */
+void m1_EnemyHit142AF0(M1Obj124 *o, M1Enemy278 *e)
+{
+    M1EWork *w = e->work278;
+    sub_00113090(o, e, (e->b022 & 1) + 0x12);
+    sub_000414A0(1);
+    if (w->flags04 & 0x20000000) {
+        sub_00113C60(w->v14, 40.0f, 255.0f);
+        return;
+    }
+    sub_00113CB0(w->v14, 20.0f, 0);
+    if (w->flags04 & 0x40000000) {
+        e->state058 = 2;
+        return;
+    }
+    if (e->b020 & 1) {
+        o->flags10 |= 6;
+        e->state058 = 4;
+    }
+}

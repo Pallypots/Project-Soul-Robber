@@ -126,3 +126,4 @@ va,name,state,source,obj,waivers,notes
 0x00037b20,m1_ChanApply37B20,Structurally compared,src/game/m1_24.c,build/obj_m1/m1_24.obj,,"Pass a to active channels: kind 1 -> 0x37910, kind 2 -> 0x37790 (both regargs c=ESI)"
 0x0017e410,m1_SetupActor17E410,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Actor setup: flags, mode 2 (0x1EBF0), callbacks 0x17D8E0/0x102FA0 and params 0x32B780/0x32B784, start position 0x27A628, event 0, animation 0; returns 1"
 0x000f6d80,m1_ResetInputF6D80,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Pick body by mode (4: 0x100110, 5: 0xFBAF0, else 0xFE3D0), re-enable its controller (flags -0x44 +0x220), clear its input words, +0xAA = 1"
+0x00142af0,m1_EnemyHit142AF0,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy hit: anim 0x12(+1), score 1; flag 0x20000000 flash (40,255) else fade (20) then state 2 (0x40000000) or state 4 with owner flags |= 6 (bit 0 of +0x20)"
