@@ -528,8 +528,8 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                     if m == "sub" and ops[0].type == x86.X86_OP_REG and v >= 0xFFFFFF80:
                         v = (-v) & 0xFFFFFFFF
                     imm[("k", v)] += 1
-                    if m == "push":
-                        pushimm.add(v)
+                    if m == "push" or (m == "mov" and ops[0].type == x86.X86_OP_MEM):
+                        pushimm.add(v)   # also a float literal stored as its bit pattern
         prev = i
     # 0/1 materialisation differs freely between compilers (xor r,r / mov r,1 / setcc)
     # 0xFF / 0xFFFF masks: `and r,0xFF` and a zero-extending byte/word load are the same operation
