@@ -92,3 +92,5 @@ va,name,state,source,obj,waivers,notes
 0x0003e610,m1_DrawMenuLinef3E610,Structurally compared,src/game/m1_gs8.c,build/obj_m1/m1_gs8.obj,,"Format a menu line and draw it as %c%s with +/space marker; colour selected/normal from *0x2C4B08; ap cleared after formatting as the original"
 0x000cd830,m1_AddSlotTotalCD830,Structurally compared,src/game/m1_14.c,build/obj_m1/m1_14.obj,,"Slot i (stride 0x8C at +0x200) total += 0xCD180(o, i)"
 0x000cdab0,m1_FindEntryCDAB0,Structurally compared,src/game/m1_26.c,build/obj_m1/m1_26.obj,,"Index of the in-use entry for (model, key) in 16 x 0x54 table, else -1; regargs: m=EAX key=ESI"
+0x000cf000,m1_UpdateEntriesCF000,Structurally compared,src/game/m1_26.c,build/obj_m1/m1_26.obj,,"Per-frame update of in-use entries of the 0x54 table; callers pass e in registers: 0xCE680 e=ESI, 0xCE750 e=EDI, 0xCE020 e=EAX, 0xCE1C0 e=ESI"
+0x000a93f0,m1_VoiceStartA93F0,Structurally compared,src/game/m1_27.c,build/obj_m1/m1_27.obj,,"Find a voice slot (0xA88B0), store param at +0xD0, start it (0xA8510 regargs v=EDI a=EDX); slot index or -1"
