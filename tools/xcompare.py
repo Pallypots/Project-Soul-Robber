@@ -463,12 +463,15 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                     imm[("k", alias[rr] & 0xFFFFFFFF)] += 1
             for r in wr:
                 alias.pop(r, None)
-        if use_bias:
+        if use_bias == 2:
             # a 4-byte store of zero also clears the 16-bit field two bytes up:
             # cl merges two adjacent word clears into one dword store
             if m == "mov" and len(ops) == 2 and ops[0].type == x86.X86_OP_MEM and ops[0].size == 4 and                     ops[0].mem.base not in (0, x86.X86_REG_ESP, frame_reg) and ops[0].mem.index == 0 and                     ((ops[1].type == x86.X86_OP_IMM and ops[1].imm == 0) or
                      (ops[1].type == x86.X86_OP_REG and ops[1].reg in zero_regs)) and abs(ops[0].mem.disp) < 0x10000:
                 eff = ops[0].mem.disp + alias.get(ops[0].mem.base, 0)
+                bz = bias.get(i.address)
+                if bz and bz[0] == "mem" and bz[1] == ops[0].mem.base:
+                    eff += bz[2]
                 imm[("k", (eff + 2) & 0xFFFFFFFF)] += 1
             if m == "xor" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                     ops[1].type == x86.X86_OP_REG and ops[0].reg == ops[1].reg:
                 zero_regs.add(ops[0].reg)
@@ -686,7 +689,7 @@ def compare(obj, sym, va, size=None, verbose=False, xbe=None, syms=None, dump=Fa
     code, relmap, cursec = coff.function(sym)
     # compare plainly first; then with loop-pointer bias canonicalised on both
     # sides (pointer_bias); either comparison on its own is a full check
-    for use_bias in (False, True):
+    for use_bias in (0, 1, 2):
         a = events(xbe.read_va(va, size), va, orig_resolver(), md, orig_fconst(xbe), local=(va, va + size + 0x100), use_bias=use_bias)
         b = events(code, 0, obj_resolver(relmap, syms, code, cursec), md, obj_fconst, use_bias=use_bias)
         fold_pushed_floats(a, b)
