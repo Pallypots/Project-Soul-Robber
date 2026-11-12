@@ -132,3 +132,4 @@ va,name,state,source,obj,waivers,notes
 0x0011ac30,m1_EnemyAttack11AC30,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy attack start: shake (kind 3: 1, kind 4: random 1..2, strength 10), anim 0x37(+1), replace reaction-5 effect at work+0x38"
 0x000cc430,m1_DefaultKeysCC430,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Default key masks for the 13 actions; action 6 then takes pad table entry 5 (*0x2C4AE8)[5]"
 0x000e1e90,m1_FreeRigE1E90,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"Rig teardown (inverse of 0xE1E00): pending handle, five slot objects, task, root"
+0x000540c0,m1_SaveShutdown540C0,Structurally compared,src/game/m1_37.c,build/obj_m1/m1_37.obj,,"Save screen shutdown: free group, stop 7 handles + extra (unless mode 2), release slots 0xB8/0xBA/0xA7 and the save buffer, then 0x1A1B90"
