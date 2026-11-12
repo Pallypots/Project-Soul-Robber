@@ -147,3 +147,30 @@ void m1_StartSlotEffectA36E0(int i, int id, int j, int a, float size, int c)
         return;
     e->snd154[j] = sub_00049700(id, 0x80, 0x80, 0x80, (uint8_t *)e->obj120 + 0x60, a, size, c);
 }
+
+void sub_00033B30(void *o);
+void sub_000362B0(void *o);
+void sub_0001D190(void *o);
+void sub_0001B3F0(void *o);
+void sub_000A3810(M1Ent260W *e);  /* regargs: e=ESI (0xA3810 reads ESI before writing it) */
+
+/* 0x000A4DE0: releases entry e's object: 0x33B30, clear bit 0 of +0xC, 0x1EB80,
+ * stop both handles, then 0x362B0, 0x1D190, 0x1B3F0 and 0xA3810. regargs: e=EAX */
+void m1_ReleaseEntryA4DE0(M1Ent260W *e)
+{
+    M1ObjC *o = e->obj120;
+    int j;
+    if (o == 0)
+        return;
+    sub_00033B30(o);
+    o->flags0C &= ~1u;
+    sub_0001EB80(o);
+    for (j = 0; j < 2; j++) {
+        if (e->snd154[j] != -1)
+            sub_00048250(e->snd154[j]);
+    }
+    sub_000362B0(o);
+    sub_0001D190(o);
+    sub_0001B3F0(o);
+    sub_000A3810(e);
+}

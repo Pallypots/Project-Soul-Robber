@@ -170,3 +170,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA56C0 m1_ClearJackFlagsA56C0 PASS
 0x125DE0 m1_AfterAnim125DE0 PASS
 0x5AB00 chain anim restart: hard (cl folds the 12..13 range and duplicates the restart call; a range checker rule was tried and reverted: it hid the wrong-array-field control)
+0xA4DE0 m1_ReleaseEntryA4DE0 PASS
