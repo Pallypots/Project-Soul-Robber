@@ -126,3 +126,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xC44E0 m1_ClearWordsC44E0 PASS
 0x114650 m1_ActorRelease114650 PASS
 0xA3690 m1_SampleA3690 PASS (unsigned cast for _ftol2; assumes >= 0)
+0xCC840 m1_ReactButtonsCC840 PASS
+0xAC9D0 m1_SeqStepAC9D0 PASS
+0xADB60 m1_SeqStepADB60 PASS
+0xAC8A0 m1_SeqStepAC8A0 PASS
+0xAC930 m1_SeqStepAC930 PASS

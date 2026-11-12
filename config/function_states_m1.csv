@@ -77,3 +77,8 @@ va,name,state,source,obj,waivers,notes
 0x000c44e0,m1_ClearWordsC44E0,Structurally compared,src/game/m1_19.c,build/obj_m1/m1_19.obj,,"Clear +0x624 and 32 words at +0x628"
 0x00114650,m1_ActorRelease114650,Structurally compared,src/game/m1_20.c,build/obj_m1/m1_20.obj,,"Variant of 0x12D670; model part 2 reset keyed on flag 0x40 at work+4"
 0x000a3690,m1_SampleA3690,Structurally compared,src/game/m1_20.c,build/obj_m1/m1_20.obj,,"Sample entry i source via 0x171D50 into +0x0C and int slot j at +0x110; (unsigned) cast for _ftol2 assumes value >= 0 (behaviour-test priority)"
+0x000cc840,m1_ReactButtonsCC840,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Idle actor: buttons b in key mask 0 -> state 0x24, buttons a in key mask 1 -> state 0x28; 1 or -1"
+0x000ac9d0,m1_SeqStepAC9D0,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Tiny sequencer: cmd 0 clear, 1 arm step 10, 3 finish step 0x14; step 10 fires fx 0x24 on the slot"
+0x000adb60,m1_SeqStepADB60,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Twin of 0xAC9D0 (flags 3, fx 0x25)"
+0x000ac8a0,m1_SeqStepAC8A0,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer twin; step 10 resets the slot and fires fx 0x23"
+0x000ac930,m1_SeqStepAC930,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer variant; step 10 fires fx 0x22 on slots 0x10/0x12/0x14; ends at step 11 or 0x14"
