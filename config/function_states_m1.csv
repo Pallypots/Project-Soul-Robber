@@ -133,3 +133,4 @@ va,name,state,source,obj,waivers,notes
 0x000cc430,m1_DefaultKeysCC430,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Default key masks for the 13 actions; action 6 then takes pad table entry 5 (*0x2C4AE8)[5]"
 0x000e1e90,m1_FreeRigE1E90,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"Rig teardown (inverse of 0xE1E00): pending handle, five slot objects, task, root"
 0x000540c0,m1_SaveShutdown540C0,Structurally compared,src/game/m1_37.c,build/obj_m1/m1_37.obj,,"Save screen shutdown: free group, stop 7 handles + extra (unless mode 2), release slots 0xB8/0xBA/0xA7 and the save buffer, then 0x1A1B90"
+0x00018840,m1_SetCopy18840,Structurally compared,src/game/m1_37.c,build/obj_m1/m1_37.obj,,"Reset dst (0x195F0) then copy src: header, 0x510-byte block, two vectors, +0x540..; +0x558 = -1; +0x54C takes src +0x548 as the original; regargs: dst=EBX"
