@@ -1,0 +1,53 @@
+/* Area m1, file 36: actor setup with callbacks. Names inferred. */
+#include <stdint.h>
+
+typedef struct M1Obj124 {
+    uint8_t  unk000[0xC];
+    uint32_t flags0C;          /* +0x00C */
+    uint32_t flags10;          /* +0x010 */
+    uint8_t  unk014[0x30 - 0x14];
+    void    *anim030;          /* +0x030 */
+    uint8_t  unk034[0x60 - 0x34];
+    float    pos060[4];        /* +0x060 */
+    uint8_t  unk070[0x124 - 0x70];
+    int32_t  f124;             /* +0x124 */
+} M1Obj124;
+typedef void (*M1Cb)(void);
+typedef struct M1ActCb {
+    uint8_t  unk000[0x27C];
+    M1Cb     update27C;        /* +0x27C */
+    uint8_t  unk280[0x288 - 0x280];
+    M1Cb     draw288;          /* +0x288 */
+    void    *paramA28C;        /* +0x28C */
+    void    *paramB290;        /* +0x290 */
+} M1ActCb;
+extern uint8_t  m1_paramA32B780[4], m1_paramB32B784[4];  /* 0x0032B780 / 0x0032B784 */
+extern const float m1_startPos27A628[4];                 /* 0x0027A628 */
+void sub_0017D8E0(void);
+void m1_Stub102FA0(void);
+void sub_0001EBF0(M1Obj124 *o, int v);
+void sub_000F5D40(void *dst, const void *src);
+void sub_00113040(void *owner, void *obj, int what);
+void sub_000832D0(void *anim, int id);
+
+/* 0x0017E410: sets up o (flags, mode 2) and actor a (callbacks and parameters),
+ * places o at the start position and starts animation 0. Returns 1. */
+int m1_SetupActor17E410(M1Obj124 *o, M1ActCb *a)
+{
+    if (o == 0)
+        for (;;) ;
+    if (a == 0)
+        for (;;) ;
+    o->flags0C = (o->flags0C & ~0xE0u) | 3;
+    o->flags10 |= 0x44D;
+    o->f124 = 0;
+    sub_0001EBF0(o, 2);
+    a->paramA28C = m1_paramA32B780;
+    a->paramB290 = m1_paramB32B784;
+    a->update27C = sub_0017D8E0;
+    a->draw288 = m1_Stub102FA0;
+    sub_000F5D40(o->pos060, m1_startPos27A628);
+    sub_00113040(o, a, 0);
+    sub_000832D0(o->anim030, 0);
+    return 1;
+}

@@ -124,3 +124,4 @@ va,name,state,source,obj,waivers,notes
 0x000e1e00,m1_SetupRigE1E00,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"One-time rig setup: root with children 0/1 loaded from 0x2777BC, task 5 started on it, five 0x28 slots cleared"
 0x00189960,m1_StageReset189960,Structurally compared,src/game/m1_35.c,build/obj_m1/m1_35.obj,,"Stage reset: four globals, both halves of 19 pair records (kinds 7/0xD via 0x1D8B0), 14 subsystem resets, 0x3FF580 = 0"
 0x00037b20,m1_ChanApply37B20,Structurally compared,src/game/m1_24.c,build/obj_m1/m1_24.obj,,"Pass a to active channels: kind 1 -> 0x37910, kind 2 -> 0x37790 (both regargs c=ESI)"
+0x0017e410,m1_SetupActor17E410,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Actor setup: flags, mode 2 (0x1EBF0), callbacks 0x17D8E0/0x102FA0 and params 0x32B780/0x32B784, start position 0x27A628, event 0, animation 0; returns 1"
