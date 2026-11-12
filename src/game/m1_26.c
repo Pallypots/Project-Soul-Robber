@@ -14,7 +14,7 @@ typedef struct M1Ent54 {
     M1Mdl8 *mdl50;             /* +0x50 */
 } M1Ent54;
 extern M1Ent54 m1_ents41C7C0[16];  /* 0x0041C7C0 */
-M1Mdl8 *sub_0001D290(M1Mdl8 *m, int i);
+M1Mdl8 *sub_0001D290(void *m, int i);
 
 /* 0x000CDAB0: index of the in-use entry for (model, key), or -1. A kind-6 model
  * with no sub-model is first resolved through 0x1D290.
@@ -69,4 +69,42 @@ void m1_UpdateEntriesCF000(void)
         else
             sub_000CE1C0(e);
     }
+}
+
+extern void *g_playerObj;                     /* 0x00420E98 */
+extern uint8_t m1_set2E78B0[];                /* 0x002E78B0 */
+extern void *m1_sets2E7A60[];                 /* 0x002E7A60 per sub-model */
+int  sub_000CEAE0(void *set, M1Mdl8 *node);   /* regargs: set=EDX */
+int  sub_000CEBB0(void *set, M1Mdl8 *node);   /* regargs: set=EDX */
+void sub_000CE4C0(M1Mdl8 *m);                 /* regargs: m=ESI */
+
+/* 0x000CEF60: sets flag 4 on the entries that 0xCEAE0 and 0xCEBB0 pick for Jack's
+ * first child node from set 0x2E78B0. */
+void m1_MarkJackEntriesCEF60(void)
+{
+    M1Mdl8 *n = sub_0001D290(g_playerObj, 0);
+    int i = sub_000CEAE0(m1_set2E78B0, n);
+    if (i >= 0)
+        m1_ents41C7C0U[i].flags00 |= 4;
+    i = sub_000CEBB0(m1_set2E78B0, n);
+    if (i >= 0)
+        m1_ents41C7C0U[i].flags00 |= 4;
+}
+
+/* 0x000CEFB0: for a kind-6 model with a set for its sub-model, runs 0xCE4C0 and
+ * both pickers (sub-model 0 resolves its first child first). */
+void m1_ApplySetCEFB0(M1Mdl8 *m)
+{
+    M1Mdl8 *n = m;
+    void *set;
+    if (m->kind04 != 6)
+        return;
+    set = m1_sets2E7A60[m->sub08];
+    if (set == 0)
+        return;
+    if (m->sub08 == 0)
+        n = sub_0001D290(m, 0);
+    sub_000CE4C0(m);
+    sub_000CEAE0(set, n);
+    sub_000CEBB0(set, n);
 }

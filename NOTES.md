@@ -149,3 +149,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x54770 m1_BuildSave54770 PASS (regargs s=EAX)
 0x531C0 m1_FindSound531C0 PASS
 0x34050 effect name: hard (cl merges the type-1 and default snprintf calls; orig has three call sites)
+0xCDB00/0xCDB50/0xCDBA0 bone save/restore/clear PASS (regargs)
+0xCEF60/0xCEFB0 entry set pickers PASS (regarg callees)
