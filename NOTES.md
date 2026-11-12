@@ -179,3 +179,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x79910 record copy by id: hard (cl merges the direct-slot call with the final call)
 0xA4B80 m1_ResetAllA4B80 PASS
 0xA3780 m1_LookupKeyA3780 PASS* (stride waiver)
+0xEB3A0 give/anim: hard (cl merges the two 0xD0200 call sites)
+0xE1E00 m1_SetupRigE1E00 PASS
