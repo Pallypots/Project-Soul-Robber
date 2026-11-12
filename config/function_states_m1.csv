@@ -102,3 +102,5 @@ va,name,state,source,obj,waivers,notes
 0x000cef60,m1_MarkJackEntriesCEF60,Structurally compared,src/game/m1_26.c,build/obj_m1/m1_26.obj,,"Flag 4 on the entries picked by 0xCEAE0/0xCEBB0 (regargs set=EDX) for Jack's first child node"
 0x000cefb0,m1_ApplySetCEFB0,Structurally compared,src/game/m1_26.c,build/obj_m1/m1_26.obj,,"Kind-6 model: 0xCE4C0 (regargs m=ESI) and both pickers with the set for its sub-model"
 0x000a0fd0,m1_CountHandledA0FD0,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,imm:0x40;imm:0x41,"Count in-use non-0x40 entries whose kind handler (table 0x2E2758) returns nonzero; waiver: merged bit tests &1 and &0x40 (documented idiom)"
+0x000f3630,m1_EnsureResF3630,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,,"Create the resource once (0x1F930) and add it to the scene list on layer 3"
+0x000a5730,m1_SetupA5730,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,,"Heap 3 setup: resets, shared resource once, 0xA49F0 (regargs a=ECX), second resource on scene layer 0xC, then 0x53740"

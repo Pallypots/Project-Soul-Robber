@@ -153,3 +153,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCEF60/0xCEFB0 entry set pickers PASS (regarg callees)
 0xCEAE0/0xCEBB0 entry pickers: hard (orig keeps an always-false i<0 check after the free-slot search; cl drops it)
 0xA0FD0 m1_CountHandledA0FD0 PASS* (merged-bit-test waiver)
+0xF3630 m1_EnsureResF3630 PASS
+0x107760/0xEEF40 hit reaction 4/5: hard (cl merges the two 0x36750 calls)
+0xA5730 m1_SetupA5730 PASS
