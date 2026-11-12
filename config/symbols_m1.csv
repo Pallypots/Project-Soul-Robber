@@ -1,0 +1,11 @@
+name,va,kind,elem,count
+m1_FadeStart72EE0,0x00072EE0,func,,
+sub_00072DD0,0x00072DD0,func,,
+___security_cookie,0x00379D8C,data,,
+__security_cookie,0x00379D8C,data,,
+__security_check_cookie,0x001C7D27,crt,,
+security_check_cookie,0x001C7D27,crt,,
+m1_PathOp53D70,0x00053D70,func,,
+sub_00052A10,0x00052A10,func,,
+sub_0007E0A0,0x0007E0A0,func,,
+sub_00037570,0x00037570,func,,

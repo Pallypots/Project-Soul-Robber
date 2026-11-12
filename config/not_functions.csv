@@ -216,3 +216,5 @@ va,reason
 0x00065012,interior fragment (starts test edi 0x1000; no prologue)
 0x0009CEE0,interior fragment (uses caller ESI/EBX; jumps back to 0x9CAC8)
 0x0009DA80,interior fragment (mulss on uninitialised reg; ends with epilogue of a larger frame)
+0x00154D6C,interior fragment reported by recovery (inside a larger function)
+0x000640E0,interior fragment reported by recovery (inside a larger function)

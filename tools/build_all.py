@@ -14,10 +14,14 @@ for p in glob.glob(os.path.join(ROOT, "config", "function_states*.csv")):
             groups[os.path.dirname(r["obj"])].add(r["source"])
 errors = 0
 for objdir, srcs in sorted(groups.items()):
-    srcs = sorted(srcs)
-    for i in range(0, len(srcs), 4):
-        batch = [s.replace("/", "\\") for s in srcs[i:i + 4]]
-        out = subprocess.run(["cmd", "/c", "tools\\clto.bat", objdir.replace("/", "\\")] + batch,
+    # /GS files (security cookie) are compiled separately from the rest
+    plain = [s for s in srcs if "_gs" not in os.path.basename(s)]
+    gs = [s for s in srcs if "_gs" in os.path.basename(s)]
+    batches = [plain[i:i + 4] for i in range(0, len(plain), 4)] + [gs[i:i + 4] for i in range(0, len(gs), 4)]
+    for b in batches:
+        batch = [s.replace("/", "\\") for s in b]
+        tool = "tools\\clto_gs.bat" if any("_gs" in os.path.basename(x) for x in batch) else "tools\\clto.bat"
+        out = subprocess.run(["cmd", "/c", tool, objdir.replace("/", "\\")] + batch,
                              cwd=ROOT, capture_output=True, text=True).stdout
         if out.strip():
             errors += 1

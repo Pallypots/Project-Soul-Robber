@@ -1,0 +1,3 @@
+va,name,state,source,obj,waivers,notes
+0x00072ee0,m1_FadeStart72EE0,Structurally compared,src/game/m1_1.c,build/obj_m1/m1_1.obj,data:0x10000;imm:0x5;imm:0x6,store merging: bytes +4/+5 and word +6 merged into one dword store by cl
+0x00053d70,m1_PathOp53D70,Structurally compared,src/game/m1_gs1.c,build/obj_m1/m1_gs1.obj,,security cookie function: compiled with /GS (file name contains _gs); cookie 0x379D8C and check 0x1C7D27 mapped in symbols
