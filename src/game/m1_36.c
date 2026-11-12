@@ -145,3 +145,36 @@ void m1_EnemyHit142AF0(M1Obj124 *o, M1Enemy278 *e)
         e->state058 = 4;
     }
 }
+
+typedef struct M1Enemy4C {
+    uint8_t  unk000[0x20];
+    uint8_t  b020;             /* +0x020 */
+    uint8_t  unk021;
+    uint8_t  b022;             /* +0x022 */
+    uint8_t  unk023[0x4C - 0x23];
+    uint32_t flags04C;         /* +0x04C */
+    uint8_t  unk050[0x58 - 0x50];
+    int32_t  state058;         /* +0x058 */
+    uint8_t  unk05C[0x278 - 0x5C];
+    M1EWork *work278;          /* +0x278 */
+} M1Enemy4C;
+int aab_Rand(void);
+
+/* 0x00138140: enemy recoil: clears flags, then animation 0x1D/0x1E (work flag
+ * 0x800000), or at random 8, or state 1 with animation 0x10/0x11. */
+void m1_EnemyRecoil138140(M1Obj124 *o, M1Enemy4C *e)
+{
+    o->flags0C &= ~0x20u;
+    o->flags10 = (o->flags10 & ~0x20u) | 5;
+    e->flags04C &= 0xFEFFFF87;
+    if (e->work278->flags04 & 0x800000) {
+        sub_00113090(o, e, (e->b020 & 1) ? 0x1E : 0x1D);
+        return;
+    }
+    if (aab_Rand() % 2 < 1) {
+        sub_00113090(o, e, 8);
+        return;
+    }
+    e->state058 = 1;
+    sub_00113090(o, e, (e->b022 & 1) + 0x10);
+}

@@ -186,3 +186,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x17E410 m1_SetupActor17E410 PASS
 0xF6D80 m1_ResetInputF6D80 PASS (checker: dword zero store also clears the word 2 bytes up)
 0x142AF0 m1_EnemyHit142AF0 PASS
+0x138140 m1_EnemyRecoil138140 PASS
