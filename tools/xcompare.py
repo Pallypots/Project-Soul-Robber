@@ -391,7 +391,7 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                 prev = i; continue
         if use_bias and not esp_op:
             done = False
-            if m == "lea" and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].mem.index == 0 and ops[1].mem.base in R32 and abs(ops[1].mem.disp) < 0x10000:
+            if m == "lea" and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].mem.base in R32 and abs(ops[1].mem.disp) < 0x10000 and                     (ops[1].mem.index == 0 or ops[1].mem.disp != 0):
                 bb = bias.get(i.address)
                 adj = bb[2] if bb and bb[0] == "mem" and bb[1] == ops[1].mem.base else 0
                 alias[ops[0].reg] = alias.get(ops[1].mem.base, 0) + ops[1].mem.disp + adj
@@ -406,14 +406,16 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
             if done:
                 prev = i; continue
             # an aliased register read as a value: its offset becomes visible
-            for o in ops:
-                rr = o.reg if o.type == x86.X86_OP_REG else (o.mem.index if o.type == x86.X86_OP_MEM else 0)
-                if rr in alias and alias[rr]:
-                    imm[("k", alias[rr] & 0xFFFFFFFF)] += 1
             try:
-                _, wr = i.regs_access()
+                rd, wr = i.regs_access()
             except Exception:
-                wr = list(alias)
+                rd, wr = list(alias), list(alias)
+            membase = {o.mem.base for o in ops if o.type == x86.X86_OP_MEM}
+            memidx = {o.mem.index for o in ops if o.type == x86.X86_OP_MEM}
+            for rr in rd:
+                if rr in alias and alias[rr] and (rr not in membase or rr in memidx or
+                        any(o.type == x86.X86_OP_REG and o.reg == rr for o in ops)):
+                    imm[("k", alias[rr] & 0xFFFFFFFF)] += 1
             for r in wr:
                 alias.pop(r, None)
         bi = bias.get(i.address)
