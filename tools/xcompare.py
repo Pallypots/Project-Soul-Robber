@@ -181,7 +181,16 @@ def pointer_bias(insns, base, resolve):
     for r, names in REG_NAMES.items():
         pat = re.compile(r"\b(" + "|".join(names) + r")\b")
         movs, cmps, mems, ok = [], [], [], True
-        for i in insns:
+        # the walk starts at `mov r, imm`; earlier uses of r are another value,
+        # provided nothing after that point branches back before it
+        st = next((k for k, i in enumerate(insns) if i.mnemonic == "mov" and len(i.operands) == 2 and
+                   i.operands[0].type == x86.X86_OP_REG and i.operands[0].reg == r and
+                   i.operands[1].type == x86.X86_OP_IMM), 0)
+        if st and any(k.mnemonic.startswith("j") and k.operands and k.operands[0].type == x86.X86_OP_IMM and
+                      k.operands[0].imm < insns[st].address and k.operands[0].imm >= base
+                      for k in insns[st:]):
+            continue
+        for i in insns[st:]:
             if not pat.search(i.op_str):
                 if i.mnemonic.startswith(("rep", "movs", "stos", "cmps", "lods", "scas")) and r in (x86.X86_REG_ESI, x86.X86_REG_EDI):
                     ok = False
