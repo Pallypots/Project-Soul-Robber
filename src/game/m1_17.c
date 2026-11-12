@@ -8,7 +8,9 @@ typedef struct M1Ent260W {
     int32_t  kind018;          /* +0x018 handler index */
     uint8_t  unk01C[0x120 - 0x1C];
     void    *obj120;           /* +0x120 */
-    uint8_t  unk124[0x260 - 0x124];
+    uint8_t  unk124[0x154 - 0x124];
+    int32_t  snd154[2];        /* +0x154, -1 = none */
+    uint8_t  unk15C[0x260 - 0x15C];
 } M1Ent260W;
 extern M1Ent260W m1_ents4242C0[32];  /* 0x004242C0 */
 void sub_0001D700(void *o);
@@ -114,4 +116,22 @@ int m1_CountHandledA0FD0(void *arg)
             n++;
     }
     return n;
+}
+
+void sub_00048250(int h);
+
+/* 0x000A4670: stops both sounds of every in-use entry owned by owner. */
+void m1_StopOwnedSoundsA4670(void *owner)
+{
+    int i, j;
+    for (i = 0; i < 32; i++) {
+        if ((m1_ents4242C0[i].flags00 & 1) && m1_ents4242C0[i].owner004 == owner) {
+            for (j = 0; j < 2; j++) {
+                if (m1_ents4242C0[i].snd154[j] != -1) {
+                    sub_00048250(m1_ents4242C0[i].snd154[j]);
+                    m1_ents4242C0[i].snd154[j] = -1;
+                }
+            }
+        }
+    }
 }

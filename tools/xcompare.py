@@ -218,6 +218,10 @@ def pointer_bias(insns, base, resolve):
                     ops[0].type == x86.X86_OP_REG and ops[0].reg == r and \
                     len(pat.findall(i.op_str)) == 1:
                 break
+            # `mov x, r` copies the walking pointer: same as `lea x, [r+0]`
+            if i.mnemonic == "mov" and len(ops) == 2 and ops[1].type == x86.X86_OP_REG and ops[1].reg == r and                     ops[0].type == x86.X86_OP_REG and ops[0].reg != r:
+                mems.append((i.address, 0))
+                continue
             memuse = [o for o in ops if o.type == x86.X86_OP_MEM and o.mem.base == r and o.mem.index == 0]
             if memuse and not any(o.type == x86.X86_OP_REG and o.reg == r for o in ops) and                     len(pat.findall(i.op_str)) == len(memuse):
                 mems.append((i.address, memuse[0].mem.disp))
@@ -406,7 +410,9 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                 alias[ops[0].reg] = alias.get(ops[1].mem.base, 0) + ops[1].mem.disp + adj
                 done = True
             elif m == "mov" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and ops[1].type == x86.X86_OP_REG and                     ops[0].reg in R32 and ops[1].reg in R32:
-                alias[ops[0].reg] = alias.get(ops[1].reg, 0)
+                bb = bias.get(i.address)
+                adj = bb[2] if bb and bb[0] == "mem" and bb[1] == ops[1].reg else 0
+                alias[ops[0].reg] = alias.get(ops[1].reg, 0) + adj
                 done = True
             elif m in ("add", "sub") and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].type == x86.X86_OP_IMM and abs(ops[1].imm) < 0x10000:
                 k = ops[1].imm if ops[1].imm < 0x80000000 else ops[1].imm - 0x100000000

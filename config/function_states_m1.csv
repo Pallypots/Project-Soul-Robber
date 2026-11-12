@@ -105,3 +105,6 @@ va,name,state,source,obj,waivers,notes
 0x000f3630,m1_EnsureResF3630,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,,"Create the resource once (0x1F930) and add it to the scene list on layer 3"
 0x000a5730,m1_SetupA5730,Structurally compared,src/game/m1_30.c,build/obj_m1/m1_30.obj,,"Heap 3 setup: resets, shared resource once, 0xA49F0 (regargs a=ECX), second resource on scene layer 0xC, then 0x53740"
 0x000cab30,m1_FeedLimitsCAB30,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"x*0.096 fed to limiters 0xCA850 (80, 1, mode, 50) and 0xCA9C0 (10000, mode, 30); mode from +0x16C"
+0x00181da0,m1_ResetLinks181DA0,Structurally compared,src/game/m1_32.c,build/obj_m1/m1_32.obj,,"Reset the 4 links at 0x3FE2D8: clear part-6 flag 0x1000000 of b, animation 3 on b and a, event 0 for the watched object"
+0x00181d40,m1_LinksReady181D40,Structurally compared,src/game/m1_32.c,build/obj_m1/m1_32.obj,,"0 if a link in state 1 has its requested side (bit1 a, bit0 b) not ready via 0xF5D00, else 1"
+0x000a4670,m1_StopOwnedSoundsA4670,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"Stop both sounds (+0x154[2]) of in-use entries owned by owner"

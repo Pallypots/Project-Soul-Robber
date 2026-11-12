@@ -158,3 +158,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA5730 m1_SetupA5730 PASS
 0xCAB30 m1_FeedLimitsCAB30 PASS
 0xBC5F0 ring clear: hard (cl knows count >= 3 and drops the loop-entry check the original keeps)
+0x181DA0 m1_ResetLinks181DA0 PASS
+0x181D40 m1_LinksReady181D40 PASS
+0xA4670 m1_StopOwnedSoundsA4670 PASS (bias rule: mov copy of the walking pointer)
