@@ -43,3 +43,5 @@ va,name,state,source,obj,waivers,notes
 0x00048590,m1_SoundReset48590,Structurally compared,src/game/m1_8.c,build/obj_m1/m1_8.obj,,"Stops stream 500, resets sound game state (0xE3BA0/0xE0810 on 0xE0770), stops channels 1,2,3,4,9,5,6,8, releases ids 3,4,9,5,6,8, tail-calls 0x19AAA0"
 0x000c6920,m1_SetupBufsC6920,Structurally compared,src/game/m1_9.c,build/obj_m1/m1_9.obj,,"Creates render buffers 0x1F210(0xC,1) and 0x22260(3,1,0x10,0x10), stores them and their data pointers, attaches the second to the scene root (0xD)"
 0x000c7b00,m1_SetupBufsC7B00,Structurally compared,src/game/m1_9.c,build/obj_m1/m1_9.obj,,"Creates buffer 0x1F210(1,0) loaded with chkaz00_pk.txt via 0x22630, and 0x22260(4,0,8,0) attached to the scene root (1)"
+0x000c72c0,m1_SetupBufsC72C0,Structurally compared,src/game/m1_9.c,build/obj_m1/m1_9.obj,,"Buffer 0x1F210(2,0) loaded with two model lists (second at data+0x150), and 0x22260(0x14,0,8,0) attached to the scene root (1)"
+0x000d9050,m1_LoadAtrD9050,Structurally compared,src/game/m1_gs4.c,build/obj_m1/m1_gs4.obj,,"Loads logic/event.atr and logic/rubber.atr for the current area via 0x37550; stores each file and file+0x10; returns 0; /GS cookie"

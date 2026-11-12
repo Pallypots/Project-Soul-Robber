@@ -84,3 +84,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x48590 m1_SoundReset48590 PASS
 0xC6920 m1_SetupBufsC6920 PASS
 0xC7B00 m1_SetupBufsC7B00 PASS
+0xC72C0 m1_SetupBufsC72C0 PASS
+0xD9050 m1_LoadAtrD9050 PASS

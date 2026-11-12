@@ -161,4 +161,7 @@ typedef struct M1ItemSlot { void *entry; int32_t x4; int32_t x8; int32_t xC; } M
 extern const char m1_fmtItemArg26F930[];                            /* 0x0026F930 */
 extern M1ArgFile  *m1_itemArg3ED1D4;                                /* 0x003ED1D4 */
 extern M1ItemSlot *m1_itemSlots3ED1D0;                              /* 0x003ED1D0 */
+extern const char m1_fmtEventAtr277528[], m1_fmtRubberAtr2774FC[];  /* 0x00277528, 0x002774FC */
+extern uint8_t *m1_eventAtr3EDC24, *m1_rubberAtr3EDC28, *m1_eventAtrBody3EDC2C, *m1_rubberAtrBody3EDC30;
+int m1_LoadAtrD9050(void);                                          /* 0x000D9050 */
 #endif

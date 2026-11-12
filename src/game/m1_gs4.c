@@ -79,3 +79,21 @@ void *m1_LoadMbBmsE0DD0(int lang, int n)
     sub_0007E070(path, 0x100, m1_fmtMb277744, n, m1_langTab317CF0[lang]);
     return sub_00037550(path, 0);
 }
+
+/* 0x000D9050: load logic/event.atr and logic/rubber.atr for the current area and keep
+ * each file and a pointer past its 16-byte header. */
+int m1_LoadAtrD9050(void)
+{
+    char pa[0x100];
+    char pb[0x100];
+    uint8_t *a, *b;
+    sub_0007E070(pa, 0xFF, m1_fmtEventAtr277528, m1_worldA41316C, m1_worldB413170);
+    a = sub_00037550(pa, 0);
+    sub_0007E070(pb, 0xFF, m1_fmtRubberAtr2774FC, m1_worldA41316C, m1_worldB413170);
+    b = sub_00037550(pb, 0);
+    m1_eventAtr3EDC24 = a;
+    m1_rubberAtr3EDC28 = b;
+    m1_eventAtrBody3EDC2C = a + 0x10;
+    m1_rubberAtrBody3EDC30 = b + 0x10;
+    return 0;
+}
