@@ -118,3 +118,42 @@ void m1_ApplyActiveCC030(M1Flags150 *o)
             sub_000CB390(o, m1_ents4242C0[i].id120);
     }
 }
+
+
+typedef struct M1Hold34 {
+    void     *obj00;           /* +0x00 */
+    int32_t   f04;             /* +0x04 */
+    M1Kind50 *watch08;         /* +0x08 */
+    int32_t   f0C;             /* +0x0C */
+    uint8_t   unk10[0x34 - 0x10];
+} M1Hold34;
+extern M1Hold34 m1_holds3FE3B0[4];  /* 0x003FE3B0 */
+typedef struct M1Snd138 {
+    uint8_t unk000[0x138];
+    int32_t snd138;            /* +0x138, -1 = none */
+} M1Snd138;
+M1Snd138 *sub_00100110(void);
+void sub_00048250(int h);
+
+/* 0x00185370: destroys held objects whose watched object is in state 1, then
+ * stops the player's looping sound. */
+void m1_DropHolds185370(void)
+{
+    int i;
+    M1Snd138 *p;
+    for (i = 0; i < 4; i++) {
+        if (m1_holds3FE3B0[i].obj00 != 0 && m1_holds3FE3B0[i].watch08->kind50 == 1) {
+            r4i_ObjDestroy(m1_holds3FE3B0[i].obj00);
+            m1_holds3FE3B0[i].obj00 = 0;
+            m1_holds3FE3B0[i].f04 = 0;
+            m1_holds3FE3B0[i].watch08 = 0;
+            m1_holds3FE3B0[i].f0C = 0;
+        }
+    }
+    p = sub_00100110();
+    if (p->snd138 != -1) {
+        sub_00048250(p->snd138);
+        p->snd138 = -1;
+    }
+}
+

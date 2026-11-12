@@ -241,7 +241,23 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
     flagsrc = None
     hangs = 0
     bias = pointer_bias(insns, base, resolve) if use_bias else {}
+    # struct-pointer offsets (second comparison only): `lea r,[b+K]`,
+    # `mov r,b`, `add r,K` then `[r+d]` is the same access as `[b+K+d]`;
+    # tracked in straight-line code, reset at branch targets and calls
+    R32 = (x86.X86_REG_EAX, x86.X86_REG_EBX, x86.X86_REG_ECX, x86.X86_REG_EDX,
+           x86.X86_REG_ESI, x86.X86_REG_EDI) + ((x86.X86_REG_EBP,) if frame_reg == -1 else ())
+    targets = {k.operands[0].imm for k in insns
+               if k.mnemonic.startswith("j") and k.operands and k.operands[0].type == x86.X86_OP_IMM}
+    alias = {}
     for ii, i in enumerate(insns):
+        if use_bias:
+            if i.address in targets:
+                alias.clear()
+            if i.mnemonic == "call":
+                for r in (x86.X86_REG_EAX, x86.X86_REG_ECX, x86.X86_REG_EDX):
+                    alias.pop(r, None)
+            elif i.mnemonic == "ret" and alias.get(x86.X86_REG_EAX):
+                imm[("k", alias[x86.X86_REG_EAX] & 0xFFFFFFFF)] += 1
         if i.mnemonic == "fld1":   # x87 load of the constant 1.0 (no .rdata literal)
             data[("fconst", 1.0)] += 1
         # assert-style hang: a branch back to itself, or back to a compare/test
@@ -341,11 +357,41 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
             prev = i; continue
         # memory operands: an absolute address (original: in-image displacement;
         # object: relocated displacement) is data, otherwise a structure offset
+        if use_bias and not esp_op:
+            done = False
+            if m == "lea" and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].mem.index == 0 and ops[1].mem.base in R32 and abs(ops[1].mem.disp) < 0x10000:
+                alias[ops[0].reg] = alias.get(ops[1].mem.base, 0) + ops[1].mem.disp
+                done = True
+            elif m == "mov" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and ops[1].type == x86.X86_OP_REG and                     ops[0].reg in R32 and ops[1].reg in R32:
+                alias[ops[0].reg] = alias.get(ops[1].reg, 0)
+                done = True
+            elif m in ("add", "sub") and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].type == x86.X86_OP_IMM and abs(ops[1].imm) < 0x10000:
+                k = ops[1].imm if ops[1].imm < 0x80000000 else ops[1].imm - 0x100000000
+                alias[ops[0].reg] = alias.get(ops[0].reg, 0) + (k if m == "add" else -k)
+                done = True
+            if done:
+                prev = i; continue
+            # an aliased register read as a value: its offset becomes visible
+            for o in ops:
+                rr = o.reg if o.type == x86.X86_OP_REG else (o.mem.index if o.type == x86.X86_OP_MEM else 0)
+                if rr in alias and alias[rr]:
+                    imm[("k", alias[rr] & 0xFFFFFFFF)] += 1
+            try:
+                _, wr = i.regs_access()
+            except Exception:
+                wr = list(alias)
+            for r in wr:
+                alias.pop(r, None)
         bi = bias.get(i.address)
         for o in ops:
             if o.type != x86.X86_OP_MEM:
                 continue
             disp = o.mem.disp & 0xFFFFFFFF
+            if use_bias and alias.get(o.mem.base) and abs(o.mem.disp) < 0x10000:
+                d2 = (o.mem.disp + alias[o.mem.base]) & 0xFFFFFFFF
+                if d2:
+                    imm[("k", d2)] += 1
+                continue
             if bi and bi[0] == "mem" and o.mem.base == bi[1]:
                 d2 = (o.mem.disp + bi[2]) & 0xFFFFFFFF
                 if d2:

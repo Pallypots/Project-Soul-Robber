@@ -107,3 +107,22 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x181CE0 link fire: hard (exit after found: cl recomputes the entry from the index, orig keeps the walking pointer; tried index, pointer)
 0xED9A0 m1_TakeSlotED9A0 PASS (goto found + hang; bias rule stops at reload)
 0xCC030 m1_ApplyActiveCC030 PASS
+0x185370 m1_DropHolds185370 PASS
+0x169730 flag mark x16: hard (manual unroll matches, but cl merges the &1 and &0x1000 tests into one &0x1001 compare)
+0xA46D0 m1_PauseAllA46D0 PASS
+0xA8B80 m1_StopVoicesA8B80 PASS
+0x169790 flag mark 0x400: hard (same as 0x169730)
+0xDE100 group/key lookup: hard (orig outer pointer sits on items and reads the next id at +0x200; tried index and pointer forms)
+0xA8150 m1_StopKindsA8150 PASS
+0x19A830 one-slot play start: hard (index must be 0 after the hang check, so cl constant-folds it; orig keeps the index math)
+0xA4970 m1_FlagOwnedA4970 PASS (manual 4x unroll)
+0xCCCE0 stick quadrant: hard (cl turns the sign tests into unsigned/table math; also struct-pointer bias +0x20C)
+0x12D670 m1_ActorRelease12D670 PASS
+0xEDB10 filter find-first: hard (cl folds the 0..2 range check into one unsigned compare)
+0x5A760 part by index: hard (orig dec/dec switch with default block first; cl uses cmp 2 and lays default last; tried switch, if, gotos)
+0x1ADE10 m1_MatFromRows1ADE10 PASS (checker: struct-pointer offset tracking)
+0xC6CD0 fire owned x3: hard (cl merges &1 and &0x10000000 into one mask test)
+0x33710 m1_FxReset33710 PASS (was hard; struct-pointer offset tracking)
+0xC44E0 m1_ClearWordsC44E0 PASS
+0x114650 m1_ActorRelease114650 PASS
+0xA3690 m1_SampleA3690 PASS (unsigned cast for _ftol2; assumes >= 0)
