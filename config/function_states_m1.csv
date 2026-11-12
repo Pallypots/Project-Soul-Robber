@@ -1,3 +1,19 @@
 va,name,state,source,obj,waivers,notes
 0x00072ee0,m1_FadeStart72EE0,Structurally compared,src/game/m1_1.c,build/obj_m1/m1_1.obj,data:0x10000;imm:0x5;imm:0x6,store merging: bytes +4/+5 and word +6 merged into one dword store by cl
 0x00053d70,m1_PathOp53D70,Structurally compared,src/game/m1_gs1.c,build/obj_m1/m1_gs1.obj,,security cookie function: compiled with /GS (file name contains _gs); cookie 0x379D8C and check 0x1C7D27 mapped in symbols
+0x00053ed0,m1_LoadFmt53ED0,Structurally compared,src/game/m1_gs1.c,build/obj_m1/m1_gs1.obj,,"Formats a path (0x7E0A0 with 0x52A10) then loads it via 0x53E20; /GS cookie"
+0x00065a50,m1_LoadNum65A50,Structurally compared,src/game/m1_gs1.c,build/obj_m1/m1_gs1.obj,,"Formats a numbered name (fmt 0x2DDCCC) and loads it into work block +0x40080; /GS cookie"
+0x0008dc40,m1_PathYca8DC40,Structurally compared,src/game/m1_gs2.c,build/obj_m1/m1_gs2.obj,,"Builds data file path (fmt 0x270200) from 0x89670 dir + object id; regargs: o=ESI; /GS cookie"
+0x0008e8b0,m1_PathClp8E8B0,Structurally compared,src/game/m1_gs2.c,build/obj_m1/m1_gs2.obj,,"Builds data file path (fmt 0x270290) from 0x89670 dir + object id; regargs: o=ESI; /GS cookie"
+0x0008ed70,m1_PathDfd8ED70,Structurally compared,src/game/m1_gs2.c,build/obj_m1/m1_gs2.obj,,"Builds data file path (fmt 0x270364) from 0x89670 dir + object id; regargs: o=ESI; /GS cookie"
+0x0008efb0,m1_PathLgt8EFB0,Structurally compared,src/game/m1_gs2.c,build/obj_m1/m1_gs2.obj,,"Builds .lgt path (fmt 0x2703C8) from 0x89670 dir + object id; /GS cookie"
+0x0008f210,m1_PathBms8F210,Structurally compared,src/game/m1_gs2.c,build/obj_m1/m1_gs2.obj,,"Builds .bms path (fmt 0x270408); last part is the string from 0x89690 (a80 types it int32_t); regargs: o=ESI; /GS cookie"
+0x00085300,m1_LoadEnemyArg85300,Structurally compared,src/game/m1_gs3.c,build/obj_m1/m1_gs3.obj,,"Loads world arrange/enemy.arg for area (a,b) via 0x37570 and stores the pointer; /GS cookie"
+0x000861a0,m1_LoadLoadsetArg861A0,Structurally compared,src/game/m1_gs3.c,build/obj_m1/m1_gs3.obj,,"Loads world arrange/loadset.arg for area (a,b) via 0x37570 and stores the pointer; /GS cookie"
+0x00086e60,m1_LoadBgobjectArg86E60,Structurally compared,src/game/m1_gs3.c,build/obj_m1/m1_gs3.obj,,"Loads world arrange/bgobject.arg for area (a,b) via 0x37570 and stores the pointer; /GS cookie"
+0x00086fa0,m1_LoadResidentArg86FA0,Structurally compared,src/game/m1_gs3.c,build/obj_m1/m1_gs3.obj,,"Loads world arrange/resident.arg for area (a,b) via 0x37570 and stores the pointer; /GS cookie"
+0x000873d0,m1_LoadArrangeLin873D0,Structurally compared,src/game/m1_gs3.c,build/obj_m1/m1_gs3.obj,,"Loads world arrange/arrange.lin for area (a,b); sets ready flag 0x3ED21C on success; /GS cookie"
+0x00053dc0,m1_LoadRun53DC0,Structurally compared,src/game/m1_gs1.c,build/obj_m1/m1_gs1.obj,,"Formats path like 0x53D70, passes it to 0x4F580, then calls 0x4F4E0 and 0x4F6F0; /GS cookie"
+0x000e0010,m1_LoadEventBmsE0010,Structurally compared,src/game/m1_gs4.c,build/obj_m1/m1_gs4.obj,,"Loads world message/event<lang>.bms for area (0x41316C,0x413170) via 0x7E070 + 0x37570; returns 0; /GS cookie"
+0x000e0070,m1_LoadTalkBmsE0070,Structurally compared,src/game/m1_gs4.c,build/obj_m1/m1_gs4.obj,,"Loads world message/talk<lang>.bms for area (0x41316C,0x413170) via 0x7E070 + 0x37570; returns 0; /GS cookie"
+0x000e00d0,m1_LoadShopBmsE00D0,Structurally compared,src/game/m1_gs4.c,build/obj_m1/m1_gs4.obj,,"In world 0 areas 6..8 loads 2d/shop<lang>/message/shoptalk<lang>.bms; written as early returns so cl keeps the two range compares; /GS cookie"

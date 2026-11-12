@@ -26,3 +26,19 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 ## Log (one line per function)
 0x72EE0 m1_FadeStart72EE0 PASS* (store merge)
 0x53D70 m1_PathOp53D70 PASS (first /GS cookie function: *_gs*.c files compile with /GS)
+0x53ED0 m1_LoadFmt53ED0 PASS
+0x65A50 m1_LoadNum65A50 PASS
+0x8DC40 m1_PathYca8DC40 PASS
+0x8E8B0 m1_PathClp8E8B0 PASS
+0x8ED70 m1_PathDfd8ED70 PASS
+0x8EFB0 m1_PathLgt8EFB0 PASS
+0x8F210 m1_PathBms8F210 PASS (0x89690 returns a string ptr)
+0x85300 m1_LoadEnemyArg85300 PASS
+0x861A0 m1_LoadLoadsetArg861A0 PASS
+0x86E60 m1_LoadBgobjectArg86E60 PASS
+0x86FA0 m1_LoadResidentArg86FA0 PASS
+0x873D0 m1_LoadArrangeLin873D0 PASS
+0x53DC0 m1_LoadRun53DC0 PASS
+0xE0010 m1_LoadEventBmsE0010 PASS
+0xE0070 m1_LoadTalkBmsE0070 PASS
+0xE00D0 m1_LoadShopBmsE00D0 PASS (early returns stop cl folding the 6..8 range)
