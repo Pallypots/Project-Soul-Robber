@@ -214,7 +214,7 @@ def pointer_bias(insns, base, resolve):
                 mems.append((i.address, memuse[0].mem.disp))
                 continue
             ok = False; break
-        if not ok or len(movs) != 1 or not cmps or not mems:
+        if not ok or len(movs) != 1 or not mems:
             continue
         dmin = min(d for _, d in mems)
         if dmin == 0:
@@ -360,7 +360,9 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
         if use_bias and not esp_op:
             done = False
             if m == "lea" and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].mem.index == 0 and ops[1].mem.base in R32 and abs(ops[1].mem.disp) < 0x10000:
-                alias[ops[0].reg] = alias.get(ops[1].mem.base, 0) + ops[1].mem.disp
+                bb = bias.get(i.address)
+                adj = bb[2] if bb and bb[0] == "mem" and bb[1] == ops[1].mem.base else 0
+                alias[ops[0].reg] = alias.get(ops[1].mem.base, 0) + ops[1].mem.disp + adj
                 done = True
             elif m == "mov" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and ops[1].type == x86.X86_OP_REG and                     ops[0].reg in R32 and ops[1].reg in R32:
                 alias[ops[0].reg] = alias.get(ops[1].reg, 0)
