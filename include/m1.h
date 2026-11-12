@@ -145,8 +145,10 @@ M1Stream *m1_FindStream4F8E0(const char *name);                     /* 0x0004F8E
 int sub_0007DAF0(char *buf, int size, const char *fmt, void *ap);
 int sub_0002E560(int a1, int a2, int a3, int a4, int a5, int a6, float sx, float sy, const char *text);
 int m1_DrawTextf2E8C0(int a1, int a2, int a3, int a4, int a5, int a6, const char *fmt, ...);  /* 0x0002E8C0 */
-extern int32_t *m1_pg2C4B08;                                        /* 0x002C4B08 */
+extern int32_t *m1_pg2C4B08;                                        /* 0x002C4B08: [0] tag colour, [1] normal, [2] selected */
 extern const char m1_strFmtBracket266FB0[];                         /* 0x00266FB0 "[%s]
 " */
 int m1_DrawTagf3E4B0(int a1, int a2, int a3, int a4, int a5, const char *fmt, ...);  /* 0x0003E4B0 */
+extern const char m1_fmtItem266FC8[];                               /* 0x00266FC8 "%c%s 
+" */
 #endif

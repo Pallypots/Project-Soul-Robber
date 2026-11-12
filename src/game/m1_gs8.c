@@ -24,3 +24,4 @@ int m1_DrawTagf3E4B0(int a1, int a2, int a3, int a4, int a5, const char *fmt, ..
     va_end(ap);
     return m1_DrawTextf2E8C0(a1, a2, a3, *m1_pg2C4B08, a4, a5, m1_strFmtBracket266FB0, buf);
 }
+
