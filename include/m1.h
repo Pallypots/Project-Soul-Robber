@@ -151,4 +151,14 @@ extern const char m1_strFmtBracket266FB0[];                         /* 0x00266FB
 int m1_DrawTagf3E4B0(int a1, int a2, int a3, int a4, int a5, const char *fmt, ...);  /* 0x0003E4B0 */
 extern const char m1_fmtItem266FC8[];                               /* 0x00266FC8 "%c%s 
 " */
+typedef struct M1ArgFile { uint8_t unk00[8]; int32_t count; /* +8 */ } M1ArgFile;
+void *sub_00053820(int pool, int size, void *a, int b);
+extern const char m1_fmtAddEnemy26F8D0[];                           /* 0x0026F8D0 */
+extern M1ArgFile *m1_addEnemy3ED1B0;                                /* 0x003ED1B0 */
+extern void *m1_addEnemyWork3ECCA8;                                 /* 0x003ECCA8 */
+void m1_LoadAddEnemy84DD0(int a, int b);                            /* 0x00084DD0 */
+typedef struct M1ItemSlot { void *entry; int32_t x4; int32_t x8; int32_t xC; } M1ItemSlot;  /* 0x10 */
+extern const char m1_fmtItemArg26F930[];                            /* 0x0026F930 */
+extern M1ArgFile  *m1_itemArg3ED1D4;                                /* 0x003ED1D4 */
+extern M1ItemSlot *m1_itemSlots3ED1D0;                              /* 0x003ED1D0 */
 #endif
