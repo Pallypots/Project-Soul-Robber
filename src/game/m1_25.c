@@ -46,3 +46,37 @@ void m1_StatBumpA9A30(uint32_t *flags)
     sub_000494D0(0x18, (uint8_t *)g_playerObj + 0x60, 0);
     *flags |= 0x40000000;
 }
+
+void sub_000A5520(void);
+void sub_000A4B80(void);
+int  sub_000CF420(void *s, uint32_t flag, int z);
+void sub_000CF3F0(void *s, uint32_t flag, int z);
+
+/* 0x000A56C0: runs 0xA5520 and 0xA4B80, then clears Jack's flags 0x800000 and
+ * 0x80 where they are set. */
+void m1_ClearJackFlagsA56C0(void)
+{
+    sub_000A5520();
+    sub_000A4B80();
+    if (sub_000CF420(&g_stats, 0x800000, 0))
+        sub_000CF3F0(&g_stats, 0x800000, 0);
+    if (sub_000CF420(&g_stats, 0x80, 0))
+        sub_000CF3F0(&g_stats, 0x80, 0);
+}
+
+int sub_0011EDE0(int id, void *o, void *b);  /* regargs: id=EAX o=EBX b=EDI */
+
+/* 0x00125DE0: once the body's animation finished: player out of reach -> actor
+ * state 0x11; else state 0xE if step list 9 runs, otherwise 7. */
+void m1_AfterAnim125DE0(M1Body30 *body, M1Act58 *act)
+{
+    int st;
+    if (!sub_000833E0(body->anim30))
+        return;
+    if (r2_PlayerOutOfReach(act, body)) {
+        sub_0011F2B0(body, 0x11, act);
+        return;
+    }
+    st = sub_0011EDE0(9, body, act) ? 0xE : 7;
+    sub_0011F2B0(body, st, act);
+}

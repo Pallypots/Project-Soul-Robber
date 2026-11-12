@@ -113,3 +113,5 @@ va,name,state,source,obj,waivers,notes
 0x000cda00,m1_RunHandlerCDA00,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Unless flags 0xC0000000, run handler [+0x1B8] of {0xCD8D0, 0xCCF60, 0xCC840} (local array, as the original); >0 sets flag 1; regargs: o=ESI a=EDX b=ECX"
 0x000cda50,m1_InputStepCDA50,Structurally compared,src/game/m1_33.c,build/obj_m1/m1_33.obj,,"Per-frame actor input step; callees: 0xCC4D0 o=EAX, 0xCDA00 o=ESI a=EDX b=ECX, 0xCC8C0 o=ESI a=EAX, 0xCD930 o=ESI a=ECX, 0xCCDD0 o=ESI"
 0x000cd860,m1_SlotTickCD860,Structurally compared,src/game/m1_14.c,build/obj_m1/m1_14.obj,,"Slot i timer: below 60 adds 0xCD180 amount to the total, else resets total and timer; timer += frame time"
+0x000a56c0,m1_ClearJackFlagsA56C0,Structurally compared,src/game/m1_25.c,build/obj_m1/m1_25.obj,,"Run 0xA5520 and 0xA4B80, then clear Jack flags 0x800000 and 0x80 where set"
+0x00125de0,m1_AfterAnim125DE0,Structurally compared,src/game/m1_25.c,build/obj_m1/m1_25.obj,,"After the body animation: out of reach -> state 0x11, else 0xE if step list 9 runs (0x11EDE0 regargs id=EAX o=EBX b=EDI) otherwise 7"

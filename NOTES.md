@@ -167,3 +167,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCDA50 m1_InputStepCDA50 PASS (own file so cl does not inline)
 0xCD860 m1_SlotTickCD860 PASS (offset kept across a branch target when its register is written once)
 - 0xCC4D0/0xCD930 were already recorded by area r6e; my duplicates removed. Check function_states before picking by hand.
+0xA56C0 m1_ClearJackFlagsA56C0 PASS
+0x125DE0 m1_AfterAnim125DE0 PASS
