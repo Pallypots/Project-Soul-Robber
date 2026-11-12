@@ -66,3 +66,6 @@ A loop that walks a global record array with a pointer register may start that p
 
 ## Struct-pointer offsets (added 2026-11-12, controls 14/14)
 In the second comparison (with the loop-pointer bias form), `lea r,[b+K]`, `mov r,b` and `add/sub r,K` are tracked in straight-line code, so `[r+d]` compares as the field offset K+d from the original base. Tracking resets at every branch target, and for EAX/ECX/EDX at every call. When a tracked register is read as a value, its offset is recorded as a constant, so arithmetic constants stay checked.
+
+## Branch-free selects (added 2026-11-12, controls 14/14)
+In the second comparison, `neg x; sbb r,r; and r,D [; add r,K]` (or `setcc; dec r; and r,D [; add r,K]`) records the two constants K and K+D, and `setcc r8; add r32,K` records K and K+1. These are the same two values an `if` loads with two `mov`s in the original; the decision itself is still counted from the neg/sbb or setcc.

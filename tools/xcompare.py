@@ -249,6 +249,7 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
     targets = {k.operands[0].imm for k in insns
                if k.mnemonic.startswith("j") and k.operands and k.operands[0].type == x86.X86_OP_IMM}
     alias = {}
+    skip_sel = set()
     for ii, i in enumerate(insns):
         if use_bias:
             if i.address in targets:
@@ -357,6 +358,32 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
             prev = i; continue
         # memory operands: an absolute address (original: in-image displacement;
         # object: relocated displacement) is data, otherwise a structure offset
+        if use_bias and ii in skip_sel:
+            prev = i; continue
+        if use_bias and m == "and" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                 ops[1].type == x86.X86_OP_IMM and ii >= 1:
+            # branch-free select: `neg x; sbb r,r` (or `setcc; dec r`) then
+            # `and r,D` [`add r,K`] yields K or K+D, the same two constants an
+            # `if` would load with two movs
+            rn = i.reg_name(ops[0].reg)
+            p1 = insns[ii - 1]
+            sel = (p1.mnemonic == "sbb" and p1.op_str == rn + ", " + rn) or                   (p1.mnemonic == "dec" and p1.op_str == rn and ii >= 2 and insns[ii - 2].mnemonic.startswith("set"))
+            if sel:
+                d = ops[1].imm & 0xFFFFFFFF
+                k = 0
+                if ii + 1 < len(insns) and insns[ii + 1].mnemonic == "add" and                         insns[ii + 1].op_str.startswith(rn + ", ") and insns[ii + 1].operands[1].type == x86.X86_OP_IMM:
+                    k = insns[ii + 1].operands[1].imm & 0xFFFFFFFF
+                    skip_sel.add(ii + 1)
+                imm[("k", k)] += 1
+                imm[("k", (k + d) & 0xFFFFFFFF)] += 1
+                prev = i; continue
+        if use_bias and m == "add" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                 ops[1].type == x86.X86_OP_IMM and ii >= 1 and insns[ii - 1].mnemonic.startswith("set"):
+            # `setcc r8; add r32,K` yields K or K+1
+            low = {"eax": "al", "ebx": "bl", "ecx": "cl", "edx": "dl"}.get(i.reg_name(ops[0].reg))
+            if low and insns[ii - 1].op_str == low:
+                k = ops[1].imm & 0xFFFFFFFF
+                imm[("k", k)] += 1
+                imm[("k", (k + 1) & 0xFFFFFFFF)] += 1
+                prev = i; continue
         if use_bias and not esp_op:
             done = False
             if m == "lea" and ops[0].type == x86.X86_OP_REG and ops[0].reg in R32 and                     ops[1].mem.index == 0 and ops[1].mem.base in R32 and abs(ops[1].mem.disp) < 0x10000:
