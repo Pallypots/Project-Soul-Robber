@@ -218,3 +218,47 @@ void m1_EnemySeq13CF90(void *o, M1Enemy24 *e)
         break;
     }
 }
+
+
+typedef struct M1EWork38 {
+    uint8_t unk00[0x24];
+    float   v24[4];            /* +0x24 */
+    uint8_t unk34[4];
+    void   *fx38;              /* +0x38 */
+} M1EWork38;
+typedef struct M1Enemy22 {
+    uint8_t    unk000[0x22];
+    uint8_t    b022;           /* +0x022 */
+    uint8_t    unk023[0x278 - 0x23];
+    M1EWork38 *work278;        /* +0x278 */
+} M1Enemy22;
+typedef struct M1ObjK {
+    uint8_t  unk00[8];
+    int32_t  kind08;           /* +0x08 */
+    uint8_t  unk0C[4];
+    uint32_t flags10;          /* +0x10 */
+} M1ObjK;
+void sub_00113C40(float *v, int a, int b);
+void sub_00033560(void *fx);
+
+/* 0x0011AC30: enemy attack start: shake (kind 3: 1, kind 4: random 1..2, strength
+ * 10), animation 0x37 (+1 with bit 0 of +0x22), and a fresh reaction-5 effect. */
+void m1_EnemyAttack11AC30(M1ObjK *o, M1Enemy22 *e)
+{
+    M1EWork38 *w = e->work278;
+    o->flags10 |= 4;
+    switch (o->kind08) {
+    case 3:
+        sub_00113C40(w->v24, 1, 10);
+        break;
+    case 4:
+        sub_00113C40(w->v24, aab_Rand() % 2 + 1, 10);
+        break;
+    }
+    sub_00113090(o, e, (e->b022 & 1) + 0x37);
+    if (w->fx38 != 0) {
+        sub_00033560(w->fx38);
+        w->fx38 = 0;
+    }
+    w->fx38 = sub_00036750(o, 5);
+}

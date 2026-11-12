@@ -81,3 +81,4 @@ void m1_AfterAnim125DE0(M1Body30 *body, M1Act58 *act)
     sub_0011F2B0(body, st, act);
 }
 
+

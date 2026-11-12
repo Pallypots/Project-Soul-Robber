@@ -129,3 +129,4 @@ va,name,state,source,obj,waivers,notes
 0x00142af0,m1_EnemyHit142AF0,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy hit: anim 0x12(+1), score 1; flag 0x20000000 flash (40,255) else fade (20) then state 2 (0x40000000) or state 4 with owner flags |= 6 (bit 0 of +0x20)"
 0x00138140,m1_EnemyRecoil138140,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy recoil: clear flags, then anim 0x1D/0x1E (work flag 0x800000), or randomly 8, or state 1 with anim 0x10/0x11"
 0x0013cf90,m1_EnemySeq13CF90,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy 3-step sequence gated by 0x13A900: anim 0x49; reaction 7 + sound 0x88 at its part; work flag 0x80000000 + event 0x1E"
+0x0011ac30,m1_EnemyAttack11AC30,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Enemy attack start: shake (kind 3: 1, kind 4: random 1..2, strength 10), anim 0x37(+1), replace reaction-5 effect at work+0x38"
