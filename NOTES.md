@@ -75,3 +75,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x4BE20 grade 0..4: hard (signed pointer bound jle 0x4133EC; cl uses unsigned end and folds ==0x62)
 0x77190 channel reset: hard (2-iteration loop fully unrolled by cl)
 0x47A80 cue slot: hard (cl folds two range checks; a checker range-fold rule broke 31 switch/waiver cases and was reverted)
+0x54CC0 m1_StampTime54CC0 PASS (passing the record to the ESI-regarg callee keeps the base pointer)
+0x586E0 m1_JobFrame586E0 PASS
+0x54D50 yes/no input: hard (cl tail-merges the confirm-yes and confirm-no sound calls; orig has 3 call sites)

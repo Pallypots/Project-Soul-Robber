@@ -1,0 +1,49 @@
+/* Area m1, file 6: save data stamp. Names inferred. */
+#include "m1f.h"
+
+/* 0x00054CC0: read six values from 0x1A8920 (looks like the date and time), store them
+ * as 16-bit words at buffer+0x200, then run 0x54700 on that record (ESI) and 0x54770 on buffer+0x280. */
+void m1_StampTime54CC0(void)
+{
+    int v[6];
+    uint16_t *w = (uint16_t *)(m1_ioBuf3E397C + 0x200);
+    sub_001A8920(&v[0], &v[1], &v[2], &v[3], &v[4], &v[5]);
+    w[0] = (uint16_t)v[0];
+    w[1] = (uint16_t)v[1];
+    w[2] = (uint16_t)v[2];
+    w[3] = (uint16_t)v[3];
+    w[4] = (uint16_t)v[4];
+    w[5] = (uint16_t)v[5];
+    sub_00054700_m1(w);
+    sub_00054770_m1(m1_ioBuf3E397C + 0x280);
+}
+
+/* 0x000586E0: called from another thread while the background job runs: present one
+ * frame with the job poll callback installed (state 1 -> 2). On the job's own thread
+ * it only runs 0x1A53F0 when 0x1A5390 reports nothing. */
+int m1_JobFrame586E0(void)
+{
+    int cleared, set;
+    M1PollFn old;
+    if (g_job.thread != sub_001AD560()) {
+        g_job.state = 1;
+        sub_00102FA0(0);
+        cleared = a1a_MsgClearCb_m1(2);
+        old = sub_001A85C0(0);
+        if (old != a50_JobPoll)
+            m1_savedPoll3E3F8C = old;
+        sub_001A85C0(a50_JobPoll);
+        if (cleared)
+            a1a_MsgSetCb_m1(2);
+        set = a1a_MsgSetCb_m1(2);
+        Frame_Present();
+        if (!set)
+            a1a_MsgClearCb_m1(2);
+        g_job.state = 2;
+        return 0;
+    }
+    if (!a1a_Get40B0EC_m1())
+        sub_001A53F0();
+    return 0;
+}
+
