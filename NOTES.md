@@ -133,3 +133,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xAC930 m1_SeqStepAC930 PASS
 0x47950 m1_AllIdle47950 PASS
 0xA9A30 stat bump: hard (cl builds 0x4F/0x50 as 0x4F+setne, losing the 0x50 constant; same select class as 0x3E610)
+0x169730/0x169790 m1_MarkOn PASS* (merged-bit-test waiver; were hard)
+0xC6CD0 m1_FireOwnedC6CD0 PASS* (merged-bit-test waiver)

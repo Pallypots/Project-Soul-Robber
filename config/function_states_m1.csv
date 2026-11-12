@@ -83,3 +83,6 @@ va,name,state,source,obj,waivers,notes
 0x000ac8a0,m1_SeqStepAC8A0,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer twin; step 10 resets the slot and fires fx 0x23"
 0x000ac930,m1_SeqStepAC930,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer variant; step 10 fires fx 0x22 on slots 0x10/0x12/0x14; ends at step 11 or 0x14"
 0x00047950,m1_AllIdle47950,Structurally compared,src/game/m1_22.c,build/obj_m1/m1_22.obj,,"1 (after 0x1AB860) when sound banks 3,4,9,5,6,8 idle and channels 0..2 not busy"
+0x00169730,m1_MarkOn169730,Structurally compared,src/game/m1_23.c,build/obj_m1/m1_23.obj,imm:0x1000;imm:0x1001,"Mark 0x10 on 16 entries (on, not locked); 4x unroll in source; waiver: merged bit tests (&1, &0x1000) as one masked compare (documented idiom)"
+0x00169790,m1_MarkOn169790,Structurally compared,src/game/m1_23.c,build/obj_m1/m1_23.obj,imm:0x1000;imm:0x1001,"Same sweep setting 0x400; waiver: merged bit tests (documented idiom)"
+0x000c6cd0,m1_FireOwnedC6CD0,Structurally compared,src/game/m1_23.c,build/obj_m1/m1_23.obj,imm:0x10000001,"Armed in-use entries of owner become fired (3 entries unrolled); waiver: merged bit tests &1 and &0x10000000 (documented idiom)"
