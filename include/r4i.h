@@ -186,8 +186,8 @@ void r4i_ChainFall(R4iChainRec *r);                             /* 0x00197BA0 */
     int16_t  follow8A;        /* +0x8A */
 } R4iFollow;
 extern R4iNode *r4i_jack;         /* 0x00420E98 Jack's model node (g_playerObj) */
-float sub_001A3EE0(float a);                                    /* sine-type */
-float sub_001A3ED0(float a);                                    /* cosine-type */
+float sub_001A3EE0(float a);                                    /* cosine (fcos) */
+float sub_001A3ED0(float a);                                    /* sine (fsin) */
 typedef struct R4iAim {        /* work of the 0x00199090 effect */
     int32_t  i00;
     void    *h04;             /* +0x04 attached effect */
