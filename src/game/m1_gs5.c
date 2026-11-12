@@ -71,3 +71,4 @@ M1Node *m1_LoadFigure371A0(int n)
     sub_00053740();
     return node;
 }
+

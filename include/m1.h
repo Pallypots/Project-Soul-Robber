@@ -22,7 +22,7 @@ void m1_LoadFmt53ED0(const char *name, void *dst);                  /* 0x00053ED
 extern const char m1_fmt2DDCCC[];                                   /* 0x002DDCCC */
 extern uint8_t *a60_work42C5E8;                                     /* 0x0042C5E8 */
 void m1_LoadNum65A50(int n);                                        /* 0x00065A50 */
-typedef struct M1DtObj { uint32_t x00; uint32_t id; } M1DtObj;
+typedef struct M1DtObj { uint32_t x00; uint32_t id; uint8_t unk08[0x20]; uint8_t slot[0x10]; void *loaded; /* +0x38 (XBOX32) */ } M1DtObj;
 void a80_PrintId(M1DtObj *o, void *out);                            /* 0x00089670 */
 extern const char m1_fmtYca270200[];                                /* 0x00270200 */
 extern const char m1_fmtClp270290[];                                /* 0x00270290 */
@@ -129,4 +129,24 @@ typedef struct M1Res {
     uint8_t  unk22[6];
     void    *data;      /* +0x28 (XBOX32) */
 } M1Res;
+int m1_LoadClpRes8E900(M1Res *r, M1DtObj *o);                       /* 0x0008E900 */
+void sub_0007F540(void *slot, void *out);   /* 0x0007F540: *out = slot+0x10, then clears slot+0x10/+0x14 */
+typedef struct M1ModelDesc { int32_t kind; uint8_t unk04[4]; const char *dir; /* +8 (XBOX32) */ void *data; /* +0xC (XBOX32) */ } M1ModelDesc;
+void sub_0001D1E0(void *o, const char *name);
+extern const char m1_fmtBmd25FBC8[], m1_fmtPod25FBD8[];             /* "%smodel/%s.bmd", "%smodel/%s.pod" */
+char *sub_001C80F6(char *s, const char *sep);                       /* 0x001C80F6 CRT strtok */
+extern const char m1_strSlash26B81C[], m1_strEmpty26B818[];         /* "/", "" */
+void m1_SplitPath4F810(const char *src, char *first, char *rest);   /* 0x0004F810 regargs: first=ESI, rest=EDI */
+typedef struct M1Stream { int32_t packed; const char *name; /* +4 (XBOX32) */ uint8_t unk08[0x18]; } M1Stream;  /* 0x20 */
+extern M1Stream m1_streams2C8900[0x21E];                            /* 0x002C8900 (r1e: movies) */
+extern const char m1_fmtStm26B828[], m1_fmtLz26B820[];             /* "%s.stm", "%s.lz" */
+int  sub_001C9A37(const char *a, const char *b);                    /* 0x001C9A37 CRT string compare */
+M1Stream *m1_FindStream4F8E0(const char *name);                     /* 0x0004F8E0 regargs: name=EDI */
+int sub_0007DAF0(char *buf, int size, const char *fmt, void *ap);
+int sub_0002E560(int a1, int a2, int a3, int a4, int a5, int a6, float sx, float sy, const char *text);
+int m1_DrawTextf2E8C0(int a1, int a2, int a3, int a4, int a5, int a6, const char *fmt, ...);  /* 0x0002E8C0 */
+extern int32_t *m1_pg2C4B08;                                        /* 0x002C4B08 */
+extern const char m1_strFmtBracket266FB0[];                         /* 0x00266FB0 "[%s]
+" */
+int m1_DrawTagf3E4B0(int a1, int a2, int a3, int a4, int a5, const char *fmt, ...);  /* 0x0003E4B0 */
 #endif

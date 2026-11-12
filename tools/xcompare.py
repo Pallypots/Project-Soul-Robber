@@ -165,6 +165,7 @@ def is_fp(m):
 def events(code, base, resolve, md, fconst=None, local=None):
     """resolve(insn_offset, field_offset, raw_value, kind) -> VA or None"""
     calls, data, imm, jcc, ret = [], Counter(), Counter(), Counter(), set()
+    pushimm = set()   # values pushed as immediates (a float argument can be pushed as its bit pattern)
     jt = 0
     insns = list(md.disasm(code, base))
     # EBP is a frame pointer only when the function sets one up; with frame
@@ -175,7 +176,9 @@ def events(code, base, resolve, md, fconst=None, local=None):
     prev = None
     flagsrc = None
     hangs = 0
-    for i in insns:
+    for ii, i in enumerate(insns):
+        if i.mnemonic == "fld1":   # x87 load of the constant 1.0 (no .rdata literal)
+            data[("fconst", 1.0)] += 1
         # assert-style hang: a branch back to itself, or back to a compare/test
         # with nothing else in between (the loop has no effect but to spin)
         if i.mnemonic.startswith("j") and i.operands and i.operands[0].type == x86.X86_OP_IMM                 and i.address - 16 <= i.operands[0].imm <= i.address:
@@ -317,7 +320,22 @@ def events(code, base, resolve, md, fconst=None, local=None):
                     if m in ("test", "and", "or", "xor", "cmp") and ops[0].type == x86.X86_OP_REG and \
                             ops[0].reg in (x86.X86_REG_AH, x86.X86_REG_BH, x86.X86_REG_CH, x86.X86_REG_DH):
                         v <<= 8
+                    # `and r32, 0xFFFFxxxx` whose register only feeds a 16-bit store
+                    # (optionally after or/and/xor with constants) is the same mask as
+                    # `and r32, 0xxxxx`: only the low 16 bits reach memory
+                    if m == "and" and (v >> 16) == 0xFFFF and ops[0].type == x86.X86_OP_REG:
+                        r32 = i.reg_name(ops[0].reg)
+                        if r32 in ("eax", "ebx", "ecx", "edx", "esi", "edi"):
+                            r16 = r32[1:]
+                            for k in insns[ii + 1:ii + 5]:
+                                if k.mnemonic in ("or", "and", "xor") and k.op_str.startswith(r32 + ", ") and k.operands[1].type == x86.X86_OP_IMM:
+                                    continue
+                                if k.mnemonic == "mov" and k.op_str.startswith("word ptr [") and k.op_str.endswith("], " + r16):
+                                    v &= 0xFFFF
+                                break
                     imm[("k", v)] += 1
+                    if m == "push":
+                        pushimm.add(v)
         prev = i
     # 0/1 materialisation differs freely between compilers (xor r,r / mov r,1 / setcc)
     # 0xFF / 0xFFFF masks: `and r,0xFF` and a zero-extending byte/word load are the same operation
@@ -327,7 +345,20 @@ def events(code, base, resolve, md, fconst=None, local=None):
     # (read-modify-write vs load/store, re-reads) changes how often each
     # appears, not which ones appear.
     return dict(calls=calls, data=set(data), imm=set(imm), jcc=set(jcc), ret=ret, jtables=jt, hangs=hangs,
-                n=len(insns), insns=insns)
+                n=len(insns), insns=insns, pushimm=pushimm)
+
+
+def fold_pushed_floats(a, b):
+    """A float argument pushed as an immediate bit pattern (`push 0x3F800000`) is the
+    same constant as a float literal loaded from .rdata and stored to the argument
+    slot: when one side has fconst c and the other pushes c's exact bit pattern,
+    count the pushed value as fconst c. Value must match exactly."""
+    for x, y in ((a, b), (b, a)):
+        for key in [d for d in y["data"] if isinstance(d, tuple) and d[0] == "fconst" and d not in x["data"]]:
+            bits = struct.unpack("<I", struct.pack("<f", key[1]))[0]
+            if bits in x["pushimm"] and ("k", bits) in x["imm"] and                     float(f"{struct.unpack('<f', struct.pack('<I', bits))[0]:.7g}") == key[1]:
+                x["imm"].discard(("k", bits))
+                x["data"].add(key)
 
 
 def fval(raw, size):
@@ -433,6 +464,7 @@ def compare(obj, sym, va, size=None, verbose=False, xbe=None, syms=None, dump=Fa
     coff = Coff(obj)
     code, relmap, cursec = coff.function(sym)
     b = events(code, 0, obj_resolver(relmap, syms, code, cursec), md, obj_fconst)
+    fold_pushed_floats(a, b)
     fa, fb = fmt(a), fmt(b)
     # documented waivers: "category:item" entries allowed to differ, each with
     # a reason in the function record. Reported, never silent.

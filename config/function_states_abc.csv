@@ -35,7 +35,7 @@ va,name,state,source,obj,waivers,notes
 0x000bbb30,abc_EvSlot7FlagE4,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
 0x000bbc00,abc_EvSlot9FlagE5,Structurally compared,src/game/abc_3.c,build/obj_abc/abc_3.obj,,
 0x000bbf40,abc_LoadJackCostume,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
-0x000bbfc0,abc_SetHeading,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,imm:0x3f800000,constant 1.0f stored as an immediate in the original and built with fld1 by modern cl (same value)
+0x000bbfc0,abc_SetHeading,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,imm:0x3f800000;data:fconst:1.0,constant 1.0f stored as an immediate in the original and built with fld1 by modern cl (same value)
 0x000bc010,abc_UpdateNonzeroFlag,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,,
 0x000bc110,abc_SetPoint90,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:1.0;imm:0x3f800000,float constant 1.0 stored as an immediate by modern cl vs loaded from .rdata
 0x000bc170,abc_SetPoint54,Structurally compared,src/game/abc_4.c,build/obj_abc/abc_4.obj,data:fconst:1.0;imm:0x3f800000,float constant 1.0 stored as an immediate by modern cl vs loaded from .rdata

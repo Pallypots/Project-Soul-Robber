@@ -58,4 +58,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x371A0 m1_LoadFigure371A0 PASS
 0x8C3C0 m1_FindKind8C3C0 PASS
 0x36860 skipped: loads arg2 into EBX and never uses it (not producible from C)
-0x8E900 load .clp resource: hard (cl writes the flag mask as 0xFFF3, original 0xFFFFFFF3; a checker rule for masks stored to 16-bit fields would fix it)
+0x8E900 m1_LoadClpRes8E900 PASS (after checker rule: AND mask feeding a 16-bit store compares low 16 bits)
+0x8F260 load .bms resource: hard (cl orders the three cookie exits differently; tried early return, rc variable, swapped branch)
+0x1DB40 model .bmd/.pod loader: hard (cl folds kind 1..2 range into one unsigned compare; tried if/else, switch, nested ifs)
+0x4F810 m1_SplitPath4F810 PASS
+0x4F8E0 m1_FindStream4F8E0 PASS (int index loop -> signed jl like the original)
+0x2E8C0 m1_DrawTextf2E8C0 PASS (checker: pushed float bits = float literal; fld1 = 1.0)
+0x3E4B0 m1_DrawTagf3E4B0 PASS
+- r6f 0x8E480/0x8EB10: +0x18 flag update now writes 16 bits (f18.s.w), as the original; exposed by the 16-bit mask rule

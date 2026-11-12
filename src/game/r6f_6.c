@@ -78,10 +78,10 @@ int r6f_TaskMatHandler(R6fTask *t, void *ref)
                 t->f18.b0 |= 8;
                 return 0;
             }
-            t->f18.u = (t->f18.u & ~0xC) | 2;
+            t->f18.s.w = (uint16_t)((t->f18.s.w & ~0xC) | 2);
             return 0;
         }
-        t->f18.u = (t->f18.u & ~0xC) | 2;
+        t->f18.s.w = (uint16_t)((t->f18.s.w & ~0xC) | 2);
         sub_0008CCF0(&ref, t);
         sub_0008CBE0((void **)((uint8_t *)sub_00089390() + 0x24), ref);
         return 0;

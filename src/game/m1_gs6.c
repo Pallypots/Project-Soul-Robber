@@ -30,3 +30,40 @@ M1Task *m1_FindKind8C3C0(M1Task *n, int kind)
     ref.kind = (uint8_t)kind;
     return sub_0008C350_m1(n, &ref, 2);
 }
+
+/* 0x0004F810: split "a/b..." into the part before the first '/' and the rest. */
+void m1_SplitPath4F810(const char *src, char *first, char *rest)
+{
+    char buf[0x100];
+    char *t;
+    sub_001C7DB0(buf, src, 0xFF);
+    t = sub_001C80F6(buf, m1_strSlash26B81C);
+    if (t == 0)
+        *first = 0;
+    else
+        strcpy(first, t);
+    t = sub_001C80F6(0, m1_strEmpty26B818);
+    if (t == 0)
+        *rest = 0;
+    else
+        strcpy(rest, t);
+}
+
+/* 0x0004F8E0: find the stream entry whose file name ("<name>.stm", or "<name>.lz" when
+ * packed) equals name; the loop stops at 0x2CCCA0 (541 of the table's entries). */
+M1Stream *m1_FindStream4F8E0(const char *name)
+{
+    char buf[0x100];
+    M1Stream *e;
+    int i;
+    for (i = 0; i < 541; i++) {
+        e = &m1_streams2C8900[i];
+        if (e->packed == 0)
+            sub_0007E070(buf, 0xFF, m1_fmtStm26B828, e->name);
+        else
+            sub_0007E070(buf, 0xFF, m1_fmtLz26B820, e->name);
+        if (sub_001C9A37(buf, name) == 0)
+            return e;
+    }
+    return 0;
+}

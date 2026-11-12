@@ -88,7 +88,7 @@ int r6f_TaskFxStart(R6fTask *t, R6fFxArg *a)
             t->p3C = sub_00053BC0(r6f_fxName2702F8, 0xF8);
             sub_000366F0(&t->p28, a->i04);
             sub_00053BE0();
-            t->f18.u = (t->f18.u & ~0xC) | 2;
+            t->f18.s.w = (uint16_t)((t->f18.s.w & ~0xC) | 2);
         }
         break;
     case 1:
