@@ -89,3 +89,4 @@ va,name,state,source,obj,waivers,notes
 0x00037af0,m1_ChanUpdate37AF0,Structurally compared,src/game/m1_24.c,build/obj_m1/m1_24.obj,,"Update active kind-1 channels of the 10 x 0x48 table; callee 0x37830 regargs: c=EAX"
 0x00128240,m1_AfterAnim128240,Structurally compared,src/game/m1_25.c,build/obj_m1/m1_25.obj,,"After the body animation ends: actor state 0x11 if player out of reach else 0xF (mode must be 0x14). Callers: 0x120820 regargs obj=EAX self=ESI; 0x11F2B0 regargs obj=EDI k=EBX"
 0x000a9a30,m1_StatBumpA9A30,Structurally compared,src/game/m1_25.c,build/obj_m1/m1_25.obj,,"Jack stat 1 += 2 (or 8 with flag 0x8000000); on change show it and play reaction 0x4F/0x50; sound 0x18 at Jack; flag 0x40000000"
+0x0003e610,m1_DrawMenuLinef3E610,Structurally compared,src/game/m1_gs8.c,build/obj_m1/m1_gs8.obj,,"Format a menu line and draw it as %c%s with +/space marker; colour selected/normal from *0x2C4B08; ap cleared after formatting as the original"

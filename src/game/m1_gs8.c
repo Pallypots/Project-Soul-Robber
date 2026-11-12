@@ -25,3 +25,20 @@ int m1_DrawTagf3E4B0(int a1, int a2, int a3, int a4, int a5, const char *fmt, ..
     return m1_DrawTextf2E8C0(a1, a2, a3, *m1_pg2C4B08, a4, a5, m1_strFmtBracket266FB0, buf);
 }
 
+
+/* 0x0003E610: format a menu line (up to 0xFF chars) and draw it through 0x2E8C0 as
+ * "%c%s" with a '+' marker when marked (a7) or ' ' otherwise; colour is the
+ * selected or normal entry of *0x2C4B08 (a6). */
+int m1_DrawMenuLinef3E610(int a1, int a2, int a3, int a4, int a5, int selected, int marked,
+                          const char *fmt, ...)
+{
+    va_list ap;
+    char buf[0x100];
+    int colour;
+    va_start(ap, fmt);
+    sub_0007DAF0(buf, 0xFF, fmt, &ap);
+    ap = 0;
+    colour = selected ? m1_pg2C4B08[2] : m1_pg2C4B08[1];
+    return m1_DrawTextf2E8C0(a1, a2, a3, colour, a4, a5, m1_fmtItem266FC8,
+                             marked ? '+' : ' ', buf);
+}

@@ -370,9 +370,14 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
             if sel:
                 d = ops[1].imm & 0xFFFFFFFF
                 k = 0
-                if ii + 1 < len(insns) and insns[ii + 1].mnemonic == "add" and                         insns[ii + 1].op_str.startswith(rn + ", ") and insns[ii + 1].operands[1].type == x86.X86_OP_IMM:
-                    k = insns[ii + 1].operands[1].imm & 0xFFFFFFFF
-                    skip_sel.add(ii + 1)
+                for jj in range(ii + 1, min(ii + 5, len(insns))):
+                    q = insns[jj]
+                    if q.mnemonic == "add" and q.op_str.startswith(rn + ", ") and q.operands[1].type == x86.X86_OP_IMM:
+                        k = q.operands[1].imm & 0xFFFFFFFF
+                        skip_sel.add(jj)
+                        break
+                    if q.op_str.startswith(rn + ",") or q.op_str == rn or q.mnemonic.startswith(("j", "call", "ret")):
+                        break
                 imm[("k", k)] += 1
                 imm[("k", (k + d) & 0xFFFFFFFF)] += 1
                 prev = i; continue
