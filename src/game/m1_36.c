@@ -178,3 +178,43 @@ void m1_EnemyRecoil138140(M1Obj124 *o, M1Enemy4C *e)
     e->state058 = 1;
     sub_00113090(o, e, (e->b022 & 1) + 0x10);
 }
+
+typedef struct M1Enemy24 {
+    uint8_t  unk000[0x24];
+    int32_t  part024;          /* +0x024 */
+    uint8_t  unk028[0x58 - 0x28];
+    int32_t  state058;         /* +0x058 */
+    uint8_t  unk05C[0x278 - 0x5C];
+    M1EWork *work278;          /* +0x278 */
+} M1Enemy24;
+typedef struct M1PartPos {
+    uint8_t unk00[0x70];
+    float   pos70[3];          /* +0x70 */
+} M1PartPos;
+int        sub_0013A900(void *o, void *e);
+void      *sub_00036750(void *o, int b);
+M1PartPos *sub_0001D0F0(void *o, int part);
+int        sub_000494D0(int id, const void *pos, int c);
+
+/* 0x0013CF90: three-step enemy sequence once 0x13A900 allows it: animation 0x49;
+ * reaction 7 with sound 0x88 at its part; then flag 0x80000000 and event 0x1E. */
+void m1_EnemySeq13CF90(void *o, M1Enemy24 *e)
+{
+    if (!sub_0013A900(o, e))
+        return;
+    switch (e->state058) {
+    case 0:
+        sub_00113090(o, e, 0x49);
+        e->state058++;
+        break;
+    case 1:
+        sub_00036750(o, 7);
+        sub_000494D0(0x88, sub_0001D0F0(o, e->part024)->pos70, 0);
+        e->state058++;
+        break;
+    case 2:
+        e->work278->flags04 |= 0x80000000;
+        sub_00113040(o, e, 0x1E);
+        break;
+    }
+}
