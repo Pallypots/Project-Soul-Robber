@@ -181,3 +181,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA3780 m1_LookupKeyA3780 PASS* (stride waiver)
 0xEB3A0 give/anim: hard (cl merges the two 0xD0200 call sites)
 0xE1E00 m1_SetupRigE1E00 PASS
+0x189960 m1_StageReset189960 PASS (bias rule: pushed walking pointer)

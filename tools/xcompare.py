@@ -218,6 +218,10 @@ def pointer_bias(insns, base, resolve):
                     ops[0].type == x86.X86_OP_REG and ops[0].reg == r and \
                     len(pat.findall(i.op_str)) == 1:
                 break
+            # `push r` after the walk started passes the record pointer itself
+            if i.mnemonic == "push" and i.op_str == names[0] and movs:
+                mems.append((i.address, 0))
+                continue
             # `mov x, r` copies the walking pointer: same as `lea x, [r+0]`
             if i.mnemonic == "mov" and len(ops) == 2 and ops[1].type == x86.X86_OP_REG and ops[1].reg == r and                     ops[0].type == x86.X86_OP_REG and ops[0].reg != r:
                 mems.append((i.address, 0))
@@ -455,6 +459,10 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
             for r in wr:
                 alias.pop(r, None)
         bi = bias.get(i.address)
+        if bi and bi[0] == "mem" and m == "push" and ops and ops[0].type == x86.X86_OP_REG and ops[0].reg == bi[1]:
+            if bi[2]:
+                imm[("k", bi[2] & 0xFFFFFFFF)] += 1   # canonical offset of the pushed pointer
+            prev = i; continue
         for o in ops:
             if o.type != x86.X86_OP_MEM:
                 continue

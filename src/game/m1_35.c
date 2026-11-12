@@ -40,3 +40,36 @@ void m1_SetupRigE1E00(M1RigMgr *m)
     for (i = 0; i < 5; i++)
         m->slots86C[i].f00 = 0;
 }
+
+typedef struct M1Pair8C {
+    uint8_t a00[0x10];         /* +0x00 */
+    uint8_t b10[0x8C - 0x10];  /* +0x10 */
+} M1Pair8C;
+extern M1Pair8C m1_pairs3FEB18[19];   /* 0x003FEB18 */
+extern int32_t m1_g3FF57C, m1_g3FF584, m1_g414440, m1_g414444, m1_g3FF580;
+void sub_0001D8B0(void *o, int kind);
+void sub_0018DFC0(void); void sub_0018B620(void); void sub_00196750(void);
+void sub_0018A250(void); void sub_001983E0(void); void sub_00196A10(void);
+void sub_001905B0(void); void sub_00193990(void); void sub_00191B00(void);
+void sub_00191B30(void); void sub_00191C70(void); void sub_0018D3A0(void);
+void sub_0018C3E0(void); void sub_00193DF0(void);
+
+/* 0x00189960: stage reset: clears four globals, initialises both halves of the
+ * 19 pair records (kinds 7 and 0xD), runs the 14 subsystem resets, clears 0x3FF580. */
+void m1_StageReset189960(void)
+{
+    int i;
+    m1_g3FF57C = 0;
+    m1_g3FF584 = 0;
+    m1_g414440 = 0;
+    m1_g414444 = 0;
+    for (i = 0; i < 19; i++) {
+        sub_0001D8B0(m1_pairs3FEB18[i].a00, 7);
+        sub_0001D8B0(m1_pairs3FEB18[i].b10, 0xD);
+    }
+    sub_0018DFC0(); sub_0018B620(); sub_00196750(); sub_0018A250();
+    sub_001983E0(); sub_00196A10(); sub_001905B0(); sub_00193990();
+    sub_00191B00(); sub_00191B30(); sub_00191C70(); sub_0018D3A0();
+    sub_0018C3E0(); sub_00193DF0();
+    m1_g3FF580 = 0;
+}
