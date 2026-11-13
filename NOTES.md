@@ -245,3 +245,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x18DC90 m1_BurstDestroy18DC90 PASS
 0x18DC00 m1_PlaceModel18DC00 PASS
 0x18DED0 m1_SetupFollower18DED0 PASS
+0x179060 m1_Setup179060 PASS (simple setup template)
+0x17EBF0 m1_Setup17EBF0 PASS (simple setup template)
+0x17EC80 m1_Setup17EC80 PASS (simple setup template)
+0x17ED70 m1_Setup17ED70 PASS (simple setup template)
+0x17EEA0 m1_Setup17EEA0 PASS (simple setup template)
+0x183140 m1_Setup183140 PASS (simple setup template)
+0x183290 m1_Setup183290 PASS (simple setup template)
