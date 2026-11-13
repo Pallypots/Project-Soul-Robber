@@ -280,3 +280,52 @@ void m1_RigIdle135FE0(M1Fl0C *o, M1Step160 *h)
     r->flags08 |= 0x44;
     sub_000414A0(1);
 }
+
+typedef struct M1RigR { uint8_t unk00[4]; uint32_t flags04; uint8_t unk08[0x20 - 8]; int32_t n20; } M1RigR;
+typedef struct M1StepR { uint8_t unk000[0x74]; float f74; uint8_t unk078[0x278 - 0x78]; M1RigR *rig278; } M1StepR;
+
+/* 0x0013E8D0: random delay +0x74 = (rand % 9) / frame time * frame rate; the rig counter
+ * goes up by 2 and rig flag 0x40000000 is set again one time in four at 7 or more, one
+ * time in eight at 4..6; then o flag 0x20. */
+void m1_RigRoll13E8D0(M1Act10 *o, M1StepR *h)
+{
+    M1RigR *r = h->rig278;
+    int n;
+    h->f74 = (float)(aab_Rand() % 9) / m1_frameTime42C858 * m1_frameRate42C85C;
+    n = r->n20 + 2;
+    r->n20 = n;
+    r->flags04 &= ~0x40000000u;
+    if (n >= 7) {
+        if (aab_Rand() % 4 < 1)
+            r->flags04 |= 0x40000000;
+    } else if (n >= 4) {
+        if (aab_Rand() % 8 < 1)
+            r->flags04 |= 0x40000000;
+    }
+    o->flags10 |= 0x20;
+}
+
+typedef struct M1Rig68 { uint8_t unk00[0x50]; uint32_t flags50; uint8_t unk54[0x68 - 0x54]; float f68; } M1Rig68;
+typedef struct M1Step68 { uint8_t unk000[0x4C]; uint32_t flags4C; uint8_t unk050[0x278 - 0x50]; M1Rig68 *rig278; } M1Step68;
+void sub_00156180(void *rig, int a, int b, int c, float t);
+
+/* 0x0014B510: 0x1456E0(0x13), rig blend 0x156180(0, 0, 0, frame time * 0.003), clear
+ * h +0x4C bits 0x70, 0x414A0(1), clear rig flag 0x200, rig +0x68 += 200 clamped to 0..200. */
+void m1_RigBlend14B510(void *o, M1Step68 *h)
+{
+    M1Rig68 *r = h->rig278;
+    M1Rig68 *p;
+    float v;
+    sub_001456E0(o, h, 0x13, 0);
+    sub_00156180(r, 0, 0, 0, m1_frameTime42C858 * 0.003f);
+    h->flags4C &= ~0x70u;
+    sub_000414A0(1);
+    r->flags50 &= ~0x200u;
+    p = h->rig278;
+    v = p->f68 + 200.0f;
+    p->f68 = v;
+    if (0.0f > v)
+        p->f68 = 0.0f;
+    else if (v > 200.0f)
+        p->f68 = 200.0f;
+}
