@@ -445,3 +445,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x112C00 PASS (m1_84).
 - 0x17C6F0 PASS (m1_84).
 - 0x11DC20 PASS (m1_84; second limit reads the partner component +0x274).
+- 0x175CE0, 0x179910 PASS (m1_85).
+- 0x17CC00 PASS (m1_85). 0x18B8F0 skip for now (x87 fild random angles).
+- 0x12DDE0 PASS (m1_85).
+- 0x184530 PASS (m1_85).
