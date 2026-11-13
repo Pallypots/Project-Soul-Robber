@@ -252,3 +252,4 @@ va,name,state,source,obj,waivers,notes
 0x0010df90,m1_ZeroSpeed10DF90,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed zero, start sound 0x1AA on the kind-5 component if none is playing, animation 2"
 0x0010a0a0,m1_FadeOut10A0A0,Structurally compared,src/game/m1_49.c,build/obj_m1/m1_49.obj,,"While h +0x68 < 0.6 every material (stride 0x108) of every model in the chain gets alpha (0.6 - t) * 213.33; then (spins on null o) kind-5 component back to mode 0 and 0xF3B70(3)"
 0x00119900,m1_RigOnce119900,Structurally compared,src/game/m1_49.c,build/obj_m1/m1_49.obj,,"First time through (rig flag 0x2000) writes +0x270 / +0x274 as ints to slots 5 / 6 and 0 to slot 4 (0x253D0); then 0x117580(1) once 0x833E0(o +0x30) is ready"
+0x0011a950,m1_RigStep11A950,Structurally compared,src/game/m1_49.c,build/obj_m1/m1_49.obj,,"o flag 4, clear rig flag 2, next state 0x26 (0x113090), command 2 = (6, 2, 0xC3), shake 0x19E970(4.0, 2.0), sound 0xC9 at o, 0x36750(0xC)"

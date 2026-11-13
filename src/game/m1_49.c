@@ -102,3 +102,28 @@ void m1_RigOnce119900(M1Act10 *o, M1StepF *h)
     if (sub_000833E0(o->f30) != 0)
         sub_00117580(o, 1);
 }
+
+typedef struct M1Fl60b { uint8_t unk00[0x10]; uint32_t flags10; uint8_t unk14[0x60 - 0x14]; float pos60[3]; } M1Fl60b;
+typedef struct M1Cmd10 { uint8_t unk00[0x10]; int32_t f10, f14, f18; } M1Cmd10;
+void     sub_00113090(void *o, void *h, int next);
+M1Cmd10 *sub_00113430(void *h, int v);
+void     sub_0019E970(float a, float b);
+int      sub_000494D0(int id, const void *pos, int c);
+int      sub_00036750(void *o, int v);
+
+/* 0x0011A950: o flag 4, clear rig flag 2, next state 0x26 (0x113090), command 2 set to
+ * (6, 2, 0xC3), shake 0x19E970(4.0, 2.0), sound 0xC9 at o and 0x36750(0xC). */
+void m1_RigStep11A950(M1Fl60b *o, M1StepF *h)
+{
+    M1Cmd10 *c;
+    o->flags10 |= 4;
+    h->rig278->flags04 &= ~2u;
+    sub_00113090(o, h, 0x26);
+    c = sub_00113430(h, 2);
+    c->f10 = 6;
+    c->f14 = 2;
+    c->f18 = 0xC3;
+    sub_0019E970(4.0f, 2.0f);
+    sub_000494D0(0xC9, o->pos60, 0);
+    sub_00036750(o, 0xC);
+}
