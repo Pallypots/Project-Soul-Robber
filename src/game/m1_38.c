@@ -107,3 +107,22 @@ void m1_ResetRecs17CDC0(void)
     M1_REC54_INIT(m1_recs3FDC70[4]);
     M1_REC54_INIT(m1_recs3FDC70[5]);
 }
+
+typedef struct M1Rec24 {
+    int32_t f00, f04, f08;     /* +0x00 */
+    float   f0C;               /* +0x0C */
+    uint8_t unk10[0x24 - 0x10];
+} M1Rec24;
+extern M1Rec24 m1_recs3FF588[12];   /* 0x003FF588 */
+
+/* 0x0018A250: clears the twelve 0x24 records at 0x3FF588. */
+void m1_ClearRecs18A250(void)
+{
+    int i;
+    for (i = 0; i < 12; i++) {
+        m1_recs3FF588[i].f00 = 0;
+        m1_recs3FF588[i].f04 = 0;
+        m1_recs3FF588[i].f08 = 0;
+        m1_recs3FF588[i].f0C = 0.0f;
+    }
+}

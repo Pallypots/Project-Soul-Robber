@@ -224,3 +224,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x17CDC0 m1_ResetRecs17CDC0 PASS
 0xCC360 m1_RecheckTargetCC360 PASS* (merged-bit-test waiver)
 0xCB490 m1_TargetKeysCB490 PASS
+0x18A250 m1_ClearRecs18A250 PASS
+0xCCC50 slot clear: hard (orig lea base+0x200 then walks; cl stores through the indexed address directly)
