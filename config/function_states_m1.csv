@@ -280,3 +280,7 @@ va,name,state,source,obj,waivers,notes
 0x001b6a90,m1_CueLength1B6A90,Structurally compared,src/game/m1_54.c,build/obj_m1/m1_54.obj,,"Cue length: longest wave (length + tail, plus pre-delay with wave flag 2) over enabled tracks (stride 0x12C) goes to o +0xB4; cue flag 0x200"
 0x000c9ce0,m1_ActionReady0C9CE0,Structurally compared,src/game/m1_55.c,build/obj_m1/m1_55.obj,data:0x10000;data:0x10001,"1 when the current action (+0xEFC) has flag 1, not flag 0x10000, byte +0x10 bits 0x48 clear and +0xFAC is not <= 0; else -1 (cl merges the two flag tests)"
 0x000fcdd0,m1_HelperCam0FCDD0,Structurally compared,src/game/m1_56.c,build/obj_m1/m1_56.obj,,"Helper (0x3F611C): spins on a null camera; camera anim 0x832D0(4), +0xAC = 0.25, +0xDC = +0xE0 = 0, +0xF4 = 0"
+0x000cbeb0,m1_AboveRef0CBEB0,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"When |+0x5D0| (0x82D70) > 0.5 combines it with +0x5E0 (0x1ADAF0); returns 1 when +0x5B4 - 5 is above the reference object's height (+0xFD8 -> +0x64), else -1"
+0x000a82c0,m1_RewardAmount0A82C0,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"Reward amount: (int)0x171E20(kind, level) * (0x26650 + 1 if 0x26740 else 1) * (2 if 0xEDF10 returns 1 and kind != 12, else 1)"
+0x00094360,m1_Grow094360,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"State 0: +0x10 += frame time * 0.05 (double) up to 1.8 then state 1, apply size 0xA4870; state 1: clear flag 0x2000000, 0xA41D0(-1)"
+0x000943d0,m1_Grow0943D0,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"As 0x94360 with limit 1.0"

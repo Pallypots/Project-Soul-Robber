@@ -339,3 +339,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x5AB70: hard (cl folds kind 12..13 into one unsigned compare); 0xCD8D0, 0xCEEA0: skip (register args)
 0x79EF0 fog apply: hard (cl merges the two 0x84910 calls); 0xCEF00, 0xD0480: skip (register args)
 0xFCDD0 m1_HelperCam0FCDD0 PASS
+0xD2CC0: hard (orig keeps an always-true null test on &o->fE04); 0xDFED0, 0x5ED30: skip (byte-pair packing / insert loops with biased pointers); 0x6CA50, 0x45C60, 0xCEE40, 0x38BF0: skip (register args)
+0x409E0: hard (hang on 1..24 range, cl folds it); 0x75850: skip (0x75780 register args)
+0xC7340, 0x72F30: skip (esi register arg / tail jmp with unsigned-to-float fixup)
+0xCBEB0, 0xA82C0, 0x94360/0x943D0 (M1_GROW, double literal keeps the x87 fmul qword) PASS; 0xF1E80: skip (double store to the same field)
