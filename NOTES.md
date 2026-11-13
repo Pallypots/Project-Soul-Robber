@@ -210,3 +210,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCB540 target selection sort: hard (orig walks order[] and reads key[] at -0x80; cl walks key[] and bumps the pointer mid-iteration)
 0xCE4C0 m1_PartsLookCE4C0 PASS (own file to stop inlining)
 0x107490 m1_BossTeardown107490 PASS
+0xC6B90 m1_ValidateAimC6B90 PASS* (merged-bit-test waiver)
