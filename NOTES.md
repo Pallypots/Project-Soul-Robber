@@ -423,3 +423,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x17E910, 0x17C530, 0x18A880 PASS (m1_78; 0x17C530 keeps the original double i>=6 check). 0x188740 skip (eax/ecx args).
 - 0x18EB50, 0x1566D0 PASS (m1_78). 0x186800 skip (eax arg calls).
 - 0x174B40, 0x17B1C0, 0x17CA70 PASS (m1_78). Index loop over a global array gives the signed jl pointer compare; a pointer loop gives jb.
+- 0x17F050, 0x180AF0 PASS (m1_79, record-release family). 0x179190: hard (cl merges the +0x14/+0x16 halfword zero stores into one dword). 0x17E5D0 skip (eax arg call 0x17E4D0). 0x16D5E0, 0x170750 skip (register-arg calls).
+- 0x166110 PASS (m1_79). 0x186600, 0x17CF40 skip (register args).
+- 0x138DF0 PASS (m1_79; case 0 falls through to case 1). 0x166110 needed pointer+counter loop (index loop gave an end-pointer compare).
