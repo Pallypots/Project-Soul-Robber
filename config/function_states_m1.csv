@@ -197,3 +197,5 @@ va,name,state,source,obj,waivers,notes
 0x000a3cc0,m1_SyncPoseA3CC0,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"As 0xA3D40, with the object rotation x cleared after the copy"
 0x000cff10,m1_PushStateCFF10,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"If src is given push o towards it (0xCF330, 8.0); then state 0x1E and flag 0x2000"
 0x000f4590,m1_StageRestartF4590,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Restart stage step (0xE0A80 kind 4), clear counters, 0xE51F0, camera value 10.5, sound 0x1E3 once"
+0x000bf350,m1_JackStopBF350,Structurally compared,src/game/m1_40.c,build/obj_m1/m1_40.obj,,"Stop Jack velocity; first pass sets state flags and +0xE0, later returns to state 1 once +0x1C0 < 0"
+0x001090f0,m1_HitReact1090F0,Structurally compared,src/game/m1_39.c,build/obj_m1/m1_39.obj,,"Positive hit with flags 0x18 switches kind-5 component to mode 2; once +0xF8 >= +0x68 starts sound 0x19D once"

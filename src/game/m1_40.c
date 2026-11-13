@@ -167,3 +167,34 @@ void m1_TargetKeysCB490(M1JackT *p)
     for (i = 0; i < p->count318; i++)
         p->a4A8[i] = (int)p->dist328[i] * 1000;
 }
+
+typedef struct M1JackS {
+    uint8_t  unk000[0xE0];
+    int32_t  fE0;              /* +0x0E0 */
+    uint8_t  unk0E4[0x110 - 0xE4];
+    float    vel110[3];        /* +0x110 */
+    uint8_t  unk11C[0x150 - 0x11C];
+    uint32_t flags150;         /* +0x150 */
+    uint8_t  unk154[0x1C0 - 0x154];
+    int32_t  f1C0;             /* +0x1C0 */
+} M1JackS;
+void abc_SetState(void *o, int state);
+
+/* 0x000BF350: stops Jack's velocity; the first time through sets his state flags
+ * (0x28000000 on, 0x540010B off) and marks +0xE0; afterwards, once +0x1C0 is
+ * negative, clears 0x8000000 and returns him to state 1. */
+void m1_JackStopBF350(M1JackS *p)
+{
+    p->vel110[2] = 0.0f;
+    p->vel110[1] = 0.0f;
+    p->vel110[0] = 0.0f;
+    if (p->fE0 != 0) {
+        if (p->f1C0 < 0) {
+            p->flags150 &= ~0x8000000u;
+            abc_SetState(p, 1);
+        }
+        return;
+    }
+    p->flags150 = (p->flags150 & 0xABFFF4FE) | 0x28000000;
+    p->fE0 = 1;
+}

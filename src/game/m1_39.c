@@ -126,3 +126,38 @@ void m1_HitStrong1108A0(void *o, M1Hit68 *h)
     }
     sub_0010FD50(o);
 }
+
+typedef struct M1Comp6C { uint8_t unk00[0x6C]; int32_t mode6C; } M1Comp6C;
+typedef struct M1Obj128 {
+    uint8_t unk000[0x60];
+    float   pos060[4];         /* +0x060 */
+    uint8_t unk070[0x128 - 0x70];
+    uint8_t b128;              /* +0x128 */
+} M1Obj128;
+typedef struct M1HitD {
+    uint8_t unk000[0x68];
+    float   f068;              /* +0x068 */
+    uint8_t unk06C[0x98 - 0x6C];
+    int32_t snd098;            /* +0x098 */
+    uint8_t unk09C[0xBC - 0x9C];
+    float   fBC;               /* +0x0BC */
+    uint8_t unk0C0[0xF8 - 0xC0];
+    float   fF8;               /* +0x0F8 */
+} M1HitD;
+M1Comp6C *sub_0001D960M(void *o, int kind);   /* 0x0001D960 */
+void sub_000F3D10(void *o, M1Comp6C *c, int mode);
+int  sub_000494D0(int id, const void *pos, int c);
+
+/* 0x001090F0: on a positive hit while flags 0x18 are set, switches the kind-5
+ * component to mode 2; once +0xF8 reaches +0x68, starts sound 0x19D once. */
+void m1_HitReact1090F0(M1Obj128 *o, M1HitD *d)
+{
+    M1Comp6C *c;
+    if (d->fBC > 0.0f && (o->b128 & 0x18)) {
+        c = sub_0001D960M(o, 5);
+        if (c->mode6C != 2)
+            sub_000F3D10(o, c, 2);
+    }
+    if (d->fF8 >= d->f068 && d->snd098 < 0)
+        d->snd098 = sub_000494D0(0x19D, o->pos060, 1);
+}
