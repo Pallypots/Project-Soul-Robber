@@ -198,3 +198,31 @@ void m1_JackStopBF350(M1JackS *p)
     p->flags150 = (p->flags150 & 0xABFFF4FE) | 0x28000000;
     p->fE0 = 1;
 }
+
+typedef struct M1JackAim {
+    uint8_t  unk000[0x5C0];
+    float    tgt5C0[4];        /* +0x5C0 */
+    float    vel5D0[4];        /* +0x5D0 */
+    uint8_t  unk5E0[0xFD8 - 0x5E0];
+    uint8_t *node0FD8;         /* +0xFD8 (+0x60 position) */
+} M1JackAim;
+void  sub_001AD9F0(float *d, const float *a, const void *b);   /* d = a - b */
+float sub_00082D70(float *v);                                  /* length */
+void  sub_001AD7E0(float *d, const float *s);                  /* normalise */
+void  sub_001ADBA0(float *d, const float *s, float k);         /* d = s * k */
+
+/* 0x000CBE20: aims Jack's velocity at his target: direction to the target scaled
+ * by distance / 30. */
+void m1_AimAtTargetCBE20(M1JackAim *p)
+{
+    float d[4];
+    float len;
+    d[0] = 0.0f;
+    d[1] = 0.0f;
+    d[2] = 0.0f;
+    d[3] = 1.0f;
+    sub_001AD9F0(d, p->tgt5C0, p->node0FD8 + 0x60);
+    len = sub_00082D70(d);
+    sub_001AD7E0(d, d);
+    sub_001ADBA0(p->vel5D0, d, len * 0.033333335f);
+}

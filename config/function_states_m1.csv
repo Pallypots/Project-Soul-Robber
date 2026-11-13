@@ -206,3 +206,4 @@ va,name,state,source,obj,waivers,notes
 0x000a8bf0,m1_HandsNearA8BF0,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"1 if Jack's bone at +0x370 is within t radius, else the result for the bone at +0x1F0"
 0x0017d780,m1_SceneReset17D780,Structurally compared,src/game/m1_47.c,build/obj_m1/m1_47.obj,,"Clear the scene pair, six resources and state values around 0x3FDE68; 0x3FDEC0 = 1.0"
 0x000eacc0,m1_RestoreViewEACC0,Structurally compared,src/game/m1_47.c,build/obj_m1/m1_47.obj,,"Both scale values = info count * 0.001, copy five saved words back from +0x850, +0x7B0 = 1.0"
+0x000cbe20,m1_AimAtTargetCBE20,Structurally compared,src/game/m1_40.c,build/obj_m1/m1_40.obj,,"Jack velocity +0x5D0 = direction to target +0x5C0 scaled by distance / 30"
