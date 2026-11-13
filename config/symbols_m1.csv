@@ -771,3 +771,12 @@ m1_cmdCount3DA390,0x003DA390,data,,
 m1_cmds3DA398,0x003DA398,data,0x10,16
 m1_minion3F6120,0x003F6120,data,,
 m1_sprites3F4D10,0x003F4D10,data,0xA0,16
+m1_fxRes3F8400,0x003F8400,data,,
+m1_fxModel3F8408,0x003F8408,data,,
+m1_fxBones3F840C,0x003F840C,data,,
+m1_fxParts3F76C0,0x003F76C0,data,0xD4,16
+m1_fxRes3FD7B0,0x003FD7B0,data,,
+m1_fxModel3FD7B8,0x003FD7B8,data,,
+m1_fxBones3FD7BC,0x003FD7BC,data,,
+m1_fxParts3FD2B8,0x003FD2B8,data,0xD4,6
+m1_stats41FEC0,0x0041FEC0,data,,

@@ -354,3 +354,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xEFAF0, 0xCBB70 PASS (m1_61.c); 0xEE1B0: hard (const table first kind folded, like 0xED520)
 0xFFEA0, 0xC6E10, 0xE7990 PASS (m1_62.c)
 0x34110, 0x541B0: skip (register args)
+0x166B30/0x1721E0 effect models (M1_FX_MODEL) PASS
+0x186B50, 0x18AB70 PASS (m1_63.c)
+0x116630 PASS (m1_63.c)
+0x1556D0 m1_Shoot1556D0 PASS
