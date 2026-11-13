@@ -338,3 +338,87 @@ int m1_SetupSingle183010(M1ObjL *o, M1ActL *a)
     sub_000832D0(o->anim030, 0);
     return 1;
 }
+
+typedef struct M1LinkObj {
+    uint8_t  unk000[0xC];
+    uint32_t flags0C;          /* +0x00C */
+    uint32_t flags10;          /* +0x010 */
+    uint8_t  unk014[0x20 - 0x14];
+    void    *node020;          /* +0x020 */
+    uint8_t  unk024[0x30 - 0x24];
+    void    *anim030;          /* +0x030 */
+    uint8_t  unk034[0x54 - 0x34];
+    float    rot054;           /* +0x054 */
+    uint8_t  unk058[0x70 - 0x58];
+    float    v070[3];          /* +0x070 */
+    uint8_t  unk07C[0x124 - 0x7C];
+    int32_t  f124;             /* +0x124 */
+} M1LinkObj;
+typedef struct M1Link24L {
+    M1LinkObj *a00;            /* +0x00 */
+    M1LinkObj *b04;            /* +0x04 partner */
+    void      *c08;            /* +0x08 */
+    int32_t    key0C;          /* +0x0C */
+    uint8_t    unk10[0x24 - 0x10];
+} M1Link24L;
+extern M1Link24L m1_linksL3FE2D8[4];   /* 0x003FE2D8 */
+extern uint8_t m1_p32B878[], m1_p32B884[];
+typedef struct M1ActLk {
+    uint8_t    unk000[0x28];
+    float      f028;           /* +0x028 */
+    uint8_t    unk02C[0x278 - 0x2C];
+    M1Link24L *link278;        /* +0x278 */
+    M1CbS      update27C;      /* +0x27C */
+    uint8_t    unk280[0x288 - 0x280];
+    M1CbS      draw288;        /* +0x288 */
+    void      *paramA28C;      /* +0x28C */
+    void      *paramB290;      /* +0x290 */
+} M1ActLk;
+void  sub_00181E80(void);
+void  sub_001B2080(void *node);
+void *sub_00182760(void *node);
+void  sub_001B2020(void *parent, void *node);
+void *sub_0001D0F0K(void *o, int part);   /* 0x0001D0F0 */
+
+/* 0x00182630: binds o and a to link slot i (0..3): callbacks 0x181E80 / 0x102FA0,
+ * attaches o's node under 0x182760 and the partner's node under o's part 3, faces
+ * i quarter turns, plays animation 3 on both and sends event 0. Returns 1. */
+int m1_SetupLink182630(M1LinkObj *o, M1ActLk *a, int i)
+{
+    M1Link24L *l;
+    M1LinkObj *b;
+    void *n;
+    if (o == 0)
+        for (;;) ;
+    if (i >= 4)
+        for (;;) ;
+    l = &m1_linksL3FE2D8[i];
+    a->link278 = l;
+    l->a00 = o;
+    l->c08 = a;
+    l->key0C = i;
+    a->paramA28C = m1_p32B878;
+    a->paramB290 = m1_p32B884;
+    a->update27C = sub_00181E80;
+    a->draw288 = m1_Stub102FA0;
+    o->flags0C = (o->flags0C & ~0xE0u) | 1;
+    o->flags10 |= 0x44D;
+    o->f124 = 0;
+    a->f028 = 0.0f;
+    o->v070[2] = 1.0f;
+    o->v070[1] = 1.0f;
+    o->v070[0] = 1.0f;
+    sub_001B2080(o->node020);
+    n = o->node020;
+    sub_001B2020(sub_00182760(n), n);
+    b = l->b04;
+    sub_001B2080(b->node020);
+    n = b->node020;
+    sub_001B2020(sub_0001D0F0K(o, 3), n);
+    sub_0001EBF0(o, 3);
+    o->rot054 = (float)i * 1.5707964f;
+    sub_000832D0(b->anim030, 3);
+    sub_000832D0(o->anim030, 3);
+    sub_00113040(o, a, 0);
+    return 1;
+}

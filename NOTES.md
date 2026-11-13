@@ -258,3 +258,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x114300 m1_EnemyDefaults114300 PASS
 0x17E310 m1_SetupScene17E310 PASS
 0x183010 m1_SetupSingle183010 PASS
+0x182630 m1_SetupLink182630 PASS
