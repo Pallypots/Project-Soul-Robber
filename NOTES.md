@@ -205,3 +205,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xEC670 m1_RemoveComp12EC670 PASS
 0xCBA30 item fx/sound: hard (cl lays the create-effect block after the stop path; calls compared in address order; tried 3 layouts)
 0xCC2A0 m1_JackFrameCC2A0 PASS
+0xCB390 m1_GatherTargetCB390 PASS* (merged-bit-test waiver)
