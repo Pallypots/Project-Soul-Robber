@@ -431,3 +431,4 @@ va,name,state,source,obj,waivers,notes
 0x00137090,m1_Sway137090,Structurally compared,src/game/m1_93.c,build/obj_m1/m1_93.obj,,"Sway (rig quaternion +0x160), state 0x1B, o flags 5, h +0x4C |= 0x70, rig byte +8 bit 7 clears o 0xE0 and sets rig bit 4, +-5 deg at frameTime*pi/48"
 0x00184160,m1_Attach184160,Structurally compared,src/game/m1_93.c,build/obj_m1/m1_93.obj,,"Attach step: source offset +0x70 rotated by the node matrix scaled by +0x70..+0x78, plus position, velocity and target +0x78, becomes the new position (w = 1)"
 0x0018b750,m1_Attach18B750,Structurally compared,src/game/m1_93.c,build/obj_m1/m1_93.obj,,"Attach step as 0x184160 but adding the target +0x4C"
+0x00136cd0,m1_Sway136CD0,Structurally compared,src/game/m1_94.c,build/obj_m1/m1_94.obj,,"Sway (rig quaternion +0x160), state 0x17, o flags 5, clear o 0xE0, h +0x4C |= 0x70, rig +8 clears 0x200 sets 4, +-5 deg at frameTime*pi/48"
