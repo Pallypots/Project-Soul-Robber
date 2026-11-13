@@ -11,6 +11,7 @@ typedef struct M1StepT {
 typedef struct M1ObjT { uint8_t unk00[0x10]; uint32_t flags10; uint8_t unk14[0x60 - 0x14]; float pos60[3]; } M1ObjT;
 extern float m1_frameTime42C858, m1_frameRate42C85C;
 int  sub_001456E0(void *o, void *s, int a, int b);
+int  aab_Rand(void);
 void sub_00156180(void *rig, float x, float y, float z, float t);
 int  sub_00036750(void *o, int v);
 int  sub_000494D0(int id, const void *pos, int c);
@@ -101,4 +102,38 @@ void m1_RigAim139EF0(M1Pos60 *o, M1StepA88 *h, const float *v, int store)
     h->v88[1] = o->pos60[1] - pp[1];
     h->v88[2] = o->pos60[2] - pp[2];
     h->v88[3] = o->pos60[3];
+}
+
+typedef struct M1Rig7C { uint8_t unk00[4]; uint32_t flags04; uint8_t unk08[0x7C - 8]; float f7C; } M1Rig7C;
+typedef struct M1Step7C { uint8_t unk000[0x278]; M1Rig7C *rig278; } M1Step7C;
+typedef struct M1Cmd4 { uint8_t unk00[0x10]; float v10[4]; } M1Cmd4;
+
+/* 0x00121DA0: 0x1456E0(2), o flag 0x20, rig flag 8, rig +0x7C += 90 clamped to 0..200,
+ * then command 7 vector = (0, 0, 0, 0) or (1, 0, 0, 0) at random. */
+void m1_RigStep121DA0(M1ObjW *o, M1Step7C *h)
+{
+    M1Rig7C *r = h->rig278;
+    M1Rig7C *p;
+    M1Cmd4 *c;
+    float v;
+    sub_001456E0(o, h, 2, 0);
+    o->flags10 |= 0x20;
+    r->flags04 |= 8;
+    p = h->rig278;
+    v = p->f7C + 90.0f;
+    p->f7C = v;
+    if (v < 0.0f)
+        p->f7C = 0.0f;
+    else if (v > 200.0f)
+        p->f7C = 200.0f;
+    if (aab_Rand() & 1) {
+        c = (M1Cmd4 *)sub_00113400(h, 7);
+        c->v10[0] = 0.0f;
+    } else {
+        c = (M1Cmd4 *)sub_00113400(h, 7);
+        c->v10[0] = 1.0f;
+    }
+    c->v10[1] = 0.0f;
+    c->v10[2] = 0.0f;
+    c->v10[3] = 0.0f;
 }
