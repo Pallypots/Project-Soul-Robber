@@ -335,3 +335,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x193990: hard (biased +0x44 loop pointer); 0x19A040: hard (always-true pointer range checks cl drops)
 0x4F680: hard (always-false i<0 && i>=0x21E check); 0xED520/0xED590: hard (orig folds the const table's first kind (2) into an immediate)
 0xC9CE0 m1_ActionReady0C9CE0 PASS (merged bit-test waiver); 0xA9EB0: hard (cl folds the 0..7 range into one unsigned compare); 0x9FC60/0xA0030: interior fragments, added to not_functions.csv; 0xEE080, 0xF4280, 0x8FFE0: hard (const table fold + tail jmp / duplicated tail call / inline memcmp); 0xF23C0, 0xF24B0, 0xB4790: skip (register args)
+0xCCC90 stick quadrant: hard (cl uses the byte-minus-0x7F range for unsigned compares); 0x53F70: hard (orig calls _aulldiv for ms*576000/1000, cl multiplies); 0x900A0: hard (inline memcmp); 0xC2A40, 0xE99A0: skip (register args)
+0x5AB70: hard (cl folds kind 12..13 into one unsigned compare); 0xCD8D0, 0xCEEA0: skip (register args)
+0x79EF0 fog apply: hard (cl merges the two 0x84910 calls); 0xCEF00, 0xD0480: skip (register args)
+0xFCDD0 m1_HelperCam0FCDD0 PASS
