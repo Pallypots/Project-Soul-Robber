@@ -119,3 +119,49 @@ void m1_ResetMotion10C590(M1Ef60 *o, M1VecHold2 *h)
     sub_000F3F00(o, 0.0f);
     sub_000494D0(0x19B, o->pos60, 1);
 }
+
+void sub_000F3BB0(void *o, int a, int b);
+
+/* 0x0010ED90: zeroes the first two speed components (frame rate * 0.0), clears
+ * +0x188 and sets modes 0xF3B00(5), 0xF3BB0(0, 0). */
+void m1_StopSpeed10ED90(void *o, M1Spd15C *h)
+{
+    h->v15C[0] = m1_frameRate42C85C * 0.0f;
+    h->v15C[1] = m1_frameRate42C85C * 0.0f;
+    h->f188 = 0.0f;
+    sub_000F3B00(o, 5);
+    sub_000F3BB0(o, 0, 0);
+}
+
+/* 0x0010B910: speed = frame rate * 98, vectors cleared, modes 0xF3B00(4), 0xF3B30(0x20). */
+void m1_ResetMotion10B910(void *o, M1VecHold2 *h)
+{
+    h->fB4 = m1_frameRate42C85C * 98.0f;
+    h->vB8[2] = 0.0f;
+    h->vB8[1] = 0.0f;
+    h->vB8[0] = 0.0f;
+    h->vC4[3] = 0.0f;
+    h->vC4[2] = 0.0f;
+    h->vC4[1] = 0.0f;
+    h->vC4[0] = 0.0f;
+    sub_000F3B00(o, 4);
+    sub_000F3B30(o, 0x20);
+}
+
+/* 0x0010C630: modes 0xF3B00(0x20), speed = frame rate * 98, vectors and o +0x50
+ * cleared, 0xF3B30(0x44), 0xF3B00(0x20). */
+void m1_ResetMotion10C630(M1Ef50 *o, M1VecHold2 *h)
+{
+    sub_000F3B00(o, 0x20);
+    h->fB4 = m1_frameRate42C85C * 98.0f;
+    h->vB8[2] = 0.0f;
+    h->vB8[1] = 0.0f;
+    h->vB8[0] = 0.0f;
+    h->vC4[3] = 0.0f;
+    h->vC4[2] = 0.0f;
+    h->vC4[1] = 0.0f;
+    h->vC4[0] = 0.0f;
+    o->f50 = 0.0f;
+    sub_000F3B30(o, 0x44);
+    sub_000F3B00(o, 0x20);
+}

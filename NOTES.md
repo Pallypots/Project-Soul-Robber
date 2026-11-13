@@ -281,3 +281,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x17FB10 m1_StepUpdate17FB10 PASS
 0x11A660 enemy flinch: hard (rand() % 4001 signed modulo; cl uses a reciprocal multiply, only the unsigned form is a documented idiom)
 0x10C590 m1_ResetMotion10C590 PASS
+0x10ED90/0x10B910/0x10C630 motion resets PASS

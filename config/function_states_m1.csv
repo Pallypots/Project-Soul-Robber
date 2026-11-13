@@ -209,3 +209,6 @@ va,name,state,source,obj,waivers,notes
 0x000cbe20,m1_AimAtTargetCBE20,Structurally compared,src/game/m1_40.c,build/obj_m1/m1_40.obj,,"Jack velocity +0x5D0 = direction to target +0x5C0 scaled by distance / 30"
 0x0017fb10,m1_StepUpdate17FB10,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Three-step update: restart animation, wait until finished (0xF5D00), event 0 after one second"
 0x0010c590,m1_ResetMotion10C590,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Motion reset variant: modes 0x20/0x44/0x20, 0xF3F00(0), speed = frame rate * 98, vectors cleared, sound 0x19B at o"
+0x0010ed90,m1_StopSpeed10ED90,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"First two speed components = frame rate * 0.0, +0x188 = 0, modes 0xF3B00(5), 0xF3BB0(0,0)"
+0x0010b910,m1_ResetMotion10B910,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed = frame rate * 98, vectors cleared, modes 0xF3B00(4), 0xF3B30(0x20)"
+0x0010c630,m1_ResetMotion10C630,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Modes 0x20, speed = frame rate * 98, vectors and +0x50 cleared, then 0x44 / 0x20"
