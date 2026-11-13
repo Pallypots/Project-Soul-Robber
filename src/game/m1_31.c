@@ -592,3 +592,81 @@ void m1_StopSpeed10E510(M1ObjD4 *o, M1Spd3 *h)
     sub_000F3B30(o, 4);
     sub_000F3B30(h->partC8, 4);
 }
+
+typedef struct M1Spd4 {
+    uint8_t unk000[0xC8];
+    M1EfC50 *partC8;           /* +0xC8 */
+    uint8_t unk0CC[0xD4 - 0xCC];
+    int32_t fD4;               /* +0xD4 */
+    uint8_t unk0D8[0xE0 - 0xD8];
+    void   *resE0;             /* +0xE0 */
+    uint8_t unk0E4[0x15C - 0xE4];
+    float   v15C[4];           /* +0x15C */
+} M1Spd4;
+void sub_000192B0(void *s, void *o);
+void sub_0001AB00(void *s, int a, int b, int c, int d);
+
+/* 0x0010DDF0: speed stop with music: 0x192B0(o), then event 1 + 0xBCA50(3) when
+ * h +0xD4 is set, else event 2 + 0x1AB00(2, 3); mode 4 and flag 0x20 on o and part. */
+void m1_StopSpeed10DDF0(M1EfC50 *o, M1Spd4 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_000192B0(m1_snd3E1270, o);
+    if (h->fD4 != 0) {
+        sub_00019000(m1_snd3E1270, 1);
+        sub_000BCA50(3);
+    } else {
+        sub_00019000(m1_snd3E1270, 2);
+        sub_0001AB00(m1_snd3E1270, 2, 3, 0, 0);
+    }
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+    o->flags0C |= 0x20;
+    h->partC8->flags0C |= 0x20;
+}
+
+typedef struct M1EfP60 { uint8_t unk00[0x60]; float pos60[3]; } M1EfP60;
+void *sub_001890F0(int idx, const void *a, const void *b, float range);
+void r3d_Hold188C00(void *hold, const float *pos);
+extern void *m1_hold3F615C;
+extern void *m1_hold3F6158;
+extern const uint8_t m1_tbl319EA8[], m1_tbl319F48[], m1_tbl319E68[], m1_tbl319F38[];
+
+/* 0x0010E600: as 0x10E1B0 but also frees +0xE0 and stops the kind-5 sound,
+ * plays animation 0x30, then creates the two hold records (range 118) at o's position. */
+void m1_StopSpeed10E600(M1EfP60 *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    sub_000F3C40(o);
+    sub_000F3BB0(o, 0, 0);
+    h->f16C = 0.0f;
+    h->f170 = 0;
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_000F3B00(o, 4);
+    sub_000F3B00(h->partC8, 4);
+    sub_000F3BB0(o, 0, 0);
+    sub_000F3DA0(o, 0x30, 0, 0);
+    m1_hold3F615C = sub_001890F0(0, m1_tbl319EA8, m1_tbl319F48, 118.0f);
+    m1_hold3F6158 = sub_001890F0(1, m1_tbl319E68, m1_tbl319F38, 118.0f);
+    r3d_Hold188C00(m1_hold3F615C, o->pos60);
+    r3d_Hold188C00(m1_hold3F6158, o->pos60);
+}
