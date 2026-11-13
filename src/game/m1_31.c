@@ -510,3 +510,36 @@ void m1_StopSpeed10D6B0(void *o, M1Spd3 *h)
     sub_000F3B30(o, 4);
     sub_000F3B30(h->partC8, 4);
 }
+
+#ifndef M1_31_F3BB0
+#define M1_31_F3BB0
+void sub_000F3BB0(void *o, int a, int b);
+void sub_000F3DA0(void *o, int a, int b, int c);
+#endif
+
+/* Shared body of 0x10D5D0 / 0x10D790: speed zero, free +0xE0, stop kind-5 sound,
+ * 0xF3B00(4) on o and part, 0xF3BB0(0, 0), then 0xF3DA0(anim, b, 0). */
+#define M1_SPEED_STOP_ANIM(name, anim, b)                  \
+void name(void *o, M1Spd3 *h)                             \
+{                                                         \
+    M1Comp5E4B *c;                                        \
+    M1_SPEED_ZERO(h);                                     \
+    if (h->resE0 != 0) {                                  \
+        sub_00033A70(h->resE0);                           \
+        h->resE0 = 0;                                     \
+    }                                                     \
+    c = sub_0001D960G(o, 5);                              \
+    if (c->sndE4 >= 0) {                                  \
+        sub_00048250(c->sndE4);                           \
+        c->sndE4 = -1;                                    \
+    }                                                     \
+    sub_000F3B00(o, 4);                                   \
+    sub_000F3B00(h->partC8, 4);                           \
+    sub_000F3BB0(o, 0, 0);                                \
+    sub_000F3DA0(o, anim, b, 0);                          \
+}
+
+/* 0x0010D5D0: speed stop, animation 0x13 with -1. */
+M1_SPEED_STOP_ANIM(m1_StopSpeed10D5D0, 0x13, -1)
+/* 0x0010D790: speed stop, animation 0x14. */
+M1_SPEED_STOP_ANIM(m1_StopSpeed10D790, 0x14, 0)
