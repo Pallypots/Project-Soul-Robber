@@ -320,3 +320,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x11E700 (now passes with the widened float rule), 0x12F2E0, 0x12F850, 0x1399D0, 0x146940, 0x14F360, 0x12F380 PASS (m1_50.c); 0x11DB30: skip (0x11B1C0 takes eax)
 0x12F420 m1_RigIdle12F420 / 0x146E50 m1_RigBlend146E50 PASS (m1_51.c: 0x156180 declared with float args)
 0x1430B0 m1_RigNext1430B0 PASS (picking next with a ternary and guarding the side effect with next == 8 stops cl duplicating the 0x113040 tail call; worth trying on that hard class)
+0x139EF0 m1_RigAim139EF0 PASS; 0x13FD20 retried with the ternary trick: still hard

@@ -67,3 +67,38 @@ void m1_RigNext1430B0(M1ObjW *o, M1StepW *h)
     o->flags10 &= ~4u;
     sub_00113040(o, h, next);
 }
+
+typedef struct M1Pos60 { uint8_t unk00[0x60]; float pos60[4]; } M1Pos60;
+typedef struct M1StepA88 {
+    uint8_t unk000[0x88];
+    float   v88[4];            /* +0x88 */
+    uint8_t unk098[0x278 - 0x98];
+    M1RigW *rig278;            /* +0x278 */
+} M1StepA88;
+extern M1Pos60 *g_playerObj;
+int  sub_00139E10(void *o, const float *v);
+void sub_000F5D40(float *dst, const float *src);
+
+/* 0x00139EF0: rig flag 0x80000000 follows 0x139E10(o, v); when asked, stores the aim
+ * vector at h +0x88: a copy of v when given, else o's position minus the player's
+ * (w copied from o). */
+void m1_RigAim139EF0(M1Pos60 *o, M1StepA88 *h, const float *v, int store)
+{
+    M1RigW *r = h->rig278;
+    float *pp;
+    if (sub_00139E10(o, v) != 0)
+        r->flags04 |= 0x80000000u;
+    else
+        r->flags04 &= 0x7FFFFFFFu;
+    if (store == 0)
+        return;
+    if (v != 0) {
+        sub_000F5D40(h->v88, v);
+        return;
+    }
+    pp = g_playerObj->pos60;
+    h->v88[0] = o->pos60[0] - pp[0];
+    h->v88[1] = o->pos60[1] - pp[1];
+    h->v88[2] = o->pos60[2] - pp[2];
+    h->v88[3] = o->pos60[3];
+}
