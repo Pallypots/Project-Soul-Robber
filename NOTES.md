@@ -407,3 +407,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x10A230 m1_PartsReset10A230 PASS (m1_74), byte-offset loop pointer.
 - 0x11FCC0 skip (ecx/eax register args).
 - 0x13FF80, 0x115970, 0x115DB0 PASS (m1_74; M1_SWAY template for 0x1456E0 + command-1 sway setups).
+- 0x115760, 0x115E70, 0x115F50, 0x12EDC0, 0x12EF90, 0x12F080, 0x12F550 PASS (m1_75; M1_SWAYQ: rig type, quaternion reset, pre and body are parameters). 0x115620 is the same family with an extra random sound and table copies, not tried yet.
+- 0x115620 PASS (m1_75), sway point table 0x31A3B0 has 6 entries of 0x18.
