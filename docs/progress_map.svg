@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="908" height="598" viewBox="0 0 908 598" font-family="Segoe UI,Helvetica,Arial,sans-serif">
 <rect width="908" height="598" rx="8" fill="#0d1117" stroke="#30363d"/>
-<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 29.10% of the game&#8217;s code</text>
-<text x="24" y="66" font-size="13" fill="#8b949e">483,028 of 1,659,953 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
+<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 29.11% of the game&#8217;s code</text>
+<text x="24" y="66" font-size="13" fill="#8b949e">483,211 of 1,659,953 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="1.00"><title>0x00012000: 1978 of 1978 bytes Structurally compared</title></rect>
 <rect x="42" y="96" width="14" height="14" rx="3" fill="#30363d"/>
@@ -769,7 +769,7 @@
 <rect x="78" y="258" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="78" y="258" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.47"><title>0x000eb800: 348 of 1893 bytes Structurally compared</title></rect>
 <rect x="96" y="258" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="96" y="258" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.52"><title>0x000ec000: 475 of 1865 bytes Structurally compared</title></rect>
+<rect x="96" y="258" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.58"><title>0x000ec000: 658 of 1865 bytes Structurally compared</title></rect>
 <rect x="114" y="258" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="114" y="258" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.42"><title>0x000ec800: 211 of 2006 bytes Structurally compared</title></rect>
 <rect x="132" y="258" width="14" height="14" rx="3" fill="#30363d"/>
