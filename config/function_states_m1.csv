@@ -167,3 +167,4 @@ va,name,state,source,obj,waivers,notes
 0x001108a0,m1_HitStrong1108A0,Structurally compared,src/game/m1_39.c,build/obj_m1/m1_39.obj,,"Hit of at least 2.0: stop kind-5 component sound +0xE4, then hit reaction 0x10FD50 (regargs o=EAX)"
 0x000cec90,m1_BoneSetCEC90,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Hold or release the bone entry for (m, key) by flag; returns index or -1; regargs: m=EAX key=ECX"
 0x000ce880,m1_BoneEntsInitCE880,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Clear all 16 bone entries of 0x41C7C0 (scales +0x14/+0x18 = 1.0, rest 0)"
+0x000a3d40,m1_SyncPoseA3D40,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Copy entry position (+0x70) and rotation (+0x80) to its object (+0x60, +0x50), w = 1 on both"
