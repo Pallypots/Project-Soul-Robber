@@ -241,3 +241,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA35B0 m1_WrapAngleA35B0 PASS
 0x18D190 m1_SpinTurn18D190 PASS
 0x18D090 m1_SpinStart18D090 PASS
+0x18DFC0 m1_ResetRecs18DFC0 PASS

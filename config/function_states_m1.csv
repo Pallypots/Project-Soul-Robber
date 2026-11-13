@@ -171,3 +171,4 @@ va,name,state,source,obj,waivers,notes
 0x000a35b0,m1_WrapAngleA35B0,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Wrap an angle into [-pi, pi] in 2*pi steps; float math may run on x87 in the cl build (behaviour-test priority)"
 0x0018d190,m1_SpinTurn18D190,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Half-turn spin: rate = frame rate * pi, turn y by pi (wrapped), +0x80 vector *= -2 with y cleared, copy Jack rotation; float math may run on x87 (behaviour-test priority)"
 0x0018d090,m1_SpinStart18D090,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Spin start: unit +0x80 vector then the same spin core, clears flag 0x80"
+0x0018dfc0,m1_ResetRecs18DFC0,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Reset twelve 0x3C records at 0x3FFDE0 (words 0/-1, three unit vectors, first z = -70; the original stores 0 then -70 to that z)"

@@ -100,3 +100,39 @@ void m1_SpinStart18D090(M1SpinO *o, M1SpinA *a)
     M1_SPIN_CORE(o, a);
     o->flags0C &= ~0x80u;
 }
+
+typedef struct M1Rec3C {
+    int16_t w00;               /* +0x00 */
+    int16_t w02;               /* +0x02, -1 */
+    int32_t f04, f08;          /* +0x04 */
+    float   v0C[4];            /* +0x0C: 0, 0, -70, 1 */
+    float   v1C[4];            /* +0x1C: 0, 0, 0, 1 */
+    float   v2C[4];            /* +0x2C: 0, 0, 0, 1 */
+} M1Rec3C;
+extern M1Rec3C m1_recs3FFDE0[12];   /* 0x003FFDE0 */
+
+/* 0x0018DFC0: resets the twelve 0x3C records at 0x3FFDE0. */
+void m1_ResetRecs18DFC0(void)
+{
+    int i;
+    for (i = 0; i < 12; i++) {
+        M1Rec3C *r = &m1_recs3FFDE0[i];
+        r->w00 = 0;
+        r->f04 = 0;
+        r->f08 = 0;
+        r->w02 = -1;
+        r->v0C[0] = 0.0f;
+        r->v0C[1] = 0.0f;
+        r->v0C[2] = 0.0f;
+        r->v0C[3] = 1.0f;
+        r->v0C[2] = -70.0f;
+        r->v1C[0] = 0.0f;
+        r->v1C[1] = 0.0f;
+        r->v1C[2] = 0.0f;
+        r->v1C[3] = 1.0f;
+        r->v2C[0] = 0.0f;
+        r->v2C[1] = 0.0f;
+        r->v2C[2] = 0.0f;
+        r->v2C[3] = 1.0f;
+    }
+}
