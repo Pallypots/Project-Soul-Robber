@@ -383,3 +383,62 @@ void m1_DrainFuel10E760(M1EfAn *o, M1Fuel *h)
     sub_000F3B30(h->partC8, 4);
     sub_000F3D10(o, sub_0001D960F(o, 5), 4);
 }
+
+typedef struct M1Spd3 {
+    uint8_t unk000[0xC8];
+    void   *partC8;            /* +0xC8 */
+    uint8_t unk0CC[0xE0 - 0xCC];
+    void   *resE0;             /* +0xE0 */
+    uint8_t unk0E4[0x15C - 0xE4];
+    float   v15C[4];           /* +0x15C */
+    float   f16C;              /* +0x16C */
+    int32_t f170;              /* +0x170 */
+    uint8_t unk174[0x17C - 0x174];
+    int32_t f17C, f180;        /* +0x17C */
+} M1Spd3;
+typedef struct M1Comp5E4B { uint8_t unk00[0xE4]; int32_t sndE4; } M1Comp5E4B;
+void        sub_000F3C40(void *o);
+M1Comp5E4B *sub_0001D960G(void *o, int kind);   /* 0x0001D960 */
+
+#define M1_SPEED_ZERO(h) \
+    (h)->v15C[0] = m1_frameRate42C85C * 0.0f; \
+    (h)->v15C[1] = m1_frameRate42C85C * 0.0f; \
+    (h)->v15C[2] = m1_frameRate42C85C * 0.0f; \
+    (h)->v15C[3] = m1_frameRate42C85C * 0.0f
+
+/* 0x0010E1B0: speed vector = frame rate * 0.0, 0xF3C40, clears +0x16C..+0x180,
+ * mode 4 on o and its part, 0xF3BB0(0,0) twice, start mode 0x20. */
+void m1_StopSpeed10E1B0(void *o, M1Spd3 *h)
+{
+    M1_SPEED_ZERO(h);
+    sub_000F3C40(o);
+    sub_000F3BB0(o, 0, 0);
+    h->f16C = 0.0f;
+    h->f170 = 0;
+    h->f17C = 0;
+    h->f180 = 0;
+    sub_000F3B00(o, 4);
+    sub_000F3B00(h->partC8, 4);
+    sub_000F3BB0(o, 0, 0);
+    sub_000F3DA0(o, 0x20, 0, 0);
+}
+
+/* 0x0010E280: speed vector = frame rate * 0.0, o +0x10C cleared, frees +0xE0,
+ * stops the kind-5 sound, mode 4 (0xF3B30) on o and its part. */
+void m1_StopSpeed10E280(M1Ef10C *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    o->f10C = 0.0f;
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+}

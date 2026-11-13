@@ -290,3 +290,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x10E760 m1_DrainFuel10E760 PASS
 0xF2400 reset motion: hard (0x1B..0x1D range check folded by cl)
 0x111A20 enemy anim hit: hard (orig sub-chain switch 2/0x12 and block order differ from cl)
+0x10E1B0/0x10E280 speed stops PASS
