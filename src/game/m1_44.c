@@ -20,7 +20,7 @@ typedef struct M1ActS {
 } M1ActS;
 void sub_00183C10(void);
 void sub_00183200(void);
-void sub_0001EBF0(M1ObjS *o, int v);
+void sub_0001EBF0(void *o, int v);
 void sub_0001D610(void *o);
 void sub_00113040(void *owner, void *obj, int what);
 
@@ -192,5 +192,73 @@ int m1_SetupHold1852E0(M1ObjH *o, M1ActH *a, int i)
     o->v70[2] = 1.0f;
     o->v70[1] = 1.0f;
     o->v70[0] = 1.0f;
+    return 1;
+}
+
+typedef struct M1PairK { void *obj00; void *act04; } M1PairK;
+extern M1PairK m1_pair3FDE68;          /* 0x003FDE68 */
+extern void   *m1_resA3FDE70;          /* 0x003FDE70 */
+extern float   m1_f3FDED4;             /* 0x003FDED4 */
+extern uint8_t m1_p32B760[], m1_p32B770[];
+extern const float m1_start27A618[4];  /* 0x0027A618 */
+extern void   *a80_ctx42C8E4;          /* 0x0042C8E4 */
+typedef struct M1ObjK2 {
+    uint8_t  unk000[0xC];
+    uint32_t flags0C;          /* +0x00C */
+    uint32_t flags10;          /* +0x010 */
+    uint8_t  unk014[0x30 - 0x14];
+    void    *anim030;          /* +0x030 */
+    uint8_t  unk034[0x60 - 0x34];
+    float    pos060[4];        /* +0x060 */
+    float    v070[3];          /* +0x070 */
+    uint8_t  unk07C[0x124 - 0x7C];
+    int32_t  f124;             /* +0x124 */
+} M1ObjK2;
+typedef struct M1ActK2 {
+    uint8_t  unk000[0x278];
+    M1PairK *pair278;          /* +0x278 */
+    M1CbS    update27C;        /* +0x27C */
+    uint8_t  unk280[0x288 - 0x280];
+    M1CbS    draw288;          /* +0x288 */
+    void    *paramA28C;        /* +0x28C */
+    void    *paramB290;        /* +0x290 */
+} M1ActK2;
+void  sub_0017D810C(void);     /* 0x0017D810 as a callback */
+void  sub_0017D920(void);
+void  sub_0001EB80(void *o);
+void  sub_0001E9B0(void *ctx, void *o, int a, int b, int c);
+void *sub_00036750(void *o, int b);
+
+/* 0x0017E310: sets up the scene's singleton actor (pair at 0x3FDE68): flags, layer,
+ * mode 3, callbacks 0x17D810 / 0x17D920, start position, event 0, animation 0, and
+ * creates the shared effect once. Returns 1. */
+int m1_SetupScene17E310(M1ObjK2 *o, M1ActK2 *a)
+{
+    if (o == 0)
+        for (;;) ;
+    if (a == 0)
+        for (;;) ;
+    a->pair278 = &m1_pair3FDE68;
+    m1_pair3FDE68.obj00 = o;
+    m1_pair3FDE68.act04 = a;
+    o->flags0C = (o->flags0C & ~0xE0u) | 1;
+    o->flags10 |= 0x44D;
+    o->f124 = 0;
+    sub_0001EB80(o);
+    sub_0001E9B0(a80_ctx42C8E4, o, 0xC, 5, 0x11);
+    sub_0001EBF0(o, 3);
+    a->paramA28C = m1_p32B760;
+    a->paramB290 = m1_p32B770;
+    a->update27C = sub_0017D810C;
+    a->draw288 = sub_0017D920;
+    o->v070[2] = 1.0f;
+    o->v070[1] = 1.0f;
+    o->v070[0] = 1.0f;
+    sub_000F5D40(o->pos060, m1_start27A618);
+    sub_00113040(o, a, 0);
+    sub_000832D0(o->anim030, 0);
+    if (m1_resA3FDE70 == 0)
+        m1_resA3FDE70 = sub_00036750(o, 0);
+    m1_f3FDED4 = 0.0f;
     return 1;
 }
