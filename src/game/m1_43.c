@@ -189,3 +189,68 @@ void m1_PlaceModel18DC00(M1Obj130 *o)
     h = sub_00035DD0(o, o->model130, 4, 3);
     sub_00034E00(h, o->pos60, dir, col);
 }
+
+typedef struct M1BatW { uint8_t unk00[0x14]; void *owner14; } M1BatW;
+typedef struct M1BatOwner { uint8_t unk000[0x130]; void *model130; } M1BatOwner;
+typedef struct M1BatObj {
+    uint8_t  unk000[0xC];
+    uint32_t flags0C;          /* +0x0C */
+    uint32_t flags10;          /* +0x10 */
+    uint8_t  unk014[0xB0 - 0x14];
+    float    fB0, fB4;         /* +0xB0 */
+    uint8_t  unk0B8[0xD0 - 0xB8];
+    int32_t  fD0;              /* +0xD0 */
+    uint8_t  unk0D4[0xE8 - 0xD4];
+    float    fE8;              /* +0xE8 */
+    int32_t  fEC, fF0;         /* +0xEC */
+    uint32_t fF4;              /* +0xF4 */
+    uint8_t  unk0F8[0x130 - 0xF8];
+    void    *model130;         /* +0x130 */
+} M1BatObj;
+typedef void (*M1BatFn)(void);
+typedef struct M1BatAct {
+    uint8_t  unk00[0x28];
+    float    f28, f2C;         /* +0x28 */
+    uint8_t  unk30[0x74 - 0x30];
+    M1BatW  *w74;              /* +0x74 */
+    M1BatFn  fn78, fn7C, fn80; /* +0x78 */
+    void    *p84, *p88;        /* +0x84 */
+} M1BatAct;
+extern uint8_t m1_batParamA32C56C[], m1_batParamB32C580[];
+M1BatW *sub_0018D3C0(void);
+void sub_0018D740(void);
+void sub_0018D8A0(void);
+void sub_0018D770(void);
+int  sub_0001BC40(M1BatObj *o);
+void sub_00189DA0(void *o, void *a, int k);
+
+/* 0x0018DED0: sets up a follower actor: allocates its work block (0 if none), links
+ * the owner and its model, installs callbacks and parameters, configures o and
+ * starts it (0x189DA0 mode 0). Returns 1. */
+int m1_SetupFollower18DED0(M1BatObj *o, M1BatAct *a, M1BatOwner *own)
+{
+    M1BatW *w = sub_0018D3C0();
+    if (w == 0)
+        return 0;
+    a->w74 = w;
+    w->owner14 = own;
+    o->model130 = own->model130;
+    a->p84 = m1_batParamA32C56C;
+    a->p88 = m1_batParamB32C580;
+    a->fn78 = sub_0018D740;
+    a->fn7C = sub_0018D8A0;
+    a->fn80 = sub_0018D770;
+    o->flags0C = (o->flags0C & ~0xA0u) | 0x100;
+    o->fD0 = sub_0001BC40(o);
+    o->fB0 = 2.5f;
+    o->fB4 = 2.5f;
+    o->fE8 = 2.0f;
+    o->fEC = 1;
+    o->fF0 = 3;
+    o->fF4 = 0x80000000;
+    a->f28 = 0.0f;
+    a->f2C = -7.0f;
+    o->flags10 |= 0x200;
+    sub_00189DA0(o, a, 0);
+    return 1;
+}
