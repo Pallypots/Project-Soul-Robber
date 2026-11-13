@@ -161,3 +161,25 @@ void m1_HitReact1090F0(M1Obj128 *o, M1HitD *d)
     if (d->fF8 >= d->f068 && d->snd098 < 0)
         d->snd098 = sub_000494D0(0x19D, o->pos060, 1);
 }
+
+void sub_000F3B30(void *o, int v);
+void sub_000F3B00(void *o, int v);
+void sub_000F3F00(void *o, float v);
+
+/* 0x00109370: on a positive hit, sets modes 4 / 0x20 and the hit strength
+ * ((+0x68 - 0.3) * 5/3); with flags 0x18 also switches the kind-5 component to
+ * mode 3. */
+void m1_HitReact109370(M1Obj128 *o, M1HitD *d)
+{
+    M1Comp6C *c;
+    if (d->fBC > 0.0f) {
+        sub_000F3B30(o, 4);
+        sub_000F3B00(o, 0x20);
+        sub_000F3F00(o, (d->f068 - 0.3f) * 1.6666666f);
+    }
+    if (d->fBC > 0.0f && (o->b128 & 0x18)) {
+        c = sub_0001D960M(o, 5);
+        if (c->mode6C != 3)
+            sub_000F3D10(o, c, 3);
+    }
+}
