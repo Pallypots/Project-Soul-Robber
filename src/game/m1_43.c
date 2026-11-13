@@ -25,3 +25,25 @@ void m1_SyncPoseA3D40(M1EntP *e)
     e->rot080[3] = 1.0f;
     e->obj120->rot50[3] = 1.0f;
 }
+
+/* 0x000A35B0: wraps the angle at a into [-pi, pi] in 2*pi steps. */
+void m1_WrapAngleA35B0(float *a)
+{
+    float x;
+    if (a == 0)
+        return;
+    if (*a > 3.1415927f) {
+        x = *a;
+        do
+            x = x - 6.2831855f;
+        while (x > 3.1415927f);
+        *a = x;
+    }
+    if (-3.1415927f > *a) {
+        x = *a;
+        do
+            x = x + 6.2831855f;
+        while (-3.1415927f > x);
+        *a = x;
+    }
+}

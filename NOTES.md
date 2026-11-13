@@ -238,3 +238,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCEC90 m1_BoneSetCEC90 PASS
 0xCE880 m1_BoneEntsInitCE880 PASS
 0xA3D40 m1_SyncPoseA3D40 PASS
+0xA35B0 m1_WrapAngleA35B0 PASS
