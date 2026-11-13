@@ -426,3 +426,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x17F050, 0x180AF0 PASS (m1_79, record-release family). 0x179190: hard (cl merges the +0x14/+0x16 halfword zero stores into one dword). 0x17E5D0 skip (eax arg call 0x17E4D0). 0x16D5E0, 0x170750 skip (register-arg calls).
 - 0x166110 PASS (m1_79). 0x186600, 0x17CF40 skip (register args).
 - 0x138DF0 PASS (m1_79; case 0 falls through to case 1). 0x166110 needed pointer+counter loop (index loop gave an end-pointer compare).
+- 0x17B9A0, 0x188690 PASS (m1_80).
+- 0x188DD0 PASS (m1_80).
+- 0x155610 PASS (m1_80).
