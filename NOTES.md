@@ -403,3 +403,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x13B620: hard (sbb select for next state); 0x173FE0: skip (register args)
 0x1787A0, 0x181400 PASS (m1_73.c; if-chain avoids cl's jump table)
 0x13B890: hard (cl converts the frame with _ftol, orig cvttss2si); 0x15A3D0: later (long)
+- 0x185900 m1_RigFall185900 PASS (m1_74); needed sub_00145F70 symbol for the cross-file call.
+- 0x10A230 m1_PartsReset10A230 PASS (m1_74), byte-offset loop pointer.
+- 0x11FCC0 skip (ecx/eax register args).
+- 0x13FF80, 0x115970, 0x115DB0 PASS (m1_74; M1_SWAY template for 0x1456E0 + command-1 sway setups).

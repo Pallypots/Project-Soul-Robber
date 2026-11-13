@@ -812,3 +812,4 @@ m1_fxModel3F92F8,0x003F92F8,data,,
 m1_fxBones3F92FC,0x003F92FC,data,,
 m1_fxParts3F8CE8,0x003F8CE8,data,0x78,6
 m1_fxParts3F8FB8,0x003F8FB8,data,0x88,6
+sub_00145F70,0x00145F70,func,,
