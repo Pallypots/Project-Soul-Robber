@@ -769,3 +769,5 @@ m1_poolDefs26BE90,0x0026BE90,data,8,9
 m1_poolFile26BED8,0x0026BED8,data,,
 m1_cmdCount3DA390,0x003DA390,data,,
 m1_cmds3DA398,0x003DA398,data,0x10,16
+m1_minion3F6120,0x003F6120,data,,
+m1_sprites3F4D10,0x003F4D10,data,0xA0,16
