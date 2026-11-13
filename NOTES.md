@@ -314,3 +314,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x12E720/0x1360B0 rig idle (M1_RIG_IDLE) PASS
 0x13E390/0x13E770 rig steps with fade + command PASS
 0x12C730 m1_RigSpin12C730 PASS; 0x118870: skip (0x1154D0 takes eax)
+0x12F4C0 rig idle with random state: hard (cl folds rand&1 ? 0x32 : 0x31 into add; orig pushes per branch); 0x132080: skip (0x131310 takes edi)
+0x135FE0 m1_RigIdle135FE0 PASS; 0x1373D0: skip (same random-pick class as 0x12F4C0)

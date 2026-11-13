@@ -258,3 +258,25 @@ void m1_RigSpin12C730(M1Act10 *o, M1StepV *h)
     h->flags4C |= 0x1000000;
     sub_00036750(o, 5);
 }
+
+void sub_000414A0(int v);
+
+/* 0x00135FE0: 0x1456E0(0x13) (0x1D4E0 on 1), rig quaternion +0x160 = (0, 0, 0, 1),
+ * o +0xC clear 0xE0, o +0x10 |= 0x105, h +0x4C |= 0x70, rig +0x8 |= 0x44, 0x414A0(1). */
+void m1_RigIdle135FE0(M1Fl0C *o, M1Step160 *h)
+{
+    M1Rig160 *r = h->rig278;
+    M1Rig160 *p;
+    if (sub_001456E0(o, h, 0x13, 0) == 1)
+        sub_0001D4E0(o);
+    p = h->rig278;
+    p->v160[2] = 0.0f;
+    p->v160[1] = 0.0f;
+    p->v160[0] = 0.0f;
+    p->v160[3] = 1.0f;
+    o->flags0C &= ~0xE0u;
+    o->flags10 |= 0x105;
+    h->flags4C |= 0x70;
+    r->flags08 |= 0x44;
+    sub_000414A0(1);
+}
