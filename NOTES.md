@@ -254,3 +254,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x183290 m1_Setup183290 PASS (simple setup template)
 0x183A80 m1_SetupPair183A80 PASS
 0x183D30 m1_SetupFixed183D30 PASS
+0x1852E0 m1_SetupHold1852E0 PASS

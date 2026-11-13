@@ -143,3 +143,54 @@ int m1_SetupPair183A80(M1ObjG *o, M1ActG *a)
     m1_pair3FE38C.f10 = 0.0f;
     return 1;
 }
+
+typedef struct M1Hold34B {
+    void   *obj00;             /* +0x00 */
+    int32_t f04;
+    void   *act08;             /* +0x08 */
+    int32_t f0C;               /* +0x0C */
+    float   f10;               /* +0x10 */
+    uint8_t unk14[0x34 - 0x14];
+} M1Hold34B;
+extern M1Hold34B m1_holdsB3FE3B0[4];   /* 0x003FE3B0 */
+extern uint8_t m1_p32BCCC[], m1_p32BCD8[];
+typedef struct M1ActH {
+    uint8_t    unk000[0x278];
+    M1Hold34B *hold278;        /* +0x278 */
+    M1CbS      update27C;      /* +0x27C */
+    uint8_t    unk280[0x288 - 0x280];
+    M1CbS      draw288;        /* +0x288 */
+    void      *paramA28C;      /* +0x28C */
+    void      *paramB290;      /* +0x290 */
+} M1ActH;
+typedef struct M1ObjH {
+    uint8_t  unk00[0xC];
+    uint32_t flags0C;          /* +0x0C */
+    uint32_t flags10;          /* +0x10 */
+    uint8_t  unk14[0x70 - 0x14];
+    float    v70[3];           /* +0x70 */
+} M1ObjH;
+void sub_00184670(void);
+void m1_Stub102FA0(void);
+
+/* 0x001852E0: binds o and a to hold slot i (callbacks 0x184670 / 0x102FA0), scale
+ * 1. Returns 1. */
+int m1_SetupHold1852E0(M1ObjH *o, M1ActH *a, int i)
+{
+    M1Hold34B *h = &m1_holdsB3FE3B0[i];
+    o->flags0C = (o->flags0C & ~0xE0u) | 1;
+    o->flags10 |= 0x44D;
+    a->hold278 = h;
+    h->f10 = 0.0f;
+    h->obj00 = o;
+    h->act08 = a;
+    a->paramA28C = m1_p32BCCC;
+    a->paramB290 = m1_p32BCD8;
+    a->update27C = sub_00184670;
+    a->draw288 = m1_Stub102FA0;
+    h->f0C = 0;
+    o->v70[2] = 1.0f;
+    o->v70[1] = 1.0f;
+    o->v70[0] = 1.0f;
+    return 1;
+}

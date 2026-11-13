@@ -184,3 +184,4 @@ va,name,state,source,obj,waivers,notes
 0x00183290,m1_Setup183290,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Simple actor setup (M1_SIMPLE_SETUP template): callbacks 0x183C10/0x183200, own parameter pair, scale 1, flags 0xC1/0x80000000, mode 2, event 0"
 0x00183a80,m1_SetupPair183A80,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Singleton actor pair at 0x3FE38C: callbacks 0x183360/0x1833B0, params, flags, start position 0x27A9AC, animation 0, event 0; returns 1"
 0x00183d30,m1_SetupFixed183D30,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Fixed actor at (-16, -120, -188), unrotated, scale 1, standard callbacks, params 0x32BC74/0x32BC88, event 1; returns 1"
+0x001852e0,m1_SetupHold1852E0,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Bind o and a to hold slot i of 0x3FE3B0 (callbacks 0x184670/0x102FA0, params 0x32BCCC/0x32BCD8), scale 1; returns 1"
