@@ -224,8 +224,8 @@ void m1_CtlStep1008F0(void *o, void *c)
         g->tA0 = m1_frameRate42C85C + g->tA0;
 }
 
-typedef struct M1Rig278 { uint8_t unk00[0x2C]; float f2C, f30, f34, f38; uint8_t unk3C[0x5C - 0x3C]; int32_t kind5C; } M1Rig278;
-typedef struct M1Step278 { uint8_t unk00[0x58]; int32_t state58; uint8_t unk5C[0x278 - 0x5C]; M1Rig278 *rig278; } M1Step278;
+typedef struct M1Rig278 { uint8_t unk00[4]; uint32_t flags04; uint8_t unk08[0x2C - 8]; float f2C, f30, f34, f38; uint8_t unk3C[0x4C - 0x3C]; float f4C; uint8_t unk50[0x5C - 0x50]; int32_t kind5C; } M1Rig278;
+typedef struct M1Step278 { uint8_t unk00[0x58]; int32_t state58; uint8_t unk5C[0x6C - 0x5C]; int32_t snd6C, f70; uint8_t unk74[0x278 - 0x74]; M1Rig278 *rig278; } M1Step278;
 typedef struct M1Fl10 { uint8_t unk00[0x10]; uint32_t flags10; } M1Fl10;
 void sub_000414A0(int v);
 
@@ -251,4 +251,55 @@ void m1_RigStep116590(M1Fl10 *o, M1Step278 *h)
         h->state58 = 0x14;
     else if (r->kind5C == 0x1F)
         h->state58 = 0x1E;
+}
+
+typedef struct M1Fl60 { uint8_t unk00[0x10]; uint32_t flags10; uint8_t unk14[0x60 - 0x14]; float pos60[3]; } M1Fl60;
+
+/* 0x00115CC0: 0x1456E0(0x14) (0x1D4E0 on 1), rig vector = (0, 0, 0, 1), o flag 0x10,
+ * rig flag 0x80000 and +0x4C = 3.0, then sound 0x174 and 0x36750(2). */
+void m1_RigStep115CC0(M1Fl60 *o, M1Step278 *h)
+{
+    M1Rig278 *r = h->rig278;
+    M1Rig278 *p;
+    if (sub_001456E0(o, h, 0x14, 0) == 1)
+        sub_0001D4E0(o);
+    p = h->rig278;
+    p->f34 = 0.0f;
+    p->f30 = 0.0f;
+    p->f2C = 0.0f;
+    p->f38 = 1.0f;
+    o->flags10 |= 0x10;
+    r->flags04 |= 0x80000;
+    r->f4C = 3.0f;
+    h->snd6C = sub_000494D0(0x174, o->pos60, 0);
+    h->f70 = sub_00036750(o, 2);
+}
+
+typedef struct M1Vec10 { uint8_t unk00[0x10]; float v10[4]; } M1Vec10;
+M1Vec10 *sub_00113400(void *h, int v);
+
+/* 0x001162E0: 0x1456E0(0x33) (0x1D4E0 on 1), rig vector = (0, 0, 0, 1), clear rig flag
+ * 0x80000, o flag 4, set the 0x113400(4) vector to (1/12, 0, 0, 0), and o flags |= 0xD
+ * when rig flag 0x10 is set. */
+void m1_RigStep1162E0(M1Fl10 *o, M1Step278 *h)
+{
+    M1Rig278 *r = h->rig278;
+    M1Rig278 *p;
+    M1Vec10 *v;
+    if (sub_001456E0(o, h, 0x33, 0) == 1)
+        sub_0001D4E0(o);
+    p = h->rig278;
+    p->f34 = 0.0f;
+    p->f30 = 0.0f;
+    p->f2C = 0.0f;
+    p->f38 = 1.0f;
+    r->flags04 &= ~0x80000u;
+    o->flags10 |= 4;
+    v = sub_00113400(h, 4);
+    v->v10[0] = 1.0f / 12.0f;
+    v->v10[1] = 0.0f;
+    v->v10[2] = 0.0f;
+    v->v10[3] = 0.0f;
+    if (*(uint8_t *)&r->flags04 & 0x10)
+        o->flags10 |= 0xD;
 }

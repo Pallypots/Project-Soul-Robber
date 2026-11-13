@@ -597,10 +597,15 @@ def fold_pushed_floats(a, b):
     count the pushed value as fconst c. Value must match exactly."""
     for x, y in ((a, b), (b, a)):
         for key in [d for d in y["data"] if isinstance(d, tuple) and d[0] == "fconst" and d not in x["data"]]:
-            bits = struct.unpack("<I", struct.pack("<f", key[1]))[0]
-            if bits in x["pushimm"] and ("k", bits) in x["imm"] and                     float(f"{struct.unpack('<f', struct.pack('<I', bits))[0]:.7g}") == key[1]:
-                x["imm"].discard(("k", bits))
-                x["data"].add(key)
+            # fconst values are kept at 7 significant digits, which does not always
+            # round-trip to the same bits (1/12 = 0x3DAAAAAB prints as 0.08333334,
+            # which packs to 0x3DAAAAAC), so match on the pushed bits' printed value.
+            for bits in sorted(x["pushimm"]):
+                if ("k", bits) in x["imm"] and 0 <= bits <= 0xFFFFFFFF and \
+                        float(f"{struct.unpack('<f', struct.pack('<I', bits))[0]:.7g}") == key[1]:
+                    x["imm"].discard(("k", bits))
+                    x["data"].add(key)
+                    break
 
 
 def fval(raw, size):

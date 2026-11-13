@@ -246,3 +246,5 @@ va,name,state,source,obj,waivers,notes
 0x0010e3d0,m1_ZeroSpeed10E3D0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed zero, +0x18C = 0.2, +0x188 = 0, +0x190 = 0.4, animation 0x27"
 0x001008f0,m1_CtlStep1008F0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"As 0x1009E0 but also clears +0xA6 when the step starts"
 0x00116590,m1_RigStep116590,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"0x1456E0(0x13) (0x1D4E0 on 1), rig vector = (0,0,0,1), o flag 4, 0x414A0(1), next state from rig kind: 0x24 -> 10, 0x1E -> 0x14, 0x1F -> 0x1E"
+0x00115cc0,m1_RigStep115CC0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"0x1456E0(0x14) (0x1D4E0 on 1), rig vector = (0,0,0,1), o flag 0x10, rig flag 0x80000 and +0x4C = 3.0, sound 0x174, 0x36750(2)"
+0x001162e0,m1_RigStep1162E0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"0x1456E0(0x33) (0x1D4E0 on 1), rig vector = (0,0,0,1), clear rig flag 0x80000, o flag 4, 0x113400(4) vector = (1/12,0,0,0), o flags |= 0xD if rig flag 0x10"

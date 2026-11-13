@@ -305,3 +305,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x101E50 m1_ScrTimers101E50 PASS (walk a float* to the timer, resource at [-4]; slot struct pointer made cl spill); 0x104630 m1_ScrWatch104630 PASS
 0x10E3D0 m1_ZeroSpeed10E3D0 / 0x1008F0 m1_CtlStep1008F0 PASS
 0x116590 m1_RigStep116590 PASS; 0x103A80: skip (0x1023A0 takes ecx + xmm1 float)
+0x115CC0/0x1162E0 rig steps PASS (checker float-rule round-trip fix)
