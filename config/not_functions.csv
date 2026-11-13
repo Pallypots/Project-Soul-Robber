@@ -218,3 +218,5 @@ va,reason
 0x0009DA80,interior fragment (mulss on uninitialised reg; ends with epilogue of a larger frame)
 0x00154D6C,interior fragment reported by recovery (inside a larger function)
 0x000640E0,interior fragment reported by recovery (inside a larger function)
+0x0009FC60,interior fragment (switch case: reads the enclosing frame at [esp+0x38] and exits through 0xA089B)
+0x000A0030,interior fragment (switch case: reads the enclosing frame at [esp+0x38] and exits through 0xA089B)
