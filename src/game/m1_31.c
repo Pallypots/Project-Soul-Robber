@@ -442,3 +442,21 @@ void m1_StopSpeed10E280(M1Ef10C *o, M1Spd3 *h)
     sub_000F3B30(o, 4);
     sub_000F3B30(h->partC8, 4);
 }
+
+/* 0x0010E030: as 0x10E280 without clearing o +0x10C. */
+void m1_StopSpeed10E030(void *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+}
