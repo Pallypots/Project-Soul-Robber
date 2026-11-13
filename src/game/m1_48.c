@@ -2,6 +2,13 @@
 #include <stdint.h>
 
 typedef struct M1Cam10 { uint8_t unk00[0x10]; uint32_t flags10; } M1Cam10;
+typedef struct M1Fx54 {
+    void   *res00;             /* +0x00 */
+    uint8_t unk04[4];
+    int32_t f08, f0C;          /* +0x08 */
+    float   t10;               /* +0x10 */
+    uint8_t unk14[0x54 - 0x14];
+} M1Fx54;
 typedef struct M1Scr1A8 {
     uint8_t unk000[0x8C];
     M1Cam10 *cam8C;            /* +0x8C */
@@ -16,12 +23,18 @@ typedef struct M1Scr1A8 {
     uint8_t unk1AA[2];
     float   f1AC;              /* +0x1AC */
     float   f1B0;              /* +0x1B0 */
-    uint8_t unk1B4[0x1C8 - 0x1B4];
+    uint8_t unk1B4[0x1C0 - 0x1B4];
+    int32_t f1C0;              /* +0x1C0 */
+    uint8_t unk1C4[4];
     int32_t f1C8;              /* +0x1C8 */
     uint8_t unk1CC[0x1E4 - 0x1CC];
     float   f1E4;              /* +0x1E4 */
-    uint8_t unk1E8[0x210 - 0x1E8];
+    uint8_t unk1E8[0x200 - 0x1E8];
+    float   t200, t204;        /* +0x200 */
+    uint8_t unk208[0x210 - 0x208];
     int32_t f210;              /* +0x210 */
+    uint8_t unk214[0x234 - 0x214];
+    int32_t f234;              /* +0x234 */
 } M1Scr1A8;
 extern M1Scr1A8 *m1_scr3F6130;
 int  aab_Rand(void);
@@ -138,4 +151,56 @@ void m1_CtlStep1009E0(void *o, void *c)
         sub_000F3D10(o, c, 9);
     else
         g->tA0 += m1_frameRate42C85C;
+}
+
+extern float m1_frameRate42C85C;
+void sub_00033A40(void *r);
+
+/* 0x00101E50: screen timers: for each of the 3 effect slots, count the timer down by the
+ * frame rate, freeing the slot's resource once it has run out; then count +0x204 and
+ * +0x200 down while positive. */
+void m1_ScrTimers101E50(void)
+{
+    M1Scr1A8 *s = m1_scr3F6130;
+    float *t = (float *)((uint8_t *)s + 0xEC);     /* slot timers, stride 0x54; resource at -0x10 */
+    int i;
+    for (i = 3; i != 0; i--) {
+        if (*t <= 0.0f) {
+            if (((void **)t)[-4] != 0) {
+                sub_00033A40(((void **)t)[-4]);
+                ((void **)t)[-4] = 0;
+            }
+        } else {
+            *t -= m1_frameRate42C85C;
+        }
+        t = (float *)((uint8_t *)t + 0x54);
+    }
+    if (s->t204 > 0.0f)
+        s->t204 -= m1_frameRate42C85C;
+    if (s->t200 > 0.0f)
+        s->t200 -= m1_frameRate42C85C;
+}
+
+typedef struct M1H68 { uint8_t unk00[0x68]; float f68; } M1H68;
+typedef struct M1Pl64 { uint8_t unk00[0x64]; float f64; } M1Pl64;
+extern M1Pl64 *g_playerObj;
+
+/* 0x00104630: first time h +0x68 passes 2.5, records whether the player is below
+ * height -30 (+0x234) and marks +0x1A8; when 0xF5D00(o) fires, the camera goes to
+ * mode 0x11 and +0x1C0 is cleared. Spins on a null camera. */
+void m1_ScrWatch104630(void *o, M1H68 *h)
+{
+    M1Scr1A8 *s = m1_scr3F6130;
+    void *cam;
+    if (s->w1A8 == 0 && h->f68 > 2.5f) {
+        s->f234 = (g_playerObj->f64 > -30.0f) ? 0 : 1;
+        s->w1A8 = 1;
+    }
+    if (sub_000F5D00(o) != 0) {
+        cam = m1_scr3F6130->cam8C;
+        if (cam == 0)
+            for (;;) ;
+        sub_000F3D10(cam, m1_scr3F6130, 0x11);
+        m1_scr3F6130->f1C0 = 0;
+    }
 }
