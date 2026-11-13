@@ -262,3 +262,79 @@ int m1_SetupScene17E310(M1ObjK2 *o, M1ActK2 *a)
     m1_f3FDED4 = 0.0f;
     return 1;
 }
+
+typedef struct M1Part90 { uint8_t unk00[0x40]; float m40[16]; uint8_t unk80[0x90 - 0x80]; uint32_t flags90; } M1Part90;
+typedef struct M1PairL {
+    void     *obj00;           /* 0x003FE368 */
+    void     *act04;           /* 0x003FE36C */
+    uint8_t   unk08[0x14 - 8];
+    M1Part90 *part14;          /* 0x003FE37C */
+    float     f18, f1C;        /* 0x003FE380, 0x003FE384 */
+} M1PairL;
+extern M1PairL m1_pair3FE368;
+extern uint8_t m1_p32B890[], m1_p32B8AC[];
+extern const float m1_start27A95C[4];   /* 0x0027A95C */
+typedef struct M1ObjL {
+    uint8_t  unk000[0xC];
+    uint32_t flags0C;          /* +0x00C */
+    uint32_t flags10;          /* +0x010 */
+    uint8_t  unk014[0x20 - 0x14];
+    void    *mtx020;           /* +0x020 */
+    uint8_t  unk024[0x30 - 0x24];
+    void    *anim030;          /* +0x030 */
+    uint8_t  unk034[0x60 - 0x34];
+    float    pos060[4];        /* +0x060 */
+    float    v070[3];          /* +0x070 */
+    uint8_t  unk07C[0x124 - 0x7C];
+    int32_t  f124;             /* +0x124 */
+} M1ObjL;
+typedef struct M1ActL {
+    uint8_t  unk000[0x28];
+    float    f028;             /* +0x028 */
+    uint8_t  unk02C[0x278 - 0x2C];
+    M1PairL *pair278;          /* +0x278 */
+    M1CbS    update27C;        /* +0x27C */
+    uint8_t  unk280[0x288 - 0x280];
+    M1CbS    draw288;          /* +0x288 */
+    void    *paramA28C;        /* +0x28C */
+    void    *paramB290;        /* +0x290 */
+} M1ActL;
+void      sub_001827E0(void);
+void      sub_00182850(void);
+M1Part90 *sub_0001D0F0L(void *o, int part);   /* 0x0001D0F0 */
+void      sub_000F3FD0(void *o);
+void      sub_001ADA40(float *dst, const void *src);
+
+/* 0x00183010: sets up the singleton at 0x3FE368: flags, layer, mode 3, callbacks
+ * 0x1827E0 / 0x182850, start position, remembers part 5 (flag 0x40) and copies o's
+ * matrix into it, event 0, animation 0. Returns 1. */
+int m1_SetupSingle183010(M1ObjL *o, M1ActL *a)
+{
+    a->pair278 = &m1_pair3FE368;
+    m1_pair3FE368.obj00 = o;
+    m1_pair3FE368.act04 = a;
+    a->paramA28C = m1_p32B890;
+    a->paramB290 = m1_p32B8AC;
+    a->update27C = sub_001827E0;
+    a->draw288 = sub_00182850;
+    o->flags0C = (o->flags0C & ~0xE0u) | 1;
+    o->flags10 |= 0x44D;
+    o->f124 = 0;
+    a->f028 = 0.0f;
+    sub_0001EB80(o);
+    sub_0001E9B0(a80_ctx42C8E4, o, 0xC, 5, 0x11);
+    sub_0001EBF0(o, 3);
+    o->v070[2] = 1.0f;
+    o->v070[1] = 1.0f;
+    o->v070[0] = 1.0f;
+    sub_000F5D40(o->pos060, m1_start27A95C);
+    m1_pair3FE368.part14 = sub_0001D0F0L(o, 5);
+    m1_pair3FE368.part14->flags90 |= 0x40;
+    sub_000F3FD0(o);
+    sub_001ADA40(m1_pair3FE368.part14->m40, o->mtx020);
+    m1_pair3FE368.f18 = 0.0f;
+    m1_pair3FE368.f1C = 0.0f;
+    sub_00113040(o, a, 0);
+    sub_000832D0(o->anim030, 0);
+    return 1;
+}
