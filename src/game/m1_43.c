@@ -368,7 +368,7 @@ typedef struct M1EntE0 {
     uint8_t  unk34[0xE0 - 0x34];
 } M1EntE0;
 extern M1EntE0 m1_entsE41E2A0[32];   /* 0x0041E2A0 */
-int sub_000A8090(void *t, const float *pos);
+int m1_WithinRadiusA8090(void *t, const float *pos);   /* 0x000A8090, file 46 */
 
 /* 0x000A8C90: 1 if any in-use entry of kind 1..3 is accepted by 0xA8090 for t
  * (tested at the entry's position), else -1. */
@@ -383,9 +383,32 @@ int m1_AnyNearA8C90(void *t)
     for (i = 0; i < 32; i++) {
         if ((m1_entsE41E2A0[i].flags00 & 1) && (m1_entsE41E2A0[i].flags00 & 6)) {
             sub_000F5D40(v, m1_entsE41E2A0[i].pos24);
-            if (sub_000A8090(t, v) > 0)
+            if (m1_WithinRadiusA8090(t, v) > 0)
                 return 1;
         }
     }
     return -1;
+}
+
+typedef struct M1Rad14 M1Rad14;
+
+typedef struct M1Skel3 { uint8_t unk00[0xC4]; uint8_t *bonesC4; } M1Skel3;
+typedef struct M1Node3 { uint8_t unk00[0x20]; M1Skel3 *skel20; } M1Node3;
+typedef struct M1JackN { uint8_t unk000[0xFD8]; M1Node3 *node0FD8; } M1JackN;
+
+/* 0x000A8BF0: 1 if either of Jack's two hand bones (+0x370, +0x1F0 in his bone
+ * block) is within t's radius, else the second test's result. */
+int m1_HandsNearA8BF0(M1JackN *p, M1Rad14 *t)
+{
+    M1Skel3 *k = p->node0FD8->skel20;
+    float v[4];
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 1.0f;
+    sub_000F5D40(v, k->bonesC4 + 0x370);
+    if (m1_WithinRadiusA8090(t, v) > 0)
+        return 1;
+    sub_000F5D40(v, k->bonesC4 + 0x1F0);
+    return m1_WithinRadiusA8090(t, v);
 }
