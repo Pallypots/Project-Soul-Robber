@@ -348,3 +348,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xFC8F0/0xFCC20 helper speed: hard (cl merges the two 0x832D0 calls); 0xA7570 m1_MsgQueue0A7570 PASS
 0x53760 m1_PoolsInit053760 PASS (index loop for the signed end test); 0xFC970: hard (merged 0x832D0 calls, as 0xFC8F0); 0xCF330: skip (x87 result of 0xBC040 into a field mid-sequence)
 0xEFA60 m1_TurnAround0EFA60 PASS; 0xF3260: hard (0..15 range fold); 0xC9280: skip (register args)
+0xFC660, 0xC4420, 0xF5380 PASS (m1_60.c); 0x5A2F0: skip (main loop, register args); 0x40950: hard (1..24 range hang); 0x1A710: skip (register args)
+0xC7130 m1_Nearest0C7130 (merged bit-test waiver, three tests); 0xC46B0: hard (kind 0x25/0x26 folded into one compare); 0xEE6D0: hard (duplicated tail calls)
+0x38E80 m1_CmdPush038E80 PASS; 0xCD970, 0x1C7B0: skip (multi-exit flag chain / duplicated tail stores, later)

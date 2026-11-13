@@ -767,3 +767,5 @@ m1_pools3E26A8,0x003E26A8,data,4,9
 m1_poolAux3E26D0,0x003E26D0,data,4,9
 m1_poolDefs26BE90,0x0026BE90,data,8,9
 m1_poolFile26BED8,0x0026BED8,data,,
+m1_cmdCount3DA390,0x003DA390,data,,
+m1_cmds3DA398,0x003DA398,data,0x10,16
