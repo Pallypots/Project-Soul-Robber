@@ -223,3 +223,32 @@ void m1_CtlStep1008F0(void *o, void *c)
     else
         g->tA0 = m1_frameRate42C85C + g->tA0;
 }
+
+typedef struct M1Rig278 { uint8_t unk00[0x2C]; float f2C, f30, f34, f38; uint8_t unk3C[0x5C - 0x3C]; int32_t kind5C; } M1Rig278;
+typedef struct M1Step278 { uint8_t unk00[0x58]; int32_t state58; uint8_t unk5C[0x278 - 0x5C]; M1Rig278 *rig278; } M1Step278;
+typedef struct M1Fl10 { uint8_t unk00[0x10]; uint32_t flags10; } M1Fl10;
+void sub_000414A0(int v);
+
+/* 0x00116590: runs 0x1456E0(0x13) (0x1D4E0 on 1), resets the rig vector to (0, 0, 0, 1),
+ * sets o flag 4, 0x414A0(1), then picks the next state from the rig kind:
+ * 0x24 -> 10, 0x1E -> 0x14, 0x1F -> 0x1E. */
+void m1_RigStep116590(M1Fl10 *o, M1Step278 *h)
+{
+    M1Rig278 *r = h->rig278;
+    M1Rig278 *p;
+    if (sub_001456E0(o, h, 0x13, 0) == 1)
+        sub_0001D4E0(o);
+    p = h->rig278;
+    p->f34 = 0.0f;
+    p->f30 = 0.0f;
+    p->f2C = 0.0f;
+    p->f38 = 1.0f;
+    o->flags10 |= 4;
+    sub_000414A0(1);
+    if (r->kind5C == 0x24)
+        h->state58 = 10;
+    else if (r->kind5C == 0x1E)
+        h->state58 = 0x14;
+    else if (r->kind5C == 0x1F)
+        h->state58 = 0x1E;
+}
