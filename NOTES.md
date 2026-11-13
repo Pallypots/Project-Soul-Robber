@@ -364,3 +364,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x187380 PASS (m1_64.c); 0x185420 record count: hard (cl cmove on the first unrolled slot)
 0x183F10, 0x1178F0: skip (register args / xmm result)
 0x142330 m1_RigLaunch142330 PASS
+0x119C80 PASS (m1_65.c, countdown loop kept); 0x12CF00: skip (0x11FCC0 register args)
+0x175430/0x176510 leash checks PASS (m1_65.c)
+0x1771E0 m1_Glow1771E0 PASS (m1_65.c)
+0x118410 m1_Step118410 PASS (m1_65.c, case 0 falls into case 1)
+0x12FCA0, 0x12FF80 PASS (m1_65.c)
