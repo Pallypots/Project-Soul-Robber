@@ -1,0 +1,61 @@
+/* Area m1, file 48: scripted-actor steps and screen timers. Names inferred. */
+#include <stdint.h>
+
+typedef struct M1Scr1A8 {
+    uint8_t unk000[0x1A8];
+    int16_t w1A8;              /* +0x1A8 */
+    uint8_t unk1AA[2];
+    float   f1AC;              /* +0x1AC */
+    uint8_t unk1B0[0x1C8 - 0x1B0];
+    int32_t f1C8;              /* +0x1C8 */
+    uint8_t unk1CC[0x1E4 - 0x1CC];
+    float   f1E4;              /* +0x1E4 */
+} M1Scr1A8;
+extern M1Scr1A8 *m1_scr3F6130;
+int  aab_Rand(void);
+void sub_00101280(int v);
+
+/* 0x001032A0: screen state reset: +0x1E4 = 0, +0x1A8 = 0, +0x1AC = 2.0 + (rand % 51) * 0.1,
+ * 0x101280(3), +0x1C8 = 0. */
+void m1_ScrReset1032A0(void)
+{
+    M1Scr1A8 *s = m1_scr3F6130;
+    s->f1E4 = 0.0f;
+    s->w1A8 = 0;
+    s->f1AC = (float)(aab_Rand() % 51) * 0.1f + 2.0f;
+    sub_00101280(3);
+    s->f1C8 = 0;
+}
+
+typedef struct M1Act30 { uint8_t unk00[0x30]; int32_t f30; uint8_t unk34[0x60 - 0x34]; float pos60[3]; } M1Act30;
+typedef struct M1Step58 {
+    uint8_t unk00[0x58];
+    int32_t state58;           /* +0x58 */
+    uint8_t unk5C[0x6C - 0x5C];
+    int32_t snd6C;             /* +0x6C */
+    int32_t f70;               /* +0x70 */
+} M1Step58;
+int  sub_000833E0(int v);
+int  sub_001456E0(void *o, void *s, int a, int b);
+void sub_0001D4E0(void *o);
+int  sub_000494D0(int id, const void *pos, int c);
+int  sub_00036750(void *o, int v);
+
+/* 0x001173F0: two-step script: state 0 waits for 0x833E0(o +0x30); state 1 runs
+ * 0x1456E0(0x14), on 1 calls 0x1D4E0, then starts sound 0x174 and 0x36750(2), state 0x63. */
+void m1_Step1173F0(M1Act30 *o, M1Step58 *s)
+{
+    switch (s->state58) {
+    case 0:
+        if (sub_000833E0(o->f30) != 0)
+            s->state58++;
+        break;
+    case 1:
+        if (sub_001456E0(o, s, 0x14, 0) == 1)
+            sub_0001D4E0(o);
+        s->snd6C = sub_000494D0(0x174, o->pos60, 0);
+        s->f70 = sub_00036750(o, 2);
+        s->state58 = 0x63;
+        break;
+    }
+}

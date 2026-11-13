@@ -297,3 +297,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x10EB90/0x10E510 speed stop variants PASS
 0x10DDF0/0x10E600 speed stop music + hold records PASS
 0x10ED00/0x10DF20 zero speed, 0x10EF70 launch vector PASS; 0x10FA20 sound start: hard (cl merges the two 0x36750 calls into flag?8:9 via sbb)
+- Edit CSVs as bytes (mixed CRLF/LF); Python text mode rewrites every line ending.
+0x1032A0 m1_ScrReset1032A0 / 0x1173F0 m1_Step1173F0 PASS (m1_48.c)

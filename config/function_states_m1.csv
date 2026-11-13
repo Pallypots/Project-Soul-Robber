@@ -236,3 +236,5 @@ va,name,state,source,obj,waivers,notes
 0x0010ed00,m1_ZeroSpeed10ED00,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0 only"
 0x0010df20,m1_ZeroSpeed10DF20,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0, then animation 0 via 0xF3DA0"
 0x0010ef70,m1_Launch10EF70,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Launch vector: x = frame rate * 9.8, y = z = 0, w = frame rate * -40.0"
+0x001032a0,m1_ScrReset1032A0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"Screen state reset: +0x1E4 = 0, +0x1A8 = 0, +0x1AC = 2.0 + (rand % 51) * 0.1, 0x101280(3), +0x1C8 = 0"
+0x001173f0,m1_Step1173F0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"Two-step script: wait for 0x833E0(o +0x30), then 0x1456E0(0x14) (0x1D4E0 on 1), sound 0x174, 0x36750(2), state 0x63"
