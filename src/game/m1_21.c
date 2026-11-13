@@ -387,3 +387,69 @@ M1_DOOR_SEQ(m1_DoorSeqB6740, 0x36, 1, 2)   /* 0x000B6740 */
 M1_DOOR_SEQ(m1_DoorSeqB6840, 0xC3, 5, 6)   /* 0x000B6840 */
 M1_DOOR_SEQ(m1_DoorSeqB6950, 0xC2, 3, 4)   /* 0x000B6950 */
 M1_DOOR_SEQ(m1_DoorSeqBAB90, 0xD6, 2, 3)   /* 0x000BAB90 */
+
+/* 0x000BA630: two-step sequencer: at step 10, if event 0xD1 happened, turns slots 7
+ * and 8 off and restyles slot 7 (0x20, 0x80); step 0x14 ends. */
+int m1_SeqStepBA630(int cmd, M1Seq2 *s)
+{
+    if (cmd == 0) { s->flags00 = 0; s->step04 = 0; return 1; }
+    if (cmd == 1) { s->flags00 |= 1; s->step04 = 10; return 1; }
+    if (cmd == 3) { s->flags00 = 0; s->step04 = 0; return 0; }
+    if (s->step04 == 10) {
+        if (sub_000D9A70(0xD1)) {
+            sub_000A4410(7, 0);
+            sub_000A4410(8, 0);
+            sub_000A2D40(7, 0x20);
+            sub_000A2CC0(7, 0x80);
+        }
+        s->step04 = 0x14;
+    } else if (s->step04 == 0x14) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        return 0;
+    }
+    return 1;
+}
+
+typedef struct M1Seq3 {
+    uint32_t flags00;          /* +0x00 */
+    int32_t  step04;           /* +0x04 */
+    int32_t  f08;              /* +0x08 */
+} M1Seq3;
+void sub_000A5450(int i);
+
+/* 0x000BA020: sequencer ending at step 0x63: at step 10, if event 0x14B happened,
+ * runs 0xA5450 for 0..3. cmd 3 jumps to the end step. */
+int m1_SeqStepBA020(int cmd, M1Seq3 *s)
+{
+    if (cmd == 0) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        s->f08 = 0;
+        return 1;
+    }
+    if (cmd == 1) {
+        s->flags00 |= 1;
+        s->step04 = 10;
+        s->f08 = -1;
+        return 1;
+    }
+    if (cmd == 3) {
+        s->flags00 = 0;
+        s->step04 = 0x63;
+    }
+    if (s->step04 == 10) {
+        if (sub_000D9A70(0x14B)) {
+            sub_000A5450(0);
+            sub_000A5450(1);
+            sub_000A5450(2);
+            sub_000A5450(3);
+        }
+        s->step04 = 0x63;
+    } else if (s->step04 == 0x63) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        return 0;
+    }
+    return 1;
+}

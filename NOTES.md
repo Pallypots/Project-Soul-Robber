@@ -216,3 +216,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xB6840 m1_DoorSeqB6840 PASS (shared door template)
 0xB6950 m1_DoorSeqB6950 PASS (shared door template)
 0xBAB90 m1_DoorSeqBAB90 PASS (shared door template)
+0xBA630 m1_SeqStepBA630 PASS
+0xBA020 m1_SeqStepBA020 PASS

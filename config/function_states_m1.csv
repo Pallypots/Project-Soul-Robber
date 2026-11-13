@@ -151,3 +151,5 @@ va,name,state,source,obj,waivers,notes
 0x000b6840,m1_DoorSeqB6840,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0xC3, slots 5/6"
 0x000b6950,m1_DoorSeqB6950,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0xC2, slots 3/4"
 0x000bab90,m1_DoorSeqBAB90,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0xD6, slots 2/3"
+0x000ba630,m1_SeqStepBA630,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Two-step sequencer: event 0xD1 turns slots 7/8 off and restyles 7"
+0x000ba020,m1_SeqStepBA020,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer ending at step 0x63: event 0x14B runs 0xA5450 for 0..3"
