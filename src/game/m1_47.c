@@ -33,3 +33,30 @@ void m1_SceneReset17D780(void)
     m1_w3FDE98 = 0;
     m1_f3FDEC0 = 1.0f;
 }
+
+typedef struct M1Cam850 {
+    uint8_t unk000[0x794];
+    float   f794, f798;        /* +0x794 */
+    int32_t v79C[4];           /* +0x79C */
+    int32_t f7AC;              /* +0x7AC */
+    float   f7B0;              /* +0x7B0 */
+    uint8_t unk7B4[0x850 - 0x7B4];
+    int32_t v850[5];           /* +0x850 */
+} M1Cam850;
+typedef struct M1Info0C { uint8_t unk00[0xC]; int32_t n0C; } M1Info0C;
+
+/* 0x000EACC0: sets both scale values to info's count * 0.001, copies the five saved
+ * words back from +0x850 and sets +0x7B0 = 1.0. */
+void m1_RestoreViewEACC0(M1Cam850 *c, M1Info0C *in)
+{
+    if (c == 0 || in == 0)
+        return;
+    c->f794 = (float)in->n0C * 0.001f;
+    c->v79C[0] = c->v850[0];
+    c->v79C[1] = c->v850[1];
+    c->f798 = (float)in->n0C * 0.001f;
+    c->v79C[2] = c->v850[2];
+    c->v79C[3] = c->v850[3];
+    c->f7AC = c->v850[4];
+    c->f7B0 = 1.0f;
+}

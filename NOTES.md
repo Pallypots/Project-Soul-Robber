@@ -276,3 +276,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA88B0/0xA8990 voice slot starters: hard (orig keeps an always-false i<0 check after the free-slot search; cl drops it)
 0x17D780 m1_SceneReset17D780 PASS
 0x1A4190 matrix fill: skipped (float argument passed in XMM0)
+0xEACC0 m1_RestoreViewEACC0 PASS
