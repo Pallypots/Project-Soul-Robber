@@ -284,3 +284,8 @@ va,name,state,source,obj,waivers,notes
 0x000a82c0,m1_RewardAmount0A82C0,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"Reward amount: (int)0x171E20(kind, level) * (0x26650 + 1 if 0x26740 else 1) * (2 if 0xEDF10 returns 1 and kind != 12, else 1)"
 0x00094360,m1_Grow094360,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"State 0: +0x10 += frame time * 0.05 (double) up to 1.8 then state 1, apply size 0xA4870; state 1: clear flag 0x2000000, 0xA41D0(-1)"
 0x000943d0,m1_Grow0943D0,Structurally compared,src/game/m1_57.c,build/obj_m1/m1_57.obj,,"As 0x94360 with limit 1.0"
+0x00094680,m1_FlatDir094680,Structurally compared,src/game/m1_58.c,build/obj_m1/m1_58.obj,,"out = x/z direction of v normalised (sqrt 0x1A3F50), y = w = 0; returns out"
+0x000cf2c0,m1_Forward0CF2C0,Structurally compared,src/game/m1_58.c,build/obj_m1/m1_58.obj,,"Forward vector: (0, 0, -1, 1) rotated by (0, yaw +0xFC, 0, 1) via 0x82A30, then normalised (0x1AD7E0)"
+0x000f95b0,m1_TrigTimed0F95B0,Structurally compared,src/game/m1_58.c,build/obj_m1/m1_58.obj,,"Trigger state (0xF5F80) +0xBC = 1 once the timer +0x68 passes the limit (1.6 / 2.5 / 3.0 for kinds 3 / 4 / 5, else the argument) or 0xF5D00 reports done"
+0x000904f0,m1_FadeNew0904F0,Structurally compared,src/game/m1_58.c,build/obj_m1/m1_58.obj,,"Allocates a 0x14 record (0x53AB0, tag 0x52) = (a, b, c, d) with b and d clamped to 0..1, +0x10 = 1; returns it"
+0x000a30f0,m1_AimAt0A30F0,Structurally compared,src/game/m1_58.c,build/obj_m1/m1_58.obj,,"Aims +0x90 along the unit direction from the target (+0x120) position to p (w = 1) via 0x1ADBA0(mode); +0x9C = 0"
