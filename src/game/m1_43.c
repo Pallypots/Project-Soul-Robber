@@ -292,3 +292,71 @@ void m1_RaisedPosA1FD0(M1KindObj *o, float *out)
     sub_000F5D40(out, o->pos60);
     out[1] += h;
 }
+
+/* 0x000A3CC0: as 0xA3D40, but the object's rotation x is cleared after the copy. */
+void m1_SyncPoseA3CC0(M1EntP *e)
+{
+    sub_000F5D40(e->obj120->pos60, e->pos070);
+    e->pos070[3] = 1.0f;
+    e->obj120->pos60[3] = 1.0f;
+    sub_000F5D40(e->obj120->rot50, e->rot080);
+    e->obj120->rot50[0] = 0.0f;
+    e->rot080[3] = 1.0f;
+    e->obj120->rot50[3] = 1.0f;
+}
+
+typedef struct M1Act150B { uint8_t unk000[0x150]; uint32_t flags150; } M1Act150B;
+void sub_000CF330(M1Act150B *o, const float *v, float k);
+void abc_SetState(void *o, int state);
+
+/* 0x000CFF10: if src is given, pushes o towards src's position (0xCF330, 8.0);
+ * then state 0x1E and flag 0x2000. */
+void m1_PushStateCFF10(M1Act150B *o, M1Pos60 *src)
+{
+    float v[4];
+    if (src != 0) {
+        v[3] = 1.0f;
+        v[0] = src->pos60[0];
+        v[1] = src->pos60[1];
+        v[2] = src->pos60[2];
+        sub_000CF330(o, v, 8.0f);
+    }
+    abc_SetState(o, 0x1E);
+    o->flags150 |= 0x2000;
+}
+
+typedef struct M1Stage314 {
+    int32_t f000;              /* +0x000 */
+    uint8_t unk004[0x308 - 4];
+    int32_t f308, f30C;        /* +0x308 */
+    uint8_t unk310[4];
+    int32_t f314;              /* +0x314 */
+} M1Stage314;
+typedef struct M1Cam124 {
+    uint8_t  unk000[0x8C];
+    uint8_t *node08C;          /* +0x08C */
+    uint8_t  unk090[0xAC - 0x90];
+    float    fAC;              /* +0x0AC */
+    uint8_t  unk0B0[0x124 - 0xB0];
+    int32_t  snd124;           /* +0x124, -1 = none */
+} M1Cam124;
+extern M1Cam124 *m1_cam3F610C;    /* 0x003F610C */
+M1Stage314 *sub_000E0770S(void);  /* 0x000E0770 */
+void sub_000E0A80(M1Stage314 *s, int k, int a, int b, int c);
+void sub_000E51F0(M1Stage314 *s);
+int  sub_000494D0(int id, const void *pos, int c);
+
+/* 0x000F4590: restarts the stage step (0xE0A80 kind 4), clears its counters, runs
+ * 0xE51F0, sets the camera value 10.5 and starts sound 0x1E3 once. */
+void m1_StageRestartF4590(void)
+{
+    M1Cam124 *c = m1_cam3F610C;
+    M1Stage314 *s = sub_000E0770S();
+    sub_000E0A80(s, 4, s->f000, s->f314, -1);
+    s->f308 = 0;
+    s->f30C = 0;
+    sub_000E51F0(s);
+    c->fAC = 10.5f;
+    if (c->snd124 == -1)
+        c->snd124 = sub_000494D0(0x1E3, c->node08C + 0x60, 1);
+}

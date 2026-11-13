@@ -263,3 +263,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x172480 world y of part: skipped (float result returned in XMM0, out of scope)
 0xCE8F0/0xCE970 bone entry clears PASS
 0xA1F50/0xA1FD0 raised position PASS* (stride waiver)
+0xA3CC0 m1_SyncPoseA3CC0 PASS
+0xCFF10 m1_PushStateCFF10 PASS
+0xF4590 m1_StageRestartF4590 PASS
