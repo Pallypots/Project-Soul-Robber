@@ -6,7 +6,10 @@ typedef struct M1Ent260W {
     void    *owner004;         /* +0x004 */
     uint8_t  unk008[0x18 - 8];
     int32_t  kind018;          /* +0x018 handler index */
-    uint8_t  unk01C[0x120 - 0x1C];
+    uint8_t  unk01C[0x3C - 0x1C];
+    int32_t  anim03C;          /* +0x03C */
+    int32_t  time040;          /* +0x040 */
+    uint8_t  unk044[0x120 - 0x44];
     void    *obj120;           /* +0x120 */
     uint8_t  unk124[0x154 - 0x124];
     int32_t  snd154[2];        /* +0x154 effect/sound handles, -1 = none */
@@ -173,4 +176,18 @@ void m1_ReleaseEntryA4DE0(M1Ent260W *e)
     sub_0001D190(o);
     sub_0001B3F0(o);
     sub_000A3810(e);
+}
+
+#define M1_SETANIM(e) if (((e).flags00 & 1) && (e).owner004 == owner && (e).anim03C != anim)     { (e).anim03C = anim; (e).time040 = 0; }
+/* 0x000A4560: switches every in-use entry of owner to animation anim (restarting
+ * its timer); unrolled by four as in the original. */
+void m1_SetOwnedAnimA4560(void *owner, int anim)
+{
+    int i;
+    for (i = 0; i < 32; i += 4) {
+        M1_SETANIM(m1_ents4242C0[i]);
+        M1_SETANIM(m1_ents4242C0[i + 1]);
+        M1_SETANIM(m1_ents4242C0[i + 2]);
+        M1_SETANIM(m1_ents4242C0[i + 3]);
+    }
 }

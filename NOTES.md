@@ -195,3 +195,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xE1E90 m1_FreeRigE1E90 PASS
 0x540C0 m1_SaveShutdown540C0 PASS
 0x18840 m1_SetCopy18840 PASS (regargs dst=EBX)
+0xA4560 m1_SetOwnedAnimA4560 PASS
+0xE7580 m1_CloseScreenE7580 PASS
+0x37BC0 m1_ChanShutdown37BC0 PASS

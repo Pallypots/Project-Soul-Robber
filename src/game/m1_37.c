@@ -71,3 +71,35 @@ void m1_SetCopy18840(M1Set560 *dst, const M1Set560 *src)
     dst->f548 = src->f548;
     dst->f54C = src->f548;
 }
+
+extern int32_t m1_state3F57BC;           /* 0x003F57BC, 10000 = open */
+extern int32_t m1_hA3F57B0, m1_hB3F57B4, m1_hC3F57B8;   /* 0x003F57B0.. */
+extern void   *m1_buf3F57AC;             /* 0x003F57AC */
+void sub_000253D0(int a, int b);
+
+/* 0x000E7580: closes the screen opened with state 10000: 0x253D0(0, 0), stops its
+ * three handles, frees its buffer and releases slot 0xB9; the state becomes 0. */
+void m1_CloseScreenE7580(void)
+{
+    if (m1_state3F57BC == 10000) {
+        sub_000253D0(0, 0);
+        if (m1_hA3F57B0 != -1) {
+            sub_001B9FC0(m1_hA3F57B0);
+            m1_hA3F57B0 = -1;
+        }
+        if (m1_hB3F57B4 != -1) {
+            sub_001B9FC0(m1_hB3F57B4);
+            m1_hB3F57B4 = -1;
+        }
+        if (m1_hC3F57B8 != -1) {
+            sub_001B9FC0(m1_hC3F57B8);
+            m1_hC3F57B8 = -1;
+        }
+        if (m1_buf3F57AC != 0) {
+            sub_00053880(m1_buf3F57AC);
+            m1_buf3F57AC = 0;
+        }
+        sub_0004F5D0(0xB9);
+    }
+    m1_state3F57BC = 0;
+}
