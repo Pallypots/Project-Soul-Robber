@@ -440,3 +440,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x159D60 PASS (m1_83).
 - 0x1811F0: hard (cl merges the two state-2 calls; orig keeps one per branch). 0x16FBC0 skip (esi arg call 0x16FB60).
 - 0x18BA50 PASS (m1_83). 0x189020 skip for now (always-true null check on &table[i]).
+- 0x17C010 PASS (m1_84; the orig w self-copy comes from a vec4 struct copy). 0x187810 skip (register-arg call 0x186470).
+- 0x188D00: hard (cl unrolls the 3-row scale loop; orig keeps it).
+- 0x112C00 PASS (m1_84).
+- 0x17C6F0 PASS (m1_84).
+- 0x11DC20 PASS (m1_84; second limit reads the partner component +0x274).
