@@ -127,3 +127,48 @@ void m1_RigStep11A950(M1Fl60b *o, M1StepF *h)
     sub_000494D0(0xC9, o->pos60, 0);
     sub_00036750(o, 0xC);
 }
+
+typedef struct M1Rig160 {
+    uint8_t unk000[8];
+    uint32_t flags08, flags0C; /* +0x08 */
+    uint8_t unk010[0x160 - 0x10];
+    float   v160[5];           /* +0x160 */
+} M1Rig160;
+typedef struct M1Step160 {
+    uint8_t unk000[0x4C];
+    uint32_t flags4C;          /* +0x4C */
+    uint8_t unk050[0x74 - 0x50];
+    float   f74;               /* +0x74 */
+    uint8_t unk078[0x278 - 0x78];
+    M1Rig160 *rig278;          /* +0x278 */
+} M1Step160;
+typedef struct M1Fl0C { uint8_t unk00[0xC]; uint32_t flags0C, flags10; } M1Fl0C;
+int  sub_001456E0(void *o, void *s, int a, int b);
+void sub_0001D4E0(void *o);
+
+/* Shared body of 0x12E720 / 0x1360B0: 0x1456E0(0) (0x1D4E0 on 1), rig quaternion at
+ * +base = (0, 0, 0, 1), o flags: clear 0xE0 in +0xC, set 0x105 in +0x10, h +0x4C |= 0x70,
+ * a rig flag word |= mask, h +0x74 = 1.0. */
+#define M1_RIG_IDLE(name, base, FLAGS, mask)                \
+void name(M1Fl0C *o, M1Step160 *h)                          \
+{                                                           \
+    M1Rig160 *r = h->rig278;                                \
+    M1Rig160 *p;                                            \
+    if (sub_001456E0(o, h, 0, 0) == 1)                      \
+        sub_0001D4E0(o);                                    \
+    p = h->rig278;                                          \
+    p->v160[(base) + 2] = 0.0f;                             \
+    p->v160[(base) + 1] = 0.0f;                             \
+    p->v160[(base) + 0] = 0.0f;                             \
+    p->v160[(base) + 3] = 1.0f;                             \
+    o->flags0C &= ~0xE0u;                                   \
+    o->flags10 |= 0x105;                                    \
+    h->flags4C |= 0x70;                                     \
+    r->FLAGS |= (mask);                                     \
+    h->f74 = 1.0f;                                          \
+}
+
+/* 0x0012E720: rig idle, quaternion at +0x164, rig +0xC |= 0x204. */
+M1_RIG_IDLE(m1_RigIdle12E720, 1, flags0C, 0x204)
+/* 0x001360B0: rig idle, quaternion at +0x160, rig +0x8 |= 0x84. */
+M1_RIG_IDLE(m1_RigIdle1360B0, 0, flags08, 0x84)

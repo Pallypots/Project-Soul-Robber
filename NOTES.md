@@ -309,3 +309,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x1130F0 m1_ChainShow1130F0 / 0x10DF90 m1_ZeroSpeed10DF90 / 0x10A0A0 m1_FadeOut10A0A0 PASS (byte offset loop var for the stride-0x108 store); 0x104070 deck shuffle: hard (orig uses div by 9; cl always uses a reciprocal multiply)
 0x119900 m1_RigOnce119900 PASS; 0x13FD20 hit next-state: hard (cl tail-duplicates the 0x113040 call into the branches); 0x11F4F0: skip (eax + xmm0 register args)
 0x11A950 m1_RigStep11A950 PASS; 0x125540: skip (register args eax/esi/ebx)
+0x138FB0: skip (orig duplicates the 0x113040 tail call per branch, same class as 0x113E90); 0x120BF0: skip (0x11F0C0 takes eax)
+0x11E700 gauge drain: hard (orig reuses the 1.0 register for the +0x7C store; ours stores the bit pattern and the 1.0 load is already matched, so the float rule cannot fold it); 0x11DF80: skip (0x11DD70 takes esi/edi)
+0x12E720/0x1360B0 rig idle (M1_RIG_IDLE) PASS
