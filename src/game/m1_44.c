@@ -422,3 +422,31 @@ int m1_SetupLink182630(M1LinkObj *o, M1ActLk *a, int i)
     sub_00113040(o, a, 0);
     return 1;
 }
+
+typedef struct M1DrawObj {
+    uint8_t unk00[0x20];
+    float  *mtx20;             /* +0x20 node matrix */
+    uint8_t unk24[0x54 - 0x24];
+    float   rotY54;            /* +0x54 */
+    uint8_t unk58[0x60 - 0x58];
+    float   pos60[4];          /* +0x60 */
+    float   scale70[3];        /* +0x70 */
+} M1DrawObj;
+void sub_001AD940(float *m);                         /* identity */
+void sub_001AD8E0(float *d, const float *s, float a); /* rotate about y */
+void sub_001ADBA0(float *d, const float *s, float k);
+
+/* 0x00183200: standard draw callback: builds o's matrix (rotate y, scale, translate)
+ * and writes it to its node. */
+void m1_DrawStd183200(M1DrawObj *o)
+{
+    float m[16];
+    sub_001AD940(m);
+    sub_001AD8E0(m, m, o->rotY54);
+    sub_001ADBA0(&m[0], &m[0], o->scale70[0]);
+    sub_001ADBA0(&m[4], &m[4], o->scale70[1]);
+    sub_001ADBA0(&m[8], &m[8], o->scale70[2]);
+    sub_000F5D40(&m[12], o->pos60);
+    m[15] = 1.0f;
+    sub_001ADA40(o->mtx20, m);
+}
