@@ -211,3 +211,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCE4C0 m1_PartsLookCE4C0 PASS (own file to stop inlining)
 0x107490 m1_BossTeardown107490 PASS
 0xC6B90 m1_ValidateAimC6B90 PASS* (merged-bit-test waiver)
+0xAAA90 m1_SeqStepAAA90 PASS
+0xB6740 m1_DoorSeqB6740 PASS (shared door template)
+0xB6840 m1_DoorSeqB6840 PASS (shared door template)
+0xB6950 m1_DoorSeqB6950 PASS (shared door template)
+0xBAB90 m1_DoorSeqBAB90 PASS (shared door template)

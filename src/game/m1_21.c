@@ -301,3 +301,89 @@ void m1_DefaultKeysCC430(void)
     r6g_keyMask41CD00[2] = 0x1000;
     r6g_keyMask41CD00[6] = m1_padMasks2C4AE8[5];
 }
+
+typedef struct M1Seq2 {
+    uint32_t flags00;          /* +0x00 */
+    int32_t  step04;           /* +0x04 */
+} M1Seq2;
+int  sub_000D9A70(int ev);
+void sub_000A4410(int slot, int v);
+void sub_000A2D40(int slot, int v);
+void sub_000A2D70(int slot, int v);
+void sub_000A2CC0(int slot, int v);
+
+/* 0x000AAA90: two-step sequencer: cmd 0 clears, 1 arms (step 10), 3 stops; at step
+ * 10, if event 0xCC has happened, resets slots 5/6 and restyles slot 5; then step
+ * 0x14 ends the sequence. 0 when ended, else 1. */
+int m1_SeqStepAAA90(int cmd, M1Seq2 *s)
+{
+    if (cmd == 0) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        return 1;
+    }
+    if (cmd == 1) {
+        s->flags00 |= 1;
+        s->step04 = 10;
+        return 1;
+    }
+    if (cmd == 3) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        return 0;
+    }
+    if (s->step04 == 10) {
+        if (sub_000D9A70(0xCC)) {
+            sub_000A4410(5, 0);
+            sub_000A4410(6, 0);
+            sub_000A2D40(5, 0x20);
+            sub_000A2D70(5, 1);
+            sub_000A2CC0(5, 0x80);
+        }
+        s->step04 = 0x14;
+    } else if (s->step04 == 0x14) {
+        s->flags00 = 0;
+        s->step04 = 0;
+        return 0;
+    }
+    return 1;
+}
+
+void sub_000A3690(int slot, int a);
+void sub_000A3480(int slot, int a, int b);
+
+/* Door/switch sequencers 0xB6740 family: cmd 0 clears, 1 arms (step 10), 3 stops;
+ * at step 10, if event ev happened, opens (slot a off, slot b on, restyle a),
+ * otherwise closes (a on, b off, reset a); step 0x14 ends. 0 when ended, else 1. */
+#define M1_DOOR_SEQ(name, ev, a, b) \
+int name(int cmd, M1Seq2 *s) \
+{ \
+    if (cmd == 0) { s->flags00 = 0; s->step04 = 0; return 1; } \
+    if (cmd == 1) { s->flags00 |= 1; s->step04 = 10; return 1; } \
+    if (cmd == 3) { s->flags00 = 0; s->step04 = 0; return 0; } \
+    if (s->step04 == 10) { \
+        if (sub_000D9A70(ev)) { \
+            sub_000A4410(a, 0); \
+            sub_000A4410(b, 1); \
+            sub_000A2D40(a, 0x20); \
+            sub_000A2CC0(a, 0x10000000); \
+            s->step04 = 0x14; \
+            return 1; \
+        } \
+        sub_000A4410(a, 1); \
+        sub_000A4410(b, 0); \
+        sub_000A3690(a, 0); \
+        sub_000A3480(a, 0, 1); \
+        sub_000A43C0(a, 2); \
+        s->step04 = 0x14; \
+    } else if (s->step04 == 0x14) { \
+        s->flags00 = 0; \
+        s->step04 = 0; \
+        return 0; \
+    } \
+    return 1; \
+}
+M1_DOOR_SEQ(m1_DoorSeqB6740, 0x36, 1, 2)   /* 0x000B6740 */
+M1_DOOR_SEQ(m1_DoorSeqB6840, 0xC3, 5, 6)   /* 0x000B6840 */
+M1_DOOR_SEQ(m1_DoorSeqB6950, 0xC2, 3, 4)   /* 0x000B6950 */
+M1_DOOR_SEQ(m1_DoorSeqBAB90, 0xD6, 2, 3)   /* 0x000BAB90 */

@@ -146,3 +146,8 @@ va,name,state,source,obj,waivers,notes
 0x000ce4c0,m1_PartsLookCE4C0,Structurally compared,src/game/m1_41.c,build/obj_m1/m1_41.obj,,"Kind-6 sub-model-1 look: hide parts 8..10 and 0..7, show 8/1/10/7 or 9/3/5 (0x172950); regargs: m=ESI"
 0x00107490,m1_BossTeardown107490,Structurally compared,src/game/m1_39.c,build/obj_m1/m1_39.obj,,"Boss teardown: stop music, free resource, hide every 0x150 part record, shut down components 0xD/5 and detach; returns 1"
 0x000c6b90,m1_ValidateAimC6B90,Structurally compared,src/game/m1_23.c,build/obj_m1/m1_23.obj,imm:0x20000000;imm:0x20000001,"Drop target slots whose 0x41CEC0 entry is not in use and fired, then advance the current slot to a valid one or -1; waiver: merged bit tests &1 and &0x20000000 (documented idiom)"
+0x000aaa90,m1_SeqStepAAA90,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Two-step sequencer: at step 10, if event 0xCC happened, reset slots 5/6 and restyle slot 5; step 0x14 ends"
+0x000b6740,m1_DoorSeqB6740,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0x36, slots 1/2"
+0x000b6840,m1_DoorSeqB6840,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0xC3, slots 5/6"
+0x000b6950,m1_DoorSeqB6950,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0xC2, slots 3/4"
+0x000bab90,m1_DoorSeqBAB90,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Door/switch sequencer (M1_DOOR_SEQ): event 0xD6, slots 2/3"
