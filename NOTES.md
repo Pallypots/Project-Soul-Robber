@@ -413,3 +413,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x1416A0: hard (rand pick 0x1D/10 is setge/dec/and; cl always emits cmovge, even written as arithmetic).
 - 0x17C1F0 PASS (m1_76).
 - 0x13E4A0 PASS (m1_76). neg/sbb select: write (-(bit != 0) & k) + base; a ternary or bit*k+base gives lea/cmov. Retry 0x13B620 with this. 0x110540 skip (tail jmp with eax arg).
+- 0x13BA30 PASS (m1_77). 0x13D3F0 skip (ebx register arg).
+- 0x139FE0, 0x159B30 PASS (m1_77).
+- 0x177AC0, 0x17DAB0 skip (register args).
+- 0x159E30 PASS (m1_77).
+- 0x13B620 now PASS (m1_77) with the (-(bit != 0) & 2) select; was hard.
+- 0x16DED0 PASS (m1_77).
