@@ -149,6 +149,7 @@ typedef struct M1StepX {
 } M1StepX;
 void sub_0001D700(void *p);
 void sub_0018B260(void *fx, const float *v);
+int  sub_000ED780(void *o);
 void sub_001B2080(void *r);
 void sub_00048250(int snd);
 void sub_00033A70(void *r);
