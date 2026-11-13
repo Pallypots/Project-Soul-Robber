@@ -323,3 +323,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x139EF0 m1_RigAim139EF0 PASS; 0x13FD20 retried with the ternary trick: still hard
 0x121DA0 m1_RigStep121DA0 PASS (call written in both branches keeps the orig's duplicate)
 0x1421C0 m1_RigCleanup1421C0 PASS; 0x138A10 knock-back: hard (orig keeps two 0xED780 calls; cl merges them in every layout tried)
+0x188FD0: skip (null checks on global array elements; cl drops them); 0x18A280, 0x18E540: skip (register/xmm args)
+0x172650 height offset: blocked (checker reads an indexed .rdata float table on the orig side as a float constant but as data on ours; orig also keeps a dead lea of the entry). Possible checker fix: treat declared data symbols in .rdata as data on both sides; 0x1701A0, 0x18ECD0: skip (register args)
+0x1576A0 m1_RigStep1576A0 PASS; 0x18F8D0: skip (eax arg)

@@ -183,3 +183,33 @@ int m1_RigCleanup1421C0(void *o, M1StepX *h)
     }
     return 1;
 }
+
+typedef struct M1RigZ { uint8_t unk00[0xC]; float f0C, f10; uint8_t unk14[0x24 - 0x14]; float q24[4]; } M1RigZ;
+typedef struct M1StepZ {
+    uint8_t unk000[0x4C];
+    uint32_t flags4C;          /* +0x4C */
+    uint8_t unk050[0x278 - 0x50];
+    M1RigZ *rig278;            /* +0x278 */
+} M1StepZ;
+typedef struct M1ObjZ { uint8_t unk00[0x10]; uint32_t flags10; uint8_t unk14[0x60 - 0x14]; float pos60[3]; } M1ObjZ;
+extern float m1_frameTime42C858;
+int  sub_00036750(void *o, int v);
+int  sub_000494D0(int id, const void *pos, int c);
+
+/* 0x001576A0: 0x1456E0(7), rig quaternion +0x24 = (0, 0, 0, 1), rig +0x10 = 0, rig +0x0C =
+ * frame time * 0.005, o flags |= 5, clear h +0x4C bits 0x1000070, 0x36750(0), sound 0x131 at o. */
+void m1_RigStep1576A0(M1ObjZ *o, M1StepZ *h)
+{
+    M1RigZ *r = h->rig278;
+    sub_001456E0(o, h, 7, 0);
+    r->q24[2] = 0.0f;
+    r->q24[1] = 0.0f;
+    r->q24[0] = 0.0f;
+    r->q24[3] = 1.0f;
+    r->f10 = 0.0f;
+    r->f0C = m1_frameTime42C858 * 0.005f;
+    o->flags10 |= 5;
+    h->flags4C &= 0xFEFFFF8Fu;
+    sub_00036750(o, 0);
+    sub_000494D0(0x131, o->pos60, 0);
+}
