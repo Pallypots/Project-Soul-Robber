@@ -198,3 +198,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA4560 m1_SetOwnedAnimA4560 PASS
 0xE7580 m1_CloseScreenE7580 PASS
 0x37BC0 m1_ChanShutdown37BC0 PASS
+0x3A020 m1_EmitBlock3A020 PASS
+0xEA170 event dispatch: hard (orig repeats always-true word compares cmp ax,ax that cl folds)

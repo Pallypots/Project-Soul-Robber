@@ -137,3 +137,4 @@ va,name,state,source,obj,waivers,notes
 0x000a4560,m1_SetOwnedAnimA4560,Structurally compared,src/game/m1_17.c,build/obj_m1/m1_17.obj,,"Switch in-use entries of owner to anim (+0x3C) and reset timer +0x40; 4x unroll as the original"
 0x000e7580,m1_CloseScreenE7580,Structurally compared,src/game/m1_37.c,build/obj_m1/m1_37.obj,,"Close the state-10000 screen: 0x253D0(0,0), stop 3 handles, free buffer, release slot 0xB9; state = 0"
 0x00037bc0,m1_ChanShutdown37BC0,Structurally compared,src/game/m1_24.c,build/obj_m1/m1_24.obj,,"Stop kind-1 channel handles and unpause, clear the 5 channel globals (checked then unconditional, as the original) around 0x37AE0"
+0x0003a020,m1_EmitBlock3A020,Structurally compared,src/game/m1_38.c,build/obj_m1/m1_38.obj,,"Write a fixed GPU command block (two matrices from m, state words, colour 0x2C453C); returns next word; regargs: p=EAX m=EBX"
