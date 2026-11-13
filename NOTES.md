@@ -466,3 +466,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x11D8A0 PASS (m1_91; wait defaulted to 0 first so cl shares the state-5 call).
 - 0x178080 PASS (m1_92). 0x171070 skip (eax/edi call 0x170E40).
 - 0x136B90 PASS (m1_92). 0x119690: hard (orig tests rig flag 0x8000 as test ah,ah/js on the loaded dword; cl emits an imm test whatever the form).
+- 0x137090, 0x184160 PASS (m1_93; signed rig byte works when it is a byte load).
+- 0x18B750 PASS (m1_93). 0x13F3E0: hard (cl tail-merges two of the five state calls).
