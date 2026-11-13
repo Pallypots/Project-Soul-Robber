@@ -97,3 +97,25 @@ void m1_StopSpeed10E350(void *o, M1Spd15C *h)
     h->f188 = 0.2f;
     sub_000F3DA0(o, 0x27, 0, 0);
 }
+
+typedef struct M1Ef60 { uint8_t unk00[0x60]; float pos60[4]; } M1Ef60;
+int sub_000494D0(int id, const void *pos, int c);
+
+/* 0x0010C590: like 0x10C510 with modes 0xF3B30(0x20), 0xF3B00(0x44), 0xF3B30(0x20),
+ * 0xF3F00(0) and sound 0x19B at o. */
+void m1_ResetMotion10C590(M1Ef60 *o, M1VecHold2 *h)
+{
+    sub_000F3B30(o, 0x20);
+    h->fB4 = m1_frameRate42C85C * 98.0f;
+    h->vB8[2] = 0.0f;
+    h->vB8[1] = 0.0f;
+    h->vB8[0] = 0.0f;
+    h->vC4[3] = 0.0f;
+    h->vC4[2] = 0.0f;
+    h->vC4[1] = 0.0f;
+    h->vC4[0] = 0.0f;
+    sub_000F3B00(o, 0x44);
+    sub_000F3B30(o, 0x20);
+    sub_000F3F00(o, 0.0f);
+    sub_000494D0(0x19B, o->pos60, 1);
+}
