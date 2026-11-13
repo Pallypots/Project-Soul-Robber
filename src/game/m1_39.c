@@ -183,3 +183,4 @@ void m1_HitReact109370(M1Obj128 *o, M1HitD *d)
             sub_000F3D10(o, c, 3);
     }
 }
+
