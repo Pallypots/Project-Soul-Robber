@@ -103,6 +103,7 @@ void m1_GatherTargetCB390(M1JackT *p, M1Tgt *t)
 
 
 void sub_000CBFF0(M1JackT *p);
+extern uint8_t m1_opt413144;   /* 0x00413144 target-sort option */
 
 /* 0x000CC360: re-evaluates Jack's current target: a valid non-kind-1 target that
  * changed reruns the selection steps; an invalid one forces a full refresh with the
@@ -140,4 +141,29 @@ void m1_RecheckTargetCC360(M1JackT *p)
     sub_0003AF70();
     sub_000CC180(p);
     p->flags150 = saved;
+}
+
+typedef struct M1Node20 { uint8_t unk00[0x20]; void *mtx20; } M1Node20;
+void sub_001AD9B0(float *out, const void *m, const float *in);
+
+/* 0x000CB490: when the option is on and Jack has targets, transforms a down vector
+ * by his node matrix (result unused, as in the original) and sets each target's
+ * sort key to its distance (truncated) times 1000. */
+void m1_TargetKeysCB490(M1JackT *p)
+{
+    float v[4];
+    int i;
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = -1.0f;
+    v[3] = 0.0f;
+    if (p->flags150 & 0x10000000)
+        return;
+    if (!m1_opt413144)
+        return;
+    if (p->count318 == 0)
+        return;
+    sub_001AD9B0(v, ((M1Node20 *)p->node0FD8)->mtx20, v);
+    for (i = 0; i < p->count318; i++)
+        p->a4A8[i] = (int)p->dist328[i] * 1000;
 }
