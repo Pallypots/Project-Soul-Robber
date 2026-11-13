@@ -345,3 +345,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCBEB0, 0xA82C0, 0x94360/0x943D0 (M1_GROW, double literal keeps the x87 fmul qword) PASS; 0xF1E80: skip (double store to the same field)
 0xDD990: hard (orig builds the id's high byte with mov dh; cl shifts); 0xA9440, 0x497E0, 0x6DC00: skip (register args)
 0x94680, 0xCF2C0, 0xF95B0, 0x904F0, 0xA30F0 PASS (m1_58.c); 0xD2C40: hard (always-true null test, like 0xD2CC0); 0x38AD0: skip (register args)
+0xFC8F0/0xFCC20 helper speed: hard (cl merges the two 0x832D0 calls); 0xA7570 m1_MsgQueue0A7570 PASS
+0x53760 m1_PoolsInit053760 PASS (index loop for the signed end test); 0xFC970: hard (merged 0x832D0 calls, as 0xFC8F0); 0xCF330: skip (x87 result of 0xBC040 into a field mid-sequence)
+0xEFA60 m1_TurnAround0EFA60 PASS; 0xF3260: hard (0..15 range fold); 0xC9280: skip (register args)

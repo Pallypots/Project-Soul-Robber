@@ -756,3 +756,14 @@ sub_00026650,0x00026650,func,,
 sub_000EDF10,0x000EDF10,func,,
 sub_000A4870,0x000A4870,func,,
 sub_00082A30,0x00082A30,func,,
+m1_msgCount423F60,0x00423F60,data,,
+m1_msgIds423F64,0x00423F64,data,4,29
+m1_msgs420F04,0x00420F04,data,,
+m1_msgText2E4118,0x002E4118,data,4,64
+m1_poolBase3E27FC,0x003E27FC,data,,
+m1_poolTotal3E27F8,0x003E27F8,data,,
+m1_poolUsed3E26CC,0x003E26CC,data,,
+m1_pools3E26A8,0x003E26A8,data,4,9
+m1_poolAux3E26D0,0x003E26D0,data,4,9
+m1_poolDefs26BE90,0x0026BE90,data,8,9
+m1_poolFile26BED8,0x0026BED8,data,,
