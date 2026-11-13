@@ -72,3 +72,33 @@ void m1_FadeOut10A0A0(M1MdlNode *o, M1H68b *h)
         sub_000F3D10(o, c, 0);
     sub_000F3B70(o, 3);
 }
+
+typedef struct M1Act10 { uint8_t unk00[0x10]; uint32_t flags10; uint8_t unk14[0x30 - 0x14]; int32_t f30; } M1Act10;
+typedef struct M1Hit20 { uint8_t unk00[0x20]; uint32_t flags20; uint8_t unk24[0x74 - 0x24]; float f74; } M1Hit20;
+int  sub_000833E0(int v);
+int  aab_Rand(void);
+void sub_00113040(void *o, void *h, int next);
+
+typedef struct M1RigF { uint8_t unk00[4]; uint32_t flags04; } M1RigF;
+typedef struct M1StepF {
+    uint8_t unk000[0x270];
+    float   f270, f274;        /* +0x270 */
+    M1RigF *rig278;            /* +0x278 */
+} M1StepF;
+void sub_000253D0(int slot, int v);
+void sub_00117580(void *o, int v);
+
+/* 0x00119900: first time through (rig flag 0x2000) writes +0x270 and +0x274 as ints to
+ * slots 5 and 6 and 0 to slot 4 (0x253D0); then 0x117580(1) once 0x833E0(o +0x30) is ready. */
+void m1_RigOnce119900(M1Act10 *o, M1StepF *h)
+{
+    M1RigF *r = h->rig278;
+    if (!(r->flags04 & 0x2000)) {
+        r->flags04 |= 0x2000;
+        sub_000253D0(5, (int)h->f270);
+        sub_000253D0(6, (int)h->f274);
+        sub_000253D0(4, 0);
+    }
+    if (sub_000833E0(o->f30) != 0)
+        sub_00117580(o, 1);
+}
