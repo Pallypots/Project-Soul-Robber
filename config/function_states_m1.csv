@@ -185,3 +185,4 @@ va,name,state,source,obj,waivers,notes
 0x00183a80,m1_SetupPair183A80,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Singleton actor pair at 0x3FE38C: callbacks 0x183360/0x1833B0, params, flags, start position 0x27A9AC, animation 0, event 0; returns 1"
 0x00183d30,m1_SetupFixed183D30,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Fixed actor at (-16, -120, -188), unrotated, scale 1, standard callbacks, params 0x32BC74/0x32BC88, event 1; returns 1"
 0x001852e0,m1_SetupHold1852E0,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Bind o and a to hold slot i of 0x3FE3B0 (callbacks 0x184670/0x102FA0, params 0x32BCCC/0x32BCD8), scale 1; returns 1"
+0x00114300,m1_EnemyDefaults114300,Structurally compared,src/game/m1_45.c,build/obj_m1/m1_45.obj,,"Enemy actor defaults: clear state, no sound, unit vectors, 0x1141F0, default callbacks (stubs 0xAD090/0x102FA0, draw 0x113B20)"
