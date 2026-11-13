@@ -162,3 +162,5 @@ va,name,state,source,obj,waivers,notes
 0x000ced50,m1_BoneRelease0CED50,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Bone entry release for key 0 (0xCDAB0 lookup, 0xCDB50/0xCDBA0, 0xCDBE0 with +0x28 in EAX: Hypothesis), then 0xCE4C0 look refresh"
 0x000ceda0,m1_BoneHold1CEDA0,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Bone entry hold for key 1 (0xCDAB0 lookup, 0xCDB50/0xCDBA0, 0xCDBE0 with +0x28 in EAX: Hypothesis), then 0xCE4C0 look refresh"
 0x000cedf0,m1_BoneRelease1CEDF0,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Bone entry release for key 1 (0xCDAB0 lookup, 0xCDB50/0xCDBA0, 0xCDBE0 with +0x28 in EAX: Hypothesis), then 0xCE4C0 look refresh"
+0x000caad0,m1_FeedLevelCAAD0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Limiter 0xCA850 fed ((level+1)*0.96, (level+5)*10, 0, mode, 50); float math may run on x87 in the cl build (behaviour-test priority)"
+0x00109400,m1_ResetMotion109400,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Zero h vector +0xC4 and o +0x50, then o modes 0xF3B30(4), 0xF3B00(0x20), 0xF3F00(0.5)"
