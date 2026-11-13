@@ -423,6 +423,23 @@ def events(code, base, resolve, md, fconst=None, local=None, use_bias=False):
                 imm[("k", k)] += 1
                 imm[("k", (k + d) & 0xFFFFFFFF)] += 1
                 prev = i; continue
+        if use_bias and m == "neg" and len(ops) == 1 and ops[0].type == x86.X86_OP_REG and ii >= 1:
+            # `sbb r,r; neg r [; add r,K]` yields K or K+1
+            rn = i.reg_name(ops[0].reg)
+            p1 = insns[ii - 1]
+            if p1.mnemonic == "sbb" and p1.op_str == rn + ", " + rn:
+                k = 0
+                for jj in range(ii + 1, min(ii + 4, len(insns))):
+                    q = insns[jj]
+                    if q.mnemonic == "add" and q.op_str.startswith(rn + ", ") and q.operands[1].type == x86.X86_OP_IMM:
+                        k = q.operands[1].imm & 0xFFFFFFFF
+                        skip_sel.add(jj)
+                        break
+                    if q.op_str.startswith(rn + ",") or q.op_str == rn or q.mnemonic.startswith(("j", "call", "ret")):
+                        break
+                imm[("k", k)] += 1
+                imm[("k", (k + 1) & 0xFFFFFFFF)] += 1
+                prev = i; continue
         if use_bias and m == "add" and len(ops) == 2 and ops[0].type == x86.X86_OP_REG and                 ops[1].type == x86.X86_OP_IMM and ii >= 1 and insns[ii - 1].mnemonic.startswith("set"):
             # `setcc r8; add r32,K` yields K or K+1
             low = {"eax": "al", "ebx": "bl", "ecx": "cl", "edx": "dl"}.get(i.reg_name(ops[0].reg))
