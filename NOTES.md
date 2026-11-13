@@ -19,6 +19,7 @@ Repo: C:\ProjectOogieDecomp (GitHub Pallypots/Project-Soul-Robber). XBE: C:\Proj
 - Security-cookie functions (call 0x1C7D27): put them in a file whose name contains `_gs` (e.g. m1_gs1.c); clto_gs.bat/build_all compile those with /GS. Cookie symbols are mapped in config/symbols_m1.csv.
 - Skip: XMM float args/results, thiscall with stack args.
 - Fails after 3 attempts -> log below as hard, move on.
+- When backing out an attempt, remove only symbol lines added in that attempt (check `git diff config/symbols_m1.csv`); a sed on a name can delete an older line.
 
 ## Current area for my own work
 Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1).
@@ -208,3 +209,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCB390 m1_GatherTargetCB390 PASS* (merged-bit-test waiver)
 0xCB540 target selection sort: hard (orig walks order[] and reads key[] at -0x80; cl walks key[] and bumps the pointer mid-iteration)
 0xCE4C0 m1_PartsLookCE4C0 PASS (own file to stop inlining)
+0x107490 m1_BossTeardown107490 PASS
