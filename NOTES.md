@@ -270,3 +270,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x1090F0 m1_HitReact1090F0 PASS
 0x10C510 m1_ResetMotion10C510 PASS
 0x10E350 m1_StopSpeed10E350 PASS
+0xA8C90 m1_AnyNearA8C90 PASS

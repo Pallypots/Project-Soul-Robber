@@ -360,3 +360,32 @@ void m1_StageRestartF4590(void)
     if (c->snd124 == -1)
         c->snd124 = sub_000494D0(0x1E3, c->node08C + 0x60, 1);
 }
+
+typedef struct M1EntE0 {
+    uint32_t flags00;          /* +0x00 bit 0 in use, bits 1-2 kind */
+    uint8_t  unk04[0x24 - 4];
+    float    pos24[4];         /* +0x24 */
+    uint8_t  unk34[0xE0 - 0x34];
+} M1EntE0;
+extern M1EntE0 m1_entsE41E2A0[32];   /* 0x0041E2A0 */
+int sub_000A8090(void *t, const float *pos);
+
+/* 0x000A8C90: 1 if any in-use entry of kind 1..3 is accepted by 0xA8090 for t
+ * (tested at the entry's position), else -1. */
+int m1_AnyNearA8C90(void *t)
+{
+    float v[4];
+    int i;
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 1.0f;
+    for (i = 0; i < 32; i++) {
+        if ((m1_entsE41E2A0[i].flags00 & 1) && (m1_entsE41E2A0[i].flags00 & 6)) {
+            sub_000F5D40(v, m1_entsE41E2A0[i].pos24);
+            if (sub_000A8090(t, v) > 0)
+                return 1;
+        }
+    }
+    return -1;
+}
