@@ -84,3 +84,26 @@ void m1_SamplePose191F0(const M1CurveSet *set, M1Pose44 *out, int t)
     out->s10[2] = sub_00062080(&set->c[8], t);
     out->v40 = sub_00062080(&set->c[9], t);
 }
+
+typedef struct M1Rec54 {
+    int32_t f00, f04, f08;     /* +0x00 */
+    uint8_t unk0C[0x18 - 0xC];
+    int32_t h18;               /* +0x18, -1 */
+    uint8_t unk1C[0x24 - 0x1C];
+    int16_t w24;               /* +0x24 */
+    uint8_t unk26[0x50 - 0x26];
+    int16_t w50;               /* +0x50, -1 */
+    uint8_t unk52[2];
+} M1Rec54;
+extern M1Rec54 m1_recs3FDC70[6];   /* 0x003FDC70 */
+#define M1_REC54_INIT(r) (r).f00 = 0; (r).f04 = 0; (r).f08 = 0; (r).h18 = -1; (r).w24 = 0; (r).w50 = -1
+/* 0x0017CDC0: resets the six 0x54 records (unrolled, as the original). */
+void m1_ResetRecs17CDC0(void)
+{
+    M1_REC54_INIT(m1_recs3FDC70[0]);
+    M1_REC54_INIT(m1_recs3FDC70[1]);
+    M1_REC54_INIT(m1_recs3FDC70[2]);
+    M1_REC54_INIT(m1_recs3FDC70[3]);
+    M1_REC54_INIT(m1_recs3FDC70[4]);
+    M1_REC54_INIT(m1_recs3FDC70[5]);
+}

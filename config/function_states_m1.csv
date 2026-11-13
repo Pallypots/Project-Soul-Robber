@@ -154,3 +154,5 @@ va,name,state,source,obj,waivers,notes
 0x000ba630,m1_SeqStepBA630,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Two-step sequencer: event 0xD1 turns slots 7/8 off and restyles 7"
 0x000ba020,m1_SeqStepBA020,Structurally compared,src/game/m1_21.c,build/obj_m1/m1_21.obj,,"Sequencer ending at step 0x63: event 0x14B runs 0xA5450 for 0..3"
 0x0017d810,m1_SceneEnd17D810,Structurally compared,src/game/m1_36.c,build/obj_m1/m1_36.obj,,"Free six scene resources (0x3FDE70..84), 0x17D780, disable o (flags 0xD on, bit 0 off), clear actor work, refresh o; returns 1"
+0x0017cdc0,m1_ResetRecs17CDC0,Structurally compared,src/game/m1_38.c,build/obj_m1/m1_38.obj,,"Reset six 0x54 records at 0x3FDC70 (unrolled as the original): f0/f4/f8 = 0, +0x18 = -1, word +0x24 = 0, word +0x50 = -1"
+0x000cc360,m1_RecheckTargetCC360,Structurally compared,src/game/m1_40.c,build/obj_m1/m1_40.obj,data:0x10000;data:0x10001,"Re-evaluate Jack current target: valid changed target reruns selection, invalid forces full refresh with busy flag cleared; waiver: merged bit tests &1/&0x10000 (documented idiom; mask listed as data)"

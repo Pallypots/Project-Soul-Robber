@@ -220,3 +220,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xBA020 m1_SeqStepBA020 PASS
 0xB7120 multi-step sequencer: hard (orig shares one 0xA4340 call between steps 14/16 via the jump table; cl splits it)
 0x17D810 m1_SceneEnd17D810 PASS
+0x4ED90 pad reset: hard (cl merges the sixteen 0x7F axis byte stores into four 0x7F7F7F7F dword stores)
+0x17CDC0 m1_ResetRecs17CDC0 PASS
+0xCC360 m1_RecheckTargetCC360 PASS* (merged-bit-test waiver)

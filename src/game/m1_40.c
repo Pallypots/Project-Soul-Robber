@@ -6,7 +6,9 @@ typedef struct M1JackT {
     uint32_t flags150;         /* +0x150, 0x10000000 = busy */
     uint8_t  unk154[0x318 - 0x154];
     int32_t  count318;         /* +0x318 */
-    uint8_t  unk31C[0x328 - 0x31C];
+    int32_t  cur31C;           /* +0x31C */
+    int32_t  last320;          /* +0x320 */
+    int32_t  f324;             /* +0x324 */
     float    dist328[0x20];    /* +0x328 */
     int32_t  kind3A8[0x20];    /* +0x3A8 */
     void    *a428[0x20];       /* +0x428 target object */
@@ -99,3 +101,43 @@ void m1_GatherTargetCB390(M1JackT *p, M1Tgt *t)
     p->count318++;
 }
 
+
+void sub_000CBFF0(M1JackT *p);
+
+/* 0x000CC360: re-evaluates Jack's current target: a valid non-kind-1 target that
+ * changed reruns the selection steps; an invalid one forces a full refresh with the
+ * busy flag temporarily cleared. */
+void m1_RecheckTargetCC360(M1JackT *p)
+{
+    int e;
+    M1Tgt *t;
+    uint32_t saved;
+    if (p->count318 == 0)
+        return;
+    e = p->order528[p->cur31C];
+    t = p->a428[e];
+    if (t == 0)
+        return;
+    if (p->kind3A8[e] == 1)
+        return;
+    if ((t->flags0C & 1) && !(t->flags0C & 0x10000) && !(t->flags10 & 9)) {
+        if (p->cur31C == p->last320)
+            return;
+        sub_000CB640(p);
+        sub_0003AF70();
+        sub_000CC180(p);
+        p->last320 = p->cur31C;
+        return;
+    }
+    saved = p->flags150;
+    p->flags150 = saved & ~0x10000000u;
+    p->f324 = 0;
+    sub_000CB340(p);
+    sub_000CBFF0(p);
+    sub_000CB490(p);
+    sub_000CB540(p);
+    sub_000CB640(p);
+    sub_0003AF70();
+    sub_000CC180(p);
+    p->flags150 = saved;
+}
