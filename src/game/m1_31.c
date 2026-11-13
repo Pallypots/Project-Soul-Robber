@@ -165,3 +165,47 @@ void m1_ResetMotion10C630(M1Ef50 *o, M1VecHold2 *h)
     sub_000F3B30(o, 0x44);
     sub_000F3B00(o, 0x20);
 }
+
+/* 0x0010EC80: zeroes the speed vector (frame rate * 0.0), modes 0xF3B00(5),
+ * 0xF3BB0(0, 0) and starts mode 0x12. */
+void m1_StopSpeed10EC80(void *o, M1Spd15C *h)
+{
+    h->v15C[0] = m1_frameRate42C85C * 0.0f;
+    h->v15C[1] = m1_frameRate42C85C * 0.0f;
+    h->v15C[2] = m1_frameRate42C85C * 0.0f;
+    h->v15C[3] = m1_frameRate42C85C * 0.0f;
+    sub_000F3B00(o, 5);
+    sub_000F3BB0(o, 0, 0);
+    sub_000F3DA0(o, 0x12, 0, 0);
+}
+
+typedef struct M1VecHold3 {
+    uint8_t unk000[0x98];
+    int32_t snd098;            /* +0x98, <0 = none */
+    uint8_t unk09C[0xB4 - 0x9C];
+    float   fB4;               /* +0xB4 */
+    float   vB8[3];            /* +0xB8 */
+    float   vC4[4];            /* +0xC4 */
+} M1VecHold3;
+void sub_00048250(int h);
+
+/* 0x0010AB90: speed = frame rate * 98, vectors and o +0x50 cleared, modes 0x44 /
+ * 0x20, and stops the sound at +0x98. */
+void m1_ResetMotion10AB90(M1Ef50 *o, M1VecHold3 *h)
+{
+    h->fB4 = m1_frameRate42C85C * 98.0f;
+    h->vB8[2] = 0.0f;
+    h->vB8[1] = 0.0f;
+    h->vB8[0] = 0.0f;
+    h->vC4[3] = 0.0f;
+    h->vC4[2] = 0.0f;
+    h->vC4[1] = 0.0f;
+    h->vC4[0] = 0.0f;
+    o->f50 = 0.0f;
+    sub_000F3B30(o, 0x44);
+    sub_000F3B00(o, 0x20);
+    if (h->snd098 >= 0) {
+        sub_00048250(h->snd098);
+        h->snd098 = -1;
+    }
+}
