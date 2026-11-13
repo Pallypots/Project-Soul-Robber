@@ -387,7 +387,8 @@ void m1_DrainFuel10E760(M1EfAn *o, M1Fuel *h)
 typedef struct M1Spd3 {
     uint8_t unk000[0xC8];
     void   *partC8;            /* +0xC8 */
-    uint8_t unk0CC[0xE0 - 0xCC];
+    uint8_t unk0CC[0xDC - 0xCC];
+    float   fDC;               /* +0xDC */
     void   *resE0;             /* +0xE0 */
     uint8_t unk0E4[0x15C - 0xE4];
     float   v15C[4];           /* +0x15C */
@@ -543,3 +544,51 @@ void name(void *o, M1Spd3 *h)                             \
 M1_SPEED_STOP_ANIM(m1_StopSpeed10D5D0, 0x13, -1)
 /* 0x0010D790: speed stop, animation 0x14. */
 M1_SPEED_STOP_ANIM(m1_StopSpeed10D790, 0x14, 0)
+
+typedef struct M1Cmp30C4 { uint8_t unk00[0xE8]; float fE8; } M1Cmp30C4;
+typedef struct M1Cmp30   { uint8_t unk00[0xC4]; M1Cmp30C4 *pC4; } M1Cmp30;
+typedef struct M1Part30  { uint8_t unk00[0x20]; M1Cmp30 *p20; } M1Part30;
+
+/* 0x0010EB90: speed stop with mode 4 on o and part, then the part's
+ * +0x20 -> +0xC4 component gets +0xE8 = 128.0. */
+void m1_StopSpeed10EB90(void *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+    ((M1Part30 *)h->partC8)->p20->pC4->fE8 = 128.0f;
+}
+
+typedef struct M1ObjD4 { uint8_t unk00[0xD4]; void (*cbD4)(void); uint8_t unkD8[0xE8 - 0xD8]; float fE8; } M1ObjD4;
+void sub_00102FA0(void);
+
+/* 0x0010E510: speed stop that sets o +0xE8 = h +0xDC * 27.9 and the o +0xD4
+ * callback to 0x102FA0 before mode 4 on o and part. */
+void m1_StopSpeed10E510(M1ObjD4 *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    o->fE8 = h->fDC * 27.9f;
+    o->cbD4 = sub_00102FA0;
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+}

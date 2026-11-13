@@ -294,3 +294,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x10E030 m1_StopSpeed10E030 PASS
 0x10B250 m1_ResetMotion10B250 / 0x10D6B0 m1_StopSpeed10D6B0 PASS
 0x10D5D0/0x10D790 speed stop + anim (M1_SPEED_STOP_ANIM) PASS
+0x10EB90/0x10E510 speed stop variants PASS

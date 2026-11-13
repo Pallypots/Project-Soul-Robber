@@ -229,3 +229,5 @@ va,name,state,source,obj,waivers,notes
 0x0010d6b0,m1_StopSpeed10D6B0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"As 0x10E030 plus music event 1 (0x19000) and 0xBCA50(3) before the mode-4 calls"
 0x0010d5d0,m1_StopSpeed10D5D0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed zero, free +0xE0, stop kind-5 sound, 0xF3B00(4) on o and part, 0xF3BB0(0,0), animation 0x13 (-1) via 0xF3DA0"
 0x0010d790,m1_StopSpeed10D790,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"As 0x10D5D0 with animation 0x14 (0)"
+0x0010eb90,m1_StopSpeed10EB90,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed stop with mode 4 on o and part, then part +0x20 -> +0xC4 component +0xE8 = 128.0"
+0x0010e510,m1_StopSpeed10E510,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed stop that sets o +0xE8 = h +0xDC * 27.9 and the o +0xD4 callback to 0x102FA0 before mode 4 on o and part"
