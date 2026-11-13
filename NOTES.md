@@ -409,3 +409,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x13FF80, 0x115970, 0x115DB0 PASS (m1_74; M1_SWAY template for 0x1456E0 + command-1 sway setups).
 - 0x115760, 0x115E70, 0x115F50, 0x12EDC0, 0x12EF90, 0x12F080, 0x12F550 PASS (m1_75; M1_SWAYQ: rig type, quaternion reset, pre and body are parameters). 0x115620 is the same family with an extra random sound and table copies, not tried yet.
 - 0x115620 PASS (m1_75), sway point table 0x31A3B0 has 6 entries of 0x18.
+- 0x13E6B0 PASS (m1_76, sibling of 0x13E770). 0x127470 skip (register-arg calls 0x11EDE0/0x11F2B0).
+- 0x1416A0: hard (rand pick 0x1D/10 is setge/dec/and; cl always emits cmovge, even written as arithmetic).
+- 0x17C1F0 PASS (m1_76).
+- 0x13E4A0 PASS (m1_76). neg/sbb select: write (-(bit != 0) & k) + base; a ternary or bit*k+base gives lea/cmov. Retry 0x13B620 with this. 0x110540 skip (tail jmp with eax arg).
