@@ -23,6 +23,7 @@ void  sub_0001EB80(M1ObjR *o);
 void  sub_000362B0(M1ObjR *o);
 void  sub_00033C20(void *h);
 void  sub_0005BC50(void *h);
+void  sub_00048250(int h);
 
 /* 0x000EC670: if o has a kind-12 component that allows it, unlinks o from list
  * 0x3F59C0, removes the component, clears bit 0, and frees both resources. 1 when
@@ -104,4 +105,24 @@ int m1_BossTeardown107490(M1Rec150 *o)
     sub_0001D910B(o, c);
     sub_0001D910B(o, d);
     return 1;
+}
+
+typedef struct M1Comp5E4 { uint8_t unk00[0xE4]; int32_t sndE4; } M1Comp5E4;
+typedef struct M1Hit68 { uint8_t unk00[0x68]; float dmg68; } M1Hit68;
+M1Comp5E4 *sub_0001D960E(void *o, int kind);   /* 0x0001D960 */
+void sub_0010FD50(void *o);                    /* regargs: o=EAX */
+
+/* 0x001108A0: on a hit of at least 2.0, stops the kind-5 component's sound and runs
+ * the hit reaction 0x10FD50. */
+void m1_HitStrong1108A0(void *o, M1Hit68 *h)
+{
+    M1Comp5E4 *c;
+    if (!(h->dmg68 >= 2.0f))
+        return;
+    c = sub_0001D960E(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_0010FD50(o);
 }
