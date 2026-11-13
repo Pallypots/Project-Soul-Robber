@@ -165,3 +165,5 @@ va,name,state,source,obj,waivers,notes
 0x000caad0,m1_FeedLevelCAAD0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Limiter 0xCA850 fed ((level+1)*0.96, (level+5)*10, 0, mode, 50); float math may run on x87 in the cl build (behaviour-test priority)"
 0x00109400,m1_ResetMotion109400,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Zero h vector +0xC4 and o +0x50, then o modes 0xF3B30(4), 0xF3B00(0x20), 0xF3F00(0.5)"
 0x001108a0,m1_HitStrong1108A0,Structurally compared,src/game/m1_39.c,build/obj_m1/m1_39.obj,,"Hit of at least 2.0: stop kind-5 component sound +0xE4, then hit reaction 0x10FD50 (regargs o=EAX)"
+0x000cec90,m1_BoneSetCEC90,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Hold or release the bone entry for (m, key) by flag; returns index or -1; regargs: m=EAX key=ECX"
+0x000ce880,m1_BoneEntsInitCE880,Structurally compared,src/game/m1_42.c,build/obj_m1/m1_42.obj,,"Clear all 16 bone entries of 0x41C7C0 (scales +0x14/+0x18 = 1.0, rest 0)"

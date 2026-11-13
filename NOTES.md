@@ -235,3 +235,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xF9230 apply velocity: hard (orig keeps a self-copy of +0x6C that cl deletes)
 0x102950 camera distance: hard (cl rewrites y*-0.015625*2 float constants)
 0x1108A0 m1_HitStrong1108A0 PASS
+0xCEC90 m1_BoneSetCEC90 PASS
+0xCE880 m1_BoneEntsInitCE880 PASS
