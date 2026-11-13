@@ -459,3 +459,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x135170 PASS (m1_88, countdown loop of 3 kept).
 - 0x144720 PASS (m1_88; state picked into one variable so cl keeps a single call). 0x16C480 skip (register args).
 - 0x1700C0 skip (eax register arg).
+- 0x175310, 0x17D5C0 PASS (m1_89). 0x1869A0 skip (eax-arg calls 0x186160/0x186470).
