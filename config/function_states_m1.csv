@@ -207,3 +207,4 @@ va,name,state,source,obj,waivers,notes
 0x0017d780,m1_SceneReset17D780,Structurally compared,src/game/m1_47.c,build/obj_m1/m1_47.obj,,"Clear the scene pair, six resources and state values around 0x3FDE68; 0x3FDEC0 = 1.0"
 0x000eacc0,m1_RestoreViewEACC0,Structurally compared,src/game/m1_47.c,build/obj_m1/m1_47.obj,,"Both scale values = info count * 0.001, copy five saved words back from +0x850, +0x7B0 = 1.0"
 0x000cbe20,m1_AimAtTargetCBE20,Structurally compared,src/game/m1_40.c,build/obj_m1/m1_40.obj,,"Jack velocity +0x5D0 = direction to target +0x5C0 scaled by distance / 30"
+0x0017fb10,m1_StepUpdate17FB10,Structurally compared,src/game/m1_44.c,build/obj_m1/m1_44.obj,,"Three-step update: restart animation, wait until finished (0xF5D00), event 0 after one second"

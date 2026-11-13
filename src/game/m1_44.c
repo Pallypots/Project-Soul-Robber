@@ -450,3 +450,39 @@ void m1_DrawStd183200(M1DrawObj *o)
     m[15] = 1.0f;
     sub_001ADA40(o->mtx20, m);
 }
+
+typedef struct M1StepW {
+    uint8_t unk00[0x10];
+    float   t10;               /* +0x10 */
+    int32_t step14;            /* +0x14 */
+} M1StepW;
+typedef struct M1ActStep { uint8_t unk000[0x278]; M1StepW *w278; } M1ActStep;
+typedef struct M1ObjAn { uint8_t unk00[0x30]; void *anim30; } M1ObjAn;
+extern float m1_frameRate42C85C;
+int sub_000F5D00(void *o);
+
+/* 0x0017FB10: three-step update: restart o's animation, wait until it finishes,
+ * then after one second send event 0. */
+void m1_StepUpdate17FB10(M1ObjAn *o, M1ActStep *a)
+{
+    M1StepW *w = a->w278;
+    switch (w->step14) {
+    case 0:
+        sub_000832D0(o->anim30, 0);
+        w->step14++;
+        break;
+    case 1:
+        if (sub_000F5D00(o)) {
+            w->t10 = 0.0f;
+            w->step14++;
+        }
+        break;
+    case 2:
+        if (w->t10 > 1.0f) {
+            sub_00113040(o, a, 0);
+            return;
+        }
+        w->t10 += m1_frameRate42C85C;
+        break;
+    }
+}

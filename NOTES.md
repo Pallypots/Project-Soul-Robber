@@ -278,3 +278,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x1A4190 matrix fill: skipped (float argument passed in XMM0)
 0xEACC0 m1_RestoreViewEACC0 PASS
 0xCBE20 m1_AimAtTargetCBE20 PASS
+0x17FB10 m1_StepUpdate17FB10 PASS
