@@ -213,3 +213,28 @@ void m1_RigIdle12F380(M1ObjQ *o, M1StepQ *h)
     h->flags4C &= ~0x70u;
     r->f180 = ((float)aab_Rand() * (1.0f / 32767.0f) + 1.0f) * 10.0f;
 }
+
+/* 0x0012F420: 0x1456E0(0x13) (0x1D4E0 on 1), rig quaternion +0x164 = (0, 0, 0, 1),
+ * 0x414A0(1); with rig flag 1 sets o flags 5, and with rig flag 0x200 as well sets o flag
+ * 0x100, clears o +0xC bits 0xE0 and sets rig flag 4. */
+void m1_RigIdle12F420(M1ObjQ *o, M1StepQ *h)
+{
+    M1RigQ *r = h->rig278;
+    M1RigQ *p;
+    if (sub_001456E0(o, h, 0x13, 0) == 1)
+        sub_0001D4E0(o);
+    p = h->rig278;
+    p->q164[2] = 0.0f;
+    p->q164[1] = 0.0f;
+    p->q164[0] = 0.0f;
+    p->q164[3] = 1.0f;
+    sub_000414A0(1);
+    if (r->flags0C & 1) {
+        o->flags10 |= 5;
+        if (r->flags0C & 0x200) {
+            o->flags10 |= 0x100;
+            o->flags0C &= ~0xE0u;
+            r->flags0C |= 4;
+        }
+    }
+}
