@@ -227,3 +227,34 @@ void m1_RigStep13E770(M1Act10 *o, M1StepC *h)
     c->f18 = 0.087266468f;
     c->f1C = 1.0471976f;
 }
+
+typedef struct M1RigV { uint8_t unk00[0x30]; float v30[4]; float v40[4]; float f50, f54, f58, f5C, f60, f64; } M1RigV;
+typedef struct M1StepV {
+    uint8_t unk000[0x4C];
+    uint32_t flags4C;          /* +0x4C */
+    uint8_t unk050[0x278 - 0x50];
+    M1RigV *rig278;            /* +0x278 */
+} M1StepV;
+extern float m1_frameRate42C85C;
+void sub_000F5D40(float *dst, const float *src);
+
+/* 0x0012C730: 0x1456E0(0x24), rig +0x40 = rig +0x30, rig spin (0, frame rate * -30, 0),
+ * rig scale (1, 1, 1), o flags |= 5, h +0x4C |= 0x1000000, 0x36750(5). */
+void m1_RigSpin12C730(M1Act10 *o, M1StepV *h)
+{
+    M1RigV *r;
+    float t;
+    sub_001456E0(o, h, 0x24, 0);
+    r = h->rig278;
+    t = m1_frameRate42C85C * -30.0f;
+    sub_000F5D40(r->v40, r->v30);
+    r->f58 = 0.0f;
+    r->f50 = 0.0f;
+    r->f54 = t;
+    r->f5C = 1.0f;
+    r->f60 = 1.0f;
+    r->f64 = 1.0f;
+    o->flags10 |= 5;
+    h->flags4C |= 0x1000000;
+    sub_00036750(o, 5);
+}
