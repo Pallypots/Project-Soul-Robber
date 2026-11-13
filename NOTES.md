@@ -437,3 +437,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x103770 PASS (m1_82).
 - 0x11A590: hard (_ftol for the random wait; orig cvttss2si).
 - 0x1390E0: hard (cl does the whole wait/distance test in x87 with a double 15.0; orig uses SSE comiss for the wait). 0x159D60 not tried yet.
+- 0x159D60 PASS (m1_83).
+- 0x1811F0: hard (cl merges the two state-2 calls; orig keeps one per branch). 0x16FBC0 skip (esi arg call 0x16FB60).
+- 0x18BA50 PASS (m1_83). 0x189020 skip for now (always-true null check on &table[i]).
