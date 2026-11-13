@@ -449,3 +449,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x17CC00 PASS (m1_85). 0x18B8F0 skip for now (x87 fild random angles).
 - 0x12DDE0 PASS (m1_85).
 - 0x184530 PASS (m1_85).
+- 0x1357F0, 0x11B210 PASS (m1_86).
+- 0x18C6B0: hard (orig checks 10 slots unrolled; cl re-rolls even hand-unrolled code into a loop).
