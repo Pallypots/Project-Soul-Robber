@@ -172,3 +172,58 @@ void name(M1Fl0C *o, M1Step160 *h)                          \
 M1_RIG_IDLE(m1_RigIdle12E720, 1, flags0C, 0x204)
 /* 0x001360B0: rig idle, quaternion at +0x160, rig +0x8 |= 0x84. */
 M1_RIG_IDLE(m1_RigIdle1360B0, 0, flags08, 0x84)
+
+typedef struct M1RigC { uint8_t unk00[4]; uint32_t flags04; uint8_t unk08[0x18 - 8]; uint8_t fade18[0x34 - 0x18]; void *p34; } M1RigC;
+typedef struct M1StepC {
+    uint8_t unk000[0x22];
+    uint8_t b22;               /* +0x22 */
+    uint8_t unk023[0x4C - 0x23];
+    uint32_t flags4C;          /* +0x4C */
+    uint8_t unk050[0x278 - 0x50];
+    M1RigC *rig278;            /* +0x278 */
+} M1StepC;
+typedef struct M1CmdF { uint8_t unk00[0x10]; float f10, f14; int32_t i18; void (*cb1C)(void); } M1CmdF;
+typedef struct M1CmdF4 { uint8_t unk00[0x10]; float f10, f14, f18, f1C; } M1CmdF4;
+extern float m1_frameTime42C858;
+void sub_00113C60(void *fade, float a, float b);
+void sub_0013D950(void);
+
+/* 0x0013E390: next state 0x16 or 0x17 (h +0x22 bit 0), o flags: clear 0x20 set 2,
+ * clear h +0x4C bit 0x10, rig fade 120 -> 255, 0x36750(0), command 1 = (0.3, 0.25, 1,
+ * callback 0x13D950). */
+void m1_RigStep13E390(M1Act10 *o, M1StepC *h)
+{
+    M1RigC *r = h->rig278;
+    M1CmdF *c;
+    sub_00113090(o, h, (h->b22 & 1) + 0x16);
+    o->flags10 = (o->flags10 & ~0x20u) | 2;
+    h->flags4C &= ~0x10u;
+    sub_00113C60(r->fade18, 120.0f, 255.0f);
+    sub_00036750(o, 0);
+    c = (M1CmdF *)sub_00113430(h, 1);
+    c->f10 = 0.3f;
+    c->f14 = 0.25f;
+    c->i18 = 1;
+    c->cb1C = sub_0013D950;
+}
+
+/* 0x0013E770: spins on a null rig +0x34; next state 0x22, clear o flag 0x20 and h +0x4C
+ * bits 0x30, rig flag 0x400000, rig fade 30 -> 255, command 3 = (frame time * 2 deg, 0,
+ * 5 deg, 60 deg). */
+void m1_RigStep13E770(M1Act10 *o, M1StepC *h)
+{
+    M1RigC *r = h->rig278;
+    M1CmdF4 *c;
+    if (r->p34 == 0)
+        for (;;) ;
+    sub_00113090(o, h, 0x22);
+    o->flags10 &= ~0x20u;
+    h->flags4C &= ~0x30u;
+    r->flags04 |= 0x400000;
+    sub_00113C60(r->fade18, 30.0f, 255.0f);
+    c = (M1CmdF4 *)sub_00113430(h, 3);
+    c->f10 = m1_frameTime42C858 * 0.034906585f;
+    c->f14 = 0.0f;
+    c->f18 = 0.087266468f;
+    c->f1C = 1.0471976f;
+}

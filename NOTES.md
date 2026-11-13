@@ -312,3 +312,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x138FB0: skip (orig duplicates the 0x113040 tail call per branch, same class as 0x113E90); 0x120BF0: skip (0x11F0C0 takes eax)
 0x11E700 gauge drain: hard (orig reuses the 1.0 register for the +0x7C store; ours stores the bit pattern and the 1.0 load is already matched, so the float rule cannot fold it); 0x11DF80: skip (0x11DD70 takes esi/edi)
 0x12E720/0x1360B0 rig idle (M1_RIG_IDLE) PASS
+0x13E390/0x13E770 rig steps with fade + command PASS
