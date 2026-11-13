@@ -52,3 +52,4 @@ int m1_RemoveComp12EC670(M1ObjR *o)
     }
     return 1;
 }
+

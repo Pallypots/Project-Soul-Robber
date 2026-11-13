@@ -203,3 +203,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xA9EF0 m1_RestoreDefaultsA9EF0 PASS
 0x191F0 m1_SamplePose191F0 PASS
 0xEC670 m1_RemoveComp12EC670 PASS
+0xCBA30 item fx/sound: hard (cl lays the create-effect block after the stop path; calls compared in address order; tried 3 layouts)
+0xCC2A0 m1_JackFrameCC2A0 PASS
