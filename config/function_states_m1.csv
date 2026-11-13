@@ -233,3 +233,6 @@ va,name,state,source,obj,waivers,notes
 0x0010e510,m1_StopSpeed10E510,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed stop that sets o +0xE8 = h +0xDC * 27.9 and the o +0xD4 callback to 0x102FA0 before mode 4 on o and part"
 0x0010ddf0,m1_StopSpeed10DDF0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed stop with music: 0x192B0(o), then event 1 + 0xBCA50(3) if h +0xD4 else event 2 + 0x1AB00(2,3); mode 4 and flag 0x20 on o and part"
 0x0010e600,m1_StopSpeed10E600,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"As 0x10E1B0 plus free +0xE0 and kind-5 sound stop, animation 0x30, then the two hold records (range 118) at o's position"
+0x0010ed00,m1_ZeroSpeed10ED00,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0 only"
+0x0010df20,m1_ZeroSpeed10DF20,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0, then animation 0 via 0xF3DA0"
+0x0010ef70,m1_Launch10EF70,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Launch vector: x = frame rate * 9.8, y = z = 0, w = frame rate * -40.0"

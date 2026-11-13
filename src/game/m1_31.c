@@ -670,3 +670,26 @@ void m1_StopSpeed10E600(M1EfP60 *o, M1Spd3 *h)
     r3d_Hold188C00(m1_hold3F615C, o->pos60);
     r3d_Hold188C00(m1_hold3F6158, o->pos60);
 }
+
+/* 0x0010ED00: speed vector = frame rate * 0.0 only. */
+void m1_ZeroSpeed10ED00(void *o, M1Spd3 *h)
+{
+    M1_SPEED_ZERO(h);
+}
+
+/* 0x0010DF20: speed vector = frame rate * 0.0, then animation 0 via 0xF3DA0. */
+void m1_ZeroSpeed10DF20(void *o, M1Spd3 *h)
+{
+    M1_SPEED_ZERO(h);
+    sub_000F3DA0(o, 0, 0, 0);
+}
+
+/* 0x0010EF70: launch vector: x = frame rate * 9.8, y = z = frame rate * 0.0,
+ * w = frame rate * -40.0. */
+void m1_Launch10EF70(void *o, M1Spd3 *h)
+{
+    h->v15C[1] = m1_frameRate42C85C * 0.0f;
+    h->v15C[2] = m1_frameRate42C85C * 0.0f;
+    h->v15C[0] = m1_frameRate42C85C * 9.8f;
+    h->v15C[3] = m1_frameRate42C85C * -40.0f;
+}
