@@ -382,3 +382,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x146DA0 m1_StandUp146DA0 PASS (m1_68.c)
 0x1481E0 m1_RigSwing1481E0 PASS (m1_68.c)
 0x178DF0 m1_Launch178DF0 PASS (m1_68.c); 0x16E570: skip (0x16C820 register arg)
+0x17DCF0, 0x187280 PASS (m1_69.c)
+0x166BD0 m1_FxModelFree166BD0 PASS (m1_69.c)
+0x172280 m1_FxModelFree172280 PASS (M1_FX_FREE)
+0x174EF0 m1_FxModelFree174EF0 PASS (M1_FX_FREE); 0x1757C0: skip (eax/ecx args)
+0x174E50 m1_FxModel174E50 PASS
