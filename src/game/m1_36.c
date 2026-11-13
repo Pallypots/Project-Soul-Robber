@@ -262,3 +262,29 @@ void m1_EnemyAttack11AC30(M1ObjK *o, M1Enemy22 *e)
     }
     w->fx38 = sub_00036750(o, 5);
 }
+
+extern void *m1_resA3FDE70, *m1_resB3FDE74, *m1_resC3FDE78, *m1_resD3FDE7C, *m1_resE3FDE80, *m1_resF3FDE84;
+void sub_00033A70(void *r);
+void sub_0017D780(void);
+void sub_0001EB80(void *o);
+typedef struct M1ActW { uint8_t unk000[0x278]; void *work278; } M1ActW;
+
+#define M1_FREE(r) if (r != 0) { sub_00033A70(r); r = 0; }
+/* 0x0017D810: frees the six scene resources, runs 0x17D780, then disables o
+ * (flags 0xD on, bit 0 off), clears the actor's work pointer and refreshes o.
+ * Returns 1. */
+int m1_SceneEnd17D810(M1Obj124 *o, M1ActW *a)
+{
+    M1_FREE(m1_resA3FDE70)
+    M1_FREE(m1_resB3FDE74)
+    M1_FREE(m1_resD3FDE7C)
+    M1_FREE(m1_resC3FDE78)
+    M1_FREE(m1_resE3FDE80)
+    M1_FREE(m1_resF3FDE84)
+    sub_0017D780();
+    o->flags10 |= 0xD;
+    o->flags0C &= ~1u;
+    a->work278 = 0;
+    sub_0001EB80(o);
+    return 1;
+}
