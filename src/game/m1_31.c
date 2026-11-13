@@ -347,3 +347,39 @@ void m1_StopSpeed10E100(M1Ef10C *o, M1Spd2 *h)
     sub_000F3B00(h->partC8, 4);
     sub_000F3BB0(o, 0, 0);
 }
+
+typedef struct M1Anim14 { uint8_t unk00[8]; int32_t cur08; uint8_t unk0C[8]; void *h14; } M1Anim14;
+typedef struct M1EfAn { uint8_t unk00[0x30]; M1Anim14 *anim30; } M1EfAn;
+typedef struct M1Fuel {
+    uint8_t unk000[0xC8];
+    void   *partC8;            /* +0xC8 */
+    uint8_t unk0CC[0xDC - 0xCC];
+    float   rateDC;            /* +0xDC */
+    uint8_t unk0E0[0x184 - 0xE0];
+    float   fuel184;           /* +0x184 */
+} M1Fuel;
+typedef struct M1Comp6CB { uint8_t unk00[0x6C]; int32_t mode6C; } M1Comp6CB;
+extern float aec_fps42C964;    /* 0x0042C964 */
+void       sub_0001EEC0(void *o, float v);
+int        sub_001AEE90(void *h, int k);
+M1Comp6CB *sub_0001D960F(void *o, int kind);   /* 0x0001D960 */
+void       sub_000F3D10(void *o, void *c, int mode);
+
+/* 0x0010E760: drains the fuel at +0x184 by rate * 3.5 / (fps * 1.12), floored at
+ * 0, feeds it to 0x1EEC0; during animation 0x30 with flag 2, sets modes 4 on o and
+ * its part and switches the kind-5 component to mode 4. */
+void m1_DrainFuel10E760(M1EfAn *o, M1Fuel *h)
+{
+    float t = aec_fps42C964 * 1.12f;
+    h->fuel184 = h->fuel184 - h->rateDC * 3.5f / t;
+    if (0.0f > h->fuel184)
+        h->fuel184 = 0.0f;
+    sub_0001EEC0(o, h->fuel184);
+    if (o->anim30->cur08 != 0x30)
+        return;
+    if (!(sub_001AEE90(o->anim30->h14, 0) & 2))
+        return;
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+    sub_000F3D10(o, sub_0001D960F(o, 5), 4);
+}

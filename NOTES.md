@@ -287,3 +287,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x109370 m1_HitReact109370 PASS
 0x10C030/0x10E810/0x10E470 motion helpers PASS
 0x10BCD0/0x10C460/0x10E100 motion helpers PASS
+0x10E760 m1_DrainFuel10E760 PASS
+0xF2400 reset motion: hard (0x1B..0x1D range check folded by cl)

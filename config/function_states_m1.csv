@@ -221,3 +221,4 @@ va,name,state,source,obj,waivers,notes
 0x0010bcd0,m1_ResetMotion10BCD0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Motion clear; create +0x94 resource (0x109050 kind 2) if missing; modes 4/0x20; clear +0xA8 and +0xF8"
 0x0010c460,m1_ResetMotion10C460,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Motion clear; free +0x94 resource, stop +0x98 sound; modes 0x20, strength 0.5"
 0x0010e100,m1_StopSpeed10E100,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0, o +0x10C cleared, mode 1, strength 1.5, mode 4 on o and part +0xC8, 0xF3BB0(0,0)"
+0x0010e760,m1_DrainFuel10E760,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Drain +0x184 by rate * 3.5 / (fps * 1.12), floor 0, feed 0x1EEC0; in animation 0x30 with flag 2 set modes 4 on o and part and kind-5 component mode 4; float math may run on x87 (behaviour-test priority)"
