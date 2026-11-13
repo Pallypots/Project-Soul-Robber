@@ -387,3 +387,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x172280 m1_FxModelFree172280 PASS (M1_FX_FREE)
 0x174EF0 m1_FxModelFree174EF0 PASS (M1_FX_FREE); 0x1757C0: skip (eax/ecx args)
 0x174E50 m1_FxModel174E50 PASS
+0x189B90 / 0x189C30 effect model load/free PASS (m1_70.c)
+0x1127B0, 0x112890: hard (kind 3 or 4 test folded into one compare)
+0x16FA40 m1_FxModels16FA40 PASS (m1_70.c)
+0xE2540: skip (jump-table switch with cross-jumped tails)
+0x145F70 m1_Upright145F70 PASS (m1_71.c)

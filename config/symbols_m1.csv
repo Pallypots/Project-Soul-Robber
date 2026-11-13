@@ -800,3 +800,15 @@ m1_fxModel3FD7D0,0x003FD7D0,data,,
 m1_fxBones3FD7D4,0x003FD7D4,data,,
 m1_fxRes3FD7C8,0x003FD7C8,data,,
 m1_fxParts414460,0x00414460,data,0x340,16
+m1_fxRes3FF57C,0x003FF57C,data,,
+m1_fxModel414440,0x00414440,data,,
+m1_fxBones414444,0x00414444,data,,
+m1_fxObjs3FF584,0x003FF584,data,,
+m1_fxParts3FEB18,0x003FEB18,data,0x8C,19
+m1_fxRes3F92E8,0x003F92E8,data,,
+m1_fxModel3F92F0,0x003F92F0,data,,
+m1_fxBones3F92F4,0x003F92F4,data,,
+m1_fxModel3F92F8,0x003F92F8,data,,
+m1_fxBones3F92FC,0x003F92FC,data,,
+m1_fxParts3F8CE8,0x003F8CE8,data,0x78,6
+m1_fxParts3F8FB8,0x003F8FB8,data,0x88,6
