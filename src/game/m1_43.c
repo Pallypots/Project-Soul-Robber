@@ -136,3 +136,26 @@ void m1_ResetRecs18DFC0(void)
         r->v2C[3] = 1.0f;
     }
 }
+
+typedef struct M1Pos60 { uint8_t unk00[0x60]; float pos60[4]; } M1Pos60;
+typedef struct M1Flag74 { uint8_t unk00[0x74]; uint8_t *flags74; } M1Flag74;
+int   sub_00049700(int id, int r, int g, int b, const void *pos, int a, float size, int c);
+void *sub_000C46A0(float x, float y, float z, const float *pos, float *a, float *b);
+void  sub_000C4D30(void *o, int kind, float s, void *src);
+int   r4i_ObjDestroy(void *o);
+
+/* 0x0018DC90: spawns effect 0x7A at o, a 10-burst when the flag bit 1 is set, then
+ * destroys o. */
+void m1_BurstDestroy18DC90(M1Pos60 *o, M1Flag74 *a)
+{
+    float v[4];
+    sub_00049700(0x7A, 0x80, 0x80, 0x80, o->pos60, 1, 100.0f, 0);
+    if (*a->flags74 & 2) {
+        v[0] = 0.0f;
+        v[1] = 0.0f;
+        v[2] = 0.0f;
+        v[3] = 0.0f;
+        sub_000C4D30(o, 10, 1.0f, sub_000C46A0(2.5f, 0.0f, 2.5f, o->pos60, v, v));
+    }
+    r4i_ObjDestroy(o);
+}
