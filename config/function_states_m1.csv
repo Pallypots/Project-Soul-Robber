@@ -173,3 +173,4 @@ va,name,state,source,obj,waivers,notes
 0x0018d090,m1_SpinStart18D090,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Spin start: unit +0x80 vector then the same spin core, clears flag 0x80"
 0x0018dfc0,m1_ResetRecs18DFC0,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Reset twelve 0x3C records at 0x3FFDE0 (words 0/-1, three unit vectors, first z = -70; the original stores 0 then -70 to that z)"
 0x0018dc90,m1_BurstDestroy18DC90,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Spawn effect 0x7A at o, a 10-burst (0xC46A0/0xC4D30) when flag bit 1 is set, then destroy o"
+0x0018dc00,m1_PlaceModel18DC00,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Disable o (flags 0xD), create model instance (0x35DD0 4,3), place at o pointing -z with colour (0,1,0,1); parameter roles of 0x34E00 are Hypothesis"

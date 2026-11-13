@@ -159,3 +159,33 @@ void m1_BurstDestroy18DC90(M1Pos60 *o, M1Flag74 *a)
     }
     r4i_ObjDestroy(o);
 }
+
+typedef struct M1Obj130 {
+    uint8_t  unk000[0x10];
+    uint32_t flags10;          /* +0x010 */
+    uint8_t  unk014[0x60 - 0x14];
+    float    pos60[4];         /* +0x060 */
+    uint8_t  unk070[0x130 - 0x70];
+    void    *model130;         /* +0x130 */
+} M1Obj130;
+void *sub_00035DD0(M1Obj130 *o, void *model, int a, int b);
+void  sub_00034E00(void *h, const float *pos, const float *dir, const float *col);
+
+/* 0x0018DC00: disables o (flags 0xD), creates its model instance (0x35DD0 4, 3) and
+ * places it at o pointing down -z with colour (0, 1, 0, 1). */
+void m1_PlaceModel18DC00(M1Obj130 *o)
+{
+    float col[4], dir[4];
+    void *h;
+    o->flags10 |= 0xD;
+    dir[2] = -1.0f;
+    dir[0] = 0.0f;
+    dir[1] = 0.0f;
+    dir[3] = 1.0f;
+    col[0] = 0.0f;
+    col[1] = 1.0f;
+    col[2] = 0.0f;
+    col[3] = 1.0f;
+    h = sub_00035DD0(o, o->model130, 4, 3);
+    sub_00034E00(h, o->pos60, dir, col);
+}
