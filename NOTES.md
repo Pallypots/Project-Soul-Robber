@@ -461,3 +461,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x1700C0 skip (eax register arg).
 - 0x175310, 0x17D5C0 PASS (m1_89). 0x1869A0 skip (eax-arg calls 0x186160/0x186470).
 - 0x12F630 (m1_75), 0x165480, 0x156A30, 0x1395C0 (m1_90) PASS.
+- 0x156C10 PASS (m1_91). 0x156B10, 0x156F90 (and likely 0x156770, 0x156CF0, 0x156E50, 0x157880, 0x157F80): hard, the doubled-rate sways multiply by 2.0 and cl turns x*2 into x+x. 0x181650 skip (eax call 0x181090).
+- 0x184040 PASS (m1_91).
+- 0x11D8A0 PASS (m1_91; wait defaulted to 0 first so cl shares the state-5 call).
