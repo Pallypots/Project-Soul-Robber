@@ -285,3 +285,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x10EC80 m1_StopSpeed10EC80 PASS
 0x10AB90 m1_ResetMotion10AB90 PASS
 0x109370 m1_HitReact109370 PASS
+0x10C030/0x10E810/0x10E470 motion helpers PASS

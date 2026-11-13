@@ -215,3 +215,6 @@ va,name,state,source,obj,waivers,notes
 0x0010ec80,m1_StopSpeed10EC80,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0, modes 0xF3B00(5), 0xF3BB0(0,0), start mode 0x12"
 0x0010ab90,m1_ResetMotion10AB90,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed = frame rate * 98, vectors and +0x50 cleared, modes 0x44/0x20, stop sound +0x98"
 0x00109370,m1_HitReact109370,Structurally compared,src/game/m1_39.c,build/obj_m1/m1_39.obj,,"Positive hit: modes 4/0x20 and strength (+0x68 - 0.3) * 5/3; with flags 0x18 kind-5 component to mode 3; float math may run on x87 (behaviour-test priority)"
+0x0010c030,m1_ResetMotion10C030,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed = frame rate * 98, vectors and +0x50 cleared, free resource +0x94, modes 4/0x20"
+0x0010e810,m1_StopSpeed10E810,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0, modes 5/0xF3BB0/0x10, +0x188/+0x18C cleared"
+0x0010e470,m1_StopSpeed10E470,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0, +0x188 cleared, mode 4 on o and part +0xC8, 0xF3BB0(0,0), mode 0x24"

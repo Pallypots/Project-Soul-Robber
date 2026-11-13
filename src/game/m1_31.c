@@ -209,3 +209,73 @@ void m1_ResetMotion10AB90(M1Ef50 *o, M1VecHold3 *h)
         h->snd098 = -1;
     }
 }
+
+typedef struct M1VecHold4 {
+    uint8_t unk000[0x94];
+    void   *res094;            /* +0x94 */
+    uint8_t unk098[0xB4 - 0x98];
+    float   fB4;               /* +0xB4 */
+    float   vB8[3];            /* +0xB8 */
+    float   vC4[4];            /* +0xC4 */
+} M1VecHold4;
+void sub_00033A70(void *r);
+
+/* 0x0010C030: speed = frame rate * 98, vectors and o +0x50 cleared, frees the
+ * resource at +0x94, modes 4 / 0x20. */
+void m1_ResetMotion10C030(M1Ef50 *o, M1VecHold4 *h)
+{
+    h->fB4 = m1_frameRate42C85C * 98.0f;
+    h->vB8[2] = 0.0f;
+    h->vB8[1] = 0.0f;
+    h->vB8[0] = 0.0f;
+    h->vC4[3] = 0.0f;
+    h->vC4[2] = 0.0f;
+    h->vC4[1] = 0.0f;
+    h->vC4[0] = 0.0f;
+    o->f50 = 0.0f;
+    if (h->res094 != 0) {
+        sub_00033A70(h->res094);
+        h->res094 = 0;
+    }
+    sub_000F3B30(o, 4);
+    sub_000F3B00(o, 0x20);
+}
+
+typedef struct M1Spd2 {
+    uint8_t unk000[0xC8];
+    void   *partC8;            /* +0xC8 */
+    uint8_t unk0CC[0x15C - 0xCC];
+    float   v15C[4];           /* +0x15C */
+    uint8_t unk16C[0x188 - 0x16C];
+    float   f188, f18C;        /* +0x188 */
+} M1Spd2;
+
+/* 0x0010E810: speed vector = frame rate * 0.0, modes 5, 0xF3BB0(0,0), 0x10; then
+ * +0x188 / +0x18C cleared. */
+void m1_StopSpeed10E810(void *o, M1Spd2 *h)
+{
+    h->v15C[0] = m1_frameRate42C85C * 0.0f;
+    h->v15C[1] = m1_frameRate42C85C * 0.0f;
+    h->v15C[2] = m1_frameRate42C85C * 0.0f;
+    h->v15C[3] = m1_frameRate42C85C * 0.0f;
+    sub_000F3B00(o, 5);
+    sub_000F3BB0(o, 0, 0);
+    sub_000F3DA0(o, 0x10, 0, 0);
+    h->f188 = 0.0f;
+    h->f18C = 0.0f;
+}
+
+/* 0x0010E470: speed vector = frame rate * 0.0, +0x188 cleared, mode 4 on o and on
+ * the part at +0xC8, 0xF3BB0(0,0), start mode 0x24. */
+void m1_StopSpeed10E470(void *o, M1Spd2 *h)
+{
+    h->v15C[0] = m1_frameRate42C85C * 0.0f;
+    h->v15C[1] = m1_frameRate42C85C * 0.0f;
+    h->v15C[2] = m1_frameRate42C85C * 0.0f;
+    h->v15C[3] = m1_frameRate42C85C * 0.0f;
+    h->f188 = 0.0f;
+    sub_000F3B00(o, 4);
+    sub_000F3B00(h->partC8, 4);
+    sub_000F3BB0(o, 0, 0);
+    sub_000F3DA0(o, 0x24, 0, 0);
+}
