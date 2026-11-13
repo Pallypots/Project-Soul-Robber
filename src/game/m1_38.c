@@ -52,3 +52,35 @@ void m1_RestoreDefaultsA9EF0(void)
     m1_live3ED540[8] = m1_defaults2E4720[8];
     m1_live3ED540[9] = m1_defaults2E4720[9];
 }
+
+typedef struct M1Curve19C { uint8_t raw[0x19C]; } M1Curve19C;
+typedef struct M1CurveSet {
+    uint8_t    unk000[4];
+    M1Curve19C c[10];          /* +0x004 */
+} M1CurveSet;
+typedef struct M1Pose44 {
+    uint8_t unk00[0x10];
+    float   s10[3];            /* +0x10 */
+    uint8_t unk1C[4];
+    float   r20[3];            /* +0x20 */
+    uint8_t unk2C[4];
+    float   t30[3];            /* +0x30 */
+    uint8_t unk3C[4];
+    float   v40;               /* +0x40 */
+} M1Pose44;
+float sub_00062080(const M1Curve19C *c, int t);
+
+/* 0x000191F0: samples the ten curves of set at time t into the pose. */
+void m1_SamplePose191F0(const M1CurveSet *set, M1Pose44 *out, int t)
+{
+    out->t30[0] = sub_00062080(&set->c[0], t);
+    out->t30[1] = sub_00062080(&set->c[1], t);
+    out->t30[2] = sub_00062080(&set->c[2], t);
+    out->r20[0] = sub_00062080(&set->c[3], t);
+    out->r20[1] = sub_00062080(&set->c[4], t);
+    out->r20[2] = sub_00062080(&set->c[5], t);
+    out->s10[0] = sub_00062080(&set->c[6], t);
+    out->s10[1] = sub_00062080(&set->c[7], t);
+    out->s10[2] = sub_00062080(&set->c[8], t);
+    out->v40 = sub_00062080(&set->c[9], t);
+}
