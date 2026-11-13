@@ -112,3 +112,30 @@ void m1_CamRelease1036E0(void *cam)
     m1_scr3F6130->f98 = 1;
     s->cam8C->flags10 &= ~4u;
 }
+
+typedef struct M1Ctl9C { uint8_t unk00[0x94]; int32_t f94; uint8_t unk98[4]; int32_t step9C; float tA0; } M1Ctl9C;
+extern M1Ctl9C *m1_ctl3F6128;
+extern float m1_frameRate42C85C;
+int  sub_000F5D00(void *o);
+void sub_0001D700(int v);
+void sub_000F3D10(void *o, void *c, int mode);
+
+/* 0x001009E0: controller step: at step 0 waits for 0xF5D00(o), then 0x1D700(+0x94),
+ * timer 0 and step 1; later counts the timer up by the frame rate and switches c to
+ * mode 9 once it passes 0.2. */
+void m1_CtlStep1009E0(void *o, void *c)
+{
+    M1Ctl9C *g = m1_ctl3F6128;
+    if (g->step9C == 0) {
+        if (sub_000F5D00(o) != 0) {
+            sub_0001D700(g->f94);
+            g->tA0 = 0.0f;
+            g->step9C++;
+        }
+        return;
+    }
+    if (g->tA0 > 0.2f)
+        sub_000F3D10(o, c, 9);
+    else
+        g->tA0 += m1_frameRate42C85C;
+}

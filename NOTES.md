@@ -301,3 +301,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x1032A0 m1_ScrReset1032A0 / 0x1173F0 m1_Step1173F0 PASS (m1_48.c)
 0x113E90 link init: hard (orig duplicates the 0x1B21D0 tail call per branch; cl merges it)
 0x102310 m1_CamHold102310 / 0x1036E0 m1_CamRelease1036E0 PASS
+0x1009E0 m1_CtlStep1009E0 PASS; 0x1060B0 player aim: hard (orig keeps two 0xCF330 tail calls; cl merges them)
