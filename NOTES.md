@@ -206,3 +206,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0xCBA30 item fx/sound: hard (cl lays the create-effect block after the stop path; calls compared in address order; tried 3 layouts)
 0xCC2A0 m1_JackFrameCC2A0 PASS
 0xCB390 m1_GatherTargetCB390 PASS* (merged-bit-test waiver)
+0xCB540 target selection sort: hard (orig walks order[] and reads key[] at -0x80; cl walks key[] and bumps the pointer mid-iteration)
+0xCE4C0 m1_PartsLookCE4C0 PASS (own file to stop inlining)

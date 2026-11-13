@@ -76,7 +76,7 @@ extern uint8_t m1_set2E78B0[];                /* 0x002E78B0 */
 extern void *m1_sets2E7A60[];                 /* 0x002E7A60 per sub-model */
 int  sub_000CEAE0(void *set, M1Mdl8 *node);   /* regargs: set=EDX */
 int  sub_000CEBB0(void *set, M1Mdl8 *node);   /* regargs: set=EDX */
-void sub_000CE4C0(M1Mdl8 *m);                 /* regargs: m=ESI */
+void m1_PartsLookCE4C0(M1Mdl8 *m);
 
 /* 0x000CEF60: sets flag 4 on the entries that 0xCEAE0 and 0xCEBB0 pick for Jack's
  * first child node from set 0x2E78B0. */
@@ -104,7 +104,8 @@ void m1_ApplySetCEFB0(M1Mdl8 *m)
         return;
     if (m->sub08 == 0)
         n = sub_0001D290(m, 0);
-    sub_000CE4C0(m);
+    m1_PartsLookCE4C0(m);
     sub_000CEAE0(set, n);
     sub_000CEBB0(set, n);
 }
+
