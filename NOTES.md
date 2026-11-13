@@ -322,3 +322,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x1430B0 m1_RigNext1430B0 PASS (picking next with a ternary and guarding the side effect with next == 8 stops cl duplicating the 0x113040 tail call; worth trying on that hard class)
 0x139EF0 m1_RigAim139EF0 PASS; 0x13FD20 retried with the ternary trick: still hard
 0x121DA0 m1_RigStep121DA0 PASS (call written in both branches keeps the orig's duplicate)
+0x1421C0 m1_RigCleanup1421C0 PASS; 0x138A10 knock-back: hard (orig keeps two 0xED780 calls; cl merges them in every layout tried)

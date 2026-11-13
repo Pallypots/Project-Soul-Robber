@@ -137,3 +137,48 @@ void m1_RigStep121DA0(M1ObjW *o, M1Step7C *h)
     c->v10[2] = 0.0f;
     c->v10[3] = 0.0f;
 }
+
+typedef struct M1Fx28 { uint8_t unk00[0x28]; void *res28; } M1Fx28;
+typedef struct M1RigX { uint8_t unk00[0x20]; M1Fx28 *fx20; } M1RigX;
+typedef struct M1StepX {
+    uint8_t unk000[0x6C];
+    int32_t snd6C;             /* +0x6C */
+    void   *res70;             /* +0x70 */
+    uint8_t unk074[0x278 - 0x74];
+    M1RigX *rig278;            /* +0x278 */
+} M1StepX;
+void sub_0001D700(void *p);
+void sub_0018B260(void *fx, const float *v);
+void sub_001B2080(void *r);
+void sub_00048250(int snd);
+void sub_00033A70(void *r);
+
+/* 0x001421C0: cleanup: releases the rig effect (+0x20: 0x1D700, zero offset, frees its
+ * +0x28 resource, 0xED780 must return 1 or it spins), stops the +0x6C sound and frees
+ * the +0x70 resource; returns 1. */
+int m1_RigCleanup1421C0(void *o, M1StepX *h)
+{
+    M1RigX *r = h->rig278;
+    float v[4];
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 0.0f;
+    if (r->fx20 != 0) {
+        sub_0001D700(r->fx20);
+        sub_0018B260(r->fx20, v);
+        sub_001B2080(r->fx20->res28);
+        if (sub_000ED780(r->fx20) != 1)
+            for (;;) ;
+        r->fx20 = 0;
+    }
+    if (h->snd6C >= 0) {
+        sub_00048250(h->snd6C);
+        h->snd6C = -1;
+    }
+    if (h->res70 != 0) {
+        sub_00033A70(h->res70);
+        h->res70 = 0;
+    }
+    return 1;
+}
