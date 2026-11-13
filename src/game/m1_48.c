@@ -1,15 +1,27 @@
 /* Area m1, file 48: scripted-actor steps and screen timers. Names inferred. */
 #include <stdint.h>
 
+typedef struct M1Cam10 { uint8_t unk00[0x10]; uint32_t flags10; } M1Cam10;
 typedef struct M1Scr1A8 {
-    uint8_t unk000[0x1A8];
+    uint8_t unk000[0x8C];
+    M1Cam10 *cam8C;            /* +0x8C */
+    uint8_t unk090[0x98 - 0x90];
+    int32_t f98;               /* +0x98 */
+    uint8_t unk09C[0x138 - 0x9C];
+    int32_t f138, f13C;        /* +0x138 */
+    uint8_t unk140[0x18C - 0x140];
+    int32_t f18C, f190;        /* +0x18C */
+    uint8_t unk194[0x1A8 - 0x194];
     int16_t w1A8;              /* +0x1A8 */
     uint8_t unk1AA[2];
     float   f1AC;              /* +0x1AC */
-    uint8_t unk1B0[0x1C8 - 0x1B0];
+    float   f1B0;              /* +0x1B0 */
+    uint8_t unk1B4[0x1C8 - 0x1B4];
     int32_t f1C8;              /* +0x1C8 */
     uint8_t unk1CC[0x1E4 - 0x1CC];
     float   f1E4;              /* +0x1E4 */
+    uint8_t unk1E8[0x210 - 0x1E8];
+    int32_t f210;              /* +0x210 */
 } M1Scr1A8;
 extern M1Scr1A8 *m1_scr3F6130;
 int  aab_Rand(void);
@@ -58,4 +70,45 @@ void m1_Step1173F0(M1Act30 *o, M1Step58 *s)
         s->state58 = 0x63;
         break;
     }
+}
+
+void sub_0001EEC0(void *cam, float v);
+void sub_0001EF00(void *cam, const float *v);
+
+/* 0x00102310: camera hold on: +0x98 = 0, camera flag 4, +0x1B0 = 4.2, camera speed 4.2,
+ * camera offset zero, then copy +0x13C -> +0x138 and +0x190 -> +0x18C. */
+void m1_CamHold102310(void)
+{
+    M1Scr1A8 *s = m1_scr3F6130;
+    float v[4];
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 0.0f;
+    s->f98 = 0;
+    s->cam8C->flags10 |= 4;
+    s->f1B0 = 4.2f;
+    sub_0001EEC0(s->cam8C, 4.2f);
+    sub_0001EF00(s->cam8C, v);
+    s->f138 = s->f13C;
+    s->f18C = s->f190;
+}
+
+/* 0x001036E0: camera hold off: +0x210 = 0, +0x1A8 = 0, +0x1B0 = 4.2, speed 4.2 on cam,
+ * camera offset zero, +0x98 = 1, clear camera flag 4. */
+void m1_CamRelease1036E0(void *cam)
+{
+    M1Scr1A8 *s = m1_scr3F6130;
+    float v[4];
+    v[0] = 0.0f;
+    v[1] = 0.0f;
+    v[2] = 0.0f;
+    v[3] = 0.0f;
+    s->f210 = 0;
+    s->w1A8 = 0;
+    s->f1B0 = 4.2f;
+    sub_0001EEC0(cam, 4.2f);
+    sub_0001EF00(s->cam8C, v);
+    m1_scr3F6130->f98 = 1;
+    s->cam8C->flags10 &= ~4u;
 }
