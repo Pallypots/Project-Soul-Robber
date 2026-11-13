@@ -306,3 +306,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x10E3D0 m1_ZeroSpeed10E3D0 / 0x1008F0 m1_CtlStep1008F0 PASS
 0x116590 m1_RigStep116590 PASS; 0x103A80: skip (0x1023A0 takes ecx + xmm1 float)
 0x115CC0/0x1162E0 rig steps PASS (checker float-rule round-trip fix)
+0x1130F0 m1_ChainShow1130F0 / 0x10DF90 m1_ZeroSpeed10DF90 / 0x10A0A0 m1_FadeOut10A0A0 PASS (byte offset loop var for the stride-0x108 store); 0x104070 deck shuffle: hard (orig uses div by 9; cl always uses a reciprocal multiply)

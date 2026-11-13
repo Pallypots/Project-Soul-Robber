@@ -711,3 +711,15 @@ void m1_ZeroSpeed10E3D0(void *o, M1Spd6 *h)
     h->f190 = 0.4f;
     sub_000F3DA0(o, 0x27, 0, 0);
 }
+
+/* 0x0010DF90: speed zero, start sound 0x1AA at o's position on the kind-5 component
+ * if none is playing, then animation 2. */
+void m1_ZeroSpeed10DF90(M1Ef60 *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 < 0)
+        c->sndE4 = sub_000494D0(0x1AA, o->pos60, 1);
+    sub_000F3DA0(o, 2, 0, 0);
+}
