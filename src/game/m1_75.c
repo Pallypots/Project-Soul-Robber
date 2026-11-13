@@ -148,3 +148,8 @@ void m1_Sway115620(uint8_t *o, M1SwayH *h)
         c->f18 = t;
     c->f1C = 0.0f;
 }
+/* 0x0012F630: sway (rig at +0x164), state 0x25, target = player (mode 1), rig +0xC |= 2,
+ * +-5 degrees at frameTime*22.5 degrees. */
+M1_SWAYQ(m1_Sway12F630, M1SwayR2, 0x25, M1_QRESET2, ;,
+         h->tgt104 = g_playerObj; h->mode0F8 = 1; r->flags0C |= 2;,
+         m1_frameTime42C858 * 0.39269909f, 0.087266468f, -0.087266468f)
