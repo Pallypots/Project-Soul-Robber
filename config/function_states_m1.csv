@@ -199,3 +199,5 @@ va,name,state,source,obj,waivers,notes
 0x000f4590,m1_StageRestartF4590,Structurally compared,src/game/m1_43.c,build/obj_m1/m1_43.obj,,"Restart stage step (0xE0A80 kind 4), clear counters, 0xE51F0, camera value 10.5, sound 0x1E3 once"
 0x000bf350,m1_JackStopBF350,Structurally compared,src/game/m1_40.c,build/obj_m1/m1_40.obj,,"Stop Jack velocity; first pass sets state flags and +0xE0, later returns to state 1 once +0x1C0 < 0"
 0x001090f0,m1_HitReact1090F0,Structurally compared,src/game/m1_39.c,build/obj_m1/m1_39.obj,,"Positive hit with flags 0x18 switches kind-5 component to mode 2; once +0xF8 >= +0x68 starts sound 0x19D once"
+0x0010c510,m1_ResetMotion10C510,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"As 0x109400 plus speed +0xB4 = frame rate * 98 and +0xB8..+0xC0 cleared; modes 0x44 / 0x20"
+0x0010e350,m1_StopSpeed10E350,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed vector = frame rate * 0.0 (kept as the original), +0x188 = 0.2, mode 0x27"

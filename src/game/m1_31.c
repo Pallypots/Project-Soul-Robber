@@ -52,3 +52,48 @@ void m1_ResetMotion109400(M1Ef50 *o, M1VecHold *h)
     sub_000F3B00(o, 0x20);
     sub_000F3F00(o, 0.5f);
 }
+
+typedef struct M1VecHold2 {
+    uint8_t unk000[0xB4];
+    float   fB4;               /* +0xB4 */
+    float   vB8[3];            /* +0xB8 */
+    float   vC4[4];            /* +0xC4 */
+} M1VecHold2;
+extern float m1_frameRate42C85C;   /* 0x0042C85C */
+
+/* 0x0010C510: as 0x109400 but also sets h's speed (+0xB4 = frame rate * 98) and
+ * clears +0xB8..+0xC0; modes 0xF3B30(0x44), 0xF3B00(0x20). */
+void m1_ResetMotion10C510(M1Ef50 *o, M1VecHold2 *h)
+{
+    h->fB4 = m1_frameRate42C85C * 98.0f;
+    h->vB8[2] = 0.0f;
+    h->vB8[1] = 0.0f;
+    h->vB8[0] = 0.0f;
+    h->vC4[3] = 0.0f;
+    h->vC4[2] = 0.0f;
+    h->vC4[1] = 0.0f;
+    h->vC4[0] = 0.0f;
+    o->f50 = 0.0f;
+    sub_000F3B30(o, 0x44);
+    sub_000F3B00(o, 0x20);
+}
+
+typedef struct M1Spd15C {
+    uint8_t unk000[0x15C];
+    float   v15C[4];           /* +0x15C */
+    uint8_t unk16C[0x188 - 0x16C];
+    float   f188;              /* +0x188 */
+} M1Spd15C;
+void sub_000F3DA0(void *o, int a, int b, int c);
+
+/* 0x0010E350: zeroes h's speed vector (each frame rate * 0.0, as the original), sets
+ * +0x188 = 0.2 and starts mode 0x27 on o. */
+void m1_StopSpeed10E350(void *o, M1Spd15C *h)
+{
+    h->v15C[0] = m1_frameRate42C85C * 0.0f;
+    h->v15C[1] = m1_frameRate42C85C * 0.0f;
+    h->v15C[2] = m1_frameRate42C85C * 0.0f;
+    h->v15C[3] = m1_frameRate42C85C * 0.0f;
+    h->f188 = 0.2f;
+    sub_000F3DA0(o, 0x27, 0, 0);
+}
