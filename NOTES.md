@@ -358,3 +358,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x186B50, 0x18AB70 PASS (m1_63.c)
 0x116630 PASS (m1_63.c)
 0x1556D0 m1_Shoot1556D0 PASS
+0x155780 m1_Phased155780 PASS (m1_64.c); 0x172F40: skip (xmm0/edi args)
+0x176C60: skip (0x176930 takes eax)
+0x116980, 0x1809B0 PASS (m1_64.c)
+0x187380 PASS (m1_64.c); 0x185420 record count: hard (cl cmove on the first unrolled slot)
+0x183F10, 0x1178F0: skip (register args / xmm result)
+0x142330 m1_RigLaunch142330 PASS
