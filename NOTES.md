@@ -292,3 +292,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 0x111A20 enemy anim hit: hard (orig sub-chain switch 2/0x12 and block order differ from cl)
 0x10E1B0/0x10E280 speed stops PASS
 0x10E030 m1_StopSpeed10E030 PASS
+0x10B250 m1_ResetMotion10B250 / 0x10D6B0 m1_StopSpeed10D6B0 PASS

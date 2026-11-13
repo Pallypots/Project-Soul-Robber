@@ -460,3 +460,53 @@ void m1_StopSpeed10E030(void *o, M1Spd3 *h)
     sub_000F3B30(o, 4);
     sub_000F3B30(h->partC8, 4);
 }
+
+typedef struct M1EfC50 { uint8_t unk00[0xC]; uint32_t flags0C; uint8_t unk10[0x50 - 0x10]; float f50; } M1EfC50;
+M1Comp6CB *sub_0001D960H(void *o, int kind);   /* 0x0001D960 */
+void sub_000F3B70(void *o, int v);
+
+/* 0x0010B250: motion clear, o +0x50 cleared, frees +0x94, modes 0x44 / 0x20,
+ * strength 0.5, flag 0x80, puts the kind-5 component back to mode 0, then 0xF3B70(3). */
+void m1_ResetMotion10B250(M1EfC50 *o, M1VecHold4 *h)
+{
+    M1Comp6CB *c;
+    M1_MOTION_CLEAR(h);
+    o->f50 = 0.0f;
+    if (h->res094 != 0) {
+        sub_00033A70(h->res094);
+        h->res094 = 0;
+    }
+    sub_000F3B30(o, 0x44);
+    sub_000F3B00(o, 0x20);
+    sub_000F3F00(o, 0.5f);
+    o->flags0C |= 0x80;
+    c = sub_0001D960H(o, 5);
+    if (c->mode6C != 0)
+        sub_000F3D10(o, c, 0);
+    sub_000F3B70(o, 3);
+}
+
+extern uint8_t m1_snd3E1270[];
+void sub_00019000(void *s, int v);
+void sub_000BCA50(int v);
+
+/* 0x0010D6B0: as 0x10E030 plus music event 1 (0x19000) and 0xBCA50(3) before the
+ * mode-4 calls. */
+void m1_StopSpeed10D6B0(void *o, M1Spd3 *h)
+{
+    M1Comp5E4B *c;
+    M1_SPEED_ZERO(h);
+    if (h->resE0 != 0) {
+        sub_00033A70(h->resE0);
+        h->resE0 = 0;
+    }
+    c = sub_0001D960G(o, 5);
+    if (c->sndE4 >= 0) {
+        sub_00048250(c->sndE4);
+        c->sndE4 = -1;
+    }
+    sub_00019000(m1_snd3E1270, 1);
+    sub_000BCA50(3);
+    sub_000F3B30(o, 4);
+    sub_000F3B30(h->partC8, 4);
+}
