@@ -693,3 +693,21 @@ void m1_Launch10EF70(void *o, M1Spd3 *h)
     h->v15C[0] = m1_frameRate42C85C * 9.8f;
     h->v15C[3] = m1_frameRate42C85C * -40.0f;
 }
+
+typedef struct M1Spd6 {
+    uint8_t unk000[0x15C];
+    float   v15C[4];           /* +0x15C */
+    uint8_t unk16C[0x188 - 0x16C];
+    int32_t f188;              /* +0x188 */
+    float   f18C, f190;        /* +0x18C */
+} M1Spd6;
+
+/* 0x0010E3D0: speed zero, +0x18C = 0.2, +0x188 = 0, +0x190 = 0.4, animation 0x27. */
+void m1_ZeroSpeed10E3D0(void *o, M1Spd6 *h)
+{
+    M1_SPEED_ZERO(h);
+    h->f18C = 0.2f;
+    h->f188 = 0;
+    h->f190 = 0.4f;
+    sub_000F3DA0(o, 0x27, 0, 0);
+}

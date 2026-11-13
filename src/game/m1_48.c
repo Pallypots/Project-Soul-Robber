@@ -126,7 +126,7 @@ void m1_CamRelease1036E0(void *cam)
     s->cam8C->flags10 &= ~4u;
 }
 
-typedef struct M1Ctl9C { uint8_t unk00[0x94]; int32_t f94; uint8_t unk98[4]; int32_t step9C; float tA0; } M1Ctl9C;
+typedef struct M1Ctl9C { uint8_t unk00[0x94]; int32_t f94; uint8_t unk98[4]; int32_t step9C; float tA0; uint8_t unkA4[2]; int16_t wA6; } M1Ctl9C;
 extern M1Ctl9C *m1_ctl3F6128;
 extern float m1_frameRate42C85C;
 int  sub_000F5D00(void *o);
@@ -203,4 +203,23 @@ void m1_ScrWatch104630(void *o, M1H68 *h)
         sub_000F3D10(cam, m1_scr3F6130, 0x11);
         m1_scr3F6130->f1C0 = 0;
     }
+}
+
+/* 0x001008F0: as 0x1009E0 but also clears +0xA6 when the step starts. */
+void m1_CtlStep1008F0(void *o, void *c)
+{
+    M1Ctl9C *g = m1_ctl3F6128;
+    if (g->step9C == 0) {
+        if (sub_000F5D00(o) != 0) {
+            sub_0001D700(g->f94);
+            g->wA6 = 0;
+            g->tA0 = 0.0f;
+            g->step9C++;
+        }
+        return;
+    }
+    if (g->tA0 > 0.2f)
+        sub_000F3D10(o, c, 9);
+    else
+        g->tA0 = m1_frameRate42C85C + g->tA0;
 }

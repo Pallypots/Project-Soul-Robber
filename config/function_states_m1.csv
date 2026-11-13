@@ -243,3 +243,5 @@ va,name,state,source,obj,waivers,notes
 0x001009e0,m1_CtlStep1009E0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"Controller step: at step 0 waits for 0xF5D00(o) then 0x1D700(+0x94), timer 0, step 1; later timer += frame rate, mode 9 on c once past 0.2"
 0x00101e50,m1_ScrTimers101E50,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"Screen timers: 3 effect slots (timer +0xEC, stride 0x54, resource at -0x10) count down by the frame rate and free the resource when done; +0x204 and +0x200 count down while positive"
 0x00104630,m1_ScrWatch104630,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"First time h +0x68 passes 2.5, records player height below -30 into +0x234 and marks +0x1A8; on 0xF5D00(o) camera mode 0x11 and +0x1C0 = 0; spins on a null camera"
+0x0010e3d0,m1_ZeroSpeed10E3D0,Structurally compared,src/game/m1_31.c,build/obj_m1/m1_31.obj,,"Speed zero, +0x18C = 0.2, +0x188 = 0, +0x190 = 0.4, animation 0x27"
+0x001008f0,m1_CtlStep1008F0,Structurally compared,src/game/m1_48.c,build/obj_m1/m1_48.obj,,"As 0x1009E0 but also clears +0xA6 when the step starts"
