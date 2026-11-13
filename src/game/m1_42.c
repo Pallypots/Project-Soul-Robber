@@ -108,3 +108,33 @@ void m1_BoneEntsInitCE880(void)
             e->f30[k] = 0;
     }
 }
+
+#define M1_BONE_CLEAR(e) \
+    (e)->f00 = 0; (e)->f04 = 0; (e)->f08 = 0; (e)->f0C = 0; (e)->f10 = 0; \
+    (e)->f14 = 1.0f; (e)->f18 = 1.0f; (e)->f1C = 0.0f; (e)->f20 = 0.0f; (e)->f24 = 0.0f; \
+    (e)->f28 = 0; (e)->f2C = 0; (e)->f50 = 0; \
+    for (k = 0; k < 8; k++) (e)->f30[k] = 0
+
+/* 0x000CE8F0: clears every bone entry that is not kept (flag 4). */
+void m1_BoneEntsClearCE8F0(void)
+{
+    int i, k;
+    for (i = 0; i < 16; i++) {
+        M1BoneEntFull *e = &m1_boneEntsF41C7C0[i];
+        if (e->f00 & 4)
+            continue;
+        M1_BONE_CLEAR(e);
+    }
+}
+
+/* 0x000CE970: clears every kept (flag 4) bone entry. */
+void m1_BoneEntsClearKeptCE970(void)
+{
+    int i, k;
+    for (i = 0; i < 16; i++) {
+        M1BoneEntFull *e = &m1_boneEntsF41C7C0[i];
+        if (!(e->f00 & 4))
+            continue;
+        M1_BONE_CLEAR(e);
+    }
+}

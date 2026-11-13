@@ -254,3 +254,41 @@ int m1_SetupFollower18DED0(M1BatObj *o, M1BatAct *a, M1BatOwner *own)
     sub_00189DA0(o, a, 0);
     return 1;
 }
+
+typedef struct M1HeightRec {
+    int32_t kind00;            /* +0x00, -1 ends the table */
+    float   a04;               /* +0x04 */
+    float   b08;               /* +0x08 */
+} M1HeightRec;
+extern M1HeightRec m1_heights2E2780[];   /* 0x002E2780 */
+typedef struct M1KindObj { uint8_t unk00[8]; int32_t kind08; uint8_t unk0C[0x60 - 0xC]; float pos60[4]; } M1KindObj;
+
+/* 0x000A1F50: out = o's position raised by ten times its kind's first height. */
+void m1_RaisedPosA1F50(M1KindObj *o, float *out)
+{
+    float h = 0.0f;
+    int i;
+    for (i = 0; m1_heights2E2780[i].kind00 != -1; i++) {
+        if (m1_heights2E2780[i].kind00 == o->kind08) {
+            h = m1_heights2E2780[i].a04 * 10.0f;
+            break;
+        }
+    }
+    sub_000F5D40(out, o->pos60);
+    out[1] += h;
+}
+
+/* 0x000A1FD0: as 0xA1F50 with the second height. */
+void m1_RaisedPosA1FD0(M1KindObj *o, float *out)
+{
+    float h = 0.0f;
+    int i;
+    for (i = 0; m1_heights2E2780[i].kind00 != -1; i++) {
+        if (m1_heights2E2780[i].kind00 == o->kind08) {
+            h = m1_heights2E2780[i].b08 * 10.0f;
+            break;
+        }
+    }
+    sub_000F5D40(out, o->pos60);
+    out[1] += h;
+}
