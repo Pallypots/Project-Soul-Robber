@@ -433,3 +433,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x14B1C0 PASS (m1_81). 0x176E00 skip (calls 0x176970 with esi arg).
 - 0x18D680 PASS (m1_81).
 - 0x116EA0, 0x11A3D0 PASS (m1_81).
+- 0x138D20 PASS (m1_82, mask select again). 0x13B7C0: hard (_ftol for the start frame and cl turns the sign-flag +2 into sar/and).
+- 0x103770 PASS (m1_82).
+- 0x11A590: hard (_ftol for the random wait; orig cvttss2si).
+- 0x1390E0: hard (cl does the whole wait/distance test in x87 with a double 15.0; orig uses SSE comiss for the wait). 0x159D60 not tried yet.
