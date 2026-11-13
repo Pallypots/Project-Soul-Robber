@@ -429,3 +429,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x17B9A0, 0x188690 PASS (m1_80).
 - 0x188DD0 PASS (m1_80).
 - 0x155610 PASS (m1_80).
+- 0x118070 PASS (m1_81). 0x11D980 skip (ecx/edx call 0x11B0D0).
+- 0x14B1C0 PASS (m1_81). 0x176E00 skip (calls 0x176970 with esi arg).
+- 0x18D680 PASS (m1_81).
+- 0x116EA0, 0x11A3D0 PASS (m1_81).
