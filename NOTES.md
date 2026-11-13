@@ -419,3 +419,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x159E30 PASS (m1_77).
 - 0x13B620 now PASS (m1_77) with the (-(bit != 0) & 2) select; was hard.
 - 0x16DED0 PASS (m1_77).
+- 0x173570, 0x17A780 skip (register-arg calls 0x172C90/0x172E00, 0x17A2B0).
+- 0x17E910, 0x17C530, 0x18A880 PASS (m1_78; 0x17C530 keeps the original double i>=6 check). 0x188740 skip (eax/ecx args).
+- 0x18EB50, 0x1566D0 PASS (m1_78). 0x186800 skip (eax arg calls).
+- 0x174B40, 0x17B1C0, 0x17CA70 PASS (m1_78). Index loop over a global array gives the signed jl pointer compare; a pointer loop gives jb.
