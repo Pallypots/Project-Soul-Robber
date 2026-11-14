@@ -1354,4 +1354,6 @@ m1_flagsAll2C4BB0,0x002C4BB0,data,,
 m1_TextDraw017C00,0x00017C00,func,,
 m1_scores4131C4,0x004131C4,data,0x18,24
 m1_bonus413430,0x00413430,data,,
-m1_links3FE2DC,0x003FE2DC,data,0x24,4
+m1_links3FE2DC,0x003FE2DC,data,,
+m1_sndPos423F40,0x00423F40,data,,
+m1_MsgQueue0A7570,0x000A7570,func,,

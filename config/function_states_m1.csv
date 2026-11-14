@@ -735,3 +735,5 @@ va,name,state,source,obj,waivers,notes
 0x0004be20,m1_Grade04BE20,Structurally compared,src/game/m1_176.c,build/obj_m1/m1_176.obj,,"Overall grade 0..4 from 24 stage scores plus two bonus flags; signed inclusive pointer loop, volatile total keeps the ==0x62 test."
 0x00102950,m1_CamHeight102950,Structurally compared,src/game/m1_176.c,build/obj_m1/m1_176.obj,,"Camera height offset from the player height (fixed near the ground); volatile constants keep -0.015625*2."
 0x00181ce0,m1_LinkAnim181CE0,Structurally compared,src/game/m1_177.c,build/obj_m1/m1_177.obj,,"Play an animation on the first active link owned by the caller; biased pointer walk on the owner field, signed compare."
+0x000a86d0,m1_MsgInit0A86D0,Structurally compared,src/game/m1_177.c,build/obj_m1/m1_177.obj,,"Set up the 28 message records: load them, queue each message id, copy the first record settings to the rest, reset the four position floats."
+0x000a8330,m1_ThrowDir0A8330,Structurally compared,src/game/m1_178.c,build/obj_m1/m1_178.obj,,"Random throw vector around a direction (wider spread when pointing straight up), scaled by level, with upward speed; local struct pins the frame."

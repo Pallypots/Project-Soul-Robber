@@ -830,3 +830,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x181CE0 now PASS (m1_177) with a biased pointer walk on the owner field.
 - 0x5A760 still hard: dec/dec switch with the default block first; cl lays default last (switch) or loses dec/dec (if-chain).
 - 0x398D0 skip: calls 0x39440 / 0x390E0 with eax input.
+- 0xEB640/0xEB840 later: long twins (matrix + angle wrap + effect spawn), good macro candidates.
+- 0xA86D0 m1_MsgInit0A86D0 PASS (m1_177).
+- 0xF11F0 skip: calls 0x10A140 / 0xEF900 with eax input. 0x81B90 later (long frustum test).
+- LESSON: array symbol rows (elem,count) are global to the checker and can break other areas (m1_links3FE2DC broke r3d_Detach181E80). Prefer plain rows unless a table is indexed; the ship gate catches it.
+- 0xA8330 m1_ThrowDir0A8330 PASS (m1_178).
