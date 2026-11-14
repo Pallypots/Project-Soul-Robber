@@ -960,3 +960,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_201 PASS: 0xC9D20 (new func row sub_00171AF0).
 - m1_201 PASS: 0xFC580 (volatile mode keeps the range test).
 - Skips: 0x171070 (0x170E40 eax/edi), 0xF8C50 (_ftol).
+- m1_201 PASS: 0x119690 ((short) sign test gives test ah,ah / js).
+- 0xE4E90 skip (ebx/edi inputs; 0xE3030/0xE3000 take eax/ecx).
+- 0xCD750 skip (0xCD300 takes eax).
+- 0x134E0 hard (twin of 0x13850: identical stub calls merged).
+- m1_202 PASS: 0x720D0, 0x72180 (macro twins).
+- m1_202 PASS: 0x36180 (volatile arg keeps the two kill calls separate; new func row sub_00034F60).
