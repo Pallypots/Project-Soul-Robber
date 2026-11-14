@@ -1219,5 +1219,5 @@ m1_PoolRefresh0F2D30,0x000F2D30,func,,
 m1_CbUpd0EFDE0,0x000EFDE0,func,,
 m1_CbDraw0F2A60,0x000F2A60,func,,
 m1_CbKill0EEE10,0x000EEE10,func,,
-m1_objList3E1270,0x003E1270,data,,
 m1_ListAdd0192B0,0x000192B0,func,,
+m1_hudBars37F550,0x0037F550,data,0x2a4,2

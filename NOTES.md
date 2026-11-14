@@ -700,3 +700,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xEB2A0 m1_HudPopup0EB2A0 PASS (m1_150). TRICK: address forms like (i+K)*size from a base come from indexing the record array from the base pointer, e.g. ((Rec*)h)[i+0x27]; may help the old "(i*3+0x129)*8 folded" hard cases.
 - 0xE4950 still hard: record-index forms (uint64, 8-byte struct, explicit k) all fold to +0x948 because the slot pointer shares the i*24 term.
 - 0xD1F90 m1_Power2Tick0D1F90 PASS (m1_150), twin pattern of 0xD2090.
+- 0xF2FE0 m1_PoolAttach0F2FE0 PASS (m1_150); callback addresses need func symbol rows (they show as data refs).
+- 0x57160 skip: calls 0x541B0 with eax input.
+- 0x23970 hard: HUD bars; cl unrolls the 2-bar loop (size pragma fixes the calls) but folds the i==3 segment and f208 into constant offsets (0x308/0x3A4).
+- 0xFF9F0 m1_MinionHop0FF9F0 PASS (m1_151).
