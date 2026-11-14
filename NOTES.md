@@ -920,3 +920,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_196 PASS: 0xEFDE0.
 - m1_196 PASS: 0xB6EB0. (Sibling 0xABB60 uses cvttss2si; may be doable now.)
 - m1_196 PASS: 0xABB60 (was 'likely hard (_ftol)'; it is cvttss2si, so _mm_cvtt_ss2si works).
+- m1_196 PASS: 0xEA5A0, 0xEB430 (macro twins).
+- m1_197 PASS: 0xE5C30 (new data rows m1_cutCues317BD4, m1_cutBusy3F11AC, m1_cutFlag3F0750; func row m1_SndTimerSet053F70).
+- m1_197 PASS: 0xF41C0 (volatile command keeps the range test).
+- m1_197 PASS: 0xCCA40.
+- m1_197 PASS: 0xFE7E0 (new func row sub_000F8270).
+- Skips: 0xC03E0 (esi input), 0x136710 (0x135730 eax/ebx), 0x1788D0 (esi input).
