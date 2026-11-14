@@ -584,3 +584,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x163C50: hard (cl merges the 0x18/0x1B recover blocks that differ only in the state).
 - 0x152340: hard (as 0x163C50, recover blocks 0xC/0xE differ only in state; cl merges).
 - 0x16C0D0: hard (state 2..3 range folded).
+- m1_119 PASS: 0x14CF50. m1_120 PASS: 0xF1E80, 0x5ED30.
+- 0xD2CC0: hard (cl hoists the duplicate 0x171CD0 call out of the two branches). 0x409E0: hard (1..0x18 range check).
+- 0xA9440 skip (0xA8510 ecx/edx). 0x497E0 skip (0x48B70 edi/ebx). 0x38AD0 skip (ecx/esi inputs).
+- 0xDD990: hard (cl emits _ftol for the float-to-int casts; orig cvttss2si).
