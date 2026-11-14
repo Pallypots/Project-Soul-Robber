@@ -590,3 +590,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xDD990: hard (cl emits _ftol for the float-to-int casts; orig cvttss2si).
 - 0xC1A90 skip (eax input). 0x7D7B0 skip (eax/ecx/edx inputs).
 - m1_121 PASS: 0xD2C40, 0x7EF30, 0xE9100, 0xEC5A0, 0xCA580, 0xCF330, 0xE1FD0. Trick: inline memset via __stosd/__stosb with the size through a volatile copy. 0xFC970: hard (cl merges the two 0x832D0 clip calls). 0xF6F60: odd default reads arg1 as a count; skipped.
+- 0xF3260: hard (idx 0..15 range). 0x40950: hard (1..0x18 range).
+- 0xEE1B0: hard (cl cannot fold the first table kind 2 from rdata). 0xDE400: skipped (not-found path reads an uninitialised local).
+- m1_122 PASS: 0xEE6D0, 0x1C7B0, 0xFC380. 0xC93D0: hard (cl biases the record loop pointer differently, +0 or +4 vs +8). 0xABB60: likely hard (_ftol). 0x38A10 skip (64-bit shifts).
