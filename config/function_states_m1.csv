@@ -672,3 +672,8 @@ va,name,state,source,obj,waivers,notes
 0x0014d2e0,m1_AiKnockHop214D2E0,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Knocked-back hop (state 0x41) with sway, variant 2; volatile 2.0 and a volatile arg reload keep the orig shape."
 0x00157f80,m1_AiKnockLeap157F80,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Knocked-back leap toward the player (state 0x41); strong variant higher and faster; volatile 2.0 keeps the x*2."
 0x00157880,m1_AiLeap2157880,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Enemy leap toward the player (states 1/2); strong variant higher and faster; volatile 2.0 keeps the x*2."
+0x0017b7a0,m1_ObjPopUp17B7A0,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Object pop-up: tilt upright while shrinking back from double size, then remove; volatile 2.0 keeps the x*2."
+0x000fc8f0,m1_HelperSpeedA0FC8F0,Structurally compared,src/game/m1_161.c,build/obj_m1/m1_161.obj,,"Helper walk/run animation and speed; volatile branch result keeps the two anim calls (macro twin)."
+0x000fcc20,m1_HelperSpeedB0FCC20,Structurally compared,src/game/m1_161.c,build/obj_m1/m1_161.obj,,"Helper walk/run animation and speed, faster spin variant (macro twin)."
+0x000fc970,m1_HelperSpeedC0FC970,Structurally compared,src/game/m1_161.c,build/obj_m1/m1_161.obj,,"Helper walk/run animation and speed, also clears the spin phase (macro twin)."
+0x0010fa20,m1_ObjSndAnim10FA20,Structurally compared,src/game/m1_161.c,build/obj_m1/m1_161.obj,,"Start the object loop sound once, then play its open (8) or close (9) animation; volatile result per branch keeps both calls."

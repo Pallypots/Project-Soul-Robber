@@ -753,3 +753,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x14D2E0 now PASS (m1_160) with volatile 2.0 plus volatile arg reload for the duplicated SetState call.
 - 0x157F80 now PASS (m1_160) with volatile 2.0.
 - 0x157880 now PASS (m1_160) with volatile 2.0.
+- 0x17B7A0 now PASS (m1_160) with volatile 2.0. x*2.0 hard list done except 0x14CDE0 (call order) and 0x156770 (x87).
+- 0xFC8F0, 0xFCC20, 0xFC970 now PASS (m1_161). KEY TRICK: when cl if-converts two branch calls that differ only by a constant, assign a `volatile` local in each branch; it keeps both calls. Revisit: 0x188390, 0x187EA0, 0x188360, 0x10FA20, 0xB4010, 0x107760/0xEEF40.
+- 0x188390 still hard: one call with branch-selected 1/0 push; cl computes b20&1 even through a volatile local.
+- 0x10FA20 now PASS (m1_161): storing each branch call result into a `void *volatile` local keeps two calls that differ by a constant.
