@@ -527,3 +527,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x140C20: hard (setge/dec/and random state pick, cl uses cmov). 0x173BC0 skip (eax/ecx call 0x173030).
 - 0x112490 PASS (m1_105).
 - 0x179EC0: hard (cl turns the 0x213/0x214 sound pick into arithmetic; orig branches).
+- m1_106 PASS: 0x154250, 0x172A30, 0x139890, 0x1821B0, 0x141E80, 0x18C1B0, 0x157BC0, 0x1866A0. Skip (register args): 0x132300, 0x18F7B0, 0x10D3E0 (esi), 0x12AC20 (ebx). 0x180BC0 hard (_ftol).
