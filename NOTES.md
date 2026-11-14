@@ -593,3 +593,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xF3260: hard (idx 0..15 range). 0x40950: hard (1..0x18 range).
 - 0xEE1B0: hard (cl cannot fold the first table kind 2 from rdata). 0xDE400: skipped (not-found path reads an uninitialised local).
 - m1_122 PASS: 0xEE6D0, 0x1C7B0, 0xFC380. 0xC93D0: hard (cl biases the record loop pointer differently, +0 or +4 vs +8). 0xABB60: likely hard (_ftol). 0x38A10 skip (64-bit shifts).
+- 0xC9790: hard (record loop pointer biased +8). 0x13850 skip (vec4 struct passed by value to a debug printer).
+- 0x23330 skip (eax input). 0xE4050: skipped (count-down loop over entity rows).
+- 0xC0BF0 skip (edi input). 0xC87B0: hard (record loop pointer biased +8).
+- m1_123 PASS: 0xA92A0, 0xF4470, 0xFB310, 0x3C740, 0xF92C0, 0xA33E0.
