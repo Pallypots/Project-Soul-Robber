@@ -510,3 +510,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x17FD80 PASS (m1_102).
 - 0x154150 PASS (m1_102). 0x114930 not tried yet (long target pick).
 - 0x13F040 PASS (m1_102).
+- 0x16D940: hard (flag 0x8000 tested as test ah,ah/js on the dword, like 0x119690).
+- 0x177400 PASS (m1_103).
+- 0x15A550, 0x1480E0 skip (esi-arg call 0x15A270 family).
+- 0x10B150, 0x157370 PASS (m1_103).
+- 0x14A9F0, 0x158660 PASS (m1_103).
