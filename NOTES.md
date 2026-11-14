@@ -620,3 +620,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_131 add 0x261A0.
 - 0x260C0: likely hard (n clamp 1..4 folds). 0x5AA20: hard (12..13 range). 0xA24C0: hard (0x1B..0x1C range).
 - m1_132 PASS: 0x3FAF0.
+- 0x810F0 skip (edx input). 0x36180: skipped.
+- m1_132 add 0x195F0, 0xE1270. Trick: for a pair loop biased +4, walk a pointer to the second field and index [-1].
