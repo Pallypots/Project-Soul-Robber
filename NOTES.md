@@ -603,3 +603,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x34390: likely hard (float-to-int, _ftol). 0x53E20 skip (inline strcmp/strcpy). 0x5E9B0, 0x3F5A0: skipped (byte-script loops).
 - m1_124 add 0xA9090. m1_125 PASS: 0x36C90, 0xAA000, 0xBCBE0.
 - 0x5ABD0: hard (kind 12..13 range folded).
+- 0x3D6F0 skip (eax/ecx/edx inputs).
+- m1_126 PASS: 0xC73B0, 0xC48A0, 0xCA600.

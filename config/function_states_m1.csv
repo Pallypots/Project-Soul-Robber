@@ -565,3 +565,6 @@ va,name,state,source,obj,waivers,notes
 0x00036C90,m1_FadeA036C90,Structurally compared,src/game/m1_125.c,build/obj_m1/m1_125.obj,,"Fade A (0x3DA098 flags/mode/step/value): while flag 1, mode 0 fades the value down by step to 0 (flag 2), mode 1 up to 128 (flag 4)"
 0x000AA000,m1_FadeB0AA000,Structurally compared,src/game/m1_125.c,build/obj_m1/m1_125.obj,,"Fade B: the same fade on 0x3ED970"
 0x000BCBE0,m1_PlayerReset0BCBE0,Structurally compared,src/game/m1_125.c,build/obj_m1/m1_125.obj,,"Player respawn reset: clear 0x42007C, reset the stats and table 0x276DBC, rebind the current clip, re-apply the player +0x90 vector"
+0x000C73B0,m1_SlotGet0C73B0,Structurally compared,src/game/m1_126.c,build/obj_m1/m1_126.obj,,"Get a slot from the 20 at 0x41D020: the first free one (no flags 0x80000001), or the first reusable (0x40000000), which is released (0x1EB80) and reset; returns the index, -1 when none"
+0x000C48A0,m1_PlaceToward0C48A0,Structurally compared,src/game/m1_126.c,build/obj_m1/m1_126.obj,,"Place c at distance k from a toward b, and give d the flat unit direction from b to a (all w set to 1)"
+0x000CA600,m1_LightApply0CA600,Structurally compared,src/game/m1_126.c,build/obj_m1/m1_126.obj,,"Apply the base light colour (128,128,128,70) to both light slots, push it to the scene light (0x42C8EC +0x3B0), publish to 0x418B30, apply via 0xC9FB0, refresh +0xFAC"
