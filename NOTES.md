@@ -531,3 +531,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_107 PASS: 0x18F530, 0x166E20, 0x1050B0, 0x18B130, 0x140D30, 0x149890, 0x149C40. Skip (register args): 0x155D10 (edi), 0x16C560 (ebx), 0x10F130 (esi/edi). Hard (x87 compare): 0x18FF50, 0x105480; 0x103B20, 0x170AF0 also have fcom.
 - 0x13CB80: hard (two neg/sbb/and state picks; cl turns whichever comes last into cmov).
 - m1_108 PASS: 0x14BD00, 0x18E100, 0x17BD70, 0x100AD0, 0x17F860, 0x157130, 0x149510, 0x1327A0. Skip: 0x18A300 (calls 0x18A280 with eax/ecx/xmm0). Sway-tail family todo list: grep fam 0f2e051cfb25009ff6c444.
+- 0x14E0A0, 0x14CDE0: hard (x*2.0 doubled sway rate, cl emits addss).
+- 0x14F710, 0x1584E0: hard (int+1 via fild/_ftol). 0x14C6C0: hard (x*2.0).
+- 0x148DD0, 0x148950, 0x14D2E0: hard (x*2.0).
+- 0x157A30: hard (x*2.0).
+- m1_109 PASS: 0x12F710, 0x186F00, 0x1184C0, 0x17D970, 0x152740. Trick: a constant compared at run time in the original (u = 1.0; if (u != -1)) needs volatile float.
+- Skip (register args): 0x16A170 (0x169D30 edi), 0x12CC20 (0x11F640 eax/esi).
+- 0x17FFB0: hard (cl folds idx 0..5 range check). 0x108BB0, 0x12AD40 skip (register args).
+- 0x18C950: hard (cl cross-jumps the two 0x189DA0(o,h,2) calls into one).
