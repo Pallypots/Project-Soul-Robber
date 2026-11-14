@@ -629,3 +629,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x79CB0 skip (esi input). 0xC2420 skip (edi input). 0xC61B0: skipped (large frame, two-call select).
 - 0xA95E0: skipped (equality chains 0xF4/0xF6/0xF8 likely turned into a bit test). 0x4EB50: skipped (push-buffer + neg/sbb select).
 - m1_134 PASS: 0x82750, 0xF4730, 0xF4CA0.
+- m1_135 PASS: 0x262A0, 0x263B0.
