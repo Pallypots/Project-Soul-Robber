@@ -647,3 +647,6 @@ va,name,state,source,obj,waivers,notes
 0x00141760,m1_AiNext141760,Structurally compared,src/game/m1_152.c,build/obj_m1/m1_152.obj,,"Pick the next enemy state when its animation ends: two check-table calls, mask select 0x27/0x29."
 0x0013e800,m1_AiPause13E800,Structurally compared,src/game/m1_153.c,build/obj_m1/m1_153.obj,,"Enemy idle pause of random length; turn chance grows with idle count; 5 s timer state."
 0x00112b30,m1_ActGroundBox112B30,Structurally compared,src/game/m1_153.c,build/obj_m1/m1_153.obj,,"Ground query box (20 units) around an actor foot point; local struct pins the frame."
+0x00184390,m1_GrabInit184390,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Grab enemy setup: one slot, AI tables and six callbacks, colour reset, state 3; hangs when the bad flag is set."
+0x00162640,m1_GrabEnd162640,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Finish a grab: restore flags, drop carried thing, stop sound and effect, state 0x1A; hangs unless in state 0x14."
+0x00178b00,m1_ObjBreak178B00,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Break an object: debris sound (world-specific id), homing or plain sparkle, then remove it."

@@ -717,3 +717,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x13E800 m1_AiPause13E800 PASS (m1_153).
 - 0x112B30 m1_ActGroundBox112B30 PASS (m1_153).
 - 0x13D3F0 skip (ebx input). 0x1788D0 skip (esi input).
+- 0x170660 skip: calls 0x170470 with eax input.
+- 0x184390, 0x162640 PASS (m1_154).
+- 0x1732F0 skip: register calls (0x172C90, 0x172D20).
+- 0x178B00 m1_ObjBreak178B00 PASS (m1_154).
