@@ -1352,3 +1352,6 @@ m1_flagSets300FC8,0x00300FC8,data,0xe,16
 m1_flagBits300FCA,0x00300FCA,data,0xe,16
 m1_flagsAll2C4BB0,0x002C4BB0,data,,
 m1_TextDraw017C00,0x00017C00,func,,
+m1_scores4131C4,0x004131C4,data,0x18,24
+m1_bonus413430,0x00413430,data,,
+m1_links3FE2DC,0x003FE2DC,data,0x24,4

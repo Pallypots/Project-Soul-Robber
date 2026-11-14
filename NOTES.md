@@ -825,3 +825,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x104070 now PASS (m1_175): size pragma plus volatile pointer temps for the card and snapshot arrays.
 - 0x23970 still hard: volatile bar/segment indexes and the size pragma do not stop the constant 0x308/0x3A4 forms.
 - 0x23C00 still hard: even a volatile start pointer gets rebased by cl.
+- 0x4BE20 now PASS (m1_176): signed inclusive pointer bound plus a volatile total.
+- 0x102950 now PASS (m1_176) with volatile constants. 0xCCC50 still hard (cl rotates the store loop and turns the float zero into an int store).
+- 0x181CE0 now PASS (m1_177) with a biased pointer walk on the owner field.
+- 0x5A760 still hard: dec/dec switch with the default block first; cl lays default last (switch) or loses dec/dec (if-chain).
+- 0x398D0 skip: calls 0x39440 / 0x390E0 with eax input.
