@@ -529,3 +529,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x179EC0: hard (cl turns the 0x213/0x214 sound pick into arithmetic; orig branches).
 - m1_106 PASS: 0x154250, 0x172A30, 0x139890, 0x1821B0, 0x141E80, 0x18C1B0, 0x157BC0, 0x1866A0. Skip (register args): 0x132300, 0x18F7B0, 0x10D3E0 (esi), 0x12AC20 (ebx). 0x180BC0 hard (_ftol).
 - m1_107 PASS: 0x18F530, 0x166E20, 0x1050B0, 0x18B130, 0x140D30, 0x149890, 0x149C40. Skip (register args): 0x155D10 (edi), 0x16C560 (ebx), 0x10F130 (esi/edi). Hard (x87 compare): 0x18FF50, 0x105480; 0x103B20, 0x170AF0 also have fcom.
+- 0x13CB80: hard (two neg/sbb/and state picks; cl turns whichever comes last into cmov).
+- m1_108 PASS: 0x14BD00, 0x18E100, 0x17BD70, 0x100AD0, 0x17F860, 0x157130, 0x149510, 0x1327A0. Skip: 0x18A300 (calls 0x18A280 with eax/ecx/xmm0). Sway-tail family todo list: grep fam 0f2e051cfb25009ff6c444.
