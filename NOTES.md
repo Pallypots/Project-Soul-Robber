@@ -597,3 +597,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x23330 skip (eax input). 0xE4050: skipped (count-down loop over entity rows).
 - 0xC0BF0 skip (edi input). 0xC87B0: hard (record loop pointer biased +8).
 - m1_123 PASS: 0xA92A0, 0xF4470, 0xFB310, 0x3C740, 0xF92C0, 0xA33E0.
+- 0xE9830: hard (float-to-int index cvttss2si; cl uses _ftol). 0xC62A0: skipped (indexes a local table by a global).
+- 0x13C00, 0x138F0, 0x13990: skip (push-buffer builders passing a vec4 struct by value).
+- m1_124 PASS: 0x98090, 0xAAB60.
