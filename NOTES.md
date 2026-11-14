@@ -989,3 +989,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x11FBC0 skip (eax input).
 - 0xA81C0: hard after 3 tries (56 records unrolled x4; cl rebases the walk pointer to rec0.kind instead of rec1.kind). Note aab_recDC really spans 56 records, not 8.
 - m1_206 PASS: 0xC5A10.
+- m1_206 PASS: 0x102560 (volatile 2.0f).
+- m1_207 PASS: 0xDFB00 (symbol rows for a19_Signal402FE4, m1_PlayerResume0D3680, adc_SetChannels1 so callers resolve).
+- m1_207 PASS: 0xF90D0 (volatile part copies keep the hang loops; new rows m1_ObjDetach0F6C90, sub_000F8EC0, sub_000F8330).
+- m1_207 PASS: 0xA58D0.
