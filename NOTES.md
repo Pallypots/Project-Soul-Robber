@@ -493,3 +493,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x17CCD0 PASS (m1_99; x*-2.0 stays a multiply). 0x1789E0 skip as hard (frameRate*2.0 becomes x+x).
 - 0x1099D0 PASS (m1_99).
 - 0x117AE0 skip (eax-arg call 0x114D10).
+- 0x118640 skip (eax-arg call 0x114D10).
+- 0x1327A0 skip (calls 0x131310 which reads ebx/edi).
+- 0x14FE90 PASS (m1_100; if-chain keeps the cmp 2). 0x18B530 PASS (signed pointer compare loop with goto found).
+- 0x1868A0, 0x146AA0 PASS (m1_100).
+- 0x1451E0: hard (cl merges the two 0x113090 calls and splits the state call).
