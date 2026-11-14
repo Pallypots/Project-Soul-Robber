@@ -578,3 +578,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x1892E0 skip (tail call 0x188C80 with eax).
 - m1_117 PASS: 0x176150, 0x1741A0, 0x12DA60.
 - 0x171820: hard (mode 0..2 check folded by cl).
+- m1_118 PASS: 0x11E260, 0x137C70.
+- 0x171270: hard (ranges 0..4 and 10..14 folded). 0x163C50: likely hard (duplicated inlined recover blocks cl tail-merges).
+- 0x108CF0 skip (esi input).
