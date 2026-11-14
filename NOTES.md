@@ -892,3 +892,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_192 PASS: 0x182B70 (explicit >2 goto keeps the switch range test).
 - Skips: 0xF2500 (0xF0B10 takes edi), 0x103A80 (0x1023A0 ecx/xmm1), 0xA3AE0 (esi input), 0x188740 (eax/ecx inputs).
 - m1_192 PASS: 0xF6330 (if-chain with goto keeps the cmp 4 / cmp 5 tests).
+- m1_192 PASS: 0xDCE40.
+- m1_193 PASS: 0xF0BE0, 0xF1DE0 (macro twins; volatile pointer keeps the lea base for the two zero stores).
+- m1_193 PASS: 0xC4600 (new data row m1_zoneTbl2E6C40).
+- 0xC87B0: hard (cl bumps the 0x68-stride slot pointer before the stores; original bumps after, giving positive offsets from +8).
+- m1_193 PASS: 0xA22C0 (short loop index keeps the movsx form).
+- m1_193 PASS: 0x94440 (new func row sub_000A2EF0).
