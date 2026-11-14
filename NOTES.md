@@ -881,3 +881,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x118870 (0x1154D0 eax), 0x132080 (0x131310 edi).
 - m1_190 PASS: 0x145650.
 - m1_190 PASS: 0x143380.
+- m1_190 PASS: 0x1373D0 (volatile value per branch keeps the push 0x31/0x32 pick; may also help 0x188390/0x187EA0).
+- m1_191 PASS: 0x188390 (was hard; volatile value per branch keeps the push 1/0 pick).
+- m1_191 PASS: 0x187EA0 (was skipped; same volatile trick).
+- 0x188360 skip (0x186470 takes ebx/edi). 0xB4010 skip (eax/ecx/edi inputs).
+- Skips: 0x173B30 (0x172C90), 0x183E80 (0x183C40 esi).
+- m1_191 PASS: 0x168460 (volatile 2.0f keeps the multiply).
