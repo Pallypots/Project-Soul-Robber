@@ -559,3 +559,15 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x136140 skip (0x135730 eax/ebx). 0x133FC0 skip (0x12E630 eax). 0x120C80 skip (0x11F520 register).
 - 0x12EA90 skip (0x12E390 eax/edi/ebx). 0x176A10 skip (0x176970/0x18C6B0 register calls).
 - 0x1367D0 skip (0x135C60 eax/edi/ebx).
+- 0x16EA50: hard (cl rewrites the event 0x20..0x24 counter loop to compare 0x25, and moves the 0x1D removal block). 0x181A40: skipped (default case reads an uninitialized value; x87 fst chain).
+- 0x100700: hard (x87 sin/cos sums). 0x184F90: hard (count-down node loop; empty case reads stale loop slot).
+- 0x107330: hard (x87 angle math). 0x12CD60 skip (0x11F640 eax/esi).
+- 0x136270 skip (0x135AC0 eax, 0x135C60). 0x10D110 skip (esi input).
+- 0x1100A0 skip (0x10A140 eax, xmm0 return).
+- 0x1561F0: hard (x87 fucompi on 0x145DA0 results).
+- m1_115 PASS: 0x1465C0, 0x179590, 0x168950, 0x1754E0, 0x156500.
+- 0x131E40: hard (state 1..4 range check folded by cl).
+- 0x136950: hard (as 0x131E40, state 1..4 range check).
+- 0x137690 skip (0x135E10/0x1374E0 register calls). 0x1724E0: hard (dead lea of table 0x279B60 that cl drops).
+- 0x17D3F0: hard (idx 0..5 range check folded).
+- 0x1023A0 skip (xmm1/ecx inputs).
