@@ -780,3 +780,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xB12D0 now PASS (m1_165) with volatile call results plus a volatile final argument.
 - 0x1450A0 now PASS (m1_165) with the volatile state local.
 - 0x141570 now PASS (m1_165) with the volatile state local.
+- 0xD2CC0 still hard: cl hoists the identical 0x171CD0(stats) call above the branch; volatile results and a volatile pointer local do not stop it.
+- 0xC4AB0 still hard: cl joins the two 0x1ADBA0 calls with a selected source even with volatile results and volatile frame-time reads.
+- 0x181EF0 now PASS (m1_166): a `float *volatile` temp keeps the +0x30 pointer form; volatile arg reload keeps the two tilt calls.
+- 0x182C00 now PASS (m1_166): array rows for the two time tables plus the volatile arg reload.
