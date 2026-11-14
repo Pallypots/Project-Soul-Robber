@@ -520,3 +520,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x170C70 skip (eax-arg call 0x16FCB0).
 - 0x186500 PASS (m1_104).
 - 0x157260 PASS (m1_104). 0x13F880, 0x141FD0 not tried (shared-block layouts).
+- 0x157590 PASS (m1_105).
+- 0x182C00: hard (merged duplicate state calls and the indexed .rdata time table folds to a constant in the checker).
+- 0x182D20 skip as hard (same indexed time table as 0x182C00). 0x188120 skip (calls 0x186470 with register args).
+- 0x179FE0 not tried yet (long matrix build).
