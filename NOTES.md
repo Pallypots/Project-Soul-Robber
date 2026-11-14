@@ -498,3 +498,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x14FE90 PASS (m1_100; if-chain keeps the cmp 2). 0x18B530 PASS (signed pointer compare loop with goto found).
 - 0x1868A0, 0x146AA0 PASS (m1_100).
 - 0x1451E0: hard (cl merges the two 0x113090 calls and splits the state call).
+- 0x165560 PASS (m1_101).
+- 0x17AE00 skip (esi register arg).
+- 0x186D20 PASS (m1_101).
+- 0x1677F0 PASS (m1_101).
+- 0x181770 PASS (m1_101).
