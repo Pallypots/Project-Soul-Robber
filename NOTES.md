@@ -660,3 +660,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xEE980 m1_LightTint0EE980 PASS (m1_141), do/while list walk, int copy for w.
 - 0xEA7D0 hard: whole function goes x87 with _ftol (0x1C7D38); orig is SSE with cvttss2si and cvtsi2ss. Tried temp floats, signed and unsigned clamp.
 - 0x8B480 skip: twin of 0x8C9B0 (recursive tree build, same tail-dup class).
+- 0xEE760 m1_LightDim0EE760, 0x2E2F0 m1_MainLoop02E2F0 PASS (m1_142). Needed symbol for 0x2C760.
+- 0xF6E20 hard: orig keeps two copies of the sub_E1060 pair (different register allocation); cl cross-jumps them into one. Tried both branch orders.
+- 0x49700 skip: calls 0x48B70 with register inputs.
+- 0xF50E0 m1_CamShakeTick0F50E0 PASS (m1_142). Trick: indexed float tables in .rdata show as fconst on the orig side unless mapped as arrays; add `name,0xVA,data,4,count` rows and use extern arrays. Plain float scalars stay literals.
+- 0xCE590 skip: calls 0xCDAB0 with eax input. 0xA9DC0, 0x1E8C0, 0x98230, 0x1B9E0 skip: register inputs.

@@ -607,3 +607,4 @@ va,name,state,source,obj,waivers,notes
 0x000ee980,m1_LightTint0EE980,Structurally compared,src/game/m1_141.c,build/obj_m1/m1_141.obj,,"Walk a light list and scale each colour; two light types."
 0x000ee760,m1_LightDim0EE760,Structurally compared,src/game/m1_142.c,build/obj_m1/m1_142.obj,,"Twin of 0xEE980 with a single scale factor."
 0x0002e2f0,m1_MainLoop02E2F0,Structurally compared,src/game/m1_142.c,build/obj_m1/m1_142.obj,,"Main frame loop; builds the wipe overlay colour block while the wipe is active."
+0x000f50e0,m1_CamShakeTick0F50E0,Structurally compared,src/game/m1_142.c,build/obj_m1/m1_142.obj,,"Camera shake timer: per-level rate/limit tables (array symbol rows), fires m1_CamShake0F4470 past the limit."
