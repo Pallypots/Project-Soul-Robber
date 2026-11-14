@@ -571,3 +571,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x137690 skip (0x135E10/0x1374E0 register calls). 0x1724E0: hard (dead lea of table 0x279B60 that cl drops).
 - 0x17D3F0: hard (idx 0..5 range check folded).
 - 0x1023A0 skip (xmm1/ecx inputs).
+- 0x129DB0 skip (0x11F640 eax/esi). 0x134FA0 skip (0x12DEC0/0x12E590 register calls).
+- m1_116 PASS: 0x1799E0, 0x1065C0, 0x114AE0, 0x1765C0, 0x1833F0.
+- Trick (0x1799E0): volatile int16 fields stop cl merging adjacent halfword stores.
+- 0x18BE50: hard (slot search unrolled by 5 in the original; cl re-rolls).
+- 0x1892E0 skip (tail call 0x188C80 with eax).
