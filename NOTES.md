@@ -966,3 +966,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x134E0 hard (twin of 0x13850: identical stub calls merged).
 - m1_202 PASS: 0x720D0, 0x72180 (macro twins).
 - m1_202 PASS: 0x36180 (volatile arg keeps the two kill calls separate; new func row sub_00034F60).
+- 0x47560: hard after 3 tries (block placement: cl moves the not-found unlock after the success path).
+- LESSON: when backing out a failed attempt, only delete symbol rows that this attempt appended (check git diff first); a blanket sed removed an existing sub_0003D8C0 row once (restored).
+- Skips: 0x3B000 (esi input), 0x1E8C0 (ecx/ebx inputs).
+- m1_203 PASS: 0x5C430.
+- 0x11C030 skip (0x11B020 takes eax/edx).
+- 0xEE0C0 skip (0xED380 takes eax).
+- m1_203 PASS: 0x185540 (unrolled 8 times via macro).
