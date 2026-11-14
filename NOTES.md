@@ -503,3 +503,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x186D20 PASS (m1_101).
 - 0x1677F0 PASS (m1_101).
 - 0x181770 PASS (m1_101).
+- 0x1255C0 skip (eax/esi call 0x11F640).
+- 0x157E80 PASS (m1_102).
+- 0x157480 PASS (m1_102).
+- 0x132130 skip (eax-arg calls 0x12DC90/0x131310).
+- 0x17FD80 PASS (m1_102).
+- 0x154150 PASS (m1_102). 0x114930 not tried yet (long target pick).
+- 0x13F040 PASS (m1_102).
