@@ -887,3 +887,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x188360 skip (0x186470 takes ebx/edi). 0xB4010 skip (eax/ecx/edi inputs).
 - Skips: 0x173B30 (0x172C90), 0x183E80 (0x183C40 esi).
 - m1_191 PASS: 0x168460 (volatile 2.0f keeps the multiply).
+- m1_191 PASS: 0x16D500.
+- m1_192 PASS: 0x178160.
+- m1_192 PASS: 0x182B70 (explicit >2 goto keeps the switch range test).
+- Skips: 0xF2500 (0xF0B10 takes edi), 0x103A80 (0x1023A0 ecx/xmm1), 0xA3AE0 (esi input), 0x188740 (eax/ecx inputs).
+- m1_192 PASS: 0xF6330 (if-chain with goto keeps the cmp 4 / cmp 5 tests).
