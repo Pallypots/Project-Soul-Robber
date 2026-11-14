@@ -642,3 +642,8 @@ va,name,state,source,obj,waivers,notes
 0x000f2fe0,m1_PoolAttach0F2FE0,Structurally compared,src/game/m1_150.c,build/obj_m1/m1_150.obj,,"Attach a pooled effect pair to an object, place it, register it and set its three callbacks."
 0x000ff9f0,m1_MinionHop0FF9F0,Structurally compared,src/game/m1_151.c,build/obj_m1/m1_151.obj,,"Minion hop toward a target from its stored launch vector; twin of 0xFEBF0 with a scaled vector."
 0x000f9620,m1_MinionHop20F9620,Structurally compared,src/game/m1_152.c,build/obj_m1/m1_152.obj,,"Minion hop using its own speed; volatile stores keep the two anim/flag branches apart, volatile halfwords keep separate stores."
+0x0018ea90,m1_AiDeath18EA90,Structurally compared,src/game/m1_152.c,build/obj_m1/m1_152.obj,,"Enemy death: death effect scaled to size (max 1.5), stop sound, puff, drop held item."
+0x0018e040,m1_AiHoldFree18E040,Structurally compared,src/game/m1_152.c,build/obj_m1/m1_152.obj,,"Free an enemy hold state; volatile store keeps the orig double store to +0x14."
+0x00141760,m1_AiNext141760,Structurally compared,src/game/m1_152.c,build/obj_m1/m1_152.obj,,"Pick the next enemy state when its animation ends: two check-table calls, mask select 0x27/0x29."
+0x0013e800,m1_AiPause13E800,Structurally compared,src/game/m1_153.c,build/obj_m1/m1_153.obj,,"Enemy idle pause of random length; turn chance grows with idle count; 5 s timer state."
+0x00112b30,m1_ActGroundBox112B30,Structurally compared,src/game/m1_153.c,build/obj_m1/m1_153.obj,,"Ground query box (20 units) around an actor foot point; local struct pins the frame."

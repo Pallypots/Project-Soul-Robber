@@ -708,3 +708,12 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xF9620 m1_MinionHop20F9620 PASS (m1_152). TRICK: a volatile store inside each branch stops cl if-converting two call+store branches into one select.
 - 0xC4960 skip: orig duplicates the whole body per branch (tail duplication). 0xC7B70 skip: loop reads an uninitialised local array through a walking pointer.
 - 0xED630 later (indirect call through a table, long). 0xA8ED0 later (long digit split with shared push tails).
+- 0x110540, 0x10FF80 skip: tail jump to 0x10FD50 with eax input.
+- 0x127470 skip: register calls (0x11EDE0, 0x11F2B0).
+- 0x18EA90 m1_AiDeath18EA90 PASS (m1_152).
+- 0x18E040 m1_AiHoldFree18E040 PASS (m1_152); a dead first store kept with a volatile store.
+- 0x141760 m1_AiNext141760 PASS (m1_152).
+- 0x127A30 skip: register calls (0x11F2B0, 0x120820).
+- 0x13E800 m1_AiPause13E800 PASS (m1_153).
+- 0x112B30 m1_ActGroundBox112B30 PASS (m1_153).
+- 0x13D3F0 skip (ebx input). 0x1788D0 skip (esi input).
