@@ -581,3 +581,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_118 PASS: 0x11E260, 0x137C70.
 - 0x171270: hard (ranges 0..4 and 10..14 folded). 0x163C50: likely hard (duplicated inlined recover blocks cl tail-merges).
 - 0x108CF0 skip (esi input).
+- 0x163C50: hard (cl merges the 0x18/0x1B recover blocks that differ only in the state).
+- 0x152340: hard (as 0x163C50, recover blocks 0xC/0xE differ only in state; cl merges).
+- 0x16C0D0: hard (state 2..3 range folded).
