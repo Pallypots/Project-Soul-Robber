@@ -689,3 +689,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x179190 m1_HoldRelease179190 PASS (m1_148).
 - 0x138A10 hard: two sub_ED780(o) sites (one via register, one reloading the arg) get cross-jumped into one by cl. Tried both orders and compare flips.
 - 0x186800 skip: calls 0x186160 with eax input.
+- 0x185420 m1_TaskCount185420 PASS (m1_148).
+- 0x104070 hard (close, revisit): `#pragma optimize("s", on)` reproduces the real `div` for i%9 and `c[i-1]` store gives the -4 form; only the 4-word snapshot differs (struct copy becomes movsd, plain stores fold to d+0x288 offsets). Same pragma may fix 0xDE400's div.
+- 0xDE400 still hard with the size pragma: cl keeps shifts for /16 and %16.
+- 0x188390 hard: orig branches on b20&1 to push 1 or 0; cl if-converts to setne (tried if/else and goto forms).
+- 0x138C10 hard: cl tail-duplicates the shared o->f10 clear + sub_113040 call; orig jumps into one copy (switch, goto-into-case forms).
+- 0x187EA0 skip: same push 1/0 branch class as 0x188390. 0x11D980 skip: calls 0x11B0D0 with ecx/edx inputs. 0x173440, 0x113CE0, 0x16E570, 0x1757C0, 0x1745D0, 0x138640 skip: register inputs.

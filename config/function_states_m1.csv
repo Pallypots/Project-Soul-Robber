@@ -633,3 +633,4 @@ va,name,state,source,obj,waivers,notes
 0x000f6c90,m1_ObjDetach0F6C90,Structurally compared,src/game/m1_147.c,build/obj_m1/m1_147.obj,,"Detach an object from the player (pick by kind), hide it and drop its two effects; hangs on null."
 0x000ccf60,m1_ActButtons0CCF60,Structurally compared,src/game/m1_147.c,build/obj_m1/m1_147.obj,,"Special-move button and weapon-slot cycling (skip empty slots, play the switch sound)."
 0x00179190,m1_HoldRelease179190,Structurally compared,src/game/m1_148.c,build/obj_m1/m1_148.obj,,"Release a held object: find its hold slot (9), clear it, hide the object; volatile halfwords keep separate stores."
+0x00185420,m1_TaskCount185420,Structurally compared,src/game/m1_148.c,build/obj_m1/m1_148.obj,,"Count active tasks with an id (8 slots, fully unrolled by cl)."
