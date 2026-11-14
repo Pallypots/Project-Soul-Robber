@@ -676,3 +676,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x13B7C0 still hard: _ftol fixed by the intrinsic, but cl turns `if (f4 < 0) st += 2` into shr 31 (+0x1F imm); tried mask, signed compare, goto.
 - 0x338D0 m1_LightAttach0338D0 PASS (m1_145). 0xCE9F0 skip (calls 0xCDAB0 with eax). 0x3C2D0 skip (identical-branch push class).
 - 0xD2090 m1_PowerTick0D2090 PASS (m1_145).
+- 0xF61D0 m1_LockOn0F61D0 PASS (m1_146).
+- 0xC61B0 m1_LockShot0C61B0 PASS (m1_146); local struct holds the direction and a whole 0xE0 effect slot. 0xCCF60, 0x845D0 later (long/loops).
+- 0xC5E70 skip: 0x1E..0x21 range-fold class (orig keeps jl/jg).

@@ -624,3 +624,5 @@ va,name,state,source,obj,waivers,notes
 0x0013b890,m1_AiLook13B890,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Enemy look-around entry with random start frame and a 1-in-8 turn request."
 0x000338d0,m1_LightAttach0338D0,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Attach a light or sub-light (type 1: 0x108 records, type 9: 0x180) to a shading slot."
 0x000d2090,m1_PowerTick0D2090,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Timed power-up: 240 + 60 per level frames, attach effect, fade near the end, remove when done."
+0x000f61d0,m1_LockOn0F61D0,Structurally compared,src/game/m1_146.c,build/obj_m1/m1_146.obj,,"Lock onto a target: target info, flattened direction from the player, returns the lock slot and position."
+0x000c61b0,m1_LockShot0C61B0,Structurally compared,src/game/m1_146.c,build/obj_m1/m1_146.obj,,"Lock-on shot: flattened direction scaled by 3, local effect slot kind 0x2A, then the lock marker."
