@@ -803,3 +803,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x171270 later: range folds now solvable but the function is long (~0x280 bytes with a second branch).
 - 0xCCC90 now PASS (m1_171): volatile x/y stop cl turning the byte-0x7F compares into unsigned ones.
 - 0xC6CD0 now PASS (m1_171). TRICK for the merged bit-test class: read the flags into a `volatile` local so cl keeps `test al,1` and `test eax,mask` apart.
+- 0x169730 still hard: volatile flags fix the merged bit test, but cl biases the unrolled loop pointer at +0x40 instead of +0x20.
+- 0xCEAE0/0xCEBB0 skip: edx register input (the always-false check is no longer the blocker).
+- 0xA88B0 now PASS (m1_172). TRICK for always-false checks cl drops: put the value in a `volatile` local.
+- 0xA8990 now PASS (m1_172).
+- 0x112890 now PASS (m1_172) with the volatile kind value.
+- 0x1127B0 now PASS (m1_172) with the volatile kind value and a signed pointer loop compare.
