@@ -914,3 +914,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_195 PASS: 0xFBF90.
 - m1_195 PASS: 0xF6F60 (volatile per branch keeps both attach calls).
 - m1_195 PASS: 0x92650 (new func row sub_000A30F0).
+- 0x84910 skip (_ftol).
+- m1_196 PASS: 0x94150 (sibling of 0x94440).
+- m1_196 PASS: 0xE0640.
+- m1_196 PASS: 0xEFDE0.
+- m1_196 PASS: 0xB6EB0. (Sibling 0xABB60 uses cvttss2si; may be doable now.)
+- m1_196 PASS: 0xABB60 (was 'likely hard (_ftol)'; it is cvttss2si, so _mm_cvtt_ss2si works).
