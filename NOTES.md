@@ -837,3 +837,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xA8330 m1_ThrowDir0A8330 PASS (m1_178).
 - 0x900A0: hard (original memcmp intrinsic is repe cmpsb; our cl expands to dword compares at /O2 and calls _memcmp at /Os). 0xC2A40 skip (0xBD770 takes esi). 0xF23C0/0xF24B0 skip (0x10A140 takes eax). 0xE99A0, 0x18A280, 0x18E540, 0xCD8D0, 0xB4790, 0x102E30 skip (register inputs).
 - 0xDFED0: hard after 3 tries (data matches; cl places the record-pointer bump after the stores, original bumps mid-record giving -0x5c.. offsets, and splits the 16-bit length into bh/bl). 0x1701A0 skip (0x16FCB0 takes eax). 0xCEEA0/0xCEF00/0xCEE40 skip (0xCDAB0/0xCEC90 register inputs). 0xD0480 skip (esi/edx inputs).
+- m1_179 PASS: 0x53F70 (64-bit ms*576000/1000; #pragma optimize("s") keeps the _aulldiv call; added crt row _aulldiv 0x1C81E0). Skips: 0x38BF0 (ebx), 0x6CA50 (0x6C270 regs), 0x45C60 (0x40D20 regs), 0x75850 (0x75780 regs), 0x6DC00 (eax input).
+- m1_180 PASS: 0x7F0A0. 0x13040: hard after 3 tries (cl rebases the slot pointer to +4 and uses a constant strcpy distance; original keeps dst-src in a register). 0x497E0 skip (0x48B70 takes edi/ebx), 0x38AD0 skip (ecx/esi inputs), 0x7D7B0 skip (eax/ecx/edx inputs), 0x4EE60 skip (al/bl inputs).
+- m1_181 PASS: 0x59690 (new data row m1_fieldTex3E4B2C). 0x13850: hard after 3 tries (two identical stub calls behind r1b_dma37B390; cl merges them and drops the test whatever volatile trick). Skips: 0x5A2F0, 0x1A710, 0x471B0 (register-input callees).
+- m1_181 PASS: 0x5C2E0.
