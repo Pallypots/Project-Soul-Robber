@@ -695,3 +695,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x188390 hard: orig branches on b20&1 to push 1 or 0; cl if-converts to setne (tried if/else and goto forms).
 - 0x138C10 hard: cl tail-duplicates the shared o->f10 clear + sub_113040 call; orig jumps into one copy (switch, goto-into-case forms).
 - 0x187EA0 skip: same push 1/0 branch class as 0x188390. 0x11D980 skip: calls 0x11B0D0 with ecx/edx inputs. 0x173440, 0x113CE0, 0x16E570, 0x1757C0, 0x1745D0, 0x138640 skip: register inputs.
+- 0xFEBF0, 0xD3680 PASS (m1_149). x*2.0*2.0 kept with a volatile local constant; an always-false flag test kept by testing a volatile view of the masked value.
+- 0x81E60 m1_BvhPrepare081E60 PASS (m1_149).
+- 0xEB2A0 m1_HudPopup0EB2A0 PASS (m1_150). TRICK: address forms like (i+K)*size from a base come from indexing the record array from the base pointer, e.g. ((Rec*)h)[i+0x27]; may help the old "(i*3+0x129)*8 folded" hard cases.
+- 0xE4950 still hard: record-index forms (uint64, 8-byte struct, explicit k) all fold to +0x948 because the slot pointer shares the i*24 term.
+- 0xD1F90 m1_Power2Tick0D1F90 PASS (m1_150), twin pattern of 0xD2090.

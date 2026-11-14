@@ -634,3 +634,8 @@ va,name,state,source,obj,waivers,notes
 0x000ccf60,m1_ActButtons0CCF60,Structurally compared,src/game/m1_147.c,build/obj_m1/m1_147.obj,,"Special-move button and weapon-slot cycling (skip empty slots, play the switch sound)."
 0x00179190,m1_HoldRelease179190,Structurally compared,src/game/m1_148.c,build/obj_m1/m1_148.obj,,"Release a held object: find its hold slot (9), clear it, hide the object; volatile halfwords keep separate stores."
 0x00185420,m1_TaskCount185420,Structurally compared,src/game/m1_148.c,build/obj_m1/m1_148.obj,,"Count active tasks with an id (8 slots, fully unrolled by cl)."
+0x000febf0,m1_MinionLaunch0FEBF0,Structurally compared,src/game/m1_149.c,build/obj_m1/m1_149.obj,,"Launch the minion on a ballistic arc toward a target; volatile local keeps the two *2.0 multiplies."
+0x000d3680,m1_PlayerResume0D3680,Structurally compared,src/game/m1_149.c,build/obj_m1/m1_149.obj,,"Return the player to normal control after an event; volatile re-test keeps the orig's redundant 0x80000 check."
+0x00081e60,m1_BvhPrepare081E60,Structurally compared,src/game/m1_149.c,build/obj_m1/m1_149.obj,,"Prepare a collision tree query: clear marks, load and optionally re-invert its matrix, set screen scales."
+0x000eb2a0,m1_HudPopup0EB2A0,Structurally compared,src/game/m1_150.c,build/obj_m1/m1_150.obj,,"Score popup into a free HUD slot (8); text pointer stored through a record index from the HUD base to keep (i+0x27)*0x1c."
+0x000d1f90,m1_Power2Tick0D1F90,Structurally compared,src/game/m1_150.c,build/obj_m1/m1_150.obj,,"Second timed power-up (720 frames): aura each frame, effect attach, fade from 710, end and clean up."
