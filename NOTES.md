@@ -765,3 +765,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x1811F0 now PASS (m1_162) with the volatile result trick.
 - 0x141AD0 now PASS (m1_162): two identical (o,e,0x2A) calls kept apart with a volatile arg reload on the first.
 - 0x13F3E0 now PASS (m1_162) with volatile arg reloads on the 0x29 and plain 0xC calls.
+- 0x188360 skip: 0x186470 takes ebx/edi register inputs.
+- 0x13FD20 now PASS (m1_162). TRICK: when cl tail-duplicates one shared call into branches, make the selected argument a `volatile` local.
+- 0x138C10 now PASS (m1_162) with the volatile state local.
+- 0x113E90, 0xEE6D0 now PASS (m1_163).
+- 0x8C9B0 now PASS (m1_163) with a volatile error variable.
+- 0x8B480 now PASS (m1_163) with a volatile error variable.
+- 0xBB620 still hard: volatile id keeps all calls separate and fixes the hang, but cl places the alternate block before the shared 0xA5450 tail.

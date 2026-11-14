@@ -1270,3 +1270,7 @@ m1_FogSet084910,0x00084910,func,,
 m1_spdA27A874,0x0027A874,data,4,3
 m1_spdB27A880,0x0027A880,data,4,3
 m1_CamMode0F40B0,0x000F40B0,func,,
+m1_LinkCb112D30,0x00112D30,func,,
+m1_LinkAttach1B21D0,0x001B21D0,func,,
+m1_TreeBuild08C9B0,0x0008C9B0,func,,
+m1_TreeBuild2_08B480,0x0008B480,func,,
