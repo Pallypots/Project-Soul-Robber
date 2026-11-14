@@ -866,3 +866,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x58C10 (edx input), 0x1A9F0 (0x18E00 takes eax).
 - m1_188 PASS: 0x35A10.
 - m1_188 PASS: 0x1F100.
+- 0x2A460: hard (unsigned-to-float: original uses x87 fild+jge with a 2^32 fix-up; our cl emits cvtsi2ss+jns). Twin of r1e_QueueStepA style.
+- Skips: 0xC9280 (eax input), 0x120BF0 (0x11F0C0 eax), 0x169EA0 (0x169D30), 0x11DF80 (0x11DD70 regs).
+- m1_189 PASS: 0xCD970.
+- m1_189 PASS: 0x113200.
+- Skips: 0x1707F0, 0x170880 (0x1700C0 eax), 0x176BB0 (0x18C6B0 esi), 0x179240 (_ftol).
+- m1_189 PASS: 0x1568A0.
+- m1_189 PASS: 0x142780 (new func row sub_00142480).
