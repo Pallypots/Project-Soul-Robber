@@ -856,3 +856,13 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_186 PASS: 0x7A8B0.
 - m1_187 PASS: 0x7ABB0. 0x5D510 skip (eax input). 0x7AD20 and 0x5C8F0 next.
 - 0x5C8F0: hard after 3 tries (cl rebases the 32-channel walk onto the +(-0x14) owner field; original keeps the id field as base).
+- m1_187 PASS: 0x7AD20 (returns the second stack slot, as the original does; added m1_CmdColor07A8B0 symbol row so callers resolve).
+- Skips: 0x1F4A0, 0x1F5B0 (0x1E4C0 takes edx), 0x14280 (esi input, 64-bit).
+- m1_187 PASS: 0x79B40.
+- 0x3BA20 skip (eax/edi inputs).
+- Skips: 0x27A70 (0x26910 takes ebx/ecx), 0x32F90 (_ftol via 0x1C7D38).
+- Skips: 0x23A70 (_ftol), 0x47450 checked later, 0x140A0 (esi input, 64-bit).
+- m1_188 PASS: 0x54FE0 (volatile base pointers keep [esi+4] and the [eax+4..0xC] copy; new data rows m1_saveMagic26C248, m1_saveDefA..E, m1_saveName2DCDD8).
+- Skips: 0x58C10 (edx input), 0x1A9F0 (0x18E00 takes eax).
+- m1_188 PASS: 0x35A10.
+- m1_188 PASS: 0x1F100.
