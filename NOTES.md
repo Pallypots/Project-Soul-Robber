@@ -612,3 +612,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_128 PASS: 0x91550, 0x91490, 0x7FC60, 0xE8920.
 - m1_129 PASS: 0x48620. 0xE4950: hard (orig addresses the slot part as (i*3+0x129)*8; cl folds to +0x948).
 - 0xC7CC0: hard (record loop pointer biased +8).
+- 0x49180 skip (0x48B70 eax/edi/ebx). 0x7D6E0 skip (eax/edx/ecx inputs).
+- m1_130 PASS: 0xB6F60, 0xDE330.
