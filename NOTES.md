@@ -845,3 +845,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_182 PASS: 0x5CAF0.
 - m1_183 PASS: 0x5CB90. Skips: 0x56980, 0x568C0, 0x56800 (0x543C0 takes ecx).
 - m1_183 PASS: 0x595D0 (new data rows m1_menuSprA3E49E4, m1_menuSprB3E4948).
+- m1_184 PASS: 0x54C00 (__stosd intrinsic gives rep stosd; volatile base pointer keeps st[] base-relative), 0x75F00 (if(!o) for(;;); gives the hang; volatile int16 fields stop store merging). Skips: 0x58A40 (0x589E0 edi), 0x47390 (0x47080 ecx/edx), 0x31430 (0x310B0 esi).
+- m1_185 PASS: 0x1ECD0.
+- m1_185 PASS: 0x6E960 (new data rows m1_iconMask26E728, m1_meter428F82, m1_icons42BCFC).
+- m1_185 PASS: 0x754F0 (new rows m1_uvAnims3E6978, sub_00084C90). 0x35C60 checked next.
+- m1_185 PASS: 0x35C60 (local pos pointer keeps [esi+4]). Skips: 0x17E80 (esi input).
