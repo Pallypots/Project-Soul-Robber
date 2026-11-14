@@ -908,3 +908,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_194 PASS: 0xF2110.
 - m1_194 PASS: 0xEFBE0.
 - m1_195 PASS: 0x82E50 (double fabs gives the x87 fabs/fcompi first test).
+- m1_195 PASS: 0xC62A0 (new data row m1_costume420C2C).
+- 0x18F8D0 skip (eax input).
+- m1_195 PASS: 0xEAC10, 0xFF240.
+- m1_195 PASS: 0xFBF90.
+- m1_195 PASS: 0xF6F60 (volatile per branch keeps both attach calls).
+- m1_195 PASS: 0x92650 (new func row sub_000A30F0).
