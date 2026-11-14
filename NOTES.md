@@ -973,3 +973,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x11C030 skip (0x11B020 takes eax/edx).
 - 0xEE0C0 skip (0xED380 takes eax).
 - m1_203 PASS: 0x185540 (unrolled 8 times via macro).
+- m1_203 PASS: 0x1789E0 (volatile 2.0f).
+- m1_204 PASS: 0x16A5C0.
+- Skips: 0xE8D90 (esi input), 0xCD660 (0xCD300 eax).
+- m1_204 PASS: 0x82C80.
+- m1_204 PASS: 0x94B00.
+- 0xC2420 skip (edi input).
+- Skips: 0x81930 (0x811D0 regs), 0x98130 (eax input).
