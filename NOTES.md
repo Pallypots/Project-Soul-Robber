@@ -554,3 +554,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_113 PASS: 0x17FBE0, 0x1878E0.
 - 0x169BA0 skip (ecx input). 0x110730 skip (0x10A140 register return).
 - 0x111EB0 skip (esi/ebx inputs).
+- m1_114 PASS: 0x145E10, 0x12F170, 0x17AA60, 0x16FF30, 0x115A30, 0x157CE0.
+- 0x135550: hard (flag 0x8000 tested as test ah,ah/js, as 0x119690).
+- 0x136140 skip (0x135730 eax/ebx). 0x133FC0 skip (0x12E630 eax). 0x120C80 skip (0x11F520 register).
+- 0x12EA90 skip (0x12E390 eax/edi/ebx). 0x176A10 skip (0x176970/0x18C6B0 register calls).
+- 0x1367D0 skip (0x135C60 eax/edi/ebx).
