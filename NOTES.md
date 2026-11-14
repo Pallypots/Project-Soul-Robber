@@ -525,3 +525,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x182D20 skip as hard (same indexed time table as 0x182C00). 0x188120 skip (calls 0x186470 with register args).
 - 0x179FE0 not tried yet (long matrix build).
 - 0x140C20: hard (setge/dec/and random state pick, cl uses cmov). 0x173BC0 skip (eax/ecx call 0x173030).
+- 0x112490 PASS (m1_105).

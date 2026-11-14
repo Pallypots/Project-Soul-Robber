@@ -57,3 +57,43 @@ void m1_RigSlide157590(void *o, M1Step105 *h)
     }
 }
 
+
+typedef struct M1Part105 { uint8_t a00[0x10]; uint8_t b10[0x340 - 0x10]; } M1Part105;
+extern M1Part105 m1_parts3F6170[6];
+extern int32_t r2e_g3F74F0, r2e_g3F74F4, m1_g3F74F8, r3b_items3F74FC, r2e_g3F616C, r2e_state3F7500, m1_maxN3F6168;
+extern float b10_f3F7504;
+void sub_0001D8B0(void *p, int kind);
+int sub_00137C20(void); int sub_0013D2E0(void); int sub_001421B0(void); int sub_00119F20(void);
+int sub_0011E010(void); int sub_001550D0(void); int sub_00146090(void); int sub_0012D660(void);
+int sub_00135480(void); int sub_00114640(void);
+
+#define M1_MAXN(f) { int n_ = f(); if (!(m1_maxN3F6168 > n_)) m1_maxN3F6168 = n_; }
+/* 0x00112490: enemy system reset: clear the globals, reinit the six parts (0x1D8B0 kinds 4
+ * and 13), then run every enemy family reset and keep the largest count they return in
+ * 0x3F6168. */
+void m1_EnemyReset112490(void)
+{
+    int i;
+    r2e_g3F74F0 = 0;
+    r2e_g3F74F4 = 0;
+    m1_g3F74F8 = 0;
+    r3b_items3F74FC = 0;
+    r2e_g3F616C = 0;
+    for (i = 0; i < 6; i++) {
+        sub_0001D8B0(m1_parts3F6170[i].a00, 4);
+        sub_0001D8B0(m1_parts3F6170[i].b10, 0xD);
+    }
+    r2e_state3F7500 = 0;
+    b10_f3F7504 = 0.0f;
+    m1_maxN3F6168 = 0;
+    M1_MAXN(sub_00137C20)
+    M1_MAXN(sub_0013D2E0)
+    M1_MAXN(sub_001421B0)
+    M1_MAXN(sub_00119F20)
+    M1_MAXN(sub_0011E010)
+    M1_MAXN(sub_001550D0)
+    M1_MAXN(sub_00146090)
+    M1_MAXN(sub_0012D660)
+    M1_MAXN(sub_00135480)
+    M1_MAXN(sub_00114640)
+}
