@@ -610,3 +610,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_127 PASS: 0x71FE0, 0xF4940, 0xE85D0, 0xCF200.
 - 0x89B50 skip (0x89460 register). 0xA9B80: skipped (local id tables indexed by +4).
 - m1_128 PASS: 0x91550, 0x91490, 0x7FC60, 0xE8920.
+- m1_129 PASS: 0x48620. 0xE4950: hard (orig addresses the slot part as (i*3+0x129)*8; cl folds to +0x948).
+- 0xC7CC0: hard (record loop pointer biased +8).
