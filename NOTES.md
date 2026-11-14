@@ -841,3 +841,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_180 PASS: 0x7F0A0. 0x13040: hard after 3 tries (cl rebases the slot pointer to +4 and uses a constant strcpy distance; original keeps dst-src in a register). 0x497E0 skip (0x48B70 takes edi/ebx), 0x38AD0 skip (ecx/esi inputs), 0x7D7B0 skip (eax/ecx/edx inputs), 0x4EE60 skip (al/bl inputs).
 - m1_181 PASS: 0x59690 (new data row m1_fieldTex3E4B2C). 0x13850: hard after 3 tries (two identical stub calls behind r1b_dma37B390; cl merges them and drops the test whatever volatile trick). Skips: 0x5A2F0, 0x1A710, 0x471B0 (register-input callees).
 - m1_181 PASS: 0x5C2E0.
+- m1_182 PASS: 0x4BF00, 0x7F000 (new data row m1_figTex3E057C). Skips: 0x18F60 (esi/eax inputs), 0x37790 (esi input), 0x5CAF0 checked next, 0x38B50 (ecx input, 64-bit shifts).
+- m1_182 PASS: 0x5CAF0.
+- m1_183 PASS: 0x5CB90. Skips: 0x56980, 0x568C0, 0x56800 (0x543C0 takes ecx).
+- m1_183 PASS: 0x595D0 (new data rows m1_menuSprA3E49E4, m1_menuSprB3E4948).
