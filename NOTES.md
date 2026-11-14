@@ -622,3 +622,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_132 PASS: 0x3FAF0.
 - 0x810F0 skip (edx input). 0x36180: skipped.
 - m1_132 add 0x195F0, 0xE1270. Trick: for a pair loop biased +4, walk a pointer to the second field and index [-1].
+- 0xAF920, 0xA57C0, 0x79370: skipped for now (long chains / range lists).
+- m1_133 PASS: 0x25FD0.
