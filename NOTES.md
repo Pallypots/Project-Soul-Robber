@@ -618,3 +618,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_131 PASS: 0x58B40.
 - 0xE4690: likely hard (slot address formed as (i*5+0x10E)*8). 0xA23E0, 0xC7460: skipped (count-down loops).
 - m1_131 add 0x261A0.
+- 0x260C0: likely hard (n clamp 1..4 folds). 0x5AA20: hard (12..13 range). 0xA24C0: hard (0x1B..0x1C range).
+- m1_132 PASS: 0x3FAF0.
