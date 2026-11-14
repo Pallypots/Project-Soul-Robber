@@ -614,3 +614,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xC7CC0: hard (record loop pointer biased +8).
 - 0x49180 skip (0x48B70 eax/edi/ebx). 0x7D6E0 skip (eax/edx/ecx inputs).
 - m1_130 PASS: 0xB6F60, 0xDE330.
+- 0x81100, 0x811D0 skip (edx/edi/esi inputs). 0x68D50 skip (0x65E50 takes esi).
+- m1_131 PASS: 0x58B40.
