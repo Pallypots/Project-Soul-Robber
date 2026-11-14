@@ -823,3 +823,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xDE400 now PASS (m1_175). TRICK: a `volatile unsigned d = 16` divisor keeps the real div; an alias symbol at the sub-array start keeps the base address.
 - 0x409E0 now PASS (m1_175) with the volatile divisor and range value.
 - 0x104070 now PASS (m1_175): size pragma plus volatile pointer temps for the card and snapshot arrays.
+- 0x23970 still hard: volatile bar/segment indexes and the size pragma do not stop the constant 0x308/0x3A4 forms.
+- 0x23C00 still hard: even a volatile start pointer gets rebased by cl.
