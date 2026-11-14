@@ -993,3 +993,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_207 PASS: 0xDFB00 (symbol rows for a19_Signal402FE4, m1_PlayerResume0D3680, adc_SetChannels1 so callers resolve).
 - m1_207 PASS: 0xF90D0 (volatile part copies keep the hang loops; new rows m1_ObjDetach0F6C90, sub_000F8EC0, sub_000F8330).
 - m1_207 PASS: 0xA58D0.
+- m1_207 PASS: 0xD11E0.
+- Skips: 0xE8E80 (esi input), 0xA4E50 (esi input).
+- m1_208 PASS: 0xB77C0 (volatile copies keep the wait loops; &msg reuses the argument slot like the original).
+- 0x131D40 skip (0x12DC90 eax).
+- 0xEA9F0: hard after 3 tries (cl rewrites idx*3+0x6F as (idx+0x25)*3 for the alpha slot, even through a volatile).
