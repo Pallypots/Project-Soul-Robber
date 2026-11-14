@@ -539,3 +539,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skip (register args): 0x16A170 (0x169D30 edi), 0x12CC20 (0x11F640 eax/esi).
 - 0x17FFB0: hard (cl folds idx 0..5 range check). 0x108BB0, 0x12AD40 skip (register args).
 - 0x18C950: hard (cl cross-jumps the two 0x189DA0(o,h,2) calls into one).
+- 0x1450A0: hard (cl tail-duplicates the 0x113040 call into 3 copies; tried defaulted state, nesting). 0x124280 skip (0x11F640 eax/esi).
+- 0x13E250 skip (0x13D4B0 eax/ebx). 0x18C070 skip (0x18BB20 eax).
+- m1_110 PASS: 0x14A220, 0x1876D0, 0x159500, 0x1538B0, 0x154080, 0x14E800, 0x1521E0, 0x158140. Launch family (sound 0x130) todo: 0x1599D0, 0x14EDB0, 0x151310, 0x158DA0, 0x1582A0, 0x159320 and larger.
