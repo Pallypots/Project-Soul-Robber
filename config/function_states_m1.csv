@@ -712,3 +712,6 @@ va,name,state,source,obj,waivers,notes
 0x000f3260,m1_FileStart0F3260,Structurally compared,src/game/m1_170.c,build/obj_m1/m1_170.obj,,"Start loading data file 0..15 when the loader is idle; volatile index keeps the range compares."
 0x00047a80,m1_MusicCue047A80,Structurally compared,src/game/m1_170.c,build/obj_m1/m1_170.obj,,"Play a music cue 3..23; cues 5..13 go to a free channel (7, 3, 4, 9) unless already playing; volatile cue keeps both range checks."
 0x0001db40,m1_ModelLoad01DB40,Structurally compared,src/game/m1_gs9.c,build/obj_m1/m1_gs9.obj,,"Load a model by its 8-char name (.bmd kind 0, .pod kinds 1..2) and register it; volatile kind keeps the range compares (/GS file)."
+0x000c46b0,m1_ActNear0C46B0,Structurally compared,src/game/m1_171.c,build/obj_m1/m1_171.obj,,"Trigger reaction 2 when a kind 0x25/0x26 object comes within 20 units; volatile kind keeps the two compares."
+0x000ccc90,m1_StickQuad0CCC90,Structurally compared,src/game/m1_171.c,build/obj_m1/m1_171.obj,,"Left-stick diagonal quadrant 0..3, -1 on an axis; volatile x/y keep the signed compares."
+0x000c6cd0,m1_LinkFire0C6CD0,Structurally compared,src/game/m1_171.c,build/obj_m1/m1_171.obj,,"Mark each armed link beam (3 slots, unrolled) owned by the caller as firing; volatile flags keep the two bit tests separate."

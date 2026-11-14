@@ -1323,3 +1323,8 @@ m1_FileRead0512D0,0x000512D0,func,,
 m1_SndChCue199DE0,0x00199DE0,func,,
 m1_SndChPlay199C10,0x00199C10,func,,
 m1_SndCue19B5C0,0x0019B5C0,func,,
+m1_VecLen082D70,0x00082D70,func,,
+m1_ActReact0CA540,0x000CA540,func,,
+m1_stickX42CA5E,0x0042CA5E,data,,
+m1_stickY42CA5F,0x0042CA5F,data,,
+m1_marks3F8A18,0x003F8A18,data,0x20,16

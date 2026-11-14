@@ -798,3 +798,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x260C0 PASS (m1_170); the old "n clamp folds" note no longer applies.
 - 0xF3260, 0x47A80 now PASS (m1_170) with the volatile range value.
 - 0x1DB40 now PASS (m1_gs9, /GS) with the volatile range value.
+- 0xC5E70 later: range fold now solvable, needs careful argument mapping.
+- 0xC46B0 now PASS (m1_171) with the volatile kind value.
+- 0x171270 later: range folds now solvable but the function is long (~0x280 bytes with a second branch).
+- 0xCCC90 now PASS (m1_171): volatile x/y stop cl turning the byte-0x7F compares into unsigned ones.
+- 0xC6CD0 now PASS (m1_171). TRICK for the merged bit-test class: read the flags into a `volatile` local so cl keeps `test al,1` and `test eax,mask` apart.
