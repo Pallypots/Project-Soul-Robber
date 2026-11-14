@@ -644,3 +644,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xD1D00 m1_ActIdle0D1D00 (m1_139): switch on mode, shared anim-set tail.
 - 0xC4DF0 m1_FxAdd0C4DF0 (m1_139): inlined free-slot finder with redundant <0 check.
 - 0xD8750 hard: orig keeps a full signed x%2 (and 0x80000001/jns) before the zero test; cl reduces it to &1 under if or switch. Calls match with switch form.
+- 0x8C9B0 hard: recursive tree build; cl tail-duplicates the shared free-on-error tail (one extra sub_8BF70) in goto, do/while and err-chain forms.
+- 0x18710 hard: orig keeps i*3+0x93 index form and an unrotated key loop with hoisted xmm 0/1.0; cl folds to +0x24C and rotates the pointer (-0x58 offsets).
+- 0xBA6F0, 0x49180, 0x7D6E0 skip: register-argument inputs.
+- 0xCA010 hard: cl cross-jumps the two identical drop-effect paths (mode check and switch default) into one; orig keeps three sub_D00A0 sites. Tried flat, unmerged-tail and nested forms.
+- 0x68D50, 0x81100, 0x34430, 0x3B350 skip: register inputs (esi/edx/eax/ebx, xmm3/4).
+- 0xBF280 m1_ActWake0BF280, 0x8F7E0 m1_RampEval08F7E0, 0xA23E0 m1_RoomFloor0A23E0 PASS (m1_140). Needed symbol rows for 0xCF070, 0xCF1A0, 0x7F650.
+- 0xFD900 skip: x87 maths plus tail jump. 0x37830 skip: register input and x87.

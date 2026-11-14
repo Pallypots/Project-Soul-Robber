@@ -600,3 +600,6 @@ va,name,state,source,obj,waivers,notes
 0x000C56B0,m1_LockMark0C56B0,Structurally compared,src/game/m1_138.c,build/obj_m1/m1_138.obj,,"Lock-on marker: effect kind 10 (11 when 0x171F10 matches) at the middle of the object's bounds (kind 0xC objects use 0x9F710), sized 1.2 times the bound radius; the slot in 0x41E2A0 remembers the object"
 0x000d1d00,m1_ActIdle0D1D00,Structurally compared,src/game/m1_139.c,build/obj_m1/m1_139.obj,,"Actor idle reset: switch on mode, shared animation-set tail."
 0x000c4df0,m1_FxAdd0C4DF0,Structurally compared,src/game/m1_139.c,build/obj_m1/m1_139.obj,,"Effect slot claim: inline free-slot search, fill fields and three vectors."
+0x000bf280,m1_ActWake0BF280,Structurally compared,src/game/m1_140.c,build/obj_m1/m1_140.obj,,"Actor wake-up: three-step switch, two separate state calls."
+0x0008f7e0,m1_RampEval08F7E0,Structurally compared,src/game/m1_140.c,build/obj_m1/m1_140.obj,,"Clamp input to a 0..1 ramp, evaluate four curves, pass results on."
+0x000a23e0,m1_RoomFloor0A23E0,Structurally compared,src/game/m1_140.c,build/obj_m1/m1_140.obj,,"Snap eight room entities to the anchor height; local struct pins the frame."
