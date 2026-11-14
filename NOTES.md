@@ -980,3 +980,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_204 PASS: 0x94B00.
 - 0xC2420 skip (edi input).
 - Skips: 0x81930 (0x811D0 regs), 0x98130 (eax input).
+- m1_204 PASS: 0x93780.
+- m1_205 PASS: 0xEE2B0 (>= flips give the jb tests).
+- 0x16BE00: hard after 3 tries (cl duplicates the shared tail call into the early-exit path).
+- m1_205 PASS: 0x87220.
+- Skips: 0x100C50 (0x18F650 esi), 0xBD570 (esi/edi inputs).
