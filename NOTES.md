@@ -478,3 +478,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x107220 skip (esi register arg).
 - 0x104FC0: hard (block order and the char rand compare; three tries).
 - 0x1371F0, 0x109B10 PASS (m1_97).
+- 0x18E270 skip (eax/esi args).
+- 0x11DA40 PASS (m1_97).

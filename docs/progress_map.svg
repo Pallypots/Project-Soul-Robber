@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="908" height="598" viewBox="0 0 908 598" font-family="Segoe UI,Helvetica,Arial,sans-serif">
 <rect width="908" height="598" rx="8" fill="#0d1117" stroke="#30363d"/>
-<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 32.15% of the game&#8217;s code</text>
-<text x="24" y="66" font-size="13" fill="#8b949e">533,639 of 1,659,818 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
+<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 32.16% of the game&#8217;s code</text>
+<text x="24" y="66" font-size="13" fill="#8b949e">533,874 of 1,659,818 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="1.00"><title>0x00012000: 1978 of 1978 bytes Structurally compared</title></rect>
 <rect x="42" y="96" width="14" height="14" rx="3" fill="#30363d"/>
@@ -962,7 +962,7 @@
 <rect x="132" y="294" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="132" y="294" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.38"><title>0x0011d000: 96 of 1976 bytes Structurally compared</title></rect>
 <rect x="150" y="294" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="150" y="294" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.55"><title>0x0011d800: 626 of 1999 bytes Structurally compared</title></rect>
+<rect x="150" y="294" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.63"><title>0x0011d800: 861 of 1999 bytes Structurally compared</title></rect>
 <rect x="168" y="294" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="168" y="294" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.45"><title>0x0011e000: 280 of 1856 bytes Structurally compared</title></rect>
 <rect x="186" y="294" width="14" height="14" rx="3" fill="#30363d"/>
