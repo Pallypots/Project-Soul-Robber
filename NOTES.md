@@ -768,7 +768,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x188360 skip: 0x186470 takes ebx/edi register inputs.
 - 0x13FD20 now PASS (m1_162). TRICK: when cl tail-duplicates one shared call into branches, make the selected argument a `volatile` local.
 - 0x138C10 now PASS (m1_162) with the volatile state local.
-- 0x113E90, 0xEE6D0 now PASS (m1_163).
+- 0x113E90 now PASS (m1_163). (0xEE6D0 copy removed: already matched in m1_122.)
 - 0x8C9B0 now PASS (m1_163) with a volatile error variable.
 - 0x8B480 now PASS (m1_163) with a volatile error variable.
 - 0xBB620 still hard: volatile id keeps all calls separate and fixes the hang, but cl places the alternate block before the shared 0xA5450 tail.
@@ -835,3 +835,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xF11F0 skip: calls 0x10A140 / 0xEF900 with eax input. 0x81B90 later (long frustum test).
 - LESSON: array symbol rows (elem,count) are global to the checker and can break other areas (m1_links3FE2DC broke r3d_Detach181E80). Prefer plain rows unless a table is indexed; the ship gate catches it.
 - 0xA8330 m1_ThrowDir0A8330 PASS (m1_178).
+- 0x900A0: hard (original memcmp intrinsic is repe cmpsb; our cl expands to dword compares at /O2 and calls _memcmp at /Os). 0xC2A40 skip (0xBD770 takes esi). 0xF23C0/0xF24B0 skip (0x10A140 takes eax). 0xE99A0, 0x18A280, 0x18E540, 0xCD8D0, 0xB4790, 0x102E30 skip (register inputs).
+- 0xDFED0: hard after 3 tries (data matches; cl places the record-pointer bump after the stores, original bumps mid-record giving -0x5c.. offsets, and splits the 16-bit length into bh/bl). 0x1701A0 skip (0x16FCB0 takes eax). 0xCEEA0/0xCEF00/0xCEE40 skip (0xCDAB0/0xCEC90 register inputs). 0xD0480 skip (esi/edx inputs).

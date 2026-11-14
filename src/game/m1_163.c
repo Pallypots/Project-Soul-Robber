@@ -35,28 +35,7 @@ typedef struct M1Lt163b { uint8_t unk00[0x84]; struct M1Lt163c *x84; } M1Lt163b;
 typedef struct M1Lt163c { uint8_t unk00[0x84]; M1Lt163 *x84; } M1Lt163c;
 typedef struct M1Ln163 { uint8_t unk00[0x28]; M1Lt163 *obj28; } M1Ln163;
 extern M1Ck163 *m1_scene42C8E4;
-void sub_000EE660(M1Ln163 *l, float s);
-void sub_001B8320(M1Lt163 *o);
-void sub_001B3160(M1Lt163 *o);
 
-/* 0xEE6D0: set a light's intensity scale and refresh it (type 1 through its parent chain, type 12 directly). */
-void m1_LightScale0EE6D0(M1Ln163 *l, float s) {
-    M1Lt163 *o, *q;
-    sub_000EE660(l, s);
-    o = l->obj28;
-    if (o == 0) return;
-    switch (o->type8C) {
-    case 1:
-        q = o->x88->x84->x84;
-        q->fD8 = (float)m1_scene42C8E4->x40->nC * s;
-        sub_001B3160(q);
-        return;
-    case 0xC:
-        o->fD8 = (float)m1_scene42C8E4->x40->nC * s;
-        sub_001B8320(o);
-        return;
-    }
-}
 
 void *sub_0007F300(void *n);
 void *sub_0007F320(void *n);
