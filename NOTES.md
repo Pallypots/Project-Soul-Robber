@@ -739,3 +739,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x4E030 m1_FigViewOpen04E030 PASS (m1_157).
 - 0xCA6C0 m1_PowerTint0CA6C0 PASS (m1_157); abs(_mm_cvtt_ss2si(...)) gives the cvttss2si/cdq/xor/sub form.
 - 0x3D540 skip (eax input). 0xFE660 skip (esi input). 0xCDD30 skip (eax input).
+- 0x23C00 hard: HUD reset; orig walks one pointer at +0xEF4 with 13 offsets (signed loop compare); cl unrolls (fixed with size pragma) but re-bases the pointer at +0x1564.
+- 0xC42B0 m1_PlHeight0C42B0 PASS (m1_158). 0xEE470, 0xC5B30 later (long).
+- 0x1318F0 skip: register calls (0x12D6F0, 0x131310, 0x147710).
