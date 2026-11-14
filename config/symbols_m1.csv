@@ -1197,3 +1197,4 @@ m1_btnB41CD04,0x0041CD04,data,,
 m1_ActCanAct0CC970,0x000CC970,func,,
 m1_SndBank0243B0,0x000243B0,func,,
 m1_SndPlay023D80,0x00023D80,func,,
+m1_tasks3FE488,0x003FE488,data,0xa0,8

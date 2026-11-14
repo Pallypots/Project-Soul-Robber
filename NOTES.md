@@ -684,3 +684,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x81A20 m1_BvhBuild081A20 PASS (m1_147); pointer locals for the two vectors keep the lea forms.
 - 0xF6C90 m1_ObjDetach0F6C90 PASS (m1_147).
 - 0xCCF60 m1_ActButtons0CCF60 PASS (m1_147). 0x87220 skip (eax input).
+- 0x845D0 hard: orig loads the flag dword and tests ch (bit 15); cl emits test 0x8000 or shr 8. Tried mask, shift and union byte forms.
+- 0x16D5E0, 0x170750 skip: call helpers with eax/edi register inputs.
+- 0x179190 m1_HoldRelease179190 PASS (m1_148).
+- 0x138A10 hard: two sub_ED780(o) sites (one via register, one reloading the arg) get cross-jumped into one by cl. Tried both orders and compare flips.
+- 0x186800 skip: calls 0x186160 with eax input.
