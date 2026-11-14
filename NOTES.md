@@ -926,3 +926,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_197 PASS: 0xCCA40.
 - m1_197 PASS: 0xFE7E0 (new func row sub_000F8270).
 - Skips: 0xC03E0 (esi input), 0x136710 (0x135730 eax/ebx), 0x1788D0 (esi input).
+- m1_197 PASS: 0xCAEC0 (new func row sub_00142630).
+- 0xD6F80: hard after 3 tries (cl keeps the element base as e+0x30 and derives e from it; original keeps e in the arg slot and walks e+0x30 separately).
+- m1_198 PASS: 0x87BB0.
+- 0xA9AC0 skip (edi set before 0xCF8E0, likely register input).
