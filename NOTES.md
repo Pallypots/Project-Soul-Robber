@@ -789,3 +789,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x13B7C0 now PASS (m1_167): volatile state local keeps the `if (f4 < 0) st += 2` branch.
 - 0xA24C0 now PASS (m1_168). KEY TRICK for the range-fold class: load the tested value into a `volatile int` local so cl keeps `cmp lo; jl; cmp hi; jg` instead of one unsigned compare.
 - 0x5AA20 now PASS (m1_168) with the volatile range value.
+- 0x5ABD0, 0x5AB00 now PASS (m1_168) with the volatile range value (0x5AB00 also a volatile chain flag).
+- 0xF8860 now PASS (m1_169) with the volatile range value.
+- 0xF2400 now PASS (m1_169) with the volatile range value and a volatile pointer temp.
+- 0xEDB10, 0xA9EB0 now PASS (m1_169) with the volatile range value; 0xEDB10 also a volatile store so the call goes through the global.
