@@ -665,3 +665,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x49700 skip: calls 0x48B70 with register inputs.
 - 0xF50E0 m1_CamShakeTick0F50E0 PASS (m1_142). Trick: indexed float tables in .rdata show as fconst on the orig side unless mapped as arrays; add `name,0xVA,data,4,count` rows and use extern arrays. Plain float scalars stay literals.
 - 0xCE590 skip: calls 0xCDAB0 with eax input. 0xA9DC0, 0x1E8C0, 0x98230, 0x1B9E0 skip: register inputs.
+- 0xDA120/0xDA210 PASS (m1_143). Script jump offset: union {int16; uint8 b[2]} with b[1]=p[4] gives xor/mov dh; shifts give shl. Mask pick needs switch (sub 5/sub 2).
+- 0xDAD00, 0xDADF0, 0xDA300 PASS (m1_143). Script ops around 0xDA000-0xDC000 are a good vein: union high-byte trick for 16-bit offsets and floats.
+- 0xDB090, 0xDB150, 0xDB210, 0xDD990, 0xDE100 PASS (m1_144).
+- KEY TRICK (0xDD990): orig cvttss2si where cl emits _ftol (0x1C7D38) -> write `_mm_cvtt_ss2si(_mm_set_ss(x))` with <xmmintrin.h>. Revisit the _ftol hard list: 0xEA7D0, 0x13B890, 0x11A590, 0x13B6E0, 0x13B7C0, 0x180BC0, 0x14F710, 0x1584E0.
+- 0xDE400 hard: orig uses a real `div` by 16 for the bit index; cl turns i/16, i%16 into shifts.
+- 0xEA7D0 m1_ComboHit0EA7D0 now PASS (m1_144) with the _mm_cvtt_ss2si trick plus array rows for its three tables.
