@@ -943,3 +943,12 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_199 PASS: 0xBC1D0 (new data rows m1_camLim2E6850, m1_camLimA41FF78, m1_camLimB41FF3C).
 - 0xAE0A0 deferred (real body is a large 0x5A-case switch continuing past 0xAE165; candidate size was wrong).
 - 0xA0230 skip (mid-function fragment).
+- m1_199 PASS: 0xE3A20.
+- 0x185FE0 skip (_ftol).
+- m1_199 PASS: 0xBC040. Note: 0xCCA40 calls r6c_AngleAdd with one pushed float; the second slot is left over from the previous call (original prototype mismatch), which our 1-arg declaration reproduces.
+- m1_199 PASS: 0x17EF30.
+- Skips: 0x187810 (0x186470), 0x81850 (0x811D0 regs), 0x118BC0 (esi/edi inputs).
+- 0x87960 skip (0x875E0 takes esi/edi/ebx).
+- 0x97A40: hard after 3 tries (block placement: cl puts the phase-1 path first; original keeps phase 5 first. volatile copies keep the hang loops).
+- Skips: 0x16C480 (eax/ebx inputs), 0x1869A0, 0x186E20 (0x186160/0x186470 register inputs).
+- m1_200 PASS: 0xA4870.

@@ -391,7 +391,6 @@ m1_ResetAllA4B80,0x000A4B80,func,,
 m1_keys2E2D50,0x002E2D50,data,0xC,76
 m1_keyVal423FE0,0x00423FE0,data,,
 m1_keyA423FE4,0x00423FE4,data,,
-sub_000DFD40,0x000DFD40,func,,
 m1_LookupKeyA3780,0x000A3780,func,,
 m1_flag3F1B20,0x003F1B20,data,,
 m1_rigPath2777BC,0x002777BC,data,,
