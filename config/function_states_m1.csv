@@ -650,3 +650,6 @@ va,name,state,source,obj,waivers,notes
 0x00184390,m1_GrabInit184390,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Grab enemy setup: one slot, AI tables and six callbacks, colour reset, state 3; hangs when the bad flag is set."
 0x00162640,m1_GrabEnd162640,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Finish a grab: restore flags, drop carried thing, stop sound and effect, state 0x1A; hangs unless in state 0x14."
 0x00178b00,m1_ObjBreak178B00,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Break an object: debris sound (world-specific id), homing or plain sparkle, then remove it."
+0x00156b10,m1_AiJump156B10,Structurally compared,src/game/m1_154.c,build/obj_m1/m1_154.obj,,"Enemy high jump with spin; volatile 2.0 keeps the x*2 multiplies, != test keeps the ucomiss/lahf form."
+0x00120720,m1_AiParts120720,Structurally compared,src/game/m1_155.c,build/obj_m1/m1_155.obj,,"Attach four body-part trackers (ids 9..12) to an enemy from a local record table."
+0x00156e50,m1_AiLeap156E50,Structurally compared,src/game/m1_155.c,build/obj_m1/m1_155.obj,,"Enemy leap toward the player; height scales with distance past 100, arc check sets the miss flag."
