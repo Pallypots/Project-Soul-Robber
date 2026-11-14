@@ -855,3 +855,4 @@ m1_stageIds3FE080,0x003FE080,data,4,6
 m1_stageYaw27A798,0x0027A798,data,4,6
 m1_jumpTime319910,0x00319910,data,,
 sub_00104E90,0x00104E90,func,,
+m1_tbl2797E8,0x002797E8,data,,

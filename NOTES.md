@@ -480,3 +480,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x1371F0, 0x109B10 PASS (m1_97).
 - 0x18E270 skip (eax/esi args).
 - 0x11DA40 PASS (m1_97).
+- 0x18F950 skip (edi register arg).
+- 0x167E20 PASS (m1_98).
+- 0x18BBB0 skip (esi register arg).
+- 0x141AD0: hard (cl merges the duplicated state calls).
+- 0x183C40 skip (esi register arg).
+- 0x16B950 PASS (m1_98).
