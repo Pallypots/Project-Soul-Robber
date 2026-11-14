@@ -814,3 +814,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x77190 now PASS (m1_173) with the size pragma plus a volatile masked store.
 - 0xBC5F0, 0x4F680 now PASS (m1_173) with volatile values for the always-true/false checks.
 - 0x5EE40 now PASS (m1_gs9) with the volatile index.
+- 0x1B8800 now PASS (m1_173): volatile slot stores stop cmove, a volatile offset stops the loop offset rotation.
+- 0x19A830 now PASS (m1_174) with a volatile id and a volatile pointer temp.
+- 0xEA170 now PASS (m1_174) with the volatile kind value (the old cmp ax,ax note).
+- 0x11A660 now PASS (m1_174); the rand()%4001 idiv now matches, a volatile first store keeps the double write.
+- 0x126090 skip: register calls (0x11EDE0, 0x11F2B0).

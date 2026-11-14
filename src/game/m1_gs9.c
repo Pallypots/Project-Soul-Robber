@@ -20,3 +20,18 @@ int m1_ModelLoad01DB40(void *ctx, const char *name, M1Md9 *d) {
     sub_0001D1E0(ctx, nm);
     return 8;
 }
+
+extern const char m1_fmtShd26CDE4[], m1_fmtShd26CDC8[];
+int  sub_0007E0A0(char *buf, const char *fmt, ...);
+void m1_ShdLoad05EBB0(int i, const char *name);
+
+/* 0x5EE40: load the 64 shock shader files (names use one format below 16, another below 256). */
+void m1_ShdLoadAll05EE40(void) {
+    char name[0x50]; int i; volatile int k;
+    for (i = 0; i < 0x40; i++) {
+        k = i;
+        if (k < 0x10) sub_0007E0A0(name, m1_fmtShd26CDE4, i);
+        else if (k < 0x100) sub_0007E0A0(name, m1_fmtShd26CDC8, i);
+        m1_ShdLoad05EBB0(i, name);
+    }
+}
