@@ -784,3 +784,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xC4AB0 still hard: cl joins the two 0x1ADBA0 calls with a selected source even with volatile results and volatile frame-time reads.
 - 0x181EF0 now PASS (m1_166): a `float *volatile` temp keeps the +0x30 pointer form; volatile arg reload keeps the two tilt calls.
 - 0x182C00 now PASS (m1_166): array rows for the two time tables plus the volatile arg reload.
+- 0x13CB80 now PASS (m1_166): a volatile local for the masked select keeps neg/sbb/and (no cmov).
+- 0x13B620 now PASS (m1_167) with the volatile mask select.
+- 0x13B7C0 now PASS (m1_167): volatile state local keeps the `if (f4 < 0) st += 2` branch.
+- 0xA24C0 now PASS (m1_168). KEY TRICK for the range-fold class: load the tested value into a `volatile int` local so cl keeps `cmp lo; jl; cmp hi; jg` instead of one unsigned compare.
+- 0x5AA20 now PASS (m1_168) with the volatile range value.
