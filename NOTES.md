@@ -639,3 +639,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xEC770: skipped (two counted entity loops). 0xE43D0: likely hard (slot address formed as (i*5+0x10E)*8).
 - 0xB0E60: hard (cl tail-merges the matching panel calls of the two branches).
 - m1_138 PASS: 0xC56B0.
+- 0xB12D0 hard: cl cross-jumps the shared sub_A2CC0(3,..) call into one tail; orig keeps both, only merges the last A42F0(3,x). Tried inline and shared-tail forms.
+- 0x76FA0, 0x5D400 skip: register-argument inputs (eax/esi).
+- 0xD1D00 m1_ActIdle0D1D00 (m1_139): switch on mode, shared anim-set tail.
+- 0xC4DF0 m1_FxAdd0C4DF0 (m1_139): inlined free-slot finder with redundant <0 check.
+- 0xD8750 hard: orig keeps a full signed x%2 (and 0x80000001/jns) before the zero test; cl reduces it to &1 under if or switch. Calls match with switch form.
