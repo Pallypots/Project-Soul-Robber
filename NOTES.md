@@ -898,3 +898,13 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xC87B0: hard (cl bumps the 0x68-stride slot pointer before the stores; original bumps after, giving positive offsets from +8).
 - m1_193 PASS: 0xA22C0 (short loop index keeps the movsx form).
 - m1_193 PASS: 0x94440 (new func row sub_000A2EF0).
+- m1_194 PASS: 0xC1710.
+- 0x17CF40 skip (esi input).
+- m1_194 PASS: 0xC7540.
+- m1_194 PASS: 0xC4C90 (inline free-slot finder gives the duplicated -1 exits).
+- 0x186600 skip (0x186470 takes ebx/edi).
+- m1_194 PASS: 0xCAE20 (new func row sub_00171B40).
+- Skips: 0xC7DC0 (esi input), 0x9FEF0 (mid-function fragment).
+- m1_194 PASS: 0xF2110.
+- m1_194 PASS: 0xEFBE0.
+- m1_195 PASS: 0x82E50 (double fabs gives the x87 fabs/fcompi first test).
