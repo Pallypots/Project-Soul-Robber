@@ -28,8 +28,8 @@ extern M1Xf194 m1_slots41D020[20];
 int  sub_000C73B0(void);
 void a3c_VecCopy(float *dst, const float *src);
 
-/* 0xC7540: allocate a transform slot and fill it: two parameters, identity-like vectors overwritten by the given position and direction; returns the slot or -1. */
-int m1_XfAlloc0C7540(float a, float b, const float *pos, const float *dir) {
+/* 0xC7540: allocate a transform slot and fill it: two parameters, identity-like vectors overwritten by the given position and direction; returns the slot or -1. The first argument (the caller's owner) is not used. */
+int m1_XfAlloc0C7540(void *owner, float a, float b, const float *pos, const float *dir) {
     int i = sub_000C73B0(); M1Xf194 *r;
     if (i < 0) return -1;
     r = &m1_slots41D020[i];

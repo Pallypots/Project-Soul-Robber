@@ -930,3 +930,16 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xD6F80: hard after 3 tries (cl keeps the element base as e+0x30 and derives e from it; original keeps e in the arg slot and walks e+0x30 separately).
 - m1_198 PASS: 0x87BB0.
 - 0xA9AC0 skip (edi set before 0xCF8E0, likely register input).
+- m1_198 PASS: 0xF6450.
+- 0xF2300 skip (0xF0B10 takes edi).
+- 0xD6EC0 skip (0xD4940 takes eax).
+- m1_198 PASS: 0xC4190.
+- Skips: 0x176E00 (0x176970 esi), 0x88EE0 (eax input), 0xBF740 (esi input).
+- Fix: 0xC7540 takes (owner, a, b, pos, dir); my first version dropped the unused leading argument (checker ignores stack offsets). Corrected in m1_194.c.
+- m1_198 PASS: 0x13FD90.
+- 0x17C950: hard after 3 tries (block placement: cl puts the idle SetAnim before the spotted path; original keeps it last).
+- Skips: 0xCE680 (esi input), 0x167C30 (ebx input).
+- m1_199 PASS: 0xF1120.
+- m1_199 PASS: 0xBC1D0 (new data rows m1_camLim2E6850, m1_camLimA41FF78, m1_camLimB41FF3C).
+- 0xAE0A0 deferred (real body is a large 0x5A-case switch continuing past 0xAE165; candidate size was wrong).
+- 0xA0230 skip (mid-function fragment).
