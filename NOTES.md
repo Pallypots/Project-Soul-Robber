@@ -588,3 +588,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xD2CC0: hard (cl hoists the duplicate 0x171CD0 call out of the two branches). 0x409E0: hard (1..0x18 range check).
 - 0xA9440 skip (0xA8510 ecx/edx). 0x497E0 skip (0x48B70 edi/ebx). 0x38AD0 skip (ecx/esi inputs).
 - 0xDD990: hard (cl emits _ftol for the float-to-int casts; orig cvttss2si).
+- 0xC1A90 skip (eax input). 0x7D7B0 skip (eax/ecx/edx inputs).
+- m1_121 PASS: 0xD2C40, 0x7EF30, 0xE9100, 0xEC5A0, 0xCA580, 0xCF330, 0xE1FD0. Trick: inline memset via __stosd/__stosb with the size through a volatile copy. 0xFC970: hard (cl merges the two 0x832D0 clip calls). 0xF6F60: odd default reads arg1 as a count; skipped.
