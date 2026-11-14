@@ -515,3 +515,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x15A550, 0x1480E0 skip (esi-arg call 0x15A270 family).
 - 0x10B150, 0x157370 PASS (m1_103).
 - 0x14A9F0, 0x158660 PASS (m1_103).
+- 0x1141F0 PASS (m1_104).
+- 0x101380 PASS (m1_104; field stores placed after the clear loop so cl keeps them).
+- 0x170C70 skip (eax-arg call 0x16FCB0).
+- 0x186500 PASS (m1_104).
+- 0x157260 PASS (m1_104). 0x13F880, 0x141FD0 not tried (shared-block layouts).

@@ -464,3 +464,7 @@ va,name,state,source,obj,waivers,notes
 0x00157370,m1_Sway157370,Structurally compared,src/game/m1_103.c,build/obj_m1/m1_103.obj,,"As 0x157480 but raising rig +0x54 by 30"
 0x0014a9f0,m1_RigLunge14A9F0,Structurally compared,src/game/m1_103.c,build/obj_m1/m1_103.obj,,"Enter state 0x22, rig spin (-2*frameRate) and tilt (-15, 10*frameRate), clear h +0x4C 0x70, rig +0x68 -= 30 clamped 0..200, sound 0x12B, rig flag 0x40, target player (mode 1), rig +0x78 = player position"
 0x00158660,m1_RigDrop158660,Structurally compared,src/game/m1_103.c,build/obj_m1/m1_103.obj,,"Enter state 0x13, reset rig quaternion, rig +0xC = frameTime*0.005, clear h +0x4C 0x70, 0x414A0(1), rig +0x54 -= 20 clamped 0..200, rig flag 4, wait 288/432/648 by kind +0x1BC, phase 0x14"
+0x001141f0,m1_SlotsClear1141F0,Structurally compared,src/game/m1_104.c,build/obj_m1/m1_104.obj,,"Clear the four 0x28-byte slots at +0x2A0 (id -1) and +0x60"
+0x00101380,m1_ScriptReset101380,Structurally compared,src/game/m1_104.c,build/obj_m1/m1_104.obj,,"Scene script reset: clear the 0x314-byte record, then reset its fields (vectors 0, +0x238 = -1, twelve +0x2E4 slots)"
+0x00186500,m1_BoneWobble186500,Structurally compared,src/game/m1_104.c,build/obj_m1/m1_104.obj,,"Bone wobble: push bones 3..6 in turn by (0, +0x24, -(+0x18), 0)/4 when rig flag 2 and the object are active; spins on a wrong component 6"
+0x00157260,m1_Sway157260,Structurally compared,src/game/m1_104.c,build/obj_m1/m1_104.obj,,"As 0x157480 but raising rig +0x54 by 15 and also clearing h +0x4C bit 0x100"
