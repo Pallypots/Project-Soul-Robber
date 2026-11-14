@@ -1006,3 +1006,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_210 PASS: 0x1596C0.
 - m1_210 PASS: 0x17EAE0 (volatile index copy keeps the range check; new rows for the hand tables and handlers).
 - m1_210 PASS: 0xE51F0.
+- m1_210 PASS: 0x18D290 (new rows for its tables and handlers).
+- 0x181090 skip (eax input).
+- 0x18C2D0 skip (0x18BBB0 called with register inputs).
