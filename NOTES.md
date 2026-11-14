@@ -793,3 +793,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xF8860 now PASS (m1_169) with the volatile range value.
 - 0xF2400 now PASS (m1_169) with the volatile range value and a volatile pointer temp.
 - 0xEDB10, 0xA9EB0 now PASS (m1_169) with the volatile range value; 0xEDB10 also a volatile store so the call goes through the global.
+- 0x40950 now PASS (m1_169) with the volatile range value. 0x409E0 still hard (real div by 16).
+- 0x131E40, 0x136950 skip: call 0x131310 with register inputs (range fold no longer the blocker).
+- 0x260C0 PASS (m1_170); the old "n clamp folds" note no longer applies.
+- 0xF3260, 0x47A80 now PASS (m1_170) with the volatile range value.
+- 0x1DB40 now PASS (m1_gs9, /GS) with the volatile range value.
