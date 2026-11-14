@@ -819,3 +819,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xEA170 now PASS (m1_174) with the volatile kind value (the old cmp ax,ax note).
 - 0x11A660 now PASS (m1_174); the rand()%4001 idiv now matches, a volatile first store keeps the double write.
 - 0x126090 skip: register calls (0x11EDE0, 0x11F2B0).
+- 0xD8750 now PASS (m1_175): a volatile local for x%2 keeps the full signed remainder sequence.
+- 0xDE400 now PASS (m1_175). TRICK: a `volatile unsigned d = 16` divisor keeps the real div; an alias symbol at the sub-array start keeps the base address.
+- 0x409E0 now PASS (m1_175) with the volatile divisor and range value.
+- 0x104070 now PASS (m1_175): size pragma plus volatile pointer temps for the card and snapshot arrays.

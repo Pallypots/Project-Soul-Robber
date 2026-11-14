@@ -1346,3 +1346,9 @@ m1_EvWarp0F0430,0x000F0430,func,,
 m1_EvLog0E3FF0,0x000E3FF0,func,,
 m1_EvRun0E4050,0x000E4050,func,,
 m1_HitWarp0F6E20,0x000F6E20,func,,
+m1_talk3EDBB0,0x003EDBB0,data,,
+m1_talkN3EDBB8,0x003EDBB8,data,,
+m1_flagSets300FC8,0x00300FC8,data,0xe,16
+m1_flagBits300FCA,0x00300FCA,data,0xe,16
+m1_flagsAll2C4BB0,0x002C4BB0,data,,
+m1_TextDraw017C00,0x00017C00,func,,
