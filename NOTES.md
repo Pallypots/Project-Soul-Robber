@@ -552,3 +552,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x119B20 skip (0x114E90/0x115440 eax). 0x126D90 skip (0x11F640 eax/esi).
 - 0x181EF0: hard (cl merges the two 0x1EEC0 tilt calls into one select and folds the +0x30 pointer stores).
 - m1_113 PASS: 0x17FBE0, 0x1878E0.
+- 0x169BA0 skip (ecx input). 0x110730 skip (0x10A140 register return).
+- 0x111EB0 skip (esi/ebx inputs).
