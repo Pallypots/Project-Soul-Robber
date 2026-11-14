@@ -641,3 +641,4 @@ va,name,state,source,obj,waivers,notes
 0x000d1f90,m1_Power2Tick0D1F90,Structurally compared,src/game/m1_150.c,build/obj_m1/m1_150.obj,,"Second timed power-up (720 frames): aura each frame, effect attach, fade from 710, end and clean up."
 0x000f2fe0,m1_PoolAttach0F2FE0,Structurally compared,src/game/m1_150.c,build/obj_m1/m1_150.obj,,"Attach a pooled effect pair to an object, place it, register it and set its three callbacks."
 0x000ff9f0,m1_MinionHop0FF9F0,Structurally compared,src/game/m1_151.c,build/obj_m1/m1_151.obj,,"Minion hop toward a target from its stored launch vector; twin of 0xFEBF0 with a scaled vector."
+0x000f9620,m1_MinionHop20F9620,Structurally compared,src/game/m1_152.c,build/obj_m1/m1_152.obj,,"Minion hop using its own speed; volatile stores keep the two anim/flag branches apart, volatile halfwords keep separate stores."

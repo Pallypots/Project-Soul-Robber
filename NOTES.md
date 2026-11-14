@@ -704,3 +704,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x57160 skip: calls 0x541B0 with eax input.
 - 0x23970 hard: HUD bars; cl unrolls the 2-bar loop (size pragma fixes the calls) but folds the i==3 segment and f208 into constant offsets (0x308/0x3A4).
 - 0xFF9F0 m1_MinionHop0FF9F0 PASS (m1_151).
+- 0xBB620 hard: twin of 0xB12D0 class; orig duplicates the six-call prefix and shares only the last call; cl either duplicates the last call or merges both branches into selects.
+- 0xF9620 m1_MinionHop20F9620 PASS (m1_152). TRICK: a volatile store inside each branch stops cl if-converting two call+store branches into one select.
+- 0xC4960 skip: orig duplicates the whole body per branch (tail duplication). 0xC7B70 skip: loop reads an uninitialised local array through a walking pointer.
+- 0xED630 later (indirect call through a table, long). 0xA8ED0 later (long digit split with shared push tails).
