@@ -952,3 +952,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x97A40: hard after 3 tries (block placement: cl puts the phase-1 path first; original keeps phase 5 first. volatile copies keep the hang loops).
 - Skips: 0x16C480 (eax/ebx inputs), 0x1869A0, 0x186E20 (0x186160/0x186470 register inputs).
 - m1_200 PASS: 0xA4870.
+- m1_200 PASS: 0xD3540 (new data rows m1_plFx4204C0, m1_plFlags420C20, m1_plMode420078).
+- 0x1452D0 skip (0x143740 takes eax/edx).
+- 0x181650 skip (0x181090 takes eax).
+- m1_200 PASS: 0xCBF10.
+- m1_201 PASS: 0xC5930.
+- m1_201 PASS: 0xC9D20 (new func row sub_00171AF0).
+- m1_201 PASS: 0xFC580 (volatile mode keeps the range test).
+- Skips: 0x171070 (0x170E40 eax/edi), 0xF8C50 (_ftol).
