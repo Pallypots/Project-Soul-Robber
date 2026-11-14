@@ -600,3 +600,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xE9830: hard (float-to-int index cvttss2si; cl uses _ftol). 0xC62A0: skipped (indexes a local table by a global).
 - 0x13C00, 0x138F0, 0x13990: skip (push-buffer builders passing a vec4 struct by value).
 - m1_124 PASS: 0x98090, 0xAAB60.
+- 0x34390: likely hard (float-to-int, _ftol). 0x53E20 skip (inline strcmp/strcpy). 0x5E9B0, 0x3F5A0: skipped (byte-script loops).
+- m1_124 add 0xA9090. m1_125 PASS: 0x36C90, 0xAA000, 0xBCBE0.
+- 0x5ABD0: hard (kind 12..13 range folded).
