@@ -873,3 +873,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x1707F0, 0x170880 (0x1700C0 eax), 0x176BB0 (0x18C6B0 esi), 0x179240 (_ftol).
 - m1_189 PASS: 0x1568A0.
 - m1_189 PASS: 0x142780 (new func row sub_00142480).
+- m1_189 PASS: 0x159860. 0x80B40 skip (ebx input).
+- m1_189 PASS: 0x179770.
+- m1_190 PASS: 0x173F10 (new data row m1_tnDone32B1B4).
+- m1_190 PASS: 0x174540 (volatile kind keeps the range test; new data row m1_keyReset32B1C0).
+- m1_190 PASS: 0x18AF00 (>= form gives jb).
+- Skips: 0x118870 (0x1154D0 eax), 0x132080 (0x131310 edi).
+- m1_190 PASS: 0x145650.
+- m1_190 PASS: 0x143380.
