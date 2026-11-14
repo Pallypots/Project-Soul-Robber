@@ -605,3 +605,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x5ABD0: hard (kind 12..13 range folded).
 - 0x3D6F0 skip (eax/ecx/edx inputs).
 - m1_126 PASS: 0xC73B0, 0xC48A0, 0xCA600.
+- 0xC9310: hard (record loop pointer biased +8). 0x6E960: skipped.
+- 0xC4AB0: hard (cl merges the two 0x1ADBA0 calls into one with a selected source).
+- m1_127 PASS: 0x71FE0, 0xF4940, 0xE85D0, 0xCF200.
