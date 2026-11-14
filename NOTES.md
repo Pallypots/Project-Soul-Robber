@@ -985,3 +985,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x16BE00: hard after 3 tries (cl duplicates the shared tail call into the early-exit path).
 - m1_205 PASS: 0x87220.
 - Skips: 0x100C50 (0x18F650 esi), 0xBD570 (esi/edi inputs).
+- m1_205 PASS: 0x85F90 (new func row sub_000A9440).
+- 0x11FBC0 skip (eax input).
+- 0xA81C0: hard after 3 tries (56 records unrolled x4; cl rebases the walk pointer to rec0.kind instead of rec1.kind). Note aab_recDC really spans 56 records, not 8.
+- m1_206 PASS: 0xC5A10.
