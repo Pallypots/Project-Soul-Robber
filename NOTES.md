@@ -634,3 +634,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x38FA0: skipped (16-bit packed stores). 0xD3680, 0xE4F70: skipped (long call chains; 0xE4F70 tail-jumps).
 - 0x3A9A0 skip (eax input). 0x79B40, 0xA75F0: skipped (count-down / nested slot loops).
 - m1_136 PASS: 0xBA7C0, 0xCA200, 0x582C0.
+- 0x1B8D0 skip (eax/ecx/edx/edi inputs). 0x5D510 skip (eax input). 0x5C8F0: skipped (count-down slot loop).
+- m1_137 PASS: 0x82840, 0xEB4F0.
