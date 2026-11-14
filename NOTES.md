@@ -651,3 +651,12 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x68D50, 0x81100, 0x34430, 0x3B350 skip: register inputs (esi/edx/eax/ebx, xmm3/4).
 - 0xBF280 m1_ActWake0BF280, 0x8F7E0 m1_RampEval08F7E0, 0xA23E0 m1_RoomFloor0A23E0 PASS (m1_140). Needed symbol rows for 0xCF070, 0xCF1A0, 0x7F650.
 - 0xFD900 skip: x87 maths plus tail jump. 0x37830 skip: register input and x87.
+- 0xC7460 m1_PkSpawn0C7460 PASS (m1_141); pointer loop got biased to +0xE8, indexed loop fixed it.
+- 0x62080 hard: orig spline search loop is unrolled x4 by cl; ours never unrolls (for/break, &&-cond, local d forms).
+- 0xA24C0 hard: range 0x1B..0x1C folded to one unsigned compare and j*0x130 const-folded into two addresses.
+- 0x5AA20 skip: same 12..13 range-fold class. 0x81850 skip: calls 0x811D0 with register inputs.
+- 0xF94B0 skip: default case reads an uninitialised local from a reused arg slot. 0x97A40 skip: x87 compare plus register spin loops.
+- 0xED1B0, 0x188E0, 0x80A60 skip: register inputs. 0xF8860 skip: 0x22..0x29 range-fold class.
+- 0xEE980 m1_LightTint0EE980 PASS (m1_141), do/while list walk, int copy for w.
+- 0xEA7D0 hard: whole function goes x87 with _ftol (0x1C7D38); orig is SSE with cvttss2si and cvtsi2ss. Tried temp floats, signed and unsigned clamp.
+- 0x8B480 skip: twin of 0x8C9B0 (recursive tree build, same tail-dup class).

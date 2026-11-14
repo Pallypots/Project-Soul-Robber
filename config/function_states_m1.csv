@@ -603,3 +603,7 @@ va,name,state,source,obj,waivers,notes
 0x000bf280,m1_ActWake0BF280,Structurally compared,src/game/m1_140.c,build/obj_m1/m1_140.obj,,"Actor wake-up: three-step switch, two separate state calls."
 0x0008f7e0,m1_RampEval08F7E0,Structurally compared,src/game/m1_140.c,build/obj_m1/m1_140.obj,,"Clamp input to a 0..1 ramp, evaluate four curves, pass results on."
 0x000a23e0,m1_RoomFloor0A23E0,Structurally compared,src/game/m1_140.c,build/obj_m1/m1_140.obj,,"Snap eight room entities to the anchor height; local struct pins the frame."
+0x000c7460,m1_PkSpawn0C7460,Structurally compared,src/game/m1_141.c,build/obj_m1/m1_141.obj,,"Arm spawners: inline free pickup search, indexed slot loop."
+0x000ee980,m1_LightTint0EE980,Structurally compared,src/game/m1_141.c,build/obj_m1/m1_141.obj,,"Walk a light list and scale each colour; two light types."
+0x000ee760,m1_LightDim0EE760,Structurally compared,src/game/m1_142.c,build/obj_m1/m1_142.obj,,"Twin of 0xEE980 with a single scale factor."
+0x0002e2f0,m1_MainLoop02E2F0,Structurally compared,src/game/m1_142.c,build/obj_m1/m1_142.obj,,"Main frame loop; builds the wipe overlay colour block while the wipe is active."
