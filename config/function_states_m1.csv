@@ -619,3 +619,8 @@ va,name,state,source,obj,waivers,notes
 0x000dd990,m1_OpLineByStat0DD990,Structurally compared,src/game/m1_144.c,build/obj_m1/m1_144.obj,,"Script op: play one of a set of lines picked by the last digit of stat 12; SSE truncation intrinsic."
 0x000de100,m1_Lookup0DE100,Structurally compared,src/game/m1_144.c,build/obj_m1/m1_144.obj,,"Two-level id table lookup with a pointer biased to the pair list; -1 if missing."
 0x000ea7d0,m1_ComboHit0EA7D0,Structurally compared,src/game/m1_144.c,build/obj_m1/m1_144.obj,,"Combo meter hit: score tables (array rows), SSE truncation intrinsic for the tier and text size."
+0x0011a590,m1_AiIdleWait11A590,Structurally compared,src/game/m1_144.c,build/obj_m1/m1_144.obj,,"Enemy idle wait: random 60/70 + 0..40 frames, two variants; SSE truncation intrinsic."
+0x0013b6e0,m1_AiIdle13B6E0,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Enemy idle entry with random start frame; SSE truncation intrinsic."
+0x0013b890,m1_AiLook13B890,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Enemy look-around entry with random start frame and a 1-in-8 turn request."
+0x000338d0,m1_LightAttach0338D0,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Attach a light or sub-light (type 1: 0x108 records, type 9: 0x180) to a shading slot."
+0x000d2090,m1_PowerTick0D2090,Structurally compared,src/game/m1_145.c,build/obj_m1/m1_145.obj,,"Timed power-up: 240 + 60 per level frames, attach effect, fade near the end, remove when done."

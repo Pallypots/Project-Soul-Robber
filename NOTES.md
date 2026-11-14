@@ -671,3 +671,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - KEY TRICK (0xDD990): orig cvttss2si where cl emits _ftol (0x1C7D38) -> write `_mm_cvtt_ss2si(_mm_set_ss(x))` with <xmmintrin.h>. Revisit the _ftol hard list: 0xEA7D0, 0x13B890, 0x11A590, 0x13B6E0, 0x13B7C0, 0x180BC0, 0x14F710, 0x1584E0.
 - 0xDE400 hard: orig uses a real `div` by 16 for the bit index; cl turns i/16, i%16 into shifts.
 - 0xEA7D0 m1_ComboHit0EA7D0 now PASS (m1_144) with the _mm_cvtt_ss2si trick plus array rows for its three tables.
+- 0x11A590 m1_AiIdleWait11A590 now PASS (m1_144) with the intrinsic. 0x180BC0 stays hard: its orig really calls _ftol, the old note blamed the wrong thing.
+- 0x13B6E0, 0x13B890 now PASS (m1_145) with the intrinsic (shared random-frame macro).
+- 0x13B7C0 still hard: _ftol fixed by the intrinsic, but cl turns `if (f4 < 0) st += 2` into shr 31 (+0x1F imm); tried mask, signed compare, goto.
+- 0x338D0 m1_LightAttach0338D0 PASS (m1_145). 0xCE9F0 skip (calls 0xCDAB0 with eax). 0x3C2D0 skip (identical-branch push class).
+- 0xD2090 m1_PowerTick0D2090 PASS (m1_145).
