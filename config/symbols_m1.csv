@@ -850,3 +850,7 @@ sub_00194F00,0x00194F00,func,,
 sub_00113600,0x00113600,func,,
 m1_checkFn31B0C8,0x0031B0C8,data,,
 m1_checkTbl2795A8,0x002795A8,data,,
+m1_stage3FE064,0x003FE064,data,,
+m1_stageIds3FE080,0x003FE080,data,4,6
+m1_stageYaw27A798,0x0027A798,data,4,6
+m1_jumpTime319910,0x00319910,data,,
