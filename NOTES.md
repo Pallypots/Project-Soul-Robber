@@ -757,3 +757,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xFC8F0, 0xFCC20, 0xFC970 now PASS (m1_161). KEY TRICK: when cl if-converts two branch calls that differ only by a constant, assign a `volatile` local in each branch; it keeps both calls. Revisit: 0x188390, 0x187EA0, 0x188360, 0x10FA20, 0xB4010, 0x107760/0xEEF40.
 - 0x188390 still hard: one call with branch-selected 1/0 push; cl computes b20&1 even through a volatile local.
 - 0x10FA20 now PASS (m1_161): storing each branch call result into a `void *volatile` local keeps two calls that differ by a constant.
+- 0x107760, 0xEEF40 now PASS (m1_161) with the volatile result trick.
+- 0xB4010 skip: register inputs (eax/ecx/edi).
+- 0x1060B0 still hard: cl joins the two 0xCF330 tail calls (vector pointer selected) even with a volatile result.
+- 0x79EF0 now PASS (m1_161) with the volatile result trick.
+- 0xEB3A0 still hard: cl selects idC/id10 first and shares one pair of tail calls (volatile result, volatile b reload tried).
+- 0x1811F0 now PASS (m1_162) with the volatile result trick.
+- 0x141AD0 now PASS (m1_162): two identical (o,e,0x2A) calls kept apart with a volatile arg reload on the first.
+- 0x13F3E0 now PASS (m1_162) with volatile arg reloads on the 0x29 and plain 0xC calls.
