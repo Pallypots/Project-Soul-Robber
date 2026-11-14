@@ -809,3 +809,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xA8990 now PASS (m1_172).
 - 0x112890 now PASS (m1_172) with the volatile kind value.
 - 0x1127B0 now PASS (m1_172) with the volatile kind value and a signed pointer loop compare.
+- 0xF9230 now PASS (m1_172): a volatile int store keeps the w self-copy cl used to delete.
+- 0xA3810 skip: esi register input.
+- 0x77190 now PASS (m1_173) with the size pragma plus a volatile masked store.
+- 0xBC5F0, 0x4F680 now PASS (m1_173) with volatile values for the always-true/false checks.
+- 0x5EE40 now PASS (m1_gs9) with the volatile index.
