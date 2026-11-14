@@ -630,3 +630,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xA95E0: skipped (equality chains 0xF4/0xF6/0xF8 likely turned into a bit test). 0x4EB50: skipped (push-buffer + neg/sbb select).
 - m1_134 PASS: 0x82750, 0xF4730, 0xF4CA0.
 - m1_135 PASS: 0x262A0, 0x263B0.
+- 0xC9980: hard (record loop biased +0xC, local handler table). 0x48F10 skip (0x48B70 register call). 0x23970: skipped (2x4 index loop with int-float conversions).
+- 0x38FA0: skipped (16-bit packed stores). 0xD3680, 0xE4F70: skipped (long call chains; 0xE4F70 tail-jumps).
+- 0x3A9A0 skip (eax input). 0x79B40, 0xA75F0: skipped (count-down / nested slot loops).
+- m1_136 PASS: 0xBA7C0, 0xCA200, 0x582C0.
