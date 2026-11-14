@@ -850,3 +850,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_185 PASS: 0x6E960 (new data rows m1_iconMask26E728, m1_meter428F82, m1_icons42BCFC).
 - m1_185 PASS: 0x754F0 (new rows m1_uvAnims3E6978, sub_00084C90). 0x35C60 checked next.
 - m1_185 PASS: 0x35C60 (local pos pointer keeps [esi+4]). Skips: 0x17E80 (esi input).
+- m1_186 PASS: 0x3AAF0 (volatile out in the default case keeps three copies; volatile flags keep two bit tests). Skips: 0x396E0 (64-bit shifts), 0x3D2A0 (eax input).
+- m1_186 PASS: 0x486F0 (volatile id keeps the two-sided range test).
+- 0x4EFE0 skip (0x4ED90 takes edx).
+- m1_186 PASS: 0x7A8B0.
+- m1_187 PASS: 0x7ABB0. 0x5D510 skip (eax input). 0x7AD20 and 0x5C8F0 next.
+- 0x5C8F0: hard after 3 tries (cl rebases the 32-channel walk onto the +(-0x14) owner field; original keeps the id field as base).
