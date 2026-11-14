@@ -576,3 +576,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Trick (0x1799E0): volatile int16 fields stop cl merging adjacent halfword stores.
 - 0x18BE50: hard (slot search unrolled by 5 in the original; cl re-rolls).
 - 0x1892E0 skip (tail call 0x188C80 with eax).
+- m1_117 PASS: 0x176150, 0x1741A0, 0x12DA60.
+- 0x171820: hard (mode 0..2 check folded by cl).
