@@ -1001,3 +1001,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_208 PASS: 0xEB080.
 - 0x1061B0 skip (esi input).
 - 0x141FD0: hard after 3 tries (cl duplicates the shared state-0x29 call into both height branches).
+- m1_209 PASS: 0xCFE00 (volatile front flag keeps the branch).
+- 0x132420 skip (0x12DC90 eax).
+- m1_210 PASS: 0x1596C0.
+- m1_210 PASS: 0x17EAE0 (volatile index copy keeps the range check; new rows for the hand tables and handlers).
+- m1_210 PASS: 0xE51F0.
