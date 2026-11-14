@@ -747,3 +747,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x156F90 now PASS (m1_159) with volatile 2.0.
 - 0x156CF0 now PASS (m1_159).
 - 0x14E0A0 now PASS (m1_159) with volatile 2.0.
+- 0x14CDE0 still hard: x*2 fixed, but cl merges or reorders the two SetState calls (weak branch placed before the shared tail); tried if/else, goto tail, volatile arg.
+- 0x148950 now PASS (m1_160) with volatile 2.0.
+- 0x148DD0 now PASS (m1_160) with volatile 2.0.
+- 0x14D2E0 now PASS (m1_160) with volatile 2.0 plus volatile arg reload for the duplicated SetState call.
+- 0x157F80 now PASS (m1_160) with volatile 2.0.
+- 0x157880 now PASS (m1_160) with volatile 2.0.

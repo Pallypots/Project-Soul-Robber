@@ -667,3 +667,8 @@ va,name,state,source,obj,waivers,notes
 0x00156f90,m1_AiBounce156F90,Structurally compared,src/game/m1_159.c,build/obj_m1/m1_159.obj,,"Enemy bounce-back: upward kick, slow spin, state 4; volatile 2.0 keeps the x*2 multiplies."
 0x00156cf0,m1_AiLowLeap156CF0,Structurally compared,src/game/m1_159.c,build/obj_m1/m1_159.obj,,"Low leap toward the player; height and turn speed by distance, two != tests keep the ucomiss/lahf stores."
 0x0014e0a0,m1_AiKnockHop14E0A0,Structurally compared,src/game/m1_159.c,build/obj_m1/m1_159.obj,,"Knocked-back hop (state 0x41) with sway; strong variant higher and faster; volatile 2.0 keeps the x*2."
+0x00148950,m1_AiHopAway148950,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Enemy hop away with sway; strong variant higher and faster; volatile 2.0 keeps the x*2."
+0x00148dd0,m1_AiFlipAway148DD0,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Enemy backflip away with sway (states 3/4); strong variant higher and faster; volatile 2.0 keeps the x*2."
+0x0014d2e0,m1_AiKnockHop214D2E0,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Knocked-back hop (state 0x41) with sway, variant 2; volatile 2.0 and a volatile arg reload keep the orig shape."
+0x00157f80,m1_AiKnockLeap157F80,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Knocked-back leap toward the player (state 0x41); strong variant higher and faster; volatile 2.0 keeps the x*2."
+0x00157880,m1_AiLeap2157880,Structurally compared,src/game/m1_160.c,build/obj_m1/m1_160.obj,,"Enemy leap toward the player (states 1/2); strong variant higher and faster; volatile 2.0 keeps the x*2."
