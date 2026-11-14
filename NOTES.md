@@ -772,3 +772,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x8C9B0 now PASS (m1_163) with a volatile error variable.
 - 0x8B480 now PASS (m1_163) with a volatile error variable.
 - 0xBB620 still hard: volatile id keeps all calls separate and fixes the hang, but cl places the alternate block before the shared 0xA5450 tail.
+- 0x16ADA0 now PASS (m1_163) with the volatile result trick.
+- 0x54D50 now PASS (m1_164) with the volatile result trick and a shared snd label.
+- 0x79910 skip: edx/edi register inputs.
+- 0x34050 skip: ecx/ebx register inputs.
+- 0x137170 skip: calls 0x135A70, which takes esi/edi register inputs (the old "hard" note was wrong about the cause).

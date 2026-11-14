@@ -689,3 +689,5 @@ va,name,state,source,obj,waivers,notes
 0x000ee6d0,m1_LightScale0EE6D0,Structurally compared,src/game/m1_163.c,build/obj_m1/m1_163.obj,,"Light intensity scale and refresh; type 1 through its parent chain, type 12 directly."
 0x0008c9b0,m1_TreeBuild08C9B0,Structurally compared,src/game/m1_163.c,build/obj_m1/m1_163.obj,,"Recursive tree build (node, left, right), frees everything on error; volatile error keeps the single shared cleanup."
 0x0008b480,m1_TreeBuild2_08B480,Structurally compared,src/game/m1_163.c,build/obj_m1/m1_163.obj,,"Second recursive tree build (checks the child attach results); volatile error keeps the single shared cleanup."
+0x0016ada0,m1_BossMode16ADA0,Structurally compared,src/game/m1_163.c,build/obj_m1/m1_163.obj,,"Boss mode 7 or 9 by phase flag; volatile result keeps both calls."
+0x00054d50,m1_YesNo054D50,Structurally compared,src/game/m1_164.c,build/obj_m1/m1_164.obj,,"Yes/no prompt input: cursor moves, confirm returns 1 or 2, cancel returns 2; volatile result keeps the three sound call sites."
