@@ -616,3 +616,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_130 PASS: 0xB6F60, 0xDE330.
 - 0x81100, 0x811D0 skip (edx/edi/esi inputs). 0x68D50 skip (0x65E50 takes esi).
 - m1_131 PASS: 0x58B40.
+- 0xE4690: likely hard (slot address formed as (i*5+0x10E)*8). 0xA23E0, 0xC7460: skipped (count-down loops).
+- m1_131 add 0x261A0.
