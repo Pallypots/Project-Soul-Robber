@@ -679,3 +679,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xF61D0 m1_LockOn0F61D0 PASS (m1_146).
 - 0xC61B0 m1_LockShot0C61B0 PASS (m1_146); local struct holds the direction and a whole 0xE0 effect slot. 0xCCF60, 0x845D0 later (long/loops).
 - 0xC5E70 skip: 0x1E..0x21 range-fold class (orig keeps jl/jg).
+- 0x324B0, 0x4EB50 PASS (m1_146). The calls list is ordered: put the main path first when cl would place a short early-out call ahead of it.
+- 0xA7830 m1_NodeXform0A7830 PASS (m1_147). 0xF0660 skip (esi input).
+- 0x81A20 m1_BvhBuild081A20 PASS (m1_147); pointer locals for the two vectors keep the lea forms.
+- 0xF6C90 m1_ObjDetach0F6C90 PASS (m1_147).
+- 0xCCF60 m1_ActButtons0CCF60 PASS (m1_147). 0x87220 skip (eax input).
