@@ -691,3 +691,6 @@ va,name,state,source,obj,waivers,notes
 0x0008b480,m1_TreeBuild2_08B480,Structurally compared,src/game/m1_163.c,build/obj_m1/m1_163.obj,,"Second recursive tree build (checks the child attach results); volatile error keeps the single shared cleanup."
 0x0016ada0,m1_BossMode16ADA0,Structurally compared,src/game/m1_163.c,build/obj_m1/m1_163.obj,,"Boss mode 7 or 9 by phase flag; volatile result keeps both calls."
 0x00054d50,m1_YesNo054D50,Structurally compared,src/game/m1_164.c,build/obj_m1/m1_164.obj,,"Yes/no prompt input: cursor moves, confirm returns 1 or 2, cancel returns 2; volatile result keeps the three sound call sites."
+0x000b12d0,m1_PadPhase0B12D0,Structurally compared,src/game/m1_165.c,build/obj_m1/m1_165.obj,,"Three-phase pad setup step; volatile results keep each set-up call, volatile id shares only the last call as in the original."
+0x001450a0,m1_AiLand1450A0,Structurally compared,src/game/m1_165.c,build/obj_m1/m1_165.obj,,"Fall/land step then next move (check table, 1-in-4 turn, pause); volatile state local keeps the single shared state call."
+0x00141570,m1_AiGetUp141570,Structurally compared,src/game/m1_165.c,build/obj_m1/m1_165.obj,,"Get-up step then next move (check table, pause 60/200, 0x12, taunt or counter); volatile state local keeps the single shared state call."

@@ -777,3 +777,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x79910 skip: edx/edi register inputs.
 - 0x34050 skip: ecx/ebx register inputs.
 - 0x137170 skip: calls 0x135A70, which takes esi/edi register inputs (the old "hard" note was wrong about the cause).
+- 0xB12D0 now PASS (m1_165) with volatile call results plus a volatile final argument.
+- 0x1450A0 now PASS (m1_165) with the volatile state local.
+- 0x141570 now PASS (m1_165) with the volatile state local.
