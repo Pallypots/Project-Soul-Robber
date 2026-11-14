@@ -727,3 +727,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x16A170 skip: calls 0x169D30 with edi input.
 - 0x156E50 m1_AiLeap156E50 PASS (m1_155).
 - 0x18C070 skip (calls 0x18BB20 with eax). 0x124280 skip (calls 0x11F640 with eax/esi). 0x17B660 later (long).
+- 0x12EC70, 0x12E940 skip: call 0x12E330 with register inputs.
+- 0x12CC20, 0x12AD40 skip: call 0x11F640 with register inputs.
+- 0x18D8A0 m1_ShotFly18D8A0 PASS (m1_155). KEY TRICK: when orig has two identical calls (one reloading the arg from the stack), pass `*(T *volatile *)&arg` in one of them so cl cannot cross-jump them. Revisit 0x138A10, 0xCA010, 0xF6E20.
+- 0x138A10 now PASS (m1_155) with the volatile arg reload.
+- 0xCA010 now PASS (m1_155) with volatile arg reloads plus branch reorder.
+- 0xF6E20 now PASS (m1_155) with volatile reloads in the second pair.
