@@ -657,3 +657,7 @@ va,name,state,source,obj,waivers,notes
 0x00138a10,m1_PopGlide138A10,Structurally compared,src/game/m1_155.c,build/obj_m1/m1_155.obj,,"Pop-out then glide to a saved spot, remove when time runs out; volatile arg reload keeps the two remove calls."
 0x000ca010,m1_ActAura0CA010,Structurally compared,src/game/m1_155.c,build/obj_m1/m1_155.obj,,"Actor aura effect follows charge state; volatile arg reloads keep the three drop and two make calls separate."
 0x000f6e20,m1_HitWarp0F6E20,Structurally compared,src/game/m1_155.c,build/obj_m1/m1_155.obj,,"Move hit context and player to the hit position; volatile reloads keep the two copies of the move pair."
+0x000c8850,m1_LinkNew0C8850,Structurally compared,src/game/m1_156.c,build/obj_m1/m1_156.obj,,"Claim a link-beam slot (3) between two points, derive its side vector, register with the owner."
+0x000f4a10,m1_CamTipUp0F4A10,Structurally compared,src/game/m1_156.c,build/obj_m1/m1_156.obj,,"Camera rig tip-up over a quarter turn; restores the rig and hands control back when done (hangs without camera objects)."
+0x0004e030,m1_FigViewOpen04E030,Structurally compared,src/game/m1_157.c,build/obj_m1/m1_157.obj,,"Open the figure viewer: load the chosen figure, turn it to face the camera, light it, fade in."
+0x000ca6c0,m1_PowerTint0CA6C0,Structurally compared,src/game/m1_157.c,build/obj_m1/m1_157.obj,,"Ease the power-up glow colour toward its target (abs of SSE truncation), clamp 0..255, push to light and model."

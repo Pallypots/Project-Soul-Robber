@@ -733,3 +733,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x138A10 now PASS (m1_155) with the volatile arg reload.
 - 0xCA010 now PASS (m1_155) with volatile arg reloads plus branch reorder.
 - 0xF6E20 now PASS (m1_155) with volatile reloads in the second pair.
+- 0xC8850 m1_LinkNew0C8850 PASS (m1_156).
+- 0xF4A10 m1_CamTipUp0F4A10 PASS (m1_156).
+- 0xA8510 skip: edx/edi inputs.
+- 0x4E030 m1_FigViewOpen04E030 PASS (m1_157).
+- 0xCA6C0 m1_PowerTint0CA6C0 PASS (m1_157); abs(_mm_cvtt_ss2si(...)) gives the cvttss2si/cdq/xor/sub form.
+- 0x3D540 skip (eax input). 0xFE660 skip (esi input). 0xCDD30 skip (eax input).
