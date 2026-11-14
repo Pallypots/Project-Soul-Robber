@@ -998,3 +998,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_208 PASS: 0xB77C0 (volatile copies keep the wait loops; &msg reuses the argument slot like the original).
 - 0x131D40 skip (0x12DC90 eax).
 - 0xEA9F0: hard after 3 tries (cl rewrites idx*3+0x6F as (idx+0x25)*3 for the alpha slot, even through a volatile).
+- m1_208 PASS: 0xEB080.
+- 0x1061B0 skip (esi input).
+- 0x141FD0: hard after 3 tries (cl duplicates the shared state-0x29 call into both height branches).
