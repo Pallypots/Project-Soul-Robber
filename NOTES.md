@@ -1264,3 +1264,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_29 PASS: 0xA9140 (first try; local struct table initializer).
 - m3_29 PASS: 0xCA850 (sibling of 0xCA9C0, first try).
 - m3_29 PASS: 0xEE470 (float == 0 early outs, first try).
+- 0x80470 not tried yet (ray-triangle test, 250 insns, heavy stack reuse).
+- 0x38650 not tried yet (double fmod chain via 0x1C80A6; try double temporaries).
+- 0x35000 not tried yet (273 insns).
