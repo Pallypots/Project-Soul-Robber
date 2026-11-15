@@ -1072,3 +1072,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_8 PASS: 0x79480 (three alias names for 0x529F0, new row m2_Pick0529F0, keep cl from merging switch cases that differ only in a constant).
 - m2_8 PASS: 0x81D50 (new func row sub_00081B90).
 - m2_8 PASS: 0x81B90 (new func row sub_00082720; self call through sub_00081B90).
+- m3_12 PASS: 0xF4820.
+- m3_12 PASS: 0xFB870.
+- m3_12 PASS: 0xFAF60.
+- m3_12 PASS: 0x105480 (volatile stores with different values keep three tail calls apart). Skips: 0x10D3E0 (esi input), 0xEF520 (eax input).
