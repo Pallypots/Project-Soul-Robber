@@ -1083,3 +1083,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_13 PASS: 0xD41D0 (pending-swap branch written last to match the original layout).
 - m2_9 PASS: 0x7A4F0.
 - m2_10 PASS: 0x7E9B0.
+- m3_14 PASS: 0xF5BB0. Skip: 0xFD5F0 (tail call with eax input).
+- m3_14 PASS: 0xA3DB0 (symbol rows for m1_RoomFloor0A23E0 and m1_RoomPose0A24C0, which only had state rows).
+- m3_14 PASS: 0xA94B0.
+- m3_14 PASS: 0x10F260. Skip: 0xCFB50 (signed pointer bound jl copy loop).
