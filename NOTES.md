@@ -1283,3 +1283,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_32 PASS: 0x12FA50 (third member of the turn family).
 - m3_32 PASS: 0x130900 (fourth member of the turn family).
 - m3_32 PASS: 0x12FD50 (fifth member).
+- m3_33 PASS: 0x130450 (turn family).
+- m3_33 PASS: 0x130680 (turn family).
+- m3_33 PASS: 0x130DB0 (turn family).
+- m3_33 PASS: 0x116A30 (turn family).
+- m3_33 PASS: 0x1170D0 (turn family).
