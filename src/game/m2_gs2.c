@@ -402,3 +402,75 @@ int m2_MotTextLoad83520(M2MotSet2 *set, const char *path) {
     } while (i < 0x100);
     return i;
 }
+
+typedef struct M2SelNode2 { struct M2SelNode2 *next0; uint8_t unk04[0xC]; int32_t v10; } M2SelNode2;
+typedef struct M2SelList2 { int32_t n0; M2SelNode2 *first4; } M2SelList2;
+typedef struct M2SelOwner2 { uint8_t unk00[4]; int32_t a4; int32_t b8; uint8_t unk0C[0x12C]; M2SelList2 *sel138; } M2SelOwner2;
+extern const char m2_fmtSel26CB6C[];
+extern const char m2_fmtSel26CB50[];
+int r1d_FileWrite(const char *path, void *data, int size, int a);
+
+#pragma optimize("s", on)
+/* 0x5C1E0: save the owner's sound selection list as a .sel file ("SEL" header, version 1, count, then one value per entry), named after its area (a, b). Always 0. Security-cookie function. */
+int m2_SelSave5C1E0(M2SelOwner2 *o) {
+    char path[0x100];
+    M2SelList2 *l;
+    int32_t *h, *p;
+    int n, size;
+    M2SelNode2 *e;
+    if (o != 0 && (l = o->sel138) != 0) {
+        if (o->a4 == 1) a6b_Printf3(path, 0x7F, m2_fmtSel26CB50, 1);
+        else a6b_Printf3(path, 0x7F, m2_fmtSel26CB6C, o->a4, o->b8);
+        n = l->n0;
+        size = n * 4 + 0x10;
+        h = (int32_t *)a5b_AllocCur(size, 0, 0x424);
+        h[0] = 0x4C4553; h[1] = 1; h[2] = n; h[3] = 0;
+        for (p = h + 4, e = l->first4; e != 0; e = e->next0) *p++ = e->v10;
+        r1d_FileWrite(path, h, size, 0);
+    }
+    return 0;
+}
+#pragma optimize("", on)
+
+
+typedef struct M2SeSlot2 { uint8_t unk00[0x10]; uint8_t *snd10; } M2SeSlot2;
+typedef struct M2SeRec2 { uint8_t link00[0x28]; int32_t n28; M2SeSlot2 *slots2C; M2SeSlot2 slot30[16]; uint8_t snd170[0x300]; } M2SeRec2;
+typedef struct M2SeFile2 { uint8_t unk00[4]; uint32_t ver4; int32_t n8; uint8_t unk0C[4]; M2SeRec2 r[1]; } M2SeFile2;
+extern const char m2_fmtSeWorld26CC3C[];
+void r1c_StreamReset(uint8_t *list);
+void a4c_ListAppend(void *list, void *node);
+
+/* 0x5C7D0: load the sound-effect placement file of world (a, b): reset the list, link every record (binding each of its slots to its sound data) and, for version 4 or later, copy the trailing pair after the records into the list. -1 when the file is missing, else 0. Security-cookie function. */
+int m2_SeLoad5C7D0(uint8_t *list, int a, int b) {
+    char path[0x100];
+    M2SeFile2 *f;
+    M2SeRec2 *e;
+    int n, j;
+    a6b_Printf3(path, 0x7F, m2_fmtSeWorld26CC3C, a, b, a, b);
+    f = (M2SeFile2 *)sub_00037570(path, 0x40);
+    if (f == 0) return -1;
+    n = f->n8;
+    r1c_StreamReset(list);
+    e = f->r;
+    if (n > 0) {
+        int c = n;
+        do {
+            e->slots2C = e->slot30;
+            {
+                uint8_t *sp = e->snd170;
+                for (j = 0; j < e->n28; j++) {
+                    int volatile k = j;
+                    e->slots2C[k].snd10 = sp;
+                    sp += 0x30;
+                }
+            }
+            a4c_ListAppend(list, e);
+            e++;
+        } while (--c);
+    }
+    if (f->ver4 >= 4) {
+        *(int32_t *)(list + 0x10) = ((int32_t *)e)[0];
+        *(int32_t *)(list + 0x14) = ((int32_t *)e)[1];
+    }
+    return 0;
+}

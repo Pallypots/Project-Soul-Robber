@@ -1215,3 +1215,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x8DC90: still hard on revisit (optimize s merges all exits into one; volatile results give three of four).
 - m2_gs2 PASS: 0x5C7D0 (was hard: volatile copy of the slot index keeps the 0x14 offset from 0 with +0x10).
 - 0x167F10 skip (0x167D90 takes eax). 0x1890F0 deferred (long shared-tail allocator).
+- 0xC93D0: still hard with the signed pointer cast and #pragma optimize("s") (cl bumps the walk pointer before the stores).
+- m3_23 PASS: 0xD5B80. TRICK: cl emits ucomiss/lahf/test ah,44h/jp for x != 0.0f, so the old float-equality skips are doable.
+- m3_23 PASS: 0x116380 (k == 0.0f gives the fucompi/lahf/jp test).
+- m3_23 PASS: 0x12CFB0.
