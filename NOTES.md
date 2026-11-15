@@ -1318,3 +1318,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_37 PASS: 0xF7850 (first try).
 - m3_37 PASS: 0x121650 (volatile 2.0; hang guard as !(k >= v)).
 - m3_37 PASS: 0x104870 (3-way push-select into one call: volatile default then overwrite; new rows 0x27907C, 0x1809B0).
+- 0x13D630: hard class (sibling of 0x13AB30, same keep-block placement).
+- m3_38 PASS: 0xE4160 (first try; new rows 0x317D10, 0xE15C0).
+- m3_38 PASS: 0x101C60 (volatile mode copy keeps the 7..9 range test; timers through volatile base pointers; new row 0x278E5C).
+- m3_38 PASS: 0xDCF20 (x87 double constants come from double literals mixed with float products; new row 0x34390).
+- 0x8B7C0: hard after 3 tries (cl duplicates the next-call and release tail; optimize s rotates the loop instead).
+- m2_26 PASS: 0x252A0 (volatile 1 stops cl deriving it as 3-2; goto into a shared flip tail).
+- 0x791A0: hard (3-case switch: orig jump table 0..5, cl compare chain; same class as 0x331D0).
+- m2_26 PASS: 0x601E0.
