@@ -1294,3 +1294,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_34 PASS: 0xE4A20 (walk pointer to a middle field: float *q = &slot.cd; slot = (T *)(q - 2); new data rows 0x317DF0/0x317DF4).
 - m3_34 PASS: 0xE2050 (switch cases in block order 2,1,0; new data rows 0x317DE0..E8, 0x3F1B54).
 - m3_34 PASS: 0x1396A0 (loop-exit call duplicated: post-loop check reads j through a volatile so cl keeps it).
+- 0x10CB60: skip (object comes in ebx, register input).
+- m3_35 PASS: 0xC85C0 (three pool walks at elem+8: signed casts + volatile walk-pointer copy; new data row 0x41CD40).
+- m3_35 PASS: 0x11E510 (float flags read with _mm_cvtt_ss2si; first try).
+- 0x13AB30: hard (block order: cl puts the held-body keep block right after its test; orig places it after the fail/set blocks; 3 layouts tried).
+- m3_35 PASS: 0xA9710 (fields addressed off the walk pointer itself via a macro on a volatile copy; +0x70 as (+0x40 ptr) + 12).
+- m2_23 PASS: 0x5BC90 (volatile 4 stops cl rewriting it as bank+5 when bank is known to be -1).
