@@ -1272,3 +1272,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_30 PASS: 0x12D0F0 (jb forms: write the fallthrough block under a >= test).
 - m3_30 PASS: 0xA1060 (first try).
 - m3_30 PASS: 0x107060 (cross-jumped clamp tails come from plain if/else clamps).
+- m3_31 PASS: 0xEEBC0. TRICK: 4x unrolled search = manual unroll with walk pointer p = base+1 and p[-1..3]; hang = if (!a || !b) for (;;);
+- m3_31 PASS: 0xED7E0 (globals at +4 of a named symbol reached through a struct overlay; no new rows).
+- m3_31 PASS: 0x113870 (sibling of 0xEE470).
+- m3_31 PASS: 0xEF640 (copy of 0x107060).
+- m3_31 PASS: 0x13A4A0 (first try).
