@@ -1202,3 +1202,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_gs2 PASS: 0x7A610 (new data row m2_fmtFilter26F568).
 - 0x512D0 skip (0x4FB50 takes esi).
 - m2_gs2 PASS: 0x50C80, 0x50560 (fall-through switch; strcat intrinsic matches the inline strcat; packed 5-byte struct copy gives the dword+byte .stm append; volatile copies keep the /2048<<11 rounding and the 0..0x21E range test; new rows m2_strStmDir26B83C, m2_strStm26B834).
+- m2_gs2 PASS: 0x83820 (__stosd for the 0x100-byte clear; new data row m2_strPmt25FDC8).

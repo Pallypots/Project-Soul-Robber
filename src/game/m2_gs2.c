@@ -151,6 +151,7 @@ void m2_CmdFilter7A610(char *s) {
 }
 
 #include <string.h>
+#include <intrin.h>
 typedef struct M2Str16 { uint32_t w[4]; } M2Str16;
 #pragma pack(push, 1)
 typedef struct M2Str5 { uint32_t w; uint8_t b; } M2Str5;
@@ -271,4 +272,59 @@ int m2_StmLoadRaw50560(void) {
         return 0;
     }
     return 1;
+}
+
+typedef struct M2MotRec2 { char name0[8]; int32_t id8; float speedC; int32_t frames10, mode14, flags18, loop1C; } M2MotRec2;
+typedef struct M2MotFile2 { uint8_t unk00[4]; int32_t n4; uint8_t unk08[8]; M2MotRec2 r[1]; } M2MotFile2;
+typedef struct M2MotAnim2 { int32_t id0, idx4, flags8; void *motC; float speed10; int32_t frames14, mode18, loop1C; struct M2MotAnim2 *next20; int32_t i24; } M2MotAnim2;
+typedef struct M2MotSet2 { uint8_t unk00[0xC]; int32_t nC; M2MotAnim2 *list10; } M2MotSet2;
+extern const M2Str5 m2_strPmt25FDC8;
+char *sub_001C7DB0(char *d, const char *s, int n);
+void *sub_00037570(const char *path, int flags);
+
+/* 0x83820: load a motion library: read the list file, then for every entry load "<dir of list><name>.pmt" and append an animation record (id, speed, frames, mode, flags, loop) to the set. Returns how many motions loaded (0 when the list is missing). Security-cookie function. */
+int m2_MotLibLoad83820(M2MotSet2 *set, const char *path) {
+    int n = 0, i, len;
+    M2MotFile2 *d;
+    M2MotRec2 *r;
+    char nm[0x10];
+    char dir[0x100];
+    char full[0x100];
+    d = (M2MotFile2 *)sub_00037570(path, 0x40);
+    if (d == 0) return 0;
+    len = (int)strlen(path);
+    for (; len >= 0; len--) if (path[len] == '/') break;
+    __stosd((unsigned long *)dir, 0, sizeof(dir) / 4);
+    sub_001C7DB0(dir, path, len + 1);
+    r = d->r;
+    for (i = 0; i < d->n4; i++, r++) {
+        char *e;
+        void *m;
+        M2MotAnim2 *a, *p;
+        memset(nm, 0, sizeof(nm));
+        sub_001C7DB0(nm, r->name0, 8);
+        for (e = nm; *e; e++) ;
+        *(M2Str5 *)e = m2_strPmt25FDC8;
+        strcpy(full, dir);
+        strcat(full, nm);
+        m = sub_00037570(full, 0x40);
+        if (m == 0) continue;
+        a = (M2MotAnim2 *)a5b_AllocCur(0x28, 0, 0x127);
+        a->id0 = n; a->idx4 = n; a->flags8 = 0; a->motC = m; a->speed10 = 1.0f;
+        a->frames14 = 10; a->mode18 = 2; a->loop1C = 0; a->next20 = 0; a->i24 = 0;
+        if (set->list10 == 0) set->list10 = a;
+        else {
+            for (p = set->list10; p->next20 != 0; p = p->next20) ;
+            p->next20 = a;
+        }
+        set->nC++;
+        a->id0 = r->id8;
+        a->speed10 = r->speedC;
+        a->frames14 = r->frames10;
+        a->mode18 = r->mode14;
+        a->flags8 = r->flags18;
+        a->loop1C = r->loop1C;
+        n++;
+    }
+    return n;
 }
