@@ -1313,3 +1313,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_36 PASS: 0x13A120 (x87 sum of squares = double products of floats).
 - m2_23 PASS: 0x5A430.
 - m2_25 PASS: 0x3E6D0 (alias rows m2_TxtA..F2E8C0 keep 8 separate DrawTextf sites; new format-string rows).
+- m3_37 PASS: 0xF9770 (two set-anim-and-advance tails cross-jumped by cl).
+- m3_37 PASS: 0xFA900 (if-chain instead of switch keeps cmp 3/0x23/5; volatile 2.0).
+- m3_37 PASS: 0xF7850 (first try).
+- m3_37 PASS: 0x121650 (volatile 2.0; hang guard as !(k >= v)).
+- m3_37 PASS: 0x104870 (3-way push-select into one call: volatile default then overwrite; new rows 0x27907C, 0x1809B0).

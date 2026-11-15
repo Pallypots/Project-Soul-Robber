@@ -113,3 +113,29 @@ void m2_PoseFromBytes38650(float *out, float *base, int idx, float s4, float s5,
     a3c_VecCopy(out + 12, t);
     out[15] = 1.0f;
 }
+
+typedef struct M2Key23 { int32_t id0; float t4; uint8_t unk08[0xC]; } M2Key23;
+typedef struct M2KCurve23 { uint8_t unk00[8]; int32_t n8; M2Key23 *keysC; } M2KCurve23;
+typedef struct M2KPlay23 { uint32_t flags0; M2KCurve23 *curve4; } M2KPlay23;
+
+/* 0x5A430: fire the keys of p's curve whose time lies in the covered range through cb (keys with id 0 are skipped): forwards (to > from) fires keys in (from, to], plus keys at exactly 0 inside [from, to]; backwards fires keys in [to, from). */
+void m2_CurveFire5A430(M2KPlay23 *p, float from, float to, void (*cb)(M2KPlay23 *p, M2Key23 *k)) {
+    M2KCurve23 *c = p->curve4;
+    M2Key23 *k;
+    int i;
+    if (c == 0) return;
+    k = c->keysC;
+    if (to > from) {
+        for (i = 0; i < c->n8; i++, k++) {
+            if (k->t4 > from && to >= k->t4) goto fire;
+            if (k->t4 == 0.0f && k->t4 >= from && to >= k->t4) goto fire;
+            continue;
+        fire:
+            if (k->id0 != 0 && cb != 0) cb(p, k);
+        }
+    } else {
+        for (i = 0; i < c->n8; i++, k++) {
+            if (k->t4 >= to && from > k->t4 && k->id0 != 0 && cb != 0) cb(p, k);
+        }
+    }
+}
