@@ -102,3 +102,50 @@ int m2_HudStartup2CC20(void) {
     }
     return a1b_i3816D0 != 10000;
 }
+
+typedef struct M2FSlot2 { int32_t rect0[4]; float f10[4]; int32_t kind20; void *tex24; int32_t i28; float f2C; int32_t i30, i34; uint8_t unk38[0x10]; } M2FSlot2;
+extern uint8_t *r2d_ctx;
+extern const char m2_fmtFilter26F568[];
+extern const char r1b_fmtF[];
+extern const char r1b_fmtD[];
+char *r1b_NextToken(char **s);
+int   r1b_sscanf(const char *s, const char *fmt, ...);
+void *rtc_TexFindOrLoad(const char *path);
+int   sub_000376D0(M2FSlot2 *s);
+
+/* 0x7A610: script command: add a screen filter slot: texture name, value, two integers, a rectangle (four floats, stored whole), an integer and up to four optional colour floats; retries until the 10-entry list has room. Stops quietly when a required token is missing. Security-cookie function. */
+void m2_CmdFilter7A610(char *s) {
+    float r[4];
+    M2FSlot2 sl;
+    char path[0x100];
+    char *t;
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    a6b_Printf3(path, 0xFF, m2_fmtFilter26F568, *(int *)(r2d_ctx + 0x20C), *(int *)(r2d_ctx + 0x210), t);
+    sl.tex24 = rtc_TexFindOrLoad(path);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtF, &sl.f2C);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtD, &sl.i30);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtD, &sl.i34);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtF, &r[3]);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtF, &r[2]);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtF, &r[0]);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtF, &r[1]);
+    if ((t = r1b_NextToken(&s)) == 0) return;
+    r1b_sscanf(t, r1b_fmtD, &sl.i28);
+    if ((t = r1b_NextToken(&s)) != 0) r1b_sscanf(t, r1b_fmtF, &sl.f10[0]);
+    if ((t = r1b_NextToken(&s)) != 0) r1b_sscanf(t, r1b_fmtF, &sl.f10[1]);
+    if ((t = r1b_NextToken(&s)) != 0) r1b_sscanf(t, r1b_fmtF, &sl.f10[2]);
+    if ((t = r1b_NextToken(&s)) != 0) r1b_sscanf(t, r1b_fmtF, &sl.f10[3]);
+    sl.rect0[0] = (int)r[3];
+    sl.rect0[1] = (int)r[2];
+    sl.rect0[2] = (int)r[0];
+    sl.rect0[3] = (int)r[1];
+    sl.kind20 = 1;
+    while (sub_000376D0(&sl) == -1) ;
+}
