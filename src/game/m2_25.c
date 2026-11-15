@@ -50,3 +50,42 @@ int m2_MenuRecDraw3E6D0(int a, int x, int y, int *px, int *py, int marked, M2MRe
     }
     return m1_DrawTextf2E8C0(a, x, y, marked ? m1_pg2C4B08[2] : m1_pg2C4B08[1], px, py, m2_fmtSep266FD0, mk);
 }
+
+typedef struct M2MPage25 { int32_t i0, i4, n8, iC, i10, i14, i18, i1C, i20, i24, i28, arg2C; struct M2MStack25 *s30; struct M2MPage25 *prev34; struct M2Menu25 *menu38; } M2MPage25;
+typedef struct M2MItem25 { int32_t i0; uint8_t unk04[0x20]; } M2MItem25;
+typedef struct M2Menu25 { uint8_t unk00[4]; void (*cb4)(int a, M2MPage25 *p, int ev); M2MItem25 *items8; } M2Menu25;
+typedef struct M2MStack25 { int32_t max0; int32_t top4; M2MPage25 *pages8; } M2MStack25;
+
+/* 0x3F8B0: push a new page for menu m on the page stack (0 when full): the current page gets event 4, the new page starts cleared (scroll 10, size 16x16) and inherits size and colour from the page below; the menu's callback gets event 0, otherwise the page counts the menu's items. Returns the page. */
+M2MPage25 *m2_MenuPush3F8B0(M2MStack25 *s, M2Menu25 *m, int arg) {
+    M2MPage25 *p;
+    if (s->top4 >= s->max0 - 1) return 0;
+    if (s->top4 >= 0) {
+        p = &s->pages8[s->top4];
+        if (p->menu38 != 0 && p->menu38->cb4 != 0) p->menu38->cb4(0, p, 4);
+    }
+    s->top4++;
+    p = &s->pages8[s->top4];
+    p->i0 = 0; p->i4 = 0; p->n8 = 0; p->iC = 0; p->i10 = 10; p->i14 = 0;
+    p->i18 = 0x10; p->i1C = 0x10; p->i28 = 0; p->s30 = s; p->prev34 = 0; p->menu38 = m; p->arg2C = arg;
+    if (s->top4 > 0) {
+        M2MPage25 *volatile *pp = &p->prev34;
+        *pp = &s->pages8[s->top4 - 1];
+        p->i18 = (*pp)->i18;
+        p->i20 = p->i18;
+        p->i24 = p->i1C = (*pp)->i1C;
+        p->i28 = (*pp)->i28;
+    }
+    if (m != 0) {
+        if (m->cb4 != 0) { m->cb4(0, p, 0); return p; }
+        if (m->items8 != 0) {
+            M2MItem25 *it = m->items8;
+            int n = 0;
+            if (it->i0 != 0) { do { it++; n++; } while (it->i0 != 0); }
+            p->n8 = n;
+            return p;
+        }
+    }
+    p->n8 = 0;
+    return p;
+}

@@ -1334,3 +1334,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x6DC70 skip (empty 8-way switch on the video mode, all cases same target; cl removes it).
 - 0x14BE0 skip (command handlers take esi).
 - m2_25 PASS*: 0x3F8B0 (stride waiver imm:0x3c; volatile pointer to the prev field keeps reads through it).
+- m3_40 PASS: 0xC6850 (sign test written as >= 0 so the update hooks fall through).
+- m3_40 PASS: 0xCD070 (first try).
+- m3_40 PASS: 0x1055A0 (first try; new row 0x1050B0).
