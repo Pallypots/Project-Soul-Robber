@@ -1126,3 +1126,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x934B0 skip (fragment: esi/edi live on entry).
 - m2_14 PASS: 0x3B180 (new data row m2_vecW2C45D8).
 - m2_14 PASS: 0x870B0 (new func row sub_000EDF30).
+- 0x37910 skip (esi input).
+- m3_19 PASS: 0x1046D0 (three-way state pick kept as three calls). Skips: 0xF59F0 (esi input), 0xED7E0 (long, indirect calls; later).
+- m3_19 PASS: 0xA8D10 (volatile flags stop cl deriving 1 from kind-2 and duplicating the final call). Skip: 0x13F6D0 (sibling of hard 0x13F880).
+- m3_19 PASS: 0xB16F0 (sibling of 0xB3EB0; same shared-last-call trick).
+- m3_19 PASS: 0xB03C0.
+- m2_15 PASS: 0x84F00 (new data row m2_slots3ECCB0).
+- m2_15 PASS: 0x85110 (new func rows sub_00084F00, sub_000EDF90).
