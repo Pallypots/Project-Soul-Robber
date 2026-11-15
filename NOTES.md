@@ -1020,3 +1020,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_212 PASS: 0x185C90.
 - m3_1 PASS: 0xED520, 0xED590, 0xEE080 (do-while + volatile walk pointer keeps a dead table walk unpeeled), 0xF4280. Skips: 0x117AC0, 0x1183C0, 0x129180, 0x111A00, 0xF23C0, 0xF24B0, 0xE99A0, 0xC2A40, 0xCD8D0, 0xCEEA0, 0xCEF00, 0xCEE40, 0x125540, 0xD0480 (register inputs); 0xB8510, 0x11BE50, 0xB4790 are fragments; 0x102E30 float result.
 - m2_1 PASS*: 0x5EA60 (stride waiver imm:0x1c).
+- 0x13B620 duplicate removed from m1_167 (already matched as m1_RigStep13B620 in m1_77).
+- m2_2 PASS: 0x134E0, 0x13590, 0x13640, 0x136F0, 0x137A0, 0x13850 (TRICK: identical calls in both arms of an if get merged by cl; call the same address through two different existing symbol names, e.g. a8c_Release102FA0 / m1_Stub102FA0, and both calls stay. Solves the earlier 0x13850/0x134E0 hard entries).
+- Skips: 0x170F60 (0x1700C0 eax), 0x172B80 (eax input), 0x17AF00 (eax input).
+- m1_213 PASS: 0x17F390 (biased walk on the speed field; data alias m1_recs3FE0C0_18 for 0x3FE0D8).
+- 0x1812F0 skip (0x180970 called with register inputs).

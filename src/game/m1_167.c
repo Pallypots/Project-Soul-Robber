@@ -15,24 +15,6 @@ M1S167 *m1_Quest113400(M1Ai167 *e, int k);
 void sub_00113090(M1Ob167 *o, M1Ai167 *e, int st);
 void m1_AiGoto113040(M1Ob167 *o, M1Ai167 *e, int st);
 
-/* 0x13B620: approach step: if the target is close queue an attack, otherwise walk with the matching gait. */
-void m1_AiApproach13B620(M1Ob167 *o, M1Ai167 *e) {
-    M1Q167 *q; M1S167 *s; int st; volatile int k;
-    if (sub_00139DB0(e) != 0) {
-        q = m1_Quest113430(e, 8);
-        q->a14 = 0xD;
-        q->a10 = (((uint8_t *)e)[0x22] & 1) + 0x50;
-        m1_AiGoto113040(o, e, 0);
-        return;
-    }
-    k = -((uint8_t)(e->f20 & 1) != 0) & 2;
-    st = k + 2 + ((e->f20 >> 16) & 1);
-    if (e->n64 != st) { sub_00113090(o, e, st); sub_00139D50(o); }
-    o->f10 |= 0x20;
-    e->t74 = o->anim30->a14->fDC / o->anim30->a14->fC4 * m1_frameRate42C85C;
-    s = m1_Quest113400(e, 3);
-    s->t10 = 0.0f;
-}
 
 #include <xmmintrin.h>
 typedef struct M1Rg167 { uint8_t unk00[4]; uint32_t f4; } M1Rg167;
