@@ -1104,3 +1104,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_16 PASS: 0xE8A50 (inner switch written 2, 0; volatile state copies keep the two-sided range checks). Skip: 0xFE3E0 (eight tail calls to one function with table args; cl merges).
 - m3_16 PASS: 0xC4740.
 - m3_16 PASS: 0xF51D0.
+- m2_12 PASS: 0x831A0 (alias row m2_BoneBind1AEA00).
+- m2_12 PASS: 0x33410 (new rows sub_001B61B0, m2_g42C840).
