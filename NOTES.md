@@ -1221,3 +1221,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_23 PASS: 0x12CFB0.
 - m2_20 PASS: 0x583C0 (was hard: volatile copy of the state pointer hides the job pointer; volatile -0x10 delta gives the add -0x10 constant).
 - m2_20 PASS: 0x832D0 (was hard: volatile 60 keeps the imul while /60 stays a magic divide).
+- 0xFBB00: hard (nine tail calls to 0xFBA00; distinct volatile stores per branch keep 8 of 9 apart, cl still selects one pair).
+- m3_24 PASS: 0x1091C0 (volatile store after one acos call keeps both calls).
+- m3_24 PASS: 0x104E90 (volatile band flag keeps the unreachable third arm; (-(r&1)&0xE)+2 keeps the select).
+- 0x103030: hard (shared-call select works now, but cl places the mode-3 block before the shared end; tried goto layouts).
+- 0x117470: still hard with distinct volatile stores per branch (cl turns 0x14/0x18 into setcc arithmetic).
+- m3_24 PASS: 0xC9B40 (distinct volatile stores after each path stop cl sharing the Scale/Add tails).
