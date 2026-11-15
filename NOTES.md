@@ -1243,3 +1243,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_26 PASS: 0xCFA60 (count-down copy through a pointer difference, #pragma optimize s).
 - m3_26 PASS: 0xADCB0 (signed cast loop; volatile walk-pointer anchor keeps the -4 based field offsets).
 - m3_26 PASS: 0xACA60 (sibling of 0xADCB0).
+- m2_21 PASS: 0x807C0 (new func row sub_00082840).
+- m2_21 PASS: 0x85DE0 (alias row m2_SpawnA93F0 keeps the two 0xA93F0 call sites).
