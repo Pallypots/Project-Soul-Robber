@@ -1076,3 +1076,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_12 PASS: 0xFB870.
 - m3_12 PASS: 0xFAF60.
 - m3_12 PASS: 0x105480 (volatile stores with different values keep three tail calls apart). Skips: 0x10D3E0 (esi input), 0xEF520 (eax input).
+- m2_9 PASS: 0x93C50 (push 0xC61C3C00 is -9999.0f, not -10000; check pushed float bits with struct before blaming the checker).
+- m3_13 PASS: 0xC4B70, 0xCA0E0. 0xCAB90 PASS. Skip: 0xC6980 (signed pointer bound jl).
+- 0xB86E0: hard after 3 tries (push 2 / push 3 select after a bit test; cl if-converts or tail-duplicates the call; same class as 0x117470). Skips: 0xFA7A0, 0x11AA10 (x87 heavy, not attempted).
+- m3_13 PASS: 0xBE8E0 (volatile store after one of two calls with different constant args keeps both).
+- m3_13 PASS: 0xD41D0 (pending-swap branch written last to match the original layout).
+- m2_9 PASS: 0x7A4F0.
+- m2_10 PASS: 0x7E9B0.
