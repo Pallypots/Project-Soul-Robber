@@ -1252,3 +1252,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_21 PASS: 0x5A510 (new func row sub_0005A430).
 - m2_22 PASS: 0x3A6B0 (x87 fild/fmul loops match as plain float code).
 - 0x3A2A0 skip for now (GIF packet built from long bitfield store sequences).
+- m3_28 PASS: 0xFA7A0. TRICK: x87 fld/fcompi compare of a float local comes from a double literal (d > 1.0); volatile field store keeps two calls.
+- m3_28 PASS: 0x11AA10 (volatile masked copy keeps and 0x80000000 + neg/sbb instead of shr 31).
+- m3_28 PASS: 0xFEAC0 (push reg + jmp into a shared call = two duplicate early-return blocks in the source; cl cross-jumps them).
+- m3_28 PASS: 0xE5070 (first try).
+- m3_28 PASS: 0x105330 (volatile z=0 after one of two identical tail calls; fn-pointer cast lets one file call a callee as both int-arg and float-arg).

@@ -231,3 +231,51 @@ void m2_SpawnPlaced85DE0(void) {
         s->obj8 = o;
     }
 }
+
+typedef struct M2CAnim21 { uint8_t unk00[0xC4]; float dirC4; uint8_t unkC8[0x10]; float curD8; float lenDC; } M2CAnim21;
+typedef struct M2CHold21 { uint8_t unk00[0x14]; M2CAnim21 *anim14; } M2CHold21;
+typedef struct M2CTrk21 { uint8_t unk00[0x30]; M2CHold21 *hold30; } M2CTrk21;
+typedef struct M2CCurve21 { uint32_t flags0; float len4; } M2CCurve21;
+typedef struct M2CPlay21 { uint32_t flags0; M2CCurve21 *curve4; float t8; float dtC; M2CTrk21 *trk10; } M2CPlay21;
+void sub_0005A430(M2CPlay21 *p, float from, float to, int arg);
+
+/* 0x5A510: advance a curve player: synced curves (flag 2) follow their animation's time (wrapping by its length in the play direction) and fire events over the covered range, including the wrapped part; free curves advance one frame and either loop (flag 1, firing from -1) or stop at the end. Always 0. */
+int m2_CurveStep5A510(M2CPlay21 *p, int arg) {
+    float from, to;
+    M2CTrk21 *tr;
+    M2CCurve21 *c;
+    if (p->curve4 == 0 || !(p->flags0 & 1)) return 0;
+    if (p->curve4->flags0 & 2) {
+        tr = p->trk10;
+        if (tr != 0) {
+            M2CAnim21 *a = tr->hold30->anim14;
+            from = p->t8;
+            to = a->curD8;
+            p->t8 = to;
+            if (tr->hold30->anim14->dirC4 > 0.0f && from > to) to = tr->hold30->anim14->lenDC + to;
+            if (0.0f > tr->hold30->anim14->dirC4 && to > from) to -= tr->hold30->anim14->lenDC;
+            p->dtC = to - from;
+        }
+    } else {
+        from = p->t8;
+        to = from + 1.0f;
+        p->t8 = to;
+    }
+    sub_0005A430(p, from, to, arg);
+    if (p->curve4->flags0 & 2) {
+        M2CAnim21 *a = tr->hold30->anim14;
+        if (a->dirC4 > 0.0f && to > a->lenDC) sub_0005A430(p, 0.0f, p->t8, arg);
+        a = tr->hold30->anim14;
+        if (0.0f > a->dirC4 && 0.0f > to) sub_0005A430(p, a->lenDC, p->t8, arg);
+        return 0;
+    }
+    c = p->curve4;
+    if (to > c->len4) {
+        if (!(p->curve4->flags0 & 1)) { p->flags0 &= ~1u; return 0; }
+        if (p->t8 > c->len4) {
+            do { p->t8 -= c->len4; } while (p->t8 > p->curve4->len4);
+        }
+        sub_0005A430(p, -1.0f, p->t8, arg);
+    }
+    return 0;
+}
