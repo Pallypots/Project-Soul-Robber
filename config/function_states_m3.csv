@@ -1,0 +1,5 @@
+va,name,state,source,obj,waivers,notes
+0x000ed520,m3_CharCall14ED520,Structurally compared,src/game/m3_1.c,build/obj_m3/m3_1.obj,,"Find the character type for a kind in the type table (first kind 2, negative ends it) and call its +0x14 handler"
+0x000ed590,m3_CharCall1CED590,Structurally compared,src/game/m3_1.c,build/obj_m3/m3_1.obj,,"Same type lookup, calls the +0x1C handler"
+0x000ee080,m3_CharPathEE080,Structurally compared,src/game/m3_1.c,build/obj_m3/m3_1.obj,,"Walk the type table (result unused), then format host0:data/char/%s into the buffer; do-while with a volatile walk pointer keeps the loop"
+0x000f4280,m3_FxAttachF4280,Structurally compared,src/game/m3_1.c,build/obj_m3/m3_1.obj,,"Play effect 0x3B2 at the object position, then attach it in mode 3 or 4; volatile store in each branch keeps both calls"

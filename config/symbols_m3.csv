@@ -1,0 +1,16 @@
+name,va,kind,elem,count
+m3_charTypes278248,0x00278248,data,,
+m3_fmtCharDir2783FC,0x002783FC,data,,
+sub_000E43D0,0x000E43D0,func,,
+m3_curEvent420DBC,0x00420DBC,data,,
+m3_forceKind420090,0x00420090,data,,
+m3_comboCnt3F0B64,0x003F0B64,data,,
+m3_comboMax3F0B68,0x003F0B68,data,,
+m3_comboLockA3F1178,0x003F1178,data,,
+m3_comboLockB3F0B6C,0x003F0B6C,data,,
+m3_tipTimer3F10EC,0x003F10EC,data,,
+m3_tipIdx3F1B40,0x003F1B40,data,,
+m3_tipDelay317CB8,0x00317CB8,data,,
+sub_000E5070,0x000E5070,func,,
+sub_000EC880,0x000EC880,func,,
+m3_soulCool423EE0,0x00423EE0,data,4,0x20
