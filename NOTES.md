@@ -1259,3 +1259,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_28 PASS: 0x105330 (volatile z=0 after one of two identical tail calls; fn-pointer cast lets one file call a callee as both int-arg and float-arg).
 - m2_22 PASS: 0x8DE70 (new func row sub_0007E350).
 - m2_22 PASS: 0x8D910 (span != 0 gives the ucomiss/lahf test; discarded channel 6 written as plain calls; new func row sub_0007EF00).
+- m3_29 PASS: 0xD85F0 (pragma s for div by 10; _mm_cvtt_ss2si; inlined mode reset written out).
+- m3_29 PASS: 0xFF2C0 (first try, new func row sub_00194D60).
+- m3_29 PASS: 0xA9140 (first try; local struct table initializer).
+- m3_29 PASS: 0xCA850 (sibling of 0xCA9C0, first try).
+- m3_29 PASS: 0xEE470 (float == 0 early outs, first try).
