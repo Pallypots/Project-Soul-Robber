@@ -93,3 +93,46 @@ int m2_MlbLoad1DFD0(M2MdlCtx1 *c, const char *src, M2MdlEnt1 *e) {
     }
     return 8;
 }
+
+typedef struct M2HmEnt1 { uint8_t link00[0xC]; int32_t iC; uint8_t unk10[0x30]; } M2HmEnt1;
+typedef struct M2HmFile1 { uint8_t unk00[8]; uint32_t n8; uint8_t unk0C[4]; M2HmEnt1 e[1]; } M2HmFile1;
+extern const char m2_fmtHm266DA8[];
+void a4c_ListAppend(void *list, void *node);
+
+/* 0x3AC00: load the height-map file of world (a, b) and link all its entries (cleared) into list; -1 when the file is missing, else 0. Security-cookie function. */
+int m2_HmLoad3AC00(uint8_t *list, int a, int b) {
+    char path[0x80];
+    M2HmFile1 *f;
+    M2HmEnt1 *e;
+    uint32_t i;
+    a6b_Printf3(path, 0x7F, m2_fmtHm266DA8, a, b, a, b);
+    f = (M2HmFile1 *)sub_00037570(path, 0x40);
+    if (f == 0) return -1;
+    *(int32_t *)(list + 0x10) = 0;
+    for (i = 0, e = f->e; i < f->n8; i++, e++) {
+        a4c_ListAppend(list, e);
+        e->iC = 0;
+    }
+    return 0;
+}
+
+typedef struct M2TaskKey1 { uint8_t unk00[0x1A]; uint8_t kind1A; uint8_t unk1B; uint32_t packed1C; uint8_t unk20[0xC]; int32_t a2C; int32_t b30; uint8_t unk34[0xF4]; } M2TaskKey1;
+void r6d_MemFill(void *d, int v, int n);
+int  r6f_TaskFindMatch(void *list, M2TaskKey1 *key, int mode);
+
+/* 0x8E5E0: look for a kind-8 task matching (a, b, c) in list: builds a cleared key with a, b and the packed id c | b << 8 | a << 20 and searches in mode 6. 0 for no list. Security-cookie function. */
+int m2_TaskFind8E5E0(void *list, int a, int b, int c) {
+    M2TaskKey1 k;
+    uint32_t w;
+    if (list == 0) return 0;
+    r6d_MemFill(&k, 0, sizeof(k));
+    w = k.packed1C;
+    k.a2C = a;
+    w ^= ((uint32_t)a << 20 ^ w) & 0x0FF00000;
+    k.b30 = b;
+    w ^= ((uint32_t)b << 8 ^ w) & 0x000FFF00;
+    w ^= ((uint32_t)c ^ w) & 0xFF;
+    k.kind1A = 8;
+    k.packed1C = w;
+    return r6f_TaskFindMatch(list, &k, 6);
+}

@@ -1171,3 +1171,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_gs1 PASS: 0x538A0 (first m2 /GS function; hang written as if (slot >= 9) for (;;); new rows m2_strRegion26BF08, m2_strRegionNone26BEFC, sub_00047740).
 - m2_gs1 PASS: 0x1E270 (new data row m2_fmtTxa25FC40).
 - m2_gs1 PASS: 0x1DFD0 (new rows m2_fmtMlb25FBF8, sub_00083820).
+- 0x133E0 skip (0x13300 takes edx).
+- m2_gs1 PASS: 0x3AC00 (new data row m2_fmtHm266DA8).
+- 0x7D630 skip (ecx/dl inputs).
+- m2_gs1 PASS: 0x8E5E0 (explicit xor-mask merges reproduce the old bitfield stores).
