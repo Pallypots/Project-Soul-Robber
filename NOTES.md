@@ -1178,3 +1178,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x4F980 skip (0x4F810 takes esi/edi).
 - m2_gs1 PASS: 0x8F000 (new func row sub_0003D7B0).
 - m2_gs1 PASS: 0x8EDC0 (TRICK: a volatile result variable returned from the second error path keeps cl from merging the cookie-check exits; may help 0x8F260/0x1DF10 class).
+- 0x5C1E0: hard after 3 tries (orig has one shared cookie exit; cl duplicates the epilogue into each early exit, even with a volatile result).
+- 0x51020 skip (0x4F810 takes esi/edi).
+- m2_gs1 PASS: 0x899C0 (new rows m2_fmtLight26FB24, sub_000902A0, sub_000900A0).

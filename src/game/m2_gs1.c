@@ -190,3 +190,36 @@ int m2_DfdLoad8EDC0(M2DfdObj1 *o, M2DfdTask1 *t) {
     }
     return r;
 }
+
+
+typedef struct M2Demo1 { uint8_t unk00[4]; int32_t id4; uint8_t unk08[0x40]; void *models48; uint8_t *light4C; } M2Demo1;
+extern const char a80_str26FA20[];
+extern const char a80_str26FACC[];
+extern const char m2_fmtLight26FB24[];
+int   a6b_Printf2(char *buf, const char *fmt, ...);
+void  sub_000902A0(void *tbl, const char *path);
+void *r6b_FwdGetX04(void *list);
+void *r6b_FwdListHeadRef(void *list);
+int   r6b_FwdIterEqual(void **a, void **b);
+void *r6b_FwdHolderData(void **it);
+int   rtc_TableEntry0Get8(void *m);
+void *sub_000900A0(void *tbl, int key);
+void  r6f_ModelSetApply(void *m, void *light);
+void  r6b_FwdIterNext(void **it);
+
+/* 0x899C0: load the demo's light_type.txt table and give every model of the demo the light type its key selects. Security-cookie function. */
+void m2_DemoLights899C0(M2Demo1 *d) {
+    void *it, *end;
+    char dir[0x40];
+    char path[0x100];
+    a6b_Printf2(dir, a80_str26FACC, a80_str26FA20, d->id4);
+    a6b_Printf2(path, m2_fmtLight26FB24, dir, d->id4);
+    sub_000902A0(d->light4C + 0x24, path);
+    it = r6b_FwdGetX04(d->models48);
+    end = r6b_FwdListHeadRef(d->models48);
+    while (!r6b_FwdIterEqual(&it, &end)) {
+        void *m = r6b_FwdHolderData(&it);
+        r6f_ModelSetApply(m, sub_000900A0(d->light4C + 0x24, rtc_TableEntry0Get8(m)));
+        r6b_FwdIterNext(&it);
+    }
+}
