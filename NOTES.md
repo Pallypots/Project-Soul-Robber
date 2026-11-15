@@ -1146,3 +1146,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skip: 0xC5F80 (two identical early calls with a shared tail that cl merges).
 - m3_21 PASS: 0x10C2B0 (volatile 2.0f keeps the multiply).
 - m3_21 PASS: 0xFCA70 (sibling of 0xFCCA0; volatile store after one call keeps the two state switches apart).
+- m2_13 PASS: 0x93A70 (double literals 0.35 and 15.0 keep the x87 qword compares).
