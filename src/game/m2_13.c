@@ -82,3 +82,49 @@ M2Coll13 *m2_CollAdd80F90(M2World13 *w, uint8_t *n, uint8_t *t, int v) {
     for (h = r6c_hits3ECA00; h != 0; h = h->next4) h->owner8 = e;
     return e;
 }
+
+void  rfl_MtxRotateAxis(float *out, const float *a, const float *b, float ang);
+void  r4c_Vec4Scale(float *d, const float *a, float s);
+void  r4c_VecAdd(float *d, const float *a, const float *b);
+float r4_Distance(const float *a, const float *b);
+
+/* 0x954A0: spark ring actor. State 0 sparks 9 points around joint 3 (even steps 0..6 pushed out 12 units along a direction turned by 45 degrees per step, the rest at the joint) and moves to state 1 once the player is 50 units away or more; state 1 returns when the player comes within 50; state 10 releases and hides it. */
+void m2_SparkRing954A0(M2Act13 *o) {
+    float ang, v[4], p[4], s[4], ray[8];
+    uint8_t *q = o->p120;
+    uint8_t *j;
+    int i;
+    v[0] = 0.0f; v[1] = 0.0f; v[2] = 0.0f; v[3] = 1.0f;
+    switch (o->state40) {
+    case 0: {
+        float *jp;
+        j = r4i_Joint(q, 3);
+        if (j == 0) for (;;) ;
+        ang = 0.0f;
+        jp = (float *)(j + 0x70);
+        for (i = 0; i < 9; i++) {
+            if (i < 8 && !(i & 1)) {
+                rfl_MtxRotateAxis(ray, (float *)(j + 0x40), (float *)(j + 0x60), ang);
+                r4c_Vec4Scale(s, ray + 4, 12.0f);
+                r4c_VecAdd(p, jp, s);
+            } else {
+                a3c_VecCopy(p, jp);
+            }
+            m1_FxAdd0C4DF0(q, 0, 1.0f, 0, 3.0f, 0, 3.0f, p, v, v);
+            ang += 0.78539819f;
+            while (ang > 3.1415927f) ang -= 6.2831855f;
+        }
+        if (r4_Distance((float *)(aab_player + 0x60), jp) >= 50.0f) o->state40++;
+        break;
+    }
+    case 1:
+        j = r4i_Joint(q, 3);
+        if (j == 0) for (;;) ;
+        if (50.0f >= r4_Distance((float *)(aab_player + 0x60), (float *)(j + 0x70))) o->state40--;
+        break;
+    case 10:
+        sub_000A41D0(o, -1);
+        r6e_ActorShow(o, 0);
+        break;
+    }
+}

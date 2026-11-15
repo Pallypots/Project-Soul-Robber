@@ -1139,3 +1139,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_20 PASS: 0xC4EC0 (volatile flag copy splits the merged bit test; volatile slot base keeps +0x204/+0x404).
 - m3_20 PASS: 0xC5B30 (__declspec(noinline) on 0xC4EC0 stops cl inlining the same-file sibling).
 - m2_13 PASS: 0x954A0.
+- m3_21 PASS: 0xC5060 (volatile mask select keeps both 0x48 and 0x4C).
+- 0xC5D20: hard after 3 tries (all events match except the original's add eax,-0x16 vs cl's sub eax,0x16; the checker normalises sub r,-N but not add r,-N, and waivers are not allowed for this).
+- m3_21 PASS: 0xC57C0 (record pointer taken first keeps +0x14/+0x18 as offsets).
+- Deferred: 0xC5460 (long, several float branches), 0xC5F80 (not attempted).
+- Skip: 0xC5F80 (two identical early calls with a shared tail that cl merges).
+- m3_21 PASS: 0x10C2B0 (volatile 2.0f keeps the multiply).
+- m3_21 PASS: 0xFCA70 (sibling of 0xFCCA0; volatile store after one call keeps the two state switches apart).
