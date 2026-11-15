@@ -328,3 +328,77 @@ int m2_MotLibLoad83820(M2MotSet2 *set, const char *path) {
     }
     return n;
 }
+
+extern const char m2_keyCode26F8C8[], m2_keySpeed26F8C0[], m2_keyComp26F8B8[], m2_keyCmpMod26F8B0[];
+extern const char m2_keyMode26F8A8[], m2_keyRepeat26F8A0[], m2_keyClamp26F898[], m2_keyAmOff26F890[];
+extern const char r1c_fmtS25FF04[];
+extern const char r1b_fmtX[];
+char *r1b_LoadFile(const char *path);
+char *r1d_ReadLine(char **doc);
+const char *sub_000133E0(const char *path);
+const char *sub_000133B0(char *line);
+char *r1b_FindKey(char *line, const char *key);
+int   r1b_ParseHex(char *v);
+float r1b_ParseFloat(char *v);
+int   r1b_ParseInt(char *v);
+int   a6b_Printf2(char *buf, const char *fmt, ...);
+
+/* 0x83520: load a text motion list: for every line (up to 0x100 motions) load "<dir><name>.pmt", append an animation record and read its CODE, SPEED, COMP, CMP_MOD, MODE (REPEAT/CLAMP) and AM_OFF bit keys. Returns how many motions loaded (0 when the file is missing). Security-cookie function. */
+int m2_MotTextLoad83520(M2MotSet2 *set, const char *path) {
+    char *v, *line, *doc;
+    int i;
+    char buf[0x40];
+    doc = r1b_LoadFile(path);
+    if (doc == 0) return 0;
+    i = 0;
+    do {
+        char *t;
+        void *m;
+        M2MotAnim2 *a, *p;
+        line = r1d_ReadLine(&doc);
+        if (line == 0) break;
+        v = r1b_NextToken(&line);
+        if (v == 0) continue;
+        a6b_Printf2(buf, r1c_fmtS25FF04, sub_000133E0(path));
+        strcat(buf, sub_000133B0(line));
+        {
+            char *e;
+            for (e = buf; *e; e++) ;
+            *(M2Str5 *)e = m2_strPmt25FDC8;
+        }
+        m = sub_00037570(buf, 0x40);
+        if (m == 0) continue;
+        a = (M2MotAnim2 *)a5b_AllocCur(0x28, 0, 0x127);
+        a->motC = m;
+        a->id0 = i; a->idx4 = i; a->flags8 = 0; a->speed10 = 1.0f;
+        a->frames14 = 10; a->mode18 = 2; a->loop1C = 0; a->next20 = 0; a->i24 = 0;
+        if (set->list10 == 0) set->list10 = a;
+        else {
+            for (p = set->list10; p->next20 != 0; p = p->next20) ;
+            p->next20 = a;
+        }
+        set->nC++;
+        if ((v = r1b_FindKey(line, m2_keyCode26F8C8)) != 0) a->id0 = r1b_ParseHex(v);
+        a->speed10 = 1.0f;
+        a->frames14 = 10;
+        if ((v = r1b_FindKey(line, m2_keySpeed26F8C0)) != 0) a->speed10 = r1b_ParseFloat(v);
+        if ((v = r1b_FindKey(line, m2_keyComp26F8B8)) != 0) a->frames14 = r1b_ParseInt(v);
+        if ((v = r1b_FindKey(line, m2_keyCmpMod26F8B0)) != 0) a->mode18 = r1b_ParseInt(v);
+        a->flags8 = 0;
+        if ((v = r1b_FindKey(line, m2_keyMode26F8A8)) != 0) {
+            if ((v = r1b_FindKey(line, m2_keyRepeat26F8A0)) != 0) a->flags8 = 0;
+            if ((v = r1b_FindKey(line, m2_keyClamp26F898)) != 0) a->flags8 = 1;
+        }
+        if ((v = r1b_FindKey(line, m2_keyAmOff26F890)) != 0) {
+            do {
+                int k = 0;
+                t = r1b_NextToken(&v);
+                if (t != 0) r1b_sscanf(t, r1b_fmtX, &k);
+                a->loop1C |= 1 << k;
+                v = r1b_FindKey(line, m2_keyAmOff26F890);
+            } while (v != 0);
+        }
+        i++;
+    } while (i < 0x100);
+    return i;
+}
