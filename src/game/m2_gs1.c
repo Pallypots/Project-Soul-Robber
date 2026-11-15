@@ -326,7 +326,7 @@ uint8_t *a5b_CurHeapOp47560(const char *file, int line);
 uint8_t *sub_001B2DA0(void *dst, uint8_t *heap, void *model, int flags);
 void  a5b_HeapShrink(uint8_t *p, int size);
 void  r4e_Node1Init(void *n);
-void  r4b_Node5SetSource(void *n, int a, int b, int c, int d, void *src);
+void  r4b_Node5SetSource(void *n, void *a, int b, int c, int d, void *src);
 void  sub_0001FE70(M2ShObj1 *o, void *model, void *node, int a, float scale);
 
 /* 0x22040: set up a character's shadow: load the shadow cube model and circle texture, build the model in the current heap (shrunk to fit), make a node using it and, for entries without a pig, attach it at scale 1. Always 0. Security-cookie function. */
@@ -398,5 +398,40 @@ int m2_SizedShadowInit21EE0(M2ShObj1 *o, int32_t *p, M2ShEnt1 *e) {
     r4b_Node5SetSource(o->node28, 0, 0, 0, 0, m);
     o->flagsC |= 0x10;
     if (e->pig28 == 0) sub_0001FE70(o, m, o->node28, 0, v.scale);
+    return 8;
+}
+
+typedef struct M2EdgNode1 { uint8_t unk00[0xC0]; int32_t nC0; } M2EdgNode1;
+typedef struct M2EdgCtx1 { uint8_t unk00[0x20]; void *mats20; uint8_t unk24[4]; M2EdgNode1 *node28; void *bones2C; } M2EdgCtx1;
+extern const char m2_fmtEdg25FC30[];
+extern uint8_t m2_g42C980[];
+void r4b_NodeInitType12(void *n);
+uint8_t *sub_001B8800(void *dst, uint8_t *heap, void *model, int flags);
+void sub_001B85B0(void *bones, M2EdgNode1 *n);
+void r4b_NodeCSetMats(M2EdgNode1 *n, void *mats);
+
+/* 0x1E110: load the .edg edge model named by the record's 8-character field: build its node in the current heap (shrunk to fit) and, for entries without a pig, give it bone matrices (0x110 bytes each) bound to the context's matrices. Returns the record size 8 (also when the file is missing). Security-cookie function. */
+int m2_EdgLoad1E110(M2EdgCtx1 *c, const char *src, M2ShEnt1 *e) {
+    char name[12];
+    char path[0x100];
+    void *mdl, *m, *k;
+    uint8_t *h;
+    sub_001C7DB0(name, src, 8);
+    name[8] = 0;
+    a6b_Printf3(path, 0xFF, m2_fmtEdg25FC30, *(const char **)((uint8_t *)e + 8), name);
+    mdl = sub_00037570(path, 0x40);
+    if (mdl == 0) return 8;
+    c->node28 = (M2EdgNode1 *)a5b_AllocCur(0xF0, 0, 0xE2D);
+    r4b_NodeInitType12(c->node28);
+    m = a5b_AllocCur(0x30, 0, 0xE2F);
+    h = a5b_CurHeapOp47560(r1g_srcCharUnit25FC08, 0xE32);
+    a5b_HeapShrink(h, sub_001B8800(m, h, mdl, m2_g37C4BC) - h);
+    r4b_Node5SetSource(c->node28, m2_g42C980, 0, 0, 0, m);
+    if (e->pig28 == 0) {
+        k = a5b_AllocCur(c->node28->nC0 * 0x110, 0, 0xE3B);
+        sub_001B85B0(k, c->node28);
+        r4b_NodeCSetMats(c->node28, c->mats20);
+        c->bones2C = k;
+    }
     return 8;
 }
