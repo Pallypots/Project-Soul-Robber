@@ -1302,3 +1302,12 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_23 PASS: 0x5BC90 (volatile 4 stops cl rewriting it as bank+5 when bank is known to be -1).
 - 0x8B560 skip (iterator-based list sort with tangled stack temporaries).
 - m2_23 PASS: 0x38650 (fmod on doubles gives the x87 __CIfmod chain; new crt rows _CIfmod/CIfmod for 0x1C80A6; volatile -0.01745 constant).
+- m2_24 PASS: 0x35000 (alias names r4e_VecCross3/aa0_Vec4Copy keep the two identical aim branches; switch gives dec/sub 8; new func rows for 0x34F00, 0x34E60, 0x34E30, 0x34E90, 0x338A0).
+- m3_36 PASS: 0xF5490 (first try; fn-pointer cast for the int-bits angle).
+- 0x10A7A0: skip (object in esi, register input).
+- 0xD0F50: hard (cl places the move block before the stick-turn block; 3 layouts tried).
+- 0xF9A80: hard class (uninitialised part index read from an arg slot; shared push-pair call tails).
+- 0x10C840: hard (cl hoists the default k==1 test, sinks case 1 and cross-jumps the last loads of cases 14/15).
+- m3_36 PASS: 0xC5460 (volatile 2.0f keeps the mulss; fn-pointer cast for the int-bits radius).
+- m3_36 PASS: 0xE17A0 (walk pointer at the angle field with volatile copy; 2-pass loop stayed rolled).
+- m3_36 PASS: 0x13A120 (x87 sum of squares = double products of floats).
