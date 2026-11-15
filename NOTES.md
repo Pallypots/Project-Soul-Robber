@@ -1175,3 +1175,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_gs1 PASS: 0x3AC00 (new data row m2_fmtHm266DA8).
 - 0x7D630 skip (ecx/dl inputs).
 - m2_gs1 PASS: 0x8E5E0 (explicit xor-mask merges reproduce the old bitfield stores).
+- 0x4F980 skip (0x4F810 takes esi/edi).
+- m2_gs1 PASS: 0x8F000 (new func row sub_0003D7B0).
+- m2_gs1 PASS: 0x8EDC0 (TRICK: a volatile result variable returned from the second error path keeps cl from merging the cookie-check exits; may help 0x8F260/0x1DF10 class).

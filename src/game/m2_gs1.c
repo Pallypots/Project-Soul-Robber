@@ -136,3 +136,57 @@ int m2_TaskFind8E5E0(void *list, int a, int b, int c) {
     k.packed1C = w;
     return r6f_TaskFindMatch(list, &k, 6);
 }
+
+typedef struct M2LgtTask1 { uint8_t unk00[0x18]; uint16_t flags18; uint8_t unk1A[2]; void *path1C; int8_t kind20; int8_t heap21; uint8_t unk22[2]; uint32_t flags24; void *res28; } M2LgtTask1;
+extern uint8_t *r2d_ctx;
+int   sub_0008BCD0(int k);
+void  a6b_SetHeap(int a, int heap);
+void  m1_PathLgt8EFB0(char *out, int a, void *path);
+void *r6b_LookupSelect(const char *path, int a);
+void  sub_0003D7B0(void *res, void *ctx);
+
+/* 0x8F000: load the light resource of a kind-2 task once (flag 2): select its heap, build its .lgt path and look it up; when missing, create an empty one (flag 2 in +0x24). Clears flags 4/8. -1 for other task kinds, else 0. Security-cookie function. */
+int m2_LgtLoad8F000(M2LgtTask1 *t, int a) {
+    char path[0x40];
+    void *m;
+    if (t->kind20 != 2) return -1;
+    if (!(t->flags18 & 2)) {
+        a6b_SetHeap(2, sub_0008BCD0(t->heap21));
+        m1_PathLgt8EFB0(path, a, t->path1C);
+        t->res28 = r6b_LookupSelect(path, 0);
+        if (t->res28 == 0) {
+            m = a5b_AllocCur(0x8D0, 0, 0xD5);
+            sub_0003D7B0(m, r2d_ctx);
+            t->res28 = m;
+            t->flags24 |= 2;
+        }
+        t->flags18 = (uint16_t)((t->flags18 & ~0xCu) | 2);
+    }
+    return 0;
+}
+
+typedef struct M2DfdObj1 { uint8_t unk00[0x28]; uint8_t take28[0x10]; void *res38; } M2DfdObj1;
+typedef struct M2DfdTask1 { uint8_t unk00[0x18]; uint16_t flags18; uint8_t unk1A[2]; void *path1C; int8_t kind20; int8_t heap21; uint8_t unk22[2]; uint32_t flags24; uint8_t holder28[1]; } M2DfdTask1;
+void m1_PathDfd8ED70(char *out, void *path);
+void a6b_Take10(void *src, int *out);
+void r6b_HolderSet(void *holder, int v);
+
+/* 0x8EDC0: load the .dfd resource of a kind-2 task once (flag 2): select its heap, look it up into the object, take its value into the task's holder and mirror whether it is set in flag 2 of +0x24. Clears flags 4/8. -1 for no object or other task kinds, else 0. Security-cookie function. */
+int m2_DfdLoad8EDC0(M2DfdObj1 *o, M2DfdTask1 *t) {
+    int v;
+    char path[0x40];
+    int volatile r = 0;
+    if (o == 0) return -1;
+    if (t->kind20 != 2) { r = -1; return r; }
+    if (!(t->flags18 & 2)) {
+        a6b_SetHeap(2, sub_0008BCD0(t->heap21));
+        m1_PathDfd8ED70(path, t->path1C);
+        o->res38 = r6b_LookupSelect(path, 0);
+        a6b_Take10(o->take28, &v);
+        r6b_HolderSet(t->holder28, v);
+        if (v) t->flags24 |= 2;
+        else t->flags24 &= ~2u;
+        t->flags18 = (uint16_t)((t->flags18 & ~0xCu) | 2);
+    }
+    return r;
+}
