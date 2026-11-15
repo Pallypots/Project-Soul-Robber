@@ -1061,3 +1061,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x2A830: hard (orig keeps the glyph pointer as lea base 0x37E03C + (n-1)*0x9C with fields +0xA4/+0xA8; cl folds everything into absolute addresses).
 - m2_7 PASS: 0x83B70 (new rows m2_bbMax3ECA80, m2_bbNode3ECA90, m2_bbSub3ECA94, m2_bbMin3ECA98, sub_00083A30).
 - m2_7 PASS: 0x83A30.
+- m3_10 PASS: 0xE3390 (volatile store keeps the two tail calls). 0x117470: hard after 3 tries (cl turns the 0x14/0x18 state pick into sete+lea; orig pushes either constant). Skip: 0xE8110 (eax input).
+- m3_10 PASS: 0x11AD10.
+- m3_10 PASS: 0xEA3F0.
+- 0xE43D0: hard after 3 tries (cl rewrites idx*5+0x10E as (idx+0x36)*5 even through a volatile idx; same class as 0xEA9F0).
+- m3_10 PASS: 0xC75E0. Skip: 0xEAB00 (idx*3+0x6F folding class).
+- m3_10 PASS: 0xB3B60 (switch written 20, 11, 10 gives the original order).
+- m3_10 PASS: 0x113B20, 0xCCB30. Skip: 0xD5B80 (ucomiss/lahf float equality test, not attempted).
+- m3_11 PASS: 0xEBAB0, 0xEBC30, 0xEBDB0, 0xEC080, 0xEC200 (one macro body, health-based voice pickers; siblings of 0xEBF00).
