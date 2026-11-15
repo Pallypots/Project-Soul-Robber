@@ -1227,3 +1227,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x103030: hard (shared-call select works now, but cl places the mode-3 block before the shared end; tried goto layouts).
 - 0x117470: still hard with distinct volatile stores per branch (cl turns 0x14/0x18 into setcc arithmetic).
 - m3_24 PASS: 0xC9B40 (distinct volatile stores after each path stop cl sharing the Scale/Add tails).
+- m2_21 PASS: 0x822D0, 0x824F0 (were hard: comparing the count against a volatile zero gives the original test/jbe guard).
