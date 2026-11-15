@@ -1138,3 +1138,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skip: 0x103030 (1/2/0 push select into a shared call).
 - m3_20 PASS: 0xC4EC0 (volatile flag copy splits the merged bit test; volatile slot base keeps +0x204/+0x404).
 - m3_20 PASS: 0xC5B30 (__declspec(noinline) on 0xC4EC0 stops cl inlining the same-file sibling).
+- m2_13 PASS: 0x954A0.
