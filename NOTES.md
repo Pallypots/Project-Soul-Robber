@@ -1187,3 +1187,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_gs1 PASS: 0x5C0E0 (struct copy gives the rep movsd; switch gives dec/sub 2; new rows m2_fmtSes26CA4C/6C).
 - 0x5C7D0: hard after 3 tries (slot-binding loop: orig keeps the 0x14 byte offset starting at 0 with +0x10 displacement; cl pre-bumps it and uses -4, or rebases the sound pointer).
 - m2_gs1 PASS: 0x898C0 (new data row m2_fmtDtt26FADC).
+- 0x35FD0 skip (0x34050 takes eax/ecx).
+- m2_gs1 PASS: 0x5C6D0 (struct copy for the 0x470-byte records; new data row m2_fmtSec26CC68).

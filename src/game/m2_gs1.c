@@ -285,3 +285,33 @@ int m2_DemoTable898C0(M2DtDemo1 *d, int a, int b) {
     r6e_TaskReleaseHeld(&nw);
     return r;
 }
+
+typedef struct M2SecRec1 { struct M2SecRec1 *next0; uint32_t w[0x11B]; } M2SecRec1;
+typedef struct M2SecList1 { int32_t n0; M2SecRec1 *first4; uint8_t unk08[8]; int32_t v10, v14; } M2SecList1;
+extern const char m2_fmtSec26CC68[];
+
+/* 0x5C6D0: save the sound-effect placement list as a .sec file ("SEC" header, version 4, count, every 0x470-byte record, the two list values and two zero words) named after world (a, b). -1 when out of memory, else the write result. Security-cookie function. */
+int m2_SecSave5C6D0(M2SecList1 *l, int a, int b) {
+    char path[0x100];
+    int size = l->n0 * 0x470 + 0x20;
+    int32_t *h, *p;
+    M2SecRec1 *e;
+    h = (int32_t *)a5b_AllocCur(size, 0, 0x56C);
+    if (h == 0) return -1;
+    h[0] = 0; h[1] = 0; h[2] = 0; h[3] = 0;
+    h[0] = 0x434553;
+    h[1] = 4;
+    h[2] = l->n0;
+    p = h + 4;
+    for (e = l->first4; e != 0; e = e->next0) {
+        *(M2SecRec1 *)p = *e;
+        p += 0x470 / 4;
+    }
+    p[0] = l->v10;
+    p[1] = l->v14;
+    p += 2;
+    p[0] = 0;
+    p[1] = 0;
+    a6b_Printf3(path, 0x7F, m2_fmtSec26CC68, a, b);
+    return r1d_FileWrite(path, h, size, 0);
+}
