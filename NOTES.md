@@ -1163,3 +1163,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x5C000 skip (eax/ecx/edx inputs).
 - m2_18 PASS: 0x95010.
 - 0x5BF00 skip (eax/ecx/edx/esi inputs).
+- m2_18 PASS: 0x1BC40 (nested byte-table switches; volatile copy keeps the kind-3 cmp 2 / cmp 5 chain instead of a folded range).
+- 0x2EBC0 skip (ebx/ecx/esi/edi inputs).
+- m2_18 PASS: 0x251B0 (goto into case 4 tail reproduces the shared state-step tail; volatile keeps the jb/ja range test; new rows m2_g37DC2C/30/34).
