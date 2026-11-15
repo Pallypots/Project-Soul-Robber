@@ -1050,3 +1050,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_5 PASS: 0x47640.
 - Skips: 0x58C10 (edx input).
 - 0x832D0: hard after 3 tries (orig imul by 60 then magic divide; cl /O2 builds x60 as shl/sub/lea, optimize("s") gives imul but turns the /60 into idiv).
+- 0x8AB40 skip (edx from a callee reaches a later push on one path).
+- 0x13F880: hard after 4 tries (cl computes the 45/frameTime*rate wait limit on x87 and tests ja; orig uses SSE comiss/jb; tried local float, intrinsics).
+- m3_9 PASS: 0xC04A0 (switch written in the original block order 4, 1, 0), 0xCBC00. Skips: 0xCA9C0 (signed pointer bound jl).
+- m3_9 PASS: 0x1029B0.
+- m3_9 PASS: 0xE3C90.
+- m3_9 PASS: 0xEA060.
+- m3_9 PASS: 0xA79E0.
