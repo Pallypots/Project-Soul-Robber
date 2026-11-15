@@ -1219,3 +1219,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_23 PASS: 0xD5B80. TRICK: cl emits ucomiss/lahf/test ah,44h/jp for x != 0.0f, so the old float-equality skips are doable.
 - m3_23 PASS: 0x116380 (k == 0.0f gives the fucompi/lahf/jp test).
 - m3_23 PASS: 0x12CFB0.
+- m2_20 PASS: 0x583C0 (was hard: volatile copy of the state pointer hides the job pointer; volatile -0x10 delta gives the add -0x10 constant).
+- m2_20 PASS: 0x832D0 (was hard: volatile 60 keeps the imul while /60 stays a magic divide).
