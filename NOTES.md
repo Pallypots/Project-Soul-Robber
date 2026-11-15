@@ -1098,3 +1098,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x189C0 skip (0x187E0/0x18840/0x188E0 take the output pointer in ebx).
 - m2_11 PASS: 0x52CF0 (volatile flags copy stops cl merging the bit-0 and bit-17 tests into one and 0x20001).
 - m2_11 PASS: 0x1D4E0.
+- m3_16 PASS: 0xF3680 (int byte-offset loops give the signed jl bounds; 11 new manager-reset symbol rows).
+- m3_16 PASS: 0xCA400, 0xF21B0. Skips: 0x1091C0, 0x104E90 (long x87/select routines, not attempted), 0xC5D20 (not attempted yet).
+- m3_16 PASS: 0xFF5C0. Skips: 0xC7B70 (signed pointer bound jl), 0xE66F0 (inline memset, later).
+- m3_16 PASS: 0xE8A50 (inner switch written 2, 0; volatile state copies keep the two-sided range checks). Skip: 0xFE3E0 (eight tail calls to one function with table args; cl merges).
+- m3_16 PASS: 0xC4740.
+- m3_16 PASS: 0xF51D0.
