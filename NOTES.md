@@ -1149,3 +1149,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_13 PASS: 0x93A70 (double literals 0.35 and 15.0 keep the x87 qword compares).
 - Skips: 0xFBB00 (many tail calls with table args), 0xFB750 (default path reads an uninitialised arg slot as a float).
 - m3_22 PASS: 0xC6EA0.
+- 0x583C0: hard after 3 tries (orig keeps only the state pointer job+0x10 and rebases it with add -0x10 for the list calls; cl also keeps the job pointer, so the 0xFFFFFFF0 constant never appears).
+- 0x47FB0: hard after 3 tries (block placement: cl puts the short still-playing branch before the start path; orig keeps it last).
