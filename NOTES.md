@@ -1185,3 +1185,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x8DC90: hard after 3 tries (four cookie exits in the original: two separate -1 exits plus a shared r=-1 exit; volatile results got three at best).
 - 0x8E240 skip (ecx/edx inputs).
 - m2_gs1 PASS: 0x5C0E0 (struct copy gives the rep movsd; switch gives dec/sub 2; new rows m2_fmtSes26CA4C/6C).
+- 0x5C7D0: hard after 3 tries (slot-binding loop: orig keeps the 0x14 byte offset starting at 0 with +0x10 displacement; cl pre-bumps it and uses -4, or rebases the sound pointer).
+- m2_gs1 PASS: 0x898C0 (new data row m2_fmtDtt26FADC).

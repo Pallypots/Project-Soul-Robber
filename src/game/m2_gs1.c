@@ -249,3 +249,39 @@ int m2_SesSave5C0E0(const uint32_t *src, int unused, int k, int n) {
     }
     return r1d_FileWrite(path, h, 0x460, 0);
 }
+
+
+typedef struct M2DtTbl1 { uint8_t unk00[0x24]; int32_t data24, size28; } M2DtTbl1;
+typedef struct M2DtDemo1 { uint8_t unk00[4]; int32_t id4; uint8_t unk08[0x14]; int32_t data1C, size20; } M2DtDemo1;
+extern const char m2_fmtDtt26FADC[];
+void r6b_DemoTableInit(M2DtTbl1 *t);
+int  r6e_TaskLookup(M2DtTbl1 *t, const char *path);
+int  r6f_BlobMerge(M2DtTbl1 *dst, M2DtTbl1 *src);
+void r6e_TaskReleaseHeld(M2DtTbl1 *t);
+
+/* 0x898C0: load demo table (a, b) (.dtt) and merge it with the demo's current table; on success the merged data replaces the demo's (ownership moves out of the temporary). Both temporaries are released. Returns 0 or the first error. Security-cookie function. */
+int m2_DemoTable898C0(M2DtDemo1 *d, int a, int b) {
+    M2DtTbl1 cur, nw;
+    char dir[0x40];
+    char path[0x40];
+    int r = 0, e;
+    r6b_DemoTableInit(&cur);
+    r6b_DemoTableInit(&nw);
+    a6b_Printf2(dir, a80_str26FACC, a80_str26FA20, d->id4);
+    a6b_Printf2(path, m2_fmtDtt26FADC, dir, d->id4, d->id4, b, a);
+    e = r6e_TaskLookup(&nw, path);
+    if (e == 0) {
+        cur.data24 = d->data1C;
+        cur.size28 = d->size20;
+        e = r6f_BlobMerge(&cur, &nw);
+        if (e == 0) {
+            d->data1C = cur.data24;
+            d->size20 = cur.size28;
+            cur.data24 = 0;
+            cur.size28 = 0;
+        } else r = e;
+    } else r = e;
+    r6e_TaskReleaseHeld(&cur);
+    r6e_TaskReleaseHeld(&nw);
+    return r;
+}
