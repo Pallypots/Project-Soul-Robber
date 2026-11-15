@@ -1069,3 +1069,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_10 PASS: 0xB3B60 (switch written 20, 11, 10 gives the original order).
 - m3_10 PASS: 0x113B20, 0xCCB30. Skip: 0xD5B80 (ucomiss/lahf float equality test, not attempted).
 - m3_11 PASS: 0xEBAB0, 0xEBC30, 0xEBDB0, 0xEC080, 0xEC200 (one macro body, health-based voice pickers; siblings of 0xEBF00).
+- m2_8 PASS: 0x79480 (three alias names for 0x529F0, new row m2_Pick0529F0, keep cl from merging switch cases that differ only in a constant).
+- m2_8 PASS: 0x81D50 (new func row sub_00081B90).
+- m2_8 PASS: 0x81B90 (new func row sub_00082720; self call through sub_00081B90).
