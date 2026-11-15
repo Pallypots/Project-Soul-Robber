@@ -1204,3 +1204,14 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_gs2 PASS: 0x50C80, 0x50560 (fall-through switch; strcat intrinsic matches the inline strcat; packed 5-byte struct copy gives the dword+byte .stm append; volatile copies keep the /2048<<11 rounding and the 0..0x21E range test; new rows m2_strStmDir26B83C, m2_strStm26B834).
 - m2_gs2 PASS: 0x83820 (__stosd for the 0x100-byte clear; new data row m2_strPmt25FDC8).
 - m2_gs2 PASS: 0x83520 (continue inside do-while skips the count like the original; new key-string rows m2_key*26F8xx).
+- 0x166750 skip (tail jump to 0x1662E0 passes the object in eax).
+- m2_20 PASS: 0x2A830 (was hard: volatile base anchor plus volatile index stop cl folding the -0x9C into +0xA4).
+- 0x16CA10 skip (0x16C820 takes eax).
+- m1_214 PASS: 0x16BE00 (was hard: #pragma optimize("s") stops cl duplicating the shared tail call).
+- 0x13040: still hard on revisit (volatile dst-src offset fixes the strcpy; pointer loop gives unsigned ja vs orig jg, index loop moves the pointer bias).
+- 0x47FB0: still hard on revisit (goto ordering does not move cl's block layout).
+- 0x141FD0, 0x17C950: still hard with optimize(s) (size mode merges their calls into one; volatile args do not separate them).
+- m2_gs2 PASS: 0x5C1E0 (was hard: #pragma optimize("s") stops cl duplicating the cookie epilogue into each exit).
+- 0x8DC90: still hard on revisit (optimize s merges all exits into one; volatile results give three of four).
+- m2_gs2 PASS: 0x5C7D0 (was hard: volatile copy of the slot index keeps the 0x14 offset from 0 with +0x10).
+- 0x167F10 skip (0x167D90 takes eax). 0x1890F0 deferred (long shared-tail allocator).
