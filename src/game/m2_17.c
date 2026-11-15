@@ -87,3 +87,32 @@ int m2_Trigger94E00(int id) {
     }
     return 1;
 }
+
+/* 0x9EF40: opening actor step: state 0 plays anim 3 and finishes (5); state 1 waits for the animation, then plays the follow-up for its clip (0 -> 1, 2 -> 3, 5 -> 6) and finishes; states 2-4 play anims 0, 2 or 5 and go to state 1. */
+void m2_OpenStep9EF40(M2Act17 *o) {
+    int a;
+    uint8_t *q = o->p120;
+    if (q == 0) return;
+    switch (o->state40) {
+    case 0:
+        sub_000A4010(o, 3);
+        o->state40 = 5;
+        break;
+    case 1: {
+        int k;
+        if (sub_000833E0(*(void **)(q + 0x30)) == 0) break;
+        k = *(int32_t *)(*(uint8_t **)(q + 0x30) + 8);
+        if (k == 0) a = 1;
+        else if (k == 2) a = 3;
+        else if (k == 5) a = 6;
+        else goto done;
+        sub_000A4010(o, a);
+    done:
+        o->state40 = 5;
+        break;
+    }
+    case 2: sub_000A4010(o, 0); o->state40 = 1; break;
+    case 3: sub_000A4010(o, 2); o->state40 = 1; break;
+    case 4: sub_000A4010(o, 5); o->state40 = 1; break;
+    }
+}

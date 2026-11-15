@@ -1167,3 +1167,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x2EBC0 skip (ebx/ecx/esi/edi inputs).
 - m2_18 PASS: 0x251B0 (goto into case 4 tail reproduces the shared state-step tail; volatile keeps the jb/ja range test; new rows m2_g37DC2C/30/34).
 - m2_19 PASS: 0x76180, 0x76210 (read buf[i+1] before i++ to keep the +0x2D offset).
+- m2_17 PASS: 0x9EF40.
+- m2_gs1 PASS: 0x538A0 (first m2 /GS function; hang written as if (slot >= 9) for (;;); new rows m2_strRegion26BF08, m2_strRegionNone26BEFC, sub_00047740).
