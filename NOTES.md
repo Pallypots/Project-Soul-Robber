@@ -1057,3 +1057,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_9 PASS: 0xE3C90.
 - m3_9 PASS: 0xEA060.
 - m3_9 PASS: 0xA79E0.
+- m2_6 PASS: 0x80E20 (self call through the existing name sub_00080E20).
+- 0x2A830: hard (orig keeps the glyph pointer as lea base 0x37E03C + (n-1)*0x9C with fields +0xA4/+0xA8; cl folds everything into absolute addresses).
+- m2_7 PASS: 0x83B70 (new rows m2_bbMax3ECA80, m2_bbNode3ECA90, m2_bbSub3ECA94, m2_bbMin3ECA98, sub_00083A30).
+- m2_7 PASS: 0x83A30.
