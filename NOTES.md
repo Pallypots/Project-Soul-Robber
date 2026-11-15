@@ -1267,3 +1267,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x80470 not tried yet (ray-triangle test, 250 insns, heavy stack reuse).
 - 0x38650 not tried yet (double fmod chain via 0x1C80A6; try double temporaries).
 - 0x35000 not tried yet (273 insns).
+- m3_30 PASS: 0xFF440 (x87 fld k/fxch/fcompi/jb on a float return = !(v >= k)).
+- m3_30 PASS: 0xDAB70. TRICK: xor/mov dh/movsx = union {int16 v; uint8 b[2];} u.v=0; u.b[1]=hi; then u.v|lo. x87 compares on stored floats use double literals; jb-to-body = if (d >= 50.0) goto skip.
+- m3_30 PASS: 0x12D0F0 (jb forms: write the fallthrough block under a >= test).
+- m3_30 PASS: 0xA1060 (first try).
+- m3_30 PASS: 0x107060 (cross-jumped clamp tails come from plain if/else clamps).
