@@ -1326,3 +1326,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_26 PASS: 0x252A0 (volatile 1 stops cl deriving it as 3-2; goto into a shared flip tail).
 - 0x791A0: hard (3-case switch: orig jump table 0..5, cl compare chain; same class as 0x331D0).
 - m2_26 PASS: 0x601E0.
+- m2_26 PASS: 0x57260 (nested switches with fall-through; new func row sub_00056A40).
+- 0x103030: still hard (the 1/2/0 pushes now merge into one call, but cl places the mode-3 wait block before the hand-off; 3 layouts tried).
+- m3_39 PASS: 0x13F880 (was hard: float temp lim + >= keeps SSE comiss/jb; volatile k keeps one shared call; neg/sbb select).
+- m3_39 PASS: 0x13F6D0 (was skip; volatile s keeps the sign branch; fabs on (double) float vs (double)k literal).
+- m3_39 PASS: 0xC93D0 (was hard: elem+8 walk pointer with signed cast and volatile copy).
