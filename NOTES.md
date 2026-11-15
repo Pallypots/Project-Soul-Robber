@@ -1151,3 +1151,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_22 PASS: 0xC6EA0.
 - 0x583C0: hard after 3 tries (orig keeps only the state pointer job+0x10 and rebases it with add -0x10 for the list calls; cl also keeps the job pointer, so the 0xFFFFFFF0 constant never appears).
 - 0x47FB0: hard after 3 tries (block placement: cl puts the short still-playing branch before the start path; orig keeps it last).
+- 0x822D0: hard (everything matches except the guard of the tag loop: orig tests the unsigned triangle count with test/jbe, cl always emits test/je; no documented idiom).
+- 0x824F0: hard (same test/jbe tag-loop guard as 0x822D0).
+- 0x26CF0 skip (ebx input).
+- Skips: 0x61C50, 0x3BE40, 0x1CA10 (eax input).
+- 0x35320 skip (init loop unrolled x4 by the original; cl unrolls differently).
+- m2_17 PASS: 0x1DA90 (thunk), 0x7F650, 0x7EF00 (table tail calls). Skips: 0x4F6B0 (impossible i<0 && i>=0x21E bounds test that cl folds away), 0x65310/0x6A2E0/0x9FB40/0x9F0F0 (switch tables; inventory size stops at the table jump).
