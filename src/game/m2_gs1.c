@@ -315,3 +315,58 @@ int m2_SecSave5C6D0(M2SecList1 *l, int a, int b) {
     a6b_Printf3(path, 0x7F, m2_fmtSec26CC68, a, b);
     return r1d_FileWrite(path, h, size, 0);
 }
+
+typedef struct M2ShObj1 { uint8_t unk00[0xC]; uint32_t flagsC; uint8_t unk10[0x18]; void *node28; uint8_t unk2C[0x20]; void *tex4C; } M2ShObj1;
+typedef struct M2ShEnt1 { uint8_t unk00[0x28]; void *pig28; } M2ShEnt1;
+extern const char m2_strCubeShdw25FCF8[];
+extern const char m2_strCirShdw25FD40[];
+extern const char r1g_srcCharUnit25FC08[];
+extern int m2_g37C4BC;
+uint8_t *a5b_CurHeapOp47560(const char *file, int line);
+uint8_t *sub_001B2DA0(void *dst, uint8_t *heap, void *model, int flags);
+void  a5b_HeapShrink(uint8_t *p, int size);
+void  r4e_Node1Init(void *n);
+void  r4b_Node5SetSource(void *n, int a, int b, int c, int d, void *src);
+void  sub_0001FE70(M2ShObj1 *o, void *model, void *node, int a, float scale);
+
+/* 0x22040: set up a character's shadow: load the shadow cube model and circle texture, build the model in the current heap (shrunk to fit), make a node using it and, for entries without a pig, attach it at scale 1. Always 0. Security-cookie function. */
+int m2_ShadowInit22040(M2ShObj1 *o, int unused, M2ShEnt1 *e) {
+    char path[0x100];
+    void *mdl, *m;
+    uint8_t *h;
+    a6b_Printf3(path, 0xFF, m2_strCubeShdw25FCF8);
+    mdl = sub_00037570(path, 0x40);
+    a6b_Printf3(path, 0xFF, m2_strCirShdw25FD40);
+    o->tex4C = rtc_TexFindOrLoad(path);
+    m = a5b_AllocCur(0x30, 0, 0xE83);
+    o->node28 = a5b_AllocCur(0xF0, 0, 0xE84);
+    h = a5b_CurHeapOp47560(r1g_srcCharUnit25FC08, 0xE89);
+    a5b_HeapShrink(h, sub_001B2DA0(m, h, mdl, m2_g37C4BC) - h);
+    r4e_Node1Init(o->node28);
+    r4b_Node5SetSource(o->node28, 0, 0, 0, 0, m);
+    o->flagsC |= 0x10;
+    if (e->pig28 == 0) sub_0001FE70(o, m, o->node28, 0, 1.0f);
+    return 0;
+}
+
+extern const char m2_strDome25FCC8[];
+
+/* 0x22150: same as 0x22040 with the dome shadow model (allocation tags 0xEAC/0xEAD/0xEB2). Always 0. Security-cookie function. */
+int m2_DomeShadowInit22150(M2ShObj1 *o, int unused, M2ShEnt1 *e) {
+    char path[0x100];
+    void *mdl, *m;
+    uint8_t *h;
+    a6b_Printf3(path, 0xFF, m2_strDome25FCC8);
+    mdl = sub_00037570(path, 0x40);
+    a6b_Printf3(path, 0xFF, m2_strCirShdw25FD40);
+    o->tex4C = rtc_TexFindOrLoad(path);
+    m = a5b_AllocCur(0x30, 0, 0xEAC);
+    o->node28 = a5b_AllocCur(0xF0, 0, 0xEAD);
+    h = a5b_CurHeapOp47560(r1g_srcCharUnit25FC08, 0xEB2);
+    a5b_HeapShrink(h, sub_001B2DA0(m, h, mdl, m2_g37C4BC) - h);
+    r4e_Node1Init(o->node28);
+    r4b_Node5SetSource(o->node28, 0, 0, 0, 0, m);
+    o->flagsC |= 0x10;
+    if (e->pig28 == 0) sub_0001FE70(o, m, o->node28, 0, 1.0f);
+    return 0;
+}

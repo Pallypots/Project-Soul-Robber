@@ -1189,3 +1189,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_gs1 PASS: 0x898C0 (new data row m2_fmtDtt26FADC).
 - 0x35FD0 skip (0x34050 takes eax/ecx).
 - m2_gs1 PASS: 0x5C6D0 (struct copy for the 0x470-byte records; new data row m2_fmtSec26CC68).
+- 0x5EF10 skip (ecx input).
+- m2_gs1 PASS: 0x22040 (new rows m2_strCubeShdw25FCF8, m2_strCirShdw25FD40, sub_001B2DA0, sub_0001FE70, m2_g37C4BC).
+- m2_gs1 PASS: 0x22150 (twin of 0x22040; new data row m2_strDome25FCC8).
