@@ -1300,3 +1300,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x13AB30: hard (block order: cl puts the held-body keep block right after its test; orig places it after the fail/set blocks; 3 layouts tried).
 - m3_35 PASS: 0xA9710 (fields addressed off the walk pointer itself via a macro on a volatile copy; +0x70 as (+0x40 ptr) + 12).
 - m2_23 PASS: 0x5BC90 (volatile 4 stops cl rewriting it as bank+5 when bank is known to be -1).
+- 0x8B560 skip (iterator-based list sort with tangled stack temporaries).
+- m2_23 PASS: 0x38650 (fmod on doubles gives the x87 __CIfmod chain; new crt rows _CIfmod/CIfmod for 0x1C80A6; volatile -0.01745 constant).
