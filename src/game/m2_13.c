@@ -128,3 +128,56 @@ void m2_SparkRing954A0(M2Act13 *o) {
         break;
     }
 }
+
+typedef struct M2Act13b { uint32_t flags0; uint8_t unk04[0x3C]; int32_t state40; uint8_t unk44[0x4C]; float dir90[4]; uint8_t unkA0[0x60]; float t100; uint8_t unk104[0x1C]; uint8_t *p120; uint8_t unk124[0x28]; int32_t att14C; uint8_t unk150[4]; int32_t snd154; } M2Act13b;
+extern float a50_framesPerSecond;
+void  rbj_VecNormalize(float *d, const float *s);
+void  rbj_VecSub(float *d, const float *a, const float *b);
+float rbi_VecLen82D70(const float *v);
+void  m1_SndStop048250(int h);
+int   sub_00036750(uint8_t *q, int a);
+int   r4i_Effect494D0(int id, float *pos, int a);
+
+/* 0x93A70: turning actor. State 0: on flag 0x400 it turns away from the player (flat direction) at once, attaches and starts effect 0x291 and advances; on flag 0x800 it waits 0.35 s, then does the same unless the player is within 15 units (then it just sets flag 0x80); either flag is cleared. State 1 resets the direction, sets flag 0x80, stops the effect and returns to state 0. */
+void m2_TurnActor93A70(M2Act13b *o) {
+    float v[4];
+    uint8_t *q = o->p120;
+    v[0] = 0.0f; v[1] = 0.0f; v[2] = 0.0f; v[3] = 1.0f;
+    switch (o->state40) {
+    case 0:
+        if (o->flags0 & 0x400) {
+            rbj_VecSub(v, (float *)(q + 0x60), (float *)(aab_player + 0x60));
+            rbj_VecNormalize(v, v);
+            v[1] = 0.0f;
+            a3c_VecCopy(o->dir90, v);
+            o->att14C = sub_00036750(q, 0);
+            o->snd154 = r4i_Effect494D0(0x291, (float *)(q + 0x60), 0);
+            o->flags0 &= ~0x400u;
+            o->state40++;
+        } else if (o->flags0 & 0x800) {
+            o->t100 += 1.0f;
+            if (o->t100 > a50_framesPerSecond * 0.35) {
+                rbj_VecSub(v, (float *)(aab_player + 0x60), (float *)(q + 0x60));
+                if (rbi_VecLen82D70(v) > 15.0) {
+                    rbj_VecNormalize(v, v);
+                    v[1] = 0.0f;
+                    a3c_VecCopy(o->dir90, v);
+                    o->att14C = sub_00036750(q, 0);
+                    o->snd154 = r4i_Effect494D0(0x291, (float *)(q + 0x60), 0);
+                    o->state40++;
+                    o->flags0 &= ~0x800u;
+                } else {
+                    o->flags0 |= 0x80;
+                    o->flags0 &= ~0x800u;
+                }
+            }
+        }
+        break;
+    case 1:
+        a3c_VecCopy(o->dir90, v);
+        o->flags0 |= 0x80;
+        m1_SndStop048250(o->snd154);
+        o->state40 = 0;
+        break;
+    }
+}

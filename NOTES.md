@@ -1147,3 +1147,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_21 PASS: 0x10C2B0 (volatile 2.0f keeps the multiply).
 - m3_21 PASS: 0xFCA70 (sibling of 0xFCCA0; volatile store after one call keeps the two state switches apart).
 - m2_13 PASS: 0x93A70 (double literals 0.35 and 15.0 keep the x87 qword compares).
+- Skips: 0xFBB00 (many tail calls with table args), 0xFB750 (default path reads an uninitialised arg slot as a float).
+- m3_22 PASS: 0xC6EA0.
