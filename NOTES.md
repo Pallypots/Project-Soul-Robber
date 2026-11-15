@@ -1234,3 +1234,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_25 PASS: 0xC4D30 (signed pointer bound via (int32_t) casts as in m1_176; volatile copy keeps the i<0 test).
 - m3_25 PASS: 0xC71C0 (signed pointer cast loop, volatile flag copy).
 - m3_25 PASS: 0xA75F0 (signed pointer cast loop, volatile record anchor, volatile stride, #pragma optimize s stops unrolling, goto for the free-slot result).
+- m2_21 PASS: 0x4F6B0 (was skipped: volatile copy keeps the impossible bounds test).
+- m2_21 PASS: 0x80BD0 (was skipped as x87 compare; plain float compares match).
