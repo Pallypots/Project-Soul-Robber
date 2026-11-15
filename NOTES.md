@@ -1228,3 +1228,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x117470: still hard with distinct volatile stores per branch (cl turns 0x14/0x18 into setcc arithmetic).
 - m3_24 PASS: 0xC9B40 (distinct volatile stores after each path stop cl sharing the Scale/Add tails).
 - m2_21 PASS: 0x822D0, 0x824F0 (were hard: comparing the count against a volatile zero gives the original test/jbe guard).
+- m3_25 PASS: 0x104C90.
+- Skips: 0x103880 (0x1023A0 takes ecx/xmm1), 0xDCF20 (long double math, later).
+- Skips: 0x1151A0, 0x105D80 (esi input).
+- m3_25 PASS: 0xC4D30 (signed pointer bound via (int32_t) casts as in m1_176; volatile copy keeps the i<0 test).
+- m3_25 PASS: 0xC71C0 (signed pointer cast loop, volatile flag copy).
+- m3_25 PASS: 0xA75F0 (signed pointer cast loop, volatile record anchor, volatile stride, #pragma optimize s stops unrolling, goto for the free-slot result).
