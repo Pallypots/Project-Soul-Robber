@@ -1245,3 +1245,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_26 PASS: 0xACA60 (sibling of 0xADCB0).
 - m2_21 PASS: 0x807C0 (new func row sub_00082840).
 - m2_21 PASS: 0x85DE0 (alias row m2_SpawnA93F0 keeps the two 0xA93F0 call sites).
+- m3_27 PASS: 0xAEC00. TRICK: cl passes float literal args via fld/fstp; to match an original push of the bits, prototype the arg as int and pass the bit pattern. Distinct volatile stores keep duplicate blocks apart.
+- m3_27 PASS: 0x117470 (was hard). TRICK: for push-constant selects into one call, store the default into a volatile local and overwrite it in the branch.
+- m3_27 PASS: 0xB86E0 (was hard; same volatile default-then-overwrite trick).
+- m3_27 PASS: 0x13A380 (first try).

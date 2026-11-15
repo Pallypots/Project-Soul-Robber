@@ -154,3 +154,80 @@ M2Face21 *m2_FaceNearest80BD0(M2FaceSet21 *s, float *pos) {
     }
     return bf;
 }
+
+void sub_00082840(float *hi, float *lo, const float *a, const float *b);
+void rbj_VecNormalize(float *d, const float *s);
+void r4e_VecMul4(float *d, const float *a, const float *b);
+
+/* 0x807C0: 1 when segment p0..p1 touches box (bhi, blo): its bounding box must overlap, then the segment is clipped to the box's two planes across its dominant axis and that clipped box must overlap too. Near-zero direction gives 0. */
+int m2_SegBox807C0(const float *bhi, const float *blo, const float *p0, const float *p1) {
+    float n[4], d[4], lo[4], hi[4];
+    int k, a, b;
+    float inv, sa, sb, t;
+    sub_00082840(hi, lo, p0, p1);
+    if (r6c_BoxBehind(bhi, blo, hi, lo) == 0) return 0;
+    rbj_VecSub(d, p1, p0);
+    d[3] = 1.0f;
+    rbj_VecNormalize(n, d);
+    if (9.9999997e-07f > rbj_VecDot(n, d)) return 0;
+    r4e_VecMul4(n, n, d);
+    n[3] = 1.0f;
+    k = 0;
+    if (n[1] > n[0]) k = 1;
+    if (n[2] > n[k]) k = 2;
+    a = (k + 1) % 3;
+    b = (a + 1) % 3;
+    inv = 1.0f / d[k];
+    hi[k] = bhi[k];
+    t = bhi[k] - p0[k];
+    sa = d[a] * inv;
+    hi[a] = sa * t + p0[a];
+    sb = d[b] * inv;
+    hi[b] = sb * t + p0[b];
+    lo[k] = blo[k];
+    t = blo[k] - p0[k];
+    lo[a] = sa * t + p0[a];
+    lo[b] = sb * t + p0[b];
+    sub_00082840(hi, lo, hi, lo);
+    return r6c_BoxBehind(bhi, blo, hi, lo) != 0;
+}
+
+typedef struct M2Place21 { void *p0; int8_t gate4; int8_t kind5; int8_t mode6; int8_t var7; int32_t bit8; void *argC; float pos10[3]; float yaw1C; } M2Place21;
+typedef struct M2PlSlot21 { M2Place21 *rec0; int32_t done4; void *obj8; uint8_t unkC[4]; } M2PlSlot21;
+typedef struct M2PlHdr21 { uint8_t unk00[8]; int32_t n8; } M2PlHdr21;
+extern M2PlHdr21 *a80_g3ED1D4;
+extern uint8_t *a80_g3ED1D0;
+int   r2b_TestBit(int bit);
+void *m1_VoiceStartA93F0(void *p, int k, void *arg, float *pos, float *rot);
+void *sub_000A9440(void *p, int k, void *arg, float *pos, float *rot, float v);
+void *m2_SpawnA93F0(void *p, int k, void *arg, float *pos, float *rot);
+
+/* 0x85DE0: spawn every placed object whose gate flag (when gated) is set: at its position with yaw -yaw1C, mode 0 by its own kind, modes 1-2 by kind 4 or 5 (low bit of its kind), using the variant call when it has a variant number. Each slot remembers it was handled and the spawned object (unknown modes keep the previous object). */
+void m2_SpawnPlaced85DE0(void) {
+    float rot[4], pos[4];
+    void *o = 0;
+    int i;
+    int off;
+    if (a80_g3ED1D4 == 0 || a80_g3ED1D0 == 0) return;
+    for (i = 0, off = 0; i < a80_g3ED1D4->n8; i++, off += 0x10) {
+        M2PlSlot21 *s = (M2PlSlot21 *)(a80_g3ED1D0 + off);
+        M2Place21 *r = s->rec0;
+        int k;
+        if (r->gate4 == 1 && r2b_TestBit(r->bit8) == 0) continue;
+        pos[0] = r->pos10[0]; pos[1] = r->pos10[1]; pos[2] = r->pos10[2]; pos[3] = 1.0f;
+        rot[0] = 0.0f;
+        rot[1] = 0.0f - r->yaw1C;
+        rot[2] = 0.0f; rot[3] = 0.0f;
+        if (r->mode6 == 0) {
+            if (r->var7 == 0) { o = m1_VoiceStartA93F0(r->p0, r->kind5, r->argC, pos, rot); goto mark; }
+            k = r->kind5;
+        } else if (r->mode6 == 1 || r->mode6 == 2) {
+            if (r->var7 == 0) { o = m2_SpawnA93F0(r->p0, ((uint8_t)r->kind5 & 1) + 4, r->argC, pos, rot); goto mark; }
+            k = ((uint8_t)r->kind5 & 1) + 4;
+        } else goto mark;
+        o = sub_000A9440(r->p0, k, r->argC, pos, rot, (float)r->var7);
+    mark:
+        s->done4 = 1;
+        s->obj8 = o;
+    }
+}
