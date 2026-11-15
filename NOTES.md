@@ -1111,3 +1111,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0xFD710 (0xFC6F0 eax input), 0x100DB0 (0x18F650 esi input).
 - m3_17 PASS: 0xB3EB0 (volatile store at the end of one branch stops cl cross-jumping the shared tail; only the last call is shared via a selected arg).
 - m3_17 PASS: 0xCACB0 (sibling of 0xCAB90). Skip: 0x10EDF0, 0xC57C0 (not attempted yet).
+- Skips: 0x7E720 (ebx input).
+- 0x85590 skip (0x854B0 takes edi).
+- m2_13 PASS: 0x95350 (x87 distance compares matched by writing d >= 50 and 50 >= d).
+- Skips: 0x37C70, 0x37DD0 (edi input / 0x37780 register use).
+- m2_13 PASS: 0x80F90 (new func row sub_00083B70).
