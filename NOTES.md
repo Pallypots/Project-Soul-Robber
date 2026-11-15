@@ -1040,3 +1040,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_3 PASS: 0x3F5A0 (new func row sub_0003E6D0).
 - m2_4 PASS: 0x92EA0 (new data rows m2_obj424C40/424EA0/425100).
 - m2_4 PASS: 0x342C0 (orig divides a known 0 by div; cl folds it, checker does not track div).
+- m3_7 PASS: 0xF6510, 0xA9DC0 (ten struct assignments give the ten rep movsd), 0xF8170, 0xEA2A0 (switch written default, 1, 0 gives the original block order). Skips: 0xF0660, 0x11F520, 0xBD670 (register inputs); 0xCFA60 left (inline struct copy loop).
+- m3_7 PASS: 0xE1170. Skips: 0xF0C80 (eax input), 0xF65E0 (default path reuses an uninitialised arg slot for two locals).
+- m3_8 PASS: 0x114930.
+- m3_8 PASS: 0xEBF00. Skip: 0xA75F0 (signed pointer bound jl).
+- m3_8 PASS: 0xA3170.
