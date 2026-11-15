@@ -1106,3 +1106,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_16 PASS: 0xF51D0.
 - m2_12 PASS: 0x831A0 (alias row m2_BoneBind1AEA00).
 - m2_12 PASS: 0x33410 (new rows sub_001B61B0, m2_g42C840).
+- m3_17 PASS: 0x116F70.
+- m3_17 PASS: 0x13A900 (!(d >= 60) gives the fcomi/jae form). Skips: 0x12CFB0 (fucompi/lahf parity test), 0xD85F0 (long random-bitmap loop, not attempted).
+- Skips: 0xFD710 (0xFC6F0 eax input), 0x100DB0 (0x18F650 esi input).
+- m3_17 PASS: 0xB3EB0 (volatile store at the end of one branch stops cl cross-jumping the shared tail; only the last call is shared via a selected arg).
+- m3_17 PASS: 0xCACB0 (sibling of 0xCAB90). Skip: 0x10EDF0, 0xC57C0 (not attempted yet).
