@@ -1009,3 +1009,14 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_210 PASS: 0x18D290 (new rows for its tables and handlers).
 - 0x181090 skip (eax input).
 - 0x18C2D0 skip (0x18BBB0 called with register inputs).
+- m1_211 PASS: 0x18B9C0.
+- m1_211 PASS: 0x16E4D0.
+- m1_211 PASS: 0x16AD00.
+- 0x13040: hard (inline strcpy: orig computes dst-src at run time, cl folds to a fixed 0x207 offset; pointer bias too)
+- 0x172F40 skip (edi/xmm0 inputs).
+- m1_212 PASS: 0x178D50 (callee 0x1788D0 reads esi; structurally equal only).
+- m1_212 PASS: 0x1786F0.
+- m2_1 PASS: 0x1C590.
+- m1_212 PASS: 0x185C90.
+- m3_1 PASS: 0xED520, 0xED590, 0xEE080 (do-while + volatile walk pointer keeps a dead table walk unpeeled), 0xF4280. Skips: 0x117AC0, 0x1183C0, 0x129180, 0x111A00, 0xF23C0, 0xF24B0, 0xE99A0, 0xC2A40, 0xCD8D0, 0xCEEA0, 0xCEF00, 0xCEE40, 0x125540, 0xD0480 (register inputs); 0xB8510, 0x11BE50, 0xB4790 are fragments; 0x102E30 float result.
+- m2_1 PASS*: 0x5EA60 (stride waiver imm:0x1c).
