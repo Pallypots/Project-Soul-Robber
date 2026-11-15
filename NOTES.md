@@ -1157,3 +1157,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x61C50, 0x3BE40, 0x1CA10 (eax input).
 - 0x35320 skip (init loop unrolled x4 by the original; cl unrolls differently).
 - m2_17 PASS: 0x1DA90 (thunk), 0x7F650, 0x7EF00 (table tail calls). Skips: 0x4F6B0 (impossible i<0 && i>=0x21E bounds test that cl folds away), 0x65310/0x6A2E0/0x9FB40/0x9F0F0 (switch tables; inventory size stops at the table jump).
+- m2_17 PASS: 0x9F040 (byte-indexed jump table matched). Hard: 0x331D0, 0x2C300 (3-case switches: orig jump table, cl 19 compare chain).
+- m2_17 PASS: 0x9EEA0 (goto to a shared call with the argument in a variable reproduces the cross-jumped push 2/push 4 tail), 0x94E00 (new func row sub_000A9340).
