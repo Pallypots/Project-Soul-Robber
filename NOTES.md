@@ -1116,3 +1116,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m2_13 PASS: 0x95350 (x87 distance compares matched by writing d >= 50 and 50 >= d).
 - Skips: 0x37C70, 0x37DD0 (edi input / 0x37780 register use).
 - m2_13 PASS: 0x80F90 (new func row sub_00083B70).
+- m3_18 PASS: 0x10EDF0 (switch written 2, 1, 0).
+- m3_18 PASS: 0xC9E30. Skips: 0xFE660 (esi input), 0xCA850 (not attempted yet).
+- m3_18 PASS: 0xCFC80.
+- Skips: 0x1077B0 (edi input), 0xADCB0 (signed pointer bound jl).
+- Skips: 0x100120 (many tail calls to one function with table args), 0xC5B30 (long, not attempted).
+- m3_18 PASS: 0xE66F0 (__stosd intrinsic for the 0x1BF-dword clear; volatile kind compared twice keeps jl/jg).
+- m3_18 PASS: 0x113CE0 (stosd+stosb with the size through a volatile copy, as in m1_121).
