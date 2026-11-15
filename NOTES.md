@@ -1195,3 +1195,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x51110 (0x4F810 esi/edi), 0x543C0 (ecx input).
 - m2_gs1 PASS: 0x21EE0 (returns 8, not 0; locals in a struct keep the scale-then-names layout; new rows m2_strCscm25FF28, m2_strCscl25FF20, m2_fmtSysPod25FF08).
 - m2_gs1 PASS: 0x1E110 (new rows m2_fmtEdg25FC30, sub_001B8800, m2_g42C980, sub_001B85B0).
+- Skips: 0x5CEB0 (0x5BF00 register inputs), 0x902A0 (0x90100 takes eax).
+- Skips: 0x368F0 (0x33FC0 eax/ecx), 0x5CD00 (0x5C000/0x5BF00 register inputs).
+- 0x4BA60 skip (edx input).
+- m2_gs2 PASS: 0x2CC20 (volatile access keeps the flag read on the copied sprite; new data rows m2_names2826FC, m2_h3813E8, m2_name282710, m2_bank3816C8, m2_spr381454, m2_fmt282714).
