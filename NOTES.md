@@ -1088,3 +1088,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_14 PASS: 0xA94B0.
 - m3_14 PASS: 0x10F260. Skip: 0xCFB50 (signed pointer bound jl copy loop).
 - m2_10 PASS: 0x47C80.
+- m2_10 PASS*: 0x3F650 (marker select waiver imm:0x3e/0x56/0x5e/0x76, same idiom as a8b_KindValue; new func row sub_0003F5A0).
+- m3_15 PASS: 0xEEA60 (switch written 12, 1), 0x119FF0. Skip: 0xE1CD0 (esi/eax inputs).
+- m3_15 PASS: 0xA3EE0 (sibling of 0xA3DB0), 0xEE850 (sibling of 0xEEA60). Skip: 0xFEAC0 (scales an uninitialised local vector).
+- m3_15 PASS: 0xA4050 (volatile 60 keeps imul 0x3c; volatile blend index keeps sub 4). Skip: 0xA5470 (ecx input).
+- Skips: 0xEE470 (ucomiss/lahf float equality tests), 0xA2FB0 (two identical scale-by--1 branches cl merges).
+- m3_15 PASS: 0xE15C0 (walk pointers to the pair's second field and the fade's target vector, index backwards; !(t >= 0) gives comiss/jb).
+- m3_15 PASS: 0xFCCA0.
