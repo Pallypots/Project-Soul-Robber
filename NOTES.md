@@ -1045,3 +1045,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_8 PASS: 0x114930.
 - m3_8 PASS: 0xEBF00. Skip: 0xA75F0 (signed pointer bound jl).
 - m3_8 PASS: 0xA3170.
+- Skips: 0x3C2D0 (one call with the same pointer pushed in both arms of a test, not producible), 0x80BD0 (x87 compares of float returns), 0x31430 (0x310B0 takes esi).
+- m2_5 PASS: 0x1D610 (clear-bit branch first for the call order).
+- m2_5 PASS: 0x47640.
+- Skips: 0x58C10 (edx input).
+- 0x832D0: hard after 3 tries (orig imul by 60 then magic divide; cl /O2 builds x60 as shl/sub/lea, optimize("s") gives imul but turns the /60 into idiv).
