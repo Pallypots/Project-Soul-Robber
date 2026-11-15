@@ -370,3 +370,33 @@ int m2_DomeShadowInit22150(M2ShObj1 *o, int unused, M2ShEnt1 *e) {
     if (e->pig28 == 0) sub_0001FE70(o, m, o->node28, 0, 1.0f);
     return 0;
 }
+
+extern const char m2_strCscm25FF28[];
+extern const char m2_strCscl25FF20[];
+extern const char m2_fmtSysPod25FF08[];
+
+/* 0x21EE0: set up a character's shadow from a size record {kind, scale}: kinds 0-1 use the medium shadow model and kind 2 the large one (kind 0 at half scale); otherwise as 0x22040 (tags 0xE5A/0xE5B/0xE60). Returns the record size 8. Security-cookie function. */
+int m2_SizedShadowInit21EE0(M2ShObj1 *o, int32_t *p, M2ShEnt1 *e) {
+    struct { float scale; const char *names[3]; } v;
+    char path[0x100];
+    void *mdl, *m;
+    uint8_t *h;
+    v.names[0] = m2_strCscm25FF28;
+    v.names[1] = m2_strCscm25FF28;
+    v.names[2] = m2_strCscl25FF20;
+    v.scale = ((float *)p)[1];
+    if (p[0] == 0) v.scale *= 0.5f;
+    a6b_Printf3(path, 0xFF, m2_fmtSysPod25FF08, v.names[p[0]]);
+    mdl = sub_00037570(path, 0x40);
+    a6b_Printf3(path, 0xFF, m2_strCirShdw25FD40);
+    o->tex4C = rtc_TexFindOrLoad(path);
+    m = a5b_AllocCur(0x30, 0, 0xE5A);
+    o->node28 = a5b_AllocCur(0xF0, 0, 0xE5B);
+    h = a5b_CurHeapOp47560(r1g_srcCharUnit25FC08, 0xE60);
+    a5b_HeapShrink(h, sub_001B2DA0(m, h, mdl, m2_g37C4BC) - h);
+    r4e_Node1Init(o->node28);
+    r4b_Node5SetSource(o->node28, 0, 0, 0, 0, m);
+    o->flagsC |= 0x10;
+    if (e->pig28 == 0) sub_0001FE70(o, m, o->node28, 0, v.scale);
+    return 8;
+}
