@@ -1025,3 +1025,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x170F60 (0x1700C0 eax), 0x172B80 (eax input), 0x17AF00 (eax input).
 - m1_213 PASS: 0x17F390 (biased walk on the speed field; data alias m1_recs3FE0C0_18 for 0x3FE0D8).
 - 0x1812F0 skip (0x180970 called with register inputs).
+- 0xC6CD0 duplicate: removed the waivered m1_23 copy, kept the clean m1_171 match (m1_LinkFire0C6CD0).

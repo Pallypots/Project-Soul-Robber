@@ -41,13 +41,6 @@ typedef struct M1Ent68 {
 extern M1Ent68 m1_ents41CEC0[3];  /* 0x0041CEC0 */
 #define M1_FIRE(e) if (((e).flags00 & 1) && ((e).flags00 & 0x10000000) && (e).owner64 == owner) \
     (e).flags00 = ((e).flags00 & ~0x10000000u) | 0x20000000
-/* 0x000C6CD0: armed in-use entries of owner become fired (three entries, unrolled). */
-void m1_FireOwnedC6CD0(int owner)
-{
-    M1_FIRE(m1_ents41CEC0[0]);
-    M1_FIRE(m1_ents41CEC0[1]);
-    M1_FIRE(m1_ents41CEC0[2]);
-}
 
 typedef struct M1Aim {
     uint8_t unk000[0x178];
