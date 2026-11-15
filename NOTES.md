@@ -1249,3 +1249,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_27 PASS: 0x117470 (was hard). TRICK: for push-constant selects into one call, store the default into a volatile local and overwrite it in the branch.
 - m3_27 PASS: 0xB86E0 (was hard; same volatile default-then-overwrite trick).
 - m3_27 PASS: 0x13A380 (first try).
+- m2_21 PASS: 0x5A510 (new func row sub_0005A430).
+- m2_22 PASS: 0x3A6B0 (x87 fild/fmul loops match as plain float code).
+- 0x3A2A0 skip for now (GIF packet built from long bitfield store sequences).
