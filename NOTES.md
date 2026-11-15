@@ -1123,3 +1123,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0x100120 (many tail calls to one function with table args), 0xC5B30 (long, not attempted).
 - m3_18 PASS: 0xE66F0 (__stosd intrinsic for the 0x1BF-dword clear; volatile kind compared twice keeps jl/jg).
 - m3_18 PASS: 0x113CE0 (stosd+stosb with the size through a volatile copy, as in m1_121).
+- 0x934B0 skip (fragment: esi/edi live on entry).
+- m2_14 PASS: 0x3B180 (new data row m2_vecW2C45D8).
+- m2_14 PASS: 0x870B0 (new func row sub_000EDF30).
