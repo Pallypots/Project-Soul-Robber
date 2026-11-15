@@ -1277,3 +1277,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_31 PASS: 0x113870 (sibling of 0xEE470).
 - m3_31 PASS: 0xEF640 (copy of 0x107060).
 - m3_31 PASS: 0x13A4A0 (first try).
+- 0x1067E0: skip (object comes in esi, register input).
+- m3_32 PASS: 0x1160A0 (x87 fucompi equality = c == 0.0 double literal).
+- m3_32 PASS: 0x116C60 (sibling of 0x1160A0).
+- m3_32 PASS: 0x12FA50 (third member of the turn family).
+- m3_32 PASS: 0x130900 (fourth member of the turn family).
+- m3_32 PASS: 0x12FD50 (fifth member).
