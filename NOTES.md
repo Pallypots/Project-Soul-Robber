@@ -1288,3 +1288,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_33 PASS: 0x130DB0 (turn family).
 - m3_33 PASS: 0x116A30 (turn family).
 - m3_33 PASS: 0x1170D0 (turn family).
+- m3_34 PASS: 0x1166E0 (turn family; 11 members done: 0x1160A0 0x116C60 0x12FA50 0x130900 0x12FD50 0x130450 0x130680 0x130DB0 0x116A30 0x1170D0 0x1166E0).
+- m3_34 PASS: 0x1300E0 (twin of 0x1166E0).
+- 0x128290, 0x128960, 0x129210: skip (turn family members that call 0x11F640 with eax/esi register inputs).
+- m3_34 PASS: 0xE4A20 (walk pointer to a middle field: float *q = &slot.cd; slot = (T *)(q - 2); new data rows 0x317DF0/0x317DF4).
+- m3_34 PASS: 0xE2050 (switch cases in block order 2,1,0; new data rows 0x317DE0..E8, 0x3F1B54).
+- m3_34 PASS: 0x1396A0 (loop-exit call duplicated: post-loop check reads j through a volatile so cl keeps it).
