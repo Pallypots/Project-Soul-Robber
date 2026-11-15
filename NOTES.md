@@ -1311,3 +1311,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_36 PASS: 0xC5460 (volatile 2.0f keeps the mulss; fn-pointer cast for the int-bits radius).
 - m3_36 PASS: 0xE17A0 (walk pointer at the angle field with volatile copy; 2-pass loop stayed rolled).
 - m3_36 PASS: 0x13A120 (x87 sum of squares = double products of floats).
+- m2_23 PASS: 0x5A430.
+- m2_25 PASS: 0x3E6D0 (alias rows m2_TxtA..F2E8C0 keep 8 separate DrawTextf sites; new format-string rows).
