@@ -1331,3 +1331,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_39 PASS: 0x13F880 (was hard: float temp lim + >= keeps SSE comiss/jb; volatile k keeps one shared call; neg/sbb select).
 - m3_39 PASS: 0x13F6D0 (was skip; volatile s keeps the sign branch; fabs on (double) float vs (double)k literal).
 - m3_39 PASS: 0xC93D0 (was hard: elem+8 walk pointer with signed cast and volatile copy).
+- 0x6DC70 skip (empty 8-way switch on the video mode, all cases same target; cl removes it).
+- 0x14BE0 skip (command handlers take esi).
+- m2_25 PASS*: 0x3F8B0 (stride waiver imm:0x3c; volatile pointer to the prev field keeps reads through it).
