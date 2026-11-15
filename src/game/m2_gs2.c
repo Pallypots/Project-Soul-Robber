@@ -149,3 +149,126 @@ void m2_CmdFilter7A610(char *s) {
     sl.kind20 = 1;
     while (sub_000376D0(&sl) == -1) ;
 }
+
+#include <string.h>
+typedef struct M2Str16 { uint32_t w[4]; } M2Str16;
+#pragma pack(push, 1)
+typedef struct M2Str5 { uint32_t w; uint8_t b; } M2Str5;
+typedef struct M2Str4 { uint32_t w; } M2Str4;
+#pragma pack(pop)
+typedef struct M2Stream2 { int32_t busy0; const char *name4; uint8_t unk08[4]; int32_t rawC; int32_t size10; int32_t pos14; void *buf18; int32_t state1C; } M2Stream2;
+extern int a50_streamState;
+extern int r1e_mId3E0DBC;
+extern M2Stream2 m1_streams2C8900[0x21E];
+extern int a50_streamHandle;
+extern void *r1e_mArg3E0DC4;
+extern void *r1e_m3E0DC8;
+extern M2Stream2 *a30_curSlot;
+extern const M2Str16 m2_strStmDir26B83C;
+extern const M2Str5 m2_strStm26B834;
+int  sub_001A8210(const char *path, int mode);
+void r4b_FileSeek(int fd, int pos, int whence);
+int  r4b_FileReadPoll(int fd, int a, int *st);
+void r4b_FileReadAsync(int fd, void *buf, int size);
+void r4b_FileClose(int fd);
+void *a5b_AllocCur(int size, int a, int tag);
+
+/* 0x50C80: step the streamed-data loader for the current stream entry: open "host0:stm_data/<name>.stm" (entries already loaded return 0), get a buffer (the caller's or a new one rounded up to 2 KB), seek, wait, read, wait, close, then mark the entry loaded (2) and make it current. Returns 1 while busy, 0 when done. Security-cookie function. */
+int m2_StmLoad50C80(void) {
+    char path[0x100];
+    int st;
+    M2Stream2 *e = &m1_streams2C8900[r1e_mId3E0DBC];
+    switch (a50_streamState) {
+    case 0x00: {
+        char *d;
+        *(M2Str16 *)path = m2_strStmDir26B83C;
+        strcat(path, e->name4);
+        if (e->busy0 != 0) return 0;
+        for (d = path; *d; d++) ;
+        *(M2Str5 *)d = m2_strStm26B834;
+        a50_streamHandle = sub_001A8210(path, 0x8001);
+    }
+    case 0x0A: {
+        void *m = r1e_mArg3E0DC4;
+        if (m == 0) { int volatile q = (e->size10 + 0x7FF) / 0x800; m = a5b_AllocCur(q << 11, 0, 0xCB3); }
+        e->buf18 = m;
+        r1e_m3E0DC8 = m;
+        a50_streamState = 0x14;
+        return 1;
+    }
+    case 0x14:
+        r4b_FileSeek(a50_streamHandle, e->pos14, 0);
+        a50_streamState = 0x1E;
+    case 0x1E:
+        if (r4b_FileReadPoll(a50_streamHandle, 1, &st) != 0) return 1;
+        a50_streamState = 0x28;
+    case 0x28: {
+        int size = e->size10;
+        void *buf = e->buf18;
+        int fd = a50_streamHandle;
+        m1_Stub102FA0(0);
+        r4b_FileReadAsync(fd, buf, size);
+        a50_streamState = 0x32;
+    }
+    case 0x32:
+        if (r4b_FileReadPoll(a50_streamHandle, 1, &st) != 0) return 1;
+        a50_streamState = 0x3C;
+        r4b_FileClose(a50_streamHandle);
+        a50_streamHandle = -1;
+    case 0x3C:
+        e->state1C = 2;
+        { int volatile id = r1e_mId3E0DBC; if (id >= 0 && id < 0x21E) a30_curSlot = &m1_streams2C8900[id]; }
+        return 0;
+    }
+    return 1;
+}
+
+/* 0x50560: same loader as 0x50C80 for the raw (unrounded) size at +0xC (allocation tag 0xB53); the entry is marked loaded with state 1. Returns 1 while busy, 0 when done. Security-cookie function. */
+int m2_StmLoadRaw50560(void) {
+    char path[0x100];
+    int st;
+    M2Stream2 *e = &m1_streams2C8900[r1e_mId3E0DBC];
+    switch (a50_streamState) {
+    case 0x00: {
+        char *d;
+        *(M2Str16 *)path = m2_strStmDir26B83C;
+        strcat(path, e->name4);
+        if (e->busy0 != 0) return 0;
+        for (d = path; *d; d++) ;
+        *(M2Str5 *)d = m2_strStm26B834;
+        a50_streamHandle = sub_001A8210(path, 0x8001);
+    }
+    case 0x0A: {
+        void *m = r1e_mArg3E0DC4;
+        if (m == 0) m = a5b_AllocCur(e->rawC, 0, 0xB53);
+        e->buf18 = m;
+        r1e_m3E0DC8 = m;
+        a50_streamState = 0x14;
+        return 1;
+    }
+    case 0x14:
+        r4b_FileSeek(a50_streamHandle, e->pos14, 0);
+        a50_streamState = 0x1E;
+    case 0x1E:
+        if (r4b_FileReadPoll(a50_streamHandle, 1, &st) != 0) return 1;
+        a50_streamState = 0x28;
+    case 0x28: {
+        int size = e->rawC;
+        void *buf = e->buf18;
+        int fd = a50_streamHandle;
+        m1_Stub102FA0(0);
+        r4b_FileReadAsync(fd, buf, size);
+        a50_streamState = 0x32;
+    }
+    case 0x32:
+        if (r4b_FileReadPoll(a50_streamHandle, 1, &st) != 0) return 1;
+        a50_streamState = 0x3C;
+        r4b_FileClose(a50_streamHandle);
+        a50_streamHandle = -1;
+    case 0x3C:
+        e->state1C = 1;
+        { int volatile id = r1e_mId3E0DBC; if (id >= 0 && id < 0x21E) a30_curSlot = &m1_streams2C8900[id]; }
+        return 0;
+    }
+    return 1;
+}

@@ -1200,3 +1200,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x4BA60 skip (edx input).
 - m2_gs2 PASS: 0x2CC20 (volatile access keeps the flag read on the copied sprite; new data rows m2_names2826FC, m2_h3813E8, m2_name282710, m2_bank3816C8, m2_spr381454, m2_fmt282714).
 - m2_gs2 PASS: 0x7A610 (new data row m2_fmtFilter26F568).
+- 0x512D0 skip (0x4FB50 takes esi).
+- m2_gs2 PASS: 0x50C80, 0x50560 (fall-through switch; strcat intrinsic matches the inline strcat; packed 5-byte struct copy gives the dword+byte .stm append; volatile copies keep the /2048<<11 rounding and the 0..0x21E range test; new rows m2_strStmDir26B83C, m2_strStm26B834).
