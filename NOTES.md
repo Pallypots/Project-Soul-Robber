@@ -1028,3 +1028,11 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xC6CD0 duplicate: removed the waivered m1_23 copy, kept the clean m1_171 match (m1_LinkFire0C6CD0).
 - 0x188120 skip (0x186470 takes ebx/edi). 0x18F7B0, 0x18FF50 skip (0x100110 then register use).
 - 0x173BC0 skip (0x173030 takes eax/ecx).
+- m3_2 PASS: 0xE4050 (goto keeps one lookup call), 0x138270, 0xEAD50, 0xA2890 (x87 length compare matches), 0xC6AA0. 0xC93D0: hard after 3 tries (orig walks a +8 field pointer with a signed jl bound; cl unrolls an index loop or uses unsigned/offset forms). Skips: 0xC9280, 0x120BF0, 0x11DF80, 0xE7EB0, 0xC1B10, 0xF2500, 0x103A80, 0xA3AE0, 0xC7DC0 (register inputs).
+- m3_3 PASS: 0xF42C0, 0xF15B0, 0xAAC10, 0xC53B0.
+- m3_4 PASS: 0xB7EE0, 0xA9340 (volatile store before the call in one branch stops cl hoisting a shared rand call). Skips: 0x12CF00 (edi input, _ftol), 0xC7700 (esi input).
+- m3_4 PASS: 0x138640. 0xF8270: hard after 3 tries (cl places the kind-4 block before the shared kind-3 tail; tried goto, if order, else chain). 0xC4D30 skip (signed pointer bound jl class). 0x113CE0 left for later (inline memset).
+- m3_5 PASS: 0xE5B70, 0xEA930, 0xC6D50. Skip: 0xC71C0 (signed pointer bound jl).
+- m3_5 PASS: 0xEAEE0, 0xEE3B0. Skip: 0xE4DD0 (eax input).
+- m3_6 PASS: 0xCBD60 (double literals 0.02 and -1.0 give the fmul qword pair). Skips: 0xE2480 (eax/ecx inputs), 0xE16E0 (idx*3+0x6F folding class), 0xED290 (varargs call through a pushed edi).
+- m3_6 PASS: 0xA9B80 (volatile byte offset (kind-0x18)*4 keeps the lea -0x60 shared index).
