@@ -223,3 +223,29 @@ void m2_DemoLights899C0(M2Demo1 *d) {
         r6b_FwdIterNext(&it);
     }
 }
+
+
+typedef struct M2SesBody1 { uint32_t w[0x114]; } M2SesBody1;
+extern const char m2_fmtSes26CA4C[];
+extern const char m2_fmtSes26CA6C[];
+int r1d_FileWrite(const char *path, void *data, int size, int a);
+
+/* 0x5C0E0: save a sound-effect set as a .ses file ("SES" header, version 3, then 0x450 bytes copied from src) named after world k (area 0 for world 1) and number n. -1 for no source, else the write result. Security-cookie function. */
+int m2_SesSave5C0E0(const uint32_t *src, int unused, int k, int n) {
+    char path[0x100];
+    uint32_t *h;
+    if (src == 0) return -1;
+    h = (uint32_t *)a5b_AllocCur(0x460, 0, 0x365);
+    if (h != 0) {
+        h[0] = 0; h[1] = 0; h[2] = 0; h[3] = 0;
+        h[0] = 0x534553;
+        h[1] = 3;
+    }
+    *(M2SesBody1 *)(h + 4) = *(const M2SesBody1 *)src;
+    switch (k) {
+    case 1: a6b_Printf3(path, 0x7F, m2_fmtSes26CA4C, 1, n); break;
+    case 3: a6b_Printf3(path, 0x7F, m2_fmtSes26CA6C, 3, k, n); break;
+    default: a6b_Printf3(path, 0x7F, m2_fmtSes26CA6C, k, k, n); break;
+    }
+    return r1d_FileWrite(path, h, 0x460, 0);
+}

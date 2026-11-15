@@ -1181,3 +1181,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x5C1E0: hard after 3 tries (orig has one shared cookie exit; cl duplicates the epilogue into each early exit, even with a volatile result).
 - 0x51020 skip (0x4F810 takes esi/edi).
 - m2_gs1 PASS: 0x899C0 (new rows m2_fmtLight26FB24, sub_000902A0, sub_000900A0).
+- 0x8FCB0 skip (0x8FAF0 takes eax).
+- 0x8DC90: hard after 3 tries (four cookie exits in the original: two separate -1 exits plus a shared r=-1 exit; volatile results got three at best).
+- 0x8E240 skip (ecx/edx inputs).
+- m2_gs1 PASS: 0x5C0E0 (struct copy gives the rep movsd; switch gives dec/sub 2; new rows m2_fmtSes26CA4C/6C).
