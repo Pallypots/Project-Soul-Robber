@@ -1133,3 +1133,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_19 PASS: 0xB03C0.
 - m2_15 PASS: 0x84F00 (new data row m2_slots3ECCB0).
 - m2_15 PASS: 0x85110 (new func rows sub_00084F00, sub_000EDF90).
+- Skips: 0xAA0B0 (eax input), 0xAEC00 (0/2 push select plus duplicate blocks cl merges).
+- Skip: 0xACA60 (signed pointer bound jl loops).
+- Skip: 0x103030 (1/2/0 push select into a shared call).
+- m3_20 PASS: 0xC4EC0 (volatile flag copy splits the merged bit test; volatile slot base keeps +0x204/+0x404).
+- m3_20 PASS: 0xC5B30 (__declspec(noinline) on 0xC4EC0 stops cl inlining the same-file sibling).
