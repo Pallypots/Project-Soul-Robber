@@ -117,3 +117,40 @@ void m2_CollGatherSeg824F0(void *ctx, M2Out21 *out, float *p0, float *p1, M2Hit2
         }
     }
 }
+
+typedef struct M2Stream21 { uint8_t unk00[0x10]; int32_t size10; uint8_t unk14[0xC]; } M2Stream21;
+extern M2Stream21 m1_streams2C8900[0x21E];
+
+/* 0x4F6B0: size of stream entry i; the original bounds test (i < 0 && i >= 0x21E) can never be true, so it always reads the table. */
+int m2_StreamSize4F6B0(int i) {
+    int volatile v = i;
+    if (v < 0 && v >= 0x21E) return 0;
+    return m1_streams2C8900[i].size10;
+}
+
+typedef struct M2Face21 { uint8_t unk00[0x10]; float a10[4]; float b20[4]; float n30[4]; float c40[4]; uint8_t unk50[0x10]; } M2Face21;
+typedef struct M2FaceSet21 { uint8_t unk00[4]; uint32_t n4; uint8_t unk08[4]; M2Face21 *fC; } M2FaceSet21;
+float r4_Distance(const float *a, const float *b);
+void  rbj_VecSub(float *d, const float *a, const float *b);
+float rbj_VecDot(const float *a, const float *b);
+void  rbj_VecScale(float *d, const float *a, float s);
+
+/* 0x80BD0: find the face whose centre is nearest to pos; when pos lies on its front side, swap its two edge vectors and flip its normal. Returns the face (0 when the set is empty). */
+M2Face21 *m2_FaceNearest80BD0(M2FaceSet21 *s, float *pos) {
+    float best = 10000000.0f, d, t[4], tmp[4];
+    M2Face21 *f = s->fC, *bf = 0;
+    uint32_t i;
+    for (i = 0; i < s->n4; i++, f++) {
+        d = r4_Distance(pos, f->c40);
+        if (best > d) { best = d; bf = f; }
+    }
+    if (bf == 0) return 0;
+    rbj_VecSub(t, bf->c40, pos);
+    if (rbj_VecDot(t, bf->n30) > 0.0f) {
+        a3c_VecCopy(tmp, bf->a10);
+        a3c_VecCopy(bf->a10, bf->b20);
+        a3c_VecCopy(bf->b20, tmp);
+        rbj_VecScale(bf->n30, bf->n30, -1.0f);
+    }
+    return bf;
+}

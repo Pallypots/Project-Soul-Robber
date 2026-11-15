@@ -1236,3 +1236,10 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_25 PASS: 0xA75F0 (signed pointer cast loop, volatile record anchor, volatile stride, #pragma optimize s stops unrolling, goto for the free-slot result).
 - m2_21 PASS: 0x4F6B0 (was skipped: volatile copy keeps the impossible bounds test).
 - m2_21 PASS: 0x80BD0 (was skipped as x87 compare; plain float compares match).
+- m3_26 PASS: 0xC6980 (same recipe as 0xA75F0; volatile group read twice keeps the range test).
+- m3_26 PASS: 0xCA9C0 (loop on the +0x40 field address with signed casts).
+- Skip: 0xC7B70 (reads an uninitialised local array).
+- m3_26 PASS: 0xCFB50 (word copy loop with a signed pointer cast bound).
+- m3_26 PASS: 0xCFA60 (count-down copy through a pointer difference, #pragma optimize s).
+- m3_26 PASS: 0xADCB0 (signed cast loop; volatile walk-pointer anchor keeps the -4 based field offsets).
+- m3_26 PASS: 0xACA60 (sibling of 0xADCB0).
