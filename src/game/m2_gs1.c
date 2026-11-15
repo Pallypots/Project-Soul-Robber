@@ -28,3 +28,68 @@ void *m2_RegionOpen538A0(int slot, const char *name, int size) {
     r1c_HeapSetup(m1_pools3E26A8[slot], sub_00047740(r));
     return m1_pools3E26A8[slot];
 }
+
+typedef struct M2Pig1 { uint8_t unk00[0x1C]; uint32_t flags1C; uint8_t unk20[0x20]; void *tex40; void *anim44; } M2Pig1;
+typedef struct M2PigEnt1 { uint8_t unk00[8]; const char *dir8; uint8_t unk0C[0x1C]; M2Pig1 *pig28; } M2PigEnt1;
+typedef struct M2PigCtx1 { uint8_t unk00[0x20]; void *owner20; uint8_t unk24[0x20]; void *list44; } M2PigCtx1;
+extern const char m1_fmtPig25FBE8[];
+extern const char m2_fmtTxa25FC40[];
+char *sub_001C7DB0(char *d, const char *s, int n);
+void *rtc_TexFindOrLoad(const char *path);
+void *sub_00037570(const char *path, int flags);
+void  a60_AttachEff6974(void *owner, void *list, void *tex, void *anim);
+
+/* 0x1E270: load a .pig texture and its .txa animation named by the two 8-character fields of src, under the entry's directory; attach them to the entry's pig (flag 4) or, without one, to the context's owner list. Returns the record size 0x10. Security-cookie function. */
+int m2_PigLoad1E270(M2PigCtx1 *c, const char *src, M2PigEnt1 *e) {
+    char name[12];
+    char path[0x100];
+    void *tex, *anim;
+    sub_001C7DB0(name, src, 8);
+    name[8] = 0;
+    a6b_Printf3(path, 0xFF, m1_fmtPig25FBE8, e->dir8, name);
+    tex = rtc_TexFindOrLoad(path);
+    sub_001C7DB0(name, src + 8, 8);
+    name[8] = 0;
+    a6b_Printf3(path, 0xFF, m2_fmtTxa25FC40, e->dir8, name);
+    anim = sub_00037570(path, 0x40);
+    if (e->pig28 == 0) {
+        a60_AttachEff6974(c->owner20, c->list44, tex, anim);
+    } else {
+        e->pig28->flags1C |= 4;
+        e->pig28->tex40 = tex;
+        e->pig28->anim44 = anim;
+    }
+    return 0x10;
+}
+
+typedef struct M2MdlEnt1 { uint8_t unk00[8]; const char *dir8; uint8_t unk0C[0x1C]; void *pig28; void *node2C; } M2MdlEnt1;
+typedef struct M2MdlCtx1 { uint8_t unk00[0x20]; void *pose20; uint8_t unk24[0xC]; void *anim30; void *lod34; } M2MdlCtx1;
+extern const char m2_fmtMlb25FBF8[];
+void *a5b_AllocCur(int size, int a, int tag);
+void  r4e_NodeInit(void *n);
+void *sub_00083030(void *node, int a, M2MdlCtx1 *c);
+void *sub_0007FC60(void);
+int   sub_00083820(void *anim, const char *path);
+int  *sub_00083140(void *anim, int i);
+void  sub_000831A0(void *anim, int id, int node);
+void  rtc_ApplyValueToModel(void *anim, void *pose);
+
+/* 0x1DFD0: load the .mlb motion library named by the record's 8-character field under the entry's directory: create the entry's node and the context's animation set, and when the entry has no pig and the library loaded, start its first animation and apply it to the pose. Returns the record size 8. Security-cookie function. */
+int m2_MlbLoad1DFD0(M2MdlCtx1 *c, const char *src, M2MdlEnt1 *e) {
+    char name[12];
+    char path[0x100];
+    int ok;
+    sub_001C7DB0(name, src, 8);
+    name[8] = 0;
+    a6b_Printf3(path, 0xFF, m2_fmtMlb25FBF8, e->dir8, name);
+    e->node2C = a5b_AllocCur(0xE0, 0, 0xDF1);
+    r4e_NodeInit(e->node2C);
+    c->anim30 = sub_00083030(e->node2C, 0, c);
+    c->lod34 = sub_0007FC60();
+    ok = sub_00083820(c->anim30, path);
+    if (e->pig28 == 0 && ok != 0) {
+        sub_000831A0(c->anim30, 0, *sub_00083140(c->anim30, 0));
+        rtc_ApplyValueToModel(c->anim30, c->pose20);
+    }
+    return 8;
+}
