@@ -1036,3 +1036,7 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_5 PASS: 0xEAEE0, 0xEE3B0. Skip: 0xE4DD0 (eax input).
 - m3_6 PASS: 0xCBD60 (double literals 0.02 and -1.0 give the fmul qword pair). Skips: 0xE2480 (eax/ecx inputs), 0xE16E0 (idx*3+0x6F folding class), 0xED290 (varargs call through a pushed edi).
 - m3_6 PASS: 0xA9B80 (volatile byte offset (kind-0x18)*4 keeps the lea -0x60 shared index).
+- m2_3 PASS: 0x376D0 (one || condition plus volatile 2.0f keeps a single fmul site). 0x5E9B0 skip (passes two shorts as unaligned dword pushes).
+- m2_3 PASS: 0x3F5A0 (new func row sub_0003E6D0).
+- m2_4 PASS: 0x92EA0 (new data rows m2_obj424C40/424EA0/425100).
+- m2_4 PASS: 0x342C0 (orig divides a known 0 by div; cl folds it, checker does not track div).
