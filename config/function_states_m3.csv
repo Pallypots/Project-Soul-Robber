@@ -48,3 +48,7 @@ va,name,state,source,obj,waivers,notes
 0x000ebdb0,m3_VoiceHpEBDB0,Structurally compared,src/game/m3_11.c,build/obj_m3/m3_11.obj,,"Same voice picker for character slot 3"
 0x000ec080,m3_VoiceHpEC080,Structurally compared,src/game/m3_11.c,build/obj_m3/m3_11.obj,,"Same voice picker for character slot 7"
 0x000ec200,m3_VoiceHpEC200,Structurally compared,src/game/m3_11.c,build/obj_m3/m3_11.obj,,"Same voice picker for character slot 8"
+0x000f4820,m3_CamTiltF4820,Structurally compared,src/game/m3_12.c,build/obj_m3/m3_12.obj,,"Tilt the camera down: animate the tilt by pi/2 over 20 frame units (signal step 4 past -pi/2), or jump straight to -pi/2 when the node is active; output = view * base * tilt"
+0x000fb870,m3_IdleLookFB870,Structurally compared,src/game/m3_12.c,build/obj_m3/m3_12.obj,,"Idle look-around: turn 27 degrees towards the player past a +-27 degree delta, start anim 2 with a random 1.7..3.2 wait, and one time in seven trigger 0xFB580 when the manager cooldown is out"
+0x000faf60,m3_HopFAF60,Structurally compared,src/game/m3_12.c,build/obj_m3/m3_12.obj,,"Hop towards the player: rise by a growing hop speed, turn 3.5 degrees per frame unit, on landing finish with anim 0x12 or reset and play anim 9; once finished play anim 9 when the node is active"
+0x00105480,m3_ChaseStep105480,Structurally compared,src/game/m3_12.c,build/obj_m3/m3_12.obj,,"Chase step: gap to the player minus the hero radius; step towards a player above -30 and stop near 28 units, else run 0x105330 and stop near 48; stop after 8 time units; otherwise count chase time"
