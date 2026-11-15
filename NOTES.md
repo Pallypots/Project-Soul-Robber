@@ -1095,3 +1095,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skips: 0xEE470 (ucomiss/lahf float equality tests), 0xA2FB0 (two identical scale-by--1 branches cl merges).
 - m3_15 PASS: 0xE15C0 (walk pointers to the pair's second field and the fade's target vector, index backwards; !(t >= 0) gives comiss/jb).
 - m3_15 PASS: 0xFCCA0.
+- 0x189C0 skip (0x187E0/0x18840/0x188E0 take the output pointer in ebx).
+- m2_11 PASS: 0x52CF0 (volatile flags copy stops cl merging the bit-0 and bit-17 tests into one and 0x20001).
+- m2_11 PASS: 0x1D4E0.
