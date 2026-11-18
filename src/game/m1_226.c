@@ -54,3 +54,31 @@ void m1_BuildXform0C7700(M1S226 *s)
     sub_000F5D40(m + 12, s->pvE8->pos60);
     sub_001ADA40(xf, m);
 }
+
+typedef void (*M1Fn226)(void);
+typedef struct M1Ctl226 {
+    uint8_t unk00[0x10]; uint8_t blk10[0x24];
+    M1Fn226 fn34, fn38, fn3C; uint8_t unk40[0xC];
+    int32_t a4C, a50; float f54, f58; int32_t a5C, i60; float f64; int32_t i68; M1Fn226 fn6C;
+    float q70[5], q84[4], q94[4];
+} M1Ctl226;
+void sub_000EE270(void *blk);
+void sub_00172340(void); void sub_001723A0(void); void sub_001740F0(void); void sub_001724E0(void);
+
+/* 0x001745D0: initialise a controller: reset its +0x10 block, install its four handlers, clear counters, set the
+   two ids to -1 and the three orientation blocks to identity (w = 1.0) (regargs: c=ESI). */
+void m1_CtlInit1745D0(M1Ctl226 *c)
+{
+    sub_000EE270(c->blk10);
+    c->fn34 = sub_00172340;
+    c->fn38 = sub_001723A0;
+    c->fn3C = sub_001740F0;
+    c->f54 = 0.0f; c->f58 = 0.0f; c->f64 = 0.0f;
+    c->fn6C = sub_001724E0;
+    c->a4C = 0; c->a50 = 0; c->a5C = 0;
+    c->i60 = -1; c->i68 = -1;
+    c->q94[0] = 0.0f; c->q94[1] = 0.0f; c->q94[2] = 0.0f; c->q94[3] = 1.0f;
+    c->q70[0] = 0.0f; c->q70[1] = 0.0f; c->q70[2] = 0.0f; c->q70[3] = 0.0f; c->q70[4] = 1.0f;
+    c->q84[0] = 0.0f; c->q84[1] = 0.0f; c->q84[2] = 0.0f; c->q84[3] = 1.0f;
+}
+
