@@ -1337,3 +1337,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m3_40 PASS: 0xC6850 (sign test written as >= 0 so the update hooks fall through).
 - m3_40 PASS: 0xCD070 (first try).
 - m3_40 PASS: 0x1055A0 (first try; new row 0x1050B0).
+- m1_215 PASS: 0x1AD6A0, 0x1AD560, 0x1A53F0, 0x1AB850 (library tail-call thunks; new row sub_001D2ED0).
+- m1_216 PASS: 0xED4C0, 0xED4F0, 0xED560, 0xED5D0, 0xED600 (char-type table tail calls with (k, o); optimize(s) needed for the jmp; loop rotated, 13 vs 15 insns).
