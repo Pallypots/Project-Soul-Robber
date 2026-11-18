@@ -69,3 +69,48 @@ int m1_PlayerTargetCode0A47A0(void)
     }
     return r;
 }
+
+typedef struct M1Act224 { uint8_t unk00[0xD8]; int32_t kindD8; uint8_t unkDC[0xEC - 0xDC]; uint32_t flagsEC;
+                          uint8_t unkF0[0x1B8 - 0xF0]; int32_t busy1B8; uint8_t unk1BC[0xD60 - 0x1BC]; uint32_t flagsD60; } M1Act224;
+extern int32_t m3_nodeStart418B70;
+extern uint8_t abc_d418A80[];
+void sub_001BA8B0(void *set, int id);
+
+/* 0x000CA340: unless the actor is busy (+0x1B8), pick a light/node set by its kind (0x22 -> 10, 0x23 -> 1,
+   0x0B-0x12 -> 20, 0x2A-0x2B -> 14, else 0x1C when flagged (+0xEC bit 0x40 or +0xD60 bit 2) or 14) and start it
+   when it differs from the current one. */
+void m1_ActLightSet0CA340(M1Act224 *a)
+{
+    int r;
+    if (a->busy1B8) return;
+    switch (a->kindD8) {
+    case 0x22: r = 10; break;
+    case 0x23: r = 1; break;
+    case 0x0B: case 0x0C: case 0x0D: case 0x0E: case 0x0F: case 0x10: case 0x11: case 0x12: r = 20; break;
+    case 0x2A: case 0x2B: r = 14; break;
+    default:
+        if ((a->flagsEC & 0x40) || (a->flagsD60 & 2)) r = 0x1C;
+        else r = 14;
+        break;
+    }
+    if (m3_nodeStart418B70 != r) {
+        m3_nodeStart418B70 = r;
+        sub_001BA8B0(abc_d418A80, r);
+    }
+}
+
+typedef struct M1Tm224 { uint8_t unk00[0x10]; void *h10; uint8_t unk14[4]; float t18, t1C, t20; } M1Tm224;
+typedef struct M1Ob224 { uint8_t unk00[0x270]; float f270; float f274; M1Tm224 *tm278; } M1Ob224;
+extern float a50_frameSeconds;
+void sub_000264F0(void *m, float a, int x, int y);
+
+/* 0x00179240: count the three timers at +0x18/+0x1C/+0x20 down by the frame time while positive; when the timer
+   block has a handle, add a mark at (int)+0x270, (int)+0x274 with -35.0 to s+0x60. */
+void m1_TimersTick179240(uint8_t *s, M1Ob224 *o)
+{
+    M1Tm224 *t = o->tm278;
+    if (t->t18 > 0.0f) t->t18 -= a50_frameSeconds;
+    if (t->t1C > 0.0f) t->t1C -= a50_frameSeconds;
+    if (t->t20 > 0.0f) t->t20 -= a50_frameSeconds;
+    if (t->h10) sub_000264F0(s + 0x60, -35.0f, (int)(__int64)o->f270, (int)(__int64)o->f274);
+}
