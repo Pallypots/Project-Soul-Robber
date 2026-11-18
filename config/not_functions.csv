@@ -220,3 +220,5 @@ va,reason
 0x000640E0,interior fragment reported by recovery (inside a larger function)
 0x0009FC60,interior fragment (switch case: reads the enclosing frame at [esp+0x38] and exits through 0xA089B)
 0x000A0030,interior fragment (switch case: reads the enclosing frame at [esp+0x38] and exits through 0xA089B)
+0x00095C30,epilogue fragment (pop edi/esi; add esp,0x40; ret), tail of a larger function
+0x00101BE0,epilogue fragment (pops; mov eax,esi; add esp,0x54; ret), tail of a larger function
