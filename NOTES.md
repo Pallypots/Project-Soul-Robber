@@ -1340,3 +1340,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_215 PASS: 0x1AD6A0, 0x1AD560, 0x1A53F0, 0x1AB850 (library tail-call thunks; new row sub_001D2ED0).
 - m1_216 PASS: 0xED4C0, 0xED4F0, 0xED560, 0xED5D0, 0xED600 (char-type table tail calls with (k, o); optimize(s) needed for the jmp; loop rotated, 13 vs 15 insns).
 - 0xE2C20/0xE2C70/0xE2CC0/0xE2D10 (track-fire loops, regargs o=EDI): hard after 3 tries (while/for(;;) rotate and duplicate the fire call; optimize(s) enters the loop at the bottom).
+- 0xAA3F0: hard after 3 tries (table walk: cl keeps the key in ecx not eax and folds the next-key read to an absolute address).
+- m1_217 PASS: 0x166CE0 (hang guards as if(!x) for(;;); checker passes with x87 float ops).
+- 0xAA300 hard (contains the 0xAA3F0 table walk); 0x1F210, 0xBCFC0, 0xC9A70, 0x1263B0, 0x38C50, 0xE8BC0, 0xE0CF0, 0x1BB240 skip (register-arg callee / jump tables); the remaining 60-400 byte leftovers are nearly all this class.
