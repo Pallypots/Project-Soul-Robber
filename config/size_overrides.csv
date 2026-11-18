@@ -12,3 +12,4 @@ va,size,reason
 0x0006A2E0,0x28,ends at its jump table; inventory size 19 stops at the indirect jmp
 0x00146030,0x24,ends at its jump table; inventory size 96 includes the tables
 0x000EE5F0,0x48,ends at its jump table; inventory size 112 includes the table
+0x00172400,0x47,ends at its jump tables; inventory size 128 includes them
