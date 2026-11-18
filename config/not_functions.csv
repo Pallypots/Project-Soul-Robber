@@ -222,3 +222,6 @@ va,reason
 0x000A0030,interior fragment (switch case: reads the enclosing frame at [esp+0x38] and exits through 0xA089B)
 0x00095C30,epilogue fragment (pop edi/esi; add esp,0x40; ret), tail of a larger function
 0x00101BE0,epilogue fragment (pops; mov eax,esi; add esp,0x54; ret), tail of a larger function
+0x00099910,epilogue fragment (call; pops; add esp,0x84; ret), tail of a larger function
+0x000B8510,epilogue fragment (pops esi/ebx it never pushed; add esp,0x14; ret)
+0x0011BE50,epilogue fragment (uses ebp/[esp+0x1c] from an outer frame; pops; ret)

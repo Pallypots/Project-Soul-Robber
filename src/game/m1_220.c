@@ -31,3 +31,4 @@ void __fastcall m1_StrEos1A3840(M1Str *s, int unusedEdx, uint32_t n)
     if (s->res18 < 16) s->bx4.buf[n] = 0;
     else s->bx4.ptr[n] = 0;
 }
+

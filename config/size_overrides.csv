@@ -8,3 +8,7 @@ va,size,reason
 0x00148F50,0x1FE,continues to its ret at 0x14914D before int3 padding (inventory 403 cut it short)
 0x000D9FE0,0x120,code ends at 0xDA0F8; jump table at 0xDA100; 0xDA130 is a separate function
 0x000E9A60,0x50,ends with its jump table; a separate function starts at 0xE9AB0
+0x00065310,0x28,ends at its jump table; inventory size 19 stops at the indirect jmp
+0x0006A2E0,0x28,ends at its jump table; inventory size 19 stops at the indirect jmp
+0x00146030,0x24,ends at its jump table; inventory size 96 includes the tables
+0x000EE5F0,0x48,ends at its jump table; inventory size 112 includes the table

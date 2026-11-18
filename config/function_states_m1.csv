@@ -883,3 +883,7 @@ va,name,state,source,obj,waivers,notes
 0x001aa610,m1_PeerQuery1AA610,Structurally compared,src/game/m1_221.c,build/obj_m1/m1_221.obj,,"thiscall p=ECX (written __fastcall, EDX unused): as 0x1AA5D0 through 0x2226F3. Arg order checked by hand."
 0x001aa650,m1_PeerCall1AA650,Structurally compared,src/game/m1_221.c,build/obj_m1/m1_221.obj,,"thiscall p=ECX (written __fastcall, EDX unused): E_FAIL when 0x1ACF00(p) fails, else 0x222726(p->h58, a, b, c). Arg order checked by hand."
 0x001aa690,m1_PeerCall1AA690,Structurally compared,src/game/m1_221.c,build/obj_m1/m1_221.obj,,"thiscall p=ECX (written __fastcall, EDX unused): E_FAIL when 0x1ACF00(p) fails, else 0x22275D(p->h58, a, b). Arg order checked by hand."
+0x00065310,m1_PhaseRunA65310,Structurally compared,src/game/m1_222.c,build/obj_m1/m1_222.obj,,"Switch on phase byte 0x428F81: tail-call 0x64FC0/0x639A0/0x63E00/0x642A0 for phases 0-3"
+0x0006a2e0,m1_PhaseRunB6A2E0,Structurally compared,src/game/m1_222.c,build/obj_m1/m1_222.obj,,"Switch on phase byte 0x428F81: tail-call 0x68E50/0x68740/-/0x68A60/0x69D90 for phases 0-4 (2 does nothing)"
+0x00146030,m1_KindFlag146030,Structurally compared,src/game/m1_222.c,build/obj_m1/m1_222.obj,,"Kind flag: 1 for kinds 1-3, 5-11, 13, 32, 34, 35; else 0 (4/37/38/44 have their own jump-table slot)"
+0x000ee5f0,m1_KindMapEE5F0,Structurally compared,src/game/m1_222.c,build/obj_m1/m1_222.obj,,"Map kind +4 of 2..9 to 4..11; hang on any other kind"
