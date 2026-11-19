@@ -1383,3 +1383,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x141820: hard (cl turns the 0x3E/0x60 pick into sign-mask arithmetic and merges flag tests 0x10000+1; 4 tries).
 - m1_247 PASS (8): 0x12A250, 0x129BD0, 0x1A0200, 0x198210, 0x198E80, 0x1989E0, 0x18ED40 (previously skipped), 0x195920. Hard: 0x141820. Skips: 0x140630, 0xE03E0, 0x1B1730.
 - 0x18D770: hard (cl tail-duplicates the 0x189DA0 call into the kind-12 path even with a volatile join, 3 tries).
+- 0x18C2D0: hard (cl moves the shared step-2 block to the end; 2 layouts tried, data/calls otherwise match).
+- m1_248 PASS: 0x18CF90, 0x18F040. Hard: 0x18D770, 0x18C2D0. Skips: 0x18C7A0 (state carried across two switches), 0x18C070 (same layout as 0x18C2D0), 0x18A300 and 0x18B3A0 (XMM float arg to 0x18A280).
