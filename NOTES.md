@@ -1373,3 +1373,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_241 PASS: 0x1419E0. Skips: 0x147FD0 (hang cases + shared blocks), 0x11FBC0 (register arg pushed before branches, shared cleanup).
 - m1_242 PASS: 0x132130, 0x118640, 0x117AE0, 0x1179C0 (script/state pickers; aliases of 0x117580 keep duplicate calls). Skip: 0x19A6F0 (always-true pointer range checks).
 - m1_243 PASS: 0x117D50, 0x132420, 0x131A70, 0x132300 (random-choice pickers: gotos into shared state calls plus aliases reproduce the original's cross-jumped blocks); 0x131D40 (m1_242). Remaining family: 0x117BD0, 0x136140.
+- m1_243 PASS: 0x136140. Hard: 0x117BD0 (cl places the shared mode-2 block between the two special rolls, 3 tries). Skip: 0x1255C0 (ucomiss+lahf).
