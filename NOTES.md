@@ -1387,3 +1387,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_248 PASS: 0x18CF90, 0x18F040. Hard: 0x18D770, 0x18C2D0. Skips: 0x18C7A0 (state carried across two switches), 0x18C070 (same layout as 0x18C2D0), 0x18A300 and 0x18B3A0 (XMM float arg to 0x18A280).
 - m1_249 PASS (6): 0x195210, 0x1942B0, 0x18C950, 0x18B8F0, 0x171580, 0xC7A10. Skips: 0x194100 (same shape as hard 0x18D770), 0x181090 (shared approach blocks).
 - m1_250 PASS (7): 0x3D2A0, 0x17B660, 0x17BEA0, 0x17BBD0, 0xCDBE0, 0xCDEC0, 0xCDD30. Skip: 0xE44E0 (XMM result from 0xE2480).
+- 0x187B90: hard (cl folds the 0x31/0x30 pick into 0x30+flag even through a volatile local).
+- m1_251 PASS (5): 0x187CA0, 0x118730, 0x11D750, 0x119790, 0x139330. Skips: 0x187A50 (ucomiss+lahf), 0x12E040 (unnamed table + x87).
+- 0xCF560: hard (cl turns the single-bit flag tests 0x20000/0x40000/0x80000 into bt instructions; 3 tries).

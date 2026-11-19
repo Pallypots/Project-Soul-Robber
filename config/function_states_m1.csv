@@ -1023,3 +1023,8 @@ va,name,state,source,obj,waivers,notes
 0x000cdbe0,m1_BonesBlend0CDBE0,Structurally compared,src/game/m1_250.c,build/obj_m1/m1_250.obj,,"regargs: list=EAX. Blend each listed bone from zero toward its angles by t1C and rebuild the bone matrix about its position"
 0x000cdec0,m1_BonesBlend0CDEC0,Structurally compared,src/game/m1_250.c,build/obj_m1/m1_250.obj,,"regargs: list=EAX. As 0xCDBE0 toward one shared angle set"
 0x000cdd30,m1_BonesBlend0CDD30,Structurally compared,src/game/m1_250.c,build/obj_m1/m1_250.obj,,"regargs: list=EAX. As 0xCDEC0 with per-entry blend factor and y scaled by 0.8*t1C"
+0x00187ca0,m1_Dive187CA0,Structurally compared,src/game/m1_251.c,build/obj_m1/m1_251.obj,,"Calls 0x186470 with obj=EBX act=EDI. Damp until ground; enter 6 (bounce 4.0/50 per s) or 5, stop, sound 0x112; clip end -> state 2 or 1"
+0x00118730,m1_Fidget118730,Structurally compared,src/game/m1_251.c,build/obj_m1/m1_251.obj,,"Calls 0x117580 with s=EDI. Flag 0x1000 -> mode 1; else clip 0 + 0-3 unit wait, then a random fidget (0x16/0x19/0x1A/0x1D), restart on clip end"
+0x0011d750,m1_Recover11D750,Structurally compared,src/game/m1_251.c,build/obj_m1/m1_251.obj,,"Calls 0x11B0D0 with obj=ECX out=EDX. After 35 frames mode 4 / hit kind / 12-7; after 10 a 0.25 tumble (callback 0x119FF0); after 35 clear flags 6 and mode 12"
+0x00119790,m1_Fall119790,Structurally compared,src/game/m1_251.c,build/obj_m1/m1_251.obj,,"Calls 0x117580 with s=EDI. Fall 0x34/0x38 -> 0x35/0x39, ground, 0x36/0x3A and stop, clip end -> mode 0x23; other kinds hang; damp in steps 0-2"
+0x00139330,m1_Fade139330,Structurally compared,src/game/m1_251.c,build/obj_m1/m1_251.obj,,"Fade transition: wait start, fade out over 0.7x length then 0x1130F0 + optional callback, fade back in and end via 0x113370"
