@@ -226,3 +226,4 @@ va,reason
 0x000B8510,epilogue fragment (pops esi/ebx it never pushed; add esp,0x14; ret)
 0x0011BE50,epilogue fragment (uses ebp/[esp+0x1c] from an outer frame; pops; ret)
 0x0009FEF0,mid-function fragment (switch case body using an outer frame's [esp+0x38], esi/ebp; pops; ret)
+0x00118BC0,mid-function fragment (switch case bodies of a caller; pops edi/esi it never pushed; jump table follows)

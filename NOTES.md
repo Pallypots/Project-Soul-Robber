@@ -1364,3 +1364,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_233 PASS: 0x110540, 0x10FF80, 0x177AC0, 0x1757C0, 0xC03E0, 0x136710. Skips: 0x127470 (jump into the middle of a shared state block), 0x17DAB0 (x87 fcompi).
 - m1_234 PASS: 0x132AF0 (two aliases of 0x131310), 0x47390 (heap alloc; regargs callees 0x47080/0x47240), 0x196DB0 (aliases of 0x35DD0/0x33880/0x34E00 keep both branches). Hard: 0x11D980 (cl tail-duplicates the 0x113040 call after the hit-kind select, 3 tries). Skips: 0x195400 (uninitialised local reused from arg slot), 0x15A490 (dead self-store + hang cases), 0x31430 (writes into its arg slot), 0x33E50 (returns uninitialised local).
 - m1_235 PASS: 0xF2300, 0xE0A80, 0x170570 (callee of the 0x1707F0 sequences), 0x1869A0, 0x186E20. Skip: 0x89B50 (XMM min/max reusing arg slots).
+- m1_236 PASS: 0x187810, 0x1452D0, 0x11D980 (now PASS), 0x1372E0, 0xE0260, 0x87960. Not a function: 0x118BC0 (case-body fragment).
