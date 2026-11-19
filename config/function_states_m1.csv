@@ -1044,3 +1044,6 @@ va,name,state,source,obj,waivers,notes
 0x000eee10,m1_OnMsgEEE10,Structurally compared,src/game/m1_254.c,build/obj_m1/m1_254.obj,,"stack args (o msg); alias callees keep the second accept tail"
 0x00022280,m1_NodeAttach22280,Structurally compared,src/game/m1_255.c,build/obj_m1/m1_255.obj,,"regargs: o=EAX; stack arg (p); alias keeps the second type-12 init call"
 0x001aeaf0,m1_RotOrder1AEAF0,Structurally compared,src/game/m1_255.c,build/obj_m1/m1_255.obj,,"regargs: m=ESI, order=EBX, v=EDI; alias callees stop cl merging shared tails"
+0x001af2a0,m1_Acos1AF2A0,Structurally compared,src/game/m1_256.c,build/obj_m1/m1_256.obj,,"stack arg (x); 8-term atan series acos"
+0x00027b80,m1_HudSprite27B80,Structurally compared,src/game/m1_256.c,build/obj_m1/m1_256.obj,,"stack args (dl x y z col e); 0x26910 takes EDX=e ECX=7 EBX=1"
+0x00028360,m1_KeyPrompt28360,Structurally compared,src/game/m1_256.c,build/obj_m1/m1_256.obj,,"regargs: dl=EAX; 0x26910 takes EDX=label ECX=3 EBX=1"
