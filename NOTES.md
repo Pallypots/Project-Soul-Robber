@@ -1391,3 +1391,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_251 PASS (5): 0x187CA0, 0x118730, 0x11D750, 0x119790, 0x139330. Skips: 0x187A50 (ucomiss+lahf), 0x12E040 (unnamed table + x87).
 - 0xCF560: hard (cl turns the single-bit flag tests 0x20000/0x40000/0x80000 into bt instructions; 3 tries).
 - m1_252 PASS: 0x17B890, 0x112970, 0x197040. Hard: 0xCF560 (bt for single-bit tests), 0x167690 (cl places the case-42 body before the shared call). Skips: 0x1AC1D0 (unnamed tables).
+- m1_253 PASS: 0x195A30, 0xE6840, 0x197510. Skips: 0xF6FE0 (shared block jump), 0x8C4D0 (list merge shared blocks), 0x199F70 (unnamed tables + hang loop).
+- 0x1AD570: hard (original builds a 116-entry jump table for four sparse cases; cl emits a compare chain).
