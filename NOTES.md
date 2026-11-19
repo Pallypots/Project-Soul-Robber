@@ -1370,3 +1370,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_239 PASS: 0xF0660, 0x127C80, 0x127FA0 (gotos into shared state calls reproduce the layout), 0x13CE50. Skips: 0x18BBB0 (ucomiss+lahf), 0x180E00 (x87 + shared blocks), 0x1B2A30 (bitfields).
 - m1_240 PASS: 0x18F950, 0x1AEA00, 0x1A3860 (now PASS: compare against a volatile-read zero/counter keeps cl from turning unsigned n>0 into !=0), 0xE8D90.
 - m1_241 PASS: 0xA57C0 (volatile element read stops cl unrolling a fixed 16-step search; `(intptr_t)p < (intptr_t)end` gives the original's signed jl). Skips: 0x79370, 0x1E8C0, 0xE4E90 (jumps into the middle of other blocks / shared tails).
+- m1_241 PASS: 0x1419E0. Skips: 0x147FD0 (hang cases + shared blocks), 0x11FBC0 (register arg pushed before branches, shared cleanup).
