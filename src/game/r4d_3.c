@@ -57,6 +57,41 @@ int r4d_SemCreate(const R4dSemDesc *d)
     return i;
 }
 
+/* 0x001AA310: delete a slot's semaphore under the table lock. A semaphore still held is first released
+   (its count bumped for each release) so waiters wake. Returns the slot, or -1 if it is bad or CloseHandle
+   fails. Stack arg (i). */
+int OOG_STDCALL sub_001BCFF2b(void *h);   /* ReleaseMutex again (alias stops cl merging the two failure exits) */
+
+int r4d_SemDelete(int i)
+{
+    R4dSem *s;
+    void *h;
+    int prev;
+    sub_001BD1CC(r4d_semLock40C858, (uint32_t)-1);
+    s = r4d_semGet(i);
+    if (!s || !(h = s->h)) {
+        sub_001BCFF2(r4d_semLock40C858);
+        return -1;
+    }
+    if (sub_001BD1CC(h, 0) == 0x102) {
+        s->info.count++;
+        sub_001BCF74(h, 1, &prev);
+        if (prev > 1) {
+            s->info.count += prev;
+            sub_001BCF74(h, prev, 0);
+        }
+    }
+    if (!sub_001BC6FD(h)) {
+        sub_001BCFF2b(r4d_semLock40C858);
+        return -1;
+    }
+    s->open1C = 0;
+    s->h = 0;
+    s->info.waiters = 0;
+    sub_001BCFF2(r4d_semLock40C858);
+    return i;
+}
+
 /* 0x001AA3E0: signal a slot's semaphore n times (count capped at max); returns the slot or -1.
    Stack args (i n). */
 int r4d_SemSignal(int i, int n)
