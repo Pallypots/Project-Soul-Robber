@@ -908,7 +908,6 @@ va,name,state,source,obj,waivers,notes
 0x00172d20,m1_RandHold172D20,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"regargs: o=EAX t=ESI. Random 15/30/45/60 limit via rand()%2 tree; t58 = largest multiple of frameSeconds*rate/len under it"
 0x00172e00,m1_RandHold172E00,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"regargs: o=EAX t=ESI. As 0x172D20 with limits 2/3/4/5"
 0x00172b80,m1_VoiceLoop172B80,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"regargs: o=EAX v=EBX. Start (on) or stop the looping voice for (kind, clip) from a local 4-entry table; start while playing hangs"
-0x00172c90,m1_PlayClip172C90,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"regargs: v=EAX o=ESI clip=EDI. Calls 0x172B80 with o=EAX v=EBX. Switch/restart clip, hang if not taken, t64=0, 0x1D4E0 unless kind 15/1, restart voice"
 0x00173440,m1_HitEnter173440,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"Calls 0x172C90 with v=EAX o=ESI clip=EDI. flags|=0x104, clip 1 or 8, hold 2.0, f54 from 0x113200"
 0x00173570,m1_TurnEnter173570,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"Calls 0x172C90 (v=EAX o=ESI clip=EDI) and 0x172E00 (o=EAX v=ESI). Clip 3 or 10, turn +/-0.7 deg per frame unit at random"
 0x00173b30,m1_WaitStep173B30,Structurally compared,src/game/m1_229.c,build/obj_m1/m1_229.obj,,"Calls 0x172C90 with v=EAX o=ESI clip=EDI. Step 0 finishes via handler 0x32B1B4 on clip end; step 1 counts 3 clip ends then clip 15"
