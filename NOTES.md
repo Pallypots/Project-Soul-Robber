@@ -1385,3 +1385,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x18D770: hard (cl tail-duplicates the 0x189DA0 call into the kind-12 path even with a volatile join, 3 tries).
 - 0x18C2D0: hard (cl moves the shared step-2 block to the end; 2 layouts tried, data/calls otherwise match).
 - m1_248 PASS: 0x18CF90, 0x18F040. Hard: 0x18D770, 0x18C2D0. Skips: 0x18C7A0 (state carried across two switches), 0x18C070 (same layout as 0x18C2D0), 0x18A300 and 0x18B3A0 (XMM float arg to 0x18A280).
+- m1_249 PASS (6): 0x195210, 0x1942B0, 0x18C950, 0x18B8F0, 0x171580, 0xC7A10. Skips: 0x194100 (same shape as hard 0x18D770), 0x181090 (shared approach blocks).
