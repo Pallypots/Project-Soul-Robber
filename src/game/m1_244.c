@@ -47,3 +47,65 @@ go:
     sub_00113480(s, 3);
     sub_00113040(o, s, m);
 }
+
+typedef struct M1DE244 { uint8_t unk00[0x50]; int32_t n50, n54; float f58; float v5C[3], v68; uint8_t unk6C[4]; float hp70; } M1DE244;
+typedef struct M1DO244 { uint8_t unk00[0xC]; uint32_t flagsC; } M1DO244;
+typedef struct M1DM244 { int32_t kind; uint8_t unk04[8]; float dmgC; uint8_t unk10[0x10]; float v20[4]; } M1DM244;
+M1DE244 *sub_0001D960(M1DO244 *o, int32_t slot);
+void sub_001ADB60(float *dst, const float *src, float k);
+
+/* 0x001702B0: damage handler for effect slot 10 (hangs if missing): most hit kinds -> step 3 (kind 11 ignored in step
+   4, kind 12 deals 1000x), 14 clears o flag 0x20, 26/28 set it and reset the slot's velocity (step 1), 42 blends it
+   toward the message vector (step 4); subtract the damage, step 2 at 0 hp; returns 1 when handled. */
+int m1_Damage1702B0(M1DO244 *o, M1DM244 *m)
+{
+    M1DE244 *e = sub_0001D960(o, 10);
+    float dmg;
+    int st = -1;
+    if (!e)
+        for (;;) ;
+    dmg = m->dmgC;
+    switch (m->kind) {
+    case 11:
+        if (e->n50 == 4)
+            return 0;
+    case 1: case 2: case 3: case 5: case 6: case 7: case 8: case 9: case 10:
+    case 29: case 30: case 31: case 32: case 33: case 34: case 35: case 36:
+        st = 3;
+        break;
+    case 12:
+        dmg *= 1000.0f;
+        st = 3;
+        break;
+    case 14:
+        o->flagsC &= ~0x20u;
+        break;
+    case 26: case 28:
+        o->flagsC |= 0x20;
+        e->v5C[0] = 0.0f;
+        e->v5C[1] = 0.0f;
+        e->v5C[2] = 0.0f;
+        e->v68 = 1.0f;
+        st = 1;
+        break;
+    case 42:
+        st = 4;
+        sub_001ADB60(e->v5C, m->v20, 60.0f);
+        break;
+    default:
+        return 0;
+    }
+    e->hp70 -= dmg;
+    if (_mm_comige_ss(_mm_setzero_ps(), _mm_load_ss(&e->hp70))) {
+        e->n50 = 2;
+    } else {
+        if (st < 0)
+            return 1;
+        if (e->n50 == st)
+            return 0;
+        e->n50 = st;
+    }
+    e->n54 = 0;
+    e->f58 = 0.0f;
+    return 1;
+}
