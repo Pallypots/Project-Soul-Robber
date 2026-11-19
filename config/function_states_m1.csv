@@ -972,3 +972,8 @@ va,name,state,source,obj,waivers,notes
 0x00118640,m1_PickMode118640,Structurally compared,src/game/m1_242.c,build/obj_m1/m1_242.obj,,"Calls 0x114D10 with idx=EAX a=EBX b=EDI, 0x117580 with s=EDI. Scripts 0/1/2 -> 10/11/12; unless flag 0x1000 t44 -= 0.5/s and within 10 -> 0x12; t74 out -> 1"
 0x00117ae0,m1_PickMode117AE0,Structurally compared,src/game/m1_242.c,build/obj_m1/m1_242.obj,,"Same callees. Scripts 0/2/4 -> 10/12/17; flag 0x40000: rand()%100 < 20 (hp >= half) or < 10 -> 15; else 2"
 0x001179c0,m1_PickMode1179C0,Structurally compared,src/game/m1_242.c,build/obj_m1/m1_242.obj,,"Same callees. Scripts 0-3 -> 10/11/12/9; t44 down to 0; within 15 -> 4; flag 1 at +0x128 -> 9"
+0x00131d40,m1_PickState131D40,Structurally compared,src/game/m1_242.c,build/obj_m1/m1_242.obj,,"As 0x132130 but within 20 -> state 4"
+0x00117d50,m1_Roll117D50,Structurally compared,src/game/m1_243.c,build/obj_m1/m1_243.obj,,"Calls 0x114D10 with idx=EAX a=EBX b=EDI, 0x117580 with s=EDI. Scripts 0/2/4 -> 10/12/17; step 0 rand()%100 vs 40/55 (30/45 under half health) -> 2/8/advance; step 1 t74 out -> 8 or 1 by rand&1"
+0x00132420,m1_Roll132420,Structurally compared,src/game/m1_243.c,build/obj_m1/m1_243.obj,,"Calls 0x12DC90 with table=EAX obj=EBX act=EDI, 0x131310 with obj=EBX act=EDI. Scripts 1/3 -> 15/17; step 0 roll -> 0x15/6/12/advance by health; step 1 t74 out -> 12 or 5"
+0x00131a70,m1_Roll131A70,Structurally compared,src/game/m1_243.c,build/obj_m1/m1_243.obj,,"Same callees. Script 0 or t17C out -> clear 0x200, state 2; scripts 1/3 -> 15/17; t74 out: flag 0x800 -> 13, rand&3==0 -> 12, else wait 3 / 0x12 / wait 5"
+0x00132300,m1_Roll132300,Structurally compared,src/game/m1_243.c,build/obj_m1/m1_243.obj,,"As 0x132420 with odds 30/75/80 (50/90/95 under half health)"
