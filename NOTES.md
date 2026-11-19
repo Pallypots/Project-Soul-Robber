@@ -1368,3 +1368,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_237 PASS: 0xBA6F0, 0xB8800 (event step handlers), 0xCD750. Skips: 0xED1B0 (unnamed tables + register callees), 0x49180 (writes results into arg slots), 0x68D50 (eight unnamed globals), 0x1AB2A0 (five unnamed arrays), 0x1BA6E0 (list surgery with register callees).
 - m1_238 PASS: 0x180CE0, 0x182060 (damage handlers), 0x18E270. Skips: 0x171070 (blocks shared across cases), 0x1954C0 (many stack buffers), 0x183C40 (XMM result).
 - m1_239 PASS: 0xF0660, 0x127C80, 0x127FA0 (gotos into shared state calls reproduce the layout), 0x13CE50. Skips: 0x18BBB0 (ucomiss+lahf), 0x180E00 (x87 + shared blocks), 0x1B2A30 (bitfields).
+- m1_240 PASS: 0x18F950, 0x1AEA00, 0x1A3860 (now PASS: compare against a volatile-read zero/counter keeps cl from turning unsigned n>0 into !=0), 0xE8D90.
