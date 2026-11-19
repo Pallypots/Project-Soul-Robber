@@ -1361,3 +1361,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_230 PASS: 0xCE590 (alias callee name sub_0001D470b at the same VA stops cl merging branch calls), 0xCE9F0, 0xCE680 (now PASS: `_mm_comige_ss` gives comiss+jb), 0x110090, 0x1A3F00, 0x17A780, 0x118330, 0x118870.
 - m1_231 PASS: 0x176C60, 0x11DB30, 0x1339A0, 0x133A50, 0x16E570, 0x1B61B0. Hard: 0x17A350 (cl folds the st<0 test / places the shared SetState call before the exclamation block, 4 tries). Skip: 0x187610 (ucomiss+lahf equality).
 - m1_232 PASS: 0x125540, 0x1178F0 (alias callee again), 0x18F8D0, 0xA3990, 0x186800, 0x72F30. Not a function: 0x9FEF0 (case-body fragment). Skips: 0x138F0/0x13990/0x13C00 (identical calls in both arms), 0x187610 (ucomiss+lahf), 0x6DC70 (empty 8-case switch that cl deletes).
+- m1_233 PASS: 0x110540, 0x10FF80, 0x177AC0, 0x1757C0, 0xC03E0, 0x136710. Skips: 0x127470 (jump into the middle of a shared state block), 0x17DAB0 (x87 fcompi).
