@@ -120,3 +120,42 @@ void r4e_DrawVertexBlockOpt(R4eVtxHdr **pp, int flags)
     *pp = (R4eVtxHdr *)p;
 }
 
+
+void OOG_STDCALL sub_001D5C30b(int prim, int start, int count);   /* same XDK call (alias stops cl merging the two draws) */
+
+/* 0x001A2370: like r4e_DrawVertexBlock, but streams 0-2 are always present and 3-5 only when bits 0-2 of
+   fmt->flags04 are set. Draws as primitive 6 when the block type is 4, else 5. Stack args (fmt h). */
+void r4e_DrawVertexBlockFmt(const R4eVtxHdr *fmt, R4eVtxHdr *h)
+{
+    int size = h->count00 * 16;
+    uint8_t *p = (uint8_t *)h + 0x10;
+    uint32_t f;
+    r4e_streams40AFF8[0].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32: vertex stream physical address (32-bit GPU word) */
+    sub_001D26C0(0, &r4e_streams40AFF8[0], 0x10);
+    p += size;
+    r4e_streams40AFF8[1].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32 */
+    sub_001D26C0(1, &r4e_streams40AFF8[1], 0x10);
+    p += size;
+    r4e_streams40AFF8[2].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32 */
+    sub_001D26C0(2, &r4e_streams40AFF8[2], 0x10);
+    p += size;
+    f = fmt->flags04;
+    if (f & 1) {
+        r4e_streams40AFF8[3].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32 */
+        sub_001D26C0(3, &r4e_streams40AFF8[3], 0x10);
+        p += size;
+    }
+    if (f & 2) {
+        r4e_streams40AFF8[4].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32 */
+        sub_001D26C0(4, &r4e_streams40AFF8[4], 0x10);
+        p += size;
+    }
+    if (f & 4) {
+        r4e_streams40AFF8[5].addr04 = (uint32_t)(uintptr_t)p & 0x0FFFFFFF; /* XBOX32 */
+        sub_001D26C0(5, &r4e_streams40AFF8[5], 0x10);
+    }
+    if ((h->flags04 & 7) == 4)
+        sub_001D5C30(6, 0, h->count00);
+    else
+        sub_001D5C30b(5, 0, h->count00);
+}

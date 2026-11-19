@@ -49,3 +49,4 @@ va,name,state,source,obj,waivers,notes
 0x000d00a0,Player_D00A0,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
 0x000d0450,Player_D0450,Structurally compared,src/game/player_obj.c,build/obj/player_obj.obj,,
 0x000cf6e0,Stats_Init,Structurally compared,src/game/stats.c,build/obj/stats.obj,,
+0x0019c3b0,Clock_Tick,Structurally compared,src/game/clock.c,build/obj/clock.obj,,"getters marked noinline so the calls stay"

@@ -1394,3 +1394,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_253 PASS: 0x195A30, 0xE6840, 0x197510. Skips: 0xF6FE0 (shared block jump), 0x8C4D0 (list merge shared blocks), 0x199F70 (unnamed tables + hang loop).
 - 0x1AD570: hard (original builds a 116-entry jump table for four sparse cases; cl emits a compare chain).
 - m1_254 + r4d_3: PASS 0x179460, 0xB0A60, 0x186310, 0xE3DA0, 0x137F50, 0x1AA310. Hard: 0x182310 (cl if-converts the 6/7 pose choice into arithmetic; alias splits the call instead). Also PASS 0xFB160, 0x1B6C80 (imm:0xffffff84 allowed), 0xEEE10. Skipped: 0x1AAD40 (odd arg use), 0x1B9510 (regargs + cmov).
+- m1_255 + r4e_6 + clock: PASS 0x22280, 0x1AEAF0, 0x1A2370, 0x19C3B0 (Clock_Tick; getters made noinline). Hard: 0xD1E10 (cl canonicalises base+0xD5C+i*4 to (i+0x357)*4 and uses a different signed %32 idiom). Skipped: 0x1BB2E0, 0x028360, 0x1ACCE0, 0x1B6B70.

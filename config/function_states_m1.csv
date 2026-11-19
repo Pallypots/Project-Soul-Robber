@@ -1042,3 +1042,5 @@ va,name,state,source,obj,waivers,notes
 0x000fb160,m1_Fall_FB160,Structurally compared,src/game/m1_254.c,build/obj_m1/m1_254.obj,,"stack arg (o); case 0 falls into case 1, case 3 into default"
 0x001b6c80,m1_EmitBind1B6C80,Structurally compared,src/game/m1_254.c,build/obj_m1/m1_254.obj,imm:0xffffff84,"stack args (m d); modern cl addresses the clear loop as next-record-0x7C instead of record+0xB0"
 0x000eee10,m1_OnMsgEEE10,Structurally compared,src/game/m1_254.c,build/obj_m1/m1_254.obj,,"stack args (o msg); alias callees keep the second accept tail"
+0x00022280,m1_NodeAttach22280,Structurally compared,src/game/m1_255.c,build/obj_m1/m1_255.obj,,"regargs: o=EAX; stack arg (p); alias keeps the second type-12 init call"
+0x001aeaf0,m1_RotOrder1AEAF0,Structurally compared,src/game/m1_255.c,build/obj_m1/m1_255.obj,,"regargs: m=ESI, order=EBX, v=EDI; alias callees stop cl merging shared tails"

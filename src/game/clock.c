@@ -5,7 +5,7 @@
 #include "oogie.h"
 
 /* 0x0019C030 */
-float Clock_GetChapterTime(void)
+__declspec(noinline) float Clock_GetChapterTime(void)
 {
     float t = (float)g_chapterTicks;
     if (Video_GetRateMode() == 0)
@@ -29,7 +29,7 @@ void Clock_ResetChapter(void)
 }
 
 /* 0x0019C110: same conversion as Clock_GetChapterTime for the second counter. */
-float Clock_GetPlayTime(void)
+__declspec(noinline) float Clock_GetPlayTime(void)
 {
     float t = (float)g_playTicks;
     if (Video_GetRateMode() == 0)
@@ -89,4 +89,37 @@ int Session_Request(int value)
         return 0;
     }
     return -1;
+}
+
+extern uint8_t g_413174;   /* 0x00413174, bit 0x10 pauses both clocks */
+
+/* 0x0019C3B0: per-frame clock tick. Unless paused (0x00413174 bit 0x10), add 5 ticks (rate mode 0) or 6
+ * (rate mode 1) to both counters; any other mode adds nothing. Each counter is then clamped once it reads
+ * more than 360060 s (just over 100 hours). */
+void Clock_Tick(void)
+{
+    uint32_t d;
+    float cap;
+    if (!(g_413174 & 0x10)) {
+        switch (Video_GetRateMode()) {
+        case 0: d = 5; break;
+        case 1: d = 6; break;
+        default: goto skip;
+        }
+        g_chapterTicks += d;
+        g_playTicks += d;
+    }
+skip:
+    if (Clock_GetChapterTime() > 360060.0f) {
+        cap = 108018000.0f;
+        if (Video_GetRateMode() == 0)
+            cap = 107909984.0f;
+        g_chapterTicks = (int64_t)cap;
+    }
+    if (Clock_GetPlayTime() > 360060.0f) {
+        cap = 108018000.0f;
+        if (Video_GetRateMode() == 0)
+            cap = 107909984.0f;
+        g_playTicks = (int64_t)cap;
+    }
 }
