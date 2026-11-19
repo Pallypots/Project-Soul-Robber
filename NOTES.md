@@ -1366,3 +1366,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_235 PASS: 0xF2300, 0xE0A80, 0x170570 (callee of the 0x1707F0 sequences), 0x1869A0, 0x186E20. Skip: 0x89B50 (XMM min/max reusing arg slots).
 - m1_236 PASS: 0x187810, 0x1452D0, 0x11D980 (now PASS), 0x1372E0, 0xE0260, 0x87960. Not a function: 0x118BC0 (case-body fragment).
 - m1_237 PASS: 0xBA6F0, 0xB8800 (event step handlers), 0xCD750. Skips: 0xED1B0 (unnamed tables + register callees), 0x49180 (writes results into arg slots), 0x68D50 (eight unnamed globals), 0x1AB2A0 (five unnamed arrays), 0x1BA6E0 (list surgery with register callees).
+- m1_238 PASS: 0x180CE0, 0x182060 (damage handlers), 0x18E270. Skips: 0x171070 (blocks shared across cases), 0x1954C0 (many stack buffers), 0x183C40 (XMM result).
