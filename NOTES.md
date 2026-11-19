@@ -1381,3 +1381,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_245 PASS (11): 0xCE750, 0x123550, 0x127710, 0x191EA0, 0x1451E0 and 0x1390E0 (both previously hard), 0x140800, 0x13F2C0, 0x141FD0, 0x121E50, 0x1263B0. Hard: 0x121540, 0xE1060, 0x1391B0 (still). Skips: 0x18ED40, 0x98320.
 - m1_246 PASS (10): 0x11C4F0, 0x12B860, 0x123C10, 0x12A940, 0x11D260, 0x11D5E0, 0x11D3D0, 0x11D0A0, 0x128E40, 0x129F70 (volatile loop pointer keeps store-then-advance).
 - 0x141820: hard (cl turns the 0x3E/0x60 pick into sign-mask arithmetic and merges flag tests 0x10000+1; 4 tries).
+- m1_247 PASS (8): 0x12A250, 0x129BD0, 0x1A0200, 0x198210, 0x198E80, 0x1989E0, 0x18ED40 (previously skipped), 0x195920. Hard: 0x141820. Skips: 0x140630, 0xE03E0, 0x1B1730.
+- 0x18D770: hard (cl tail-duplicates the 0x189DA0 call into the kind-12 path even with a volatile join, 3 tries).
