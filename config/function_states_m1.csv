@@ -1057,3 +1057,6 @@ va,name,state,source,obj,waivers,notes
 0x000d4f20,m1_PushOutD4F20,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"regargs: a=EAX, out=ESI, b=EDI; stack args (p r gap)"
 0x001adee0,m1_MatFromAxes1ADEE0,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"stack args (m ax ay az)"
 0x000e7f50,m1_ItemCounterE7F50,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"regargs: dl=EAX; number drawn through 0x2BA70 (EDX=n ECX=digits EBX=8)"
+0x001b86b0,m1_NodeMats1B86B0,Structurally compared,src/game/m1_259.c,build/obj_m1/m1_259.obj,,"stack arg (n); alias callees keep the kind-9 copies separate"
+0x0017db90,m1_RiseOut17DB90,Structurally compared,src/game/m1_259.c,build/obj_m1/m1_259.obj,,"stack args (o a)"
+0x000abbf0,m1_IdleLoopABBF0,Structurally compared,src/game/m1_259.c,build/obj_m1/m1_259.obj,,"regargs: cmd=EAX, w=ECX, s=ESI; SSE truncation intrinsic, alias keeps the pose-2 call"
