@@ -1403,3 +1403,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_261: PASS 0x80B40 (nearest plane), 0x18B830 (hit handler), 0xE9B00 (caption tick), 0x138F0, 0x13990, 0x13C00 (packet open family). Skipped: 0x18BB20 (ucomiss+lahf), 0x133E0 (GS cookie).
 - m1_262: PASS 0x1B9460 (draw record init), 0x12CF00 (timed action; (int)(double) keeps __ftol). Skipped: 0x183E80, 0x183F10 (callee 0x183C40 returns float in XMM0), 0x6DC70.
 - m1_263: PASS 0xA9AC0 (pickup collect), 0x167C30 (pool hit check; T **volatile walker). Skipped: 0x17DAB0 (callee 0xF5F50 x87 return used mid-expression, not tried).
+- m1_264: PASS 0x185FE0 (timed action variant), 0xFD900 (helper orbit; ternary keeps the single tail call). Skipped: 0xAE0A0 (mis-sized, cut at first returns).
