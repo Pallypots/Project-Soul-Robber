@@ -1410,3 +1410,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_267: PASS 0xEE0C0 (retire ready entities; volatile store of the filter pointer). Skipped: 0xC2420 (callee 0xCF200 regarg edi + x87), 0x810F0 hard.
 - m1_268: PASS 0x37830 (UV scroll; jcc l/ge vs s/ns allowed). Next: 0xAF920 (menu blink, regarg-free), 0x34430 (packet builder, regarg eax+ebx).
 - m1_269: PASS 0xAF920 (menu sequence), 0x34430 (matrix packet), 0x5BF00 (sound-bank path), 0x1954C0 (throw at target). Skipped: 0x3B350 (returns float in XMM0), 0x98230 (ucomiss+lahf).
+- m1_270: PASS 0x180E00 (quarter check; data:fconst:2.0 + table address allowed: checker reads the indexed .rdata table as fconst on the orig side only), 0x171070 (grow/pop). Skipped: 0x1B2A30 (bitfield chain), 0x18BBB0 (ucomiss+lahf).

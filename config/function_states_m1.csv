@@ -1085,3 +1085,5 @@ va,name,state,source,obj,waivers,notes
 0x00034430,m1_MatPacket34430,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: p=EAX, m=EBX"
 0x0005bf00,m1_SeBankPath5BF00,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: k=EAX, c=ECX, buf=EDX, s=ESI; stack arg (mode); debug host:/ sound-bank paths"
 0x001954c0,m1_ThrowAt1954C0,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: o=EAX; stack arg (k)"
+0x00180e00,m1_QuarterCheck180E00,Structurally compared,src/game/m1_270.c,build/obj_m1/m1_270.obj,data:fconst:2.0;data:0x27a88c,"regargs: q=EDI; checker labels the indexed .rdata speed table (0x27A88C) as fconst 2.0 on the orig side only"
+0x00171070,m1_GrowPop171070,Structurally compared,src/game/m1_270.c,build/obj_m1/m1_270.obj,,"stack args (o s); comige intrinsics keep the original compare operand order"
