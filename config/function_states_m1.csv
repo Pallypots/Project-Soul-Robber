@@ -1053,3 +1053,7 @@ va,name,state,source,obj,waivers,notes
 0x000d4ae0,m1_FadeTickD4AE0,Structurally compared,src/game/m1_257.c,build/obj_m1/m1_257.obj,,"regargs: o=EAX"
 0x000da790,m1_CmdMessageDA790,Structurally compared,src/game/m1_257.c,build/obj_m1/m1_257.obj,,"stack arg (c); union builds the high byte like mov dh"
 0x000298c0,m1_ItemRoll298C0,Structurally compared,src/game/m1_257.c,build/obj_m1/m1_257.obj,jcc:l/ge;jcc:s/ns,"no args; uint-to-float sign fix-up tested with jge by old cl and js by modern cl; comige keeps 0 < timer order"
+0x001b52d0,m1_QuadCorners1B52D0,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"regargs: out=EAX, src=EDI; volatile corner reload keeps the (k+6)<<4 form"
+0x000d4f20,m1_PushOutD4F20,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"regargs: a=EAX, out=ESI, b=EDI; stack args (p r gap)"
+0x001adee0,m1_MatFromAxes1ADEE0,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"stack args (m ax ay az)"
+0x000e7f50,m1_ItemCounterE7F50,Structurally compared,src/game/m1_258.c,build/obj_m1/m1_258.obj,,"regargs: dl=EAX; number drawn through 0x2BA70 (EDX=n ECX=digits EBX=8)"
