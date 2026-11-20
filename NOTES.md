@@ -1405,3 +1405,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_263: PASS 0xA9AC0 (pickup collect), 0x167C30 (pool hit check; T **volatile walker). Skipped: 0x17DAB0 (callee 0xF5F50 x87 return used mid-expression, not tried).
 - m1_264: PASS 0x185FE0 (timed action variant), 0xFD900 (helper orbit; ternary keeps the single tail call). Skipped: 0xAE0A0 (mis-sized, cut at first returns).
 - m1_265: PASS 0x189020 (AI slot attach), 0xF94B0 (place on scene bone). Skipped: 0xA0230 (case-body fragment, no prologue).
+- m1_266: PASS 0x188E0 (record copy), 0x80A60 (nearest plane + flip). Skipped: 0x2EBC0 (debug print dispatch, many register args).

@@ -1077,3 +1077,5 @@ va,name,state,source,obj,waivers,notes
 0x000fd900,m1_HelperOrbitFD900,Structurally compared,src/game/m1_264.c,build/obj_m1/m1_264.obj,,"stack arg (o); ternary yaw store stops cl duplicating the 0xFD5F0 tail call"
 0x00189020,m1_AiAttach189020,Structurally compared,src/game/m1_265.c,build/obj_m1/m1_265.obj,,"stack args (o a arg); signed pointer compare on the slot walk"
 0x000f94b0,m1_PlaceOnBoneF94B0,Structurally compared,src/game/m1_265.c,build/obj_m1/m1_265.obj,,"stack arg (o); default bone reads the arg slot; volatile keeps the w self-copy"
+0x000188e0,m1_RecCopy188E0,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: d=EBX; stack arg (s); vector loop addresses s through the d-relative offset"
+0x00080a60,m1_NearestPlaneFlip80A60,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: a=ECX; stack args (l p)"
