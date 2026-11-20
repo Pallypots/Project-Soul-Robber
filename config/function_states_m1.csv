@@ -1081,3 +1081,7 @@ va,name,state,source,obj,waivers,notes
 0x00080a60,m1_NearestPlaneFlip80A60,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: a=ECX; stack args (l p)"
 0x000ee0c0,m1_RetireReadyEE0C0,Structurally compared,src/game/m1_267.c,build/obj_m1/m1_267.obj,,"no args; inlined filtered walk (FiltFirst(0) + FiltNext); volatile filter store keeps call [0x3189CC]"
 0x00037830,m1_UvScroll37830,Structurally compared,src/game/m1_268.c,build/obj_m1/m1_268.obj,jcc:l/ge;jcc:s/ns,"regargs: s=EAX; uint-to-float sign fix-up tested with jge by old cl and js by modern cl"
+0x000af920,m1_MenuSeqAF920,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"stack args (cmd unused s); assert hangs on stage and mode"
+0x00034430,m1_MatPacket34430,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: p=EAX, m=EBX"
+0x0005bf00,m1_SeBankPath5BF00,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: k=EAX, c=ECX, buf=EDX, s=ESI; stack arg (mode); debug host:/ sound-bank paths"
+0x001954c0,m1_ThrowAt1954C0,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: o=EAX; stack arg (k)"
