@@ -1069,3 +1069,5 @@ va,name,state,source,obj,waivers,notes
 0x000138f0,m1_PktOpen138F0,Structurally compared,src/game/m1_261.c,build/obj_m1/m1_261.obj,,"no args; alias trace calls keep both branches"
 0x00013990,m1_PktOpen13990,Structurally compared,src/game/m1_261.c,build/obj_m1/m1_261.obj,,"no args; alias trace calls keep both branches"
 0x00013c00,m1_PktOpen13C00,Structurally compared,src/game/m1_261.c,build/obj_m1/m1_261.obj,,"stack args (a b c); tail call to 0x13AA0"
+0x001b9460,m1_DrawInit1B9460,Structurally compared,src/game/m1_262.c,build/obj_m1/m1_262.obj,,"regargs: d=EAX, s=ECX; volatiles keep the split 16-bit stores, the n>0 unsigned test and the 0xFFFFFFE3 mask"
+0x0012cf00,m1_TimedAct12CF00,Structurally compared,src/game/m1_262.c,build/obj_m1/m1_262.obj,,"stack args (o a s); (int)(double)f keeps the x87 __ftol call"
