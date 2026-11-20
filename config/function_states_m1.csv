@@ -1075,3 +1075,5 @@ va,name,state,source,obj,waivers,notes
 0x00167c30,m1_PoolHit167C30,Structurally compared,src/game/m1_263.c,build/obj_m1/m1_263.obj,,"regargs: t=EBX; volatile field pointer keeps the &rec.o44 walk and signed end test"
 0x00185fe0,m1_TimedAct185FE0,Structurally compared,src/game/m1_264.c,build/obj_m1/m1_264.obj,,"stack args (o a s); (int)(double)f keeps the x87 __ftol calls"
 0x000fd900,m1_HelperOrbitFD900,Structurally compared,src/game/m1_264.c,build/obj_m1/m1_264.obj,,"stack arg (o); ternary yaw store stops cl duplicating the 0xFD5F0 tail call"
+0x00189020,m1_AiAttach189020,Structurally compared,src/game/m1_265.c,build/obj_m1/m1_265.obj,,"stack args (o a arg); signed pointer compare on the slot walk"
+0x000f94b0,m1_PlaceOnBoneF94B0,Structurally compared,src/game/m1_265.c,build/obj_m1/m1_265.obj,,"stack arg (o); default bone reads the arg slot; volatile keeps the w self-copy"
