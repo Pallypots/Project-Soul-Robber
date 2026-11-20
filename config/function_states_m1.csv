@@ -1060,3 +1060,6 @@ va,name,state,source,obj,waivers,notes
 0x001b86b0,m1_NodeMats1B86B0,Structurally compared,src/game/m1_259.c,build/obj_m1/m1_259.obj,,"stack arg (n); alias callees keep the kind-9 copies separate"
 0x0017db90,m1_RiseOut17DB90,Structurally compared,src/game/m1_259.c,build/obj_m1/m1_259.obj,,"stack args (o a)"
 0x000abbf0,m1_IdleLoopABBF0,Structurally compared,src/game/m1_259.c,build/obj_m1/m1_259.obj,,"regargs: cmd=EAX, w=ECX, s=ESI; SSE truncation intrinsic, alias keeps the pose-2 call"
+0x00138fb0,m1_AiNext138FB0,Structurally compared,src/game/m1_260.c,build/obj_m1/m1_260.obj,,"stack args (o a); alias callees keep the two branches apart"
+0x000541b0,m1_ScreenQuad541B0,Structurally compared,src/game/m1_260.c,build/obj_m1/m1_260.obj,,"regargs: dl=EAX"
+0x00038b50,m1_PackTag38B50,Structurally compared,src/game/m1_260.c,build/obj_m1/m1_260.obj,imm:0xfffffffc,"regargs: s=ECX; stack arg (out); modern cl steps the nibble pointer with lea -4 instead of sub 4"

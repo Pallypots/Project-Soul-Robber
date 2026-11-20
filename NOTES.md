@@ -1399,3 +1399,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_257: PASS 0x2B950 (HUD number), 0x2AE60 (combo timer), 0x1B6FE0 (projection), 0xD4AE0 (fade), 0xDA790 (message cmd), 0x298C0 (item roll, jcc l/ge vs s/ns allowed). Skipped: 0x20040 (mid-function fragment, mis-sized), 0x58540, 0x3B420.
 - m1_258: PASS 0x1B52D0 (quad corners), 0xD4F20 (push-out), 0x1ADEE0 (axis matrix), 0xE7F50 (item counter). Skipped 0x76760 (text tokenizer).
 - m1_259: PASS 0x1B86B0 (node matrices), 0x17DB90 (rise-out), 0xABBF0 (idle loop; SSE truncation intrinsic). Note: next_candidates' small entries 0x129180, 0x10A420, 0x63E00, 0x642A0, 0x64FC0 are mis-sized (cut at jump tables); need size fixes first.
+- m1_260: PASS 0x138FB0 (random AI pick), 0x541B0 (screen quad), 0x38B50 (GIF tag packer; lea -4 vs sub 4 allowed).
