@@ -1080,3 +1080,4 @@ va,name,state,source,obj,waivers,notes
 0x000188e0,m1_RecCopy188E0,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: d=EBX; stack arg (s); vector loop addresses s through the d-relative offset"
 0x00080a60,m1_NearestPlaneFlip80A60,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: a=ECX; stack args (l p)"
 0x000ee0c0,m1_RetireReadyEE0C0,Structurally compared,src/game/m1_267.c,build/obj_m1/m1_267.obj,,"no args; inlined filtered walk (FiltFirst(0) + FiltNext); volatile filter store keeps call [0x3189CC]"
+0x00037830,m1_UvScroll37830,Structurally compared,src/game/m1_268.c,build/obj_m1/m1_268.obj,jcc:l/ge;jcc:s/ns,"regargs: s=EAX; uint-to-float sign fix-up tested with jge by old cl and js by modern cl"

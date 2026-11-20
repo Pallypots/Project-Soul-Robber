@@ -1408,3 +1408,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_266: PASS 0x188E0 (record copy), 0x80A60 (nearest plane + flip). Skipped: 0x2EBC0 (debug print dispatch, many register args).
 - 0x810F0 grow bounds: hard (orig keeps 6 floats in xmm regs; cl spills and uses x87, also imul*8 for the 0x50 stride).
 - m1_267: PASS 0xEE0C0 (retire ready entities; volatile store of the filter pointer). Skipped: 0xC2420 (callee 0xCF200 regarg edi + x87), 0x810F0 hard.
+- m1_268: PASS 0x37830 (UV scroll; jcc l/ge vs s/ns allowed). Next: 0xAF920 (menu blink, regarg-free), 0x34430 (packet builder, regarg eax+ebx).
