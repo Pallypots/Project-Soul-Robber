@@ -1406,3 +1406,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_264: PASS 0x185FE0 (timed action variant), 0xFD900 (helper orbit; ternary keeps the single tail call). Skipped: 0xAE0A0 (mis-sized, cut at first returns).
 - m1_265: PASS 0x189020 (AI slot attach), 0xF94B0 (place on scene bone). Skipped: 0xA0230 (case-body fragment, no prologue).
 - m1_266: PASS 0x188E0 (record copy), 0x80A60 (nearest plane + flip). Skipped: 0x2EBC0 (debug print dispatch, many register args).
+- 0x810F0 grow bounds: hard (orig keeps 6 floats in xmm regs; cl spills and uses x87, also imul*8 for the 0x50 stride).
+- m1_267: PASS 0xEE0C0 (retire ready entities; volatile store of the filter pointer). Skipped: 0xC2420 (callee 0xCF200 regarg edi + x87), 0x810F0 hard.

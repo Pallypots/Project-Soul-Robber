@@ -1079,3 +1079,4 @@ va,name,state,source,obj,waivers,notes
 0x000f94b0,m1_PlaceOnBoneF94B0,Structurally compared,src/game/m1_265.c,build/obj_m1/m1_265.obj,,"stack arg (o); default bone reads the arg slot; volatile keeps the w self-copy"
 0x000188e0,m1_RecCopy188E0,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: d=EBX; stack arg (s); vector loop addresses s through the d-relative offset"
 0x00080a60,m1_NearestPlaneFlip80A60,Structurally compared,src/game/m1_266.c,build/obj_m1/m1_266.obj,,"regargs: a=ECX; stack args (l p)"
+0x000ee0c0,m1_RetireReadyEE0C0,Structurally compared,src/game/m1_267.c,build/obj_m1/m1_267.obj,,"no args; inlined filtered walk (FiltFirst(0) + FiltNext); volatile filter store keeps call [0x3189CC]"
