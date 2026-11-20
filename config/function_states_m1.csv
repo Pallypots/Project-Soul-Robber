@@ -1087,3 +1087,4 @@ va,name,state,source,obj,waivers,notes
 0x001954c0,m1_ThrowAt1954C0,Structurally compared,src/game/m1_269.c,build/obj_m1/m1_269.obj,,"regargs: o=EAX; stack arg (k)"
 0x00180e00,m1_QuarterCheck180E00,Structurally compared,src/game/m1_270.c,build/obj_m1/m1_270.obj,data:fconst:2.0;data:0x27a88c,"regargs: q=EDI; checker labels the indexed .rdata speed table (0x27A88C) as fconst 2.0 on the orig side only"
 0x00171070,m1_GrowPop171070,Structurally compared,src/game/m1_270.c,build/obj_m1/m1_270.obj,,"stack args (o s); comige intrinsics keep the original compare operand order"
+0x00170660,m1_FadeOut170660,Structurally compared,src/game/m1_271.c,build/obj_m1/m1_271.obj,,"stack args (o s); tail call to 0x170470 (regargs o=EAX)"

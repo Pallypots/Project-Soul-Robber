@@ -1411,3 +1411,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_268: PASS 0x37830 (UV scroll; jcc l/ge vs s/ns allowed). Next: 0xAF920 (menu blink, regarg-free), 0x34430 (packet builder, regarg eax+ebx).
 - m1_269: PASS 0xAF920 (menu sequence), 0x34430 (matrix packet), 0x5BF00 (sound-bank path), 0x1954C0 (throw at target). Skipped: 0x3B350 (returns float in XMM0), 0x98230 (ucomiss+lahf).
 - m1_270: PASS 0x180E00 (quarter check; data:fconst:2.0 + table address allowed: checker reads the indexed .rdata table as fconst on the orig side only), 0x171070 (grow/pop). Skipped: 0x1B2A30 (bitfield chain), 0x18BBB0 (ucomiss+lahf).
+- 0x79370 pad-lost check: hard (cl places the early-unblock block before the lost block; label order does not move it).
+- m1_271: PASS 0x170660 (fade-out step). Skipped: 0x8AB40 (long loop body), 0xE4E90 (cross-jumped blocks + ebx/edi regargs), 0x19A6F0 (voice loop, not tried).
