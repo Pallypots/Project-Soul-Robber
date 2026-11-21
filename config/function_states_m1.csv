@@ -1098,3 +1098,5 @@ va,name,state,source,obj,waivers,notes
 0x00147fd0,m1_HitReaction147FD0,Structurally compared,src/game/m1_275.c,build/obj_m1/m1_275.obj,,"stack args (e k); volatile st joins the shared reset/set calls; assert hang on flag bit 0 for type 4"
 0x00023a70,m1_Countdown23A70,Structurally compared,src/game/m1_276.c,build/obj_m1/m1_276.obj,,"no args; SSE truncation for the seconds, (int)(double) for the x87 alpha; comige keeps the compare order"
 0x000f65e0,m1_Reattach0F65E0,Structurally compared,src/game/m1_276.c,build/obj_m1/m1_276.obj,,"stack arg (h); arg slot reused as the scale float (union); volatile kind reread stops cl deriving bone 11 as kind+6"
+0x001176a0,m1_PickPoint1176A0,Structurally compared,src/game/m1_277.c,build/obj_m1/m1_277.obj,,"regargs: a=EAX, out=ECX; alias keeps the second fixed-point copy"
+0x000e8e80,m1_PopupStepE8E80,Structurally compared,src/game/m1_277.c,build/obj_m1/m1_277.obj,,"regargs: p=ESI; volatile kind keeps the separate 3..4 range compares; (int)(double) keeps the x87 alpha"
