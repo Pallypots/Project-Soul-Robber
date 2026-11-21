@@ -1094,3 +1094,5 @@ va,name,state,source,obj,waivers,notes
 0x000e4dd0,m1_StageRefreshE4DD0,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"regargs: k=EAX; stack args (s skip); inverted mode-7 test puts the main path first like the orig"
 0x000e2540,m1_ObjByIdE2540,Structurally compared,src/game/m1_274.c,build/obj_m1/m1_274.obj,,"stack args (unused id); alias callees keep the separate calls, shared tail for ids 1/4/7"
 0x000bd570,m1_SendActionBD570,Structurally compared,src/game/m1_274.c,build/obj_m1/m1_274.obj,,"regargs: a=ESI, k=EDI"
+0x0017ae00,m1_RewardIfSeen17AE00,Structurally compared,src/game/m1_275.c,build/obj_m1/m1_275.obj,,"regargs: o=ESI; volatile join + SSE conversion keep the single 0xD1F40 call"
+0x00147fd0,m1_HitReaction147FD0,Structurally compared,src/game/m1_275.c,build/obj_m1/m1_275.obj,,"stack args (e k); volatile st joins the shared reset/set calls; assert hang on flag bit 0 for type 4"
