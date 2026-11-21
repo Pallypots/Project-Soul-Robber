@@ -1423,3 +1423,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_279: PASS 0x27A70 (HUD sprite, style 5), 0x28460 (counter over the player's head). Scanned for more 0x37DAE4 users: none left.
 - m1_280: PASS 0x1812F0 (guard quarter check, sibling of 0x180E00), 0x58C10 (timer screen). Skipped: 0x1061B0 (x87 result stored twice via fst/fstp).
 - m1_281: PASS 0x143630 (bone shake), 0x76FA0 (text outline). Skipped: 0xEAB00 (same index-folding shape as 0xE16E0).
+- m1_282: PASS 0xEF520 (shake offset), 0x179FE0 (rig anchor). Skipped: 0xFB750 (cross-jumped kind blocks + x87 compare chain).

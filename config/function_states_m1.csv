@@ -1109,3 +1109,5 @@ va,name,state,source,obj,waivers,notes
 0x00058c10,m1_TimerScreen58C10,Structurally compared,src/game/m1_280.c,build/obj_m1/m1_280.obj,,"regargs: dl=EDX; SSE truncation for the seconds frame"
 0x00143630,m1_BoneShake143630,Structurally compared,src/game/m1_281.c,build/obj_m1/m1_281.obj,,"stack args (o a s); comige keeps the t8 >= dur operand order"
 0x00076fa0,m1_TextOutline76FA0,Structurally compared,src/game/m1_281.c,build/obj_m1/m1_281.obj,,"regargs: t=EAX, col=ESI; stack args (dl d)"
+0x000ef520,m1_ShakeOffsetEF520,Structurally compared,src/game/m1_282.c,build/obj_m1/m1_282.obj,,"regargs: o=EAX"
+0x00179fe0,m1_RigAnchor179FE0,Structurally compared,src/game/m1_282.c,build/obj_m1/m1_282.obj,,"stack args (n a)"
