@@ -1115,3 +1115,4 @@ va,name,state,source,obj,waivers,notes
 0x000e1cd0,m1_EaseToE1CD0,Structurally compared,src/game/m1_283.c,build/obj_m1/m1_283.obj,,"regargs: s=ESI, v=EAX; !(x >= 0) keeps the single jb"
 0x000c2aa0,m1_SendActionC2AA0,Structurally compared,src/game/m1_284.c,build/obj_m1/m1_284.obj,,"regargs: k=EAX, a=ECX; stack arg (v); sibling of 0xBD570"
 0x0013e250,m1_HitPick13E250,Structurally compared,src/game/m1_284.c,build/obj_m1/m1_284.obj,,"stack args (o a); 0x13D4B0 takes a=EAX st=EBX"
+0x000a8ed0,m1_SpawnPickupsA8ED0,Structurally compared,src/game/m1_285.c,build/obj_m1/m1_285.obj,imm:0xc,"stack args (n pos src mode); volatile divisors keep the real idiv; modern cl builds the 8/12 life as a branch-free select instead of pushing 0xC"

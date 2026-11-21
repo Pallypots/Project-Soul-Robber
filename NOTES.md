@@ -1426,3 +1426,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_282: PASS 0xEF520 (shake offset), 0x179FE0 (rig anchor). Skipped: 0xFB750 (cross-jumped kind blocks + x87 compare chain).
 - m1_283: PASS 0xCD300 (bearing class), 0xE1CD0 (ease to target). Skipped: 0x117580, 0x118F20 (regarg chains into 0x117580/0x1154A0), 0x37DD0 (unrolled loop).
 - m1_284: PASS 0xC2AA0 (send action with value, sibling of 0xBD570), 0x13E250 (hit pick). Skipped: 0x12CC20 (ucomiss+lahf).
+- m1_285: PASS 0xA8ED0 (spawn pickups by tier; imm 0xC allowed: branch-free select for the 8/12 life). Skipped: 0x135AC0 (assert hangs + nested search), 0xA2FB0 (cross-jumped copy calls).
