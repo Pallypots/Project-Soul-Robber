@@ -1092,3 +1092,5 @@ va,name,state,source,obj,waivers,notes
 0x00058540,m1_LoaderStart58540,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"stack args (a b); 64-bit system word read-modify-write through 0x1A7C00"
 0x000ed290,m1_IoInitED290,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"no args; probe/trace calls are retail stubs (0xAD090, 0x102FA0)"
 0x000e4dd0,m1_StageRefreshE4DD0,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"regargs: k=EAX; stack args (s skip); inverted mode-7 test puts the main path first like the orig"
+0x000e2540,m1_ObjByIdE2540,Structurally compared,src/game/m1_274.c,build/obj_m1/m1_274.obj,,"stack args (unused id); alias callees keep the separate calls, shared tail for ids 1/4/7"
+0x000bd570,m1_SendActionBD570,Structurally compared,src/game/m1_274.c,build/obj_m1/m1_274.obj,,"regargs: a=ESI, k=EDI"
