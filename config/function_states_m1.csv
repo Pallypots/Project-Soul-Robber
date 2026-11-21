@@ -1107,3 +1107,5 @@ va,name,state,source,obj,waivers,notes
 0x00028460,m1_HeadCounter28460,Structurally compared,src/game/m1_279.c,build/obj_m1/m1_279.obj,,"regargs: dl=EDI; volatile digit divide keeps the signed /10; transform result unused in the orig"
 0x001812f0,m1_GuardQuarter1812F0,Structurally compared,src/game/m1_280.c,build/obj_m1/m1_280.obj,,"stack args (o a); sibling of 0x180E00; comige keeps b<K operand order"
 0x00058c10,m1_TimerScreen58C10,Structurally compared,src/game/m1_280.c,build/obj_m1/m1_280.obj,,"regargs: dl=EDX; SSE truncation for the seconds frame"
+0x00143630,m1_BoneShake143630,Structurally compared,src/game/m1_281.c,build/obj_m1/m1_281.obj,,"stack args (o a s); comige keeps the t8 >= dur operand order"
+0x00076fa0,m1_TextOutline76FA0,Structurally compared,src/game/m1_281.c,build/obj_m1/m1_281.obj,,"regargs: t=EAX, col=ESI; stack args (dl d)"

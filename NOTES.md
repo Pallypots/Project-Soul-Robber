@@ -1422,3 +1422,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_278: PASS 0xA4E50 (apply kind table; hang + volatile range idioms), 0x3BA20 (child follow step), 0x1B8D0 (band triangle corners; lea-negative vs sub imm allowed). Skipped: 0x170C70 (x87 cos mid-expression), 0x11FBC0 (regarg tangle).
 - m1_279: PASS 0x27A70 (HUD sprite, style 5), 0x28460 (counter over the player's head). Scanned for more 0x37DAE4 users: none left.
 - m1_280: PASS 0x1812F0 (guard quarter check, sibling of 0x180E00), 0x58C10 (timer screen). Skipped: 0x1061B0 (x87 result stored twice via fst/fstp).
+- m1_281: PASS 0x143630 (bone shake), 0x76FA0 (text outline). Skipped: 0xEAB00 (same index-folding shape as 0xE16E0).
