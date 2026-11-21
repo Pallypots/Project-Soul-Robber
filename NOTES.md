@@ -1417,3 +1417,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_273: PASS 0x58540 (loader start), 0xED290 (I/O init, exact), 0xE4DD0 (stage refresh; inverted test fixes block order). Skipped: 0x127470 (same force-block shape as 0x126890; retry with the inversion idiom).
 - m1_274: PASS 0xE2540 (object by id, sibling of 0xE3DA0), 0xBD570 (send action). Skipped: 0x98130 (ucomiss+lahf).
 - m1_275: PASS 0x17AE00 (reward if seen; volatile join + SSE cvt), 0x147FD0 (hit reaction; volatile st join). Skipped: 0xBD670 (mixed regargs).
+- m1_276: PASS 0x23A70 (countdown), 0xF65E0 (re-attach held object). Skipped: 0x11F520 (edi/ebx regargs + x87 cos mid-expression).
