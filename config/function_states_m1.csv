@@ -1111,3 +1111,5 @@ va,name,state,source,obj,waivers,notes
 0x00076fa0,m1_TextOutline76FA0,Structurally compared,src/game/m1_281.c,build/obj_m1/m1_281.obj,,"regargs: t=EAX, col=ESI; stack args (dl d)"
 0x000ef520,m1_ShakeOffsetEF520,Structurally compared,src/game/m1_282.c,build/obj_m1/m1_282.obj,,"regargs: o=EAX"
 0x00179fe0,m1_RigAnchor179FE0,Structurally compared,src/game/m1_282.c,build/obj_m1/m1_282.obj,,"stack args (n a)"
+0x000cd300,m1_BearingClassCD300,Structurally compared,src/game/m1_283.c,build/obj_m1/m1_283.obj,,"regargs: o=EAX; thresholds +-30 and +-150 degrees"
+0x000e1cd0,m1_EaseToE1CD0,Structurally compared,src/game/m1_283.c,build/obj_m1/m1_283.obj,,"regargs: s=ESI, v=EAX; !(x >= 0) keeps the single jb"
