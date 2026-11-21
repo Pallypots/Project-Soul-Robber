@@ -1414,3 +1414,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x79370 pad-lost check: hard (cl places the early-unblock block before the lost block; label order does not move it).
 - m1_271: PASS 0x170660 (fade-out step). Skipped: 0x8AB40 (long loop body), 0xE4E90 (cross-jumped blocks + ebx/edi regargs), 0x19A6F0 (voice loop, not tried).
 - m1_272: PASS 0x58A40 (worker thread start). Hard: 0xE16E0 (orig re-derives two slot fields via (i*3+0x6F)<<4 and (i*5+0xFA)*8; cl folds them into record offsets). Skipped: 0x1788D0 (ucomiss+lahf).
+- m1_273: PASS 0x58540 (loader start), 0xED290 (I/O init, exact), 0xE4DD0 (stage refresh; inverted test fixes block order). Skipped: 0x127470 (same force-block shape as 0x126890; retry with the inversion idiom).

@@ -87,3 +87,6 @@ In a third comparison (run only when the plain and second comparisons both fail,
 ## x87 float-to-int helper (added 2026-11-20)
 - When the original converts float to int with `call __ftol` (0x001C7D38) but modern cl emits `cvttss2si`, write the cast as `(int32_t)(double)f`; with /arch:SSE the double path goes through x87 and calls the helper. Verified on 0x0012CF00.
 - The reverse (original `cvttss2si`, ours `__ftol`): use `_mm_cvttss_si32(_mm_set_ss(x))`. Verified on 0x000ABBF0.
+
+## Block placement by inverting the test (added 2026-11-20)
+- When cl puts a short early-return branch first but the original puts it last, write `if (!cond) { main path; return; } short path;` instead of `if (cond) { short; return; } main;`. A goto to a label at the end did not move it; inverting did. Verified on 0x000E4DD0. Did not help 0x00079370 (retried); 0x00126890 untested.

@@ -1089,3 +1089,6 @@ va,name,state,source,obj,waivers,notes
 0x00171070,m1_GrowPop171070,Structurally compared,src/game/m1_270.c,build/obj_m1/m1_270.obj,,"stack args (o s); comige intrinsics keep the original compare operand order"
 0x00170660,m1_FadeOut170660,Structurally compared,src/game/m1_271.c,build/obj_m1/m1_271.obj,,"stack args (o s); tail call to 0x170470 (regargs o=EAX)"
 0x00058a40,m1_WorkerStart58A40,Structurally compared,src/game/m1_272.c,build/obj_m1/m1_272.obj,,"stack args (prio a18 a10 a14 a1C a20 a24); hangs if no free worker record"
+0x00058540,m1_LoaderStart58540,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"stack args (a b); 64-bit system word read-modify-write through 0x1A7C00"
+0x000ed290,m1_IoInitED290,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"no args; probe/trace calls are retail stubs (0xAD090, 0x102FA0)"
+0x000e4dd0,m1_StageRefreshE4DD0,Structurally compared,src/game/m1_273.c,build/obj_m1/m1_273.obj,,"regargs: k=EAX; stack args (s skip); inverted mode-7 test puts the main path first like the orig"
