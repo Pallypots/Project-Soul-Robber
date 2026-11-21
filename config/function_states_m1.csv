@@ -1100,3 +1100,6 @@ va,name,state,source,obj,waivers,notes
 0x000f65e0,m1_Reattach0F65E0,Structurally compared,src/game/m1_276.c,build/obj_m1/m1_276.obj,,"stack arg (h); arg slot reused as the scale float (union); volatile kind reread stops cl deriving bone 11 as kind+6"
 0x001176a0,m1_PickPoint1176A0,Structurally compared,src/game/m1_277.c,build/obj_m1/m1_277.obj,,"regargs: a=EAX, out=ECX; alias keeps the second fixed-point copy"
 0x000e8e80,m1_PopupStepE8E80,Structurally compared,src/game/m1_277.c,build/obj_m1/m1_277.obj,,"regargs: p=ESI; volatile kind keeps the separate 3..4 range compares; (int)(double) keeps the x87 alpha"
+0x000a4e50,m1_ApplyKindA4E50,Structurally compared,src/game/m1_278.c,build/obj_m1/m1_278.obj,,"regargs: e=ESI; if-for(;;) assert hangs; volatile kind keeps the separate range compares"
+0x0003ba20,m1_Follow3BA20,Structurally compared,src/game/m1_278.c,build/obj_m1/m1_278.obj,,"regargs: c=EAX, p=EDI; follow rate is the data word 0x2C4618"
+0x0001b8d0,m1_BandTri1B8D0,Structurally compared,src/game/m1_278.c,build/obj_m1/m1_278.obj,imm:0xffffffe8;imm:0xfffffff9;imm:0xfffffffa,"regargs: n=EAX, base=ECX, b=EDX, c=EDI; stack arg (a); orig forms n-7/n-6/3n-24 with lea negative displacements, modern cl with sub"
