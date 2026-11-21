@@ -1118,3 +1118,5 @@ va,name,state,source,obj,waivers,notes
 0x000a8ed0,m1_SpawnPickupsA8ED0,Structurally compared,src/game/m1_285.c,build/obj_m1/m1_285.obj,imm:0xc,"stack args (n pos src mode); volatile divisors keep the real idiv; modern cl builds the 8/12 life as a branch-free select instead of pushing 0xC"
 0x0001bdc0,m1_BodyGap1BDC0,Structurally compared,src/game/m1_286.c,build/obj_m1/m1_286.obj,,"regargs: a=EDI, b=ESI, ca=ECX, dir=EBX; stack arg (cb); float result in st0"
 0x000189c0,m1_LoadRecords189C0,Structurally compared,src/game/m1_286.c,build/obj_m1/m1_286.obj,,"stack arg (h); converters take d=EBX; unsigned n>0 idiom on the three version loops"
+0x0001b9e0,m1_MeshSphereHit1B9E0,Structurally compared,src/game/m1_287.c,build/obj_m1/m1_287.obj,,"stack args (m p r hitPos hitDir); 0x1B7B0 takes lst=EDI c=EBX"
+0x00049180,m1_TrackSetPart49180,Structurally compared,src/game/m1_287.c,build/obj_m1/m1_287.obj,,"stack args (t p id vol src w f); 0x48B70 takes src=EAX a=EDI b=EBX"

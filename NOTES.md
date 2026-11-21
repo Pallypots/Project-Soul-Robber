@@ -1428,3 +1428,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_284: PASS 0xC2AA0 (send action with value, sibling of 0xBD570), 0x13E250 (hit pick). Skipped: 0x12CC20 (ucomiss+lahf).
 - m1_285: PASS 0xA8ED0 (spawn pickups by tier; imm 0xC allowed: branch-free select for the 8/12 life). Skipped: 0x135AC0 (assert hangs + nested search), 0xA2FB0 (cross-jumped copy calls).
 - m1_286: PASS 0x1BDC0 (body gap), 0x189C0 (load record array by version). Skipped: 0x12E940, 0x12EC70 (ucomiss+lahf), 0x8B560 (list sort with cross-jumps).
+- m1_287: PASS 0x1B9E0 (sphere vs band mesh), 0x49180 (track part set). Skipped: 0x68D50 (byte-switch with cross-jumped tails).
