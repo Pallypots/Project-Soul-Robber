@@ -1103,3 +1103,5 @@ va,name,state,source,obj,waivers,notes
 0x000a4e50,m1_ApplyKindA4E50,Structurally compared,src/game/m1_278.c,build/obj_m1/m1_278.obj,,"regargs: e=ESI; if-for(;;) assert hangs; volatile kind keeps the separate range compares"
 0x0003ba20,m1_Follow3BA20,Structurally compared,src/game/m1_278.c,build/obj_m1/m1_278.obj,,"regargs: c=EAX, p=EDI; follow rate is the data word 0x2C4618"
 0x0001b8d0,m1_BandTri1B8D0,Structurally compared,src/game/m1_278.c,build/obj_m1/m1_278.obj,imm:0xffffffe8;imm:0xfffffff9;imm:0xfffffffa,"regargs: n=EAX, base=ECX, b=EDX, c=EDI; stack arg (a); orig forms n-7/n-6/3n-24 with lea negative displacements, modern cl with sub"
+0x00027a70,m1_HudSprite27A70,Structurally compared,src/game/m1_279.c,build/obj_m1/m1_279.obj,,"stack args (dl x y z col e); 0x26910 takes EDX=e ECX=5 EBX=1 (sibling of 0x27B80)"
+0x00028460,m1_HeadCounter28460,Structurally compared,src/game/m1_279.c,build/obj_m1/m1_279.obj,,"regargs: dl=EDI; volatile digit divide keeps the signed /10; transform result unused in the orig"
