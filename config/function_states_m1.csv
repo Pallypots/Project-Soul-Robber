@@ -1120,3 +1120,4 @@ va,name,state,source,obj,waivers,notes
 0x000189c0,m1_LoadRecords189C0,Structurally compared,src/game/m1_286.c,build/obj_m1/m1_286.obj,,"stack arg (h); converters take d=EBX; unsigned n>0 idiom on the three version loops"
 0x0001b9e0,m1_MeshSphereHit1B9E0,Structurally compared,src/game/m1_287.c,build/obj_m1/m1_287.obj,,"stack args (m p r hitPos hitDir); 0x1B7B0 takes lst=EDI c=EBX"
 0x00049180,m1_TrackSetPart49180,Structurally compared,src/game/m1_287.c,build/obj_m1/m1_287.obj,,"stack args (t p id vol src w f); 0x48B70 takes src=EAX a=EDI b=EBX"
+0x001a2aa0,m1_DrawModel1A2AA0,Structurally compared,src/game/m1_288.c,build/obj_m1/m1_288.obj,,"stack args (ctx unused m flags); aliases keep the four blend-mode calls and the skip-path next-block call"
