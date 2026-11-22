@@ -1226,3 +1226,37 @@ va,name,state,source,obj,waivers,notes
 0x001a00c0,m1_ShkLoadAll1A00C0,Structurally compared,src/game/m1_gs10.c,build/obj_m1/m1_gs10.obj,,/GS cookie; no args; inline copy written with __movsd/__movsb and a volatile count (cl drops the byte tail of a 64-aligned size)
 0x000d2a50,m1_PlSetMode0D2A50,Structurally compared,src/game/m1_326.c,build/obj_m1/m1_326.obj,,stack args (pl mode); aliases in case 5 keep the identical case 4/5 bodies apart; volatile k gives the push-0/push-1 branch
 0x00182980,m1_SpinnerIntro182980,Structurally compared,src/game/m1_327.c,build/obj_m1/m1_327.obj,,stack args (o e); volatile k keeps the 4/5 branch; if (dir != 2) blocks put the goto calls after the loops; alias keeps the case-3 goto copy
+0x0017abe0,m1_HitReact17ABE0,Structurally compared,src/game/m1_328.c,build/obj_m1/m1_328.obj,,stack args (o e hit); 0.0f >= f274 gives the comiss/jb test; volatile self-copy keeps the +0x84 word move
+0x00082a90,m1_DirAngle082A90,Structurally compared,src/game/m1_330.c,build/obj_m1/m1_330.obj,,stack args (a b); == 0.0f tests give the ucomiss/lahf/jp pattern
+0x000ffb40,m1_MinionHop0FFB40,Structurally compared,src/game/m1_332.c,build/obj_m1/m1_332.obj,,stack arg (o); state pointer local stands in for the spilled &step9C
+0x001861f0,m1_CondInRange1861F0,Structurally compared,src/game/m1_331.c,build/obj_m1/m1_331.obj,,stack args (o e c); size override 0x72; _mm_comige_ss tests as in the sibling 0x186280
+0x0014b840,m1_AiStandUp14B840,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); both exits expand one cleanup macro; 0x156040 takes EBX
+0x0013fa50,m1_AiRecover13FA50,Structurally compared,src/game/m1_333.c,build/obj_m1/m1_333.obj,,stack args (o e); alias names keep the seven separate 0x113040 calls; volatile mask gives the neg/sbb select
+0x00143150,m1_AiStagger143150,Structurally compared,src/game/m1_335.c,build/obj_m1/m1_335.obj,,stack args (o e); alias names keep the seven separate 0x113040 calls; frame index via _mm_cvttss_si32
+0x00153a00,m1_AiGetUp153A00,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro
+0x0014ff90,m1_AiGetUp14FF90,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); step other than 0x14 hangs; shared stand-up cleanup macro
+0x00149650,m1_AiGetUp149650,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; 0x147580 takes EBX/ESI
+0x001499c0,m1_AiGetUp1499C0,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro
+0x0014c470,m1_AiGetUpPick14C470,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); _mm_comige_ss distance tests; 0x147270 takes EAX/EDI; shared stand-up cleanup macro
+0x0014b280,m1_AiGetUp14B280,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro
+0x0014ba50,m1_AiGetUp14BA50,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); alias keeps the two 0x147580 hand-overs apart; shared stand-up cleanup macro
+0x0014f400,m1_AiGetUp14F400,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; step other than 0xA hangs; one exit keeps flag 0x1000 (mask 0xFFDBFEBF)
+0x00152880,m1_AiKnockDown152880,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; flag 0x20 hands over to 0xED780
+0x00153240,m1_AiGetUp153240,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; switch fall-through stages
+0x00151490,m1_AiGetUp151490,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; flag 0x20 hands over to 0xED780
+0x0014ef30,m1_AiGetUp14EF30,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; step fall-through
+0x0014e950,m1_AiGetUp14E950,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); shared stand-up cleanup macro; unsigned hit-count tests; goto into the shared arm block
+0x001504c0,m1_AiFallGetUp1504C0,Structurally compared,src/game/m1_334.c,build/obj_m1/m1_334.obj,,stack args (o e); switch fall-through with hangs for unknown poses; shared stand-up cleanup macro
+0x00155330,m1_AiPickTarget155330,Structurally compared,src/game/m1_336.c,build/obj_m1/m1_336.obj,,stack args (o e); discarded helper distance call kept; best-target local lives in the dead e argument slot in the original
+0x00146390,m1_AiPickTarget146390,Structurally compared,src/game/m1_336.c,build/obj_m1/m1_336.obj,,stack args (o e); twin of 0x155330 on the +0x50 state word
+0x0012a400,m1_EnterTurnAway12A400,Structurally compared,src/game/m1_337.c,build/obj_m1/m1_337.obj,,stack args (o a); enter-state family head; flag-8 wait loop on the state block 0x20 bit
+0x001228f0,m1_EnterDash1228F0,Structurally compared,src/game/m1_338.c,build/obj_m1/m1_338.obj,,stack args (o a); blend count and reach live in dead argument slots in the original; != -1.0f stores give the jnp tests
+0x001264e0,m1_EnterBackstep1264E0,Structurally compared,src/game/m1_339.c,build/obj_m1/m1_339.obj,,stack args (o a); both branches repeat the full enter head
+0x000459e0,m1_MenuStep0459E0,Structurally compared,src/game/m1_340.c,build/obj_m1/m1_340.obj,,no args; option pointer read through a byte offset into the 0x2B4D8C table
+0x00121ef0,m1_EnterHopBack121EF0,Structurally compared,src/game/m1_339.c,build/obj_m1/m1_339.obj,,stack args (o a); random speed scale only while holding a grabbed kind-0xD target
+0x00124940,m1_EnterCharge124940,Structurally compared,src/game/m1_341.c,build/obj_m1/m1_341.obj,,stack args (o a); multiply by 2 kept with an SSE intrinsic; 0x147710 takes ECX/EAX
+0x00141050,m1_AiCharged141050,Structurally compared,src/game/m1_342.c,build/obj_m1/m1_342.obj,,stack args (o e); case 1 falls into case 2; gotos into the shared timer and goto tails; 0x140040/0x140170 take register args
+0x0011c950,m1_AiTurnPick11C950,Structurally compared,src/game/m1_343.c,build/obj_m1/m1_343.obj,,stack args (o e); hit-kind out value lives in the dead e argument slot; 0x11B0D0/0x11B140/0x11B020 take register args
+0x0011cb80,m1_AiTurnPick11CB80,Structurally compared,src/game/m1_343.c,build/obj_m1/m1_343.obj,,stack args (o e); three-step sibling of 0x11C950 with the cooldown test
+0x00141270,m1_AiSpinSwipe141270,Structurally compared,src/game/m1_344.c,build/obj_m1/m1_344.obj,,stack args (o e); case 1 falls into case 2; 0x13D3F0/0x140040/0x1401C0/0x13D380 take register args
+0x00144d70,m1_AiSidestep144D70,Structurally compared,src/game/m1_345.c,build/obj_m1/m1_345.obj,,stack args (o e); turn limits chosen per branch; check table called through the 0x31DBBC pointer

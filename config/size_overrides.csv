@@ -18,3 +18,4 @@ va,size,reason
 0x00118C60,0x70,code ends with the ret at 0x118CCF; inventory size 1008 runs on into the following functions
 0x00133E60,0xB8,code ends with the jmp-self at 0x133F16 (its jump table follows at 0x133F18); inventory size 352 runs into the table and the next function 0x133F50
 0x00130FF0,0xDD,code ends at 0x1310CC (pad then its jump tables at 0x1310D0); inventory size 484 includes the next function 0x1310EC
+0x001861F0,0x72,code ends at 0x186262 (mov edi,edi pad then its jump table at 0x186264); inventory size 489 includes the next functions
