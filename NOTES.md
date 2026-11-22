@@ -1430,3 +1430,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_286: PASS 0x1BDC0 (body gap), 0x189C0 (load record array by version). Skipped: 0x12E940, 0x12EC70 (ucomiss+lahf), 0x8B560 (list sort with cross-jumps).
 - m1_287: PASS 0x1B9E0 (sphere vs band mesh), 0x49180 (track part set). Skipped: 0x68D50 (byte-switch with cross-jumped tails).
 - m1_288: PASS 0x1A2AA0 (draw model parts). Skipped: 0x1AB2A0 (thiscall tail jump + slot loop).
+- m1_289: PASS 0x1BA6E0 (texture record alloc from pool). Skipped: 0x3B000 (mid-function fragment).
