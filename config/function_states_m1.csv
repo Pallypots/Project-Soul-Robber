@@ -1274,3 +1274,7 @@ va,name,state,source,obj,waivers,notes
 0x00132890,m1_AiThrownBack132890,Structurally compared,src/game/m1_350.c,build/obj_m1/m1_350.obj,,stack args (o e); alias keeps the two final 0x131310 calls apart
 0x001177a0,m1_TakeHit1177A0,Structurally compared,src/game/m1_351.c,build/obj_m1/m1_351.obj,,stack args (o e hit); whole-point loss via _mm_cvttss_si32; 0x1146D0/0x117580 take register args
 0x001318f0,m1_TakeHit1318F0,Structurally compared,src/game/m1_351.c,build/obj_m1/m1_351.obj,,stack args (o e hit); twin of 0x1177A0
+0x00135250,m1_EnemySetup135250,Structurally compared,src/game/m1_352.c,build/obj_m1/m1_352.obj,,stack args (o e mode); handler table of function addresses; unknown mode hangs; 0x131310 takes EBX/EDI
+0x00132da0,m1_AiLeapSlam132DA0,Structurally compared,src/game/m1_353.c,build/obj_m1/m1_353.obj,,stack args (o e); distance-banded leap speeds; 0x147710 alias for the int-argument call; alias keeps the two final 0x131310 calls apart
+0x00154d50,m1_EnemySetup154D50,Structurally compared,src/game/m1_354.c,build/obj_m1/m1_354.obj,,stack args (o e mode); unknown modes read an uninitialised local (volatile junk); one subtraction kept via _mm_sub_ss; 0x147580 takes EBX/ESI
+0x0016c860,m1_FlyerPerch16C860,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,stack args (o e); case 0 falls into case 1; route point walk; 0x16C820 takes EAX
