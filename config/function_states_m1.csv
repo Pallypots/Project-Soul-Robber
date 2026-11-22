@@ -1133,3 +1133,5 @@ va,name,state,source,obj,waivers,notes
 0x001063c0,m1_OnMsg1063C0,Structurally compared,src/game/m1_294.c,build/obj_m1/m1_294.obj,,"stack args (o msg); sibling of 0xEEE10"
 0x0017f990,m1_Shake17F990,Structurally compared,src/game/m1_295.c,build/obj_m1/m1_295.obj,,"regargs: s=ESI; volatile keeps the double f30 store; comige keeps the 0 >= amp operand order"
 0x00168b00,m1_HopTurn168B00,Structurally compared,src/game/m1_296.c,build/obj_m1/m1_296.obj,,"stack args (o a); case 0 falls into case 1; alias keeps the two effect lookups, one shared direction call"
+0x000ab9d0,m1_IdleLoopAB9D0,Structurally compared,src/game/m1_297.c,build/obj_m1/m1_297.obj,,"stack args (cmd s); sibling of 0xABBF0; SSE truncation intrinsics, alias keeps the pose-0 call"
+0x0009ed40,m1_Sequence9ED40,Structurally compared,src/game/m1_297.c,build/obj_m1/m1_297.obj,,"stack arg (o); alias keeps the two finish calls"

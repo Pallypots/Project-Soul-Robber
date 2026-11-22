@@ -4,10 +4,10 @@
 | Relocation-aware match | 0 | 0 |
 | Native-integrated | 0 | 0 |
 | Semantic-tested | 0 | 0 |
-| Structurally compared | 5,996 | 777,027 |
+| Structurally compared | 5,998 | 777,379 |
 | Draft source | 0 | 0 |
 | Analyzed | 0 | 0 |
-| Unanalyzed | 1,511 | 882,610 |
+| Unanalyzed | 1,509 | 882,258 |
 | **Game total** | **7,507** | **1,659,637** |
 | Library (not counted) | 2,762 | 484,722 |
 | Unknown owner | 3 | |

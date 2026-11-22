@@ -1438,3 +1438,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_294: PASS 0x186280 (height condition, sibling of 0x186310), 0x1063C0 (message handler with aimed hit effect, sibling of 0xEEE10). Skipped: 0x1B7E90 (long GIF packet builder with pointer bumps).
 - m1_295: PASS 0x17F990 (shake step). Skipped: 0x17F0F0 (byte-switch + indexed float table), 0x1424A0 (long gate chain + jump table).
 - m1_296: PASS 0x168B00 (hop-and-turn routine). Skipped: 0xF4B40, 0xCC6E0 (register args + shared tails).
+- m1_297: PASS 0xAB9D0 (idle loop widget 1, sibling of 0xABBF0), 0x9ED40 (scripted sequence). Skipped: 0x37C70 (unrolled flag loop).
