@@ -17,10 +17,10 @@ typedef struct {
 
 extern M1Fp321 m1_flyPool3F8A18[16];
 extern const uint8_t m1_flyTabA31F218[], m1_flyTabB31F1D0[];
-void sub_00169A00(void);
+int32_t m1_FlyerFree169A00();
 int32_t m1_FlyerHit169800();
 void m1_FlyerThink16B320();
-void sub_00169A50(void);
+void m1_FlyerMove169A50();
 void b16_To12(void);
 int  sub_000D9A70(int k);
 int32_t sub_0001BC40(M1Fo321 *o);
@@ -58,10 +58,10 @@ found:
         return 0;
     }
     if (neg) p->f0 |= 0x800;
-    a->cbb4 = (const void *)sub_00169A00;
+    a->cbb4 = (const void *)m1_FlyerFree169A00;
     a->cbbc = (const void *)m1_FlyerHit169800;
     a->cbc0 = (const void *)m1_FlyerThink16B320;
-    a->cbc4 = (const void *)sub_00169A50;
+    a->cbc4 = (const void *)m1_FlyerMove169A50;
     a->cbc8 = m1_flyTabA31F218;
     a->cbcc = m1_flyTabB31F1D0;
     a->cbd0 = (const void *)b16_To12;
