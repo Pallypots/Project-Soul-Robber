@@ -77,3 +77,4 @@ va,name,state,source,obj,waivers,notes
 0x00032c40,r1b_FadeSeq32C40,Structurally compared,src/game/r1b_12.c,build/obj_r1b/r1b_12.obj,,
 0x000328a0,r1b_FadeSeq328A0,Structurally compared,src/game/r1b_12.c,build/obj_r1b/r1b_12.obj,,
 0x000326c0,r1b_FadeSeq326C0,Structurally compared,src/game/r1b_12.c,build/obj_r1b/r1b_12.obj,,
+0x00032a50,r1b_FadeSeq32A50,Structurally compared,src/game/r1b_13.c,build/obj_r1b/r1b_13.obj,,
