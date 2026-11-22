@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="908" height="598" viewBox="0 0 908 598" font-family="Segoe UI,Helvetica,Arial,sans-serif">
 <rect width="908" height="598" rx="8" fill="#0d1117" stroke="#30363d"/>
-<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 46.76% of the game&#8217;s code</text>
-<text x="24" y="66" font-size="13" fill="#8b949e">775,993 of 1,659,637 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
+<text x="24" y="42" font-size="24" font-weight="700" fill="#e6edf3">Decompiled: 46.78% of the game&#8217;s code</text>
+<text x="24" y="66" font-size="13" fill="#8b949e">776,341 of 1,659,637 game code bytes. Each square is 2,048 bytes of the executable&#8217;s code, in address order. Lit: source recovered. Grey: not yet.</text>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="24" y="96" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="1.00"><title>0x00012000: 1978 of 1978 bytes Structurally compared</title></rect>
 <rect x="42" y="96" width="14" height="14" rx="3" fill="#30363d"/>
@@ -898,7 +898,7 @@
 <rect x="150" y="276" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="150" y="276" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.39"><title>0x00105800: 112 of 2004 bytes Structurally compared</title></rect>
 <rect x="168" y="276" width="14" height="14" rx="3" fill="#30363d"/>
-<rect x="168" y="276" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.73"><title>0x00106000: 1106 of 1890 bytes Structurally compared</title></rect>
+<rect x="168" y="276" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.85"><title>0x00106000: 1454 of 1890 bytes Structurally compared</title></rect>
 <rect x="186" y="276" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="204" y="276" width="14" height="14" rx="3" fill="#30363d"/>
 <rect x="204" y="276" width="14" height="14" rx="3" fill="#bf8700" fill-opacity="0.60"><title>0x00107000: 749 of 1978 bytes Structurally compared</title></rect>
