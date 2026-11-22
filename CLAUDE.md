@@ -31,6 +31,7 @@ Verify the SHA-1 before any analysis run (`tools/xbe_inventory.py header`).
 - No leaked SDK, leaked symbols or leaked source, ever. Public availability is not provenance. Microsoft XDK files are not legitimately obtainable; do not fetch them.
 - Decompiler output (Ghidra, the recomp's generated C) is a draft, never proof.
 - No GitHub repo, commit to other repos, or push without the owner's OK. Local commits here only when asked.
+- **Typed members, never fixed offsets** (owner decision 2026-11-22). New code accesses fields through named struct members, never `*(T *)((uint8_t *)p + 0xNN)`. A function written with fixed offsets is not done. Each struct is declared once, in a shared header under `include/` (e.g. `include/m1_enemy.h`), not redefined per file. Existing files are converted to shared types in cleanup batches; a conversion must keep the full check passing. Known fakematch tricks (volatile stand-ins, alias symbols, SSE workarounds) are listed in NOTES.md and are temporary.
 - GPL/LGPL code (xemu, Cxbx-Reloaded, the rival GPL port) is behaviour reference only, never pasted.
 - The matching-decomp skill is MIPS/ELF based. Do not use its checker, splat layout or MIPS recipes for x86 XBE work; build or qualify an x86 checker first (see `docs/verification.md`).
 
