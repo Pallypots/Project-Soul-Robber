@@ -1436,3 +1436,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_292: PASS 0x85590 (spawn placement list), 0x1199C0 (summon minion). Skipped: 0xCE020 (state switch with shared tails).
 - m1_293: PASS 0xFD710 (helper attack cycle). Skipped: 0x171670 (byte-switch + regarg calls), 0x76490 (text width with cross-jumped switch).
 - m1_294: PASS 0x186280 (height condition, sibling of 0x186310), 0x1063C0 (message handler with aimed hit effect, sibling of 0xEEE10). Skipped: 0x1B7E90 (long GIF packet builder with pointer bumps).
+- m1_295: PASS 0x17F990 (shake step). Skipped: 0x17F0F0 (byte-switch + indexed float table), 0x1424A0 (long gate chain + jump table).

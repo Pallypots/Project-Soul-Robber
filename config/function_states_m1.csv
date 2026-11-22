@@ -1131,3 +1131,4 @@ va,name,state,source,obj,waivers,notes
 0x000fd710,m1_HelperAttackFD710,Structurally compared,src/game/m1_293.c,build/obj_m1/m1_293.obj,,"no args; 0xFC6F0 takes k=EAX"
 0x00186280,m1_CondHeight186280,Structurally compared,src/game/m1_294.c,build/obj_m1/m1_294.obj,,"stack args (self a c); sibling of 0x186310; comige keeps the range-test operand order"
 0x001063c0,m1_OnMsg1063C0,Structurally compared,src/game/m1_294.c,build/obj_m1/m1_294.obj,,"stack args (o msg); sibling of 0xEEE10"
+0x0017f990,m1_Shake17F990,Structurally compared,src/game/m1_295.c,build/obj_m1/m1_295.obj,,"regargs: s=ESI; volatile keeps the double f30 store; comige keeps the 0 >= amp operand order"
