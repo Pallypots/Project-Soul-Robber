@@ -14,3 +14,5 @@ va,size,reason
 0x000EE5F0,0x48,ends at its jump table; inventory size 112 includes the table
 0x00172400,0x47,ends at its jump tables; inventory size 128 includes them
 0x00170D80,0x84,ends at its jump tables; inventory size 129 includes them
+0x00118B70,0xB6,code ends at 0x118C26 (mov edi,edi pad then its jump table at 0x118C28); inventory size 352 runs into the table and the next function 0x118C60
+0x00118C60,0x70,code ends with the ret at 0x118CCF; inventory size 1008 runs on into the following functions
