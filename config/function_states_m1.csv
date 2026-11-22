@@ -1183,3 +1183,7 @@ va,name,state,source,obj,waivers,notes
 0x00187460,m1_TurnToPlayer187460,Structurally compared,src/game/m1_308.c,build/obj_m1/m1_308.obj,,
 0x001325d0,m1_BossHop1325D0,Structurally compared,src/game/m1_308.c,build/obj_m1/m1_308.obj,,
 0x00118130,m1_ClimbOut118130,Structurally compared,src/game/m1_308.c,build/obj_m1/m1_308.obj,,
+0x00130ff0,m1_NextAction130FF0,Structurally compared,src/game/m1_309.c,build/obj_m1/m1_309.obj,,
+0x0012b0d0,m1_EnterBigRecoil12B0D0,Structurally compared,src/game/m1_309.c,build/obj_m1/m1_309.obj,,
+0x00118f20,m1_Phase118F20,Structurally compared,src/game/m1_309.c,build/obj_m1/m1_309.obj,,
+0x00187a50,m1_Fall187A50,Structurally compared,src/game/m1_309.c,build/obj_m1/m1_309.obj,,
