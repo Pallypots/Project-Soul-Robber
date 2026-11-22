@@ -1442,3 +1442,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_298: PASS 0x118B70 (boss phase, size override 0xB6), 0x118C60 (boss next state, size override 0x70). Skipped: 0x126D90 (ucomiss+lahf).
 - m1_299: PASS 0x133E60 (second boss phase step, sibling of 0x118B70, size override 0xB8). 0x133F50 was already matched (r3). Large phase routines 0x14F880, 0x161F40 left.
 - m1_300 + r1b_12: 0x1172F0 next-action picker, 0x133FC0 boss phase (effect wait / react), fade sequences 0x32C40, 0x328A0, 0x326C0. Skipped 0x12A7C0, 0x1365C0 (ucomiss+lahf).
+- m1_301: 0x7E720 object build (switch keeps dec/sub test), 0x137800 power tick, 0x111EB0 shard init, 0x169BA0 n-th nearest point (volatile count/start, walking pointer), 0x16B150 spin attack (SSE mul intrinsic, volatile sbb mask), 0xFC740 combo chain. Hard: 0x122780 (cl puts the shared 0x11 reaction block last; inverting tests does not move it). Skipped 0x125AC0 (ucomiss+lahf).

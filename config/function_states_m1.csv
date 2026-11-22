@@ -1140,3 +1140,9 @@ va,name,state,source,obj,waivers,notes
 0x00133e60,m1_BossPhase133E60,Structurally compared,src/game/m1_299.c,build/obj_m1/m1_299.obj,,"stack args (o a); sibling of 0x118B70; size override 0xB8 (ends before its jump table); 0x131310 takes o=EBX a=EDI"
 0x001172f0,m1_NextAction1172F0,Structurally compared,src/game/m1_300.c,build/obj_m1/m1_300.obj,,
 0x00133fc0,m1_BossPhase133FC0,Structurally compared,src/game/m1_300.c,build/obj_m1/m1_300.obj,,
+0x0007e720,m1_ObjBuild7E720,Structurally compared,src/game/m1_301.c,build/obj_m1/m1_301.obj,,
+0x00137800,m1_PowerTick137800,Structurally compared,src/game/m1_301.c,build/obj_m1/m1_301.obj,,
+0x00111eb0,m1_ShardInit111EB0,Structurally compared,src/game/m1_301.c,build/obj_m1/m1_301.obj,,
+0x00169ba0,m1_NthNearest169BA0,Structurally compared,src/game/m1_301.c,build/obj_m1/m1_301.obj,,
+0x0016b150,m1_SpinAttack16B150,Structurally compared,src/game/m1_301.c,build/obj_m1/m1_301.obj,,
+0x000fc740,m1_ComboChainFC740,Structurally compared,src/game/m1_301.c,build/obj_m1/m1_301.obj,,
