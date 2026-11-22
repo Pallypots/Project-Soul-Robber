@@ -1168,3 +1168,7 @@ va,name,state,source,obj,waivers,notes
 0x00123d60,m1_EnterCharge123D60,Structurally compared,src/game/m1_305.c,build/obj_m1/m1_305.obj,,
 0x00128fc0,m1_EnterFlinch128FC0,Structurally compared,src/game/m1_305.c,build/obj_m1/m1_305.obj,,
 0x00129db0,m1_EnterStun129DB0,Structurally compared,src/game/m1_305.c,build/obj_m1/m1_305.obj,,
+0x00127530,m1_EnterHeavyFlinch127530,Structurally compared,src/game/m1_306.c,build/obj_m1/m1_306.obj,,
+0x00125350,m1_EnterRoll125350,Structurally compared,src/game/m1_306.c,build/obj_m1/m1_306.obj,,
+0x00127830,m1_EnterHeavyFlinch127830,Structurally compared,src/game/m1_306.c,build/obj_m1/m1_306.obj,,
+0x0012ae80,m1_EnterDizzy12AE80,Structurally compared,src/game/m1_306.c,build/obj_m1/m1_306.obj,,
