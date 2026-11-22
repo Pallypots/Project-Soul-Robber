@@ -1126,3 +1126,5 @@ va,name,state,source,obj,waivers,notes
 0x00199f70,m1_TrackBusy199F70,Structurally compared,src/game/m1_290.c,build/obj_m1/m1_290.obj,imm:0x38,"stack arg (t); volatile index/state keep the range tests and the state-7 store; orig multiplies the 0x38 voice stride with imul, modern cl with lea/shl"
 0x000c4960,m1_SendEvent12C4960,Structurally compared,src/game/m1_291.c,build/obj_m1/m1_291.obj,,"stack args (a o v p q); sibling of 0xBD570 / 0xC2AA0"
 0x000ed630,m1_SpawnKindED630,Structurally compared,src/game/m1_291.c,build/obj_m1/m1_291.obj,,"stack args (kind a pos rot b); search starts from the known first kind (2); volatile table/slot pointers keep the base+offset addressing; hangs if no free slot"
+0x00085590,m1_SpawnPlacements85590,Structurally compared,src/game/m1_292.c,build/obj_m1/m1_292.obj,,"stack arg (l); 0x854B0 takes list=EDI"
+0x001199c0,m1_Summon1199C0,Structurally compared,src/game/m1_292.c,build/obj_m1/m1_292.obj,,"stack args (o a); volatile flag reads keep the two bit tests; hangs if the spawn fails"
