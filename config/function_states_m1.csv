@@ -1198,3 +1198,5 @@ va,name,state,source,obj,waivers,notes
 0x0012c7f0,m1_EnterLunge12C7F0,Structurally compared,src/game/m1_312.c,build/obj_m1/m1_312.obj,,
 0x00123660,m1_EnterTailSwipe123660,Structurally compared,src/game/m1_312.c,build/obj_m1/m1_312.obj,,
 0x00125e50,m1_EnterPounce125E50,Structurally compared,src/game/m1_312.c,build/obj_m1/m1_312.obj,,
+0x00118cd0,m1_LeapAttack118CD0,Structurally compared,src/game/m1_313.c,build/obj_m1/m1_313.obj,,
+0x00118900,m1_LeapAttack118900,Structurally compared,src/game/m1_313.c,build/obj_m1/m1_313.obj,,
