@@ -1219,3 +1219,4 @@ va,name,state,source,obj,waivers,notes
 0x0016b5f0,m1_FlyerSpawn16B5F0,Structurally compared,src/game/m1_321.c,build/obj_m1/m1_321.obj,,
 0x0016b320,m1_FlyerThink16B320,Structurally compared,src/game/m1_321.c,build/obj_m1/m1_321.obj,,
 0x0016a710,m1_FlyerDive16A710,Structurally compared,src/game/m1_322.c,build/obj_m1/m1_322.obj,,
+0x001693e0,m1_Flyer2Spawn1693E0,Structurally compared,src/game/m1_323.c,build/obj_m1/m1_323.obj,,
