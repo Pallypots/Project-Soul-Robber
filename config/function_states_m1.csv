@@ -1213,3 +1213,4 @@ va,name,state,source,obj,waivers,notes
 0x00164c90,m1_StunTrap164C90,Structurally compared,src/game/m1_317.c,build/obj_m1/m1_317.obj,,
 0x001651b0,m1_GroundPound1651B0,Structurally compared,src/game/m1_318.c,build/obj_m1/m1_318.obj,,
 0x00153d80,m1_GroundPound153D80,Structurally compared,src/game/m1_318.c,build/obj_m1/m1_318.obj,,
+0x0014b5b0,m1_DashRecover14B5B0,Structurally compared,src/game/m1_319.c,build/obj_m1/m1_319.obj,,

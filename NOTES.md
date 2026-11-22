@@ -1460,3 +1460,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_316: boss leap 0x133BA0 (as 0x118900 with gravity on +0x168), slam enter 0x129920 (random speed from a 4-entry local table, sway channel flags, weight-class window).
 - m1_317: stun-trap twins 0x153650 and 0x164C90 (0x156180 takes motion, 0, 0, 0, frame-scaled value).
 - m1_318: ground-pound pair 0x1651B0 (knock-down layout) and 0x153D80 (stun-trap layout). The duplicated reset blocks need alias callees in the second copy or cl merges them; float tests written as !(x >= c).
+- m1_319: dash-and-recover 0x14B5B0. Set aside the vector-aim family (0x158770, 0x158AA0, 0x1501B0, 0x150960: 0x1AD9F0/0x1AD7E0/0x1ADBA0/0x1AD9D0 chains with x87 fucompi/lahf tests) and 0x14C170 (stack-slot reuse like 0x149150).
