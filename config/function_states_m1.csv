@@ -1138,3 +1138,5 @@ va,name,state,source,obj,waivers,notes
 0x00118b70,m1_BossPhase118B70,Structurally compared,src/game/m1_298.c,build/obj_m1/m1_298.obj,,"stack args (o a); size override 0xB6 (ends at its jump table); 0x117580 takes a=EDI"
 0x00118c60,m1_BossNext118C60,Structurally compared,src/game/m1_298.c,build/obj_m1/m1_298.obj,,"stack args (o a); size override 0x70; aliases keep the three state calls apart"
 0x00133e60,m1_BossPhase133E60,Structurally compared,src/game/m1_299.c,build/obj_m1/m1_299.obj,,"stack args (o a); sibling of 0x118B70; size override 0xB8 (ends before its jump table); 0x131310 takes o=EBX a=EDI"
+0x001172f0,m1_NextAction1172F0,Structurally compared,src/game/m1_300.c,build/obj_m1/m1_300.obj,,
+0x00133fc0,m1_BossPhase133FC0,Structurally compared,src/game/m1_300.c,build/obj_m1/m1_300.obj,,

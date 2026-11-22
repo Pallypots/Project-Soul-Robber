@@ -1441,3 +1441,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_297: PASS 0xAB9D0 (idle loop widget 1, sibling of 0xABBF0), 0x9ED40 (scripted sequence). Skipped: 0x37C70 (unrolled flag loop).
 - m1_298: PASS 0x118B70 (boss phase, size override 0xB6), 0x118C60 (boss next state, size override 0x70). Skipped: 0x126D90 (ucomiss+lahf).
 - m1_299: PASS 0x133E60 (second boss phase step, sibling of 0x118B70, size override 0xB8). 0x133F50 was already matched (r3). Large phase routines 0x14F880, 0x161F40 left.
+- m1_300 + r1b_12: 0x1172F0 next-action picker, 0x133FC0 boss phase (effect wait / react), fade sequences 0x32C40, 0x328A0, 0x326C0. Skipped 0x12A7C0, 0x1365C0 (ucomiss+lahf).

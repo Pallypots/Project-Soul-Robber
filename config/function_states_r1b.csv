@@ -74,3 +74,6 @@ va,name,state,source,obj,waivers,notes
 0x00032a00,r1b_Queue381834PopC,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,,
 0x00032840,r1b_Queue381834PopB,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,data:fconst:768.0;imm:0x44400000,float constant 768.0 stored as an immediate by modern cl vs loaded from .rdata (same value)
 0x00032bf0,r1b_Queue381834PopD,Structurally compared,src/game/r1b_11.c,build/obj_r1b/r1b_11.obj,data:fconst:192.0;imm:0x43400000,float constant 192.0 stored as an immediate by modern cl vs loaded from .rdata (same value)
+0x00032c40,r1b_FadeSeq32C40,Structurally compared,src/game/r1b_12.c,build/obj_r1b/r1b_12.obj,,
+0x000328a0,r1b_FadeSeq328A0,Structurally compared,src/game/r1b_12.c,build/obj_r1b/r1b_12.obj,,
+0x000326c0,r1b_FadeSeq326C0,Structurally compared,src/game/r1b_12.c,build/obj_r1b/r1b_12.obj,,
