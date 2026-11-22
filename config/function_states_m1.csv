@@ -1299,3 +1299,18 @@ va,name,state,source,obj,waivers,notes
 0x0015cf20,m1_AiGetUp15CF20,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up; M1_STANDUP2_EXIT macro
 0x0015a550,m1_TakeHit15A550,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type take-hit exit
 0x0015d1f0,m1_AiGetUpB15D1F0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type get-up with flag-9 reaction
+0x00161c90,m1_AiGetUpC161C90,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type get-up; mode 10 or hang
+0x0015e300,m1_AiGetUpD15E300,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type get-up; 0xD exit starts sound 0x10F (M1_STANDUP2_EXIT_SND)
+0x00164ee0,m1_AiGetUpE164EE0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type get-up; mode 0 only
+0x00163fb0,m1_AiKnockedFlat163FB0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type knocked flat; 3-phase switch
+0x0015b300,m1_AiFallGetUp15B300,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,exits share one tail and fall through to the landing check
+0x00163290,m1_AiKnockGetUp163290,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x001648b0,m1_AiTumble1648B0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x0015eab0,m1_AiRecover15EAB0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00161750,m1_AiDownGetUp161750,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x0015c7a0,m1_AiRecoverHeal15C7A0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00161100,m1_AiComboDown161100,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00161f40,m1_AiLand161F40,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00162740,m1_AiLaunched162740,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00162c90,m1_AiKnockBack162C90,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00160650,m1_AiCounter160650,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
