@@ -269,12 +269,14 @@ void m1_FlyerCircle16C560(M1Ob355 *o, M1Ai355e *e) {
     M1St355e *s = e->s74;
     float v[4], w[4], t[4], m[16];
     float rate, a, lim;
+    volatile uint32_t n;
     sub_001AD9F0(v, o->p60, s->vC);
     v[1] = 0.0f;
     sub_001AD7E0(v, v);
     sub_001ADBA0(v, v, s->f30);
     sub_001AD940(m);
-    if (e->n50 >= 7 && e->n50 <= 10)
+    n = e->n50;
+    if (n >= 7 && n <= 10)
         rate = 60.0f;
     else
         rate = 120.0f;

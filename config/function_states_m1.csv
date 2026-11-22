@@ -1278,3 +1278,16 @@ va,name,state,source,obj,waivers,notes
 0x00132da0,m1_AiLeapSlam132DA0,Structurally compared,src/game/m1_353.c,build/obj_m1/m1_353.obj,,stack args (o e); distance-banded leap speeds; 0x147710 alias for the int-argument call; alias keeps the two final 0x131310 calls apart
 0x00154d50,m1_EnemySetup154D50,Structurally compared,src/game/m1_354.c,build/obj_m1/m1_354.obj,,stack args (o e mode); unknown modes read an uninitialised local (volatile junk); one subtraction kept via _mm_sub_ss; 0x147580 takes EBX/ESI
 0x0016c860,m1_FlyerPerch16C860,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,stack args (o e); case 0 falls into case 1; route point walk; 0x16C820 takes EAX
+0x0016ca10,m1_FlyerHover16CA10,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,stack args (o e); turn branch written last so it lands at the end; 0x16C820 takes EAX
+0x0016cd30,m1_FlyerScreech16CD30,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,stack args (o e); still-animating turn written last; 0x16C820 takes EAX
+0x0016a170,m1_FlyerIdle16A170,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,stack args (o e); switch fall-through; 0x169D30 takes EDI
+0x00120bf0,m1_AimTick120BF0,Structurally compared,src/game/m1_356.c,build/obj_m1/m1_356.obj,,stack args (o e); 0x11F0C0 takes EAX
+0x00169ea0,m1_FlyerSteer169EA0,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,stack args (o e); alias keeps the 4/6 steer calls apart; 0x169D30 takes EDI
+0x00132080,m1_AiPickByRange132080,Structurally compared,src/game/m1_356.c,build/obj_m1/m1_356.obj,,stack args (o e); four 0x131310 aliases keep the separate calls
+0x00176bb0,m1_AiRelease176BB0,Structurally compared,src/game/m1_356.c,build/obj_m1/m1_356.obj,,stack args (o e); 0x18C6B0 takes ESI
+0x00176e00,m1_AiApproach176E00,Structurally compared,src/game/m1_356.c,build/obj_m1/m1_356.obj,,stack args (o e); negative multiply via SSE intrinsic; 0x176970 takes ESI
+0x00100c50,m1_MinionFollow100C50,Structurally compared,src/game/m1_356.c,build/obj_m1/m1_356.obj,,stack args (o e); discarded float results of 0xF7C40; 0x18F650 takes ESI
+0x00100db0,m1_MinionLeave100DB0,Structurally compared,src/game/m1_356.c,build/obj_m1/m1_356.obj,,stack args (o e); 0x18F650 takes ESI
+0x0012ac20,m1_AiRise12AC20,Structurally compared,src/game/m1_357.c,build/obj_m1/m1_357.obj,,stack args (o e); case 0 falls into case 1; volatile k gives the 0/0xE branch; 0x11F2B0 takes EDI/EBX
+0x0010d3e0,m1_ReleaseAll10D3E0,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,regargs: o=ESI (hangs when null); item walk restarts after each removal
+0x001788d0,m1_AiThrowCheck1788D0,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,regargs: o=ESI; stack arg (e); aim struct mirrors the original frame layout
