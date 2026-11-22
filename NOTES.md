@@ -1455,3 +1455,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_311: enter-state family 0x120DB0, 0x122570, 0x1269A0, 0x122E70 (exact 135), 0x127D70. Family left: 0x12C7F0, 0x123660, 0x125E50, 0x12B620. Skipped 0x16CD30 (table walk), 0x12C500 (long).
 - m1_312: enter-state family 0x12C7F0, 0x123660, 0x125E50. Skipped 0x12B620 (vector ops through register-arg helpers 0x1ADBA0/0x1AD7E0/0x1AD9D0).
 - m1_313: leap-attack twins 0x118CD0, 0x118900 (8-step, goto into shared inc and hit blocks). Left: 0x164C90 (long), 0x144B20 (indirect call through 0x31DBBC).
+- m1_314: leap-attack variants 0x1192A0, 0x134670, 0x1343D0, 0x134110 (early one-in-4 reaction reuses the final pick via goto). Scan3 left: 0x153650, 0x1212C0, 0x1286B0, 0x14B5B0, 0x126110, 0x133BA0, 0x129920, 0x1651B0, 0x123920, ...
