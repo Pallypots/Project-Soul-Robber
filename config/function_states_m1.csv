@@ -1222,3 +1222,7 @@ va,name,state,source,obj,waivers,notes
 0x001693e0,m1_Flyer2Spawn1693E0,Structurally compared,src/game/m1_323.c,build/obj_m1/m1_323.obj,,
 0x00187040,m1_HoverStrike187040,Structurally compared,src/game/m1_324.c,build/obj_m1/m1_324.obj,,
 0x0016ba40,m1_FlyerPatrol16BA40,Structurally compared,src/game/m1_325.c,build/obj_m1/m1_325.obj,,
+0x001ab3d0,m1_SfxTrigger1AB3D0,Structurally compared,src/game/m1_gs10.c,build/obj_m1/m1_gs10.obj,,/GS cookie; stack args (a b); 0x002224DD is stdcall
+0x001a00c0,m1_ShkLoadAll1A00C0,Structurally compared,src/game/m1_gs10.c,build/obj_m1/m1_gs10.obj,,/GS cookie; no args; inline copy written with __movsd/__movsb and a volatile count (cl drops the byte tail of a 64-aligned size)
+0x000d2a50,m1_PlSetMode0D2A50,Structurally compared,src/game/m1_326.c,build/obj_m1/m1_326.obj,,stack args (pl mode); aliases in case 5 keep the identical case 4/5 bodies apart; volatile k gives the push-0/push-1 branch
+0x00182980,m1_SpinnerIntro182980,Structurally compared,src/game/m1_327.c,build/obj_m1/m1_327.obj,,stack args (o e); volatile k keeps the 4/5 branch; if (dir != 2) blocks put the goto calls after the loops; alias keeps the case-3 goto copy

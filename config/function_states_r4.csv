@@ -69,3 +69,7 @@ va,name,state,source,obj,waivers,notes
 0x001b6130,r4_EmitSetFlag8,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
 0x001b6140,r4_EmitIsDone,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,jcc:be/a,stack arg; unsigned loop end: the zero-count test on the unsigned count is jbe in the original and je in modern cl
 0x001b6190,r4_EmitIsFree,Structurally compared,src/game/r4_4.c,build/obj_r4/r4_4.obj,,stack arg
+0x001b1e80,r4_FogEmitFull,Structurally compared,src/game/r4_9.c,build/obj_r4/r4_9.obj,,stack args; fog command plus range block; calls 0x001A7100
+0x001b27c0,r4_GroundAngle,Structurally compared,src/game/r4_9.c,build/obj_r4/r4_9.obj,,stack args; first clamp test is x87 fcompi in the original (jcc kind matches)
+0x001b7360,r4_CamEmit,Structurally compared,src/game/r4_9.c,build/obj_r4/r4_9.obj,,stack args (cmd o); alias r4_FogEmitFullB keeps the 0x001B1E80 call from being inlined
+0x001b50f0,r4_BillboardEmit,Structurally compared,src/game/r4_9.c,build/obj_r4/r4_9.obj,,stack args (m cmd p r); volatile command pointer keeps the separate 0x10 advances; -0.025 multiply via SSE intrinsic

@@ -49,3 +49,5 @@ va,name,state,source,obj,waivers,notes
 0x0019c6f0,r4e_FadeInJob,Structurally compared,src/game/r4e_23.c,build/obj_r4e/r4e_23.obj,data:fconst:1.0;imm:0x43000000,stack arg (job); constant 1.0 loaded from .rdata by the original and built with fld1 by modern cl; float argument 128.0 pushed as an immediate by the original and loaded from .rdata by modern cl
 0x001a1280,r4e_ShakeFadeJob,Structurally compared,src/game/r4e_23.c,build/obj_r4e/r4e_23.obj,imm:0x43000000,stack arg (job); float argument 128.0 pushed as an immediate by the original and loaded from .rdata by modern cl
 0x001a2370,r4e_DrawVertexBlockFmt,Structurally compared,src/game/r4e_6.c,build/obj_r4e/r4e_6.obj,,"stack args (fmt h); alias keeps the two draw calls"
+0x001ae060,r4e_MatInverseRigid,Structurally compared,src/game/r4e_24.c,build/obj_r4e/r4e_24.obj,,stack args (d s); -1.0 multiplies written with SSE intrinsics so cl keeps them
+0x001ae140,r4e_ProjectToScreen,Structurally compared,src/game/r4e_24.c,build/obj_r4e/r4e_24.obj,,stack args (out p); SSE intrinsics keep the multiply order and cvttss2si truncation

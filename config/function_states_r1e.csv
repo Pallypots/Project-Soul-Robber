@@ -68,3 +68,4 @@ va,name,state,source,obj,waivers,notes
 0x00036c00,r1e_ListenerSet,Structurally compared,src/game/r1e_13.c,build/obj_r1e/r1e_13.obj,,
 0x00037620,r1e_SlotAdd,Structurally compared,src/game/r1e_13.c,build/obj_r1e/r1e_13.obj,,
 0x000527b0,r1e_SceneGlobalsReset,Structurally compared,src/game/r1e_13.c,build/obj_r1e/r1e_13.obj,data:fconst:45.0;imm:0x42340000;data:fconst:0.125;imm:0x3e000000,float constants stored as immediates by modern cl instead of loads from .rdata (same values)
+0x00032dd0,r1e_FadeSeqC32DD0,Structurally compared,src/game/r1e_14.c,build/obj_r1e/r1e_14.obj,,no args; sine result handled on x87 in the original
