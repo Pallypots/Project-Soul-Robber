@@ -1291,3 +1291,11 @@ va,name,state,source,obj,waivers,notes
 0x0012ac20,m1_AiRise12AC20,Structurally compared,src/game/m1_357.c,build/obj_m1/m1_357.obj,,stack args (o e); case 0 falls into case 1; volatile k gives the 0/0xE branch; 0x11F2B0 takes EDI/EBX
 0x0010d3e0,m1_ReleaseAll10D3E0,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,regargs: o=ESI (hangs when null); item walk restarts after each removal
 0x001788d0,m1_AiThrowCheck1788D0,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,regargs: o=ESI; stack arg (e); aim struct mirrors the original frame layout
+0x0016c560,m1_FlyerCircle16C560,Structurally compared,src/game/m1_355.c,build/obj_m1/m1_355.obj,,regargs: e=EBX; volatile state copy keeps the unsigned 7..10 range test; -1 multiply via SSE intrinsic
+0x001077b0,m1_PowerCharge1077B0,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,regargs: o=EDI; returns 1 on the frame the burst fires
+0x0011df80,m1_AiEnterIdle11DF80,Structurally compared,src/game/m1_359.c,build/obj_m1/m1_359.obj,,stack args (o e mode); 0x11DD70 takes ESI/EDI
+0x0010f130,m1_CamAbsAxis10F130,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,regargs: out=ESI o=EDI; -1 multiplies via SSE intrinsics keep the .rdata constant
+0x0010d500,m1_ItemPickup10D500,Structurally compared,src/game/m1_358.c,build/obj_m1/m1_358.obj,,stack args (unused it); alias keeps the two 0x94E00 calls apart
+0x0015cf20,m1_AiGetUp15CF20,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up; M1_STANDUP2_EXIT macro
+0x0015a550,m1_TakeHit15A550,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type take-hit exit
+0x0015d1f0,m1_AiGetUpB15D1F0,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type get-up with flag-9 reaction
