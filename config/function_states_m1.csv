@@ -1260,3 +1260,17 @@ va,name,state,source,obj,waivers,notes
 0x0011cb80,m1_AiTurnPick11CB80,Structurally compared,src/game/m1_343.c,build/obj_m1/m1_343.obj,,stack args (o e); three-step sibling of 0x11C950 with the cooldown test
 0x00141270,m1_AiSpinSwipe141270,Structurally compared,src/game/m1_344.c,build/obj_m1/m1_344.obj,,stack args (o e); case 1 falls into case 2; 0x13D3F0/0x140040/0x1401C0/0x13D380 take register args
 0x00144d70,m1_AiSidestep144D70,Structurally compared,src/game/m1_345.c,build/obj_m1/m1_345.obj,,stack args (o e); turn limits chosen per branch; check table called through the 0x31DBBC pointer
+0x0017d280,m1_HitReact17D280,Structurally compared,src/game/m1_346.c,build/obj_m1/m1_346.obj,,stack args (o e hit); 0x17CEC0 takes register args
+0x001756a0,m1_HitReact1756A0,Structurally compared,src/game/m1_346.c,build/obj_m1/m1_346.obj,,stack args (o e hit)
+0x00176810,m1_HitReact176810,Structurally compared,src/game/m1_346.c,build/obj_m1/m1_346.obj,,stack args (o e hit); twin of 0x1756A0
+0x001779a0,m1_HitReact1779A0,Structurally compared,src/game/m1_346.c,build/obj_m1/m1_346.obj,,stack args (o e hit); byte-identical copy of 0x1756A0
+0x00141bc0,m1_AiIdle141BC0,Structurally compared,src/game/m1_347.c,build/obj_m1/m1_347.obj,,stack args (o e); check table called through the 0x31D0B8 pointer; 0x140040/0x1401C0 take register args
+0x001846e0,m1_HitBreak1846E0,Structurally compared,src/game/m1_346.c,build/obj_m1/m1_346.obj,,stack args (o e hit); per-kind cool-down slots
+0x001337b0,m1_AiCast1337B0,Structurally compared,src/game/m1_348.c,build/obj_m1/m1_348.obj,,stack args (o e); alias keeps the two identical animation waits apart; 0x131310 takes register args
+0x00131b80,m1_AiRiseCurve131B80,Structurally compared,src/game/m1_348.c,build/obj_m1/m1_348.obj,,stack args (o e); case 1 falls into case 2; volatile step copy keeps the signed 1..4 range test
+0x00136400,m1_AiRiseCurve136400,Structurally compared,src/game/m1_348.c,build/obj_m1/m1_348.obj,,stack args (o e); twin of 0x131B80
+0x00188440,m1_AiJumpDown188440,Structurally compared,src/game/m1_349.c,build/obj_m1/m1_349.obj,,stack args (o e); _mm_store_ss keeps the 4.0 .rdata load; alias keeps the two 0xA exits apart; 0x186470 takes EBX/EDI
+0x00119050,m1_AiLaunched119050,Structurally compared,src/game/m1_350.c,build/obj_m1/m1_350.obj,,stack args (o e); switch fall-through with hangs for unknown poses; goto into the shared counter exit; 0x1154D0 takes EAX
+0x00132890,m1_AiThrownBack132890,Structurally compared,src/game/m1_350.c,build/obj_m1/m1_350.obj,,stack args (o e); alias keeps the two final 0x131310 calls apart
+0x001177a0,m1_TakeHit1177A0,Structurally compared,src/game/m1_351.c,build/obj_m1/m1_351.obj,,stack args (o e hit); whole-point loss via _mm_cvttss_si32; 0x1146D0/0x117580 take register args
+0x001318f0,m1_TakeHit1318F0,Structurally compared,src/game/m1_351.c,build/obj_m1/m1_351.obj,,stack args (o e hit); twin of 0x1177A0
