@@ -1204,3 +1204,6 @@ va,name,state,source,obj,waivers,notes
 0x00134670,m1_BossLeap134670,Structurally compared,src/game/m1_314.c,build/obj_m1/m1_314.obj,,
 0x001343d0,m1_BossLeap1343D0,Structurally compared,src/game/m1_314.c,build/obj_m1/m1_314.obj,,
 0x00134110,m1_BossLeap134110,Structurally compared,src/game/m1_314.c,build/obj_m1/m1_314.obj,,
+0x001212c0,m1_EnterHover1212C0,Structurally compared,src/game/m1_315.c,build/obj_m1/m1_315.obj,,
+0x00126110,m1_EnterRush126110,Structurally compared,src/game/m1_315.c,build/obj_m1/m1_315.obj,,
+0x00123920,m1_EnterSpinDash123920,Structurally compared,src/game/m1_315.c,build/obj_m1/m1_315.obj,,
