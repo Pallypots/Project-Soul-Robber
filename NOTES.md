@@ -1458,3 +1458,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_314: leap-attack variants 0x1192A0, 0x134670, 0x1343D0, 0x134110 (early one-in-4 reaction reuses the final pick via goto). Scan3 left: 0x153650, 0x1212C0, 0x1286B0, 0x14B5B0, 0x126110, 0x133BA0, 0x129920, 0x1651B0, 0x123920, ...
 - m1_315: enter-state members 0x1212C0 hover, 0x126110 rush (two-way, random move from 0x145800), 0x123920 spin dash (target-rank branch).
 - m1_316: boss leap 0x133BA0 (as 0x118900 with gravity on +0x168), slam enter 0x129920 (random speed from a 4-entry local table, sway channel flags, weight-class window).
+- m1_317: stun-trap twins 0x153650 and 0x164C90 (0x156180 takes motion, 0, 0, 0, frame-scaled value).
