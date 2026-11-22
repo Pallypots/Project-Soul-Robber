@@ -1431,3 +1431,4 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_287: PASS 0x1B9E0 (sphere vs band mesh), 0x49180 (track part set). Skipped: 0x68D50 (byte-switch with cross-jumped tails).
 - m1_288: PASS 0x1A2AA0 (draw model parts). Skipped: 0x1AB2A0 (thiscall tail jump + slot loop).
 - m1_289: PASS 0x1BA6E0 (texture record alloc from pool). Skipped: 0x3B000 (mid-function fragment).
+- m1_290: PASS 0x89B50 (set play time), 0x199F70 (track busy; imm 0x38 allowed: imul vs lea/shl).
