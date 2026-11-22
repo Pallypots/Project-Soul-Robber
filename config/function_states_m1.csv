@@ -1128,3 +1128,4 @@ va,name,state,source,obj,waivers,notes
 0x000ed630,m1_SpawnKindED630,Structurally compared,src/game/m1_291.c,build/obj_m1/m1_291.obj,,"stack args (kind a pos rot b); search starts from the known first kind (2); volatile table/slot pointers keep the base+offset addressing; hangs if no free slot"
 0x00085590,m1_SpawnPlacements85590,Structurally compared,src/game/m1_292.c,build/obj_m1/m1_292.obj,,"stack arg (l); 0x854B0 takes list=EDI"
 0x001199c0,m1_Summon1199C0,Structurally compared,src/game/m1_292.c,build/obj_m1/m1_292.obj,,"stack args (o a); volatile flag reads keep the two bit tests; hangs if the spawn fails"
+0x000fd710,m1_HelperAttackFD710,Structurally compared,src/game/m1_293.c,build/obj_m1/m1_293.obj,,"no args; 0xFC6F0 takes k=EAX"
