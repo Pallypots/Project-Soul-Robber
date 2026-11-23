@@ -1314,3 +1314,4 @@ va,name,state,source,obj,waivers,notes
 0x00162740,m1_AiLaunched162740,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
 0x00162c90,m1_AiKnockBack162C90,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
 0x00160650,m1_AiCounter160650,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
+0x00188360,m1_AiGetUpPick188360,Structurally compared,src/game/m1_362.c,build/obj_m1/m1_362.obj,,"Enter the get-up state (0x186470), variant 2 when the AI reaction bit is set, else variant 1. 0x186470 takes the body and AI in ebx/edi; written as ordinary parameters."
