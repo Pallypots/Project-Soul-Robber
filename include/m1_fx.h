@@ -5,7 +5,8 @@
 
 /* Prop / effect controller: a small state machine with a phase, a timer and a per-object state block. */
 typedef struct M1PropCtl {
-    uint8_t  unk00[0x54];
+    uint8_t  unk00[0x50];
+    int32_t  behaviour;     /* +0x50  index into a behaviour table */
     int32_t  phase;         /* +0x54 */
     float    timer;         /* +0x58 */
     float    timer2;        /* +0x5C */

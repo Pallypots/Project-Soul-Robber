@@ -1487,3 +1487,8 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_362 PASS: 0x188360 (register-argument callee written as normal params).
 - m1_362 PASS: 0x1707F0, 0x170880 (new shared header include/m1_fx.h: M1PropCtl).
 - m1_361 PASS: 0xF23C0, 0xF24B0 (M1Actor gains yaw at +0x54; steps are globals 0x318C24/0x318C28).
+- 0x1707F0/0x170880 copies removed from m1_362 (already matched in m1_228). Always grep all function_states before recording.
+- 0x1701A0: hard (cl joins the two behaviour-table calls into one indirect call even with volatile pointers).
+- m1_363 PASS: 0xCD8D0 (new shared header include/m1_player.h: M1Player).
+- m1_363 PASS: 0xCEEA0, 0xCEF00 (new shared header include/m1_slots.h: M1BoneSlot).
+- m1_364 PASS: 0xCEE40.
