@@ -1485,3 +1485,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - Skipped for later: 0x184CE0 / 0x191590 (x87 fild mid-SSE), 0x17A440 / 0x176F00 / 0xA7DD0 (long), 0x118BC0 (mis-sized).
 - Batch 6 (m1_355..m1_358): register-argument helpers written as normal params with notes, which reopens earlier skips. PASS 0x16CA10/0x16CD30/0x16A170/0x169EA0 (flyer hover/screech/idle/steer; turn branch written last), 0x120BF0 (aim tick), 0x132080 (range pick; 4 aliases), 0x176BB0, 0x176E00, 0x100C50/0x100DB0 (minion follow/leave), 0x12AC20 (rise), 0x10D3E0 (release all, ESI input), 0x1788D0 (throw check, ESI input). Skip: 0x183E80 (helper returns float in xmm0), 0x16CC00/0x16D730/0x16E670/0x16CFB0 (0x16C480 takes a float in xmm0), 0x155D10 (shared call with branch-pushed args).
 - m1_362 PASS: 0x188360 (register-argument callee written as normal params).
+- m1_362 PASS: 0x1707F0, 0x170880 (new shared header include/m1_fx.h: M1PropCtl).
+- m1_361 PASS: 0xF23C0, 0xF24B0 (M1Actor gains yaw at +0x54; steps are globals 0x318C24/0x318C28).

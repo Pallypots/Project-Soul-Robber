@@ -1315,3 +1315,7 @@ va,name,state,source,obj,waivers,notes
 0x00162c90,m1_AiKnockBack162C90,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
 0x00160650,m1_AiCounter160650,Structurally compared,src/game/m1_360.c,build/obj_m1/m1_360.obj,,second enemy type stand-up family
 0x00188360,m1_AiGetUpPick188360,Structurally compared,src/game/m1_362.c,build/obj_m1/m1_362.obj,,"Enter the get-up state (0x186470), variant 2 when the AI reaction bit is set, else variant 1. 0x186470 takes the body and AI in ebx/edi; written as ordinary parameters."
+0x001707f0,m1_PropSeqA1707F0,Structurally compared,src/game/m1_362.c,build/obj_m1/m1_362.obj,,"Prop sequence (mode 0): show the prop, play its open animation, wait for it to end and remove it. Callees take the body in eax/ecx; written as ordinary parameters. Macro twin of 0x170880."
+0x00170880,m1_PropSeqB170880,Structurally compared,src/game/m1_362.c,build/obj_m1/m1_362.obj,,"Prop sequence (mode 1), same shape as 0x1707F0. Macro twin."
+0x000f23c0,m1_TurnToPlayer0F23C0,Structurally compared,src/game/m1_361.c,build/obj_m1/m1_361.obj,,"Turn toward the player by the signed angle from 0x10A140, clamped to the step in 0x318C24. 0x10A140 takes the point in eax; written as an ordinary parameter. Macro twin of 0xF24B0."
+0x000f24b0,m1_TurnToPlayerB0F24B0,Structurally compared,src/game/m1_361.c,build/obj_m1/m1_361.obj,,"Same turn with the step in 0x318C28, then the move step 0xF09E0. Compiled with optimize(s) to keep the tail call single. Macro twin."

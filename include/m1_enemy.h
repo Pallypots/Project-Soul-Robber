@@ -23,7 +23,9 @@ typedef struct M1Actor {
     M1Basis *basis;         /* +0x20 */
     uint8_t  unk024[0x30 - 0x24];
     void    *anim;          /* +0x30 */
-    uint8_t  unk034[0x60 - 0x34];
+    uint8_t  unk034[0x54 - 0x34];
+    float    yaw;           /* +0x54 */
+    uint8_t  unk058[0x60 - 0x58];
     float    pos[3];        /* +0x60 */
     uint8_t  unk06C[0x128 - 0x6C];
     uint8_t  contact;       /* +0x128 bits 0x02-0x10 = touching something (0x18 = ground) */
