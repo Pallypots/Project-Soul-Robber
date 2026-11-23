@@ -10,6 +10,9 @@ typedef struct M1Enemy1State {
         uint32_t reactFlags;
         int8_t   reactByte;
     };
+    uint8_t  unk0C[0x74 - 0x0C];
+    float    aimDist;       /* +0x74 */
+    float    aimAngle;      /* +0x78 */
 } M1Enemy1State;
 
 #endif

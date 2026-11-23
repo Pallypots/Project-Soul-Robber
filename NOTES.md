@@ -1498,3 +1498,9 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0x95C30, 0x101BE0, 0x11BE50, 0xB8510: function tails mis-split in the inventory, not real functions (drop from the reopened list).
 - 0x129180 deferred (inventory size 36 is too short; real body continues past 0x1291D0).
 - 0x126090: hard after 3 tries (cl places the close-in path before the strike path; size mode merges the two 0x11F2B0 calls).
+- m1_366 PASS: 0x11F4F0 (M1Enemy1State gains aimDist/aimAngle).
+- m1_366 PASS: 0xE0CF0 (volatile per-case store keeps cl's jump table).
+- 0x8FFE0: hard (repe cmpsb memcmp, same as 0x900A0).
+- m1_367 PASS: 0x398D0 (new shared header include/m1_panel.h: M1PanelRow).
+- 0x188FD0 deferred (null tests on array element addresses that cl folds away; biased dual-array walk).
+- 0xA0030, 0x9F1B0: mid-function fragments, not real functions.
