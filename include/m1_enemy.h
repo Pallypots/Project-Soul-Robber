@@ -12,6 +12,19 @@ typedef struct M1Basis {
     float fwd[4];           /* +0x20 */
 } M1Basis;
 
+/* Skeleton of a model: world matrix rows, then the bone array (bones are 0x180 bytes; +0x74 is the bone height). */
+typedef struct M1Bone {
+    uint8_t  unk000[0x74];
+    float    height;        /* +0x74 */
+    uint8_t  unk078[0x180 - 0x78];
+} M1Bone;
+typedef struct M1Rig {
+    uint8_t  unk000[0x74];
+    float    height;        /* +0x74  root height */
+    uint8_t  unk078[0xC4 - 0x78];
+    M1Bone  *bones;         /* +0xC4 */
+} M1Rig;
+
 /* World object (the body the AI drives, the player, a target). */
 typedef struct M1Actor {
     uint8_t  unk000[4];
@@ -20,14 +33,24 @@ typedef struct M1Actor {
     uint32_t drawFlags;     /* +0x0C */
     uint32_t bodyFlags;     /* +0x10  bit 8 = dead body, bit 0x10 = airborne */
     uint8_t  unk014[0x20 - 0x14];
-    M1Basis *basis;         /* +0x20 */
+    union {                 /* +0x20 */
+        M1Basis *basis;
+        struct M1Rig *rig;  /* same object seen as a skeleton (basis rows first) */
+    };
     uint8_t  unk024[0x30 - 0x24];
     void    *anim;          /* +0x30 */
     uint8_t  unk034[0x54 - 0x34];
     float    yaw;           /* +0x54 */
     uint8_t  unk058[0x60 - 0x58];
     float    pos[3];        /* +0x60 */
-    uint8_t  unk06C[0x128 - 0x6C];
+    float    posW;          /* +0x6C */
+    float    scale;         /* +0x70 */
+    uint8_t  unk074[0xB0 - 0x74];
+    float    colRadius;     /* +0xB0 */
+    float    colHeight;     /* +0xB4 */
+    uint8_t  unk0B8[0xE8 - 0xB8];
+    float    colReach;      /* +0xE8 */
+    uint8_t  unk0EC[0x128 - 0xEC];
     uint8_t  contact;       /* +0x128 bits 0x02-0x10 = touching something (0x18 = ground) */
     uint8_t  unk129[0x13C - 0x129];
     int32_t  loopSnd;       /* +0x13C */

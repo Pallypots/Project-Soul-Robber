@@ -1492,3 +1492,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_363 PASS: 0xCD8D0 (new shared header include/m1_player.h: M1Player).
 - m1_363 PASS: 0xCEEA0, 0xCEF00 (new shared header include/m1_slots.h: M1BoneSlot).
 - m1_364 PASS: 0xCEE40.
+- m1_364 PASS: 0x18A280 (M1Actor gains colRadius/colHeight/colReach at +0xB0/+0xB4/+0xE8).
+- 0x172650: hard after 3 tries (one extra shift: cl scales the 0x14-byte row index as k*5 then <<2, original folds it into the address).
+- m1_365 PASS: 0x137170 (new shared header include/m1_enemy1.h: M1Enemy1State).
