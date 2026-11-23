@@ -1506,3 +1506,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - 0xA0030, 0x9F1B0: mid-function fragments, not real functions.
 - m1_367 PASS: 0xC2A40 (M1Player gains mode/action/costumeSet).
 - 0xD2CC0: still hard (cl hoists the identical 0x171CD0 call out of both branches; volatile pointer/result per branch does not stop it).
+- 0x79910: hard after 3 tries (cl folds the found-row copy into the shared final copy; original keeps three copy sites).
+- m1_368 PASS: 0x6CA50 (new shared header include/m1_fan.h), 0x75850 (new shared header include/m1_uvanim.h).
+- r1k_12 PASS: 0x45C60 (title star init; was an m1 register-input skip, belongs with r1k stars).
