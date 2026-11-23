@@ -16,7 +16,7 @@ typedef struct M1Basis {
 typedef struct M1Actor {
     uint8_t  unk000[4];
     int32_t  kind;          /* +0x04  0xD = throwable body (inferred) */
-    uint8_t  unk008[4];
+    int32_t  subKind;       /* +0x08  e.g. enemy type 3 or 4 */
     uint32_t drawFlags;     /* +0x0C */
     uint32_t bodyFlags;     /* +0x10  bit 8 = dead body, bit 0x10 = airborne */
     uint8_t  unk014[0x20 - 0x14];
