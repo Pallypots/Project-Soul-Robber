@@ -1504,3 +1504,5 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_367 PASS: 0x398D0 (new shared header include/m1_panel.h: M1PanelRow).
 - 0x188FD0 deferred (null tests on array element addresses that cl folds away; biased dual-array walk).
 - 0xA0030, 0x9F1B0: mid-function fragments, not real functions.
+- m1_367 PASS: 0xC2A40 (M1Player gains mode/action/costumeSet).
+- 0xD2CC0: still hard (cl hoists the identical 0x171CD0 call out of both branches; volatile pointer/result per branch does not stop it).
