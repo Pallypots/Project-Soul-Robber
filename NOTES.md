@@ -1495,3 +1495,6 @@ Area prefix: `m1` (src\game\m1_*.c, include\m1.h, config\*_m1.csv, build\obj_m1)
 - m1_364 PASS: 0x18A280 (M1Actor gains colRadius/colHeight/colReach at +0xB0/+0xB4/+0xE8).
 - 0x172650: hard after 3 tries (one extra shift: cl scales the 0x14-byte row index as k*5 then <<2, original folds it into the address).
 - m1_365 PASS: 0x137170 (new shared header include/m1_enemy1.h: M1Enemy1State).
+- 0x95C30, 0x101BE0, 0x11BE50, 0xB8510: function tails mis-split in the inventory, not real functions (drop from the reopened list).
+- 0x129180 deferred (inventory size 36 is too short; real body continues past 0x1291D0).
+- 0x126090: hard after 3 tries (cl places the close-in path before the strike path; size mode merges the two 0x11F2B0 calls).
